@@ -1,0 +1,135 @@
+<!DOCTYPE html><html lang="en" theme-mode="dark"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>博客文章阅读数统计 | Hexo</title><link rel="icon" type="image/x-icon" href="/Arknight-notes/favicon.ico"><link rel="preload" as="font" crossorigin="anonymous" href="/Arknight-notes/font/Bender.ttf"><link rel="preload" as="font" crossorigin="anonymous" href="/Arknight-notes/font/BenderLight.ttf"><link rel="preload" as="font" crossorigin="anonymous" href="/Arknight-notes/font/JetBrainsMono-Regular.woff2"><link rel="stylesheet" href="/Arknight-notes/css/arknights.css"><style>@font-face {
+  font-family: Bender;
+  src: local('Bender'), url("/Arknight-notes/font/Bender.ttf"), url("/Arknight-notes/font/Bender.otf");
+}
+@font-face {
+  font-family: BenderLight;
+  src: local('BenderLight'), url("/Arknight-notes/font/BenderLight.ttf");
+}
+@font-face {
+  font-family: 'JetBrains Mono';
+  src: local('JetBrains Mono'), url('/Arknight-notes/font/JetBrainsMono-Regular.woff2') format('woff2');
+}
+</style><script>var config = {"root":"/Arknight-notes/","code_fold":15,"search":{"preload":false,"activeHolder":"键入以继续","blurHolder":"数据检索","noResult":"无 $0 相关数据"},"code":{"codeInfo":"$0 - $1 行","copy":"复制"}}</script><link type="text/css" rel="stylesheet" href="/Arknight-notes/lib/encrypt/hbe.style.css"><script src="//unpkg.com/mermaid@10.5.0/dist/mermaid.min.js"></script><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lightgallery.css"><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lg-zoom.css"><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lg-thumbnail.css"><link type="text/css" rel="stylesheet" href="/Arknight-notes/lib/fontawesome/css/all.min.css"><script>if (window.localStorage.getItem('theme-mode') === 'light')
+ document.documentElement.setAttribute('theme-mode', 'light')
+if (window.localStorage.getItem('theme-mode') === 'dark')
+ document.documentElement.setAttribute('theme-mode', 'dark')</script><style>@font-face {
+ font-family: BenderLight;
+ src: local('Bender'), url("/Arknight-notes/font/BenderLight.woff2") format('woff2');
+}
+@font-face {
+ font-family: 'JetBrains Mono';
+ src: local('JetBrains Mono'), url('/Arknight-notes/font/JetBrainsMono-Regular.woff2') format('woff2');
+}</style><style>:root {
+ --dark-background: url('https://ak.hypergryph.com/assets/index/images/ak/pc/bk.jpg');
+ --light-background: url('/Arknight-notes/img/bk.jpg');
+ --theme-encrypt-confirm: '确认'
+}</style><script defer src="/Arknight-notes/js/arknights.js"></script><script defer src="/Arknight-notes/js/search.js"></script><script defer type="module">import mermaid from '//unpkg.com/mermaid@10.5.0/dist/mermaid.esm.mjs';
+window.mermaid = mermaid;
+code.paintMermaid();
+</script><script async src="//unpkg.com/lightgallery@2.7.1/lightgallery.min.js"></script><script async src="//unpkg.com/lightgallery@2.7.1/plugins/zoom/lg-zoom.min.js"></script><script async src="//unpkg.com/lightgallery@2.7.1/plugins/thumbnail/lg-thumbnail.min.js"></script><script async src="/Arknight-notes/lib/encrypt/hbe.js"></script><script async src="/Arknight-notes/js/pjax.js"></script><script class="pjax-js">reset= () => {document.querySelector('.lg-container')?.remove()
+lightGallery(document.getElementById('post-bg'), {
+  plugins: [lgZoom,lgThumbnail],
+  selector: '.item-img'})}</script><script>window.addEventListener("load",() => {pjax = new Pjax({
+ cacheBust: false,
+ selectors: ['title','article','#aside-block','.pjax-js','data-pjax','.busuanzi'],
+ switches: {'article': Pjax.switches.sideBySide},
+ switchesOptions: {
+   'article': {
+     classNames: {
+       remove: "pjax-out",
+       add: "pjax-in"
+     }
+   }
+ }
+});
+document.addEventListener("pjax:complete", reset);reset()})</script><script class="pjax-js">reset= () => {document.querySelector('.lg-container')?.remove()
+lightGallery(document.getElementById('post-bg'), {
+  plugins: [lgZoom,lgThumbnail],
+  selector: '.item-img'})}</script><script>window.addEventListener("load",() => {pjax = new Pjax({
+ cacheBust: false,
+ selectors: ['title','article','#aside-block','.pjax-js'],
+ switches: {'article': Pjax.switches.sideBySide},
+ switchesOptions: {
+   'article': {
+     classNames: {
+       remove: "pjax-out",
+       add: "pjax-in"
+     }
+   }
+ }
+});
+document.addEventListener("pjax:complete", reset);reset()})</script><meta name="generator" content="Hexo 7.3.0"></head><body><div class="loading" style="opacity: 0;"><div class="loadingBar left"></div><div class="loadingBar right"></div></div><main><header class="closed"><div class="navBtn"><i class="navBtnIcon"><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span></i></div><nav><div class="navItem" id="search-header"><span class="navItemTitle"><input autocomplete="off" autocorrect="off" autocapitalize="none" placeholder="数据检索" spellcheck="false" maxlength="50" type="text" id="search-input"></span></div><div class="navItem" id="search-holder"></div><div class="search-popup" tabindex="0"><div id="search-result"></div></div><ol class="navContent"><li class="navItem"><a class="navBlock" href="/Arknight-notes/"><span class="navItemTitle">Home</span></a></li><li class="navItem" matchdata="categories,tags"><a class="navBlock" href="/Arknight-notes/archives/"><span class="navItemTitle">Archives</span></a></li></ol></nav></header><article><div id="post-bg"><div id="post-title"><h1>博客文章阅读数统计</h1><div id="post-info"><span>文章发布时间: <div class="control"><time datetime="2025-03-30T17:00:37.706Z" id="date"> 2025-03-31</time></div></span><br><span>最后更新时间: <div class="control"><time datetime="2024-07-17T16:24:06.622Z" id="updated"> 2024-07-18</time></div></span></div></div><hr><div id="post-content"><h2 id="不蒜子-给网站、博客文章添加阅读次数统计"><a href="#不蒜子-给网站、博客文章添加阅读次数统计" class="headerlink" title="不蒜子 | 给网站、博客文章添加阅读次数统计"></a>不蒜子 | 给网站、博客文章添加阅读次数统计</h2><h2 id="效果演示："><a href="#效果演示：" class="headerlink" title="效果演示："></a>效果演示：</h2><ul>
+<li></li>
+</ul>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<blockquote>
+<blockquote>
+<p>本站总访问量<span id="busuanzi_value_site_pv"></span>次</p>
+</blockquote>
+</blockquote>
+<ul>
+<li></li>
+</ul>
+<blockquote>
+<blockquote>
+<p>本站访客数<span id="busuanzi_value_site_uv"></span>人次</p>
+</blockquote>
+</blockquote>
+<ul>
+<li></li>
+</ul>
+<p><strong>一行脚本+一行标签</strong>，搞定一切。追求极致的用户可以进行任意DIY。</p>
+<p>不蒜子官网：<a target="_blank" rel="noopener" href="http://busuanzi.ibruce.info/">http://busuanzi.ibruce.info/</a></p>
+<h2 id="一、安装脚本（必选）"><a href="#一、安装脚本（必选）" class="headerlink" title="一、安装脚本（必选）"></a><strong>一、安装脚本（必选）</strong></h2><p>要使用不蒜子必须在页面中引入busuanzi.js，目前最新版如下。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs javascript">&lt;script <span class="hljs-keyword">async</span> src=<span class="hljs-string">&quot;//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js&quot;</span>&gt;&lt;/script&gt;<br></code></pre></td></tr></table></figure>
+
+<p>不蒜子可以给任何类型的个人站点使用，如果你是用的hexo，打开<strong>themes&#x2F;你的主题&#x2F;layout&#x2F;_partial&#x2F;footer.ejs</strong>添加上述脚本即可，当然你也可以添加到 header 中。</p>
+<h3 id="二、安装标签（可选）"><a href="#二、安装标签（可选）" class="headerlink" title="二、安装标签（可选）"></a><strong>二、安装标签（可选）</strong></h3><hr>
+<p>只需要复制相应的html标签到你的网站要显示访问量的位置即可。您可以随意更改不蒜子标签为自己喜欢的显示效果，内容参考第三部分<strong>扩展开发</strong>。根据你要显示内容的不同，这分几种情况。</p>
+<h4 id="1、显示站点总访问量"><a href="#1、显示站点总访问量" class="headerlink" title="1、显示站点总访问量"></a><strong>1、显示站点总访问量</strong></h4><p>要显示站点总访问量，复制以下代码添加到你需要显示的位置。有两种算法可选：</p>
+<p>算法a：pv的方式，单个用户连续点击n篇文章，记录n次访问量。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs javascript">本站总访问量&lt;span id=<span class="hljs-string">&quot;busuanzi_value_site_pv&quot;</span>&gt;&lt;/span&gt;次<br></code></pre></td></tr></table></figure>
+
+<p>算法b：uv的方式，单个用户连续点击n篇文章，只记录1次访客数。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs javascript">本站访客数&lt;span id=<span class="hljs-string">&quot;busuanzi_value_site_uv&quot;</span>&gt;&lt;/span&gt;人次<br></code></pre></td></tr></table></figure>
+
+<p>如果你是用的hexo，打开<strong>themes&#x2F;你的主题&#x2F;layout&#x2F;_partial&#x2F;footer.ejs</strong>添加即可。</p>
+<p><strong>实例效果参考：</strong></p>
+<p><a target="_blank" rel="noopener" href="https://blog.ccswust.org/busuanzi/">https://blog.ccswust.org/busuanzi/</a></p>
+<h4 id="2、显示单页面访问量"><a href="#2、显示单页面访问量" class="headerlink" title="2、显示单页面访问量"></a><strong>2、显示单页面访问量</strong></h4><p>要显示每篇文章的访问量，复制以下代码添加到你需要显示的位置。</p>
+<p>算法：pv的方式，单个用户点击1篇文章，本篇文章记录1次阅读量。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs javascript">本站总访问量&lt;span id=<span class="hljs-string">&quot;busuanzi_value_site_pv&quot;</span>&gt;&lt;/span&gt;次<br></code></pre></td></tr></table></figure>
+
+<p>代码中文字是可以修改的，只要保留id正确即可。</p>
+<p>注意：不蒜子为保持极简，暂不支持在站点文章摘要列表中（如首页）逐个显示每篇文章的阅读次数，如果您非常需要这一功能，可以留言。根据需要程度再考虑开发相应的功能。</p>
+<p><strong>实例效果参考：</strong></p>
+<p><a target="_blank" rel="noopener" href="https://blog.ccswust.org/busuanzi/pv.html">https://blog.ccswust.org/busuanzi/pv.html</a></p>
+<p>注意：不蒜子为保持极简，暂不支持在站点文章摘要列表中（如首页）逐个显示每篇文章的阅读次数，如果您非常需要这一功能，可以留言。根据需要程度再考虑开发相应的功能。</p>
+<h3 id="3、显示站点总访问量和单页面访问量"><a href="#3、显示站点总访问量和单页面访问量" class="headerlink" title="3、显示站点总访问量和单页面访问量"></a><strong>3、显示站点总访问量和单页面访问量</strong></h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs javascript">本站访客数&lt;span id=<span class="hljs-string">&quot;busuanzi_value_site_uv&quot;</span>&gt;&lt;/span&gt;人次<br></code></pre></td></tr></table></figure>
+
+<p><strong>实例效果参考：</strong></p>
+<p><a target="_blank" rel="noopener" href="https://blog.ccswust.org/busuanzi/ip.html">https://blog.ccswust.org/busuanzi/ip.html</a></p>
+<h3 id="4、只计数不显示"><a href="#4、只计数不显示" class="headerlink" title="4、只计数不显示"></a><strong>4、只计数不显示</strong></h3><p>只安装脚本代码，不安装标签代码。</p>
+<p><strong>至此，不蒜子已经可以正常运行</strong></p>
+<h2 id="附录：扩展开发（自定义）"><a href="#附录：扩展开发（自定义）" class="headerlink" title="附录：扩展开发（自定义）"></a><strong>附录：扩展开发（自定义）</strong></h2><p>不蒜子之所以称为极客的算子，正是因为不蒜子自身只提供<strong>标签+数字</strong>，至于显示的style和css动画效果，任你发挥。</p>
+<ul>
+<li><code>**busuanzi_value_site_pv**</code> 的作用是异步回填访问数，这个id一定要正确。</li>
+<li><code>**busuanzi_container_site_pv**</code>的作用是为防止计数服务访问出错或超时（3秒）的情况下，使整个标签自动隐藏显示，带来更好的体验。这个id可以省略。</li>
+</ul>
+<p>因此，你也可以使用极简模式：</p>
+<p>本站总访问量<code>&lt;span id=&quot;busuanzi_value_site_pv&quot;&gt;&lt;/span&gt;</code>次本站访客数  <code>&lt;span id=&quot;busuanzi_value_site_uv&quot;&gt;&lt;/span&gt;</code>  人次本文总阅读量<code>&lt;span id=&quot;busuanzi_value_page_pv&quot;&gt;&lt;/span&gt;</code>次</p>
+<p>或者个性化一下：</p>
+<p>Total <code>&lt;span id=&quot;busuanzi_value_site_pv&quot;&gt;&lt;/span&gt;</code> views.您是xxx的第<span id="busuanzi_value_site_uv"></span>个小伙伴<span id="busuanzi_value_page_pv"></span> Hits</p>
+<p>1、我只要统计不显示？ 只引入busuanzi.js，不引入显示标签即可。</p>
+<p>2、你的标签太丑了，我想美化一下可以么？ 可以的，您可以用自己站点的css进行控制，只要内层span的id正确以便回填访问次数即可，甚至标签都可以不是span。</p>
+<p>3、中文字体太丑了，我的主题不适合？ 您可以将<strong>本站总访问量xxx次</strong>改成<strong>view xxx times</strong>等英文以获得更和谐的显示效果。</p>
+<p>4、在访问量数据未取回来之前，我不想让页面显示为诸如“本站总访问量 次”，显得太low，怎么办？ 只需要如下css，不蒜子执行完毕会自动将标签显示出来，其他以此类推：</p>
+<p><span id="busuanzi_container_site_pv" style='display:none'> <code>本站总访问量&lt;span id=&quot;busuanzi_value_site_pv&quot;&gt;&lt;/span&gt;次</code></span></p>
+<p>上面的做法还是很low？！看下这个<a target="_blank" rel="noopener" href="https://blog.ccswust.org/busuanzi/diy.html">https://blog.ccswust.org/busuanzi/diy.html</a> 右键看下源码，没加载出来前就显示个菊花转转转: 首先，你要引入<strong>font-awesome</strong>字体：</p>
+<p><code>&lt;link rel=&quot;stylesheet&quot; href=&quot;//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css&quot;&gt;或&lt;link rel=&quot;stylesheet&quot; href=&quot;//cdn.bootcss.com/font-awesome/4.3.0/css/font-awesome.min.css&quot;&gt;</code></p>
+<p>其次，修改不蒜子标签：</p>
+<p><code>&lt;span id=&quot;busuanzi_value_page_pv&quot;&gt;&lt;i class=&quot;fa fa-spinner&quot;&gt;&lt;/i&gt;&lt;/span&gt; Hits或（旋转效果）&lt;span id=&quot;busuanzi_value_page_pv&quot;&gt;&lt;i class=&quot;fa fa-spinner fa-spin&quot;&gt;&lt;/i&gt;&lt;/span&gt; Hits</code></p>
+<p><span id="busuanzi_value_page_pv"><i class="fa fa-spinner"></i></span> Hits或（旋转效果）<span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span> Hits</p>
+<div id="paginator"></div></div><div id="post-footer"><div id="pages" style="justify-content: flex-end"><div class="footer-link" style="width: 50%;right:1px;border-left:1px #fe2 solid"><a href="/Arknight-notes/2025/03/09/2025-03-09-2024%E4%B8%80%E4%BA%9B%E7%AC%94%E8%AE%B0%EF%BC%88%E5%B8%B8%E5%BE%AE%E5%88%86/">2024一些笔记（常微分） 上一篇 →</a></div></div></div></div><div class="bottom-btn"><div><a class="i-top" id="to-top" onClick="scrolls.scrolltop();" title="回到顶部" style="opacity: 0; display: none;">∧ </a><a class="i-index" id="to-index" href="#toc-div" title="文章目录">≡</a><a class="i-color" id="color-mode" onClick="colorMode.change()" title="切换主题"></a><a onclick="BgmControl()"><svg id="bgm-control" viewBox="0 0 30 34" fill="#18d1ff" style="width: 24px; transition: transform .3s;margin-top: 4px"><path d="M25.998 23.422V11.29h3.999v12.132h-3.999zM19.497 6.234h4.001v22.243h-4.001V6.234zM12.998.867h4v32.978h-4V.867zm-6.5 5.367h4.001v22.243H6.498V6.234zm-6.5 5.056h4v12.132h-4V11.29z"></path></svg><audio id="bgm" src="/audio/bgm.mp3" autoplay loop crossorigin="anonymous"> </audio></a></div></div></article><aside><div id="about"><a href="/Arknight-notes/" id="logo"><img src="https://ak.hypergryph.com/assets/index/images/ak/pc/faction/1.png" alt="Logo" style="margin:0;border-radius:0;"></a><h1 id="Dr"><a href="/">柊野</a></h1><div id="description"><p></p></div></div><div id="aside-block"><div id="toc-div"><h1>目录</h1><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%8D%E8%92%9C%E5%AD%90-%E7%BB%99%E7%BD%91%E7%AB%99%E3%80%81%E5%8D%9A%E5%AE%A2%E6%96%87%E7%AB%A0%E6%B7%BB%E5%8A%A0%E9%98%85%E8%AF%BB%E6%AC%A1%E6%95%B0%E7%BB%9F%E8%AE%A1"><span class="toc-number">1.</span> <span class="toc-text">不蒜子 | 给网站、博客文章添加阅读次数统计</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%88%E6%9E%9C%E6%BC%94%E7%A4%BA%EF%BC%9A"><span class="toc-number">2.</span> <span class="toc-text">效果演示：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E5%AE%89%E8%A3%85%E8%84%9A%E6%9C%AC%EF%BC%88%E5%BF%85%E9%80%89%EF%BC%89"><span class="toc-number">3.</span> <span class="toc-text">一、安装脚本（必选）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E5%AE%89%E8%A3%85%E6%A0%87%E7%AD%BE%EF%BC%88%E5%8F%AF%E9%80%89%EF%BC%89"><span class="toc-number">3.1.</span> <span class="toc-text">二、安装标签（可选）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1%E3%80%81%E6%98%BE%E7%A4%BA%E7%AB%99%E7%82%B9%E6%80%BB%E8%AE%BF%E9%97%AE%E9%87%8F"><span class="toc-number">3.1.1.</span> <span class="toc-text">1、显示站点总访问量</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2%E3%80%81%E6%98%BE%E7%A4%BA%E5%8D%95%E9%A1%B5%E9%9D%A2%E8%AE%BF%E9%97%AE%E9%87%8F"><span class="toc-number">3.1.2.</span> <span class="toc-text">2、显示单页面访问量</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3%E3%80%81%E6%98%BE%E7%A4%BA%E7%AB%99%E7%82%B9%E6%80%BB%E8%AE%BF%E9%97%AE%E9%87%8F%E5%92%8C%E5%8D%95%E9%A1%B5%E9%9D%A2%E8%AE%BF%E9%97%AE%E9%87%8F"><span class="toc-number">3.2.</span> <span class="toc-text">3、显示站点总访问量和单页面访问量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4%E3%80%81%E5%8F%AA%E8%AE%A1%E6%95%B0%E4%B8%8D%E6%98%BE%E7%A4%BA"><span class="toc-number">3.3.</span> <span class="toc-text">4、只计数不显示</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%99%84%E5%BD%95%EF%BC%9A%E6%89%A9%E5%B1%95%E5%BC%80%E5%8F%91%EF%BC%88%E8%87%AA%E5%AE%9A%E4%B9%89%EF%BC%89"><span class="toc-number">4.</span> <span class="toc-text">附录：扩展开发（自定义）</span></a></li></ol></div></div><footer><nobr>构建自 <a target="_blank" rel="noopener" href="http://hexo.io">Hexo</a></nobr><wbr><nobr> 使用主题 <a target="_blank" rel="noopener" href="https://github.com/Yue-plus/hexo-theme-arknights">Arknights</a></nobr><wbr><nobr> 主题作者 <a target="_blank" rel="noopener" href="https://github.com/Yue-plus">Yue_plus</a></nobr></footer></aside></main><canvas id="canvas-dust"></canvas></body></html>
