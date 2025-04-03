@@ -1,0 +1,288 @@
+<!DOCTYPE html><html lang="en" theme-mode="dark"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>（旧）创建一个网络包解码器分析DEVP2P协议 | Notes|笔记站</title><link rel="icon" type="image/x-icon" href="/Arknight-notes/favicon.ico"><link rel="preload" as="font" crossorigin="anonymous" href="/Arknight-notes/font/Bender.ttf"><link rel="preload" as="font" crossorigin="anonymous" href="/Arknight-notes/font/BenderLight.ttf"><link rel="preload" as="font" crossorigin="anonymous" href="/Arknight-notes/font/JetBrainsMono-Regular.woff2"><link rel="stylesheet" href="/Arknight-notes/css/arknights.css"><style>@font-face {
+  font-family: Bender;
+  src: local('Bender'), url("/Arknight-notes/font/Bender.ttf"), url("/Arknight-notes/font/Bender.otf");
+}
+@font-face {
+  font-family: BenderLight;
+  src: local('BenderLight'), url("/Arknight-notes/font/BenderLight.ttf");
+}
+@font-face {
+  font-family: 'JetBrains Mono';
+  src: local('JetBrains Mono'), url('/Arknight-notes/font/JetBrainsMono-Regular.woff2') format('woff2');
+}
+</style><script>var config = {"root":"/Arknight-notes/","code_fold":90,"search":{"preload":false,"activeHolder":"Enter here","blurHolder":"Search","noResult":"Data \"$0\" not found"},"code":{"codeInfo":"$0 - $1 lines","copy":"copy"}}</script><link type="text/css" rel="stylesheet" href="/Arknight-notes/lib/encrypt/hbe.style.css"><script src="/Arknight-notes/js/gitalk.js"></script><script src="//unpkg.com/mermaid@10.5.0/dist/mermaid.min.js"></script><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lightgallery.css"><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lg-zoom.css"><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lg-thumbnail.css"><link type="text/css" rel="stylesheet" href="/Arknight-notes/lib/fontawesome/css/all.min.css"><script>if (window.localStorage.getItem('theme-mode') === 'light')
+ document.documentElement.setAttribute('theme-mode', 'light')
+if (window.localStorage.getItem('theme-mode') === 'dark')
+ document.documentElement.setAttribute('theme-mode', 'dark')</script><style>@font-face {
+ font-family: BenderLight;
+ src: local('Bender'), url("/Arknight-notes/font/BenderLight.woff2") format('woff2');
+}
+@font-face {
+ font-family: 'JetBrains Mono';
+ src: local('JetBrains Mono'), url('/Arknight-notes/font/JetBrainsMono-Regular.woff2') format('woff2');
+}</style><style>:root {
+ --dark-background: url('https://pic2.zhimg.com/v2-6269d74b4dafe14781d03790e5a86b21_r.jpg');
+ --light-background: url('https://pic1.zhimg.com/v2-233b64b583642fc4a6d77e69ced33150_r.jpg');
+ --theme-encrypt-confirm: 'confirm'
+}</style><script defer src="/Arknight-notes/js/arknights.js"></script><script defer src="/Arknight-notes/js/search.js"></script><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><script async src="/Arknight-notes/js/gitalk.js"></script><script defer type="module">import mermaid from '//unpkg.com/mermaid@10.5.0/dist/mermaid.esm.mjs';
+window.mermaid = mermaid;
+code.paintMermaid();
+</script><script async src="//unpkg.com/lightgallery@2.7.1/lightgallery.min.js"></script><script async src="//unpkg.com/lightgallery@2.7.1/plugins/zoom/lg-zoom.min.js"></script><script async src="//unpkg.com/lightgallery@2.7.1/plugins/thumbnail/lg-thumbnail.min.js"></script><script async src="/Arknight-notes/lib/encrypt/hbe.js"></script><script async src="/Arknight-notes/js/pjax.js"></script><script class="pjax-js">reset= () => {gitalk = new Gitalk({
+ clientID: 'Ov23ct13Fb0b67x23wnT',
+ clientSecret: 'f18ce69dd545e3c0f5e2456afde9c756fe8a254a',
+ repo: 'Arknight-notes',
+ owner: 'Zhongye1',
+ admin: ['Zhongye1'],
+ distractionFreeMode: false,
+ id: location.pathname
+});
+if (document.querySelector("#gitalk")) gitalk.render("gitalk");document.querySelector('.lg-container')?.remove()
+lightGallery(document.getElementById('post-bg'), {
+  plugins: [lgZoom,lgThumbnail],
+  selector: '.item-img'})}</script><script>window.addEventListener("load",() => {pjax = new Pjax({
+ cacheBust: false,
+ selectors: ['title','article','#aside-block','.pjax-js','data-pjax','.busuanzi'],
+ switches: {'article': Pjax.switches.sideBySide},
+ switchesOptions: {
+   'article': {
+     classNames: {
+       remove: "pjax-out",
+       add: "pjax-in"
+     }
+   }
+ }
+});
+document.addEventListener("pjax:complete", reset);document.addEventListener('pjax:success', _ => bszCaller.fetch(
+ "//busuanzi.ibruce.info/busuanzi?jsonpCallback=BusuanziCallback", a => {
+  bszTag.texts(a),
+  bszTag.shows()
+}));reset()})</script><script class="pjax-js">reset= () => {gitalk = new Gitalk({
+ clientID: 'Ov23ct13Fb0b67x23wnT',
+ clientSecret: 'f18ce69dd545e3c0f5e2456afde9c756fe8a254a',
+ repo: 'Arknight-notes',
+ owner: 'Zhongye1',
+ admin: ['Zhongye1'],
+ distractionFreeMode: false,
+ id: location.pathname
+});
+if (document.querySelector("#gitalk")) gitalk.render("gitalk");document.querySelector('.lg-container')?.remove()
+lightGallery(document.getElementById('post-bg'), {
+  plugins: [lgZoom,lgThumbnail],
+  selector: '.item-img'})}</script><script>window.addEventListener("load",() => {pjax = new Pjax({
+ cacheBust: false,
+ selectors: ['title','article','#aside-block','.pjax-js'],
+ switches: {'article': Pjax.switches.sideBySide},
+ switchesOptions: {
+   'article': {
+     classNames: {
+       remove: "pjax-out",
+       add: "pjax-in"
+     }
+   }
+ }
+});
+document.addEventListener("pjax:complete", reset);reset()})</script><meta name="generator" content="Hexo 7.3.0"></head><body><div class="loading" style="opacity: 0;"><div class="loadingBar left"></div><div class="loadingBar right"></div></div><main><header class="closed"><div class="navBtn"><i class="navBtnIcon"><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span></i></div><nav><div class="navItem" id="search-header"><span class="navItemTitle"><input autocomplete="off" autocorrect="off" autocapitalize="none" placeholder="Search" spellcheck="false" maxlength="50" type="text" id="search-input"></span></div><div class="navItem" id="search-holder"></div><div class="search-popup" tabindex="0"><div id="search-result"></div></div><ol class="navContent"><li class="navItem"><a class="navBlock" href="/Arknight-notes/"><span class="navItemTitle">Home</span></a></li><li class="navItem" matchdata="categories,tags"><a class="navBlock" href="/Arknight-notes/archives/"><span class="navItemTitle">Archives</span></a></li><li class="navItem"><a class="navBlock" href="/Arknight-notes/about/"><span class="navItemTitle">About</span></a></li></ol></nav></header><article><div id="post-bg"><div id="post-title"><h1>（旧）创建一个网络包解码器分析DEVP2P协议</h1><div id="post-info"><span>First Post: <div class="control"><time datetime="2024-10-14T14:53:46.000Z" id="date"> 2024-10-14</time></div></span><br><span>Last Update: <div class="control"><time datetime="2025-04-03T06:22:53.771Z" id="updated"> 2025-04-03</time></div></span><br><span id="busuanzi_container_page_pv">Page View: <span class="control" id="busuanzi_value_page_pv">loading...</span></span></div></div><hr><div id="post-content"><hr>
+<p><br><center>本项目最新版本</center></p>
+<p> link 本项目最新版本, <a href="https://zhongye1.github.io/posts/1104.html">https://zhongye1.github.io/posts/1104.html</a>, <a target="_blank" rel="noopener" href="https://pic1.zhimg.com/80/v2-593dd0a3b84d023b3827b97e81e0242a_720w.webp">https://pic1.zhimg.com/80/v2-593dd0a3b84d023b3827b97e81e0242a_720w.webp</a> </p>
+<center>附注：此页面使用wsl构建不可行</center>
+
+
+
+<h1 id="安装配置WSL2（ubuntu20-04）"><a href="#安装配置WSL2（ubuntu20-04）" class="headerlink" title="安装配置WSL2（ubuntu20.04）"></a>安装配置WSL2（ubuntu20.04）</h1><p>Windows Subsystem for Linux（简称WSL），Windows下的Linux子系统，是一个在Windows 10上能够运行原生Linux二进制可执行文件（ELF格式）的兼容层。它是由微软与Canonical公司合作开发，其目标是使纯正的Ubuntu、Debian等映像能下载和解压到用户的本地计算机，并且映像内的工具和实用工具能在此子系统上原生运行。</p>
+<h2 id="1-安装Windows-Terminal"><a href="#1-安装Windows-Terminal" class="headerlink" title="1.安装Windows Terminal"></a>1.安装Windows Terminal</h2><p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/351281543">Window Terminal 安装以及使用(2021最新) - 知乎</a></p>
+<p>一个目前在用的windows命令行工具</p>
+<p>可以直接从 <a href="https://link.zhihu.com/?target=https://www.microsoft.com/en-us/p/windows-terminal/9n0dx20hk701?rtc=1&activetab=pivot:overviewtab">Microsoft Store</a> 下载安装，而且<a href="https://link.zhihu.com/?target=https://github.com/microsoft/terminal/releases">Github仓库</a>上发布有内部版本。 </p>
+<h2 id="2-安装wsl"><a href="#2-安装wsl" class="headerlink" title="2.安装wsl"></a>2.安装wsl</h2><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/m0_51233386/article/details/127961763">Windows 10 安装配置WSL2（ubuntu20.04）教程 超详细_win10安装wsl2-CSDN博客</a></p>
+<p>对于windows10版本可以直接命令符安装</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs csharp">wsl --install<br></code></pre></td></tr></table></figure>
+
+<h3 id="设置-WSL-开发环境见微软官方文档"><a href="#设置-WSL-开发环境见微软官方文档" class="headerlink" title="设置 WSL 开发环境见微软官方文档"></a>设置 WSL 开发环境见微软官方文档</h3><h3 id="设置-WSL-开发环境-Microsoft-Learn"><a href="#设置-WSL-开发环境-Microsoft-Learn" class="headerlink" title="设置 WSL 开发环境 | Microsoft Learn"></a><a target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/windows/wsl/setup/environment">设置 WSL 开发环境 | Microsoft Learn</a></h3><p>完成后打开Windows Terminal找到：</p>
+<p class='item-img' data-src='https://free-img.400040.xyz/4/2024/10/14/670d2f7bd8d86.png'><img src="https://free-img.400040.xyz/4/2024/10/14/670d2f7bd8d86.png" alt="pic"></p>
+<p class='item-img' data-src='https://free-img.400040.xyz/4/2024/10/14/670d2f838b7b1.png'><img src="https://free-img.400040.xyz/4/2024/10/14/670d2f838b7b1.png" alt="pic"></p>
+<h2 id="3-Docker-安装"><a href="#3-Docker-安装" class="headerlink" title="3.Docker 安装"></a>3.Docker 安装</h2><blockquote>
+<p>Docker -&gt; 虚拟化容器技术。<br>Docker基于镜像，可以秒级启动各种容器。每一种容器都是一个完整的运行环境，容器之间互相隔离。</p>
+</blockquote>
+<ol>
+<li><p><a target="_blank" rel="noopener" href="https://www.docker.com/" title="官网地址">官网地址</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://hub.docker.com/" title="公共仓库">公共仓库</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://docs.docker.com/get-docker/" title="安装文档">安装文档</a></p>
+</li>
+<li><p><strong>下载Docker Desktop安装程序：</strong></p>
+<ul>
+<li>访问Docker官网下载页面：<a target="_blank" rel="noopener" href="https://link.segmentfault.com/?enc=499FLQDYFvyYdd7cCtVu9A==.MBdFIbVFnRUdUPcpdVZcA7hHAMCkjMVQbZW0Gwmi75DZZOEZnLuU9NNsfxJVDdlM">https://www.docker.com/get-started/</a></li>
+<li>选择对应版本点击下载安装程序。</li>
+<li>没猜错的话应该被墙了可以找我要安装包</li>
+</ul>
+</li>
+</ol>
+<p class='item-img' data-src='https://segmentfault.com/img/remote/1460000044606076'><img src="https://segmentfault.com/img/remote/1460000044606076"></p>
+<ol start="4">
+<li><p><strong>运行安装程序：</strong></p>
+<ul>
+<li>双击下载的Docker Desktop安装文件。</li>
+<li>在安装向导中，你可以根据个人喜好勾选是否希望建立Docker Desktop的快捷方式或者是否希望Docker Desktop随Windows启动等选项。</li>
+</ul>
+</li>
+<li><p><strong>完成安装并重启：</strong></p>
+<ul>
+<li>完成安装向导后，重启计算机确保设置正确应用。</li>
+</ul>
+</li>
+<li><p><strong>启动Docker Desktop：</strong></p>
+<ul>
+<li>在重启后，运行Docker Desktop。当它启动时，Docker图标会出现在系统托盘中。</li>
+<li>系统托盘中的Docker图标表明Docker正在运行，并可能需要一点时间来启动服务。</li>
+<li><strong>电脑要开VM虚拟化</strong></li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/alwaysbefine/article/details/131277295">Windows 10 |VMware开启虚拟化的最全面说明_vmware虚拟化引擎-CSDN博客</a></li>
+<li>开VM时BIOS不懂的不要瞎搞</li>
+</ul>
+</li>
+<li><p><strong>配置Docker设置：</strong></p>
+<ul>
+<li>你可以右键点击系统托盘中的Docker图标，选择“Settings”来调整Docker的配置，如更改镜像存储位置、<strong>设置代理服务器</strong>等。</li>
+</ul>
+</li>
+</ol>
+<p>国内网络环境拉不下镜像的话就配置别的源<br class='item-img' data-src='https://free-img.400040.xyz/4/2024/10/14/670d2f87b1c1e.png'><img src="https://free-img.400040.xyz/4/2024/10/14/670d2f87b1c1e.png" alt="pic"></p>
+<p class='item-img' data-src='https://free-img.400040.xyz/4/2024/10/14/670d2f8cd2d48.png'><img src="https://free-img.400040.xyz/4/2024/10/14/670d2f8cd2d48.png" alt="pic"></p>
+<p>我用的这几个镜像站<br>配置环境要慎重</p>
+<p>我的配置文件</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs json"><span class="hljs-punctuation">&#123;</span><br>  <span class="hljs-attr">&quot;builder&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span><br>    <span class="hljs-attr">&quot;gc&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span><br>      <span class="hljs-attr">&quot;defaultKeepStorage&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;20GB&quot;</span><span class="hljs-punctuation">,</span><br>      <span class="hljs-attr">&quot;enabled&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-literal"><span class="hljs-keyword">true</span></span><br>    <span class="hljs-punctuation">&#125;</span><br>  <span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">,</span><br>  <span class="hljs-attr">&quot;experimental&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-literal"><span class="hljs-keyword">false</span></span><span class="hljs-punctuation">,</span><br>  <span class="hljs-attr">&quot;registry-mirrors&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><br>    <span class="hljs-string">&quot;https://docker.m.daocloud.io&quot;</span><span class="hljs-punctuation">,</span><br>    <span class="hljs-string">&quot;https://huecker.io&quot;</span><span class="hljs-punctuation">,</span><br>    <span class="hljs-string">&quot;https://dockerhub.timeweb.cloud&quot;</span><span class="hljs-punctuation">,</span><br>    <span class="hljs-string">&quot;https://noohub.ru&quot;</span><br>  <span class="hljs-punctuation">]</span><br><span class="hljs-punctuation">&#125;</span><br></code></pre></td></tr></table></figure>
+
+
+
+<ol start="8">
+<li><p><strong>通过命令行界面测试Docker安装：</strong></p>
+<ul>
+<li>打开命令提示符、Powershell或任何你喜欢的终端。</li>
+<li>输入命令 <code>docker --version</code> 来检查Docker版本，确保它已正确安装。</li>
+<li>运行 <code>docker run hello-world</code> 来下载一个测试镜像，并在容器中运行，这可以验证Docker Daemon是否已正确启动并且可以创建容器。<br class='item-img' data-src='https://free-img.400040.xyz/4/2024/10/14/670d2faa11c5f.png'><img src="https://free-img.400040.xyz/4/2024/10/14/670d2faa11c5f.png" alt="pic"></li>
+</ul>
+</li>
+</ol>
+<h1 id="环境安装"><a href="#环境安装" class="headerlink" title="环境安装"></a>环境安装</h1><p>准备材料</p>
+<ul>
+<li><strong>Lua-devp2p-wireshark-dissector</strong>: <a target="_blank" rel="noopener" href="https://github.com/jmkemp20/lua-devp2p-wireshark-dissector">GitHub链接</a></li>
+<li><strong>PYDEVP2P</strong>: <a target="_blank" rel="noopener" href="https://github.com/jmkemp20/pydevp2p">GitHub链接</a></li>
+<li><strong>Lunatic-Python</strong>: <a target="_blank" rel="noopener" href="https://github.com/jmkemp20/lunatic-python">GitHub链接</a></li>
+<li><strong>Go-Ethereum</strong>: <a target="_blank" rel="noopener" href="https://github.com/jmkemp20/go-ethereum">GitHub链接</a></li>
+<li><strong>GETH-Docker</strong>: <a target="_blank" rel="noopener" href="https://github.com/jmkemp20/geth-docker">GitHub链接</a></li>
+</ul>
+<h4 id="1-安装Wireshark和特定版本的LUA"><a href="#1-安装Wireshark和特定版本的LUA" class="headerlink" title="1 安装Wireshark和特定版本的LUA"></a>1 安装Wireshark和特定版本的LUA</h4><p>linux的python版本要为3.10</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs routeros">sudo apt-<span class="hljs-built_in">get</span> update &amp;&amp; sudo apt-<span class="hljs-built_in">get</span><span class="hljs-built_in"> upgrade</span><br><span class="hljs-built_in"></span>sudo apt-<span class="hljs-built_in">get</span> install lua5.2 liblua5.2-dev wireshark python3.10<br></code></pre></td></tr></table></figure>
+
+<h4 id="2-更改权限并复制Lunatic-Python-LUA-⇔-Python桥接二进制文件"><a href="#2-更改权限并复制Lunatic-Python-LUA-⇔-Python桥接二进制文件" class="headerlink" title="2 更改权限并复制Lunatic Python LUA ⇔ Python桥接二进制文件"></a>2 更改权限并复制Lunatic Python LUA ⇔ Python桥接二进制文件</h4><p>python.so为文章最开始编译得来的</p>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs vim">sudo chmod +<span class="hljs-keyword">x</span> <span class="hljs-keyword">python</span>.<span class="hljs-keyword">so</span><br><span class="hljs-keyword">cp</span> <span class="hljs-keyword">python</span>.<span class="hljs-keyword">so</span> /usr/local/lib/<span class="hljs-keyword">lua</span>/<span class="hljs-number">5.2</span>/<br></code></pre></td></tr></table></figure>
+
+
+<h2 id="关于python-so是从哪来的："><a href="#关于python-so是从哪来的：" class="headerlink" title="关于python.so是从哪来的："></a><strong>关于python.so是从哪来的：</strong></h2><p><strong>python在linux编译后的文件为.so</strong><br><strong>这个由编译Lunatic-Python: <a target="_blank" rel="noopener" href="https://github.com/jmkemp20/lunatic-python">GitHub链接</a>得来</strong><br>不会编译的可以找我要我编译好的（</p>
+<p><strong>如何编译见项目文档</strong>：</p>
+<p>Lunatic Python 是一个双向桥接项目，它允许Python和Lua两种语言互相通信。这意味着你可以在Lua中调用Python代码，也可以在Python中调用Lua代码，甚至可以嵌套调用（如Lua中的Python再调用Lua）。这个项目的主要用途之一是为 <code>LUA-devp2p-dissector</code> 提供必要的工具，使其能够调用 <code>pydevp2p</code> 中的函数。</p>
+<h3 id="项目起源"><a href="#项目起源" class="headerlink" title="项目起源"></a>项目起源</h3><ul>
+<li>这个项目是一个fork版本，原始项目来自 <code>labix-lunatic-python</code>。</li>
+<li>另一个相关的版本由 <code>bastibe</code> 维护。</li>
+</ul>
+<h3 id="开始使用"><a href="#开始使用" class="headerlink" title="开始使用"></a>开始使用</h3><h4 id="克隆仓库"><a href="#克隆仓库" class="headerlink" title="克隆仓库"></a>克隆仓库</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">git <span class="hljs-built_in">clone</span> https://github.com/jmkemp20/lunatic-python.git &amp;&amp; <span class="hljs-built_in">cd</span> lunatic-python<br></code></pre></td></tr></table></figure>
+
+<h4 id="确保安装了LUA-5-3"><a href="#确保安装了LUA-5-3" class="headerlink" title="确保安装了LUA 5.3"></a>确保安装了LUA 5.3</h4><p>通过运行 <code>lua5.3</code> 来检查是否已经安装了正确的LUA版本<br class='item-img' data-src='https://free-img.400040.xyz/4/2024/10/14/670d2fb14402b.png'><img src="https://free-img.400040.xyz/4/2024/10/14/670d2fb14402b.png" alt="pic"></p>
+<h4 id="查找你的Python版本"><a href="#查找你的Python版本" class="headerlink" title="查找你的Python版本"></a>查找你的Python版本</h4><figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs vim">ldconfig -<span class="hljs-keyword">p</span> | <span class="hljs-keyword">grep</span> <span class="hljs-keyword">python</span><br></code></pre></td></tr></table></figure>
+
+<p>这条命令会列出系统中所有可用的Python库路径。你需要找到与你的Python版本相对应的路径。</p>
+<h4 id="准备编译（构建）"><a href="#准备编译（构建）" class="headerlink" title="准备编译（构建）"></a>准备编译（构建）</h4><p>根据上一步输出的Python版本信息来配置CMake：</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs awk">cmake -B.<span class="hljs-regexp">/build -H. -DPYTHON_INCLUDE_DIR=/u</span>sr<span class="hljs-regexp">/include/</span>python3.<span class="hljs-number">10</span> \<br>  -DPYTHON_LIBRARY=<span class="hljs-regexp">/usr/</span>lib<span class="hljs-regexp">/x86_64-linux-gnu/</span>libpython3.<span class="hljs-number">10</span>.so<br></code></pre></td></tr></table></figure>
+
+<p>使用的是Python 3.10</p>
+<h4 id="编译（构建）"><a href="#编译（构建）" class="headerlink" title="编译（构建）"></a>编译（构建）</h4><figure class="highlight jboss-cli"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs jboss-cli">cmake <span class="hljs-params">--build</span> <span class="hljs-string">./build</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h3><h4 id="定位二进制文件"><a href="#定位二进制文件" class="headerlink" title="定位二进制文件"></a>定位二进制文件</h4><p>构建完成后，你会在 <code>build/bin/</code> 目录下找到两个重要的文件：</p>
+<ul>
+<li><code>python.so</code> 用于在Lua中调用Python</li>
+<li><code>lua.so</code> 用于在Python中调用Lua</li>
+<li>找不到直接搜</li>
+</ul>
+<p class='item-img' data-src='https://free-img.400040.xyz/4/2024/10/14/670d2fb4591cd.png'><img src="https://free-img.400040.xyz/4/2024/10/14/670d2fb4591cd.png" alt="pic"></p>
+<p>然后把编译好的文件移到论文提到的目录下（见上文<br>![pic](.&#x2F;C:&#x2F;Users&#x2F;Think&#x2F;Desktop&#x2F;大学项目其三&#x2F;环境安装&#x2F;Pasted image 20241014220542.png)</p>
+<h4 id="3-克隆LUA解码器和PYDEVP2P项目"><a href="#3-克隆LUA解码器和PYDEVP2P项目" class="headerlink" title="3 克隆LUA解码器和PYDEVP2P项目"></a>3 克隆LUA解码器和PYDEVP2P项目</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">git <span class="hljs-built_in">clone</span> https://github.com/jmkemp20/lua-devp2p-wireshark-dissector.git<br>git <span class="hljs-built_in">clone</span> https://github.com/jmkemp20/pydevp2p.git<br></code></pre></td></tr></table></figure>
+
+<h4 id="4-从源代码安装PYDEVP2P-PIP包"><a href="#4-从源代码安装PYDEVP2P-PIP包" class="headerlink" title="4 从源代码安装PYDEVP2P PIP包"></a>4 从源代码安装PYDEVP2P PIP包</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">cd</span> pydevp2p<br>pip install -e .<br><span class="hljs-built_in">sudo</span> pip install -e .<br></code></pre></td></tr></table></figure>
+
+<h4 id="5-创建Wireshark插件目录（本地用户和root）"><a href="#5-创建Wireshark插件目录（本地用户和root）" class="headerlink" title="5 创建Wireshark插件目录（本地用户和root）"></a>5 创建Wireshark插件目录（本地用户和root）</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">mkdir</span> -p ~/.local/lib/wireshark/plugins<br><span class="hljs-built_in">sudo</span> <span class="hljs-built_in">mkdir</span> -p /usr/local/lib/wireshark/plugins<br></code></pre></td></tr></table></figure>
+
+<h4 id="Step-6-符号链接或复制-lua解码器文件到Wireshark插件目录"><a href="#Step-6-符号链接或复制-lua解码器文件到Wireshark插件目录" class="headerlink" title="Step 6) 符号链接或复制.lua解码器文件到Wireshark插件目录"></a>Step 6) 符号链接或复制.lua解码器文件到Wireshark插件目录</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">ln</span> -s &lt;location of cloned dissector&gt;/rlpx.lua ~/.local/lib/wireshark/plugins/rlpx.lua<br><span class="hljs-built_in">ln</span> -s &lt;location of cloned dissector&gt;/discovery.lua ~/.local/lib/wireshark/plugins/discovery.lua<br><span class="hljs-built_in">sudo</span> <span class="hljs-built_in">ln</span> -s &lt;location of cloned dissector&gt;/rlpx.lua /usr/local/lib/wireshark/plugins/rlpx.lua<br><span class="hljs-built_in">sudo</span> <span class="hljs-built_in">ln</span> -s &lt;location of cloned dissector&gt;/discovery.lua /usr/local/lib/wireshark/plugins/discovery.lua<br></code></pre></td></tr></table></figure>
+
+<p><strong>可以直接复制这些.lua文件而不是创建符号链接</strong>。<br>终端里找不到文件用文件资源管理器搜</p>
+<p class='item-img' data-src='https://free-img.400040.xyz/4/2024/10/14/670d2fb720710.png'><img src="https://free-img.400040.xyz/4/2024/10/14/670d2fb720710.png" alt="pic"></p>
+<p>好的，你提供的步骤是安装自定义的 Go Ethereum 客户端。以下是详细的步骤来从头开始安装和运行自定义的 Go Ethereum 客户端：</p>
+<h3 id="Live-GETH-Docker-Startup"><a href="#Live-GETH-Docker-Startup" class="headerlink" title="Live GETH Docker Startup"></a>Live GETH Docker Startup</h3><h4 id="Step-1-确保Docker和Docker-Compose已安装并正在运行"><a href="#Step-1-确保Docker和Docker-Compose已安装并正在运行" class="headerlink" title="Step 1) 确保Docker和Docker Compose已安装并正在运行"></a>Step 1) 确保Docker和Docker Compose已安装并正在运行</h4><p>检查Docker版本：</p>
+<figure class="highlight ada"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ada">docker <span class="hljs-comment">--version</span><br></code></pre></td></tr></table></figure>
+
+<p class='item-img' data-src='https://free-img.400040.xyz/4/2024/10/14/670d2fbc87f5d.png'><img src="https://free-img.400040.xyz/4/2024/10/14/670d2fbc87f5d.png" alt="pic"></p>
+<p>检查Docker Compose版本：</p>
+<figure class="highlight ada"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ada">docker-compose <span class="hljs-comment">--version</span><br></code></pre></td></tr></table></figure>
+
+<p class='item-img' data-src='https://free-img.400040.xyz/4/2024/10/14/670d2fbf0229a.png'><img src="https://free-img.400040.xyz/4/2024/10/14/670d2fbf0229a.png" alt="pic"></p>
+<h4 id="Step-2-克隆GETH-Docker存储库"><a href="#Step-2-克隆GETH-Docker存储库" class="headerlink" title="Step 2) 克隆GETH-Docker存储库"></a>Step 2) 克隆GETH-Docker存储库</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">git <span class="hljs-built_in">clone</span> https://github.com/jmkemp20/geth-docker.git<br><span class="hljs-built_in">cd</span> geth-docker<br></code></pre></td></tr></table></figure>
+
+<h4 id="Step-3-构建自定义docker镜像"><a href="#Step-3-构建自定义docker镜像" class="headerlink" title="Step 3) 构建自定义docker镜像"></a>Step 3) 构建自定义docker镜像</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">./build-dockers.sh<br></code></pre></td></tr></table></figure>
+
+<h4 id="Step-4-启动路由器容器"><a href="#Step-4-启动路由器容器" class="headerlink" title="Step 4) 启动路由器容器"></a>Step 4) 启动路由器容器</h4><figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ebnf"><span class="hljs-attribute">docker-compose up -d bridge-router</span><br></code></pre></td></tr></table></figure>
+
+<h4 id="Step-5-打开Wireshark并连接到网络接口"><a href="#Step-5-打开Wireshark并连接到网络接口" class="headerlink" title="Step 5) 打开Wireshark并连接到网络接口"></a>Step 5) 打开Wireshark并连接到网络接口</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> wireshark<br></code></pre></td></tr></table></figure>
+
+<h4 id="Step-6-依次启动每个GETH节点-客户端容器"><a href="#Step-6-依次启动每个GETH节点-客户端容器" class="headerlink" title="Step 6) 依次启动每个GETH节点&#x2F;客户端容器"></a>Step 6) 依次启动每个GETH节点&#x2F;客户端容器</h4><figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs vim">docker-compose <span class="hljs-keyword">up</span> -d geth-ubuntu-bootnode<br>docker-compose <span class="hljs-keyword">up</span> -d geth-client-<span class="hljs-number">1</span><br>docker-compose <span class="hljs-keyword">up</span> -d geth-client-<span class="hljs-number">2</span><br>docker-compose <span class="hljs-keyword">up</span> -d geth-client-<span class="hljs-number">3</span><br></code></pre></td></tr></table></figure>
+
+
+<p class='item-img' data-src='https://free-img.400040.xyz/4/2024/09/22/66f03893a6823.png'><img src="https://free-img.400040.xyz/4/2024/09/22/66f03893a6823.png" alt="pic"></p>
+<hr>
+<h1 id="接下来新开一个命令行窗口来做"><a href="#接下来新开一个命令行窗口来做" class="headerlink" title="接下来新开一个命令行窗口来做"></a><strong>接下来新开一个命令行窗口来做</strong></h1><p><strong>论文原文操作：</strong></p>
+<h3 id="7-5-Installing-the-Custom-GO-Ethereum-Client-from-Scratch"><a href="#7-5-Installing-the-Custom-GO-Ethereum-Client-from-Scratch" class="headerlink" title="7.5 Installing the Custom GO Ethereum Client from Scratch"></a>7.5 Installing the Custom GO Ethereum Client from Scratch</h3><h4 id="Step-1-克隆自定义GO-Ethereum源代码"><a href="#Step-1-克隆自定义GO-Ethereum源代码" class="headerlink" title="Step 1) 克隆自定义GO Ethereum源代码"></a>Step 1) 克隆自定义GO Ethereum源代码</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">git <span class="hljs-built_in">clone</span> https://github.com/jmkemp20/go-ethereum.git<br></code></pre></td></tr></table></figure>
+
+<h4 id="Step-2-编译GETH或其他所有GO-Ethereum工具"><a href="#Step-2-编译GETH或其他所有GO-Ethereum工具" class="headerlink" title="Step 2) 编译GETH或其他所有GO Ethereum工具"></a>Step 2) 编译GETH或其他所有GO Ethereum工具</h4><p>编译GETH是个大坑，出问题的话可以看文档后面有讲</p>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs vim"><span class="hljs-keyword">cd</span> <span class="hljs-keyword">go</span>-ethereum<br><span class="hljs-keyword">make</span> geth<br></code></pre></td></tr></table></figure>
+
+<h4 id="Step-3-运行GETH"><a href="#Step-3-运行GETH" class="headerlink" title="Step 3) 运行GETH"></a>Step 3) 运行GETH</h4><p>文档是</p>
+<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ebnf"><span class="hljs-attribute">geth</span><br></code></pre></td></tr></table></figure>
+
+<p>就行，看终端geth编译完后的输出来定，我这边的是</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs awk">.<span class="hljs-regexp">/build/</span>bin/geth<br></code></pre></td></tr></table></figure>
+
+
+
+<p>不出问题的话终端没报错这里就成功了（一般不太可能，出问题见下</p>
+<p>我的操作：</p>
+<h1 id="编译geth"><a href="#编译geth" class="headerlink" title="编译geth"></a>编译geth</h1><h3 id="1-克隆自定义的-Go-Ethereum-源代码"><a href="#1-克隆自定义的-Go-Ethereum-源代码" class="headerlink" title="1. 克隆自定义的 Go Ethereum 源代码"></a>1. 克隆自定义的 Go Ethereum 源代码</h3><p>克隆自定义的 Go Ethereum 源代码仓库。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">git <span class="hljs-built_in">clone</span> https://github.com/jmkemp20/go-ethereum.git<br></code></pre></td></tr></table></figure>
+
+<h3 id="2-安装-Geth-或所有-Go-Ethereum-工具"><a href="#2-安装-Geth-或所有-Go-Ethereum-工具" class="headerlink" title="2. 安装 Geth 或所有 Go Ethereum 工具"></a>2. 安装 Geth 或所有 Go Ethereum 工具</h3><p>进入克隆的 <code>go-ethereum</code> 目录，并编译 <code>geth</code> 或所有工具。</p>
+<h4 id="安装-Go-1-20（版本好像会影响编译，翻了下issue，我当时用的1-20"><a href="#安装-Go-1-20（版本好像会影响编译，翻了下issue，我当时用的1-20" class="headerlink" title="安装 Go 1.20（版本好像会影响编译，翻了下issue，我当时用的1.20"></a>安装 Go 1.20（版本好像会影响编译，翻了下issue，我当时用的1.20</h4><p>确保你已经安装了 Go 1.20 或更高版本。如果没有，请按照以下步骤安装：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 下载 Go 1.20</span><br>wget https://mirrors.aliyun.com/golang/go1.20.6.linux-amd64.tar.gz<br><br><span class="hljs-comment"># 解压并安装</span><br><span class="hljs-built_in">sudo</span> tar -C /usr/local -xzf go1.20.6.linux-amd64.tar.gz<br><br><span class="hljs-comment"># 设置环境变量</span><br>nano ~/.bashrc<br><span class="hljs-comment"># 或者</span><br>nano ~/.zshrc<br><br><span class="hljs-comment"># 添加以下内容</span><br><span class="hljs-built_in">export</span> GOROOT=/usr/local/go<br><span class="hljs-built_in">export</span> GOPATH=<span class="hljs-variable">$HOME</span>/go<br><span class="hljs-built_in">export</span> PATH=<span class="hljs-variable">$GOPATH</span>/bin:<span class="hljs-variable">$GOROOT</span>/bin:<span class="hljs-variable">$PATH</span><br><br><span class="hljs-comment"># 使配置生效</span><br><span class="hljs-built_in">source</span> ~/.bashrc<br><span class="hljs-comment"># 或者</span><br><span class="hljs-built_in">source</span> ~/.zshrc<br><br><span class="hljs-comment"># 验证 Go 版本</span><br>go version<br></code></pre></td></tr></table></figure>
+
+<h4 id="编译-geth-或所有工具"><a href="#编译-geth-或所有工具" class="headerlink" title="编译 geth 或所有工具"></a>编译 <code>geth</code> 或所有工具</h4><p>进入 <code>go-ethereum</code> 目录并编译 <code>geth</code> 或所有工具。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">cd</span> go-ethereum<br><br><span class="hljs-comment"># 清理 Go 模块缓存</span><br>go clean -modcache<br><br><span class="hljs-comment"># 更新 Go 模块</span><br>go mod tidy<br><br><span class="hljs-comment"># 编译 geth</span><br>make geth<br><br><span class="hljs-comment"># 如果你想编译所有工具</span><br>make all<br></code></pre></td></tr></table></figure>
+
+<p><strong>如果没猜错的话国内网络环境go下载依赖会卡住</strong><br class='item-img' data-src='https://free-img.400040.xyz/4/2024/10/14/670d2eff34334.png'><img src="https://free-img.400040.xyz/4/2024/10/14/670d2eff34334.png" alt="pic"><br>卡在这里</p>
+<p>我看的教程</p>
+<h4 id="解决-go-get-golang-org-x-包失败"><a href="#解决-go-get-golang-org-x-包失败" class="headerlink" title="解决 go get golang.org&#x2F;x 包失败"></a><a target="_blank" rel="noopener" href="https://www.cnblogs.com/shockerli/p/go-get-golang-org-x-solution.html" title="发布于 2019-02-24 17:24">解决 go get golang.org&#x2F;x 包失败</a></h4><blockquote>
+<p><strong>GOPROXY</strong><br>我们知道从 <code>Go 1.11</code> 版本开始，官方支持了 <code>go module</code> 包依赖管理工具。<br>其实还新增了 <code>GOPROXY</code> 环境变量。如果设置了该变量，下载源代码时将会通过这个环境变量设置的代理地址，而不再是以前的直接从代码库下载。这无疑对我等无法科学上网的开发良民来说是最大的福音。<br>更可喜的是，<a target="_blank" rel="noopener" href="https://github.com/goproxyio/goproxy">goproxy.io</a> 这个开源项目帮我们实现好了我们想要的。该项目允许开发者一键构建自己的 <code>GOPROXY</code> 代理服务。同时，也提供了公用的代理服务 <code>https://goproxy.io</code>，我们只需设置该环境变量即可正常下载被墙的源码包了：</p>
+</blockquote>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh"><span class="hljs-built_in">export</span> GOPROXY=https://goproxy.io<br></code></pre></td></tr></table></figure>
+
+<p>也可以通过置空这个环境变量来关闭，<code>export GOPROXY=</code>。</p>
+<p>对于 Windows 用户，可以在 <code>PowerShell</code> 中设置：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh"><span class="hljs-variable">$env</span>:GOPROXY = <span class="hljs-string">&quot;https://goproxy.io&quot;</span><br></code></pre></td></tr></table></figure>
+
+
+<p>我这边这样做能正常下载</p>
+<h3 id="3-运行-Geth"><a href="#3-运行-Geth" class="headerlink" title="3. 运行 Geth"></a>3. 运行 Geth</h3><p>编译完成后，你可以运行 <code>geth</code>。确保 <code>geth</code> 可执行文件在你的 <code>PATH</code> 中，或者直接在 <code>go-ethereum/build/bin</code> 目录下运行它。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 如果 geth 在 PATH 中</span><br>geth<br><br><span class="hljs-comment"># 如果 geth 不在 PATH 中</span><br>./build/bin/geth<br></code></pre></td></tr></table></figure>
+
+
+<p>成功安装并运行自定义的 Go Ethereum 客户端</p>
+<p class='item-img' data-src='https://free-img.400040.xyz/4/2024/10/14/670d2fcb1430b.png'><img src="https://free-img.400040.xyz/4/2024/10/14/670d2fcb1430b.png" alt="pic"></p>
+<hr>
+<h2 id="最后的截图"><a href="#最后的截图" class="headerlink" title="最后的截图"></a>最后的截图</h2><p class='item-img' data-src='https://free-img.400040.xyz/4/2024/10/14/670d2fcce60fb.png'><img src="https://free-img.400040.xyz/4/2024/10/14/670d2fcce60fb.png" alt="pic"></p>
+<p class='item-img' data-src='https://free-img.400040.xyz/4/2024/10/14/670d2fcea959a.png'><img src="https://free-img.400040.xyz/4/2024/10/14/670d2fcea959a.png" alt="pic"></p>
+<p>g)</p>
+<div id="paginator"></div></div><div id="post-footer"><div id="pages"><div class="footer-link" style="width: 50%;text-align:right;border-right:1px #fe2 solid"><a href="/Arknight-notes/posts/20624.html">← Next 创建一个网络包解码器分析DEVP2P协议</a></div><div class="footer-link" style="width: 50%;right:1px;border-left:1px #fe2 solid"><a href="/Arknight-notes/posts/13872.html">日志2024.9.25（待解决） Prev →</a></div></div></div><div id="comments"><div id="gitalk"></div></div></div><div class="bottom-btn"><div><a class="i-top" id="to-top" onClick="scrolls.scrolltop();" title="To Top" style="opacity: 0; display: none;">∧ </a><a class="i-index" id="to-index" href="#toc-div" title="To Catalog">≡</a><a class="i-color" id="color-mode" onClick="colorMode.change()" title="Change Theme"></a></div></div></article><aside><div id="about"><a href="/Arknight-notes/" id="logo"><img src="https://pic4.zhimg.com/80/v2-d9884f32711e19e80979eac58e943897_720w.webp" alt="Logo" style="margin:20;border-radius:0;"></a><h1 id="Dr"><a href="zhongye">柊野</a></h1><div id="description"><p></p></div></div><div id="aside-block"><div id="toc-div"><h1>Catalog</h1><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AEWSL2%EF%BC%88ubuntu20-04%EF%BC%89"><span class="toc-number">1.</span> <span class="toc-text">安装配置WSL2（ubuntu20.04）</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E5%AE%89%E8%A3%85Windows-Terminal"><span class="toc-number">1.1.</span> <span class="toc-text">1.安装Windows Terminal</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E5%AE%89%E8%A3%85wsl"><span class="toc-number">1.2.</span> <span class="toc-text">2.安装wsl</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%BE%E7%BD%AE-WSL-%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E8%A7%81%E5%BE%AE%E8%BD%AF%E5%AE%98%E6%96%B9%E6%96%87%E6%A1%A3"><span class="toc-number">1.2.1.</span> <span class="toc-text">设置 WSL 开发环境见微软官方文档</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%BE%E7%BD%AE-WSL-%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83-Microsoft-Learn"><span class="toc-number">1.2.2.</span> <span class="toc-text">设置 WSL 开发环境 | Microsoft Learn</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-Docker-%E5%AE%89%E8%A3%85"><span class="toc-number">1.3.</span> <span class="toc-text">3.Docker 安装</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%8E%AF%E5%A2%83%E5%AE%89%E8%A3%85"><span class="toc-number">2.</span> <span class="toc-text">环境安装</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E5%AE%89%E8%A3%85Wireshark%E5%92%8C%E7%89%B9%E5%AE%9A%E7%89%88%E6%9C%AC%E7%9A%84LUA"><span class="toc-number">2.0.0.1.</span> <span class="toc-text">1 安装Wireshark和特定版本的LUA</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E6%9B%B4%E6%94%B9%E6%9D%83%E9%99%90%E5%B9%B6%E5%A4%8D%E5%88%B6Lunatic-Python-LUA-%E2%87%94-Python%E6%A1%A5%E6%8E%A5%E4%BA%8C%E8%BF%9B%E5%88%B6%E6%96%87%E4%BB%B6"><span class="toc-number">2.0.0.2.</span> <span class="toc-text">2 更改权限并复制Lunatic Python LUA ⇔ Python桥接二进制文件</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B3%E4%BA%8Epython-so%E6%98%AF%E4%BB%8E%E5%93%AA%E6%9D%A5%E7%9A%84%EF%BC%9A"><span class="toc-number">2.1.</span> <span class="toc-text">关于python.so是从哪来的：</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A1%B9%E7%9B%AE%E8%B5%B7%E6%BA%90"><span class="toc-number">2.1.1.</span> <span class="toc-text">项目起源</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BC%80%E5%A7%8B%E4%BD%BF%E7%94%A8"><span class="toc-number">2.1.2.</span> <span class="toc-text">开始使用</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%85%8B%E9%9A%86%E4%BB%93%E5%BA%93"><span class="toc-number">2.1.2.1.</span> <span class="toc-text">克隆仓库</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%A1%AE%E4%BF%9D%E5%AE%89%E8%A3%85%E4%BA%86LUA-5-3"><span class="toc-number">2.1.2.2.</span> <span class="toc-text">确保安装了LUA 5.3</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9F%A5%E6%89%BE%E4%BD%A0%E7%9A%84Python%E7%89%88%E6%9C%AC"><span class="toc-number">2.1.2.3.</span> <span class="toc-text">查找你的Python版本</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%87%86%E5%A4%87%E7%BC%96%E8%AF%91%EF%BC%88%E6%9E%84%E5%BB%BA%EF%BC%89"><span class="toc-number">2.1.2.4.</span> <span class="toc-text">准备编译（构建）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%BC%96%E8%AF%91%EF%BC%88%E6%9E%84%E5%BB%BA%EF%BC%89"><span class="toc-number">2.1.2.5.</span> <span class="toc-text">编译（构建）</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8"><span class="toc-number">2.1.3.</span> <span class="toc-text">使用</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%9A%E4%BD%8D%E4%BA%8C%E8%BF%9B%E5%88%B6%E6%96%87%E4%BB%B6"><span class="toc-number">2.1.3.1.</span> <span class="toc-text">定位二进制文件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-%E5%85%8B%E9%9A%86LUA%E8%A7%A3%E7%A0%81%E5%99%A8%E5%92%8CPYDEVP2P%E9%A1%B9%E7%9B%AE"><span class="toc-number">2.1.3.2.</span> <span class="toc-text">3 克隆LUA解码器和PYDEVP2P项目</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-%E4%BB%8E%E6%BA%90%E4%BB%A3%E7%A0%81%E5%AE%89%E8%A3%85PYDEVP2P-PIP%E5%8C%85"><span class="toc-number">2.1.3.3.</span> <span class="toc-text">4 从源代码安装PYDEVP2P PIP包</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-%E5%88%9B%E5%BB%BAWireshark%E6%8F%92%E4%BB%B6%E7%9B%AE%E5%BD%95%EF%BC%88%E6%9C%AC%E5%9C%B0%E7%94%A8%E6%88%B7%E5%92%8Croot%EF%BC%89"><span class="toc-number">2.1.3.4.</span> <span class="toc-text">5 创建Wireshark插件目录（本地用户和root）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Step-6-%E7%AC%A6%E5%8F%B7%E9%93%BE%E6%8E%A5%E6%88%96%E5%A4%8D%E5%88%B6-lua%E8%A7%A3%E7%A0%81%E5%99%A8%E6%96%87%E4%BB%B6%E5%88%B0Wireshark%E6%8F%92%E4%BB%B6%E7%9B%AE%E5%BD%95"><span class="toc-number">2.1.3.5.</span> <span class="toc-text">Step 6) 符号链接或复制.lua解码器文件到Wireshark插件目录</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Live-GETH-Docker-Startup"><span class="toc-number">2.1.4.</span> <span class="toc-text">Live GETH Docker Startup</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Step-1-%E7%A1%AE%E4%BF%9DDocker%E5%92%8CDocker-Compose%E5%B7%B2%E5%AE%89%E8%A3%85%E5%B9%B6%E6%AD%A3%E5%9C%A8%E8%BF%90%E8%A1%8C"><span class="toc-number">2.1.4.1.</span> <span class="toc-text">Step 1) 确保Docker和Docker Compose已安装并正在运行</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Step-2-%E5%85%8B%E9%9A%86GETH-Docker%E5%AD%98%E5%82%A8%E5%BA%93"><span class="toc-number">2.1.4.2.</span> <span class="toc-text">Step 2) 克隆GETH-Docker存储库</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Step-3-%E6%9E%84%E5%BB%BA%E8%87%AA%E5%AE%9A%E4%B9%89docker%E9%95%9C%E5%83%8F"><span class="toc-number">2.1.4.3.</span> <span class="toc-text">Step 3) 构建自定义docker镜像</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Step-4-%E5%90%AF%E5%8A%A8%E8%B7%AF%E7%94%B1%E5%99%A8%E5%AE%B9%E5%99%A8"><span class="toc-number">2.1.4.4.</span> <span class="toc-text">Step 4) 启动路由器容器</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Step-5-%E6%89%93%E5%BC%80Wireshark%E5%B9%B6%E8%BF%9E%E6%8E%A5%E5%88%B0%E7%BD%91%E7%BB%9C%E6%8E%A5%E5%8F%A3"><span class="toc-number">2.1.4.5.</span> <span class="toc-text">Step 5) 打开Wireshark并连接到网络接口</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Step-6-%E4%BE%9D%E6%AC%A1%E5%90%AF%E5%8A%A8%E6%AF%8F%E4%B8%AAGETH%E8%8A%82%E7%82%B9-%E5%AE%A2%E6%88%B7%E7%AB%AF%E5%AE%B9%E5%99%A8"><span class="toc-number">2.1.4.6.</span> <span class="toc-text">Step 6) 依次启动每个GETH节点&#x2F;客户端容器</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%8E%A5%E4%B8%8B%E6%9D%A5%E6%96%B0%E5%BC%80%E4%B8%80%E4%B8%AA%E5%91%BD%E4%BB%A4%E8%A1%8C%E7%AA%97%E5%8F%A3%E6%9D%A5%E5%81%9A"><span class="toc-number">3.</span> <span class="toc-text">接下来新开一个命令行窗口来做</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#7-5-Installing-the-Custom-GO-Ethereum-Client-from-Scratch"><span class="toc-number">3.0.1.</span> <span class="toc-text">7.5 Installing the Custom GO Ethereum Client from Scratch</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Step-1-%E5%85%8B%E9%9A%86%E8%87%AA%E5%AE%9A%E4%B9%89GO-Ethereum%E6%BA%90%E4%BB%A3%E7%A0%81"><span class="toc-number">3.0.1.1.</span> <span class="toc-text">Step 1) 克隆自定义GO Ethereum源代码</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Step-2-%E7%BC%96%E8%AF%91GETH%E6%88%96%E5%85%B6%E4%BB%96%E6%89%80%E6%9C%89GO-Ethereum%E5%B7%A5%E5%85%B7"><span class="toc-number">3.0.1.2.</span> <span class="toc-text">Step 2) 编译GETH或其他所有GO Ethereum工具</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Step-3-%E8%BF%90%E8%A1%8CGETH"><span class="toc-number">3.0.1.3.</span> <span class="toc-text">Step 3) 运行GETH</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%BC%96%E8%AF%91geth"><span class="toc-number">4.</span> <span class="toc-text">编译geth</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E5%85%8B%E9%9A%86%E8%87%AA%E5%AE%9A%E4%B9%89%E7%9A%84-Go-Ethereum-%E6%BA%90%E4%BB%A3%E7%A0%81"><span class="toc-number">4.0.1.</span> <span class="toc-text">1. 克隆自定义的 Go Ethereum 源代码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E5%AE%89%E8%A3%85-Geth-%E6%88%96%E6%89%80%E6%9C%89-Go-Ethereum-%E5%B7%A5%E5%85%B7"><span class="toc-number">4.0.2.</span> <span class="toc-text">2. 安装 Geth 或所有 Go Ethereum 工具</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%89%E8%A3%85-Go-1-20%EF%BC%88%E7%89%88%E6%9C%AC%E5%A5%BD%E5%83%8F%E4%BC%9A%E5%BD%B1%E5%93%8D%E7%BC%96%E8%AF%91%EF%BC%8C%E7%BF%BB%E4%BA%86%E4%B8%8Bissue%EF%BC%8C%E6%88%91%E5%BD%93%E6%97%B6%E7%94%A8%E7%9A%841-20"><span class="toc-number">4.0.2.1.</span> <span class="toc-text">安装 Go 1.20（版本好像会影响编译，翻了下issue，我当时用的1.20</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%BC%96%E8%AF%91-geth-%E6%88%96%E6%89%80%E6%9C%89%E5%B7%A5%E5%85%B7"><span class="toc-number">4.0.2.2.</span> <span class="toc-text">编译 geth 或所有工具</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%A7%A3%E5%86%B3-go-get-golang-org-x-%E5%8C%85%E5%A4%B1%E8%B4%A5"><span class="toc-number">4.0.2.3.</span> <span class="toc-text">解决 go get golang.org&#x2F;x 包失败</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E8%BF%90%E8%A1%8C-Geth"><span class="toc-number">4.0.3.</span> <span class="toc-text">3. 运行 Geth</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%80%E5%90%8E%E7%9A%84%E6%88%AA%E5%9B%BE"><span class="toc-number">4.1.</span> <span class="toc-text">最后的截图</span></a></li></ol></li></ol></div></div><footer><nobr><span class="icp-title">GZHU</span><span class="icp-content">193001-0001</span></nobr><br><nobr><span class="icp-title">OUTPOST</span><span class="icp-content">169-2025-0331</span></nobr><br><nobr>Published with <a target="_blank" rel="noopener" href="http://hexo.io">Hexo</a></nobr><wbr><nobr> Theme <a target="_blank" rel="noopener" href="https://github.com/Yue-plus/hexo-theme-arknights">Arknights</a></nobr><wbr><nobr> by <a target="_blank" rel="noopener" href="https://github.com/Yue-plus">Yue_plus</a></nobr></footer></aside></main><canvas id="canvas-dust"></canvas></body></html>
