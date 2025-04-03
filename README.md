@@ -1,6 +1,4 @@
----
-layout: false
----
+
 
 
 
@@ -31,17 +29,14 @@ layout: false
 
 ### 关注站长博客！
 
-主站 https://zhongye1.github.io
-RSS订阅: https://zhongye1.github.io/atom.xml
+主站：	 https://zhongye1.github.io
 
+RSS订阅：  https://zhongye1.github.io/atom.xml
 
-### 加入我们！
-
-https://github.com/Guangzhou-University-SITE-193
-
-我们正在筹备站点的建设计划！
+工作站：     https://github.com/Guangzhou-University-SITE-193
 
 QQ：2760913192
+
 GitHub：@Zhongye1  https://github.com/Zhongye1
 
 
@@ -53,4 +48,3 @@ GitHub：@Zhongye1  https://github.com/Zhongye1
 ![img](https://raw.githubusercontent.com/Zhongye1/GZHU-Web-Design-Competition/13b97fc570b9b43cbe1cac4247c852238c5aca1a/12.svg)
 
 ![img](https://raw.githubusercontent.com/Zhongye1/GZHU-Web-Design-Competition/a6e918e4393830b66569caa4d0d595673ae4797d/%E5%8A%A0%E5%85%A5node.svg)
-vg)
