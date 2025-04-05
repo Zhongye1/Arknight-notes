@@ -1,0 +1,355 @@
+<!DOCTYPE html><html lang="en" theme-mode="dark"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>数据结构-线性表（上） | Notes|笔记站</title><link rel="icon" type="image/x-icon" href="/Arknight-notes/favicon.ico"><link rel="preload" as="font" crossorigin="anonymous" href="/Arknight-notes/font/Bender.ttf"><link rel="preload" as="font" crossorigin="anonymous" href="/Arknight-notes/font/BenderLight.ttf"><link rel="preload" as="font" crossorigin="anonymous" href="/Arknight-notes/font/JetBrainsMono-Regular.woff2"><link rel="stylesheet" href="/Arknight-notes/css/arknights.css"><style>@font-face {
+  font-family: Bender;
+  src: local('Bender'), url("/Arknight-notes/font/Bender.ttf"), url("/Arknight-notes/font/Bender.otf");
+}
+@font-face {
+  font-family: BenderLight;
+  src: local('BenderLight'), url("/Arknight-notes/font/BenderLight.ttf");
+}
+@font-face {
+  font-family: 'JetBrains Mono';
+  src: local('JetBrains Mono'), url('/Arknight-notes/font/JetBrainsMono-Regular.woff2') format('woff2');
+}
+</style><script>var config = {"root":"/Arknight-notes/","code_fold":90,"search":{"preload":false,"activeHolder":"键入以继续","blurHolder":"数据检索","noResult":"无 $0 相关数据"},"code":{"codeInfo":"$0 - $1 行","copy":"复制"}}</script><link type="text/css" rel="stylesheet" href="/Arknight-notes/lib/encrypt/hbe.style.css"><script src="/Arknight-notes/js/gitalk.js"></script><script src="//unpkg.com/mermaid@10.5.0/dist/mermaid.min.js"></script><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lightgallery.css"><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lg-zoom.css"><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lg-thumbnail.css"><link type="text/css" rel="stylesheet" href="/Arknight-notes/lib/fontawesome/css/all.min.css"><script>if (window.localStorage.getItem('theme-mode') === 'light')
+ document.documentElement.setAttribute('theme-mode', 'light')
+if (window.localStorage.getItem('theme-mode') === 'dark')
+ document.documentElement.setAttribute('theme-mode', 'dark')</script><style>@font-face {
+ font-family: BenderLight;
+ src: local('Bender'), url("/Arknight-notes/font/BenderLight.woff2") format('woff2');
+}
+@font-face {
+ font-family: 'JetBrains Mono';
+ src: local('JetBrains Mono'), url('/Arknight-notes/font/JetBrainsMono-Regular.woff2') format('woff2');
+}</style><style>:root {
+ --dark-background: url('https://pic2.zhimg.com/v2-6269d74b4dafe14781d03790e5a86b21_r.jpg');
+ --light-background: url('https://pic1.zhimg.com/v2-233b64b583642fc4a6d77e69ced33150_r.jpg');
+ --theme-encrypt-confirm: '确认'
+}</style><script defer src="/Arknight-notes/js/arknights.js"></script><script defer src="/Arknight-notes/js/search.js"></script><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><script async src="/Arknight-notes/js/gitalk.js"></script><script defer type="module">import mermaid from '//unpkg.com/mermaid@10.5.0/dist/mermaid.esm.mjs';
+window.mermaid = mermaid;
+code.paintMermaid();
+</script><script async src="//unpkg.com/lightgallery@2.7.1/lightgallery.min.js"></script><script async src="//unpkg.com/lightgallery@2.7.1/plugins/zoom/lg-zoom.min.js"></script><script async src="//unpkg.com/lightgallery@2.7.1/plugins/thumbnail/lg-thumbnail.min.js"></script><script async src="/Arknight-notes/lib/encrypt/hbe.js"></script><script async src="/Arknight-notes/js/pjax.js"></script><script class="pjax-js">reset= () => {gitalk = new Gitalk({
+ clientID: 'Ov23ct13Fb0b67x23wnT',
+ clientSecret: 'f18ce69dd545e3c0f5e2456afde9c756fe8a254a',
+ repo: 'Arknight-notes',
+ owner: 'Zhongye1',
+ admin: ['Zhongye1'],
+ distractionFreeMode: false,
+ id: location.pathname
+});
+if (document.querySelector("#gitalk")) gitalk.render("gitalk");document.querySelector('.lg-container')?.remove()
+lightGallery(document.getElementById('post-bg'), {
+  plugins: [lgZoom,lgThumbnail],
+  selector: '.item-img'})}</script><script>window.addEventListener("load",() => {pjax = new Pjax({
+ cacheBust: false,
+ selectors: ['title','article','#aside-block','.pjax-js','data-pjax','.busuanzi'],
+ switches: {'article': Pjax.switches.sideBySide},
+ switchesOptions: {
+   'article': {
+     classNames: {
+       remove: "pjax-out",
+       add: "pjax-in"
+     }
+   }
+ }
+});
+document.addEventListener("pjax:complete", reset);document.addEventListener('pjax:success', _ => bszCaller.fetch(
+ "//busuanzi.ibruce.info/busuanzi?jsonpCallback=BusuanziCallback", a => {
+  bszTag.texts(a),
+  bszTag.shows()
+}));reset()})</script><script class="pjax-js">reset= () => {gitalk = new Gitalk({
+ clientID: 'Ov23ct13Fb0b67x23wnT',
+ clientSecret: 'f18ce69dd545e3c0f5e2456afde9c756fe8a254a',
+ repo: 'Arknight-notes',
+ owner: 'Zhongye1',
+ admin: ['Zhongye1'],
+ distractionFreeMode: false,
+ id: location.pathname
+});
+if (document.querySelector("#gitalk")) gitalk.render("gitalk");document.querySelector('.lg-container')?.remove()
+lightGallery(document.getElementById('post-bg'), {
+  plugins: [lgZoom,lgThumbnail],
+  selector: '.item-img'})}</script><script>window.addEventListener("load",() => {pjax = new Pjax({
+ cacheBust: false,
+ selectors: ['title','article','#aside-block','.pjax-js'],
+ switches: {'article': Pjax.switches.sideBySide},
+ switchesOptions: {
+   'article': {
+     classNames: {
+       remove: "pjax-out",
+       add: "pjax-in"
+     }
+   }
+ }
+});
+document.addEventListener("pjax:complete", reset);reset()})</script><meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/Arknight-notes/rss.xml" title="Notes|笔记站" type="application/atom+xml">
+</head><body><div class="loading" style="opacity: 0;"><div class="loadingBar left"></div><div class="loadingBar right"></div></div><main><header class="closed"><div class="navBtn"><i class="navBtnIcon"><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span></i></div><nav><div class="navItem" id="search-header"><span class="navItemTitle"><input autocomplete="off" autocorrect="off" autocapitalize="none" placeholder="数据检索" spellcheck="false" maxlength="50" type="text" id="search-input"></span></div><div class="navItem" id="search-holder"></div><div class="search-popup" tabindex="0"><div id="search-result"></div></div><ol class="navContent"><li class="navItem"><a class="navBlock" href="/Arknight-notes/"><span class="navItemTitle">Home</span></a></li><li class="navItem" matchdata="categories,tags"><a class="navBlock" href="/Arknight-notes/archives/"><span class="navItemTitle">Archives</span></a></li><li class="navItem"><a class="navBlock" href="/Arknight-notes/about/"><span class="navItemTitle">About</span></a></li></ol></nav></header><article><div id="post-bg"><div id="post-title"><h1>数据结构-线性表（上）</h1><div id="post-info"><span>文章发布时间: <div class="control"><time datetime="2025-04-05T14:09:59.000Z" id="date"> 2025-04-05</time></div></span><br><span>最后更新时间: <div class="control"><time datetime="2025-04-05T16:24:19.269Z" id="updated"> 2025-04-06</time></div></span><br><span id="busuanzi_container_page_pv">页面浏览: <span class="control" id="busuanzi_value_page_pv">加载中...</span></span></div></div><hr><div id="post-content"><hr>
+<h1 id="线性表"><a href="#线性表" class="headerlink" title="线性表"></a>线性表</h1><p>说起这个问题，我们一定不陌生。打开QQ或微信，我们可以看到好友列表，打开PTA，我们能看到题目列表，打开音乐软件，我们可以看见歌曲列表，线性表在我们的生活中无处不在。线性表是怎么呈现的呢？线性表把我们在生活中需要的信息，按照顺序进行排列，使得这些信息直观、有条理，如果是按照某种顺序排列的列表，我们可以做到信息的快速检索。</p class='item-img' data-src='https://pic4.zhimg.com/80/v2-7c32c9f0fe93841585644ed3fe78d057_1440w.webp'><img src="https://pic4.zhimg.com/80/v2-7c32c9f0fe93841585644ed3fe78d057_1440w.webp" alt="img" style="zoom:50%;" />
+
+
+
+<h2 id="1-线性表（线性存储结构）"><a href="#1-线性表（线性存储结构）" class="headerlink" title="1) 线性表（线性存储结构）"></a>1) 线性表（线性存储结构）</h2><p>线性表又称线性存储结构，是最简单的一种存储结构，专门用来存储逻辑关系为“一对一”的数据。</p>
+<p>在一个数据集中，如果每个数据的左侧都有且仅有一个数据和它有关系，数据的右侧也有且仅有一个数据和它有关系，那么这些数据之间就是“一对一“的逻辑关系。</p>
+<p>所谓线性表，是<strong>零个或多个数据元素的有限序列</strong>，线性表的元素具有相同的特征，数据元素之间的关系是一对一的关系。</p>
+<p class='item-img' data-src='https://pica.zhimg.com/v2-1d4fbbfe837a10f526f03db2b9bcb51e_b.jpg'><img src="https://pica.zhimg.com/v2-1d4fbbfe837a10f526f03db2b9bcb51e_b.jpg" alt="动图封面"></p>
+<p>如上图所示，在 {1,2,3,4,5} 数据集中，每个数据的左侧都有且仅有一个数据和它紧挨着（除 1 外），右侧也有且仅有一个数据和它紧挨着（除 5 外），这些数据之间就是“一对一“的关系。</p>
+<p>使用线性表存储具有“一对一“逻辑关系的数据，不仅可以将所有数据存储到内存中，还可以将“一对一”的逻辑关系也存储到内存中。</p>
+<p>线性表存储数据的方案可以这样来理解，先用一根线将所有数据按照先后次序“串”起来，如下图所示：</p>
+<p class='item-img' data-src='https://pic1.zhimg.com/v2-fa84cb14e76e339984f024a79e3faf50_b.jpg'><img src="https://pic1.zhimg.com/v2-fa84cb14e76e339984f024a79e3faf50_b.jpg" alt="动图封面"></p>
+<p>数据和“一对一”的逻辑关系</p>
+<p>左侧是“串”起来的数据，右侧是空闲的物理空间。将这“一串儿”数据存放到物理空间中，有以下两种方法：</p>
+<p class='item-img' data-src='https://pic1.zhimg.com/v2-c83d6f36a89109312c6532bc67426d06_b.webp'><img src="https://pic1.zhimg.com/v2-c83d6f36a89109312c6532bc67426d06_b.webp" alt="动图"></p>
+<p>两种存储方式都可以将数据之间的关系存储起来，从线的一头开始捋，可以依次找到每个数据，且数据的前后位置没有发生改变。</p>
+<p>像上图这样，用一根线将具有“一对一”逻辑关系的数据存储起来，这样的存储方式就称为线性表或者线性存储结构。</p>
+<h3 id="顺序存储结构和链式存储结构"><a href="#顺序存储结构和链式存储结构" class="headerlink" title="顺序存储结构和链式存储结构"></a>顺序存储结构和链式存储结构</h3><p>从图 3 不难看出，线性表存储数据的实现方案有两种，分别是：</p>
+<ol>
+<li>像图 3a) 那样，不破坏数据的前后次序，将它们连续存储在内存空间中，这样的存储方案称为顺序存储结构（简称<a href="https://link.zhihu.com/?target=https://xiexuewu.github.io/view/158.html">顺序表</a>）；</li>
+<li>像图 3b) 那样，将所有数据分散存储在内存中，数据之间的逻辑关系全靠“一根线”维系，这样的存储方案称为链式存储结构（简称<a href="https://link.zhihu.com/?target=https://xiexuewu.github.io/view/160.html">链表</a>）。</li>
+</ol>
+<p>也就是说，使用线性表存储数据，有两种真正可以落地的存储方案，分别是顺序表和链表。</p>
+<h3 id="前驱和后继"><a href="#前驱和后继" class="headerlink" title="前驱和后继"></a>前驱和后继</h3><p>在具有“一对一“逻辑关系的数据集中，每个个体习惯称为数据元素（简称元素）。例如，图 1 显示的这组数据集中，一共有 5 个元素，分别是 1、2、3、4 和 5。</p>
+<p>此外，很多教程中喜欢用前驱和后继来描述元素之间的前后次序：</p>
+<ul>
+<li>某一元素的左侧相邻元素称为该元素的“直接前驱”，此元素左侧的所有元素统称为该元素的“前驱元素”；</li>
+<li>某一元素的右侧相邻元素称为该元素的“直接后继”，此元素右侧的所有元素统称为该元素的“后继元素”；</li>
+</ul>
+<p>以图 1 数据中的元素 3 来说，它的直接前驱是 2 ，此元素的前驱元素有 2 个，分别是 1 和 2；同理，此元素的直接后继是 4 ，后继元素也有 2 个，分别是 4 和 5。</p>
+<p class='item-img' data-src='https://pic2.zhimg.com/v2-06d19e0cf407ab715278064926dbdfa9_b.jpg'><img src="https://pic2.zhimg.com/v2-06d19e0cf407ab715278064926dbdfa9_b.jpg" alt="动图封面"></p>
+<h2 id="2-顺序表（顺序存储结构）"><a href="#2-顺序表（顺序存储结构）" class="headerlink" title="2) 顺序表（顺序存储结构）"></a>2) 顺序表（顺序存储结构）</h2><p>顺序表又称顺序存储结构，是线性表的一种，专门存储逻辑关系为“一对一”的数据。</p>
+<p>顺序表存储数据的具体实现方案是：将数据全部存储到一整块内存空间中，数据元素之间按照次序挨个存放。</p>
+<p>举个简单的例子，将 {1,2,3,4,5} 这些数据使用顺序表存储，数据最终的存储状态如下图所示：</p>
+<p class='item-img' data-src='https://pic2.zhimg.com/v2-0b61ec650d70af3469531945a0a0bc11_b.jpg'><img src="https://pic2.zhimg.com/v2-0b61ec650d70af3469531945a0a0bc11_b.jpg" alt="动图封面"></p>
+<h3 id="线性表的抽象数据结构"><a href="#线性表的抽象数据结构" class="headerlink" title="线性表的抽象数据结构"></a>线性表的抽象数据结构</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs c++">ADT List<br>&#123;<br>    Data:<br>        D = &#123;ai | <span class="hljs-number">1</span> ≤ i ≤ n, n ≥ <span class="hljs-number">0</span>, ai 为 ElemType 类型&#125;<br>    Relation：<br>        R = &#123; &lt;ai,ai<span class="hljs-number">+1</span>&gt; | ai,ai<span class="hljs-number">+1</span> ∈ D, i = <span class="hljs-number">1</span>, i ∈ (<span class="hljs-number">0</span>,n)&#125;<br>    Operation:<br>        <span class="hljs-built_in">InitList</span>(&amp;L);    <span class="hljs-comment">//初始化，建立一个空的线性表L</span><br>        <span class="hljs-built_in">MakeList</span>(&amp;L);    <span class="hljs-comment">//建立线性表，向表中存入数据</span><br>        <span class="hljs-built_in">ListEmpty</span>(*L);    <span class="hljs-comment">//空表判断，是则返回true,否则返回false</span><br>        <span class="hljs-built_in">DestroyList</span>(&amp;L);    <span class="hljs-comment">//清除操作，清空线性表的元素</span><br>        <span class="hljs-built_in">GetElem</span>(L,i,&amp;e);    <span class="hljs-comment">//获取线性表的元素，将线性表L的第i个元素的值返回给e</span><br>        <span class="hljs-built_in">LocateElem</span>(L,e);    <span class="hljs-comment">//按值查找元素，在线性表L中查找与e元素相等的元素，查找成功返回对应的序号，查找失败则返回0</span><br>        <span class="hljs-built_in">ListInsert</span>(&amp;L,i,e);    <span class="hljs-comment">//插入操作，在线性表L的第i个位置插入元素e</span><br>        <span class="hljs-built_in">ListDelete</span>(&amp;L,i,&amp;e);    <span class="hljs-comment">//删除操作，删除线性表L中的第i个位置的元素，并将其用e返回</span><br>        <span class="hljs-built_in">ListLength</span>(L);    <span class="hljs-comment">//计算表长，返回线性表L的元素个数</span><br>        <span class="hljs-built_in">DispList</span>(L);    <span class="hljs-comment">//输出线性表，当线性表不为空表时，按顺序输出表中的每一个元素</span><br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+<h3 id="顺序表的建立"><a href="#顺序表的建立" class="headerlink" title="顺序表的建立"></a>顺序表的建立</h3><p>使用顺序表存储数据，除了存储数据本身的值以外，通常还会记录以下两样数据：</p>
+<ul>
+<li>顺序表的最大存储容量：顺序表最多可以存储的数据个数；</li>
+<li>顺序表的长度：当前顺序表中存储的数据个数。</li>
+</ul>
+<p>C 语言中，可以定义一个结构体来表示顺序表：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-keyword">typedef</span> <span class="hljs-keyword">struct</span>&#123;<br>    <span class="hljs-type">int</span> * head; <span class="hljs-comment">//定义一个名为head的长度不确定的数组，也叫“动态数组”</span><br>    <span class="hljs-type">int</span> length; <span class="hljs-comment">//记录当前顺序表的长度</span><br>    <span class="hljs-type">int</span> size; <span class="hljs-comment">//记录顺序表的存储容量</span><br>&#125;Table;<br></code></pre></td></tr></table></figure>
+
+<p>尝试建立一个顺序表，例如：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-keyword">define</span> Size 5 <span class="hljs-comment">//对Size进行宏定义，表示顺序表的最大容量</span></span><br><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">initTable</span><span class="hljs-params">(Table * t)</span> </span>&#123;<br>    <span class="hljs-comment">//构造一个空的顺序表，动态申请存储空间</span><br>    t-&gt;head = (<span class="hljs-type">int</span>*)<span class="hljs-built_in">malloc</span>(Size * <span class="hljs-built_in">sizeof</span>(<span class="hljs-type">int</span>)); <span class="hljs-comment">//申请内存空间</span><br>    <span class="hljs-comment">//如果申请失败，作出提示并直接退出程序</span><br>    <span class="hljs-keyword">if</span> (!t-&gt;head)<br>    &#123;<br>        <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;初始化失败&quot;</span>);<br>        <span class="hljs-built_in">exit</span>(<span class="hljs-number">0</span>);<br>    &#125;<br>    <span class="hljs-comment">//空表的长度初始化为0</span><br>    t-&gt;length = <span class="hljs-number">0</span>;<br>    <span class="hljs-comment">//空表的初始存储空间为Size</span><br>    t-&gt;size = Size;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+<p>如上所示，整个建立顺序表的过程都封装在一个函数中，建好的顺序表可以存储 5 个逻辑关系为“一对一”的整数。</p>
+<p>在顺序表的实现中，<code>t-&gt;head</code> 是一个<strong>指向动态数组基地址的指针</strong>，其核心作用是为顺序表提供存储数据的连续内存空间。以下是具体解析：</p>
+<hr>
+<h3 id="1-t-head-的定义与作用"><a href="#1-t-head-的定义与作用" class="headerlink" title="1. t-&gt;head 的定义与作用"></a><strong>1. <code>t-&gt;head</code> 的定义与作用</strong></h3><p>• <strong>定义</strong>：<br>  <code>t-&gt;head</code> 是顺序表结构体中的一个成员变量，通常声明为动态数组的起始地址指针。例如在 C 语言中，顺序表的结构体定义如下：<br>  <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-keyword">typedef</span> <span class="hljs-class"><span class="hljs-keyword">struct</span> &#123;</span><br>    <span class="hljs-type">int</span> *head;  <span class="hljs-comment">// 动态数组基地址</span><br>    <span class="hljs-type">int</span> length; <span class="hljs-comment">// 当前元素个数</span><br>    <span class="hljs-type">int</span> size;   <span class="hljs-comment">// 总存储容量</span><br>&#125; Table;<br></code></pre></td></tr></table></figure></p>
+<h3 id="顺序表的使用"><a href="#顺序表的使用" class="headerlink" title="顺序表的使用"></a>顺序表的使用</h3><p>通过调用 initTable() 函数，就可以成功地创建一个顺序表，还可以往顺序表中存储一些元素。</p>
+<p>例如，将 {1,2,3,4,5} 存储到顺序表中，实现代码如下：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdlib.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">define</span> Size 5 <span class="hljs-comment">//对Size进行宏定义，表示顺序表的最大容量</span></span><br><span class="hljs-keyword">typedef</span> <span class="hljs-keyword">struct</span>&#123;<br>    <span class="hljs-type">int</span>* head;<br>    <span class="hljs-type">int</span> length;<br>    <span class="hljs-type">int</span> size;<br>&#125;Table;<br><br><br><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">initTable</span><span class="hljs-params">(Table * t)</span> </span>&#123;<br>    <span class="hljs-comment">//构造一个空的顺序表，动态申请存储空间</span><br>    t-&gt;head = (<span class="hljs-type">int</span>*)<span class="hljs-built_in">malloc</span>(Size * <span class="hljs-built_in">sizeof</span>(<span class="hljs-type">int</span>));<br>    <span class="hljs-comment">//如果申请失败，作出提示并直接退出程序</span><br>    <span class="hljs-keyword">if</span> (!t-&gt;head) <span class="hljs-comment">//无头（申请失败）</span><br>    &#123;<br>        <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;初始化失败&quot;</span>);<br>        <span class="hljs-built_in">exit</span>(<span class="hljs-number">0</span>);<br>    &#125;<br>    <span class="hljs-comment">//空表的长度初始化为0</span><br>    t-&gt;length = <span class="hljs-number">0</span>; <span class="hljs-comment">//t-&gt;length：当前元素个数</span><br>    <span class="hljs-comment">//空表的初始存储空间为Size</span><br>    t-&gt;size = Size; <span class="hljs-comment">//t-&gt;size：总存储容量</span><br>&#125;<br><span class="hljs-comment">//输出顺序表中元素的函数</span><br><br><br><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">displayTable</span><span class="hljs-params">(Table t)</span> </span>&#123;<br>    <span class="hljs-type">int</span> i;<br>    <span class="hljs-keyword">for</span> (i = <span class="hljs-number">0</span>; i &lt; t.length; i++) &#123;<br>        <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d &quot;</span>, t.head[i]);<br>    &#125;<br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;\n&quot;</span>);<br>&#125;<br><br><br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;<br>    <span class="hljs-type">int</span> i;<br>    Table t = &#123; <span class="hljs-literal">NULL</span>,<span class="hljs-number">0</span>,<span class="hljs-number">0</span> &#125;;<br>    <span class="hljs-built_in">initTable</span>(&amp;t);<br>    <span class="hljs-comment">//向顺序表中添加&#123;1,2,3,4,5&#125;</span><br>    <span class="hljs-keyword">for</span> (i = <span class="hljs-number">1</span>; i &lt;= Size; i++) &#123;<br>        t.head[i - <span class="hljs-number">1</span>] = i;<br>        t.length++;<br>    &#125;<br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;顺序表中存储的元素分别是：\n&quot;</span>);<br>    <span class="hljs-built_in">displayTable</span>(t);<br>    <span class="hljs-built_in">free</span>(t.head);<span class="hljs-comment">//释放申请的堆内存</span><br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>程序运行结果如下：</p>
+<blockquote>
+<p>顺序表中存储的元素分别是： 1 2 3 4 5</p>
+</blockquote>
+<h2 id="3-顺序表的基本操作"><a href="#3-顺序表的基本操作" class="headerlink" title="3) 顺序表的基本操作"></a>3) 顺序表的基本操作</h2><p>我们学习了顺序表及初始化的过程，本节学习有关顺序表的一些基本操作，以及如何使用 C 语言实现它们。</p>
+<h3 id="顺序表插入元素"><a href="#顺序表插入元素" class="headerlink" title="顺序表插入元素"></a>顺序表插入元素</h3><p>向已有顺序表中插入数据元素，根据插入位置的不同，可分为以下 3 种情况：</p>
+<ol>
+<li>插入到顺序表的表头；</li>
+<li>在表的中间位置插入元素；</li>
+<li>尾随顺序表中已有元素，作为顺序表中的最后一个元素；</li>
+</ol>
+<p>虽然数据元素插入顺序表中的位置有所不同，但是都使用的是同一种方式去解决，即：通过遍历，找到数据元素要插入的位置，然后做如下两步工作：</p>
+<ul>
+<li>将要插入位置元素以及后续的元素整体向后移动一个位置；</li>
+<li>将元素放到腾出来的位置上；</li>
+</ul>
+<p>例如，在 {1,2,3,4,5} 的第 3 个位置上插入元素 6，实现过程如下：</p>
+<ul>
+<li>遍历至顺序表存储第 3 个数据元素的位置</li>
+</ul>
+<p class='item-img' data-src='https://pic3.zhimg.com/v2-9ce044ee30b5c641efb5cfe4753b1ff2_b.jpg'><img src="https://pic3.zhimg.com/v2-9ce044ee30b5c641efb5cfe4753b1ff2_b.jpg" alt="动图封面"></p>
+<ul>
+<li>将元素 3、4 和 5 整体向后移动一个位置</li>
+</ul>
+<p class='item-img' data-src='https://pic1.zhimg.com/v2-926c02eec07c5de69d2a9c29149f76bc_b.jpg'><img src="https://pic1.zhimg.com/v2-926c02eec07c5de69d2a9c29149f76bc_b.jpg" alt="动图封面"></p>
+<ul>
+<li>将新元素 6 放入腾出的位置</li>
+</ul>
+<p class='item-img' data-src='https://pic3.zhimg.com/v2-d5868803c7ed313babcec6d6c5a29cf0_b.jpg'><img src="https://pic3.zhimg.com/v2-d5868803c7ed313babcec6d6c5a29cf0_b.jpg" alt="动图封面"></p>
+<p>因此，顺序表插入数据元素的 C 语言实现代码如下：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-comment">//插入函数，其中，elem为插入的元素，add为插入到顺序表的位置</span><br><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">insertTable</span><span class="hljs-params">(Table* t, <span class="hljs-type">int</span> elem, <span class="hljs-type">int</span> add)</span></span><br><span class="hljs-function"></span>&#123;<br>    <span class="hljs-type">int</span> i;<br>    <br>    <br>    <span class="hljs-comment">//如果插入元素位置(add)比整张表的长度+1(t-&gt;length + 1)还大（如果相等，是尾随的情况），或者插入的位置本身不存在，程序作为提示并自动退出</span><br>    <span class="hljs-keyword">if</span> (add &gt; t-&gt;length + <span class="hljs-number">1</span> || add &lt; <span class="hljs-number">1</span>) &#123;<br>        <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;插入位置有问题\n&quot;</span>);<br>        <span class="hljs-keyword">return</span>;<br>    &#125;<br>    <br>    <br>    <span class="hljs-comment">//做插入操作时，首先需要看顺序表是否有多余的存储空间提供给插入的元素，有就是(t-&gt;length &lt; t-&gt;size)，如果没有就是(t-&gt;length == t-&gt;size)，需要申请</span><br>    <span class="hljs-keyword">if</span> (t-&gt;length == t-&gt;size) &#123;<br>        t-&gt;head = (<span class="hljs-type">int</span>*)<span class="hljs-built_in">realloc</span>(t-&gt;head, (t-&gt;size + <span class="hljs-number">1</span>) * <span class="hljs-built_in">sizeof</span>(<span class="hljs-type">int</span>));<br>        <span class="hljs-comment">//重新分配内存，动态数组额外申请更多物理空间</span><br>        <span class="hljs-keyword">if</span> (!t-&gt;head) &#123;<br>            <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;存储分配失败\n&quot;</span>);<br>            <span class="hljs-keyword">return</span>;<br>        &#125;<br>        t-&gt;size += <span class="hljs-number">1</span>;<br>    &#125;<br>    <br>    <br>    <span class="hljs-comment">//插入操作，需要将自插入位置之后的所有元素(从t-&gt;length - 1倒数到add - 1)全部后移一位</span><br>    <span class="hljs-keyword">for</span> (i = t-&gt;length - <span class="hljs-number">1</span>; i &gt;= add - <span class="hljs-number">1</span>; i--) &#123;<br>        t-&gt;head[i + <span class="hljs-number">1</span>] = t-&gt;head[i];<br>    &#125;<br>    <br>    <span class="hljs-comment">//后移完成后，直接插入元素</span><br>    t-&gt;head[add - <span class="hljs-number">1</span>] = elem;<br>    t-&gt;length++;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>注意，动态数组额外申请更多物理空间使用的是 realloc 函数。此外在实现元素整体后移的过程中，目标位置其实是有数据的，还是 3，只是下一步新插入元素时会把旧元素直接覆盖。</p>
+<h3 id="顺序表删除元素"><a href="#顺序表删除元素" class="headerlink" title="顺序表删除元素"></a>顺序表删除元素</h3><p>从顺序表中删除指定元素，实现起来非常简单，只需找到目标元素，并将其后续所有元素整体前移 1 个位置即可。</p>
+<p>后续元素整体前移一个位置，会直接将目标元素删除，可间接实现删除元素的目的。</p>
+<p>例如，从 {1,2,3,4,5} 中删除元素 3 的过程如图 4 所示：</p>
+<p class='item-img' data-src='https://pic3.zhimg.com/v2-dfb4a1ff7c8dc898a0b7fef73f637262_b.jpg'><img src="https://pic3.zhimg.com/v2-dfb4a1ff7c8dc898a0b7fef73f637262_b.jpg" alt="动图封面"></p>
+<p>因此，顺序表删除元素的 C 语言实现代码为：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">delTable</span><span class="hljs-params">(Table* t, <span class="hljs-type">int</span> add)</span> </span>&#123;<br>    <span class="hljs-type">int</span> i;<br>    <span class="hljs-keyword">if</span> (add &gt; t-&gt;length || add &lt; <span class="hljs-number">1</span>) &#123;  <span class="hljs-comment">//删除元素位置大于表长或小于0</span><br>        <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;被删除元素的位置有误\n&quot;</span>);<br>        <span class="hljs-keyword">return</span>;<br>    &#125;<br>    <span class="hljs-comment">//删除操作</span><br>    <span class="hljs-keyword">for</span> (i = add; i &lt; t-&gt;length; i++) &#123;<br>        t-&gt;head[i - <span class="hljs-number">1</span>] = t-&gt;head[i];<br>    &#125;<br>    t-&gt;length--;<span class="hljs-comment">//表长减短</span><br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="顺序表查找元素"><a href="#顺序表查找元素" class="headerlink" title="顺序表查找元素"></a>顺序表查找元素</h3><p>顺序表中查找目标元素，可以使用多种查找算法实现，比如说<a href="https://link.zhihu.com/?target=https://xiexuewu.github.io/view/55.html">二分查找</a>算法、插值查找算法等。</p>
+<p>这里，我们选择<a href="https://link.zhihu.com/?target=https://xiexuewu.github.io/view/54.html">顺序查找</a>算法，具体实现代码为：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs text">//查找函数，其中，elem表示要查找的数据元素的值<br>int selectTable(table t,int elem)&#123;<br>    for (int i=0; i&lt;t.length; i++) &#123;<br>        if (t.head[i]==elem) &#123;<br>            return i+1;<br>        &#125;<br>    &#125;<br>    return -1;//如果查找失败，返回-1<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="顺序表更改元素"><a href="#顺序表更改元素" class="headerlink" title="顺序表更改元素"></a>顺序表更改元素</h3><p>顺序表更改元素的实现过程是：</p>
+<ol>
+<li>找到目标元素；</li>
+<li>直接修改该元素的值；</li>
+</ol>
+<p>顺序表更改元素的 C 语言实现代码为：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs text">void amendTable(Table* t, int elem, int newElem) &#123;<br>    int add = selectTable(*t, elem);<br>    if (add == -1) &#123;<br>        printf(&quot;顺序表中没有找到目标元素\n&quot;);<br>        return;<br>    &#125;<br>    t-&gt;head[add - 1] = newElem;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="关于-t-head-t-length-和-t-size"><a href="#关于-t-head-t-length-和-t-size" class="headerlink" title="关于 t-&gt;head,t-&gt;length 和 t-&gt;size"></a>关于 <code>t-&gt;head</code>,<code>t-&gt;length </code>和 <code>t-&gt;size</code></h3><p>• <strong>物理存储管理</strong>：<br>  <code>t-&gt;head</code> 指向通过 <code>malloc</code> 或 <code>realloc</code> 动态申请的内存块的首地址。顺序表中的所有元素按逻辑顺序连续存储在这段内存中。</p>
+<p>• <strong>操作接口</strong>：<br>  通过 <code>t-&gt;head</code> 可直接访问顺序表的元素，例如：<br>  • <strong>插入</strong>：<code>t-&gt;head[add-1] = elem</code> 将元素写入指定位置。<br>  • <strong>遍历</strong>：通过 <code>t-&gt;head[i]</code> 访问第 <code>i</code> 个元素。</p>
+<p>顺序表初始化时，<code>t-&gt;head</code> 被赋予动态分配的内存地址。例如：  </p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-type">void</span> <span class="hljs-title function_">initTable</span><span class="hljs-params">(Table *t)</span> &#123;<br>    t-&gt;head = (<span class="hljs-type">int</span>*)<span class="hljs-built_in">malloc</span>(Size * <span class="hljs-keyword">sizeof</span>(<span class="hljs-type">int</span>));  <span class="hljs-comment">// 申请初始内存</span><br>    t-&gt;length = <span class="hljs-number">0</span>;<br>    t-&gt;size = Size;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>若内存分配失败，<code>t-&gt;head</code> 会指向 <code>NULL</code>，此时需进行错误处理。</p>
+<p>所有对顺序表元素的增删查改均通过 <code>t-&gt;head</code> 实现：<br>• <strong>插入元素</strong>：将后续元素右移后，直接通过 <code>t-&gt;head[add-1]</code> 写入新值。<br>• <strong>删除元素</strong>：左移覆盖目标元素后，通过 <code>t-&gt;head</code> 重新定位后续元素。</p>
+<p><code>t-&gt;head</code> 是顺序表实现中<strong>动态内存管理的核心</strong>，它指向存储数据的连续内存块，并通过指针操作支持元素的增删查改。</p>
+<p>在顺序表的实现中，<code>t-&gt;length</code>和<code>t-&gt;size</code>是两个关键字段，它们的含义及设计逻辑如下：</p>
+<hr>
+<p><strong>1. <code>t-&gt;length</code>：当前元素个数</strong></p>
+<p>• <strong>定义</strong>：表示顺序表中<strong>实际存储的有效元素数量</strong>，即当前表内数据的逻辑长度。<br>• <strong>作用</strong>：<br>  • 控制插入&#x2F;删除操作的合法性（例如插入位置不能超过<code>length+1</code>，删除位置不能超过<code>length</code>）。<br>  • 遍历时确定元素范围（从下标<code>0</code>到<code>length-1</code>）。<br>• <strong>示例</strong>：若顺序表存储<code>&#123;1,2,3&#125;</code>，则<code>length=3</code>。</p>
+<hr>
+<p><strong>2. <code>t-&gt;size</code>：总存储容量</strong></p>
+<p>• <strong>定义</strong>：表示顺序表<strong>已申请的内存空间能容纳的最大元素数量</strong>，即物理存储容量。<br>• <strong>作用</strong>：<br>  • 判断是否需要扩容（当<code>length == size</code>时，表已满需扩展内存）。<br>  • 动态调整内存时记录当前分配的空间上限。<br>• <strong>示例</strong>：若初始分配容量为<code>size=5</code>，插入5个元素后<code>length=5</code>，此时需扩容才能继续插入。</p>
+<hr>
+<p><strong>3. 两者的区别与联系</strong></p>
+<table>
+<thead>
+<tr>
+<th><strong>字段</strong></th>
+<th><strong>意义</strong></th>
+<th><strong>操作触发条件</strong></th>
+<th><strong>命名逻辑</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>length</code></td>
+<td>实际元素个数（动态变化）</td>
+<td>插入时位置需满足<code>1 ≤ add ≤ length+1</code></td>
+<td>直观体现“逻辑长度”，类似数组的<code>size()</code></td>
+</tr>
+<tr>
+<td><code>size</code></td>
+<td>最大容量（静态&#x2F;动态）</td>
+<td>扩容条件为<code>length == size</code></td>
+<td>体现“物理容量上限”，类似容器的<code>capacity()</code></td>
+</tr>
+</tbody></table>
+<ol>
+<li><p><strong>逻辑与物理分离</strong>：<br>• <code>length</code>关注数据逻辑层面的使用情况，<code>size</code>关注物理内存的管理，两者分离便于维护动态内存。</p>
+</li>
+<li><p><strong>操作安全性</strong>：<br>• 通过<code>length</code>限制插入&#x2F;删除位置，避免越界访问；通过<code>size</code>判断内存是否耗尽，防止溢出。</p>
+</li>
+<li><p><strong>动态扩容机制</strong>：<br>• 当<code>length</code>达到<code>size</code>时，触发<code>realloc</code>扩展内存（例如每次扩容固定步长或按倍数增长），保证数据连续性。</p>
+<p>插入函数中：</p>
+</li>
+</ol>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-keyword">if</span> (add &gt; t-&gt;length + <span class="hljs-number">1</span> || add &lt; <span class="hljs-number">1</span>) &#123;<br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;插入位置有问题\n&quot;</span>);<br>    <span class="hljs-keyword">return</span>;<br>&#125;<br><span class="hljs-keyword">if</span> (t-&gt;length == t-&gt;size) &#123;<br>    t-&gt;head = (<span class="hljs-type">int</span>*)<span class="hljs-built_in">realloc</span>(t-&gt;head, (t-&gt;size + <span class="hljs-number">1</span>) * <span class="hljs-keyword">sizeof</span>(<span class="hljs-type">int</span>));<br>    <span class="hljs-comment">// 扩容逻辑...</span><br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>• <strong><code>add &gt; t-&gt;length + 1</code></strong>：确保插入位置不超过逻辑长度的下一个合法位置（如<code>length=3</code>时，允许插入到第4位，但不可到第5位）。<br>• <strong><code>t-&gt;length == t-&gt;size</code></strong>：触发扩容的条件，保证物理空间始终足够容纳逻辑元素。</p>
+<p><code>t-&gt;length</code>和<code>t-&gt;size</code>是顺序表实现中<strong>动态内存管理</strong>与<strong>逻辑操作控制</strong>的核心字段。通过两者的协同，既能高效利用内存，又能确保数据操作的合法性。</p>
+<h2 id="其他操作的实现"><a href="#其他操作的实现" class="headerlink" title="其他操作的实现"></a>其他操作的实现</h2><h3 id="逆序"><a href="#逆序" class="headerlink" title="逆序"></a>逆序</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">reverseTable</span><span class="hljs-params">(Table* t)</span> </span>&#123;<br>    <span class="hljs-keyword">if</span> (t-&gt;length &lt;= <span class="hljs-number">1</span>) <span class="hljs-keyword">return</span>; <span class="hljs-comment">// 空表或单元素表无需处理</span><br>    <br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; t-&gt;length / <span class="hljs-number">2</span>; i++) &#123;<br>        <span class="hljs-type">int</span> temp = t-&gt;head[i];<br>        t-&gt;head[i] = t-&gt;head[t-&gt;length - <span class="hljs-number">1</span> - i];<br>        t-&gt;head[t-&gt;length - <span class="hljs-number">1</span> - i] = temp;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="输出表长"><a href="#输出表长" class="headerlink" title="输出表长"></a><strong>输出表长</strong></h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">ListLength</span><span class="hljs-params">(Table* t)</span> </span>&#123;<br>    <span class="hljs-keyword">return</span> L-&gt;length; <span class="hljs-comment">// 直接返回顺序表的当前长度</span><br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="删除全表"><a href="#删除全表" class="headerlink" title="删除全表"></a>删除全表</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">SeqListDestory</span><span class="hljs-params">(Table* t)</span> </span>&#123;<br>    <span class="hljs-built_in">assert</span>(t);  <span class="hljs-comment">// 确保传入的指针非空</span><br>    <span class="hljs-built_in">free</span>(t-&gt;head);  <span class="hljs-comment">// 释放动态数组内存</span><br>    t-&gt;head = <span class="hljs-literal">NULL</span>;  <span class="hljs-comment">// 指针置空</span><br>    t-&gt;size = <span class="hljs-number">0</span>;  <span class="hljs-comment">// 容量归零</span><br>    t-&gt;length = <span class="hljs-number">0</span>;  <span class="hljs-comment">// 元素个数归零</span><br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+<h2 id="完整代码实现"><a href="#完整代码实现" class="headerlink" title="完整代码实现"></a>完整代码实现</h2><p>以下是一个完整的顺序表操作示例代码，包含<strong>初始化、插入、删除、查找、修改、逆序、销毁</strong>等操作，并在<code>main</code>函数中展示了具体调用逻辑：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdlib.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;assert.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">define</span> INIT_SIZE 5  <span class="hljs-comment">// 初始容量</span></span><br><br><span class="hljs-keyword">typedef</span> <span class="hljs-class"><span class="hljs-keyword">struct</span> &#123;</span><br>    <span class="hljs-type">int</span>* head;    <span class="hljs-comment">// 动态数组基地址</span><br>    <span class="hljs-type">int</span> length;   <span class="hljs-comment">// 当前元素个数</span><br>    <span class="hljs-type">int</span> size;     <span class="hljs-comment">// 总存储容量</span><br>&#125; Table;<br><br><span class="hljs-comment">// 初始化顺序表</span><br><span class="hljs-type">void</span> <span class="hljs-title function_">initTable</span><span class="hljs-params">(Table* t)</span> &#123;<br>    t-&gt;head = (<span class="hljs-type">int</span>*)<span class="hljs-built_in">malloc</span>(INIT_SIZE * <span class="hljs-keyword">sizeof</span>(<span class="hljs-type">int</span>));<br>    <span class="hljs-keyword">if</span> (!t-&gt;head) &#123;<br>        <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;内存分配失败\n&quot;</span>);<br>        <span class="hljs-built_in">exit</span>(EXIT_FAILURE);<br>    &#125;<br>    t-&gt;length = <span class="hljs-number">0</span>;<br>    t-&gt;size = INIT_SIZE;<br>&#125;<br><br><span class="hljs-comment">// 插入元素（位置从1开始）</span><br><span class="hljs-type">void</span> <span class="hljs-title function_">insertTable</span><span class="hljs-params">(Table* t, <span class="hljs-type">int</span> elem, <span class="hljs-type">int</span> pos)</span> &#123;<br>    <span class="hljs-keyword">if</span> (pos &lt; <span class="hljs-number">1</span> || pos &gt; t-&gt;length + <span class="hljs-number">1</span>) &#123;<br>        <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;非法插入位置: %d\n&quot;</span>, pos);<br>        <span class="hljs-keyword">return</span>;<br>    &#125;<br>    <br>    <span class="hljs-comment">// 容量检查与扩容</span><br>    <span class="hljs-keyword">if</span> (t-&gt;length == t-&gt;size) &#123;<br>        <span class="hljs-type">int</span> new_size = t-&gt;size * <span class="hljs-number">2</span>;  <span class="hljs-comment">// 容量翻倍</span><br>        <span class="hljs-type">int</span>* new_head = (<span class="hljs-type">int</span>*)<span class="hljs-built_in">realloc</span>(t-&gt;head, new_size * <span class="hljs-keyword">sizeof</span>(<span class="hljs-type">int</span>));<br>        <span class="hljs-keyword">if</span> (!new_head) &#123;<br>            <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;扩容失败\n&quot;</span>);<br>            <span class="hljs-keyword">return</span>;<br>        &#125;<br>        t-&gt;head = new_head;<br>        t-&gt;size = new_size;<br>        <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;已扩容至 %d\n&quot;</span>, new_size);<br>    &#125;<br><br>    <span class="hljs-comment">// 元素后移</span><br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = t-&gt;length; i &gt;= pos; i--) &#123;<br>        t-&gt;head[i] = t-&gt;head[i - <span class="hljs-number">1</span>];<br>    &#125;<br>    <br>    t-&gt;head[pos - <span class="hljs-number">1</span>] = elem;<br>    t-&gt;length++;<br>&#125;<br><br><span class="hljs-comment">// 删除元素（位置从1开始）</span><br><span class="hljs-type">void</span> <span class="hljs-title function_">delTable</span><span class="hljs-params">(Table* t, <span class="hljs-type">int</span> pos)</span> &#123;<br>    <span class="hljs-keyword">if</span> (pos &lt; <span class="hljs-number">1</span> || pos &gt; t-&gt;length) &#123;<br>        <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;非法删除位置: %d\n&quot;</span>, pos);<br>        <span class="hljs-keyword">return</span>;<br>    &#125;<br>    <br>    <span class="hljs-comment">// 元素前移覆盖</span><br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = pos; i &lt; t-&gt;length; i++) &#123;<br>        t-&gt;head[i - <span class="hljs-number">1</span>] = t-&gt;head[i];<br>    &#125;<br>    t-&gt;length--;<br>&#125;<br><br><span class="hljs-comment">// 查找元素（返回位置，从1开始）</span><br><span class="hljs-type">int</span> <span class="hljs-title function_">selectTable</span><span class="hljs-params">(Table* t, <span class="hljs-type">int</span> elem)</span> &#123;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; t-&gt;length; i++) &#123;<br>        <span class="hljs-keyword">if</span> (t-&gt;head[i] == elem) &#123;<br>            <span class="hljs-keyword">return</span> i + <span class="hljs-number">1</span>;<span class="hljs-comment">// 返回元素位置</span><br>        &#125;<br>    &#125;<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">-1</span>;  <span class="hljs-comment">// 未找到</span><br>&#125;<br><br><span class="hljs-comment">// 修改元素值</span><br><span class="hljs-type">void</span> <span class="hljs-title function_">amendTable</span><span class="hljs-params">(Table* t, <span class="hljs-type">int</span> old_elem, <span class="hljs-type">int</span> new_elem)</span> &#123;<br>    <span class="hljs-type">int</span> pos = selectTable(t, old_elem); <span class="hljs-comment">// 查找元素</span><br>    <span class="hljs-keyword">if</span> (pos == <span class="hljs-number">-1</span>) &#123;<br>        <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;元素 %d 不存在\n&quot;</span>, old_elem);<br>        <span class="hljs-keyword">return</span>;<br>    &#125;<br>    t-&gt;head[pos - <span class="hljs-number">1</span>] = new_elem;<br>&#125;<br><br><span class="hljs-comment">// 逆序顺序表</span><br><span class="hljs-type">void</span> <span class="hljs-title function_">reverseTable</span><span class="hljs-params">(Table* t)</span> &#123;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; t-&gt;length / <span class="hljs-number">2</span>; i++) &#123;<br>        <span class="hljs-type">int</span> temp = t-&gt;head[i];<br>        t-&gt;head[i] = t-&gt;head[t-&gt;length - <span class="hljs-number">1</span> - i];<br>        t-&gt;head[t-&gt;length - <span class="hljs-number">1</span> - i] = temp;<br>    &#125;<br>&#125;<br><br><span class="hljs-comment">// 销毁顺序表</span><br><span class="hljs-type">void</span> <span class="hljs-title function_">destroyTable</span><span class="hljs-params">(Table* t)</span> &#123;<br>    <span class="hljs-built_in">free</span>(t-&gt;head);<br>    t-&gt;head = <span class="hljs-literal">NULL</span>;<br>    t-&gt;length = <span class="hljs-number">0</span>;<br>    t-&gt;size = <span class="hljs-number">0</span>;<br>&#125;<br><br><span class="hljs-comment">// 打印顺序表</span><br><span class="hljs-type">void</span> <span class="hljs-title function_">displayTable</span><span class="hljs-params">(Table* t)</span> &#123;<br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;[当前表长: %d, 总容量: %d]\n&quot;</span>, t-&gt;length, t-&gt;size);<br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; t-&gt;length; i++) &#123;<br>        <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d &quot;</span>, t-&gt;head[i]);<br>    &#125;<br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;\n\n&quot;</span>);<br>&#125;<br><br><span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">()</span> &#123;<br>    Table my_table; <span class="hljs-comment">//声明一个名为 my_table 的变量，其类型为 Table 结构体</span><br>    <br>    <span class="hljs-comment">// 1. 初始化</span><br>    initTable(&amp;my_table);<br>    <span class="hljs-comment">//&amp;my_table的作用是将结构体的地址传递给函数，使函数能通过指针直接修改原始变量</span><br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;=== 初始化顺序表 ===\n&quot;</span>);<br>    displayTable(&amp;my_table);<br><br>    <span class="hljs-comment">// 2. 插入初始元素</span><br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">1</span>; i &lt;= <span class="hljs-number">5</span>; i++) &#123;<br>        insertTable(&amp;my_table, i, i);<br>    &#125;<br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;=== 插入5个元素 ===\n&quot;</span>);<br>    displayTable(&amp;my_table);<br><br>    <span class="hljs-comment">// 3. 测试扩容插入</span><br>    insertTable(&amp;my_table, <span class="hljs-number">6</span>, <span class="hljs-number">3</span>);  <span class="hljs-comment">// 在第3位插入6</span><br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;=== 插入第6个元素触发扩容 ===\n&quot;</span>);<br>    displayTable(&amp;my_table);<br><br>    <span class="hljs-comment">// 4. 删除元素</span><br>    delTable(&amp;my_table, <span class="hljs-number">2</span>);  <span class="hljs-comment">// 删除第2个元素</span><br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;=== 删除第2个元素 ===\n&quot;</span>);<br>    displayTable(&amp;my_table);<br><br>    <span class="hljs-comment">// 5. 查找元素</span><br>    <span class="hljs-type">int</span> target = <span class="hljs-number">6</span>;<br>    <span class="hljs-type">int</span> pos = selectTable(&amp;my_table, target);<br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;=== 查找元素 %d ===\n&quot;</span>, target);<br>    <span class="hljs-keyword">if</span> (pos != <span class="hljs-number">-1</span>) &#123;<br>        <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;元素 %d 位于第 %d 位\n&quot;</span>, target, pos);<br>    &#125; <span class="hljs-keyword">else</span> &#123;<br>        <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;元素不存在\n&quot;</span>);<br>    &#125;<br><br>    <span class="hljs-comment">// 6. 修改元素</span><br>    amendTable(&amp;my_table, <span class="hljs-number">6</span>, <span class="hljs-number">66</span>);<br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;=== 修改元素 6 → 66 ===\n&quot;</span>);<br>    displayTable(&amp;my_table);<br><br>    <span class="hljs-comment">// 7. 逆序操作</span><br>    reverseTable(&amp;my_table);<br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;=== 逆序顺序表 ===\n&quot;</span>);<br>    displayTable(&amp;my_table);<br><br>    <span class="hljs-comment">// 8. 销毁顺序表</span><br>    destroyTable(&amp;my_table);<br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;=== 销毁后的状态 ===\n&quot;</span>);<br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;指针状态: %s\n&quot;</span>, (my_table.head == <span class="hljs-literal">NULL</span>) ? <span class="hljs-string">&quot;已释放&quot;</span> : <span class="hljs-string">&quot;未释放&quot;</span>);<br>    <br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+<h3 id="关键调用逻辑说明："><a href="#关键调用逻辑说明：" class="headerlink" title="关键调用逻辑说明："></a>关键调用逻辑说明：</h3><ol>
+<li><strong>初始化顺序表</strong></li>
+</ol>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs c">initTable(&amp;my_table);<br></code></pre></td></tr></table></figure>
+<p>• 创建空表，初始容量为5<br>• 时间复杂度：O(1)</p>
+<ol start="2">
+<li><strong>批量插入元素</strong></li>
+</ol>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">1</span>; i &lt;= <span class="hljs-number">5</span>; i++) &#123;<br>    insertTable(&amp;my_table, i, i);<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>• 插入5个元素填满初始容量<br>• 时间复杂度：O(n)</p>
+<ol start="3">
+<li><strong>触发扩容插入</strong></li>
+</ol>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs c">insertTable(&amp;my_table, <span class="hljs-number">6</span>, <span class="hljs-number">3</span>);<br></code></pre></td></tr></table></figure>
+<p>• 当插入第6个元素时触发动态扩容（容量翻倍为10）<br>• 时间复杂度：O(n)</p>
+<ol start="4">
+<li><strong>删除元素</strong></li>
+</ol>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs c">delTable(&amp;my_table, <span class="hljs-number">2</span>);<br></code></pre></td></tr></table></figure>
+<p>• 删除第2个元素（值为2），后续元素前移<br>• 时间复杂度：O(n)</p>
+<ol start="5">
+<li><strong>元素查找</strong></li>
+</ol>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs c">selectTable(&amp;my_table, target);<br></code></pre></td></tr></table></figure>
+<p>• 使用顺序查找，返回元素位置<br>• 时间复杂度：O(n)</p>
+<ol start="6">
+<li><strong>逆序操作</strong></li>
+</ol>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs c">reverseTable(&amp;my_table);<br></code></pre></td></tr></table></figure>
+<p>• 通过对称交换实现逆序<br>• 时间复杂度：O(n)</p>
+<ol start="7">
+<li><strong>销毁顺序表</strong></li>
+</ol>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs c">destroyTable(&amp;my_table);<br></code></pre></td></tr></table></figure>
+<p>• 释放动态内存并将指针置空<br>• 防止内存泄漏的关键操作</p>
+<h3 id="执行结果示例："><a href="#执行结果示例：" class="headerlink" title="执行结果示例："></a>执行结果示例：</h3><figure class="highlight asciidoc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><code class="hljs asciidoc"><span class="hljs-section">=== 初始化顺序表 ===</span><br><span class="hljs-meta">[当前表长: 0, 总容量: 5]</span><br><br><br><span class="hljs-section">=== 插入5个元素 ===</span><br><span class="hljs-meta">[当前表长: 5, 总容量: 5]</span><br>1 2 3 4 5 <br><br>已扩容至 10<br><span class="hljs-section">=== 插入第6个元素触发扩容 ===</span><br><span class="hljs-meta">[当前表长: 6, 总容量: 10]</span><br>1 2 6 3 4 5 <br><br><span class="hljs-section">=== 删除第2个元素 ===</span><br><span class="hljs-meta">[当前表长: 5, 总容量: 10]</span><br>1 6 3 4 5 <br><br><span class="hljs-section">=== 查找元素 6 ===</span><br>元素 6 位于第 2 位<br><span class="hljs-section">=== 修改元素 6 → 66 ===</span><br><span class="hljs-meta">[当前表长: 5, 总容量: 10]</span><br>1 66 3 4 5 <br><br><span class="hljs-section">=== 逆序顺序表 ===</span><br><span class="hljs-meta">[当前表长: 5, 总容量: 10]</span><br>5 4 3 66 1 <br><br><span class="hljs-section">=== 销毁后的状态 ===</span><br>指针状态: 已释放<br></code></pre></td></tr></table></figure>
+
+<h3 id="复杂度对比："><a href="#复杂度对比：" class="headerlink" title="复杂度对比："></a>复杂度对比：</h3><table>
+<thead>
+<tr>
+<th>操作</th>
+<th>最好情况</th>
+<th>最坏情况</th>
+<th>平均情况</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>插入</td>
+<td>O(1)</td>
+<td>O(n)</td>
+<td>O(n)</td>
+</tr>
+<tr>
+<td>删除</td>
+<td>O(1)</td>
+<td>O(n)</td>
+<td>O(n)</td>
+</tr>
+<tr>
+<td>查找</td>
+<td>O(1)</td>
+<td>O(n)</td>
+<td>O(n)</td>
+</tr>
+<tr>
+<td>逆序</td>
+<td>-</td>
+<td>O(n)</td>
+<td>O(n)</td>
+</tr>
+<tr>
+<td>初始化</td>
+<td>O(1)</td>
+<td>O(1)</td>
+<td>O(1)</td>
+</tr>
+</tbody></table>
+<p>​	首先是插入操作，插入操作时间复杂度最小的情况是，当元素要插入到最后一个位置时，你就不需要移动任何元素即可实现，只需要将需要插入的元素插在表的末端即可，时间复杂度O(1)，最费时的操作就是插入的元素要放在表头，那我们就需要把表中的所有元素都移动了,时间复杂度为O(n)。</p>
+<p>​	删除操作也如此，当我们要删除最后一个元素，也不需要移动顺序表，而删除第一个元素时需要移动整个表。我们知道，在实际的操作中，删除表中的任何一个位置需要被插入删除的可能性是相同的，因此从平均角度来分析，移动表的平均次数为 (n - 1) &#x2F; 2，时间复杂度为O(n)。<br>​	因此我们可以看出，顺序表在插入、删除操作时是比较费时间的，然而其他的基本操作例如初始化、建表或者销毁，时间复杂度都是O(1)，因此我们在使用顺序表的时候，要尽量让表保持不变，而是多多使用顺序表的存储和随机提取等优点。</p>
+<h2 id="优缺点分析"><a href="#优缺点分析" class="headerlink" title="优缺点分析"></a>优缺点分析</h2><p>顺序表主要有如下一些优点：</p>
+<ol>
+<li>顺序表进行随机提取元素的效率较高，能够快速存储、提取元素；</li>
+<li>建表时无需对表中元素的逻辑关系进行描述，各元素在存储地址上是连续的；</li>
+<li>对于CPU，顺序表的高速缓存效率更高，且CPU流水线也不会总是被打断。</li>
+</ol>
+<p>顺序表主要有如下一些缺点：</p>
+<ol>
+<li>申请顺序表时，顺序表存储元素的上限是固定的，这就导致了存在溢出的可能性；</li>
+<li>插入、删除元素时，时间复杂度较大，需要大范围移动表中的元素；</li>
+<li>由于我们在很多情况下无法预知需要存储多少元素，因此容易导致内存碎片的现象，即申请了空间却没有充分利用。</li>
+</ol>
+<p><strong>关于链表再新开一个页面</strong></p>
+<div id="paginator"></div></div><div id="post-footer"><div id="pages"><div class="footer-link" style="width: 50%;text-align:right;border-right:1px #fe2 solid"><a href="/Arknight-notes/posts/42928.html">← 下一篇 数据结构-线性表（下）</a></div><div class="footer-link" style="width: 50%;right:1px;border-left:1px #fe2 solid"><a href="/Arknight-notes/posts/25842.html">数据结构-算法复杂度 上一篇 →</a></div></div></div><div id="comments"><div id="gitalk"></div></div></div><div class="bottom-btn"><div><a class="i-top" id="to-top" onClick="scrolls.scrolltop();" title="回到顶部" style="opacity: 0; display: none;">∧ </a><a class="i-index" id="to-index" href="#toc-div" title="文章目录">≡</a><a class="i-color" id="color-mode" onClick="colorMode.change()" title="切换主题"></a></div></div></article><aside><div id="about"><a href="/Arknight-notes/" id="logo"><img src="https://pic4.zhimg.com/80/v2-d9884f32711e19e80979eac58e943897_720w.webp" alt="Logo" style="margin:20;border-radius:0;"></a><h1 id="Dr"><a href="zhongye">柊野</a></h1><div id="description"><p></p></div></div><div id="aside-block"><div id="toc-div"><h1>目录</h1><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%BA%BF%E6%80%A7%E8%A1%A8"><span class="toc-number">1.</span> <span class="toc-text">线性表</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E7%BA%BF%E6%80%A7%E8%A1%A8%EF%BC%88%E7%BA%BF%E6%80%A7%E5%AD%98%E5%82%A8%E7%BB%93%E6%9E%84%EF%BC%89"><span class="toc-number">1.1.</span> <span class="toc-text">1) 线性表（线性存储结构）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A1%BA%E5%BA%8F%E5%AD%98%E5%82%A8%E7%BB%93%E6%9E%84%E5%92%8C%E9%93%BE%E5%BC%8F%E5%AD%98%E5%82%A8%E7%BB%93%E6%9E%84"><span class="toc-number">1.1.1.</span> <span class="toc-text">顺序存储结构和链式存储结构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%89%8D%E9%A9%B1%E5%92%8C%E5%90%8E%E7%BB%A7"><span class="toc-number">1.1.2.</span> <span class="toc-text">前驱和后继</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E9%A1%BA%E5%BA%8F%E8%A1%A8%EF%BC%88%E9%A1%BA%E5%BA%8F%E5%AD%98%E5%82%A8%E7%BB%93%E6%9E%84%EF%BC%89"><span class="toc-number">1.2.</span> <span class="toc-text">2) 顺序表（顺序存储结构）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BA%BF%E6%80%A7%E8%A1%A8%E7%9A%84%E6%8A%BD%E8%B1%A1%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84"><span class="toc-number">1.2.1.</span> <span class="toc-text">线性表的抽象数据结构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A1%BA%E5%BA%8F%E8%A1%A8%E7%9A%84%E5%BB%BA%E7%AB%8B"><span class="toc-number">1.2.2.</span> <span class="toc-text">顺序表的建立</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-t-head-%E7%9A%84%E5%AE%9A%E4%B9%89%E4%B8%8E%E4%BD%9C%E7%94%A8"><span class="toc-number">1.2.3.</span> <span class="toc-text">1. t-&gt;head 的定义与作用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A1%BA%E5%BA%8F%E8%A1%A8%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="toc-number">1.2.4.</span> <span class="toc-text">顺序表的使用</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E9%A1%BA%E5%BA%8F%E8%A1%A8%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C"><span class="toc-number">1.3.</span> <span class="toc-text">3) 顺序表的基本操作</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A1%BA%E5%BA%8F%E8%A1%A8%E6%8F%92%E5%85%A5%E5%85%83%E7%B4%A0"><span class="toc-number">1.3.1.</span> <span class="toc-text">顺序表插入元素</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A1%BA%E5%BA%8F%E8%A1%A8%E5%88%A0%E9%99%A4%E5%85%83%E7%B4%A0"><span class="toc-number">1.3.2.</span> <span class="toc-text">顺序表删除元素</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A1%BA%E5%BA%8F%E8%A1%A8%E6%9F%A5%E6%89%BE%E5%85%83%E7%B4%A0"><span class="toc-number">1.3.3.</span> <span class="toc-text">顺序表查找元素</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A1%BA%E5%BA%8F%E8%A1%A8%E6%9B%B4%E6%94%B9%E5%85%83%E7%B4%A0"><span class="toc-number">1.3.4.</span> <span class="toc-text">顺序表更改元素</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B3%E4%BA%8E-t-head-t-length-%E5%92%8C-t-size"><span class="toc-number">1.3.5.</span> <span class="toc-text">关于 t-&gt;head,t-&gt;length 和 t-&gt;size</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B6%E4%BB%96%E6%93%8D%E4%BD%9C%E7%9A%84%E5%AE%9E%E7%8E%B0"><span class="toc-number">1.4.</span> <span class="toc-text">其他操作的实现</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%80%86%E5%BA%8F"><span class="toc-number">1.4.1.</span> <span class="toc-text">逆序</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BE%93%E5%87%BA%E8%A1%A8%E9%95%BF"><span class="toc-number">1.4.2.</span> <span class="toc-text">输出表长</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%A0%E9%99%A4%E5%85%A8%E8%A1%A8"><span class="toc-number">1.4.3.</span> <span class="toc-text">删除全表</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%8C%E6%95%B4%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0"><span class="toc-number">1.5.</span> <span class="toc-text">完整代码实现</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B3%E9%94%AE%E8%B0%83%E7%94%A8%E9%80%BB%E8%BE%91%E8%AF%B4%E6%98%8E%EF%BC%9A"><span class="toc-number">1.5.1.</span> <span class="toc-text">关键调用逻辑说明：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%89%A7%E8%A1%8C%E7%BB%93%E6%9E%9C%E7%A4%BA%E4%BE%8B%EF%BC%9A"><span class="toc-number">1.5.2.</span> <span class="toc-text">执行结果示例：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A4%8D%E6%9D%82%E5%BA%A6%E5%AF%B9%E6%AF%94%EF%BC%9A"><span class="toc-number">1.5.3.</span> <span class="toc-text">复杂度对比：</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BC%98%E7%BC%BA%E7%82%B9%E5%88%86%E6%9E%90"><span class="toc-number">1.6.</span> <span class="toc-text">优缺点分析</span></a></li></ol></li></ol></div></div><footer><nobr><span class="icp-title">GZHU</span><span class="icp-content">193001-0001</span></nobr><br><nobr><span class="icp-title">OUTPOST</span><span class="icp-content">169-2025-0331</span></nobr><br><nobr>构建自 <a target="_blank" rel="noopener" href="http://hexo.io">Hexo</a></nobr><wbr><nobr> 使用主题 <a target="_blank" rel="noopener" href="https://github.com/Yue-plus/hexo-theme-arknights">Arknights</a></nobr><wbr><nobr> 主题作者 <a target="_blank" rel="noopener" href="https://github.com/Yue-plus">Yue_plus</a></nobr></footer></aside></main><canvas id="canvas-dust"></canvas></body></html>
