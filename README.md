@@ -29,15 +29,19 @@
 
 ### 关注站长博客！
 
-主站：	 https://zhongye1.github.io
+本站： 		https://zhongye1.github.io/Arknight-notes/
 
-RSS订阅：  https://zhongye1.github.io/atom.xml
+本站RSS订阅：  https://zhongye1.github.io/Arknight-notes/rss.xml
 
-工作站：     https://github.com/Guangzhou-University-SITE-193
+主站：	 	https://zhongye1.github.io
+
+主站RSS订阅：  https://zhongye1.github.io/atom.xml
+
+193工作站：      https://github.com/Guangzhou-University-SITE-193
+
+GitHub：  	 https://github.com/Zhongye1
 
 QQ：2760913192
-
-GitHub：@Zhongye1  https://github.com/Zhongye1
 
 
 
