@@ -1,0 +1,163 @@
+<!DOCTYPE html><html lang="en" theme-mode="dark"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>数据结构-队列 | Notes|笔记站</title><link rel="icon" type="image/x-icon" href="/Arknight-notes/favicon.ico"><link rel="preload" as="font" crossorigin="anonymous" href="/Arknight-notes/font/Bender.ttf"><link rel="preload" as="font" crossorigin="anonymous" href="/Arknight-notes/font/BenderLight.ttf"><link rel="preload" as="font" crossorigin="anonymous" href="/Arknight-notes/font/JetBrainsMono-Regular.woff2"><link rel="stylesheet" href="/Arknight-notes/css/arknights.css"><style>@font-face {
+  font-family: Bender;
+  src: local('Bender'), url("/Arknight-notes/font/Bender.ttf"), url("/Arknight-notes/font/Bender.otf");
+}
+@font-face {
+  font-family: BenderLight;
+  src: local('BenderLight'), url("/Arknight-notes/font/BenderLight.ttf");
+}
+@font-face {
+  font-family: 'JetBrains Mono';
+  src: local('JetBrains Mono'), url('/Arknight-notes/font/JetBrainsMono-Regular.woff2') format('woff2');
+}
+</style><script>var config = {"root":"/Arknight-notes/","code_fold":90,"search":{"preload":false,"activeHolder":"Enter here","blurHolder":"Search","noResult":"Data \"$0\" not found"},"code":{"codeInfo":"$0 - $1 lines","copy":"copy"}}</script><link type="text/css" rel="stylesheet" href="/Arknight-notes/lib/encrypt/hbe.style.css"><script src="/Arknight-notes/js/gitalk.js"></script><script src="//unpkg.com/mermaid@10.5.0/dist/mermaid.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.6.1/MathJax.js"></script><script>MathJax.Hub.Config({
+ menuSettings: {
+   zoom: "None"
+ },
+ showMathMenu: false,
+ jax: ["input/TeX","output/CommonHTML"],
+ extensions: ["tex2jax.js"],
+ TeX: {
+   extensions: ["AMSmath.js","AMSsymbols.js"],
+   equationNumbers: {
+     autoNumber: "AMS"
+   }
+ },
+ tex2jax: {
+   inlineMath: [["\\(", "\\)"]],
+   displayMath: [["\\[", "\\]"]]
+ }
+});</script><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lightgallery.css"><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lg-zoom.css"><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lg-thumbnail.css"><link type="text/css" rel="stylesheet" href="/Arknight-notes/lib/fontawesome/css/all.min.css"><script>if (window.localStorage.getItem('theme-mode') === 'light')
+ document.documentElement.setAttribute('theme-mode', 'light')
+if (window.localStorage.getItem('theme-mode') === 'dark')
+ document.documentElement.setAttribute('theme-mode', 'dark')</script><style>@font-face {
+ font-family: BenderLight;
+ src: local('Bender'), url("/Arknight-notes/font/BenderLight.woff2") format('woff2');
+}
+@font-face {
+ font-family: 'JetBrains Mono';
+ src: local('JetBrains Mono'), url('/Arknight-notes/font/JetBrainsMono-Regular.woff2') format('woff2');
+}</style><style>:root {
+ --dark-background: url('https://pic2.zhimg.com/v2-6269d74b4dafe14781d03790e5a86b21_r.jpg');
+ --light-background: url('https://pic1.zhimg.com/v2-233b64b583642fc4a6d77e69ced33150_r.jpg');
+ --theme-encrypt-confirm: 'confirm'
+}</style><script defer src="/Arknight-notes/js/arknights.js"></script><script defer src="/Arknight-notes/js/search.js"></script><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><script async src="/Arknight-notes/js/gitalk.js"></script><script defer type="module">import mermaid from '//unpkg.com/mermaid@10.5.0/dist/mermaid.esm.mjs';
+window.mermaid = mermaid;
+code.paintMermaid();
+</script><script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.6.1/MathJax.js"></script><script>MathJax.Hub.Config({
+  menuSettings: {
+    zoom: "None"
+  },
+  showMathMenu: false,
+  jax: ["input/TeX","output/CommonHTML"],
+  extensions: ["tex2jax.js"],
+  TeX: {
+    extensions: ["AMSmath.js","AMSsymbols.js"],
+    equationNumbers: {
+      autoNumber: "AMS"
+    }
+  },
+  tex2jax: {
+    inlineMath: [["\\(", "\\)"]],
+    displayMath: [["\\[", "\\]"]]
+  }
+});
+</script><script async src="//unpkg.com/lightgallery@2.7.1/lightgallery.min.js"></script><script async src="//unpkg.com/lightgallery@2.7.1/plugins/zoom/lg-zoom.min.js"></script><script async src="//unpkg.com/lightgallery@2.7.1/plugins/thumbnail/lg-thumbnail.min.js"></script><script async src="/Arknight-notes/lib/encrypt/hbe.js"></script><script async src="/Arknight-notes/js/pjax.js"></script><script class="pjax-js">reset= () => {gitalk = new Gitalk({
+ clientID: 'Ov23ct13Fb0b67x23wnT',
+ clientSecret: 'f18ce69dd545e3c0f5e2456afde9c756fe8a254a',
+ repo: 'Arknight-notes',
+ owner: 'Zhongye1',
+ admin: ['Zhongye1'],
+ distractionFreeMode: false,
+ id: location.pathname
+});
+if (document.querySelector("#gitalk")) gitalk.render("gitalk");document.querySelector('.lg-container')?.remove()
+lightGallery(document.getElementById('post-bg'), {
+  plugins: [lgZoom,lgThumbnail],
+  selector: '.item-img'})}</script><script>window.addEventListener("load",() => {pjax = new Pjax({
+ cacheBust: false,
+ selectors: ['title','article','#aside-block','.pjax-js','data-pjax','.busuanzi'],
+ switches: {'article': Pjax.switches.sideBySide},
+ switchesOptions: {
+   'article': {
+     classNames: {
+       remove: "pjax-out",
+       add: "pjax-in"
+     }
+   }
+ }
+});
+document.addEventListener("pjax:complete", reset);document.addEventListener('pjax:success', _ => bszCaller.fetch(
+ "//busuanzi.ibruce.info/busuanzi?jsonpCallback=BusuanziCallback", a => {
+  bszTag.texts(a),
+  bszTag.shows()
+}));reset()})</script><script class="pjax-js">reset= () => {gitalk = new Gitalk({
+ clientID: 'Ov23ct13Fb0b67x23wnT',
+ clientSecret: 'f18ce69dd545e3c0f5e2456afde9c756fe8a254a',
+ repo: 'Arknight-notes',
+ owner: 'Zhongye1',
+ admin: ['Zhongye1'],
+ distractionFreeMode: false,
+ id: location.pathname
+});
+if (document.querySelector("#gitalk")) gitalk.render("gitalk");document.querySelector('.lg-container')?.remove()
+lightGallery(document.getElementById('post-bg'), {
+  plugins: [lgZoom,lgThumbnail],
+  selector: '.item-img'})}</script><script>window.addEventListener("load",() => {pjax = new Pjax({
+ cacheBust: false,
+ selectors: ['title','article','#aside-block','.pjax-js'],
+ switches: {'article': Pjax.switches.sideBySide},
+ switchesOptions: {
+   'article': {
+     classNames: {
+       remove: "pjax-out",
+       add: "pjax-in"
+     }
+   }
+ }
+});
+document.addEventListener("pjax:complete", reset);reset()})</script><meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/Arknight-notes/rss.xml" title="Notes|笔记站" type="application/atom+xml">
+</head><body><div class="loading" style="opacity: 0;"><div class="loadingBar left"></div><div class="loadingBar right"></div></div><main><header class="closed"><div class="navBtn"><i class="navBtnIcon"><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span></i></div><nav><div class="navItem" id="search-header"><span class="navItemTitle"><input autocomplete="off" autocorrect="off" autocapitalize="none" placeholder="Search" spellcheck="false" maxlength="50" type="text" id="search-input"></span></div><div class="navItem" id="search-holder"></div><div class="search-popup" tabindex="0"><div id="search-result"></div></div><ol class="navContent"><li class="navItem"><a class="navBlock" href="/Arknight-notes/"><span class="navItemTitle">Home</span></a></li><li class="navItem" matchdata="categories,tags"><a class="navBlock" href="/Arknight-notes/archives/"><span class="navItemTitle">Archives</span></a></li><li class="navItem"><a class="navBlock" href="/Arknight-notes/about/"><span class="navItemTitle">About</span></a></li></ol></nav></header><article><div id="post-bg"><div id="post-title"><h1>数据结构-队列</h1><div id="post-info"><span>First Post: <div class="control"><time datetime="2025-04-29T07:30:08.000Z" id="date"> 2025-04-29</time></div></span><br><span>Last Update: <div class="control"><time datetime="2025-09-29T09:50:23.539Z" id="updated"> 2025-09-29</time></div></span><br><span id="busuanzi_container_page_pv">Page View: <span class="control" id="busuanzi_value_page_pv">loading...</span></span></div></div><hr><div id="post-content"><p>队列（queue）是只允许在一端进行插入操作，在另一端进行删除操作的线性表</p>
+<p>这个的特点是<strong>先进先出（First In First Out）</strong><br>然后是允许插入的一端称为队尾（rear），允许删除的一端称为队头(front)。<br>向队列中插入新的数据元素称为入队。<br>从队列中删除队头元素称为出队。</p>
+<p class='item-img' data-src='https://pic3.zhimg.com/v2-04e876ac91bea9efd936209291cf3faa_1440w.jpg'><img src="https://pic3.zhimg.com/v2-04e876ac91bea9efd936209291cf3faa_1440w.jpg" alt=""></p>
+<h3 id="队列的顺序存储结构"><a href="#队列的顺序存储结构" class="headerlink" title="队列的顺序存储结构"></a>队列的顺序存储结构</h3><h3 id="顺序队列"><a href="#顺序队列" class="headerlink" title="顺序队列"></a><a target="_blank" rel="noopener" href="https://zhida.zhihu.com/search?content_id=232731442&amp;content_type=Article&amp;match_order=1&amp;q=%E9%A1%BA%E5%BA%8F%E9%98%9F%E5%88%97&amp;zhida_source=entity">顺序队列</a></h3><p>用一组地址连续的存储单元，依次存放从队头到队尾的数据元素，称为顺序队列。实现顺序队列需要设两个指针：队头指针（front）和队尾指针（rear），分别指向队头元素和队尾元素。</p>
+<p class='item-img' data-src='https://picx.zhimg.com/v2-6d104064401aebf29ed49e89ee9de0d1_1440w.jpg'><img src="https://picx.zhimg.com/v2-6d104064401aebf29ed49e89ee9de0d1_1440w.jpg" alt=""></p>
+<p><strong>如果在插入 E 的基础上再插入元素 F，将会插入失败。因为 rear == MAXSIZE，尾指针已经达到队列的最大长度。但实际上队列存储空间并未全部被占满，这种现象叫做假溢出</strong></p>
+<p>通过上图可以发现队头出队、对尾入队造成了数组前面的空间未被利用而出现假溢出。</p>
+<p>为了解决“假溢出”现象，使得队列的存储空间得到充分利用，一个非常巧妙的方法就是将顺序队列的数组看成一个头尾相接的循环结构。</p>
+<h3 id="循环队列"><a href="#循环队列" class="headerlink" title="循环队列"></a>循环队列</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs mermaid">graph TD<br>    subgraph &quot;循环队列 (大小=5)&quot;<br>        Cell0[0: a6] --&gt; Cell1[1: 空] --&gt; Cell2[2: a3] --&gt; Cell3[3: a4] --&gt; Cell4[4: a5]<br>        Cell4 -.-&gt; Cell0<br>    end<br><br>    Front[front指针] --&gt; Cell2<br>    Rear[rear指针] --&gt; Cell1<br><br>    style Cell2 fill:#e8f5e8<br>    style Cell1 fill:#fff3e0<br></code></pre></td></tr></table></figure>
+<p><strong>现在队满了，但是队头指针和队尾指针相等（队空的时候也是这样）。</strong><br>那么该怎么判断队空还是队满？</p>
+<blockquote>
+<p>两种解决方案</p>
+</blockquote>
+<ol>
+<li>设置一个计数器，开始的时候为 0，当有元素入队时+1，有元素出队时-1，值为 MAXSIZE 时队满</li>
+<li>保留一个元素空间，当队尾指针指的空单元的下一个单元是队头指针所指单元是为对满</li>
+</ol>
+<p><strong>队满的条件（Queue.rear+1）%MAXSIZE == Queue.front</strong><br><strong>队空的条件 Queue.rear=Queue.front</strong></p>
+<p>循环队列结构</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-keyword">define</span> MAXSIZE 20</span><br><span class="hljs-comment">/*循环队列的存储结构*/</span><br><span class="hljs-keyword">typedef</span> structQueue<br>&#123;<br>    <span class="hljs-type">int</span> data[MAXSIZE];<br>    <span class="hljs-type">int</span> front;    <span class="hljs-comment">//头指针</span><br>    <span class="hljs-type">int</span> rear;    <span class="hljs-comment">//尾指针</span><br>&#125;Queue;<br></code></pre></td></tr></table></figure>
+<p>操作</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-comment">/*初始化空队列*/</span><br><span class="hljs-type">int</span> <span class="hljs-title function_">InitSeQueue</span><span class="hljs-params">(Queue* <span class="hljs-built_in">queue</span>)</span>;<br><span class="hljs-comment">/*获得队列长度*/</span><br><span class="hljs-type">int</span> <span class="hljs-title function_">GetLength</span><span class="hljs-params">(Queue* <span class="hljs-built_in">queue</span>)</span>;<br><span class="hljs-comment">/*判空*/</span><br><span class="hljs-type">bool</span> <span class="hljs-title function_">isEmpty</span><span class="hljs-params">(Queue* <span class="hljs-built_in">queue</span>)</span>;<br><span class="hljs-comment">/*判满*/</span><br><span class="hljs-type">bool</span> <span class="hljs-title function_">isFull</span><span class="hljs-params">(Queue* <span class="hljs-built_in">queue</span>)</span>;<br><span class="hljs-comment">/*入队操作*/</span><br><span class="hljs-type">int</span> <span class="hljs-title function_">EnterQueue</span><span class="hljs-params">(Queue* <span class="hljs-built_in">queue</span>, <span class="hljs-type">int</span> e)</span>;<br><span class="hljs-comment">/*出队操作*/</span><br><span class="hljs-type">int</span> <span class="hljs-title function_">ExitQueue</span><span class="hljs-params">(Queue* <span class="hljs-built_in">queue</span>, <span class="hljs-type">int</span> e)</span>;<br></code></pre></td></tr></table></figure>
+<h3 id="初始化空队列"><a href="#初始化空队列" class="headerlink" title="初始化空队列"></a>初始化空队列</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-type">void</span> <span class="hljs-title function_">InitSeQueue</span><span class="hljs-params">(Queue* <span class="hljs-built_in">queue</span>)</span><br>&#123;<br>    <span class="hljs-built_in">queue</span>-&gt;front = <span class="hljs-number">0</span>;<br>    <span class="hljs-built_in">queue</span>-&gt;rear = <span class="hljs-number">0</span>;<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h3 id="获得队列长度"><a href="#获得队列长度" class="headerlink" title="获得队列长度"></a>获得队列长度</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-type">int</span> <span class="hljs-title function_">GetLength</span><span class="hljs-params">(Queue* <span class="hljs-built_in">queue</span>)</span><br>&#123;<br>    <span class="hljs-keyword">return</span> (<span class="hljs-built_in">queue</span>-&gt;rear-<span class="hljs-built_in">queue</span>-&gt;front+MAXSIZE)%MAXSIZE;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h3 id="判空"><a href="#判空" class="headerlink" title="判空"></a>判空</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-type">bool</span> <span class="hljs-title function_">isEmpty</span><span class="hljs-params">(Queue* <span class="hljs-built_in">queue</span>)</span><br>&#123;<br>    <span class="hljs-keyword">return</span> <span class="hljs-built_in">queue</span>-&gt;front==<span class="hljs-built_in">queue</span>-&gt;rear;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h3 id="判满"><a href="#判满" class="headerlink" title="判满"></a>判满</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-type">bool</span> <span class="hljs-title function_">isFull</span><span class="hljs-params">(Queue* <span class="hljs-built_in">queue</span>)</span><br>&#123;<br>    <span class="hljs-keyword">return</span> (<span class="hljs-built_in">queue</span>-&gt;rear+<span class="hljs-number">1</span>)%MAXSIZE==<span class="hljs-built_in">queue</span>-&gt;front;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h3 id="入队"><a href="#入队" class="headerlink" title="入队"></a>入队</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-type">void</span> <span class="hljs-title function_">EnterQueue</span><span class="hljs-params">(Queue* <span class="hljs-built_in">queue</span>, <span class="hljs-type">int</span> e)</span><br>&#123;<br>    <span class="hljs-keyword">if</span> (isFull(<span class="hljs-built_in">queue</span>))<br>    &#123;<br>        <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;队列满了\n&quot;</span>);<br>        <span class="hljs-keyword">return</span>;<br>    &#125;<br>    <span class="hljs-keyword">else</span><br>    &#123;<br>        <span class="hljs-built_in">queue</span>-&gt;data[<span class="hljs-built_in">queue</span>-&gt;rear] = e;<br>        <span class="hljs-built_in">queue</span>-&gt;rear = (<span class="hljs-built_in">queue</span>-&gt;rear + <span class="hljs-number">1</span>) % MAXSIZE;<span class="hljs-comment">//求模，rear的值就在[0,MAXSIZE-1]循环</span><br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p><code>queue-&gt;data[queue-&gt;rear] = e;</code><br>将要入队的元素 e 存储到队尾指针 rear 所指向的位置，这是实际的数据插入操作</p>
+<p><code>queue-&gt;rear = (queue-&gt;rear + 1) % MAXSIZE;</code><br>将队尾指针 rear 向后移动一位<br>使用模运算(queue-&gt;rear + 1) % MAXSIZE 实现循环效果<br>当 rear 到达数组末尾时，会自动回到数组开头（索引 0）,利用了数组的存储空间，避免了顺序队列的”假溢出”问题</p>
+<h3 id="出队"><a href="#出队" class="headerlink" title="出队"></a>出队</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-type">void</span> <span class="hljs-title function_">ExitQueue</span><span class="hljs-params">(Queue* <span class="hljs-built_in">queue</span>, <span class="hljs-type">int</span>*e)</span><br>&#123;<br>     <span class="hljs-keyword">if</span> (isEmpty(<span class="hljs-built_in">queue</span>))<br>    &#123;<br>        <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;已经是空队列了\n&quot;</span>);<br>        <span class="hljs-keyword">return</span>;<br>    &#125;<br>    <span class="hljs-keyword">else</span><br>    &#123;<br>        *e = <span class="hljs-built_in">queue</span>-&gt;data[<span class="hljs-built_in">queue</span>-&gt;front];<br>        <span class="hljs-built_in">queue</span>-&gt;front = (<span class="hljs-built_in">queue</span>-&gt;front + <span class="hljs-number">1</span>) % MAXSIZE;<span class="hljs-comment">//注意不要写成(queue-&gt;front - 1)</span><br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>其中 <code>*e = queue-&gt;data[queue-&gt;front];</code></p>
+<p><code>queue-&gt;front</code>是队头指针，指向队列的第一个有效元素位置<br><code>queue-&gt;data[queue-&gt;front]</code>表示获取队头位置存储的数据元素<br><code>e</code>是一个指向整型变量的指针<br><code>*e</code>表示对这个指针进行解引用，访问指针指向的内存位置</p>
+<p><strong>整体操作</strong>： - 将队头元素的值赋给调用者传入的变量地址 - 这样调用函数就能获取到出队的元素值</p>
+<h3 id="队列的链式存储结构"><a href="#队列的链式存储结构" class="headerlink" title="队列的链式存储结构"></a>队列的链式存储结构</h3><p>链队列由单链表组成，队头指针指向链表的头结点，队尾指针指向尾节点。空队列时队头指针和队尾指针都指向头节点。</p>
+<p class='item-img' data-src='https://pic4.zhimg.com/v2-ffb23cca0c20511b80a2970db251db65_1440w.jpg'><img src="https://pic4.zhimg.com/v2-ffb23cca0c20511b80a2970db251db65_1440w.jpg" alt=""></p>
+<p>链队列结构</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-comment">/*结点结构*/</span><br><span class="hljs-keyword">typedef</span> <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">Node</span></span><br><span class="hljs-class">&#123;</span><br>    <span class="hljs-type">int</span> data;<br>    <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">Node</span> *<span class="hljs-title">next</span>;</span><br>&#125;Node;<br><br><span class="hljs-comment">/*链队列结构*/</span><br><span class="hljs-keyword">typedef</span> <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">LinkQueue</span></span><br><span class="hljs-class">&#123;</span><br>    Node* front,rear;<span class="hljs-comment">//队头、队尾指针</span><br>&#125;LinkQueue;<br></code></pre></td></tr></table></figure>
+<h3 id="初始化链队列"><a href="#初始化链队列" class="headerlink" title="初始化链队列"></a>初始化链队列</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-type">void</span> <span class="hljs-title function_">InitLinkQueue</span><span class="hljs-params">(LinkQueue* LinkQ)</span><br>&#123;<br>    Node* head = <span class="hljs-built_in">malloc</span>(<span class="hljs-keyword">sizeof</span>(Node));<br>    <span class="hljs-keyword">if</span> (LinkQ != <span class="hljs-literal">NULL</span> &amp;&amp; head != <span class="hljs-literal">NULL</span>)<br>    &#123;<br>        LinkQ-&gt;front = LinkQ-&gt;rear = head;<br>        head-&gt;next = <span class="hljs-literal">NULL</span>;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h3 id="判空-1"><a href="#判空-1" class="headerlink" title="判空"></a>判空</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-type">bool</span> <span class="hljs-title function_">isEmpty</span><span class="hljs-params">(LinkQueue* LinkQ)</span><br>&#123;<br><br>    <span class="hljs-keyword">return</span> LinkQ-&gt;front == LinkQ-&gt;rear;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h3 id="入队-1"><a href="#入队-1" class="headerlink" title="入队"></a>入队</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-type">void</span> <span class="hljs-title function_">EnterLinkQueue</span><span class="hljs-params">(LinkQueue* LinkQ, <span class="hljs-type">int</span> x)</span><br>&#123;<br>    <span class="hljs-comment">/* 创建新节点并分配内存空间 */</span><br>    Node* node = <span class="hljs-built_in">malloc</span>(<span class="hljs-keyword">sizeof</span>(Node));<br>    <span class="hljs-comment">/* 将待插入数据存入新节点 */</span><br>    node-&gt;data = x;<br>    <span class="hljs-comment">/* 设置新节点的后继指针为空 */</span><br>    node-&gt;next = <span class="hljs-literal">NULL</span>;<br>    <span class="hljs-comment">/* 将新节点连接到当前队尾节点之后 */</span><br>    LinkQ-&gt;rear-&gt;next = node;<br>    <span class="hljs-comment">/* 更新队尾指针，指向新插入的节点 */</span><br>    LinkQ-&gt;rear = node;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>链队列的入队操作：</p>
+<p>创建新节点：动态分配内存创建新节点<br>设置节点数据：将入队元素 x 存入新节点<br>连接节点：将新节点链接到当前队尾节点之后<br>更新队尾指针：将队尾指针指向新加入的节点</p>
+<h3 id="出队-1"><a href="#出队-1" class="headerlink" title="出队"></a>出队</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-type">void</span> <span class="hljs-title function_">ExitLinkQueue</span><span class="hljs-params">(LinkQueue* LinkQ, <span class="hljs-type">int</span>* x)</span><br>&#123;<br>    <span class="hljs-keyword">if</span> (isEmpty(LinkQ)) <span class="hljs-comment">//首先判断队列是否为空，如果为空则直接返回</span><br>        <span class="hljs-keyword">return</span>;<br>    Node* node = <span class="hljs-built_in">malloc</span>(<span class="hljs-keyword">sizeof</span>(Node));<br>    <span class="hljs-comment">//保留删除结点的信息</span><br>    node = LinkQ-&gt;front-&gt;next;<br>    *x = LinkQ-&gt;front-&gt;data; <span class="hljs-comment">//将队头节点的数据赋值给输出参数x</span><br>    <span class="hljs-comment">//建立新联系</span><br>    LinkQ-&gt;front-&gt;next = node-&gt;next; <span class="hljs-comment">// 跳过被删除节点，将队头直接连接到下一个节点</span><br>    <span class="hljs-comment">//如果队尾出队了，那么就是空队</span><br>    <span class="hljs-keyword">if</span> (LinkQ-&gt;rear == node)<br>        LinkQ-&gt;front = LinkQ-&gt;rear;<br>    <span class="hljs-built_in">free</span>(node);<br>&#125;<br></code></pre></td></tr></table></figure>
+<div id="paginator"></div></div><div id="post-footer"><div id="pages"><div class="footer-link" style="width: 50%;text-align:right;border-right:1px #fe2 solid"><a href="/Arknight-notes/posts/41925.html">← Next 利用chrome F12 测试应用实践详解</a></div><div class="footer-link" style="width: 50%;right:1px;border-left:1px #fe2 solid"><a href="/Arknight-notes/posts/33985.html">数据结构-栈 Prev →</a></div></div></div><div id="comments"><div id="gitalk"></div></div></div><div class="bottom-btn"><div><a class="i-top" id="to-top" onClick="scrolls.scrolltop();" title="To Top" style="opacity: 0; display: none;">∧ </a><a class="i-index" id="to-index" href="#toc-div" title="To Catalog">≡</a><a class="i-color" id="color-mode" onClick="colorMode.change()" title="Change Theme"></a></div></div></article><aside><div id="about"><a href="/Arknight-notes/" id="logo"><img src="https://pic4.zhimg.com/80/v2-d9884f32711e19e80979eac58e943897_720w.webp" alt="Logo" style="margin:20;border-radius:0;"></a><h1 id="Dr"><a href="zhongye">柊野</a></h1><div id="description"><p></p></div></div><div id="aside-block"><div id="toc-div"><h1>Catalog</h1><ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%98%9F%E5%88%97%E7%9A%84%E9%A1%BA%E5%BA%8F%E5%AD%98%E5%82%A8%E7%BB%93%E6%9E%84"><span class="toc-number">1.</span> <span class="toc-text">队列的顺序存储结构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A1%BA%E5%BA%8F%E9%98%9F%E5%88%97"><span class="toc-number">2.</span> <span class="toc-text">顺序队列</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BE%AA%E7%8E%AF%E9%98%9F%E5%88%97"><span class="toc-number">3.</span> <span class="toc-text">循环队列</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%9D%E5%A7%8B%E5%8C%96%E7%A9%BA%E9%98%9F%E5%88%97"><span class="toc-number">4.</span> <span class="toc-text">初始化空队列</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%8E%B7%E5%BE%97%E9%98%9F%E5%88%97%E9%95%BF%E5%BA%A6"><span class="toc-number">5.</span> <span class="toc-text">获得队列长度</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%A4%E7%A9%BA"><span class="toc-number">6.</span> <span class="toc-text">判空</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%A4%E6%BB%A1"><span class="toc-number">7.</span> <span class="toc-text">判满</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%A5%E9%98%9F"><span class="toc-number">8.</span> <span class="toc-text">入队</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%87%BA%E9%98%9F"><span class="toc-number">9.</span> <span class="toc-text">出队</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%98%9F%E5%88%97%E7%9A%84%E9%93%BE%E5%BC%8F%E5%AD%98%E5%82%A8%E7%BB%93%E6%9E%84"><span class="toc-number">10.</span> <span class="toc-text">队列的链式存储结构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%9D%E5%A7%8B%E5%8C%96%E9%93%BE%E9%98%9F%E5%88%97"><span class="toc-number">11.</span> <span class="toc-text">初始化链队列</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%A4%E7%A9%BA-1"><span class="toc-number">12.</span> <span class="toc-text">判空</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%A5%E9%98%9F-1"><span class="toc-number">13.</span> <span class="toc-text">入队</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%87%BA%E9%98%9F-1"><span class="toc-number">14.</span> <span class="toc-text">出队</span></a></li></ol></div></div><footer><nobr><span class="icp-title">GZHU</span><span class="icp-content">193001-0001</span></nobr><br><nobr><span class="icp-title">OUTPOST</span><span class="icp-content">169-2025-0331</span></nobr><br><nobr>Published with <a target="_blank" rel="noopener" href="http://hexo.io">Hexo</a></nobr><wbr><nobr> Theme <a target="_blank" rel="noopener" href="https://github.com/Yue-plus/hexo-theme-arknights">Arknights</a></nobr><wbr><nobr> by <a target="_blank" rel="noopener" href="https://github.com/Yue-plus">Yue_plus</a></nobr></footer></aside></main><canvas id="canvas-dust"></canvas></body></html>
