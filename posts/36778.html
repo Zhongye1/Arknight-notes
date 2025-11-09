@@ -1,0 +1,585 @@
+<!DOCTYPE html><html lang="en" theme-mode="dark"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>2025-11-04-js常用方法 | Notes|笔记站</title><link rel="icon" type="image/x-icon" href="/Arknight-notes/favicon.ico"><link rel="preload" as="font" crossorigin="anonymous" href="/Arknight-notes/font/Bender.ttf"><link rel="preload" as="font" crossorigin="anonymous" href="/Arknight-notes/font/BenderLight.ttf"><link rel="preload" as="font" crossorigin="anonymous" href="/Arknight-notes/font/JetBrainsMono-Regular.woff2"><link rel="stylesheet" href="/Arknight-notes/css/arknights.css"><style>@font-face {
+  font-family: Bender;
+  src: local('Bender'), url("/Arknight-notes/font/Bender.ttf"), url("/Arknight-notes/font/Bender.otf");
+}
+@font-face {
+  font-family: BenderLight;
+  src: local('BenderLight'), url("/Arknight-notes/font/BenderLight.ttf");
+}
+@font-face {
+  font-family: 'JetBrains Mono';
+  src: local('JetBrains Mono'), url('/Arknight-notes/font/JetBrainsMono-Regular.woff2') format('woff2');
+}
+</style><script>var config = {"root":"/Arknight-notes/","code_fold":90,"search":{"preload":false,"activeHolder":"Enter here","blurHolder":"Search","noResult":"Data \"$0\" not found"},"code":{"codeInfo":"$0 - $1 lines","copy":"copy"}}</script><link type="text/css" rel="stylesheet" href="/Arknight-notes/lib/encrypt/hbe.style.css"><script src="/Arknight-notes/js/gitalk.js"></script><script src="//unpkg.com/mermaid@10.5.0/dist/mermaid.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.6.1/MathJax.js"></script><script>MathJax.Hub.Config({
+ menuSettings: {
+   zoom: "None"
+ },
+ showMathMenu: false,
+ jax: ["input/TeX","output/CommonHTML"],
+ extensions: ["tex2jax.js"],
+ TeX: {
+   extensions: ["AMSmath.js","AMSsymbols.js"],
+   equationNumbers: {
+     autoNumber: "AMS"
+   }
+ },
+ tex2jax: {
+   inlineMath: [["\\(", "\\)"]],
+   displayMath: [["\\[", "\\]"]]
+ }
+});</script><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lightgallery.css"><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lg-zoom.css"><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lg-thumbnail.css"><link type="text/css" rel="stylesheet" href="/Arknight-notes/lib/fontawesome/css/all.min.css"><script>if (window.localStorage.getItem('theme-mode') === 'light')
+ document.documentElement.setAttribute('theme-mode', 'light')
+if (window.localStorage.getItem('theme-mode') === 'dark')
+ document.documentElement.setAttribute('theme-mode', 'dark')</script><style>@font-face {
+ font-family: BenderLight;
+ src: local('Bender'), url("/Arknight-notes/font/BenderLight.woff2") format('woff2');
+}
+@font-face {
+ font-family: 'JetBrains Mono';
+ src: local('JetBrains Mono'), url('/Arknight-notes/font/JetBrainsMono-Regular.woff2') format('woff2');
+}</style><style>:root {
+ --dark-background: url('https://pic2.zhimg.com/v2-6269d74b4dafe14781d03790e5a86b21_r.jpg');
+ --light-background: url('https://pic1.zhimg.com/v2-233b64b583642fc4a6d77e69ced33150_r.jpg');
+ --theme-encrypt-confirm: 'confirm'
+}</style><script defer src="/Arknight-notes/js/arknights.js"></script><script defer src="/Arknight-notes/js/search.js"></script><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><script async src="/Arknight-notes/js/gitalk.js"></script><script defer type="module">import mermaid from '//unpkg.com/mermaid@10.5.0/dist/mermaid.esm.mjs';
+window.mermaid = mermaid;
+code.paintMermaid();
+</script><script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.6.1/MathJax.js"></script><script>MathJax.Hub.Config({
+  menuSettings: {
+    zoom: "None"
+  },
+  showMathMenu: false,
+  jax: ["input/TeX","output/CommonHTML"],
+  extensions: ["tex2jax.js"],
+  TeX: {
+    extensions: ["AMSmath.js","AMSsymbols.js"],
+    equationNumbers: {
+      autoNumber: "AMS"
+    }
+  },
+  tex2jax: {
+    inlineMath: [["\\(", "\\)"]],
+    displayMath: [["\\[", "\\]"]]
+  }
+});
+</script><script async src="//unpkg.com/lightgallery@2.7.1/lightgallery.min.js"></script><script async src="//unpkg.com/lightgallery@2.7.1/plugins/zoom/lg-zoom.min.js"></script><script async src="//unpkg.com/lightgallery@2.7.1/plugins/thumbnail/lg-thumbnail.min.js"></script><script async src="/Arknight-notes/lib/encrypt/hbe.js"></script><script async src="/Arknight-notes/js/pjax.js"></script><script class="pjax-js">reset= () => {gitalk = new Gitalk({
+ clientID: 'Ov23ct13Fb0b67x23wnT',
+ clientSecret: 'f18ce69dd545e3c0f5e2456afde9c756fe8a254a',
+ repo: 'Arknight-notes',
+ owner: 'Zhongye1',
+ admin: ['Zhongye1'],
+ distractionFreeMode: false,
+ id: location.pathname
+});
+if (document.querySelector("#gitalk")) gitalk.render("gitalk");document.querySelector('.lg-container')?.remove()
+lightGallery(document.getElementById('post-bg'), {
+  plugins: [lgZoom,lgThumbnail],
+  selector: '.item-img'})}</script><script>window.addEventListener("load",() => {pjax = new Pjax({
+ cacheBust: false,
+ selectors: ['title','article','#aside-block','.pjax-js','data-pjax','.busuanzi'],
+ switches: {'article': Pjax.switches.sideBySide},
+ switchesOptions: {
+   'article': {
+     classNames: {
+       remove: "pjax-out",
+       add: "pjax-in"
+     }
+   }
+ }
+});
+document.addEventListener("pjax:complete", reset);document.addEventListener('pjax:success', _ => bszCaller.fetch(
+ "//busuanzi.ibruce.info/busuanzi?jsonpCallback=BusuanziCallback", a => {
+  bszTag.texts(a),
+  bszTag.shows()
+}));reset()})</script><script class="pjax-js">reset= () => {gitalk = new Gitalk({
+ clientID: 'Ov23ct13Fb0b67x23wnT',
+ clientSecret: 'f18ce69dd545e3c0f5e2456afde9c756fe8a254a',
+ repo: 'Arknight-notes',
+ owner: 'Zhongye1',
+ admin: ['Zhongye1'],
+ distractionFreeMode: false,
+ id: location.pathname
+});
+if (document.querySelector("#gitalk")) gitalk.render("gitalk");document.querySelector('.lg-container')?.remove()
+lightGallery(document.getElementById('post-bg'), {
+  plugins: [lgZoom,lgThumbnail],
+  selector: '.item-img'})}</script><script>window.addEventListener("load",() => {pjax = new Pjax({
+ cacheBust: false,
+ selectors: ['title','article','#aside-block','.pjax-js'],
+ switches: {'article': Pjax.switches.sideBySide},
+ switchesOptions: {
+   'article': {
+     classNames: {
+       remove: "pjax-out",
+       add: "pjax-in"
+     }
+   }
+ }
+});
+document.addEventListener("pjax:complete", reset);reset()})</script><meta name="generator" content="Hexo 7.3.0"><style>mjx-container[jax="SVG"] {
+  direction: ltr;
+}
+
+mjx-container[jax="SVG"] > svg {
+  overflow: visible;
+}
+
+mjx-container[jax="SVG"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="SVG"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="SVG"][justify="right"] {
+  text-align: right;
+}
+
+g[data-mml-node="merror"] > g {
+  fill: red;
+  stroke: red;
+}
+
+g[data-mml-node="merror"] > rect[data-background] {
+  fill: yellow;
+  stroke: none;
+}
+
+g[data-mml-node="mtable"] > line[data-line] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > rect[data-frame] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > .mjx-dashed {
+  stroke-dasharray: 140;
+}
+
+g[data-mml-node="mtable"] > .mjx-dotted {
+  stroke-linecap: round;
+  stroke-dasharray: 0,140;
+}
+
+g[data-mml-node="mtable"] > svg {
+  overflow: visible;
+}
+
+[jax="SVG"] mjx-tool {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+[jax="SVG"] mjx-tool > mjx-tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+mjx-tool > mjx-tip {
+  display: inline-block;
+  padding: .2em;
+  border: 1px solid #888;
+  font-size: 70%;
+  background-color: #F8F8F8;
+  color: black;
+  box-shadow: 2px 2px 5px #AAAAAA;
+}
+
+g[data-mml-node="maction"][data-toggle] {
+  cursor: pointer;
+}
+
+mjx-status {
+  display: block;
+  position: fixed;
+  left: 1em;
+  bottom: 1em;
+  min-width: 25%;
+  padding: .2em .4em;
+  border: 1px solid #888;
+  font-size: 90%;
+  background-color: #F8F8F8;
+  color: black;
+}
+
+foreignObject[data-mjx-xml] {
+  font-family: initial;
+  line-height: normal;
+  overflow: visible;
+}
+
+.MathJax path {
+  stroke-width: 3;
+}
+
+mjx-container[display="true"] {
+  overflow: auto hidden;
+}
+
+mjx-container[display="true"] + br {
+  display: none;
+}
+</style><link rel="alternate" href="/Arknight-notes/rss.xml" title="Notes|笔记站" type="application/atom+xml">
+</head><body><div class="loading" style="opacity: 0;"><div class="loadingBar left"></div><div class="loadingBar right"></div></div><main><header class="closed"><div class="navBtn"><i class="navBtnIcon"><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span></i></div><nav><div class="navItem" id="search-header"><span class="navItemTitle"><input autocomplete="off" autocorrect="off" autocapitalize="none" placeholder="Search" spellcheck="false" maxlength="50" type="text" id="search-input"></span></div><div class="navItem" id="search-holder"></div><div class="search-popup" tabindex="0"><div id="search-result"></div></div><ol class="navContent"><li class="navItem"><a class="navBlock" href="/Arknight-notes/"><span class="navItemTitle">Home</span></a></li><li class="navItem" matchdata="categories,tags"><a class="navBlock" href="/Arknight-notes/archives/"><span class="navItemTitle">Archives</span></a></li><li class="navItem"><a class="navBlock" href="/Arknight-notes/about/"><span class="navItemTitle">About</span></a></li></ol></nav></header><article><div id="post-bg"><div id="post-title"><h1>2025-11-04-js常用方法</h1><div id="post-info"><span>First Post: <div class="control"><time datetime="2025-11-04T07:29:35.000Z" id="date"> 2025-11-04</time></div></span><br><span>Last Update: <div class="control"><time datetime="2025-11-04T07:56:03.460Z" id="updated"> 2025-11-04</time></div></span><br><span id="busuanzi_container_page_pv">Page View: <span class="control" id="busuanzi_value_page_pv">loading...</span></span></div></div><hr><div id="post-content"><h3 id="javaScript常用数组方法"><a href="#javaScript常用数组方法" class="headerlink" title="javaScript常用数组方法"></a>javaScript常用数组方法</h3><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>顺序</th>
+<th>方法名</th>
+<th>功能</th>
+<th>返回值</th>
+<th>是否改变原数组</th>
+<th>版本</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>push()</td>
+<td>(在结尾)向数组添加一或多个元素</td>
+<td>返回新数组长度</td>
+<td>Y</td>
+<td>ES5-</td>
+</tr>
+<tr>
+<td>2</td>
+<td>unshift()</td>
+<td>（在开头)向数组添加一或多个元素</td>
+<td>返回新数组长度</td>
+<td>Y</td>
+<td>ES5-</td>
+</tr>
+<tr>
+<td>3</td>
+<td>pop()</td>
+<td>删除数组的最后一位</td>
+<td>返回被删除的数据</td>
+<td>Y</td>
+<td>ES5-</td>
+</tr>
+<tr>
+<td>4</td>
+<td>shift()</td>
+<td>移除数组的第一项</td>
+<td>返回被删除的数据</td>
+<td>Y</td>
+<td>ES5-</td>
+</tr>
+<tr>
+<td>5</td>
+<td>reverse()</td>
+<td>反转数组中的元素</td>
+<td>返回反转后数组</td>
+<td>Y</td>
+<td>ES5-</td>
+</tr>
+<tr>
+<td>6</td>
+<td>sort()</td>
+<td>以字母顺序(字符串Unicode码点)对数组进行排序</td>
+<td>返回新数组</td>
+<td>Y</td>
+<td>ES5-</td>
+</tr>
+<tr>
+<td>7</td>
+<td>splice()</td>
+<td>在指定位置删除指定个数元素再增加任意个数元素 （实现数组任意位置的增删改)</td>
+<td>返回删除的数据所组成的数组</td>
+<td>Y</td>
+<td>ES5-</td>
+</tr>
+<tr>
+<td>8</td>
+<td>concat()</td>
+<td>通过合并（连接）现有数组来创建一个新数组</td>
+<td>返回合并之后的数组</td>
+<td>N</td>
+<td>ES5-</td>
+</tr>
+<tr>
+<td>9</td>
+<td>join()</td>
+<td>用特定的字符,将数组拼接形成字符串 (默认”,”)</td>
+<td>返回拼接后的字符串</td>
+<td>N</td>
+<td>ES5-</td>
+</tr>
+<tr>
+<td>10</td>
+<td>slice()</td>
+<td>裁切指定位置的数组</td>
+<td>被裁切的元素形成的数组</td>
+<td>N</td>
+<td>ES5-</td>
+</tr>
+<tr>
+<td>11</td>
+<td>toString()</td>
+<td>将数组转换为字符串</td>
+<td>字符串</td>
+<td>N</td>
+<td>ES5-</td>
+</tr>
+<tr>
+<td>12</td>
+<td>valueOf()</td>
+<td>查询数组原始值</td>
+<td>数组的原始值</td>
+<td>N</td>
+<td>ES5-</td>
+</tr>
+<tr>
+<td>13</td>
+<td>indexOf()</td>
+<td>查询某个元素在数组中第一次出现的位置</td>
+<td>存在该元素,返回下标,不存在 返回 -1</td>
+<td>N</td>
+<td>ES5-</td>
+</tr>
+<tr>
+<td>14</td>
+<td>lastIndexOf()</td>
+<td>反向查询数组某个元素在数组中第一次出现的位置</td>
+<td>存在该元素,返回下标,不存在 返回 -1</td>
+<td>N</td>
+<td>ES5-</td>
+</tr>
+<tr>
+<td>15</td>
+<td>forEach()</td>
+<td>(迭代) 遍历数组,每次循环中执行传入的回调函数</td>
+<td>无/(undefined)</td>
+<td>N</td>
+<td>ES5-</td>
+</tr>
+<tr>
+<td>16</td>
+<td>map()</td>
+<td>(迭代) 遍历数组, 每次循环时执行传入的回调函数,根据回调函数的返回值,生成一个新的数组</td>
+<td>有/自定义</td>
+<td>N</td>
+<td>ES5-</td>
+</tr>
+<tr>
+<td>17</td>
+<td>filter()</td>
+<td>(迭代) 遍历数组, 每次循环时执行传入的回调函数,回调函数返回一个条件,把满足条件的元素筛选出来放到新数组中</td>
+<td>满足条件的元素组成的新数组</td>
+<td>N</td>
+<td>ES5-</td>
+</tr>
+<tr>
+<td>18</td>
+<td>every()</td>
+<td>(迭代) 判断数组中所有的元素是否满足某个条件</td>
+<td>全都满足返回true 只要有一个不满足 返回false</td>
+<td>N</td>
+<td>ES5-</td>
+</tr>
+<tr>
+<td>19</td>
+<td>some()</td>
+<td>(迭代) 判断数组中是否存在,满足某个条件的元素</td>
+<td>只要有一个元素满足条件就返回true,都不满足返回false</td>
+<td>N</td>
+<td>ES5-</td>
+</tr>
+<tr>
+<td>20</td>
+<td>reduce()</td>
+<td>(归并)遍历数组, 每次循环时执行传入的回调函数,回调函数会返回一个值,将该值作为初始值prev,传入到下一次函数中</td>
+<td>最终操作的结果</td>
+<td>N</td>
+<td>ES5-</td>
+</tr>
+<tr>
+<td>21</td>
+<td>reduceRight()</td>
+<td>(归并)用法同reduce,只不过是从右向左</td>
+<td>同reduce</td>
+<td>N</td>
+<td>ES5-</td>
+</tr>
+<tr>
+<td>22</td>
+<td>includes()</td>
+<td>判断一个数组是否包含一个指定的值.</td>
+<td>是返回 true，否则false</td>
+<td>N</td>
+<td>ES6</td>
+</tr>
+<tr>
+<td>23</td>
+<td>Array.from()</td>
+<td>接收伪数组,返回对应的真数组</td>
+<td>对应的真数组</td>
+<td>N</td>
+<td>ES6</td>
+</tr>
+<tr>
+<td>24</td>
+<td>find()</td>
+<td>遍历数组,执行回调函数,回调函数执行一个条件,返回满足条件的第一个元素,不存在返回undefined</td>
+<td>满足条件第一个元素/否则返回undefined</td>
+<td>N</td>
+<td>ES6</td>
+</tr>
+<tr>
+<td>25</td>
+<td>findIndex()</td>
+<td>遍历数组,执行回调函数,回调函数接受一个条件,返回满足条件的第一个元素下标,不存在返回-1</td>
+<td>满足条件第一个元素下标,不存在=&gt;-1</td>
+<td>N</td>
+<td>ES6</td>
+</tr>
+<tr>
+<td>26</td>
+<td>fill()</td>
+<td>用给定值填充一个数组</td>
+<td>新数组</td>
+<td>Y</td>
+<td>ES6</td>
+</tr>
+<tr>
+<td>27</td>
+<td>flat()</td>
+<td>用于将嵌套的数组“拉平”，变成一维的数组。</td>
+<td>返回一个新数组</td>
+<td>N</td>
+<td>ES6</td>
+</tr>
+<tr>
+<td>28</td>
+<td>flatMap()</td>
+<td>flat()和map()的组合版 , 先通过map()返回一个新数组,再将数组拉平( 只能拉平一次 )</td>
+<td>返回新数组</td>
+<td>N</td>
+<td>ES6</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="javaScript常用字符串方法"><a href="#javaScript常用字符串方法" class="headerlink" title="javaScript常用字符串方法"></a>javaScript常用字符串方法</h3><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>顺序</th>
+<th>方法名</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>charAt(x)</td>
+<td>返回字符串中x字符的位置,下标从0开始</td>
+</tr>
+<tr>
+<td>2</td>
+<td>charCodeAt(x)</td>
+<td>返回字符串中x位置处字符的unicode值</td>
+</tr>
+<tr>
+<td>3</td>
+<td>concat()</td>
+<td>用于连接两个或多个字符串</td>
+</tr>
+<tr>
+<td>4</td>
+<td>fromCharcode()</td>
+<td>将一组Unicode码转换为字符</td>
+</tr>
+<tr>
+<td>5</td>
+<td>indexOf(substr, [start])</td>
+<td>返回某个指定的字符串值在字符串中首次出现的位置。如果没有找到匹配的字符串则返回 -1。</td>
+</tr>
+<tr>
+<td>6</td>
+<td>lastIndexOf(substr, [start])</td>
+<td>返回指定文本在字符串中最后一次出现的索引, 如果未找到，则返回-1。</td>
+</tr>
+<tr>
+<td>7</td>
+<td>match(regexp)</td>
+<td>根据正则表达式在字符串中搜索匹配项。如果没有找到匹配项，则返回null。</td>
+</tr>
+<tr>
+<td>8</td>
+<td>replace(regexp/substr, replacetext)</td>
+<td>用于在字符串中用一些字符替换另一些字符，或替换一个与正则表达式匹配的子串</td>
+</tr>
+<tr>
+<td>9</td>
+<td>search(regexp)</td>
+<td>检索字符串中指定的子字符串，或检索与正则表达式相匹配的子字符串，如果找到，返回与 regexp 相匹配的子串的起始位置，否则返回 -1。</td>
+</tr>
+<tr>
+<td>10</td>
+<td>slice(start, [end])</td>
+<td>裁取字符串的某个部分，返回一个新的字符串。包括字符串从 start 开始（包括 start）到 end 结束（不包括 end）为止的所有字符</td>
+</tr>
+<tr>
+<td>11</td>
+<td>split(delimiter, [limit])</td>
+<td>split() 方法用于把一个字符串分割成字符串数组，返回一个字符串数组，返回的数组中的字串不包括 delimiter自身。 可选的“limit”是一个整数，允许各位指定要返回的最大数组的元素个数。</td>
+</tr>
+<tr>
+<td>12</td>
+<td>substr(start, [length])</td>
+<td>在字符串中抽取从 start 下标开始的指定数目的字符。返回一个新的字符串，包含从 start（包括 start 所指的字符） 处开始的 length 个字符。如果没有指定 length，那么返回的字符串包含从 start 到该字符串的结尾的字符。</td>
+</tr>
+<tr>
+<td>13</td>
+<td>substring(start,stop)</td>
+<td>用于提取字符串中介于两个指定下标之间的字符</td>
+</tr>
+<tr>
+<td>14</td>
+<td>toLowerCase()</td>
+<td>把字符串转换为小写。</td>
+</tr>
+<tr>
+<td>15</td>
+<td>toUpperCase()</td>
+<td>把字符串转换为大写。</td>
+</tr>
+<tr>
+<td>16</td>
+<td>includes()</td>
+<td>检查字符串是否包含指定的字符串或字符。</td>
+</tr>
+<tr>
+<td>17</td>
+<td>endsWith()</td>
+<td>检查字符串是否以指定的字符串或字符结束。</td>
+</tr>
+<tr>
+<td>18</td>
+<td>repeat()</td>
+<td>将字符串复制指定次数。</td>
+</tr>
+<tr>
+<td>19</td>
+<td>valueOf()</td>
+<td>返回一个String对象的原始值（primitive value），该值等同于String.prototype.toString()。</td>
+</tr>
+<tr>
+<td>20</td>
+<td>trim()</td>
+<td>从一个字符串的两端删除空白字符。</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="paginator"></div></div><div id="post-footer"><div id="pages"><div class="footer-link" style="width: 50%;text-align:right;border-right:1px #fe2 solid"><a href="/Arknight-notes/posts/26939.html">← Next 2025-11-05-2025-11-02 组会朝花夕拾</a></div><div class="footer-link" style="width: 50%;right:1px;border-left:1px #fe2 solid"><a href="/Arknight-notes/posts/40483.html">2025-10-28-常用杂记 Prev →</a></div></div></div><div id="comments"><div id="gitalk"></div></div></div><div class="bottom-btn"><div><a class="i-top" id="to-top" onClick="scrolls.scrolltop();" title="To Top" style="opacity: 0; display: none;">∧ </a><a class="i-index" id="to-index" href="#toc-div" title="To Catalog">≡</a><a class="i-color" id="color-mode" onClick="colorMode.change()" title="Change Theme"></a></div></div></article><aside><div id="about"><a href="/Arknight-notes/" id="logo"><img src="https://pic4.zhimg.com/80/v2-d9884f32711e19e80979eac58e943897_720w.webp" alt="Logo" style="margin:20;border-radius:0;"></a><h1 id="Dr"><a href="zhongye">柊野</a></h1><div id="description"><p></p></div></div><div id="aside-block"><div id="toc-div"><h1>Catalog</h1><ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#javaScript%E5%B8%B8%E7%94%A8%E6%95%B0%E7%BB%84%E6%96%B9%E6%B3%95"><span class="toc-number">1.</span> <span class="toc-text">javaScript常用数组方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#javaScript%E5%B8%B8%E7%94%A8%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%96%B9%E6%B3%95"><span class="toc-number">2.</span> <span class="toc-text">javaScript常用字符串方法</span></a></li></ol></div></div><footer><nobr><span class="icp-title">GZHU</span><span class="icp-content">193001-0001</span></nobr><br><nobr><span class="icp-title">OUTPOST</span><span class="icp-content">169-2025-0331</span></nobr><br><nobr>Published with <a target="_blank" rel="noopener" href="http://hexo.io">Hexo</a></nobr><wbr><nobr> Theme <a target="_blank" rel="noopener" href="https://github.com/Yue-plus/hexo-theme-arknights">Arknights</a></nobr><wbr><nobr> by <a target="_blank" rel="noopener" href="https://github.com/Yue-plus">Yue_plus</a></nobr></footer></aside></main><canvas id="canvas-dust"></canvas></body></html>

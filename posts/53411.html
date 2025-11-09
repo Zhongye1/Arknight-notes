@@ -1,0 +1,592 @@
+<!DOCTYPE html><html lang="en" theme-mode="dark"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>2025-11-07-关于软考高项网规 | Notes|笔记站</title><link rel="icon" type="image/x-icon" href="/Arknight-notes/favicon.ico"><link rel="preload" as="font" crossorigin="anonymous" href="/Arknight-notes/font/Bender.ttf"><link rel="preload" as="font" crossorigin="anonymous" href="/Arknight-notes/font/BenderLight.ttf"><link rel="preload" as="font" crossorigin="anonymous" href="/Arknight-notes/font/JetBrainsMono-Regular.woff2"><link rel="stylesheet" href="/Arknight-notes/css/arknights.css"><style>@font-face {
+  font-family: Bender;
+  src: local('Bender'), url("/Arknight-notes/font/Bender.ttf"), url("/Arknight-notes/font/Bender.otf");
+}
+@font-face {
+  font-family: BenderLight;
+  src: local('BenderLight'), url("/Arknight-notes/font/BenderLight.ttf");
+}
+@font-face {
+  font-family: 'JetBrains Mono';
+  src: local('JetBrains Mono'), url('/Arknight-notes/font/JetBrainsMono-Regular.woff2') format('woff2');
+}
+</style><script>var config = {"root":"/Arknight-notes/","code_fold":90,"search":{"preload":false,"activeHolder":"Enter here","blurHolder":"Search","noResult":"Data \"$0\" not found"},"code":{"codeInfo":"$0 - $1 lines","copy":"copy"}}</script><link type="text/css" rel="stylesheet" href="/Arknight-notes/lib/encrypt/hbe.style.css"><script src="/Arknight-notes/js/gitalk.js"></script><script src="//unpkg.com/mermaid@10.5.0/dist/mermaid.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.6.1/MathJax.js"></script><script>MathJax.Hub.Config({
+ menuSettings: {
+   zoom: "None"
+ },
+ showMathMenu: false,
+ jax: ["input/TeX","output/CommonHTML"],
+ extensions: ["tex2jax.js"],
+ TeX: {
+   extensions: ["AMSmath.js","AMSsymbols.js"],
+   equationNumbers: {
+     autoNumber: "AMS"
+   }
+ },
+ tex2jax: {
+   inlineMath: [["\\(", "\\)"]],
+   displayMath: [["\\[", "\\]"]]
+ }
+});</script><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lightgallery.css"><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lg-zoom.css"><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lg-thumbnail.css"><link type="text/css" rel="stylesheet" href="/Arknight-notes/lib/fontawesome/css/all.min.css"><script>if (window.localStorage.getItem('theme-mode') === 'light')
+ document.documentElement.setAttribute('theme-mode', 'light')
+if (window.localStorage.getItem('theme-mode') === 'dark')
+ document.documentElement.setAttribute('theme-mode', 'dark')</script><style>@font-face {
+ font-family: BenderLight;
+ src: local('Bender'), url("/Arknight-notes/font/BenderLight.woff2") format('woff2');
+}
+@font-face {
+ font-family: 'JetBrains Mono';
+ src: local('JetBrains Mono'), url('/Arknight-notes/font/JetBrainsMono-Regular.woff2') format('woff2');
+}</style><style>:root {
+ --dark-background: url('https://pic2.zhimg.com/v2-6269d74b4dafe14781d03790e5a86b21_r.jpg');
+ --light-background: url('https://pic1.zhimg.com/v2-233b64b583642fc4a6d77e69ced33150_r.jpg');
+ --theme-encrypt-confirm: 'confirm'
+}</style><script defer src="/Arknight-notes/js/arknights.js"></script><script defer src="/Arknight-notes/js/search.js"></script><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><script async src="/Arknight-notes/js/gitalk.js"></script><script defer type="module">import mermaid from '//unpkg.com/mermaid@10.5.0/dist/mermaid.esm.mjs';
+window.mermaid = mermaid;
+code.paintMermaid();
+</script><script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.6.1/MathJax.js"></script><script>MathJax.Hub.Config({
+  menuSettings: {
+    zoom: "None"
+  },
+  showMathMenu: false,
+  jax: ["input/TeX","output/CommonHTML"],
+  extensions: ["tex2jax.js"],
+  TeX: {
+    extensions: ["AMSmath.js","AMSsymbols.js"],
+    equationNumbers: {
+      autoNumber: "AMS"
+    }
+  },
+  tex2jax: {
+    inlineMath: [["\\(", "\\)"]],
+    displayMath: [["\\[", "\\]"]]
+  }
+});
+</script><script async src="//unpkg.com/lightgallery@2.7.1/lightgallery.min.js"></script><script async src="//unpkg.com/lightgallery@2.7.1/plugins/zoom/lg-zoom.min.js"></script><script async src="//unpkg.com/lightgallery@2.7.1/plugins/thumbnail/lg-thumbnail.min.js"></script><script async src="/Arknight-notes/lib/encrypt/hbe.js"></script><script async src="/Arknight-notes/js/pjax.js"></script><script class="pjax-js">reset= () => {gitalk = new Gitalk({
+ clientID: 'Ov23ct13Fb0b67x23wnT',
+ clientSecret: 'f18ce69dd545e3c0f5e2456afde9c756fe8a254a',
+ repo: 'Arknight-notes',
+ owner: 'Zhongye1',
+ admin: ['Zhongye1'],
+ distractionFreeMode: false,
+ id: location.pathname
+});
+if (document.querySelector("#gitalk")) gitalk.render("gitalk");document.querySelector('.lg-container')?.remove()
+lightGallery(document.getElementById('post-bg'), {
+  plugins: [lgZoom,lgThumbnail],
+  selector: '.item-img'})}</script><script>window.addEventListener("load",() => {pjax = new Pjax({
+ cacheBust: false,
+ selectors: ['title','article','#aside-block','.pjax-js','data-pjax','.busuanzi'],
+ switches: {'article': Pjax.switches.sideBySide},
+ switchesOptions: {
+   'article': {
+     classNames: {
+       remove: "pjax-out",
+       add: "pjax-in"
+     }
+   }
+ }
+});
+document.addEventListener("pjax:complete", reset);document.addEventListener('pjax:success', _ => bszCaller.fetch(
+ "//busuanzi.ibruce.info/busuanzi?jsonpCallback=BusuanziCallback", a => {
+  bszTag.texts(a),
+  bszTag.shows()
+}));reset()})</script><script class="pjax-js">reset= () => {gitalk = new Gitalk({
+ clientID: 'Ov23ct13Fb0b67x23wnT',
+ clientSecret: 'f18ce69dd545e3c0f5e2456afde9c756fe8a254a',
+ repo: 'Arknight-notes',
+ owner: 'Zhongye1',
+ admin: ['Zhongye1'],
+ distractionFreeMode: false,
+ id: location.pathname
+});
+if (document.querySelector("#gitalk")) gitalk.render("gitalk");document.querySelector('.lg-container')?.remove()
+lightGallery(document.getElementById('post-bg'), {
+  plugins: [lgZoom,lgThumbnail],
+  selector: '.item-img'})}</script><script>window.addEventListener("load",() => {pjax = new Pjax({
+ cacheBust: false,
+ selectors: ['title','article','#aside-block','.pjax-js'],
+ switches: {'article': Pjax.switches.sideBySide},
+ switchesOptions: {
+   'article': {
+     classNames: {
+       remove: "pjax-out",
+       add: "pjax-in"
+     }
+   }
+ }
+});
+document.addEventListener("pjax:complete", reset);reset()})</script><meta name="generator" content="Hexo 7.3.0"><style>mjx-container[jax="SVG"] {
+  direction: ltr;
+}
+
+mjx-container[jax="SVG"] > svg {
+  overflow: visible;
+}
+
+mjx-container[jax="SVG"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="SVG"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="SVG"][justify="right"] {
+  text-align: right;
+}
+
+g[data-mml-node="merror"] > g {
+  fill: red;
+  stroke: red;
+}
+
+g[data-mml-node="merror"] > rect[data-background] {
+  fill: yellow;
+  stroke: none;
+}
+
+g[data-mml-node="mtable"] > line[data-line] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > rect[data-frame] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > .mjx-dashed {
+  stroke-dasharray: 140;
+}
+
+g[data-mml-node="mtable"] > .mjx-dotted {
+  stroke-linecap: round;
+  stroke-dasharray: 0,140;
+}
+
+g[data-mml-node="mtable"] > svg {
+  overflow: visible;
+}
+
+[jax="SVG"] mjx-tool {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+[jax="SVG"] mjx-tool > mjx-tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+mjx-tool > mjx-tip {
+  display: inline-block;
+  padding: .2em;
+  border: 1px solid #888;
+  font-size: 70%;
+  background-color: #F8F8F8;
+  color: black;
+  box-shadow: 2px 2px 5px #AAAAAA;
+}
+
+g[data-mml-node="maction"][data-toggle] {
+  cursor: pointer;
+}
+
+mjx-status {
+  display: block;
+  position: fixed;
+  left: 1em;
+  bottom: 1em;
+  min-width: 25%;
+  padding: .2em .4em;
+  border: 1px solid #888;
+  font-size: 90%;
+  background-color: #F8F8F8;
+  color: black;
+}
+
+foreignObject[data-mjx-xml] {
+  font-family: initial;
+  line-height: normal;
+  overflow: visible;
+}
+
+.MathJax path {
+  stroke-width: 3;
+}
+
+mjx-container[display="true"] {
+  overflow: auto hidden;
+}
+
+mjx-container[display="true"] + br {
+  display: none;
+}
+</style><link rel="alternate" href="/Arknight-notes/rss.xml" title="Notes|笔记站" type="application/atom+xml">
+</head><body><div class="loading" style="opacity: 0;"><div class="loadingBar left"></div><div class="loadingBar right"></div></div><main><header class="closed"><div class="navBtn"><i class="navBtnIcon"><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span></i></div><nav><div class="navItem" id="search-header"><span class="navItemTitle"><input autocomplete="off" autocorrect="off" autocapitalize="none" placeholder="Search" spellcheck="false" maxlength="50" type="text" id="search-input"></span></div><div class="navItem" id="search-holder"></div><div class="search-popup" tabindex="0"><div id="search-result"></div></div><ol class="navContent"><li class="navItem"><a class="navBlock" href="/Arknight-notes/"><span class="navItemTitle">Home</span></a></li><li class="navItem" matchdata="categories,tags"><a class="navBlock" href="/Arknight-notes/archives/"><span class="navItemTitle">Archives</span></a></li><li class="navItem"><a class="navBlock" href="/Arknight-notes/about/"><span class="navItemTitle">About</span></a></li></ol></nav></header><article><div id="post-bg"><div id="post-title"><h1>2025-11-07-关于软考高项网规</h1><div id="post-info"><span>First Post: <div class="control"><time datetime="2025-11-07T06:54:52.000Z" id="date"> 2025-11-07</time></div></span><br><span>Last Update: <div class="control"><time datetime="2025-11-07T10:06:18.744Z" id="updated"> 2025-11-07</time></div></span><br><span id="busuanzi_container_page_pv">Page View: <span class="control" id="busuanzi_value_page_pv">loading...</span></span></div></div><hr><div id="post-content"><p>考纲</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>章节</th>
+<th>分值</th>
+<th>上午重要考点列举</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>网络基础概念</strong>​</td>
+<td>2-3</td>
+<td>OSI七层模型、TCP/IP体系结构、信道速率计算、调制技术、PCM技术、编码方案、复用技术、差错控制、传输介质和设备</td>
+</tr>
+<tr>
+<td><strong>企业内部网络规划</strong>​</td>
+<td>10-15</td>
+<td>以太网CSMA/CD、以太网交换机、冲突域和广播域、VLAN、GVRP、链路聚合、STP、RSTP、MSTP、IP协议、子网划分、路由汇聚、ARP协议、ICMP协议、三层交换、VRRP</td>
+</tr>
+<tr>
+<td><strong>路由规划</strong>​</td>
+<td>6-10</td>
+<td>路由基础概念、静态路由和默认路由、单臂路由、RIP、OSPF、路由引入、BGP、NAT、策略路由、路由策略</td>
+</tr>
+<tr>
+<td><strong>传输层和应用层</strong>​</td>
+<td>3-5</td>
+<td>传输层概念、UDP、TCP、DNS、电子邮件、FTP、DHCP</td>
+</tr>
+<tr>
+<td><strong>网络管理</strong>​</td>
+<td>2-3</td>
+<td>网络管理的功能、网络管理架构、SNMP、RMON、网络故障的排除</td>
+</tr>
+<tr>
+<td><strong>广域网和接入网</strong>​</td>
+<td>2-3</td>
+<td>广域网基础、PPP、HDLC、DDN、SDH、MSTP、移动通信网络、光纤接入网、XDSL</td>
+</tr>
+<tr>
+<td><strong>网络新技术</strong>​</td>
+<td>2-4</td>
+<td>WLAN、IPv6协议、QoS、大数据、云计算服务、虚拟化、IP电话、区块链、通信知识</td>
+</tr>
+<tr>
+<td><strong>网络安全解决方案</strong>​</td>
+<td>10-15</td>
+<td>网络安全基础、网络攻击方式与防御、病毒防治、加密技术、数字签名、报文摘要、数字证书、安全协议、PKI体系、网络隔离、防火墙技术、入侵检测和入侵防御技术，其他安全设备、VPN技术、802.1X、Web认证、AAA认证服务器</td>
+</tr>
+<tr>
+<td><strong>服务器和网络存储技术</strong>​</td>
+<td>2-3</td>
+<td>服务器概述、RAID技术、网络存储、灾备技术</td>
+</tr>
+<tr>
+<td><strong>网络规划和设计</strong>​</td>
+<td>5-8</td>
+<td>网络需求分析、通信规范分析、逻辑网络设计、物理网络设计、网络相关测试和维护</td>
+</tr>
+<tr>
+<td><strong>非网络部分</strong>​</td>
+<td>10</td>
+<td>软件开发基础、应用数学、计算机硬件、操作系统、项目管理、知识产权</td>
+</tr>
+<tr>
+<td><strong>计算机专业英文</strong>​</td>
+<td>5</td>
+<td>知识产权</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>题号</th>
+<th>试题类型</th>
+<th>学科知识点</th>
+<th>考查内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>试题1</td>
+<td>必答题</td>
+<td>企业内部网络规划</td>
+<td>网络设备的选型、介质的选型、VLAN、链路聚合、三层交换、VRRP、企业子网划分、通信流量分析、机房设计规范、行业背景了解等</td>
+</tr>
+<tr>
+<td>试题2</td>
+<td>必答题</td>
+<td>路由规划管理</td>
+<td>OSPF、NAT、BGP、策略路由、路由策略等</td>
+</tr>
+<tr>
+<td>试题3</td>
+<td>必答题</td>
+<td>广域网相关技术</td>
+<td>光纤接入技术、POL、移动通信系统等</td>
+</tr>
+<tr>
+<td>试题4</td>
+<td>必答题</td>
+<td>网络安全方案</td>
+<td>网络安全设备的选型、网络攻击的处理、网络隐患的识别、网闸、防火墙、IDS和IPS、WAF、IPSec VPN、GREVPN、MPLS VPN、认证技术、交换安全、网络安全等级保护制度等</td>
+</tr>
+<tr>
+<td>试题5</td>
+<td>选答题</td>
+<td>网络存储</td>
+<td>RAID、DAS、NAS、SAN、数据备份、灾备方案、分布式存储、数据中心建设等</td>
+</tr>
+<tr>
+<td>试题6</td>
+<td>选答题</td>
+<td>网络新技术</td>
+<td>无线、IPV6、大数据、云计算服务、FCoE、虚拟化、SDN、大二层网络技术、区块链、物联网等等</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>主题</th>
+<th>架构论文考查情况</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>广域网相关技术</td>
+<td>0-2道</td>
+</tr>
+<tr>
+<td>网络安全解决方案</td>
+<td>0-2道</td>
+</tr>
+<tr>
+<td>网络规划和设计</td>
+<td>0-4道</td>
+</tr>
+<tr>
+<td>IT服务持续改进</td>
+<td>0-3道</td>
+</tr>
+<tr>
+<td>网络新技术</td>
+<td>0-3道</td>
+</tr>
+<tr>
+<td>无线</td>
+<td>0-1道</td>
+</tr>
+<tr>
+<td>网络存储</td>
+<td>0-1道</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>OSI 七层</p>
+<ol>
+<li>物理层：负责传输原始的比特流，数模转换、模数转换。</li>
+<li>数据链路层：负责在直接相连的节点之间可靠地传输数据帧，进行错误检测和纠正，以及定义物理地址（MAC地址）。</li>
+<li>网络层：负责在网络中的不同节点之间进行数据包的传输和路由选择，使用逻辑地址（IP地址）进行寻址。</li>
+<li>传输层：负责提供端到端的数据传输服务，确保数据可靠地传输，处理数据分段和重组，提供差错恢复和流量控制等功能。</li>
+<li>会话层：负责建立、管理和终止应用程序之间的会话（Session），提供数据同步和会话恢复等功能。</li>
+<li>表示层：负责数据的格式化和解析，进行数据的加密和解密，以及处理数据的压缩和转换等操作。</li>
+<li>应用层：负责提供网络应用程序之间的通信服务，包括文件传输、电子邮件、远程登录等各种应用。</li>
+</ol>
+<p>N层实体的通信只使用N-1层服务</p>
+<p>N与N+1的逻辑接口 SAP（服务访问点）</p>
+<p>服务：面向连接、非面向连接</p>
+<h3 id="OSI"><a href="#OSI" class="headerlink" title="OSI"></a>OSI</h3><p>OSI 有 7 层，从低到高依次称为物理层、数据链路层、网络层、传输层、会话层、 表示层、应用层。各层对应的数据交换单元分别为：比特流、帧、分组、TPDU、SPDU、PPDU、 APDU</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>层号</th>
+<th>层次名称</th>
+<th>功能简介</th>
+<th>关键协议/设备</th>
+<th>数据单位名称</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>第7层</strong>​</td>
+<td><strong>应用层</strong>​</td>
+<td>为<strong>应用程序</strong>提供网络服务接口（如HTTP浏览器、电子邮件）。用户真正看得到、能交互的层面。</td>
+<td>HTTP, FTP, SMTP, DNS</td>
+<td><strong>报文/消息</strong>​</td>
+</tr>
+<tr>
+<td><strong>第6层</strong>​</td>
+<td><strong>表示层</strong>​</td>
+<td>负责<strong>数据格式转换</strong>，如加密/解密、压缩/解压缩、编码转换（如将EBCDIC码转换为ASCII码），确保应用层能正确解读数据。</td>
+<td>JPEG, MPEG, SSL/TLS（加密部分）</td>
+<td><strong>报文/消息</strong>​</td>
+</tr>
+<tr>
+<td><strong>第5层</strong>​</td>
+<td><strong>会话层</strong>​</td>
+<td>负责建立、管理和终止两个应用进程之间的<strong>会话（Session）</strong>。包括对话控制（全双工/半双工）和同步。</td>
+<td>RPC, SIP</td>
+<td><strong>报文/消息</strong>​</td>
+</tr>
+<tr>
+<td><strong>第4层</strong>​</td>
+<td><strong>传输层</strong>​</td>
+<td>提供<strong>端到端</strong>的可靠或不可靠数据传输。负责<strong>流量控制</strong>、<strong>差错控制</strong>、<strong>分段和重组</strong>。关键概念：<strong>端口号</strong>。</td>
+<td>TCP, UDP</td>
+<td><strong>段（TCP）/数据报（UDP）</strong>​</td>
+</tr>
+<tr>
+<td><strong>第3层</strong>​</td>
+<td><strong>网络层</strong>​</td>
+<td>负责<strong>逻辑寻址</strong>（IP地址）和<strong>路由选择</strong>，将数据包从源主机跨网络传输到目标主机。</td>
+<td>IP, ICMP, RIP, OSPF</td>
+<td><strong>包/分组</strong>​</td>
+</tr>
+<tr>
+<td><strong>第2层</strong>​</td>
+<td><strong>数据链路层</strong>​</td>
+<td>负责在<strong>同一局域网内</strong>的节点之间传输数据。提供<strong>物理寻址</strong>（MAC地址）、<strong>差错校验</strong>（CRC）。将网络层的数据包封装成<strong>帧</strong>。</td>
+<td>PPP, IEEE 802.3/以太网</td>
+<td><strong>帧</strong>​</td>
+</tr>
+<tr>
+<td><strong>第1层</strong>​</td>
+<td><strong>物理层</strong>​</td>
+<td>定义物理介质的电气、机械、功能和规程特性。负责在物理介质上透明地传输<strong>比特流</strong>（0和1）。</td>
+<td>RJ45, 802.3, 光纤</td>
+<td><strong>比特</strong>​</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>上到下：应用、表示、会话、传输、网络、数据链路、物理</p>
+<p><strong>接口、服务与协议</strong></p>
+<p>协议：<strong>对等层</strong>实体之间在通信过程中必须遵守的规则、约定和标准的集合。</p>
+<p>电脑（第N层）和远方服务器（第N层）之间的对话规则，就是第N层协议。TCP是两台主机传输层之间的协议。协议是“水平的”。</p>
+<p>接口：同一节点内<strong>相邻两层</strong>之间交换信息的连接点。</p>
+<p>定义了下层向上层提供哪些服务以及如何提供</p>
+<p>服务：<strong>下一层</strong>通过接口为<strong>上一层</strong>提供的功能。<br>下层是<strong>服务提供者</strong>，上层是<strong>服务用户</strong>。<br><strong>服务访问点</strong>：相邻两层交换服务的地方。如<strong>传输层为应用层提供的服务访问点就是端口号</strong></p>
+<p><strong>通信过程：封装与解封装</strong></p>
+<p><strong>数据在发送端是从上到下传递的，每一层都会为上层传来的数据加上一个本层的头部（和/或尾部），这个过程叫做封装。</strong></p>
+<p>应用层：用户数据（如电子邮件内容）产生。<br>表示层：将数据加密或压缩。<br>会话层：开始建立会话。<br>传输层：将数据分段，加上TCP头部（含源/目标端口号等），形成段。头部信息是给对等传输层看的。<br>网络层：加上IP头部（含源/目标IP地址等），形成包。头部信息是给对等网络层（路由器）看的。<br>数据链路层：加上帧头部（含源/目标MAC地址等）和帧尾部（用于差错校验），形成帧。<br>物理层：将帧转换成比特流，通过物理介质发送出去。</p>
+<p><strong>数据在接收端是从下到上传递的，每一层都会拆掉对应的头部（和/或尾部），这个过程叫做解封装。</strong></p>
+<p>物理层：接收比特流。<br>数据链路层：检查帧尾，若无差错，拆掉帧头和帧尾，将包上交网络层。<br>网络层：查看IP头部，判断目标IP是否是自己，然后拆掉IP头部，将段上交传输层。<br>传输层：查看TCP头部，根据端口号将数据交给相应的应用程序。<br>最终，应用程序收到原始的用户数据</p>
+<p class='item-img' data-src='Pasted%20image%2020251107153856.png'><img src="Pasted%20image%2020251107153856.png" alt=""></p>
+<p class='item-img' data-src='Pasted%20image%2020251107153815.png'><img src="Pasted%20image%2020251107153815.png" alt=""></p>
+<h3 id="TCP-IP模型"><a href="#TCP-IP模型" class="headerlink" title="TCP/IP模型"></a>TCP/IP模型</h3><p>TCP/IP 从低到高各层依次为网络接口层、互联网层、传输层、应用层。网络接口 层相当于 OSI 的物理层和数据链路层；互联网层相当于 OSI 的网络层；传输层相当于 OSI 的传输层；应用层相当于 OSI 的应用层；没有表示层和会话层。</p>
+<p>TCP/IP模型体系结构如下：<br class='item-img' data-src='Pasted%20image%2020251107153827.png'><img src="Pasted%20image%2020251107153827.png" alt=""></p>
+<h3 id="信道速率计算"><a href="#信道速率计算" class="headerlink" title="信道速率计算"></a>信道速率计算</h3><p><strong>极限码元速率：<code>Rmax = 2 × B</code></strong></p>
+<p><code>Rmax</code>：最大码元速率（单位：Baud）<br><code>B</code>：信道带宽（单位：Hz）</p>
+<p><strong>极限数据速率：<code>R = 2 × B × log₂(N)</code></strong></p>
+<p><code>R</code>：信道最大数据速率（单位：每秒位bps）<br><code>B</code>：信道带宽（单位：Hz）<br><code>N</code>：码元的种类数（就是离散状态数（即有多少种不同的信号级别）</p>
+<p><strong>信噪比到dB: <code>dB = 10 × log₁₀(信噪比)</code></strong></p>
+<h4 id="香农定理-—-有噪声信道的极限"><a href="#香农定理-—-有噪声信道的极限" class="headerlink" title="香农定理 — 有噪声信道的极限"></a>香农定理 — 有噪声信道的极限</h4><p><strong>前提</strong>：在一个<strong>有随机噪声</strong>（如热噪声）、带宽受限的信道上，在噪声干扰下，信道<strong>可靠传输</strong>的数据速率上限。</p>
+<p><strong>极限数据速率：<code>C = B × log₂(1 + S/N)</code></strong></p>
+<p><code>C</code>：信道最大数据速率（单位：bps）<br><code>B</code>：信道带宽（单位：Hz）<br><code>S/N</code>：平均信号功率与平均噪声功率的比值，即<strong>信噪比</strong></p>
+<p>一个带宽为 3kHz 的信道，信噪比为 30dB，其最大数据速率是多少？</p>
+<p><strong>解答</strong>：</p>
+<p><code>dB = 10 × log₁₀(信噪比)</code><br>先将分贝换算为比值：<code>S/N = 10^(30/10) = 10^3 = 1000</code><br>代入香农公式：<code>C = B × log₂(1 + S/N) = 3000 × log₂(1 + 1000) ≈ 3000 × log₂(1024)</code><br>因为 2^10 = 1024，所以 log₂(1024) ≈ 10<br><code>C ≈ 3000 × 10 = 30,000 bps = 30 kbps</code></p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>分贝值</th>
+<th>计算过程</th>
+<th>功率比值</th>
+<th>解释（近似）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>0 dB</strong>​</td>
+<td><code>10^(0/10) = 10^0</code></td>
+<td><strong>1</strong>​</td>
+<td>比值=1，表示信号功率等于噪声功率。</td>
+</tr>
+<tr>
+<td><strong>3 dB</strong>​</td>
+<td><code>10^(0.3) ≈ 2</code></td>
+<td><strong>2</strong>​</td>
+<td>功率翻倍。这是非常重要的一个值。</td>
+</tr>
+<tr>
+<td><strong>10 dB</strong>​</td>
+<td><code>10^(10/10) = 10^1</code></td>
+<td><strong>10</strong>​</td>
+<td>功率是10倍。</td>
+</tr>
+<tr>
+<td><strong>20 dB</strong>​</td>
+<td><code>10^(20/10) = 10^2</code></td>
+<td><strong>100</strong>​</td>
+<td>功率是100倍。</td>
+</tr>
+<tr>
+<td><strong>30 dB</strong>​</td>
+<td><code>10^(30/10) = 10^3</code></td>
+<td><strong>1，000</strong>​</td>
+<td>功率是1000倍。</td>
+</tr>
+<tr>
+<td><strong>-3 dB</strong>​</td>
+<td><code>10^(-0.3) ≈ 1/2</code></td>
+<td><strong>0.5</strong>​</td>
+<td>功率减半。</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>误码率</strong><br>在一定时间内，数字通信系统中<strong>错误接收的比特数</strong>与<strong>传输的总比特数</strong>之比。<br><code>误码率 = 错误比特数 / 总传输比特数</code></p>
+<p><strong>信噪比越高，误码率越低</strong></p>
+<p>信道延迟<br>传播时延<br>    500m同轴电缆2.5μs （200m/μs）<br>    卫星270ms</p>
+<h3 id="数据通信基础"><a href="#数据通信基础" class="headerlink" title="数据通信基础"></a>数据通信基础</h3><p><strong>1、数据通信概念</strong><br>A：数字传输与模拟传输 数字传输是指用数字信号来传送消息的通信方式。模拟传国是指以模拟信号来传输消息 的通信方式。不论是数字数据还是模拟数据，都可以采用两种传输方式之一进行传输。<br>B：基带传输与频带传输 基带传输是指信号没有经过调制而直接送到信道中去传输的一种方式。频带传输是指信 号经过调制后再送到信道中传输的一种方式，接收端要进行相应的解调才能恢复原来的信号。 </p>
+<p><strong>2、数据通信系统</strong><br>A：数据通信系统模型 数据通信系统的基本组成一般包括发送端、接收端、收发两端之间的信道三个部分<br>B：同步方式 同步的实现包括位同步、字符同步、帧同步<br>C：检错与纠错 包括二维奇偶校验、循环冗余校验等检错方法。<br>检错重发方法有：停发等候重发、返回重发和选择重发。 </p>
+<p><strong>3、数据调制与编码</strong> </p>
+<p>A：数字数据的编码与调制 数字数据编码为数字信号：单极性码、级性码、归零码、不归零码、曼彻斯特编码、差分曼彻斯特编码、双极性半空占码（AMI）、双极性 8 零替换码（B8ZS）、三阶高密度双极性码（HDB3）、nB/mB 码等。<br>数字数据调制为模拟信号： 基本调制方法：幅移键控（ASK）、频移键控（FSK）、相移键控（PSK） 正交振幅调制（QAM） </p>
+<p>B：模拟数据的编码与调制 模拟数据编码为数字信号：PCM 模拟数据调制为模拟信号：AM、FM、PM</p>
+<h3 id="通信方式和交换方式"><a href="#通信方式和交换方式" class="headerlink" title="通信方式和交换方式"></a>通信方式和交换方式</h3><p><strong>同步传输和异步传输</strong><br>异步传输以字符为单位，靠起止位同步，效率低但简单，适合低速设备<br>同步传输以数据块为单位，靠时钟同步，效率高但复杂，用于高速网络</p>
+<p><strong>交换方式</strong></p>
+<p>1、<strong>电路交换</strong>：是一种直接的交换方式，它为一对需要进行通信的装置(站)之间提供一条临时的专用通道。通信包括三个阶段：a.电路建立 b.数据传输 c.电路拆除。==优点：独占性、实时性，传输延迟小，适合传输大量的数据；缺点：需建立一条物理连接，由于线路独享造成资源浪费，利用率低==（早期的电话系统）<br>2、<strong>报文交换</strong>：==优点：不需要专用通达，线路利用率高，存储转发节点可校验纠错；缺点：有通信时延，不适合交互式通信==。比如物流包裹<br>3、<strong>分组交换</strong>：==优点：利用率更高、可选路径、数据率转换、支持优先级；缺点：时延、开销大==。数据报包定长，可以建立端到端的逻辑连接，比如邮局寄信。又==分为数据报和虚电路==</p>
+<ul>
+<li>分组数据报：单向传送、无连接的</li>
+<li>分组虚电路：交互式、逻辑链接</li>
+</ul>
+<p>4、<strong>信元交换</strong>：是异步传输模式（ATM）采用的交换方式，在很大程度上就是按照==虚电路==方式进行==分组转发==。ATM网络中与众不同的是，==分组长度是固定不变的==，称为信元(cell)。==信元长度为53字节，5字节的首部，48字节的有效载荷==</p>
+<p class='item-img' data-src='Pasted%20image%2020251107171526.png'><img src="Pasted%20image%2020251107171526.png" alt=""></p>
+<ol>
+<li>若要传送的<strong>数据量很大</strong>，且其传送时间远大于连接建立时间，则采用<strong>电路交换</strong>较为合适。</li>
+<li>当端到端的通路有很多段的链路组成时，采用<strong>分组交换</strong>传送数据较为合适。</li>
+<li>从提高整个网络的信道利用率上看，报文交换和分组交换优于电路交换，其中分组交换比报文交换的时延小，<strong>适合于计算机之间的突发式的数据通信</strong></li>
+</ol>
+<h2 id="信道复用的概念"><a href="#信道复用的概念" class="headerlink" title="信道复用的概念"></a>信道复用的概念</h2><p>复用(multiplexing)是通信技术中的基本概念。当网络中传输媒体的传输容量大于多条单一信道传输的总通信量时，可利用复用技术在一条物理线路上建立多条通信信道来共享传输媒体的带宽。</p>
+<p><strong>频分复用</strong>（Frequency-division multiplexing, <a target="_blank" rel="noopener" href="https://so.csdn.net/so/search?q=FDM&amp;spm=1001.2101.3001.7020">FDM</a>），将多路基带信号调制到不同频率载波上，再进行叠加形成一个复合信号。<strong>接收端</strong>的分用器通过滤波将各路信号滤出，将合成的复合信号恢复成原始的多路信号。</p>
+<p><strong>时分复用</strong> (Time Division Multiplexing, TDM) 将时间划分为一段段等长的时分复用帧（TDM帧），每个用户在每个 TDM 帧中占用固定序号的时隙。每一个用户所占用的时隙是周期性地出现（其周期就是TDM帧的长度）的。时分复用的所有用户在不同的时间占用同样的频带宽度。使用时分复用系统传送计算机数据时，由于计算机数据的突发性质，用户对分配到的子信道的利用率一般不高。 </p>
+<p><strong>波分复用</strong>（Wavelength Division Multiplexing，WDM）就是光的频分复用。使用一根光纤来同时传输多个光载波信号。</p>
+<p><strong>码分复用</strong>（Code Division Multiplexing，CDM）一种共享信道的方法。<br>由于该技术主要用于无线多址接入（本书中我们不严格区分多址与复用），人们更常用的名词是<strong>码分多址</strong> CDMA (Code Division Multiple Access)。  </p>
+<blockquote>
+<p>每一个用户可以在同样的时间使用同样的频带进行通信。各用户使用经过<strong>特殊挑选的不同码型</strong>，因此彼此不会造成干扰。<br>这种系统发送的信号有很强的抗干扰能力，其频谱类似于白噪声，不易被敌人发现。</p>
+</blockquote>
+<h2 id="检错与纠错"><a href="#检错与纠错" class="headerlink" title="检错与纠错"></a>检错与纠错</h2><p>1、检错码：奇偶校验看1的个数是奇数/偶数。只能检错不能纠错。移动通信广泛采用。<br>2、海明码是一种可以纠正错误的差错编码；循环冗余校验码只能检测出错误，而不能纠正错误；奇偶校验码在1的个数的奇偶性没有发生变化时是检测不出错误的。<br>3、一对有效码字之间的海明距离是(两个码字之间不同的比特数)<br>4、海明码：在数据位m后面增加冗余校验位k，组成信息m+k，则满足m+k＜2k-1可纠正一位错误(一位一位纠正可）不但检错还能纠错。<br>码距d:也叫海明距离，两个码字之间不同的最小的位数（比特数）<br>可以查出多少位错误：≤d-1<br>可以纠正多少位错误：&lt;d/2<br>5、CRC码：冗余循环校验码，是一种循环码，通过循环位移，实现检错，硬件容易实现，广泛用于于局域网。只能检错不能纠错</p>
+<h4 id="传输介质"><a href="#传输介质" class="headerlink" title="传输介质"></a>传输介质</h4><p>1、双绞线：把两根互相绝缘的铜导线并排放在一起，然后用规则的方法绞合起来就构成了双绞线。==绞合可较少对相邻导线的电磁干扰，分为非屏蔽(UTP),屏蔽(STP)==<br>2、双绞线分为==交叉==双绞线和==直通==双绞线；==同种==设备连接==用交叉==双绞线(PC和路由器，服务器与服务器等)；==不同==种设备==用直通==线(PC与交换机，服务器与交换机)<br>3、同轴电缆：分为==粗（基带）同==轴电缆、==细（宽带）同==轴电缆。传送距离长，信号稳定，常用于电视监视系统，音响设备传送音。传输数字信号（用基带/粗），传输模拟信号（用带宽/细）<br>4、光纤（光缆）:分为单模光纤SMF(采用ILD激光二极管)、多模光纤MMF（采用LED发光二极管），光纤的优点：传输频带宽、通信容量大；损耗低，电磁绝缘性能好；重量轻；工作性能可靠；缺点：将两根光纤精确地连接需要专用设备；对比：==单模：高贵细远==</p>
+<p>5、无线信道：分==无线电波和红外光波==<br>6、==脉冲编码调制(PCM)主要用于解决在数字线路上传输模拟信号==。<br>7、光缆：主要由光纤(光导纤维的简写)和塑料保护套管及其塑料外皮构成，光纤是光缆的一部分</p>
+<ul>
+<li>光缆弯曲半径太小易折断光纤</li>
+<li>光缆弯曲半径太小易发生==光信号的泄露影响光信号的传输质量==</li>
+<li>施工过程中，光缆的弯折角度不应该小于90度。</li>
+</ul>
+<p>光纤&lt;同轴电缆&lt;双绞线<br>错误率↑</p>
+<p>单模光纤 长距离<br>双模光纤 短距离</p>
+<hr>
+<div id="paginator"></div></div><div id="post-footer"><div id="pages" style="justify-content: flex-end"><div class="footer-link" style="width: 50%;right:1px;border-left:1px #fe2 solid"><a href="/Arknight-notes/posts/10893.html">2025-11-05-基于随机加权推断模型（IM）的参数估计算法 Prev →</a></div></div></div><div id="comments"><div id="gitalk"></div></div></div><div class="bottom-btn"><div><a class="i-top" id="to-top" onClick="scrolls.scrolltop();" title="To Top" style="opacity: 0; display: none;">∧ </a><a class="i-index" id="to-index" href="#toc-div" title="To Catalog">≡</a><a class="i-color" id="color-mode" onClick="colorMode.change()" title="Change Theme"></a></div></div></article><aside><div id="about"><a href="/Arknight-notes/" id="logo"><img src="https://pic4.zhimg.com/80/v2-d9884f32711e19e80979eac58e943897_720w.webp" alt="Logo" style="margin:20;border-radius:0;"></a><h1 id="Dr"><a href="zhongye">柊野</a></h1><div id="description"><p></p></div></div><div id="aside-block"><div id="toc-div"><h1>Catalog</h1><ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#OSI"><span class="toc-number">1.</span> <span class="toc-text">OSI</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#TCP-IP%E6%A8%A1%E5%9E%8B"><span class="toc-number">2.</span> <span class="toc-text">TCP&#x2F;IP模型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BF%A1%E9%81%93%E9%80%9F%E7%8E%87%E8%AE%A1%E7%AE%97"><span class="toc-number">3.</span> <span class="toc-text">信道速率计算</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%A6%99%E5%86%9C%E5%AE%9A%E7%90%86-%E2%80%94-%E6%9C%89%E5%99%AA%E5%A3%B0%E4%BF%A1%E9%81%93%E7%9A%84%E6%9E%81%E9%99%90"><span class="toc-number">3.1.</span> <span class="toc-text">香农定理 — 有噪声信道的极限</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E9%80%9A%E4%BF%A1%E5%9F%BA%E7%A1%80"><span class="toc-number">4.</span> <span class="toc-text">数据通信基础</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%80%9A%E4%BF%A1%E6%96%B9%E5%BC%8F%E5%92%8C%E4%BA%A4%E6%8D%A2%E6%96%B9%E5%BC%8F"><span class="toc-number">5.</span> <span class="toc-text">通信方式和交换方式</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BF%A1%E9%81%93%E5%A4%8D%E7%94%A8%E7%9A%84%E6%A6%82%E5%BF%B5"><span class="toc-number"></span> <span class="toc-text">信道复用的概念</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A3%80%E9%94%99%E4%B8%8E%E7%BA%A0%E9%94%99"><span class="toc-number"></span> <span class="toc-text">检错与纠错</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BC%A0%E8%BE%93%E4%BB%8B%E8%B4%A8"><span class="toc-number">0.1.</span> <span class="toc-text">传输介质</span></a></li></ol></li></ol></div></div><footer><nobr><span class="icp-title">GZHU</span><span class="icp-content">193001-0001</span></nobr><br><nobr><span class="icp-title">OUTPOST</span><span class="icp-content">169-2025-0331</span></nobr><br><nobr>Published with <a target="_blank" rel="noopener" href="http://hexo.io">Hexo</a></nobr><wbr><nobr> Theme <a target="_blank" rel="noopener" href="https://github.com/Yue-plus/hexo-theme-arknights">Arknights</a></nobr><wbr><nobr> by <a target="_blank" rel="noopener" href="https://github.com/Yue-plus">Yue_plus</a></nobr></footer></aside></main><canvas id="canvas-dust"></canvas></body></html>
