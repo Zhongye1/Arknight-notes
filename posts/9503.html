@@ -1,0 +1,516 @@
+<!DOCTYPE html><html lang="en" theme-mode="dark"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>2025-11-16-ES6相关 | Notes|笔记站</title><link rel="icon" type="image/x-icon" href="/Arknight-notes/favicon.ico"><link rel="preload" as="font" crossorigin="anonymous" href="/Arknight-notes/font/Bender.ttf"><link rel="preload" as="font" crossorigin="anonymous" href="/Arknight-notes/font/BenderLight.ttf"><link rel="preload" as="font" crossorigin="anonymous" href="/Arknight-notes/font/JetBrainsMono-Regular.woff2"><link rel="stylesheet" href="/Arknight-notes/css/arknights.css"><style>@font-face {
+  font-family: Bender;
+  src: local('Bender'), url("/Arknight-notes/font/Bender.ttf"), url("/Arknight-notes/font/Bender.otf");
+}
+@font-face {
+  font-family: BenderLight;
+  src: local('BenderLight'), url("/Arknight-notes/font/BenderLight.ttf");
+}
+@font-face {
+  font-family: 'JetBrains Mono';
+  src: local('JetBrains Mono'), url('/Arknight-notes/font/JetBrainsMono-Regular.woff2') format('woff2');
+}
+</style><script>var config = {"root":"/Arknight-notes/","code_fold":90,"search":{"preload":false,"activeHolder":"键入以继续","blurHolder":"数据检索","noResult":"无 $0 相关数据"},"code":{"codeInfo":"$0 - $1 行","copy":"复制"}}</script><link type="text/css" rel="stylesheet" href="/Arknight-notes/lib/encrypt/hbe.style.css"><script src="/Arknight-notes/js/gitalk.js"></script><script src="//unpkg.com/mermaid@10.5.0/dist/mermaid.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.6.1/MathJax.js"></script><script>MathJax.Hub.Config({
+ menuSettings: {
+   zoom: "None"
+ },
+ showMathMenu: false,
+ jax: ["input/TeX","output/CommonHTML"],
+ extensions: ["tex2jax.js"],
+ TeX: {
+   extensions: ["AMSmath.js","AMSsymbols.js"],
+   equationNumbers: {
+     autoNumber: "AMS"
+   }
+ },
+ tex2jax: {
+   inlineMath: [["\\(", "\\)"]],
+   displayMath: [["\\[", "\\]"]]
+ }
+});</script><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lightgallery.css"><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lg-zoom.css"><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lg-thumbnail.css"><link type="text/css" rel="stylesheet" href="/Arknight-notes/lib/fontawesome/css/all.min.css"><script>if (window.localStorage.getItem('theme-mode') === 'light')
+ document.documentElement.setAttribute('theme-mode', 'light')
+if (window.localStorage.getItem('theme-mode') === 'dark')
+ document.documentElement.setAttribute('theme-mode', 'dark')</script><style>@font-face {
+ font-family: BenderLight;
+ src: local('Bender'), url("/Arknight-notes/font/BenderLight.woff2") format('woff2');
+}
+@font-face {
+ font-family: 'JetBrains Mono';
+ src: local('JetBrains Mono'), url('/Arknight-notes/font/JetBrainsMono-Regular.woff2') format('woff2');
+}</style><style>:root {
+ --dark-background: url('https://pic2.zhimg.com/v2-6269d74b4dafe14781d03790e5a86b21_r.jpg');
+ --light-background: url('https://pic1.zhimg.com/v2-233b64b583642fc4a6d77e69ced33150_r.jpg');
+ --theme-encrypt-confirm: '确认'
+}</style><script defer src="/Arknight-notes/js/arknights.js"></script><script defer src="/Arknight-notes/js/search.js"></script><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><script async src="/Arknight-notes/js/gitalk.js"></script><script defer type="module">import mermaid from '//unpkg.com/mermaid@10.5.0/dist/mermaid.esm.mjs';
+window.mermaid = mermaid;
+code.paintMermaid();
+</script><script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.6.1/MathJax.js"></script><script>MathJax.Hub.Config({
+  menuSettings: {
+    zoom: "None"
+  },
+  showMathMenu: false,
+  jax: ["input/TeX","output/CommonHTML"],
+  extensions: ["tex2jax.js"],
+  TeX: {
+    extensions: ["AMSmath.js","AMSsymbols.js"],
+    equationNumbers: {
+      autoNumber: "AMS"
+    }
+  },
+  tex2jax: {
+    inlineMath: [["\\(", "\\)"]],
+    displayMath: [["\\[", "\\]"]]
+  }
+});
+</script><script async src="//unpkg.com/lightgallery@2.7.1/lightgallery.min.js"></script><script async src="//unpkg.com/lightgallery@2.7.1/plugins/zoom/lg-zoom.min.js"></script><script async src="//unpkg.com/lightgallery@2.7.1/plugins/thumbnail/lg-thumbnail.min.js"></script><script async src="/Arknight-notes/lib/encrypt/hbe.js"></script><script async src="/Arknight-notes/js/pjax.js"></script><script class="pjax-js">reset= () => {gitalk = new Gitalk({
+ clientID: 'Ov23ct13Fb0b67x23wnT',
+ clientSecret: 'f18ce69dd545e3c0f5e2456afde9c756fe8a254a',
+ repo: 'Arknight-notes',
+ owner: 'Zhongye1',
+ admin: ['Zhongye1'],
+ distractionFreeMode: false,
+ id: location.pathname
+});
+if (document.querySelector("#gitalk")) gitalk.render("gitalk");document.querySelector('.lg-container')?.remove()
+lightGallery(document.getElementById('post-bg'), {
+  plugins: [lgZoom,lgThumbnail],
+  selector: '.item-img'})}</script><script>window.addEventListener("load",() => {pjax = new Pjax({
+ cacheBust: false,
+ selectors: ['title','article','#aside-block','.pjax-js','data-pjax','.busuanzi'],
+ switches: {'article': Pjax.switches.sideBySide},
+ switchesOptions: {
+   'article': {
+     classNames: {
+       remove: "pjax-out",
+       add: "pjax-in"
+     }
+   }
+ }
+});
+document.addEventListener("pjax:complete", reset);document.addEventListener('pjax:success', _ => bszCaller.fetch(
+ "//busuanzi.ibruce.info/busuanzi?jsonpCallback=BusuanziCallback", a => {
+  bszTag.texts(a),
+  bszTag.shows()
+}));reset()})</script><script class="pjax-js">reset= () => {gitalk = new Gitalk({
+ clientID: 'Ov23ct13Fb0b67x23wnT',
+ clientSecret: 'f18ce69dd545e3c0f5e2456afde9c756fe8a254a',
+ repo: 'Arknight-notes',
+ owner: 'Zhongye1',
+ admin: ['Zhongye1'],
+ distractionFreeMode: false,
+ id: location.pathname
+});
+if (document.querySelector("#gitalk")) gitalk.render("gitalk");document.querySelector('.lg-container')?.remove()
+lightGallery(document.getElementById('post-bg'), {
+  plugins: [lgZoom,lgThumbnail],
+  selector: '.item-img'})}</script><script>window.addEventListener("load",() => {pjax = new Pjax({
+ cacheBust: false,
+ selectors: ['title','article','#aside-block','.pjax-js'],
+ switches: {'article': Pjax.switches.sideBySide},
+ switchesOptions: {
+   'article': {
+     classNames: {
+       remove: "pjax-out",
+       add: "pjax-in"
+     }
+   }
+ }
+});
+document.addEventListener("pjax:complete", reset);reset()})</script><meta name="generator" content="Hexo 7.3.0"><style>mjx-container[jax="SVG"] {
+  direction: ltr;
+}
+
+mjx-container[jax="SVG"] > svg {
+  overflow: visible;
+}
+
+mjx-container[jax="SVG"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="SVG"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="SVG"][justify="right"] {
+  text-align: right;
+}
+
+g[data-mml-node="merror"] > g {
+  fill: red;
+  stroke: red;
+}
+
+g[data-mml-node="merror"] > rect[data-background] {
+  fill: yellow;
+  stroke: none;
+}
+
+g[data-mml-node="mtable"] > line[data-line] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > rect[data-frame] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > .mjx-dashed {
+  stroke-dasharray: 140;
+}
+
+g[data-mml-node="mtable"] > .mjx-dotted {
+  stroke-linecap: round;
+  stroke-dasharray: 0,140;
+}
+
+g[data-mml-node="mtable"] > svg {
+  overflow: visible;
+}
+
+[jax="SVG"] mjx-tool {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+[jax="SVG"] mjx-tool > mjx-tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+mjx-tool > mjx-tip {
+  display: inline-block;
+  padding: .2em;
+  border: 1px solid #888;
+  font-size: 70%;
+  background-color: #F8F8F8;
+  color: black;
+  box-shadow: 2px 2px 5px #AAAAAA;
+}
+
+g[data-mml-node="maction"][data-toggle] {
+  cursor: pointer;
+}
+
+mjx-status {
+  display: block;
+  position: fixed;
+  left: 1em;
+  bottom: 1em;
+  min-width: 25%;
+  padding: .2em .4em;
+  border: 1px solid #888;
+  font-size: 90%;
+  background-color: #F8F8F8;
+  color: black;
+}
+
+foreignObject[data-mjx-xml] {
+  font-family: initial;
+  line-height: normal;
+  overflow: visible;
+}
+
+.MathJax path {
+  stroke-width: 3;
+}
+
+mjx-container[display="true"] {
+  overflow: auto hidden;
+}
+
+mjx-container[display="true"] + br {
+  display: none;
+}
+</style><link rel="alternate" href="/Arknight-notes/rss.xml" title="Notes|笔记站" type="application/atom+xml">
+</head><body><div class="loading" style="opacity: 0;"><div class="loadingBar left"></div><div class="loadingBar right"></div></div><main><header class="closed"><div class="navBtn"><i class="navBtnIcon"><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span></i></div><nav><div class="navItem" id="search-header"><span class="navItemTitle"><input autocomplete="off" autocorrect="off" autocapitalize="none" placeholder="数据检索" spellcheck="false" maxlength="50" type="text" id="search-input"></span></div><div class="navItem" id="search-holder"></div><div class="search-popup" tabindex="0"><div id="search-result"></div></div><ol class="navContent"><li class="navItem"><a class="navBlock" href="/Arknight-notes/"><span class="navItemTitle">Home</span></a></li><li class="navItem" matchdata="categories,tags"><a class="navBlock" href="/Arknight-notes/archives/"><span class="navItemTitle">Archives</span></a></li><li class="navItem"><a class="navBlock" href="/Arknight-notes/about/"><span class="navItemTitle">About</span></a></li></ol></nav></header><article><div id="post-bg"><div id="post-title"><h1>2025-11-16-ES6相关</h1><div id="post-info"><span>文章发布时间: <div class="control"><time datetime="2025-11-16T09:21:25.000Z" id="date"> 2025-11-16</time></div></span><br><span>最后更新时间: <div class="control"><time datetime="2025-11-16T09:21:27.548Z" id="updated"> 2025-11-16</time></div></span><br><span id="busuanzi_container_page_pv">页面浏览: <span class="control" id="busuanzi_value_page_pv">加载中...</span></span></div></div><hr><div id="post-content"><h3 id="ES6"><a href="#ES6" class="headerlink" title="ES6"></a>ES6</h3><h3 id="1、let-和-const"><a href="#1、let-和-const" class="headerlink" title="1、let 和 const"></a>1、let 和 const</h3><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>名称</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>let</td>
+<td>声明变量的关键字，let 声明的变量只在 let 命令所在的代码块内有效</td>
+</tr>
+<tr>
+<td>const</td>
+<td>声明常量的关键字，const 声明一个只读的常量，一旦声明，常量的值就不能改变。</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="2、模板字符串-和-箭头函数"><a href="#2、模板字符串-和-箭头函数" class="headerlink" title="2、模板字符串 和 箭头函数"></a>2、模板字符串 和 箭头函数</h3><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>名称</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>``</td>
+<td>使用反引号``包裹的字符串</td>
+</tr>
+<tr>
+<td>() =&gt;{}</td>
+<td>使用箭头（=&gt;）声明函数，不用再书写 function 关键字 <br>示例： const add = () =&gt;{ console.log(‘add’)}</td>
+</tr>
+<tr>
+<td>this</td>
+<td>1、非箭头函数中的 this 指向函数的调用者 <br>2、箭头函数中的 this 指向定义时所在的对象 <br>3、全局作用域中 this 指向 window</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="3、解构赋值"><a href="#3、解构赋值" class="headerlink" title="3、解构赋值"></a>3、解构赋值</h3><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>名称</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>[] = []</td>
+<td>数组的解构赋值 <br>示例：let [a, b, c] = [1, 2, 3]; 可以从数组中提取值，按照对应位置，给左侧变量赋值</td>
+</tr>
+<tr>
+<td>{} = {}</td>
+<td>对象的解构赋值 <br>示例：let { bar，foo } = { foo: ‘aaa’, bar: ‘bbb’ }; 按照对应的属性，给左侧的变量赋值，等号左边的两个变量的书写顺序，与等号右边两个同名属性的顺序可以不一致</td>
+</tr>
+<tr>
+<td>[] = “” ，{} = “”</td>
+<td>字符串的解构赋值，在解构前，字符串被转换成了一个类似数组的对象 （不常用，了解即可） <br>1、以数组的形式解构，const [a, b, c, d, e] = ‘hello’ <br>2、以对象的形式解构，let { 0: a } = ‘hello’</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="4、剩余参数，展开运算符"><a href="#4、剩余参数，展开运算符" class="headerlink" title="4、剩余参数，展开运算符"></a>4、剩余参数，展开运算符</h3><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>名称</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>…arg</td>
+<td>将一个不定数量的参数表示为一个数组</td>
+</tr>
+<tr>
+<td>…</td>
+<td>将内容展开</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="5、数据结构"><a href="#5、数据结构" class="headerlink" title="5、数据结构"></a>5、数据结构</h3><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>名称</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Set</td>
+<td>是一系列无序、没有重复值的集合</td>
+</tr>
+<tr>
+<td>Map</td>
+<td>是键值对的集合，但是“键”的范围不限于字符串，各种类型的值（包括对象）都可以当作键</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="6、Set-和-Map-共有的方法和属性"><a href="#6、Set-和-Map-共有的方法和属性" class="headerlink" title="6、Set 和 Map 共有的方法和属性"></a>6、Set 和 Map 共有的方法和属性</h3><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>名称</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>has()</td>
+<td>判断该值是否为 Set/Map 的成员。</td>
+</tr>
+<tr>
+<td>delete()</td>
+<td>删除某个成员</td>
+</tr>
+<tr>
+<td>clear()</td>
+<td>删除所有成员</td>
+</tr>
+<tr>
+<td>forEach()</td>
+<td>遍历每个成员</td>
+</tr>
+<tr>
+<td>size</td>
+<td>返回 Set/Map 实例的成员总数</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="7、Set-和-Map-实例的方法"><a href="#7、Set-和-Map-实例的方法" class="headerlink" title="7、Set 和 Map 实例的方法"></a>7、Set 和 Map 实例的方法</h3><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>方法名</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>add()</td>
+<td>Set 实例的方法，添加成员</td>
+</tr>
+<tr>
+<td>set()</td>
+<td>Map 实例的方法，添加成员</td>
+</tr>
+<tr>
+<td>get()</td>
+<td>Map 实例的方法，获取成员</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="8、遍历器"><a href="#8、遍历器" class="headerlink" title="8、遍历器"></a>8、遍历器</h3><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>名称</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Iterator</td>
+<td>为各种不同的数据结构提供统一的访问机制</td>
+</tr>
+<tr>
+<td>for…of</td>
+<td>遍历成员，for…of 循环可以使用的范围包括数组、 <br>Set 和 Map 结构、某些类似数组的对象（比如 arguments 对象、DOM NodeList 对象）</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="9、数组的新增方法"><a href="#9、数组的新增方法" class="headerlink" title="9、数组的新增方法"></a>9、数组的新增方法</h3><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>方法名称</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>keys()</td>
+<td>遍历索引</td>
+</tr>
+<tr>
+<td>values()</td>
+<td>遍历值</td>
+</tr>
+<tr>
+<td>entries()</td>
+<td>遍历索引和值</td>
+</tr>
+<tr>
+<td>includes()</td>
+<td>判断数组中是否含某个成员（不常用，了解即可）</td>
+</tr>
+<tr>
+<td>Array.from()</td>
+<td>将其他数据类型转换为数组</td>
+</tr>
+<tr>
+<td>find()</td>
+<td>返回第一个符合条件的数组成员</td>
+</tr>
+<tr>
+<td>findIndex()</td>
+<td>返回第一个符合条件的数组成员的位置</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="10、字符串的新增方法"><a href="#10、字符串的新增方法" class="headerlink" title="10、字符串的新增方法"></a>10、字符串的新增方法</h3><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>方法名称</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>includes()</td>
+<td>判断字符串中是否包含某些字符</td>
+</tr>
+<tr>
+<td>padStart()</td>
+<td>补全字符串的长度，用于头部补全（不常用，了解即可）</td>
+</tr>
+<tr>
+<td>padEnd()</td>
+<td>补全字符串的长度，用于尾部补全（不常用，了解即可）</td>
+</tr>
+<tr>
+<td>trimLeft() ，trimStart()</td>
+<td>清除字符串头部的空格（不常用，了解即可）</td>
+</tr>
+<tr>
+<td>trimEnd() ，trimRight()</td>
+<td>清除字符串尾部的空格（不常用，了解即可）</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="11、对象的新增方法"><a href="#11、对象的新增方法" class="headerlink" title="11、对象的新增方法"></a>11、对象的新增方法</h3><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>方法名称</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>assign()</td>
+<td>合并对象</td>
+</tr>
+<tr>
+<td>Object.keys()</td>
+<td>返回一个数组，成员是键名</td>
+</tr>
+<tr>
+<td>Object.values()</td>
+<td>返回一个数组，成员是键值</td>
+</tr>
+<tr>
+<td>Object.entries()</td>
+<td>返回一个数组，成员是键名和键值</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="paginator"></div></div><div id="post-footer"><div id="pages" style="justify-content: flex-end"><div class="footer-link" style="width: 50%;right:1px;border-left:1px #fe2 solid"><a href="/Arknight-notes/posts/53411.html">2025-11-07-关于软考高项网规 上一篇 →</a></div></div></div><div id="comments"><div id="gitalk"></div></div></div><div class="bottom-btn"><div><a class="i-top" id="to-top" onClick="scrolls.scrolltop();" title="回到顶部" style="opacity: 0; display: none;">∧ </a><a class="i-index" id="to-index" href="#toc-div" title="文章目录">≡</a><a class="i-color" id="color-mode" onClick="colorMode.change()" title="切换主题"></a></div></div></article><aside><div id="about"><a href="/Arknight-notes/" id="logo"><img src="https://pic4.zhimg.com/80/v2-d9884f32711e19e80979eac58e943897_720w.webp" alt="Logo" style="margin:20;border-radius:0;"></a><h1 id="Dr"><a href="zhongye">柊野</a></h1><div id="description"><p></p></div></div><div id="aside-block"><div id="toc-div"><h1>目录</h1><ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#ES6"><span class="toc-number">1.</span> <span class="toc-text">ES6</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1%E3%80%81let-%E5%92%8C-const"><span class="toc-number">2.</span> <span class="toc-text">1、let 和 const</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2%E3%80%81%E6%A8%A1%E6%9D%BF%E5%AD%97%E7%AC%A6%E4%B8%B2-%E5%92%8C-%E7%AE%AD%E5%A4%B4%E5%87%BD%E6%95%B0"><span class="toc-number">3.</span> <span class="toc-text">2、模板字符串 和 箭头函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3%E3%80%81%E8%A7%A3%E6%9E%84%E8%B5%8B%E5%80%BC"><span class="toc-number">4.</span> <span class="toc-text">3、解构赋值</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4%E3%80%81%E5%89%A9%E4%BD%99%E5%8F%82%E6%95%B0%EF%BC%8C%E5%B1%95%E5%BC%80%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="toc-number">5.</span> <span class="toc-text">4、剩余参数，展开运算符</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5%E3%80%81%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84"><span class="toc-number">6.</span> <span class="toc-text">5、数据结构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6%E3%80%81Set-%E5%92%8C-Map-%E5%85%B1%E6%9C%89%E7%9A%84%E6%96%B9%E6%B3%95%E5%92%8C%E5%B1%9E%E6%80%A7"><span class="toc-number">7.</span> <span class="toc-text">6、Set 和 Map 共有的方法和属性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7%E3%80%81Set-%E5%92%8C-Map-%E5%AE%9E%E4%BE%8B%E7%9A%84%E6%96%B9%E6%B3%95"><span class="toc-number">8.</span> <span class="toc-text">7、Set 和 Map 实例的方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8%E3%80%81%E9%81%8D%E5%8E%86%E5%99%A8"><span class="toc-number">9.</span> <span class="toc-text">8、遍历器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#9%E3%80%81%E6%95%B0%E7%BB%84%E7%9A%84%E6%96%B0%E5%A2%9E%E6%96%B9%E6%B3%95"><span class="toc-number">10.</span> <span class="toc-text">9、数组的新增方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#10%E3%80%81%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84%E6%96%B0%E5%A2%9E%E6%96%B9%E6%B3%95"><span class="toc-number">11.</span> <span class="toc-text">10、字符串的新增方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#11%E3%80%81%E5%AF%B9%E8%B1%A1%E7%9A%84%E6%96%B0%E5%A2%9E%E6%96%B9%E6%B3%95"><span class="toc-number">12.</span> <span class="toc-text">11、对象的新增方法</span></a></li></ol></div></div><footer><nobr><span class="icp-title">GZHU</span><span class="icp-content">193001-0001</span></nobr><br><nobr><span class="icp-title">OUTPOST</span><span class="icp-content">169-2025-0331</span></nobr><br><nobr>构建自 <a target="_blank" rel="noopener" href="http://hexo.io">Hexo</a></nobr><wbr><nobr> 使用主题 <a target="_blank" rel="noopener" href="https://github.com/Yue-plus/hexo-theme-arknights">Arknights</a></nobr><wbr><nobr> 主题作者 <a target="_blank" rel="noopener" href="https://github.com/Yue-plus">Yue_plus</a></nobr></footer></aside></main><canvas id="canvas-dust"></canvas></body></html>
