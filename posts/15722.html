@@ -1,0 +1,278 @@
+<!DOCTYPE html><html lang="en" theme-mode="dark"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>2025-11-22- 关于前端包管理器npm,pnpm,yarn和bun以及我为何选择后者 | Notes|笔记站</title><link rel="icon" type="image/x-icon" href="/Arknight-notes/favicon.ico"><link rel="preload" as="font" crossorigin="anonymous" href="/Arknight-notes/font/Bender.ttf"><link rel="preload" as="font" crossorigin="anonymous" href="/Arknight-notes/font/BenderLight.ttf"><link rel="preload" as="font" crossorigin="anonymous" href="/Arknight-notes/font/JetBrainsMono-Regular.woff2"><link rel="stylesheet" href="/Arknight-notes/css/arknights.css"><style>@font-face {
+  font-family: Bender;
+  src: local('Bender'), url("/Arknight-notes/font/Bender.ttf"), url("/Arknight-notes/font/Bender.otf");
+}
+@font-face {
+  font-family: BenderLight;
+  src: local('BenderLight'), url("/Arknight-notes/font/BenderLight.ttf");
+}
+@font-face {
+  font-family: 'JetBrains Mono';
+  src: local('JetBrains Mono'), url('/Arknight-notes/font/JetBrainsMono-Regular.woff2') format('woff2');
+}
+</style><script>var config = {"root":"/Arknight-notes/","code_fold":90,"search":{"preload":false,"activeHolder":"Enter here","blurHolder":"Search","noResult":"Data \"$0\" not found"},"code":{"codeInfo":"$0 - $1 lines","copy":"copy"}}</script><link type="text/css" rel="stylesheet" href="/Arknight-notes/lib/encrypt/hbe.style.css"><script src="/Arknight-notes/js/gitalk.js"></script><script src="//unpkg.com/mermaid@10.5.0/dist/mermaid.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.6.1/MathJax.js"></script><script>MathJax.Hub.Config({
+ menuSettings: {
+   zoom: "None"
+ },
+ showMathMenu: false,
+ jax: ["input/TeX","output/CommonHTML"],
+ extensions: ["tex2jax.js"],
+ TeX: {
+   extensions: ["AMSmath.js","AMSsymbols.js"],
+   equationNumbers: {
+     autoNumber: "AMS"
+   }
+ },
+ tex2jax: {
+   inlineMath: [["\\(", "\\)"]],
+   displayMath: [["\\[", "\\]"]]
+ }
+});</script><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lightgallery.css"><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lg-zoom.css"><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lg-thumbnail.css"><link type="text/css" rel="stylesheet" href="/Arknight-notes/lib/fontawesome/css/all.min.css"><script>if (window.localStorage.getItem('theme-mode') === 'light')
+ document.documentElement.setAttribute('theme-mode', 'light')
+if (window.localStorage.getItem('theme-mode') === 'dark')
+ document.documentElement.setAttribute('theme-mode', 'dark')</script><style>@font-face {
+ font-family: BenderLight;
+ src: local('Bender'), url("/Arknight-notes/font/BenderLight.woff2") format('woff2');
+}
+@font-face {
+ font-family: 'JetBrains Mono';
+ src: local('JetBrains Mono'), url('/Arknight-notes/font/JetBrainsMono-Regular.woff2') format('woff2');
+}</style><style>:root {
+ --dark-background: url('https://pic2.zhimg.com/v2-6269d74b4dafe14781d03790e5a86b21_r.jpg');
+ --light-background: url('https://pic1.zhimg.com/v2-233b64b583642fc4a6d77e69ced33150_r.jpg');
+ --theme-encrypt-confirm: 'confirm'
+}</style><script defer src="/Arknight-notes/js/arknights.js"></script><script defer src="/Arknight-notes/js/search.js"></script><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><script async src="/Arknight-notes/js/gitalk.js"></script><script defer type="module">import mermaid from '//unpkg.com/mermaid@10.5.0/dist/mermaid.esm.mjs';
+window.mermaid = mermaid;
+code.paintMermaid();
+</script><script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.6.1/MathJax.js"></script><script>MathJax.Hub.Config({
+  menuSettings: {
+    zoom: "None"
+  },
+  showMathMenu: false,
+  jax: ["input/TeX","output/CommonHTML"],
+  extensions: ["tex2jax.js"],
+  TeX: {
+    extensions: ["AMSmath.js","AMSsymbols.js"],
+    equationNumbers: {
+      autoNumber: "AMS"
+    }
+  },
+  tex2jax: {
+    inlineMath: [["\\(", "\\)"]],
+    displayMath: [["\\[", "\\]"]]
+  }
+});
+</script><script async src="//unpkg.com/lightgallery@2.7.1/lightgallery.min.js"></script><script async src="//unpkg.com/lightgallery@2.7.1/plugins/zoom/lg-zoom.min.js"></script><script async src="//unpkg.com/lightgallery@2.7.1/plugins/thumbnail/lg-thumbnail.min.js"></script><script async src="/Arknight-notes/lib/encrypt/hbe.js"></script><script async src="/Arknight-notes/js/pjax.js"></script><script class="pjax-js">reset= () => {gitalk = new Gitalk({
+ clientID: 'Ov23ct13Fb0b67x23wnT',
+ clientSecret: 'f18ce69dd545e3c0f5e2456afde9c756fe8a254a',
+ repo: 'Arknight-notes',
+ owner: 'Zhongye1',
+ admin: ['Zhongye1'],
+ distractionFreeMode: false,
+ id: location.pathname
+});
+if (document.querySelector("#gitalk")) gitalk.render("gitalk");document.querySelector('.lg-container')?.remove()
+lightGallery(document.getElementById('post-bg'), {
+  plugins: [lgZoom,lgThumbnail],
+  selector: '.item-img'})}</script><script>window.addEventListener("load",() => {pjax = new Pjax({
+ cacheBust: false,
+ selectors: ['title','article','#aside-block','.pjax-js','data-pjax','.busuanzi'],
+ switches: {'article': Pjax.switches.sideBySide},
+ switchesOptions: {
+   'article': {
+     classNames: {
+       remove: "pjax-out",
+       add: "pjax-in"
+     }
+   }
+ }
+});
+document.addEventListener("pjax:complete", reset);document.addEventListener('pjax:success', _ => bszCaller.fetch(
+ "//busuanzi.ibruce.info/busuanzi?jsonpCallback=BusuanziCallback", a => {
+  bszTag.texts(a),
+  bszTag.shows()
+}));reset()})</script><script class="pjax-js">reset= () => {gitalk = new Gitalk({
+ clientID: 'Ov23ct13Fb0b67x23wnT',
+ clientSecret: 'f18ce69dd545e3c0f5e2456afde9c756fe8a254a',
+ repo: 'Arknight-notes',
+ owner: 'Zhongye1',
+ admin: ['Zhongye1'],
+ distractionFreeMode: false,
+ id: location.pathname
+});
+if (document.querySelector("#gitalk")) gitalk.render("gitalk");document.querySelector('.lg-container')?.remove()
+lightGallery(document.getElementById('post-bg'), {
+  plugins: [lgZoom,lgThumbnail],
+  selector: '.item-img'})}</script><script>window.addEventListener("load",() => {pjax = new Pjax({
+ cacheBust: false,
+ selectors: ['title','article','#aside-block','.pjax-js'],
+ switches: {'article': Pjax.switches.sideBySide},
+ switchesOptions: {
+   'article': {
+     classNames: {
+       remove: "pjax-out",
+       add: "pjax-in"
+     }
+   }
+ }
+});
+document.addEventListener("pjax:complete", reset);reset()})</script><meta name="generator" content="Hexo 7.3.0"><style>mjx-container[jax="SVG"] {
+  direction: ltr;
+}
+
+mjx-container[jax="SVG"] > svg {
+  overflow: visible;
+}
+
+mjx-container[jax="SVG"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="SVG"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="SVG"][justify="right"] {
+  text-align: right;
+}
+
+g[data-mml-node="merror"] > g {
+  fill: red;
+  stroke: red;
+}
+
+g[data-mml-node="merror"] > rect[data-background] {
+  fill: yellow;
+  stroke: none;
+}
+
+g[data-mml-node="mtable"] > line[data-line] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > rect[data-frame] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > .mjx-dashed {
+  stroke-dasharray: 140;
+}
+
+g[data-mml-node="mtable"] > .mjx-dotted {
+  stroke-linecap: round;
+  stroke-dasharray: 0,140;
+}
+
+g[data-mml-node="mtable"] > svg {
+  overflow: visible;
+}
+
+[jax="SVG"] mjx-tool {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+[jax="SVG"] mjx-tool > mjx-tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+mjx-tool > mjx-tip {
+  display: inline-block;
+  padding: .2em;
+  border: 1px solid #888;
+  font-size: 70%;
+  background-color: #F8F8F8;
+  color: black;
+  box-shadow: 2px 2px 5px #AAAAAA;
+}
+
+g[data-mml-node="maction"][data-toggle] {
+  cursor: pointer;
+}
+
+mjx-status {
+  display: block;
+  position: fixed;
+  left: 1em;
+  bottom: 1em;
+  min-width: 25%;
+  padding: .2em .4em;
+  border: 1px solid #888;
+  font-size: 90%;
+  background-color: #F8F8F8;
+  color: black;
+}
+
+foreignObject[data-mjx-xml] {
+  font-family: initial;
+  line-height: normal;
+  overflow: visible;
+}
+
+.MathJax path {
+  stroke-width: 3;
+}
+
+mjx-container[display="true"] {
+  overflow: auto hidden;
+}
+
+mjx-container[display="true"] + br {
+  display: none;
+}
+</style><link rel="alternate" href="/Arknight-notes/rss.xml" title="Notes|笔记站" type="application/atom+xml">
+</head><body><div class="loading" style="opacity: 0;"><div class="loadingBar left"></div><div class="loadingBar right"></div></div><main><header class="closed"><div class="navBtn"><i class="navBtnIcon"><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span></i></div><nav><div class="navItem" id="search-header"><span class="navItemTitle"><input autocomplete="off" autocorrect="off" autocapitalize="none" placeholder="Search" spellcheck="false" maxlength="50" type="text" id="search-input"></span></div><div class="navItem" id="search-holder"></div><div class="search-popup" tabindex="0"><div id="search-result"></div></div><ol class="navContent"><li class="navItem"><a class="navBlock" href="/Arknight-notes/"><span class="navItemTitle">Home</span></a></li><li class="navItem" matchdata="categories,tags"><a class="navBlock" href="/Arknight-notes/archives/"><span class="navItemTitle">Archives</span></a></li><li class="navItem"><a class="navBlock" href="/Arknight-notes/about/"><span class="navItemTitle">About</span></a></li></ol></nav></header><article><div id="post-bg"><div id="post-title"><h1>2025-11-22- 关于前端包管理器npm,pnpm,yarn和bun以及我为何选择后者</h1><div id="post-info"><span>First Post: <div class="control"><time datetime="2025-11-22T13:21:15.000Z" id="date"> 2025-11-22</time></div></span><br><span>Last Update: <div class="control"><time datetime="2025-11-22T13:38:24.575Z" id="updated"> 2025-11-22</time></div></span><br><span id="busuanzi_container_page_pv">Page View: <span class="control" id="busuanzi_value_page_pv">loading...</span></span></div></div><hr><div id="post-content"><p><strong>因为快。</strong></p>
+<p>2025 年，Bun 作为一个「全能型」运行时 + 包管理器，在实际项目中对传统包管理器（npm/yarn/pnpm）确实有相当大的优势，很多人已经开始抛弃 npm/yarn/pnpm，转用 Bun 作为前端项目的包管理器</p>
+<h3 id="初识-Bun-管理器"><a href="#初识-Bun-管理器" class="headerlink" title="初识 Bun 管理器"></a>初识 Bun 管理器</h3><p>Bun 是 JavaScript 和 TypeScript 应用程序的一站式工具包。它作为一个名为<code>bun</code>的单个可执行文件提供。</p>
+<p>其核心是 Bun 运行时，这是一个快速的 JavaScript 运行时，设计为 Node.js 的即插即用替代品。它是用 Zig 编写的，在底层由 JavaScriptCore 驱动，大大减少了启动时间和内存使用。</p>
+<h3 id="对比其他包管理器"><a href="#对比其他包管理器" class="headerlink" title="对比其他包管理器"></a>对比其他包管理器</h3><h4 id="1-npm（Node-Package-Manager）"><a href="#1-npm（Node-Package-Manager）" class="headerlink" title="1. npm（Node Package Manager）"></a>1. npm（Node Package Manager）</h4><p><strong>核心实现</strong>：</p>
+<ul>
+<li><strong>依赖存储与解析</strong>：使用扁平化依赖树（flattened dependency tree，自 v3+ 引入），但仍依赖传统的 node_modules 目录结构。每个包及其子依赖都会下载 tarball（压缩包），然后解压到本地 node_modules 中。如果有版本冲突，会创建嵌套的 node_modules 子目录（hoisting 机制试图扁平化，但不总是完美）。</li>
+<li><strong>锁文件</strong>：package-lock.json，记录精确的依赖树和哈希值，确保可重现安装。</li>
+<li><strong>缓存机制</strong>：全局缓存在 ~/.npm（或 Windows 的 %AppData%\npm-cache），存储 tarball 和元数据。安装时先检查缓存，命中则直接解压。</li>
+<li><strong>下载与并行</strong>：自 v7+ 支持并行下载（自 v5+），使用 HTTP/1.1 或 HTTP/2，但解析依赖树时仍依赖 JavaScript 引擎（Node.js），导致启动开销大。</li>
+<li><strong>monorepo 支持</strong>：基本支持（通过 workspaces），但需手动配置，效率一般。</li>
+</ul>
+<p><strong>技术栈</strong>：纯 Node.js 实现，CLI 基于 npm-cli。</p>
+<h4 id="2-pnpm（Performant-NPM）"><a href="#2-pnpm（Performant-NPM）" class="headerlink" title="2. pnpm（Performant NPM）"></a>2. pnpm（Performant NPM）</h4><p><strong>核心实现</strong>：</p>
+<ul>
+<li><strong>依赖存储与解析</strong>：引入<strong>内容寻址存储（content-addressable store）</strong>，所有包统一存储在全局 .pnpm/store（硬链接 + 符号链接）。项目中只生成一个扁平的 node_modules/.pnpm 目录，通过符号链接（symlinks）指向全局包，避免重复下载。严格的 peer dependency 隔离，防止“幽灵依赖”（phantom dependencies）。</li>
+<li><strong>锁文件</strong>：pnpm-lock.yaml，YAML 格式，记录依赖图和完整哈希链。</li>
+<li><strong>缓存机制</strong>：全局 store + 硬链接，安装时直接链接现有包（无解压开销）。支持范围补丁（patching），允许动态修改依赖。</li>
+<li><strong>下载与并行</strong>：并行下载 + 增量更新，自 v8+ 优化为“聪明缓存”，只下载变化部分。monorepo 原生支持（workspace 协议），通过过滤命令（如 pnpm -r）高效处理多包。</li>
+<li><strong>monorepo 支持</strong>：最佳，原生高效，节省 70-80% 磁盘。</li>
+</ul>
+<p><strong>技术栈</strong>：Node.js 实现，但使用 Rust-like 的高效链接系统（实际是 JS + 文件系统优化）。</p>
+<h4 id="3-Yarn-Berry（Yarn-v2-）"><a href="#3-Yarn-Berry（Yarn-v2-）" class="headerlink" title="3. Yarn Berry（Yarn v2+）"></a>3. Yarn Berry（Yarn v2+）</h4><p><strong>核心实现</strong>：</p>
+<ul>
+<li><strong>依赖存储与解析</strong>：革命性 <strong>Plug’n’Play (PnP)</strong> 模式，默认<strong>完全消除 node_modules</strong>。依赖通过 .pnp.cjs（或 .pnp.js）文件映射（类似虚拟文件系统），运行时动态解析路径，而非物理目录。备选 nodeLinker: node-modules 模式回退到传统结构。</li>
+<li><strong>锁文件</strong>：yarn.lock（v2+ 格式），包含完整依赖树、校验和和 ZIP 存档引用。</li>
+<li><strong>缓存机制</strong>：项目级 .yarn/cache，存储 ZIP 压缩的包（可提交到 Git，实现“零安装”——clone 后直接运行）。支持“零安装”（zero-installs），CI/CD 无需重新下载。</li>
+<li><strong>下载与并行</strong>：并行下载 + 增量缓存，自 v3+ 引入 Constraints（依赖规则检查）。monorepo 通过 Workspaces + Plug’n’Play 实现高效共享。</li>
+<li><strong>monorepo 支持</strong>：优秀，支持 Constraints 和 Patch 协议，适合大型团队。</li>
+</ul>
+<p><strong>技术栈</strong>：Node.js 实现，但 PnP 使用自定义加载器（loader）拦截模块解析。</p>
+<h4 id="4-Bun"><a href="#4-Bun" class="headerlink" title="4. Bun"></a>4. Bun</h4><p><strong>核心实现</strong>：</p>
+<ul>
+<li><strong>依赖存储与解析</strong>：<strong>无 node_modules</strong>，所有包存储在全局单例缓存（~/.bun/install/cache），项目只生成极小的 .bun 文件夹（二进制锁文件）。使用<strong>极致压缩 + 硬链接</strong>，运行时直接从缓存加载（跳过解压）。兼容 npm 注册表，但内置 JSR（JavaScript Registry）支持。</li>
+<li><strong>锁文件</strong>：bun.lockb，二进制格式（超小、超快解析）。</li>
+<li><strong>缓存机制</strong>：全局缓存 + 内容哈希，安装时并行下载并验证哈希。支持“热缓存”（hot cache），CI 复用率近 100%。</li>
+<li><strong>下载与并行</strong>：使用 Zig 语言编写的超快解析器（非 JS），HTTP/3 支持 + 原生并行。monorepo 自动识别，无需额外配置。</li>
+<li><strong>monorepo 支持</strong>：优秀，极速安装，但生态仍在完善（2025 年已稳定）。</li>
+</ul>
+<p><strong>技术栈</strong>：Zig + JavaScriptCore（WebKit 引擎），非 Node.js 依赖，实现全栈（包管理 + bundler + 测试运行器）。</p>
+<p>基于 pnpm 官方基准（2025-11-16 更新）、Bun 团队报告和社区测试，四个包管理器中<strong>Bun 整体最快，pnpm/Yarn Berry 在磁盘效率上领先，npm 最稳但最慢</strong>。</p>
+<h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><p>Bun 支持 Linux（x64 和 arm64）和 macOS（x64 和 Apple Silicon）。</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs sh"><span class="hljs-comment"># 使用npm</span><br>npm install -g bun<br></code></pre></td></tr></table></figure>
+<h3 id="升级"><a href="#升级" class="headerlink" title="升级"></a>升级</h3><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">bun upgrade<br></code></pre></td></tr></table></figure>
+<h3 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h3><p><code>bun</code>命令行工具实现了测试运行器、脚本运行器和与 Node.js 兼容的包管理器。Bun 的内置工具明显比现有选项快，并且在现有 Node.js 项目中几乎不需要进行任何更改。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs bash">bun <span class="hljs-built_in">test</span>                      <span class="hljs-comment"># 运行测试</span><br>bun run start                 <span class="hljs-comment"># 运行`package.json`中的`start`脚本</span><br>bun install &lt;pkg&gt;             <span class="hljs-comment"># 安装包</span><br>bunx cowsay <span class="hljs-string">'Hello, world!'</span>   <span class="hljs-comment"># 执行包</span><br>bun run index.tsx             <span class="hljs-comment"># 默认支持TS和JSX</span><br></code></pre></td></tr></table></figure>
+<div id="paginator"></div></div><div id="post-footer"><div id="pages" style="justify-content: flex-end"><div class="footer-link" style="width: 50%;right:1px;border-left:1px #fe2 solid"><a href="/Arknight-notes/posts/15704.html">2025-11-22-canvas状态管理杂记3 Prev →</a></div></div></div><div id="comments"><div id="gitalk"></div></div></div><div class="bottom-btn"><div><a class="i-top" id="to-top" onClick="scrolls.scrolltop();" title="To Top" style="opacity: 0; display: none;">∧ </a><a class="i-index" id="to-index" href="#toc-div" title="To Catalog">≡</a><a class="i-color" id="color-mode" onClick="colorMode.change()" title="Change Theme"></a></div></div></article><aside><div id="about"><a href="/Arknight-notes/" id="logo"><img src="https://pic4.zhimg.com/80/v2-d9884f32711e19e80979eac58e943897_720w.webp" alt="Logo" style="margin:20;border-radius:0;"></a><h1 id="Dr"><a href="zhongye">柊野</a></h1><div id="description"><p></p></div></div><div id="aside-block"><div id="toc-div"><h1>Catalog</h1><ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%9D%E8%AF%86-Bun-%E7%AE%A1%E7%90%86%E5%99%A8"><span class="toc-number">1.</span> <span class="toc-text">初识 Bun 管理器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AF%B9%E6%AF%94%E5%85%B6%E4%BB%96%E5%8C%85%E7%AE%A1%E7%90%86%E5%99%A8"><span class="toc-number">2.</span> <span class="toc-text">对比其他包管理器</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-npm%EF%BC%88Node-Package-Manager%EF%BC%89"><span class="toc-number">2.1.</span> <span class="toc-text">1. npm（Node Package Manager）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-pnpm%EF%BC%88Performant-NPM%EF%BC%89"><span class="toc-number">2.2.</span> <span class="toc-text">2. pnpm（Performant NPM）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-Yarn-Berry%EF%BC%88Yarn-v2-%EF%BC%89"><span class="toc-number">2.3.</span> <span class="toc-text">3. Yarn Berry（Yarn v2+）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-Bun"><span class="toc-number">2.4.</span> <span class="toc-text">4. Bun</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%89%E8%A3%85"><span class="toc-number">3.</span> <span class="toc-text">安装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8D%87%E7%BA%A7"><span class="toc-number">4.</span> <span class="toc-text">升级</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8"><span class="toc-number">5.</span> <span class="toc-text">使用</span></a></li></ol></div></div><footer><nobr><span class="icp-title">GZHU</span><span class="icp-content">193001-0001</span></nobr><br><nobr><span class="icp-title">OUTPOST</span><span class="icp-content">169-2025-0331</span></nobr><br><nobr>Published with <a target="_blank" rel="noopener" href="http://hexo.io">Hexo</a></nobr><wbr><nobr> Theme <a target="_blank" rel="noopener" href="https://github.com/Yue-plus/hexo-theme-arknights">Arknights</a></nobr><wbr><nobr> by <a target="_blank" rel="noopener" href="https://github.com/Yue-plus">Yue_plus</a></nobr></footer></aside></main><canvas id="canvas-dust"></canvas></body></html>
