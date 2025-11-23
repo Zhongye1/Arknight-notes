@@ -1,0 +1,384 @@
+<!DOCTYPE html><html lang="en" theme-mode="dark"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>前端项目安装和配置指南 Vite + React + TypeScript + Tailwind CSS | Notes|笔记站</title><link rel="icon" type="image/x-icon" href="/Arknight-notes/favicon.ico"><link rel="preload" as="font" crossorigin="anonymous" href="/Arknight-notes/font/Bender.ttf"><link rel="preload" as="font" crossorigin="anonymous" href="/Arknight-notes/font/BenderLight.ttf"><link rel="preload" as="font" crossorigin="anonymous" href="/Arknight-notes/font/JetBrainsMono-Regular.woff2"><link rel="stylesheet" href="/Arknight-notes/css/arknights.css"><style>@font-face {
+  font-family: Bender;
+  src: local('Bender'), url("/Arknight-notes/font/Bender.ttf"), url("/Arknight-notes/font/Bender.otf");
+}
+@font-face {
+  font-family: BenderLight;
+  src: local('BenderLight'), url("/Arknight-notes/font/BenderLight.ttf");
+}
+@font-face {
+  font-family: 'JetBrains Mono';
+  src: local('JetBrains Mono'), url('/Arknight-notes/font/JetBrainsMono-Regular.woff2') format('woff2');
+}
+</style><script>var config = {"root":"/Arknight-notes/","code_fold":90,"search":{"preload":false,"activeHolder":"Enter here","blurHolder":"Search","noResult":"Data \"$0\" not found"},"code":{"codeInfo":"$0 - $1 lines","copy":"copy"}}</script><link type="text/css" rel="stylesheet" href="/Arknight-notes/lib/encrypt/hbe.style.css"><script src="/Arknight-notes/js/gitalk.js"></script><script src="//unpkg.com/mermaid@10.5.0/dist/mermaid.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.6.1/MathJax.js"></script><script>MathJax.Hub.Config({
+ menuSettings: {
+   zoom: "None"
+ },
+ showMathMenu: false,
+ jax: ["input/TeX","output/CommonHTML"],
+ extensions: ["tex2jax.js"],
+ TeX: {
+   extensions: ["AMSmath.js","AMSsymbols.js"],
+   equationNumbers: {
+     autoNumber: "AMS"
+   }
+ },
+ tex2jax: {
+   inlineMath: [["\\(", "\\)"]],
+   displayMath: [["\\[", "\\]"]]
+ }
+});</script><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lightgallery.css"><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lg-zoom.css"><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lg-thumbnail.css"><link type="text/css" rel="stylesheet" href="/Arknight-notes/lib/fontawesome/css/all.min.css"><script>if (window.localStorage.getItem('theme-mode') === 'light')
+ document.documentElement.setAttribute('theme-mode', 'light')
+if (window.localStorage.getItem('theme-mode') === 'dark')
+ document.documentElement.setAttribute('theme-mode', 'dark')</script><style>@font-face {
+ font-family: BenderLight;
+ src: local('Bender'), url("/Arknight-notes/font/BenderLight.woff2") format('woff2');
+}
+@font-face {
+ font-family: 'JetBrains Mono';
+ src: local('JetBrains Mono'), url('/Arknight-notes/font/JetBrainsMono-Regular.woff2') format('woff2');
+}</style><style>:root {
+ --dark-background: url('https://pic2.zhimg.com/v2-6269d74b4dafe14781d03790e5a86b21_r.jpg');
+ --light-background: url('https://pic1.zhimg.com/v2-233b64b583642fc4a6d77e69ced33150_r.jpg');
+ --theme-encrypt-confirm: 'confirm'
+}</style><script defer src="/Arknight-notes/js/arknights.js"></script><script defer src="/Arknight-notes/js/search.js"></script><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><script async src="/Arknight-notes/js/gitalk.js"></script><script defer type="module">import mermaid from '//unpkg.com/mermaid@10.5.0/dist/mermaid.esm.mjs';
+window.mermaid = mermaid;
+code.paintMermaid();
+</script><script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.6.1/MathJax.js"></script><script>MathJax.Hub.Config({
+  menuSettings: {
+    zoom: "None"
+  },
+  showMathMenu: false,
+  jax: ["input/TeX","output/CommonHTML"],
+  extensions: ["tex2jax.js"],
+  TeX: {
+    extensions: ["AMSmath.js","AMSsymbols.js"],
+    equationNumbers: {
+      autoNumber: "AMS"
+    }
+  },
+  tex2jax: {
+    inlineMath: [["\\(", "\\)"]],
+    displayMath: [["\\[", "\\]"]]
+  }
+});
+</script><script async src="//unpkg.com/lightgallery@2.7.1/lightgallery.min.js"></script><script async src="//unpkg.com/lightgallery@2.7.1/plugins/zoom/lg-zoom.min.js"></script><script async src="//unpkg.com/lightgallery@2.7.1/plugins/thumbnail/lg-thumbnail.min.js"></script><script async src="/Arknight-notes/lib/encrypt/hbe.js"></script><script async src="/Arknight-notes/js/pjax.js"></script><script class="pjax-js">reset= () => {gitalk = new Gitalk({
+ clientID: 'Ov23ct13Fb0b67x23wnT',
+ clientSecret: 'f18ce69dd545e3c0f5e2456afde9c756fe8a254a',
+ repo: 'Arknight-notes',
+ owner: 'Zhongye1',
+ admin: ['Zhongye1'],
+ distractionFreeMode: false,
+ id: location.pathname
+});
+if (document.querySelector("#gitalk")) gitalk.render("gitalk");document.querySelector('.lg-container')?.remove()
+lightGallery(document.getElementById('post-bg'), {
+  plugins: [lgZoom,lgThumbnail],
+  selector: '.item-img'})}</script><script>window.addEventListener("load",() => {pjax = new Pjax({
+ cacheBust: false,
+ selectors: ['title','article','#aside-block','.pjax-js','data-pjax','.busuanzi'],
+ switches: {'article': Pjax.switches.sideBySide},
+ switchesOptions: {
+   'article': {
+     classNames: {
+       remove: "pjax-out",
+       add: "pjax-in"
+     }
+   }
+ }
+});
+document.addEventListener("pjax:complete", reset);document.addEventListener('pjax:success', _ => bszCaller.fetch(
+ "//busuanzi.ibruce.info/busuanzi?jsonpCallback=BusuanziCallback", a => {
+  bszTag.texts(a),
+  bszTag.shows()
+}));reset()})</script><script class="pjax-js">reset= () => {gitalk = new Gitalk({
+ clientID: 'Ov23ct13Fb0b67x23wnT',
+ clientSecret: 'f18ce69dd545e3c0f5e2456afde9c756fe8a254a',
+ repo: 'Arknight-notes',
+ owner: 'Zhongye1',
+ admin: ['Zhongye1'],
+ distractionFreeMode: false,
+ id: location.pathname
+});
+if (document.querySelector("#gitalk")) gitalk.render("gitalk");document.querySelector('.lg-container')?.remove()
+lightGallery(document.getElementById('post-bg'), {
+  plugins: [lgZoom,lgThumbnail],
+  selector: '.item-img'})}</script><script>window.addEventListener("load",() => {pjax = new Pjax({
+ cacheBust: false,
+ selectors: ['title','article','#aside-block','.pjax-js'],
+ switches: {'article': Pjax.switches.sideBySide},
+ switchesOptions: {
+   'article': {
+     classNames: {
+       remove: "pjax-out",
+       add: "pjax-in"
+     }
+   }
+ }
+});
+document.addEventListener("pjax:complete", reset);reset()})</script><meta name="generator" content="Hexo 7.3.0"><style>mjx-container[jax="SVG"] {
+  direction: ltr;
+}
+
+mjx-container[jax="SVG"] > svg {
+  overflow: visible;
+}
+
+mjx-container[jax="SVG"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="SVG"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="SVG"][justify="right"] {
+  text-align: right;
+}
+
+g[data-mml-node="merror"] > g {
+  fill: red;
+  stroke: red;
+}
+
+g[data-mml-node="merror"] > rect[data-background] {
+  fill: yellow;
+  stroke: none;
+}
+
+g[data-mml-node="mtable"] > line[data-line] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > rect[data-frame] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > .mjx-dashed {
+  stroke-dasharray: 140;
+}
+
+g[data-mml-node="mtable"] > .mjx-dotted {
+  stroke-linecap: round;
+  stroke-dasharray: 0,140;
+}
+
+g[data-mml-node="mtable"] > svg {
+  overflow: visible;
+}
+
+[jax="SVG"] mjx-tool {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+[jax="SVG"] mjx-tool > mjx-tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+mjx-tool > mjx-tip {
+  display: inline-block;
+  padding: .2em;
+  border: 1px solid #888;
+  font-size: 70%;
+  background-color: #F8F8F8;
+  color: black;
+  box-shadow: 2px 2px 5px #AAAAAA;
+}
+
+g[data-mml-node="maction"][data-toggle] {
+  cursor: pointer;
+}
+
+mjx-status {
+  display: block;
+  position: fixed;
+  left: 1em;
+  bottom: 1em;
+  min-width: 25%;
+  padding: .2em .4em;
+  border: 1px solid #888;
+  font-size: 90%;
+  background-color: #F8F8F8;
+  color: black;
+}
+
+foreignObject[data-mjx-xml] {
+  font-family: initial;
+  line-height: normal;
+  overflow: visible;
+}
+
+.MathJax path {
+  stroke-width: 3;
+}
+
+mjx-container[display="true"] {
+  overflow: auto hidden;
+}
+
+mjx-container[display="true"] + br {
+  display: none;
+}
+</style><link rel="alternate" href="/Arknight-notes/rss.xml" title="Notes|笔记站" type="application/atom+xml">
+</head><body><div class="loading" style="opacity: 0;"><div class="loadingBar left"></div><div class="loadingBar right"></div></div><main><header class="closed"><div class="navBtn"><i class="navBtnIcon"><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span></i></div><nav><div class="navItem" id="search-header"><span class="navItemTitle"><input autocomplete="off" autocorrect="off" autocapitalize="none" placeholder="Search" spellcheck="false" maxlength="50" type="text" id="search-input"></span></div><div class="navItem" id="search-holder"></div><div class="search-popup" tabindex="0"><div id="search-result"></div></div><ol class="navContent"><li class="navItem"><a class="navBlock" href="/Arknight-notes/"><span class="navItemTitle">Home</span></a></li><li class="navItem" matchdata="categories,tags"><a class="navBlock" href="/Arknight-notes/archives/"><span class="navItemTitle">Archives</span></a></li><li class="navItem"><a class="navBlock" href="/Arknight-notes/about/"><span class="navItemTitle">About</span></a></li></ol></nav></header><article><div id="post-bg"><div id="post-title"><h1>前端项目安装和配置指南 Vite + React + TypeScript + Tailwind CSS</h1><div id="post-info"><span>First Post: <div class="control"><time datetime="2025-11-23T04:38:32.000Z" id="date"> 2025-11-23</time></div></span><br><span>Last Update: <div class="control"><time datetime="2025-11-23T06:45:25.064Z" id="updated"> 2025-11-23</time></div></span><br><span id="busuanzi_container_page_pv">Page View: <span class="control" id="busuanzi_value_page_pv">loading...</span></span></div></div><hr><div id="post-content"><h2 id="Vite-React-TypeScript-Tailwind-CSS-脚手架搭建指南"><a href="#Vite-React-TypeScript-Tailwind-CSS-脚手架搭建指南" class="headerlink" title="Vite + React + TypeScript + Tailwind CSS 脚手架搭建指南"></a>Vite + React + TypeScript + Tailwind CSS 脚手架搭建指南</h2><p>本文记录从零搭建 <code>Vite + React + Tailwind CSS</code> 项目，省去一个个官网去查阅文档，旨在方便快速丝滑的创建项目</p>
+<h3 id="概览"><a href="#概览" class="headerlink" title="概览"></a>概览</h3><ul>
+<li><strong>Vite 4.2.0</strong> - 新一代构建工具，提供极快的冷启动和热更新。基于原生 ES 模块实现，开发时按需编译，相比传统打包工具具有显著的速度优势。</li>
+<li><strong>React 18.2.0</strong> - 流行的前端 UI 库，采用组件化架构和虚拟 DOM 技术，提供高效的渲染性能和良好的开发体验。</li>
+<li><strong>TypeScript 5.3.3</strong> - JavaScript 的超集，提供静态类型检查，在编译阶段发现潜在错误，增强代码可维护性和开发效率。</li>
+<li><strong>Tailwind CSS 3.3.1</strong> - 实用优先的 CSS 框架，通过组合预定义的原子类来构建界面，无需编写自定义 CSS 即可实现复杂设计。</li>
+<li><strong>ESLint &amp; Prettier</strong> - 代码规范和格式化工具。ESLint 用于检测代码质量问题和潜在错误，Prettier 专注于代码格式统一，共同保障代码质量。</li>
+<li><strong>Husky &amp; lint-staged</strong> - Git 钩子工具，用于提交前代码检查。Husky 简化 Git 钩子配置，lint-staged 仅对暂存文件执行操作，提升提交前检查效率。</li>
+<li><strong>React Router DOM 6</strong> - React 应用的路由管理工具，提供声明式路由配置，支持动态路由、嵌套路由等特性，是构建单页应用的核心组件。</li>
+</ul>
+<h3 id="结构"><a href="#结构" class="headerlink" title="结构"></a>结构</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><code class="hljs bash">BDdraw_DEV/<br>├── .husky/                     <span class="hljs-comment"># Git hooks 配置</span><br>├── .vscode/                    <span class="hljs-comment"># VSCode 配置</span><br>├── docs/                       <span class="hljs-comment"># 文档目录</span><br>├── public/                     <span class="hljs-comment"># 静态资源目录</span><br>├── src/                        <span class="hljs-comment"># 源代码主目录</span><br>│   ├── api/                    <span class="hljs-comment"># API 接口定义</span><br>│   ├── assets/                 <span class="hljs-comment"># 静态资源文件</span><br>│   ├── components/             <span class="hljs-comment"># 公共组件</span><br>│   ├── hooks/                  <span class="hljs-comment"># 自定义 React Hooks</span><br>│   ├── lib/                    <span class="hljs-comment"># 工具库和核心功能模块</span><br>│   ├── pages/                  <span class="hljs-comment"># 页面组件</span><br>│   ├── router/                 <span class="hljs-comment"># 路由配置</span><br>│   │   └── router.tsx          <span class="hljs-comment"># 路由定义</span><br>│   ├── stores/                 <span class="hljs-comment"># 状态管理</span><br>│   ├── styles/                 <span class="hljs-comment"># 样式文件</span><br>│   ├── app.tsx                 <span class="hljs-comment"># 应用入口组件</span><br>│   ├── main.tsx                <span class="hljs-comment"># 主入口文件</span><br>│   └── vite-env.d.ts           <span class="hljs-comment"># Vite 环境声明文件</span><br>├── .editorconfig               <span class="hljs-comment"># 编辑器配置</span><br>├── .eslintrc                  <span class="hljs-comment"># ESLint 配置</span><br>├── .gitignore                 <span class="hljs-comment"># Git 忽略文件配置</span><br>├── .prettierrc.js             <span class="hljs-comment"># Prettier 配置</span><br>├── .stylelintrc.json          <span class="hljs-comment"># Stylelint 配置</span><br>├── commitlint.config.cjs      <span class="hljs-comment"># Commitlint 配置</span><br>├── components.json            <span class="hljs-comment"># 组件配置</span><br>├── index.html                 <span class="hljs-comment"># HTML 入口</span><br>├── lint-staged.config.js      <span class="hljs-comment"># Lint-staged 配置</span><br>├── package.json               <span class="hljs-comment"># 项目依赖和脚本配置</span><br>├── postcss.config.js          <span class="hljs-comment"># PostCSS 配置</span><br>├── tailwind.config.js         <span class="hljs-comment"># Tailwind CSS 配置</span><br>├── transmart.config.ts        <span class="hljs-comment"># Transmart 配置</span><br>├── tsconfig.json              <span class="hljs-comment"># TypeScript 配置</span><br>├── tsconfig.node.json         <span class="hljs-comment"># Node.js TypeScript 配置</span><br>├── vite.config.ts             <span class="hljs-comment"># Vite 配置</span><br>└── README.md                  <span class="hljs-comment"># 项目说明文档</span><br><br></code></pre></td></tr></table></figure>
+<h3 id="初始化项目"><a href="#初始化项目" class="headerlink" title="初始化项目"></a>初始化项目</h3><p>使用 Vite 创建项目</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">npm create vite@latest [项目名] -- --template react-ts<br><span class="hljs-built_in">cd</span> [项目名]<br></code></pre></td></tr></table></figure>
+<p>安装依赖</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">npm install<br></code></pre></td></tr></table></figure>
+<h3 id="集成-Tailwind-CSS-v3"><a href="#集成-Tailwind-CSS-v3" class="headerlink" title="集成 Tailwind CSS v3"></a>集成 Tailwind CSS v3</h3><p>Tailwind CSS 是一个功能类优先的 CSS 框架，它提供了大量的实用类，可以直接在 HTML 中组合使用来构建任何设计。通过配置文件可以自定义主题、颜色、间距等设计系统，并且只生成实际使用的样式，使得最终的 CSS 文件非常精简。其 JIT（Just-In-Time）模式可以按需生成样式，大大提高了编译速度并支持更多功能。</p>
+<p>安装 Tailwind CSS v3 及其依赖</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">npm install -D tailwindcss postcss autoprefixer<br>npx tailwindcss init -p<br></code></pre></td></tr></table></figure>
+<p>如果出问题可以去翻一下官方文档，v4 改变了一些部署方式</p>
+<p>配置 Tailwind CSS</p>
+<p>编辑 <code>tailwind.config.js</code> 文件：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">/** <span class="hljs-doctag">@type</span> {<span class="hljs-type">import('tailwindcss').Config</span>} */</span><br><span class="hljs-variable language_">module</span>.<span class="hljs-property">exports</span> = {<br>  <span class="hljs-attr">content</span>: [<span class="hljs-string">"./index.html"</span>, <span class="hljs-string">"./src/**/*.{js,ts,jsx,tsx}"</span>],<br>  <span class="hljs-attr">theme</span>: {<br>    <span class="hljs-attr">extend</span>: {},<br>  },<br>  <span class="hljs-attr">plugins</span>: [],<br>};<br></code></pre></td></tr></table></figure>
+<h3 id="引入-Tailwind-CSS-v3"><a href="#引入-Tailwind-CSS-v3" class="headerlink" title="引入 Tailwind CSS v3"></a>引入 Tailwind CSS v3</h3><p>在 <code>src/index.css</code> 文件中添加：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-keyword">@tailwind</span> base;<br><span class="hljs-keyword">@tailwind</span> components;<br><span class="hljs-keyword">@tailwind</span> utilities;<br></code></pre></td></tr></table></figure>
+<p>并在入口文件中导入该 CSS 文件：</p>
+<p>Tailwind CSS 的三个核心层：</p>
+<ul>
+<li><code>@tailwind base</code> - 包含 Normalize.css 和一些基础样式重置</li>
+<li><code>@tailwind components</code> - 包含框架的组件类，可用于添加结构样式</li>
+<li><code>@tailwind utilities</code> - 包含所有实用类，这是 Tailwind 的核心部分</li>
+</ul>
+<p>通过这种分层方式，Tailwind 提供了一种灵活的方式来组织和扩展样式。</p>
+<h3 id="配置-TypeScript"><a href="#配置-TypeScript" class="headerlink" title="配置 TypeScript"></a>配置 TypeScript</h3><p>TypeScript 是 JavaScript 的超集，添加了可选的静态类型。它可以帮助开发者在编码阶段捕获错误，提供更好的代码补全和重构支持。通过配置 <code>tsconfig.json</code>，我们可以控制 TypeScript 编译器的行为，如目标 JavaScript 版本、模块解析策略、严格性级别等。在本项目中，我们启用了严格的类型检查，同时配置了 React JSX 支持。</p>
+<p>项目中的 <code>tsconfig.json</code> 文件已经包含了基本的 TypeScript 配置。根据项目需求，我们可以对其进行定制：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs json"><span class="hljs-punctuation">{</span><br>  <span class="hljs-attr">"compilerOptions"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span><br>    <span class="hljs-attr">"target"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"ESNext"</span><span class="hljs-punctuation">,</span><br>    <span class="hljs-attr">"useDefineForClassFields"</span><span class="hljs-punctuation">:</span> <span class="hljs-literal"><span class="hljs-keyword">true</span></span><span class="hljs-punctuation">,</span><br>    <span class="hljs-attr">"lib"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><span class="hljs-string">"DOM"</span><span class="hljs-punctuation">,</span> <span class="hljs-string">"DOM.Iterable"</span><span class="hljs-punctuation">,</span> <span class="hljs-string">"ESNext"</span><span class="hljs-punctuation">]</span><span class="hljs-punctuation">,</span><br>    <span class="hljs-attr">"allowJs"</span><span class="hljs-punctuation">:</span> <span class="hljs-literal"><span class="hljs-keyword">false</span></span><span class="hljs-punctuation">,</span><br>    <span class="hljs-attr">"skipLibCheck"</span><span class="hljs-punctuation">:</span> <span class="hljs-literal"><span class="hljs-keyword">true</span></span><span class="hljs-punctuation">,</span><br>    <span class="hljs-attr">"esModuleInterop"</span><span class="hljs-punctuation">:</span> <span class="hljs-literal"><span class="hljs-keyword">false</span></span><span class="hljs-punctuation">,</span><br>    <span class="hljs-attr">"allowSyntheticDefaultImports"</span><span class="hljs-punctuation">:</span> <span class="hljs-literal"><span class="hljs-keyword">true</span></span><span class="hljs-punctuation">,</span><br>    <span class="hljs-attr">"strict"</span><span class="hljs-punctuation">:</span> <span class="hljs-literal"><span class="hljs-keyword">true</span></span><span class="hljs-punctuation">,</span><br>    <span class="hljs-attr">"forceConsistentCasingInFileNames"</span><span class="hljs-punctuation">:</span> <span class="hljs-literal"><span class="hljs-keyword">true</span></span><span class="hljs-punctuation">,</span><br>    <span class="hljs-attr">"module"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"ESNext"</span><span class="hljs-punctuation">,</span><br>    <span class="hljs-attr">"moduleResolution"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"Node"</span><span class="hljs-punctuation">,</span><br>    <span class="hljs-attr">"resolveJsonModule"</span><span class="hljs-punctuation">:</span> <span class="hljs-literal"><span class="hljs-keyword">true</span></span><span class="hljs-punctuation">,</span><br>    <span class="hljs-attr">"isolatedModules"</span><span class="hljs-punctuation">:</span> <span class="hljs-literal"><span class="hljs-keyword">true</span></span><span class="hljs-punctuation">,</span><br>    <span class="hljs-attr">"noEmit"</span><span class="hljs-punctuation">:</span> <span class="hljs-literal"><span class="hljs-keyword">true</span></span><span class="hljs-punctuation">,</span><br>    <span class="hljs-attr">"jsx"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"react-jsx"</span><br>  <span class="hljs-punctuation">}</span><span class="hljs-punctuation">,</span><br>  <span class="hljs-attr">"include"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><span class="hljs-string">"src"</span><span class="hljs-punctuation">]</span><span class="hljs-punctuation">,</span><br>  <span class="hljs-attr">"references"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><span class="hljs-punctuation">{</span> <span class="hljs-attr">"path"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"./tsconfig.node.json"</span> <span class="hljs-punctuation">}</span><span class="hljs-punctuation">]</span><br><span class="hljs-punctuation">}</span><br></code></pre></td></tr></table></figure>
+<h3 id="配置-ESLint-和-Prettier"><a href="#配置-ESLint-和-Prettier" class="headerlink" title="配置 ESLint 和 Prettier"></a>配置 ESLint 和 Prettier</h3><p>ESLint 是一个可插拔的 JavaScript 和 TypeScript 代码质量检查工具，它可以识别语法错误和代码风格问题。Prettier 是一个代码格式化工具，专注于代码风格统一。两者结合使用可以确保团队代码质量和风格的一致性。通过配置规则，我们可以自定义检查标准，例如是否使用分号、引号类型、缩进大小等。</p>
+<p>安装相关依赖</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">npm install -D eslint prettier eslint-config-prettier eslint-plugin-prettier eslint-plugin-react eslint-plugin-react-hooks @typescript-eslint/eslint-plugin @typescript-eslint/parser<br></code></pre></td></tr></table></figure>
+<p>配置 ESLint</p>
+<p>创建 <code>.eslintrc</code> 文件：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><code class="hljs json"><span class="hljs-punctuation">{</span><br>  <span class="hljs-attr">"env"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span><br>    <span class="hljs-attr">"browser"</span><span class="hljs-punctuation">:</span> <span class="hljs-literal"><span class="hljs-keyword">true</span></span><span class="hljs-punctuation">,</span><br>    <span class="hljs-attr">"es2021"</span><span class="hljs-punctuation">:</span> <span class="hljs-literal"><span class="hljs-keyword">true</span></span><br>  <span class="hljs-punctuation">}</span><span class="hljs-punctuation">,</span><br>  <span class="hljs-attr">"extends"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><br>    <span class="hljs-string">"eslint:recommended"</span><span class="hljs-punctuation">,</span><br>    <span class="hljs-string">"plugin:@typescript-eslint/recommended"</span><span class="hljs-punctuation">,</span><br>    <span class="hljs-string">"plugin:react/recommended"</span><span class="hljs-punctuation">,</span><br>    <span class="hljs-string">"plugin:react-hooks/recommended"</span><span class="hljs-punctuation">,</span><br>    <span class="hljs-string">"prettier"</span><br>  <span class="hljs-punctuation">]</span><span class="hljs-punctuation">,</span><br>  <span class="hljs-attr">"parser"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"@typescript-eslint/parser"</span><span class="hljs-punctuation">,</span><br>  <span class="hljs-attr">"parserOptions"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span><br>    <span class="hljs-attr">"ecmaVersion"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"latest"</span><span class="hljs-punctuation">,</span><br>    <span class="hljs-attr">"sourceType"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"module"</span><br>  <span class="hljs-punctuation">}</span><span class="hljs-punctuation">,</span><br>  <span class="hljs-attr">"plugins"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><span class="hljs-string">"@typescript-eslint"</span><span class="hljs-punctuation">,</span> <span class="hljs-string">"react"</span><span class="hljs-punctuation">,</span> <span class="hljs-string">"prettier"</span><span class="hljs-punctuation">]</span><span class="hljs-punctuation">,</span><br>  <span class="hljs-attr">"rules"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span><br>    <span class="hljs-attr">"prettier/prettier"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"error"</span><span class="hljs-punctuation">,</span><br>    <span class="hljs-attr">"react/react-in-jsx-scope"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"off"</span><br>  <span class="hljs-punctuation">}</span><span class="hljs-punctuation">,</span><br>  <span class="hljs-attr">"settings"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span><br>    <span class="hljs-attr">"react"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span><br>      <span class="hljs-attr">"version"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"detect"</span><br>    <span class="hljs-punctuation">}</span><br>  <span class="hljs-punctuation">}</span><br><span class="hljs-punctuation">}</span><br></code></pre></td></tr></table></figure>
+<p>配置 Prettier</p>
+<p>创建 <code>.prettierrc</code> 文件：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs json"><span class="hljs-punctuation">{</span><br>  <span class="hljs-attr">"semi"</span><span class="hljs-punctuation">:</span> <span class="hljs-literal"><span class="hljs-keyword">false</span></span><span class="hljs-punctuation">,</span><br>  <span class="hljs-attr">"singleQuote"</span><span class="hljs-punctuation">:</span> <span class="hljs-literal"><span class="hljs-keyword">true</span></span><span class="hljs-punctuation">,</span><br>  <span class="hljs-attr">"tabWidth"</span><span class="hljs-punctuation">:</span> <span class="hljs-number">2</span><span class="hljs-punctuation">,</span><br>  <span class="hljs-attr">"trailingComma"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"es5"</span><br><span class="hljs-punctuation">}</span><br></code></pre></td></tr></table></figure>
+<h3 id="配置-Git-Hooks"><a href="#配置-Git-Hooks" class="headerlink" title="配置 Git Hooks"></a>配置 Git Hooks</h3><p>Git Hooks 允许我们在 Git 操作的不同阶段执行自定义脚本。通过 Husky 和 lint-staged，我们可以在代码提交前自动运行 ESLint 和 Prettier，确保只有符合规范的代码才能进入代码库。lint-staged 只会针对暂存区的文件运行检查，提高效率。这有助于保持整个项目的代码质量和一致性。</p>
+<p>使用 Husky 和 lint-staged 在代码提交前自动运行代码检查和格式化。</p>
+<p>安装依赖</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">npm install -D husky lint-staged<br></code></pre></td></tr></table></figure>
+<p>初始化 Husky</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">npx husky install<br></code></pre></td></tr></table></figure>
+<p>配置 lint-staged</p>
+<p>创建 <code>lint-staged.config.js</code> 文件：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-variable language_">module</span>.<span class="hljs-property">exports</span> = {<br>  <span class="hljs-string">"*.{ts,tsx}"</span>: [<span class="hljs-string">"eslint --fix"</span>, <span class="hljs-string">"prettier --write"</span>],<br>  <span class="hljs-string">"*.{css,md}"</span>: <span class="hljs-string">"prettier --write"</span>,<br>};<br></code></pre></td></tr></table></figure>
+<p>添加 pre-commit 钩子</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">npx husky add .husky/pre-commit <span class="hljs-string">"npx lint-staged"</span><br></code></pre></td></tr></table></figure>
+<h3 id="集成-React-Router"><a href="#集成-React-Router" class="headerlink" title="集成 React Router"></a>集成 React Router</h3><p>React Router 是 React 应用中最流行的路由解决方案，它允许我们构建单页应用程序(SPA)，通过 URL 的变化来展示不同的视图组件。它提供了声明式的路由配置，支持嵌套路由、动态路由参数、编程式导航等功能。通过使用 React Router，我们可以轻松地管理应用的不同页面和视图之间的导航关系。</p>
+<p>安装 React Router</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">npm install react-router-dom<br>npm install -D @types/react-router-dom<br></code></pre></td></tr></table></figure>
+<p>创建路由配置</p>
+<p>创建 <code>src/router/router.tsx</code> 文件：</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs typescript"><span class="hljs-keyword">import</span> { createBrowserRouter } <span class="hljs-keyword">from</span> <span class="hljs-string">"react-router-dom"</span>;<br><span class="hljs-keyword">import</span> <span class="hljs-title class_">Home</span> <span class="hljs-keyword">from</span> <span class="hljs-string">"../pages/Home"</span>;<br><span class="hljs-keyword">import</span> <span class="hljs-title class_">About</span> <span class="hljs-keyword">from</span> <span class="hljs-string">"../pages/About"</span>;<br><br><span class="hljs-keyword">const</span> router = <span class="hljs-title function_">createBrowserRouter</span>([<br>  {<br>    <span class="hljs-attr">path</span>: <span class="hljs-string">"/"</span>,<br>    <span class="hljs-attr">element</span>: <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">Home</span> /&gt;</span></span>,<br>  },<br>  {<br>    <span class="hljs-attr">path</span>: <span class="hljs-string">"/about"</span>,<br>    <span class="hljs-attr">element</span>: <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">About</span> /&gt;</span></span>,<br>  },<br>]);<br><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> router;<br></code></pre></td></tr></table></figure>
+<p>在应用中使用路由</p>
+<p>更新 <code>src/App.tsx</code> 文件：</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs typescript"><span class="hljs-keyword">import</span> { <span class="hljs-title class_">RouterProvider</span> } <span class="hljs-keyword">from</span> <span class="hljs-string">"react-router-dom"</span>;<br><span class="hljs-keyword">import</span> router <span class="hljs-keyword">from</span> <span class="hljs-string">"./router/router"</span>;<br><br><span class="hljs-keyword">function</span> <span class="hljs-title function_">App</span>(<span class="hljs-params"></span>) {<br>  <span class="hljs-keyword">return</span> <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">RouterProvider</span> <span class="hljs-attr">router</span>=<span class="hljs-string">{router}</span> /&gt;</span></span>;<br>}<br><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-title class_">App</span>;<br></code></pre></td></tr></table></figure>
+<p>创建页面组件</p>
+<p>创建 <code>src/pages/Home.tsx</code> 和 <code>src/pages/About.tsx</code> 文件：</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs typescript"><span class="hljs-comment">// src/pages/Home.tsx</span><br><span class="hljs-keyword">import</span> <span class="hljs-title class_">React</span> <span class="hljs-keyword">from</span> <span class="hljs-string">"react"</span>;<br><br><span class="hljs-keyword">const</span> <span class="hljs-title class_">Home</span>: <span class="hljs-title class_">React</span>.<span class="hljs-property">FC</span> = <span class="hljs-function">() =&gt;</span> {<br>  <span class="hljs-keyword">return</span> (<br>    <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span></span><br><span class="language-xml">      <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>首页<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span></span><br><span class="language-xml">    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span><br>  );<br>};<br><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-title class_">Home</span>;<br></code></pre></td></tr></table></figure>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs typescript"><span class="hljs-comment">// src/pages/About.tsx</span><br><span class="hljs-keyword">import</span> <span class="hljs-title class_">React</span> <span class="hljs-keyword">from</span> <span class="hljs-string">"react"</span>;<br><br><span class="hljs-keyword">const</span> <span class="hljs-title class_">About</span>: <span class="hljs-title class_">React</span>.<span class="hljs-property">FC</span> = <span class="hljs-function">() =&gt;</span> {<br>  <span class="hljs-keyword">return</span> (<br>    <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span></span><br><span class="language-xml">      <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>关于<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span></span><br><span class="language-xml">    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span><br>  );<br>};<br><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-title class_">About</span>;<br></code></pre></td></tr></table></figure>
+<p>React Router 是 React 应用中最流行的路由解决方案，它允许我们构建单页应用程序(SPA)，通过 URL 的变化来展示不同的视图组件。它提供了声明式的路由配置，支持嵌套路由、动态路由参数、编程式导航等功能。通过使用 React Router，我们可以轻松地管理应用的不同页面和视图之间的导航关系。</p>
+<h3 id="配置-Vite"><a href="#配置-Vite" class="headerlink" title="配置 Vite"></a>配置 Vite</h3><p>项目的 <code>vite.config.ts</code> 文件配置如下：</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs typescript"><span class="hljs-keyword">import</span> { defineConfig } <span class="hljs-keyword">from</span> <span class="hljs-string">"vite"</span>;<br><span class="hljs-keyword">import</span> react <span class="hljs-keyword">from</span> <span class="hljs-string">"@vitejs/plugin-react"</span>;<br><span class="hljs-keyword">import</span> path <span class="hljs-keyword">from</span> <span class="hljs-string">"path"</span>;<br><br><span class="hljs-comment">// https://vitejs.dev/config/</span><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-title function_">defineConfig</span>({<br>  <span class="hljs-attr">plugins</span>: [<span class="hljs-title function_">react</span>()],<br>  <span class="hljs-attr">resolve</span>: {<br>    <span class="hljs-attr">alias</span>: {<br>      <span class="hljs-string">"@"</span>: path.<span class="hljs-title function_">resolve</span>(__dirname, <span class="hljs-string">"./src"</span>),<br>    },<br>  },<br>  <span class="hljs-attr">css</span>: {<br>    <span class="hljs-attr">postcss</span>: <span class="hljs-string">"./postcss.config.js"</span>,<br>  },<br>  <span class="hljs-attr">server</span>: {<br>    <span class="hljs-attr">port</span>: <span class="hljs-number">3000</span>,<br>  },<br>});<br></code></pre></td></tr></table></figure>
+<h3 id="配置-PostCSS"><a href="#配置-PostCSS" class="headerlink" title="配置 PostCSS"></a>配置 PostCSS</h3><p>PostCSS 是一个使用 JavaScript 插件转换 CSS 的工具。在这个项目中，我们使用了两个关键插件：</p>
+<ul>
+<li>Tailwind CSS 插件：处理 Tailwind CSS 相关的样式生成</li>
+<li>Autoprefixer 插件：自动添加厂商前缀以确保样式在不同浏览器中的兼容性</li>
+</ul>
+<p>通过 PostCSS，我们可以自动化处理 CSS，减少手动工作并提高样式兼容性。</p>
+<p><code>postcss.config.js</code> 文件配置如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-variable language_">module</span>.<span class="hljs-property">exports</span> = {<br>  <span class="hljs-attr">plugins</span>: {<br>    <span class="hljs-attr">tailwindcss</span>: {},<br>    <span class="hljs-attr">autoprefixer</span>: {},<br>  },<br>};<br></code></pre></td></tr></table></figure>
+<h3 id="添加常用组件和工具"><a href="#添加常用组件和工具" class="headerlink" title="添加常用组件和工具"></a>添加常用组件和工具</h3><p>通过创建可复用的 UI 组件和自定义 Hooks，可以大大提高开发效率并保证界面一致性。路径别名的配置使得导入模块更加简洁，避免了复杂的相对路径引用。</p>
+<p>创建基础 UI 组件：在 <code>src/components/ui</code> 目录下创建一些基础 UI 组件，例如按钮、输入框等</p>
+<p>创建自定义 Hooks：在 <code>src/hooks</code> 目录下创建常用的自定义 Hooks，例如 <code>useLocalStorage</code>、<code>useToggle</code> 等</p>
+<p>配置路径别名：在 <code>tsconfig.json</code> 中配置路径别名，方便导入模块：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs json"><span class="hljs-punctuation">{</span><br>  <span class="hljs-attr">"compilerOptions"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span><br>    <span class="hljs-comment">// ... 其他配置</span><br>    <span class="hljs-attr">"baseUrl"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"."</span><span class="hljs-punctuation">,</span><br>    <span class="hljs-attr">"paths"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span><br>      <span class="hljs-attr">"@/*"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><span class="hljs-string">"src/*"</span><span class="hljs-punctuation">]</span><br>    <span class="hljs-punctuation">}</span><br>  <span class="hljs-punctuation">}</span><br><span class="hljs-punctuation">}</span><br></code></pre></td></tr></table></figure>
+<p>通过创建可复用的 UI 组件和自定义 Hooks，可以大大提高开发效率并保证界面一致性。路径别名的配置使得导入模块更加简洁，避免了复杂的相对路径引用。</p>
+<h3 id="其他重要配置文件说明"><a href="#其他重要配置文件说明" class="headerlink" title="其他重要配置文件说明"></a>其他重要配置文件说明</h3><h4 id="gitignore"><a href="#gitignore" class="headerlink" title=".gitignore"></a>.gitignore</h4><p><code>.gitignore</code> 文件用于指定 Git 应当忽略的文件和目录，防止不必要的文件被提交到代码仓库。在本项目中，该文件包含了以下几类被忽略的内容：</p>
+<ol>
+<li><strong>系统文件</strong>：如 macOS 系统生成的 <code>.DS_Store</code> 文件</li>
+<li><strong>日志文件</strong>：如 npm、yarn 等生成的日志文件</li>
+<li><strong>依赖目录</strong>：如 <code>node_modules/</code> 目录</li>
+<li><strong>构建输出</strong>：如构建工具生成的 <code>dist/</code>、<code>.next/</code> 等目录</li>
+<li><strong>缓存文件</strong>：如各种工具生成的缓存文件</li>
+<li><strong>环境变量文件</strong>：如 <code>.env</code> 及其变体文件，防止敏感信息泄露</li>
+<li><strong>编辑器配置</strong>：如编辑器生成的临时文件</li>
+</ol>
+<p>通过合理配置 <code>.gitignore</code>，可以减小代码仓库体积，保护敏感信息，并避免无关文件干扰开发。</p>
+<h4 id="editorconfig"><a href="#editorconfig" class="headerlink" title=".editorconfig"></a>.editorconfig</h4><p><code>.editorconfig</code> 文件用于统一不同编辑器和 IDE 的代码格式设置。在团队协作中，不同开发者可能使用不同的编辑器，该文件可以确保所有人使用相同的编码规范：</p>
+<ul>
+<li>使用空格缩进，缩进大小为 2 个空格</li>
+<li>行尾符使用 LF (Unix 风格)</li>
+<li>字符编码使用 UTF-8</li>
+<li>自动删除行尾空白字符</li>
+<li>文件末尾自动添加新行</li>
+</ul>
+<p>这有助于保持代码风格的一致性，避免因编辑器差异导致的格式混乱。</p>
+<h4 id="prettierrc-js"><a href="#prettierrc-js" class="headerlink" title=".prettierrc.js"></a>.prettierrc.js</h4><p>Prettier 配置文件，用于统一代码格式化风格：</p>
+<ul>
+<li>不使用分号结尾</li>
+<li>对象和数组末尾保留逗号</li>
+<li>使用单引号而非双引号</li>
+<li>单行最大宽度为 120 字符</li>
+<li>缩进使用 2 个空格</li>
+<li>行尾符自动适应操作系统</li>
+</ul>
+<p>Prettier 会在保存文件或执行格式化命令时自动应用这些规则，确保整个项目的代码风格统一。</p>
+<h4 id="commitlint-config-cjs"><a href="#commitlint-config-cjs" class="headerlink" title="commitlint.config.cjs"></a>commitlint.config.cjs</h4><p>Commitlint 配置文件，用于校验 Git 提交信息的格式。它继承了 <code>@commitlint/config-conventional</code> 规则，要求提交信息遵循约定式提交规范：</p>
+<figure class="highlight fortran"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs fortran">&lt;<span class="hljs-keyword">type</span>&gt;[<span class="hljs-keyword">optional</span> scope]: &lt;description&gt;<br><br>[<span class="hljs-keyword">optional</span> body]<br><br>[<span class="hljs-keyword">optional</span> footer(s)]<br></code></pre></td></tr></table></figure>
+<p>其中 type 必须是以下几种之一：</p>
+<ul>
+<li>feat: 新功能</li>
+<li>fix: 修复 bug</li>
+<li>chore: 构建过程或辅助工具的变动</li>
+<li>docs: 文档更新</li>
+<li>style: 代码格式调整</li>
+<li>refactor: 重构</li>
+<li>perf: 性能优化</li>
+<li>test: 测试用例</li>
+</ul>
+<p>这有助于生成标准化的变更日志，便于团队理解和维护项目历史。</p>
+<h4 id="stylelintrc-json"><a href="#stylelintrc-json" class="headerlink" title=".stylelintrc.json"></a>.stylelintrc.json</h4><p>Stylelint 配置文件，用于检查 CSS/LESS 样式代码的质量和风格。该项目配置了：</p>
+<ul>
+<li>继承标准规则集和 Prettier 推荐规则</li>
+<li>支持 LESS 语法</li>
+<li>启用 Prettier 规则</li>
+<li>自定义类名命名规范（小写字母和连字符）</li>
+<li>允许未知的 at-rule（为了支持 LESS 特性）</li>
+</ul>
+<p>通过 Stylelint 可以确保样式代码的一致性和质量，避免常见的样式错误。</p>
+<h4 id="lint-staged-config-js"><a href="#lint-staged-config-js" class="headerlink" title="lint-staged.config.js"></a>lint-staged.config.js</h4><p>Lint-staged 配置文件，用于对 Git 暂存区的文件执行检查和格式化：</p>
+<ul>
+<li>对 TypeScript 文件执行 ESLint 和 Prettier</li>
+<li>对 JavaScript 文件执行 ESLint 和 Prettier</li>
+<li>对 LESS 和 CSS 文件执行 Stylelint</li>
+<li>对其他文件执行相应检查</li>
+</ul>
+<p>这确保只有符合规范的代码才能被提交到仓库，提升整体代码质量。</p>
+<h3 id="开发环境和生产环境配置"><a href="#开发环境和生产环境配置" class="headerlink" title="开发环境和生产环境配置"></a>开发环境和生产环境配置</h3><p>开发环境启动</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">npm run dev<br></code></pre></td></tr></table></figure>
+<p>构建生产版本</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">npm run build<br></code></pre></td></tr></table></figure>
+<p>预览生产构建</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">npm run preview<br></code></pre></td></tr></table></figure>
+<div id="paginator"></div></div><div id="post-footer"><div id="pages" style="justify-content: flex-end"><div class="footer-link" style="width: 50%;right:1px;border-left:1px #fe2 solid"><a href="/Arknight-notes/posts/33040.html">2025-11-22- 使用 GitHub Actions 自动部署基于vite的项目到 GitHub Pages Prev →</a></div></div></div><div id="comments"><div id="gitalk"></div></div></div><div class="bottom-btn"><div><a class="i-top" id="to-top" onClick="scrolls.scrolltop();" title="To Top" style="opacity: 0; display: none;">∧ </a><a class="i-index" id="to-index" href="#toc-div" title="To Catalog">≡</a><a class="i-color" id="color-mode" onClick="colorMode.change()" title="Change Theme"></a></div></div></article><aside><div id="about"><a href="/Arknight-notes/" id="logo"><img src="https://pic4.zhimg.com/80/v2-d9884f32711e19e80979eac58e943897_720w.webp" alt="Logo" style="margin:20;border-radius:0;"></a><h1 id="Dr"><a href="zhongye">柊野</a></h1><div id="description"><p></p></div></div><div id="aside-block"><div id="toc-div"><h1>Catalog</h1><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Vite-React-TypeScript-Tailwind-CSS-%E8%84%9A%E6%89%8B%E6%9E%B6%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97"><span class="toc-number">1.</span> <span class="toc-text">Vite + React + TypeScript + Tailwind CSS 脚手架搭建指南</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A6%82%E8%A7%88"><span class="toc-number">1.1.</span> <span class="toc-text">概览</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%93%E6%9E%84"><span class="toc-number">1.2.</span> <span class="toc-text">结构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%9D%E5%A7%8B%E5%8C%96%E9%A1%B9%E7%9B%AE"><span class="toc-number">1.3.</span> <span class="toc-text">初始化项目</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9B%86%E6%88%90-Tailwind-CSS-v3"><span class="toc-number">1.4.</span> <span class="toc-text">集成 Tailwind CSS v3</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BC%95%E5%85%A5-Tailwind-CSS-v3"><span class="toc-number">1.5.</span> <span class="toc-text">引入 Tailwind CSS v3</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE-TypeScript"><span class="toc-number">1.6.</span> <span class="toc-text">配置 TypeScript</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE-ESLint-%E5%92%8C-Prettier"><span class="toc-number">1.7.</span> <span class="toc-text">配置 ESLint 和 Prettier</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE-Git-Hooks"><span class="toc-number">1.8.</span> <span class="toc-text">配置 Git Hooks</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9B%86%E6%88%90-React-Router"><span class="toc-number">1.9.</span> <span class="toc-text">集成 React Router</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE-Vite"><span class="toc-number">1.10.</span> <span class="toc-text">配置 Vite</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE-PostCSS"><span class="toc-number">1.11.</span> <span class="toc-text">配置 PostCSS</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B7%BB%E5%8A%A0%E5%B8%B8%E7%94%A8%E7%BB%84%E4%BB%B6%E5%92%8C%E5%B7%A5%E5%85%B7"><span class="toc-number">1.12.</span> <span class="toc-text">添加常用组件和工具</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B6%E4%BB%96%E9%87%8D%E8%A6%81%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E8%AF%B4%E6%98%8E"><span class="toc-number">1.13.</span> <span class="toc-text">其他重要配置文件说明</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#gitignore"><span class="toc-number">1.13.1.</span> <span class="toc-text">.gitignore</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#editorconfig"><span class="toc-number">1.13.2.</span> <span class="toc-text">.editorconfig</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#prettierrc-js"><span class="toc-number">1.13.3.</span> <span class="toc-text">.prettierrc.js</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#commitlint-config-cjs"><span class="toc-number">1.13.4.</span> <span class="toc-text">commitlint.config.cjs</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#stylelintrc-json"><span class="toc-number">1.13.5.</span> <span class="toc-text">.stylelintrc.json</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#lint-staged-config-js"><span class="toc-number">1.13.6.</span> <span class="toc-text">lint-staged.config.js</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E5%92%8C%E7%94%9F%E4%BA%A7%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE"><span class="toc-number">1.14.</span> <span class="toc-text">开发环境和生产环境配置</span></a></li></ol></li></ol></div></div><footer><nobr><span class="icp-title">GZHU</span><span class="icp-content">193001-0001</span></nobr><br><nobr><span class="icp-title">OUTPOST</span><span class="icp-content">169-2025-0331</span></nobr><br><nobr>Published with <a target="_blank" rel="noopener" href="http://hexo.io">Hexo</a></nobr><wbr><nobr> Theme <a target="_blank" rel="noopener" href="https://github.com/Yue-plus/hexo-theme-arknights">Arknights</a></nobr><wbr><nobr> by <a target="_blank" rel="noopener" href="https://github.com/Yue-plus">Yue_plus</a></nobr></footer></aside></main><canvas id="canvas-dust"></canvas></body></html>
