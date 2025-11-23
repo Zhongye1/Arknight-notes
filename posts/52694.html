@@ -1,0 +1,497 @@
+<!DOCTYPE html><html lang="en" theme-mode="dark"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>2025-11-23-Undo/Redo机制具体实现 | Notes|笔记站</title><link rel="icon" type="image/x-icon" href="/Arknight-notes/favicon.ico"><link rel="preload" as="font" crossorigin="anonymous" href="/Arknight-notes/font/Bender.ttf"><link rel="preload" as="font" crossorigin="anonymous" href="/Arknight-notes/font/BenderLight.ttf"><link rel="preload" as="font" crossorigin="anonymous" href="/Arknight-notes/font/JetBrainsMono-Regular.woff2"><link rel="stylesheet" href="/Arknight-notes/css/arknights.css"><style>@font-face {
+  font-family: Bender;
+  src: local('Bender'), url("/Arknight-notes/font/Bender.ttf"), url("/Arknight-notes/font/Bender.otf");
+}
+@font-face {
+  font-family: BenderLight;
+  src: local('BenderLight'), url("/Arknight-notes/font/BenderLight.ttf");
+}
+@font-face {
+  font-family: 'JetBrains Mono';
+  src: local('JetBrains Mono'), url('/Arknight-notes/font/JetBrainsMono-Regular.woff2') format('woff2');
+}
+</style><script>var config = {"root":"/Arknight-notes/","code_fold":90,"search":{"preload":false,"activeHolder":"键入以继续","blurHolder":"数据检索","noResult":"无 $0 相关数据"},"code":{"codeInfo":"$0 - $1 行","copy":"复制"}}</script><link type="text/css" rel="stylesheet" href="/Arknight-notes/lib/encrypt/hbe.style.css"><script src="/Arknight-notes/js/gitalk.js"></script><script src="//unpkg.com/mermaid@10.5.0/dist/mermaid.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.6.1/MathJax.js"></script><script>MathJax.Hub.Config({
+ menuSettings: {
+   zoom: "None"
+ },
+ showMathMenu: false,
+ jax: ["input/TeX","output/CommonHTML"],
+ extensions: ["tex2jax.js"],
+ TeX: {
+   extensions: ["AMSmath.js","AMSsymbols.js"],
+   equationNumbers: {
+     autoNumber: "AMS"
+   }
+ },
+ tex2jax: {
+   inlineMath: [["\\(", "\\)"]],
+   displayMath: [["\\[", "\\]"]]
+ }
+});</script><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lightgallery.css"><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lg-zoom.css"><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lg-thumbnail.css"><link type="text/css" rel="stylesheet" href="/Arknight-notes/lib/fontawesome/css/all.min.css"><script>if (window.localStorage.getItem('theme-mode') === 'light')
+ document.documentElement.setAttribute('theme-mode', 'light')
+if (window.localStorage.getItem('theme-mode') === 'dark')
+ document.documentElement.setAttribute('theme-mode', 'dark')</script><style>@font-face {
+ font-family: BenderLight;
+ src: local('Bender'), url("/Arknight-notes/font/BenderLight.woff2") format('woff2');
+}
+@font-face {
+ font-family: 'JetBrains Mono';
+ src: local('JetBrains Mono'), url('/Arknight-notes/font/JetBrainsMono-Regular.woff2') format('woff2');
+}</style><style>:root {
+ --dark-background: url('https://pic2.zhimg.com/v2-6269d74b4dafe14781d03790e5a86b21_r.jpg');
+ --light-background: url('https://pic1.zhimg.com/v2-233b64b583642fc4a6d77e69ced33150_r.jpg');
+ --theme-encrypt-confirm: '确认'
+}</style><script defer src="/Arknight-notes/js/arknights.js"></script><script defer src="/Arknight-notes/js/search.js"></script><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><script async src="/Arknight-notes/js/gitalk.js"></script><script defer type="module">import mermaid from '//unpkg.com/mermaid@10.5.0/dist/mermaid.esm.mjs';
+window.mermaid = mermaid;
+code.paintMermaid();
+</script><script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.6.1/MathJax.js"></script><script>MathJax.Hub.Config({
+  menuSettings: {
+    zoom: "None"
+  },
+  showMathMenu: false,
+  jax: ["input/TeX","output/CommonHTML"],
+  extensions: ["tex2jax.js"],
+  TeX: {
+    extensions: ["AMSmath.js","AMSsymbols.js"],
+    equationNumbers: {
+      autoNumber: "AMS"
+    }
+  },
+  tex2jax: {
+    inlineMath: [["\\(", "\\)"]],
+    displayMath: [["\\[", "\\]"]]
+  }
+});
+</script><script async src="//unpkg.com/lightgallery@2.7.1/lightgallery.min.js"></script><script async src="//unpkg.com/lightgallery@2.7.1/plugins/zoom/lg-zoom.min.js"></script><script async src="//unpkg.com/lightgallery@2.7.1/plugins/thumbnail/lg-thumbnail.min.js"></script><script async src="/Arknight-notes/lib/encrypt/hbe.js"></script><script async src="/Arknight-notes/js/pjax.js"></script><script class="pjax-js">reset= () => {gitalk = new Gitalk({
+ clientID: 'Ov23ct13Fb0b67x23wnT',
+ clientSecret: 'f18ce69dd545e3c0f5e2456afde9c756fe8a254a',
+ repo: 'Arknight-notes',
+ owner: 'Zhongye1',
+ admin: ['Zhongye1'],
+ distractionFreeMode: false,
+ id: location.pathname
+});
+if (document.querySelector("#gitalk")) gitalk.render("gitalk");document.querySelector('.lg-container')?.remove()
+lightGallery(document.getElementById('post-bg'), {
+  plugins: [lgZoom,lgThumbnail],
+  selector: '.item-img'})}</script><script>window.addEventListener("load",() => {pjax = new Pjax({
+ cacheBust: false,
+ selectors: ['title','article','#aside-block','.pjax-js','data-pjax','.busuanzi'],
+ switches: {'article': Pjax.switches.sideBySide},
+ switchesOptions: {
+   'article': {
+     classNames: {
+       remove: "pjax-out",
+       add: "pjax-in"
+     }
+   }
+ }
+});
+document.addEventListener("pjax:complete", reset);document.addEventListener('pjax:success', _ => bszCaller.fetch(
+ "//busuanzi.ibruce.info/busuanzi?jsonpCallback=BusuanziCallback", a => {
+  bszTag.texts(a),
+  bszTag.shows()
+}));reset()})</script><script class="pjax-js">reset= () => {gitalk = new Gitalk({
+ clientID: 'Ov23ct13Fb0b67x23wnT',
+ clientSecret: 'f18ce69dd545e3c0f5e2456afde9c756fe8a254a',
+ repo: 'Arknight-notes',
+ owner: 'Zhongye1',
+ admin: ['Zhongye1'],
+ distractionFreeMode: false,
+ id: location.pathname
+});
+if (document.querySelector("#gitalk")) gitalk.render("gitalk");document.querySelector('.lg-container')?.remove()
+lightGallery(document.getElementById('post-bg'), {
+  plugins: [lgZoom,lgThumbnail],
+  selector: '.item-img'})}</script><script>window.addEventListener("load",() => {pjax = new Pjax({
+ cacheBust: false,
+ selectors: ['title','article','#aside-block','.pjax-js'],
+ switches: {'article': Pjax.switches.sideBySide},
+ switchesOptions: {
+   'article': {
+     classNames: {
+       remove: "pjax-out",
+       add: "pjax-in"
+     }
+   }
+ }
+});
+document.addEventListener("pjax:complete", reset);reset()})</script><meta name="generator" content="Hexo 7.3.0"><style>mjx-container[jax="SVG"] {
+  direction: ltr;
+}
+
+mjx-container[jax="SVG"] > svg {
+  overflow: visible;
+}
+
+mjx-container[jax="SVG"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="SVG"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="SVG"][justify="right"] {
+  text-align: right;
+}
+
+g[data-mml-node="merror"] > g {
+  fill: red;
+  stroke: red;
+}
+
+g[data-mml-node="merror"] > rect[data-background] {
+  fill: yellow;
+  stroke: none;
+}
+
+g[data-mml-node="mtable"] > line[data-line] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > rect[data-frame] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > .mjx-dashed {
+  stroke-dasharray: 140;
+}
+
+g[data-mml-node="mtable"] > .mjx-dotted {
+  stroke-linecap: round;
+  stroke-dasharray: 0,140;
+}
+
+g[data-mml-node="mtable"] > svg {
+  overflow: visible;
+}
+
+[jax="SVG"] mjx-tool {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+[jax="SVG"] mjx-tool > mjx-tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+mjx-tool > mjx-tip {
+  display: inline-block;
+  padding: .2em;
+  border: 1px solid #888;
+  font-size: 70%;
+  background-color: #F8F8F8;
+  color: black;
+  box-shadow: 2px 2px 5px #AAAAAA;
+}
+
+g[data-mml-node="maction"][data-toggle] {
+  cursor: pointer;
+}
+
+mjx-status {
+  display: block;
+  position: fixed;
+  left: 1em;
+  bottom: 1em;
+  min-width: 25%;
+  padding: .2em .4em;
+  border: 1px solid #888;
+  font-size: 90%;
+  background-color: #F8F8F8;
+  color: black;
+}
+
+foreignObject[data-mjx-xml] {
+  font-family: initial;
+  line-height: normal;
+  overflow: visible;
+}
+
+.MathJax path {
+  stroke-width: 3;
+}
+
+mjx-container[display="true"] {
+  overflow: auto hidden;
+}
+
+mjx-container[display="true"] + br {
+  display: none;
+}
+</style><link rel="alternate" href="/Arknight-notes/rss.xml" title="Notes|笔记站" type="application/atom+xml">
+</head><body><div class="loading" style="opacity: 0;"><div class="loadingBar left"></div><div class="loadingBar right"></div></div><main><header class="closed"><div class="navBtn"><i class="navBtnIcon"><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span></i></div><nav><div class="navItem" id="search-header"><span class="navItemTitle"><input autocomplete="off" autocorrect="off" autocapitalize="none" placeholder="数据检索" spellcheck="false" maxlength="50" type="text" id="search-input"></span></div><div class="navItem" id="search-holder"></div><div class="search-popup" tabindex="0"><div id="search-result"></div></div><ol class="navContent"><li class="navItem"><a class="navBlock" href="/Arknight-notes/"><span class="navItemTitle">Home</span></a></li><li class="navItem" matchdata="categories,tags"><a class="navBlock" href="/Arknight-notes/archives/"><span class="navItemTitle">Archives</span></a></li><li class="navItem"><a class="navBlock" href="/Arknight-notes/about/"><span class="navItemTitle">About</span></a></li></ol></nav></header><article><div id="post-bg"><div id="post-title"><h1>2025-11-23-Undo/Redo机制具体实现</h1><div id="post-info"><span>文章发布时间: <div class="control"><time datetime="2025-11-23T11:15:00.000Z" id="date"> 2025-11-23</time></div></span><br><span>最后更新时间: <div class="control"><time datetime="2025-11-23T12:07:50.176Z" id="updated"> 2025-11-23</time></div></span><br><span id="busuanzi_container_page_pv">页面浏览: <span class="control" id="busuanzi_value_page_pv">加载中...</span></span></div></div><hr><div id="post-content"><h3 id="1-模块摘要-Executive-Summary"><a href="#1-模块摘要-Executive-Summary" class="headerlink" title="1. 模块摘要 (Executive Summary)"></a>1. 模块摘要 (Executive Summary)</h3><p>Undo/Redo 机制是画布应用中实现操作撤销和重做的核心功能模块。它基于命令模式（Command Pattern）实现，通过维护撤销栈和重做栈来管理用户的操作历史。该机制能够精确地追踪和恢复用户的每一步操作，提供流畅的编辑体验。</p>
+<ul>
+<li><strong>核心职责</strong>：管理操作历史、执行撤销/重做操作、防止操作冲突</li>
+<li><p><strong>项目结构树</strong>：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs bash">src/<br>├── lib/<br>│   ├── UndoRedoManager.ts        <span class="hljs-comment"># 撤销重做管理器核心实现</span><br>│   └── UpdateElementCommand.ts   <span class="hljs-comment"># 元素更新命令实现</span><br>└── stores/<br>    └── canvasStore.ts            <span class="hljs-comment"># 状态存储，命令操作的目标</span><br></code></pre></td></tr></table></figure>
+</li>
+<li><p><strong>技术栈</strong>：</p>
+<ul>
+<li><code>Command Pattern</code>：设计模式，用于封装操作命令</li>
+<li><code>Zustand</code>：状态管理库，作为命令操作的目标</li>
+<li><code>TypeScript</code>：提供类型安全和代码可维护性</li>
+</ul>
+</li>
+</ul>
+<h3 id="2-Props-和相关类型定义"><a href="#2-Props-和相关类型定义" class="headerlink" title="2. Props 和相关类型定义"></a>2. Props 和相关类型定义</h3><h4 id="2-1-UndoRedoManager-核心方法"><a href="#2-1-UndoRedoManager-核心方法" class="headerlink" title="2.1 UndoRedoManager 核心方法"></a>2.1 UndoRedoManager 核心方法</h4><p>撤销重做管理器提供了一系列核心方法用于管理操作命令。</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>方法名</th>
+<th>参数</th>
+<th>返回值</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>executeCommand</td>
+<td>command: Command</td>
+<td>void</td>
+<td>执行并记录命令</td>
+</tr>
+<tr>
+<td>undo</td>
+<td>无</td>
+<td>void</td>
+<td>执行撤销操作</td>
+</tr>
+<tr>
+<td>redo</td>
+<td>无</td>
+<td>void</td>
+<td>执行重做操作</td>
+</tr>
+<tr>
+<td>lock</td>
+<td>无</td>
+<td>void</td>
+<td>锁定管理器，防止记录新命令</td>
+</tr>
+<tr>
+<td>unlock</td>
+<td>无</td>
+<td>void</td>
+<td>解锁管理器</td>
+</tr>
+<tr>
+<td>isLocked</td>
+<td>无</td>
+<td>boolean</td>
+<td>检查管理器是否被锁定</td>
+</tr>
+<tr>
+<td>canUndo</td>
+<td>无</td>
+<td>boolean</td>
+<td>检查是否可以撤销</td>
+</tr>
+<tr>
+<td>canRedo</td>
+<td>无</td>
+<td>boolean</td>
+<td>检查是否可以重做</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h4 id="2-2-核心类型定义"><a href="#2-2-核心类型定义" class="headerlink" title="2.2 核心类型定义"></a>2.2 核心类型定义</h4><p><strong><a href="file:///e:/ADF-workbase/BDdraw_DEV/src/lib/UndoRedoManager.ts#L3-L7">Command</a> 接口</strong>：<br>定义了命令对象必须实现的方法。</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs typescript"><span class="hljs-keyword">export</span> <span class="hljs-keyword">interface</span> <span class="hljs-title class_">Command</span> {<br>  <span class="hljs-title function_">execute</span>(): <span class="hljs-built_in">void</span>; <span class="hljs-comment">// 执行命令</span><br>  <span class="hljs-title function_">undo</span>(): <span class="hljs-built_in">void</span>; <span class="hljs-comment">// 撤销命令</span><br>  <span class="hljs-title function_">redo</span>(): <span class="hljs-built_in">void</span>; <span class="hljs-comment">// 重做命令</span><br>}<br></code></pre></td></tr></table></figure>
+<p><strong>UpdateOperation 接口</strong>：<br>定义了元素更新操作的数据结构。</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs typescript"><span class="hljs-keyword">interface</span> <span class="hljs-title class_">UpdateOperation</span> {<br>  <span class="hljs-attr">id</span>: <span class="hljs-built_in">string</span>; <span class="hljs-comment">// 元素ID</span><br>  <span class="hljs-attr">initialAttrs</span>: <span class="hljs-title class_">Partial</span>&lt;<span class="hljs-title class_">CanvasElement</span>&gt;; <span class="hljs-comment">// 修改前的属性</span><br>  <span class="hljs-attr">finalAttrs</span>: <span class="hljs-title class_">Partial</span>&lt;<span class="hljs-title class_">CanvasElement</span>&gt;; <span class="hljs-comment">// 修改后的属性</span><br>}<br></code></pre></td></tr></table></figure>
+<h3 id="3-核心状态管理-State-Architecture"><a href="#3-核心状态管理-State-Architecture" class="headerlink" title="3. 核心状态管理 (State Architecture)"></a>3. 核心状态管理 (State Architecture)</h3><h4 id="3-1-内部状态-Local-State"><a href="#3-1-内部状态-Local-State" class="headerlink" title="3.1 内部状态 (Local State)"></a>3.1 内部状态 (Local State)</h4><p>UndoRedoManager 维护以下内部状态用于管理操作历史：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>状态名</th>
+<th>类型</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>undoStack</td>
+<td>Command[]</td>
+<td>撤销命令栈，存储可以撤销的命令</td>
+</tr>
+<tr>
+<td>redoStack</td>
+<td>Command[]</td>
+<td>重做命令栈，存储可以重做的命令</td>
+</tr>
+<tr>
+<td>locked</td>
+<td>boolean</td>
+<td>锁定状态，防止在执行命令时记录新命令</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h4 id="3-2-外部状态-Global-Server-State"><a href="#3-2-外部状态-Global-Server-State" class="headerlink" title="3.2 外部状态 (Global/Server State)"></a>3.2 外部状态 (Global/Server State)</h4><p>Undo/Redo 机制通过 Zustand 状态管理库操作外部状态：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>状态名</th>
+<th>类型</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>elements</td>
+<td>Record<string, CanvasElement=""></string,></td>
+<td>所有画布元素数据，命令操作的目标</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h4 id="3-3-状态同步机制"><a href="#3-3-状态同步机制" class="headerlink" title="3.3 状态同步机制"></a>3.3 状态同步机制</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><code class="hljs mermaid">graph TD<br>    A[用户操作] --&gt; B{StageManager}<br>    B --&gt; C[创建命令对象]<br>    C --&gt; D[UndoRedoManager.executeCommand]<br>    D --&gt; E{管理器锁定?}<br>    E --&gt;|是| F[忽略命令]<br>    E --&gt;|否| G[执行命令]<br>    G --&gt; H[命令入撤销栈]<br>    H --&gt; I[清空重做栈]<br>    I --&gt; J[Zustand 状态更新]<br><br>    subgraph 撤销操作<br>      K[UndoRedoManager.undo]<br>      K --&gt; L{撤销栈空?}<br>      L --&gt;|是| M[无法撤销]<br>      L --&gt;|否| N[弹出命令]<br>      N --&gt; O[执行命令.undo]<br>      O --&gt; P[命令入重做栈]<br>      P --&gt; Q[Zustand 状态更新]<br>    end<br><br>    subgraph 重做操作<br>      R[UndoRedoManager.redo]<br>      R --&gt; S{重做栈空?}<br>      S --&gt;|是| T[无法重做]<br>      S --&gt;|否| U[弹出命令]<br>      U --&gt; V[执行命令.redo]<br>      V --&gt; W[命令入撤销栈]<br>      W --&gt; X[Zustand 状态更新]<br>    end<br><br>    style A fill:#e1f5fe<br>    style J fill:#e8f5e8<br>    style Q fill:#e8f5e8<br>    style X fill:#e8f5e8<br>    style F fill:#ffebee<br></code></pre></td></tr></table></figure>
+<h3 id="4-命令管理机制"><a href="#4-命令管理机制" class="headerlink" title="4. 命令管理机制"></a>4. 命令管理机制</h3><p>Undo/Redo 机制采用命令模式（Command Pattern）来管理操作命令，通过定义统一的接口和不同的实现类来处理各种操作。</p>
+<h4 id="4-1-命令类型"><a href="#4-1-命令类型" class="headerlink" title="4.1 命令类型"></a>4.1 命令类型</h4><p>系统中主要有两种命令类型：</p>
+<ol>
+<li><p><strong>快照命令（SnapshotCommand）</strong>：</p>
+<ul>
+<li>用于记录整个画布状态的变化</li>
+<li>通常用于添加元素、删除元素等较大范围的操作</li>
+<li>保存完整的状态快照</li>
+</ul>
+</li>
+<li><p><strong>更新元素命令（UpdateElementCommand）</strong>：</p>
+<ul>
+<li>用于记录特定元素的属性变化</li>
+<li>主要用于拖拽移动和调整大小操作</li>
+<li>只保存相关元素的特定属性变化</li>
+</ul>
+</li>
+</ol>
+<h4 id="4-2-命令接口定义"><a href="#4-2-命令接口定义" class="headerlink" title="4.2 命令接口定义"></a>4.2 命令接口定义</h4><p>所有命令都实现统一的 <a href="file:///e:/ADF-workbase/BDdraw_DEV/src/lib/UndoRedoManager.ts#L3-L7">Command</a> 接口：</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs typescript"><span class="hljs-keyword">export</span> <span class="hljs-keyword">interface</span> <span class="hljs-title class_">Command</span> {<br>  <span class="hljs-title function_">execute</span>(): <span class="hljs-built_in">void</span>; <span class="hljs-comment">// 执行命令</span><br>  <span class="hljs-title function_">undo</span>(): <span class="hljs-built_in">void</span>; <span class="hljs-comment">// 撤销命令</span><br>  <span class="hljs-title function_">redo</span>(): <span class="hljs-built_in">void</span>; <span class="hljs-comment">// 重做命令</span><br>}<br></code></pre></td></tr></table></figure>
+<h4 id="4-3-快照命令（SnapshotCommand）"><a href="#4-3-快照命令（SnapshotCommand）" class="headerlink" title="4.3 快照命令（SnapshotCommand）"></a>4.3 快照命令（SnapshotCommand）</h4><p>快照命令用于记录整个画布状态的变化，适用于影响范围较大的操作。</p>
+<p><strong>核心实现</strong>：</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><code class="hljs typescript"><span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">SnapshotCommand</span> <span class="hljs-keyword">implements</span> <span class="hljs-title class_">Command</span> {<br>  <span class="hljs-keyword">private</span> <span class="hljs-attr">prevState</span>: <span class="hljs-built_in">any</span>;<br>  <span class="hljs-keyword">private</span> <span class="hljs-attr">nextState</span>: <span class="hljs-built_in">any</span>;<br>  <span class="hljs-keyword">private</span> <span class="hljs-attr">commandId</span>: <span class="hljs-built_in">number</span>;<br>  <span class="hljs-keyword">private</span> <span class="hljs-attr">type</span>: <span class="hljs-built_in">string</span>;<br><br>  <span class="hljs-title function_">constructor</span>(<span class="hljs-params"><span class="hljs-attr">prevState</span>: <span class="hljs-built_in">any</span>, <span class="hljs-attr">nextState</span>: <span class="hljs-built_in">any</span>, <span class="hljs-attr">type</span>: <span class="hljs-built_in">any</span></span>) {<br>    <span class="hljs-comment">// 使用 structuredClone 进行深拷贝，确保状态隔离</span><br>    <span class="hljs-variable language_">this</span>.<span class="hljs-property">prevState</span> = <span class="hljs-title function_">structuredClone</span>(prevState);<br>    <span class="hljs-variable language_">this</span>.<span class="hljs-property">nextState</span> = <span class="hljs-title function_">structuredClone</span>(nextState);<br>    <span class="hljs-variable language_">this</span>.<span class="hljs-property">type</span> = <span class="hljs-keyword">type</span>;<br>    <span class="hljs-comment">// 生成唯一的命令ID用于调试</span><br>    <span class="hljs-variable language_">this</span>.<span class="hljs-property">commandId</span> = <span class="hljs-title class_">Date</span>.<span class="hljs-title function_">now</span>() % <span class="hljs-number">1000000</span>;<br>  }<br><br>  <span class="hljs-title function_">execute</span>(): <span class="hljs-built_in">void</span> {<br>    <span class="hljs-comment">// execute在添加到命令栈之前已经执行了</span><br>  }<br><br>  <span class="hljs-title function_">undo</span>(): <span class="hljs-built_in">void</span> {<br>    <span class="hljs-comment">// 恢复到之前的状态</span><br>    useStore.<span class="hljs-title function_">setState</span>(<span class="hljs-variable language_">this</span>.<span class="hljs-property">prevState</span>);<br>  }<br><br>  <span class="hljs-title function_">redo</span>(): <span class="hljs-built_in">void</span> {<br>    <span class="hljs-comment">// 恢复到之后的状态</span><br>    useStore.<span class="hljs-title function_">setState</span>(<span class="hljs-variable language_">this</span>.<span class="hljs-property">nextState</span>);<br>  }<br>}<br></code></pre></td></tr></table></figure>
+<h4 id="4-4-更新元素命令（UpdateElementCommand）"><a href="#4-4-更新元素命令（UpdateElementCommand）" class="headerlink" title="4.4 更新元素命令（UpdateElementCommand）"></a>4.4 更新元素命令（UpdateElementCommand）</h4><p>更新元素命令用于记录特定元素的属性变化，适用于影响范围较小的精细操作。</p>
+<p><strong>核心实现</strong>：</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br></pre></td><td class="code"><pre><code class="hljs typescript"><span class="hljs-keyword">interface</span> <span class="hljs-title class_">UpdateOperation</span> {<br>  <span class="hljs-attr">id</span>: <span class="hljs-built_in">string</span>;<br>  <span class="hljs-attr">initialAttrs</span>: <span class="hljs-title class_">Partial</span>&lt;<span class="hljs-title class_">CanvasElement</span>&gt;; <span class="hljs-comment">// 修改前的属性</span><br>  <span class="hljs-attr">finalAttrs</span>: <span class="hljs-title class_">Partial</span>&lt;<span class="hljs-title class_">CanvasElement</span>&gt;; <span class="hljs-comment">// 修改后的属性</span><br>}<br><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">UpdateElementCommand</span> <span class="hljs-keyword">implements</span> <span class="hljs-title class_">Command</span> {<br>  <span class="hljs-keyword">private</span> <span class="hljs-attr">commandId</span>: <span class="hljs-built_in">string</span>;<br><br>  <span class="hljs-title function_">constructor</span>(<span class="hljs-params"></span><br><span class="hljs-params">    <span class="hljs-keyword">private</span> <span class="hljs-attr">operations</span>: <span class="hljs-title class_">UpdateOperation</span>[],</span><br><span class="hljs-params">    <span class="hljs-keyword">private</span> <span class="hljs-attr">operationType</span>: <span class="hljs-built_in">string</span> = <span class="hljs-string">"更新元素"</span></span><br><span class="hljs-params">  </span>) {<br>    <span class="hljs-comment">// 生成唯一命令ID</span><br>    <span class="hljs-variable language_">this</span>.<span class="hljs-property">commandId</span> = <span class="hljs-string">`UpdateElementCommand-<span class="hljs-subst">${<span class="hljs-built_in">Math</span>.random()</span></span><br><span class="hljs-subst"><span class="hljs-string">      .toString(<span class="hljs-number">36</span>)</span></span><br><span class="hljs-subst"><span class="hljs-string">      .slice(<span class="hljs-number">2</span>, <span class="hljs-number">11</span>)}</span>`</span>;<br>  }<br><br>  <span class="hljs-title function_">execute</span>(): <span class="hljs-built_in">void</span> {<br>    <span class="hljs-comment">// 应用最终状态</span><br>    <span class="hljs-keyword">const</span> <span class="hljs-attr">updates</span>: <span class="hljs-title class_">Record</span>&lt;<span class="hljs-built_in">string</span>, <span class="hljs-title class_">Partial</span>&lt;<span class="hljs-title class_">CanvasElement</span>&gt;&gt; = {};<br>    <span class="hljs-variable language_">this</span>.<span class="hljs-property">operations</span>.<span class="hljs-title function_">forEach</span>(<span class="hljs-function">(<span class="hljs-params">op</span>) =&gt;</span> {<br>      updates[op.<span class="hljs-property">id</span>] = op.<span class="hljs-property">finalAttrs</span>;<br>    });<br><br>    useStore.<span class="hljs-title function_">setState</span>(<span class="hljs-function">(<span class="hljs-params">state</span>) =&gt;</span> {<br>      <span class="hljs-keyword">const</span> newElements = { ...state.<span class="hljs-property">elements</span> };<br>      <span class="hljs-title class_">Object</span>.<span class="hljs-title function_">entries</span>(updates).<span class="hljs-title function_">forEach</span>(<span class="hljs-function">(<span class="hljs-params">[id, attrs]</span>) =&gt;</span> {<br>        <span class="hljs-keyword">if</span> (newElements[id]) newElements[id] = { ...newElements[id], ...attrs };<br>      });<br>      <span class="hljs-keyword">return</span> { <span class="hljs-attr">elements</span>: newElements };<br>    });<br>  }<br><br>  <span class="hljs-title function_">undo</span>(): <span class="hljs-built_in">void</span> {<br>    <span class="hljs-comment">// 撤销：恢复到 initialAttrs</span><br>    <span class="hljs-keyword">const</span> <span class="hljs-attr">updates</span>: <span class="hljs-title class_">Record</span>&lt;<span class="hljs-built_in">string</span>, <span class="hljs-title class_">Partial</span>&lt;<span class="hljs-title class_">CanvasElement</span>&gt;&gt; = {};<br>    <span class="hljs-variable language_">this</span>.<span class="hljs-property">operations</span>.<span class="hljs-title function_">forEach</span>(<span class="hljs-function">(<span class="hljs-params">op</span>) =&gt;</span> {<br>      updates[op.<span class="hljs-property">id</span>] = op.<span class="hljs-property">initialAttrs</span>;<br>    });<br><br>    useStore.<span class="hljs-title function_">setState</span>(<span class="hljs-function">(<span class="hljs-params">state</span>) =&gt;</span> {<br>      <span class="hljs-keyword">const</span> newElements = { ...state.<span class="hljs-property">elements</span> };<br>      <span class="hljs-title class_">Object</span>.<span class="hljs-title function_">entries</span>(updates).<span class="hljs-title function_">forEach</span>(<span class="hljs-function">(<span class="hljs-params">[id, attrs]</span>) =&gt;</span> {<br>        <span class="hljs-keyword">if</span> (newElements[id]) newElements[id] = { ...newElements[id], ...attrs };<br>      });<br>      <span class="hljs-keyword">return</span> { <span class="hljs-attr">elements</span>: newElements };<br>    });<br>  }<br><br>  <span class="hljs-title function_">redo</span>(): <span class="hljs-built_in">void</span> {<br>    <span class="hljs-comment">// 重做：恢复到 finalAttrs</span><br>    <span class="hljs-keyword">const</span> <span class="hljs-attr">updates</span>: <span class="hljs-title class_">Record</span>&lt;<span class="hljs-built_in">string</span>, <span class="hljs-title class_">Partial</span>&lt;<span class="hljs-title class_">CanvasElement</span>&gt;&gt; = {};<br>    <span class="hljs-variable language_">this</span>.<span class="hljs-property">operations</span>.<span class="hljs-title function_">forEach</span>(<span class="hljs-function">(<span class="hljs-params">op</span>) =&gt;</span> {<br>      updates[op.<span class="hljs-property">id</span>] = op.<span class="hljs-property">finalAttrs</span>;<br>    });<br><br>    useStore.<span class="hljs-title function_">setState</span>(<span class="hljs-function">(<span class="hljs-params">state</span>) =&gt;</span> {<br>      <span class="hljs-keyword">const</span> newElements = { ...state.<span class="hljs-property">elements</span> };<br>      <span class="hljs-title class_">Object</span>.<span class="hljs-title function_">entries</span>(updates).<span class="hljs-title function_">forEach</span>(<span class="hljs-function">(<span class="hljs-params">[id, attrs]</span>) =&gt;</span> {<br>        <span class="hljs-keyword">if</span> (newElements[id]) newElements[id] = { ...newElements[id], ...attrs };<br>      });<br>      <span class="hljs-keyword">return</span> { <span class="hljs-attr">elements</span>: newElements };<br>    });<br>  }<br>}<br></code></pre></td></tr></table></figure>
+<h4 id="4-5-命令生命周期"><a href="#4-5-命令生命周期" class="headerlink" title="4.5 命令生命周期"></a>4.5 命令生命周期</h4><p>命令的生命周期包括创建、执行、撤销和重做四个阶段：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs mermaid">graph TD<br>    A[命令创建] --&gt; B[命令执行]<br>    B --&gt; C{用户操作}<br>    C --&gt;|撤销| D[执行undo方法]<br>    C --&gt;|重做| E[执行redo方法]<br>    D --&gt; F[命令状态切换]<br>    E --&gt; F<br>    F --&gt; G[状态更新完成]<br><br>    style A fill:#e1f5fe<br>    style B fill:#f3e5f5<br>    style D fill:#fff3e0<br>    style E fill:#fff3e0<br>    style G fill:#e8f5e8<br></code></pre></td></tr></table></figure>
+<h3 id="5-命令栈管理机制"><a href="#5-命令栈管理机制" class="headerlink" title="5. 命令栈管理机制"></a>5. 命令栈管理机制</h3><p>撤销/重做机制使用两个栈来管理命令历史：</p>
+<ol>
+<li><p><strong>撤销栈（Undo Stack）</strong>：</p>
+<ul>
+<li>存储用户可以撤销的操作命令</li>
+<li>栈顶是最近执行的命令</li>
+<li>执行新命令时，命令被推入此栈</li>
+<li>执行撤销操作时，命令从此栈弹出并推入重做栈</li>
+</ul>
+</li>
+<li><p><strong>重做栈（Redo Stack）</strong>：</p>
+<ul>
+<li>存储用户可以重做的操作命令</li>
+<li>在执行撤销操作时，被撤销的命令被推入此栈</li>
+<li>执行重做操作时，命令从此栈弹出并推入撤销栈</li>
+<li>执行新命令时，此栈被清空</li>
+</ul>
+</li>
+</ol>
+<h4 id="5-1-命令栈操作流程"><a href="#5-1-命令栈操作流程" class="headerlink" title="5.1 命令栈操作流程"></a>5.1 命令栈操作流程</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><code class="hljs mermaid">graph TD<br>    A[执行新命令] --&gt; B[命令入撤销栈]<br>    B --&gt; C[清空重做栈]<br><br>    D[执行撤销] --&gt; E{撤销栈空?}<br>    E --&gt;|是| F[无操作]<br>    E --&gt;|否| G[弹出命令]<br>    G --&gt; H[执行命令.undo]<br>    H --&gt; I[命令入重做栈]<br><br>    J[执行重做] --&gt; K{重做栈空?}<br>    K --&gt;|是| L[无操作]<br>    K --&gt;|否| M[弹出命令]<br>    M --&gt; N[执行命令.redo]<br>    N --&gt; O[命令入撤销栈]<br><br>    style A fill:#e1f5fe<br>    style B fill:#f3e5f5<br>    style C fill:#f3e5f5<br>    style D fill:#e1f5fe<br>    style H fill:#fff3e0<br>    style I fill:#fff3e0<br>    style J fill:#e1f5fe<br>    style N fill:#e8f5e8<br>    style O fill:#e8f5e8<br></code></pre></td></tr></table></figure>
+<h4 id="5-2-不同类型的命令"><a href="#5-2-不同类型的命令" class="headerlink" title="5.2 不同类型的命令"></a>5.2 不同类型的命令</h4><p>撤销栈中并不全是快照命令。系统中至少有两种不同类型的命令：</p>
+<ol>
+<li><p><strong>快照命令（SnapshotCommand）</strong>：</p>
+<ul>
+<li>用于记录整个画布状态的变化</li>
+<li>通常用于添加元素、删除元素等较大范围的操作</li>
+<li>保存完整的状态快照</li>
+</ul>
+</li>
+<li><p><strong>更新元素命令（UpdateElementCommand）</strong>：</p>
+<ul>
+<li>用于记录特定元素的属性变化</li>
+<li>主要用于拖拽移动和调整大小操作</li>
+<li>只保存相关元素的特定属性变化</li>
+</ul>
+</li>
+</ol>
+<h4 id="5-3-操作序列和撤销栈状态变化示例"><a href="#5-3-操作序列和撤销栈状态变化示例" class="headerlink" title="5.3 操作序列和撤销栈状态变化示例"></a>5.3 操作序列和撤销栈状态变化示例</h4><h5 id="初始状态"><a href="#初始状态" class="headerlink" title="初始状态"></a>初始状态</h5><p>撤销栈：空<br>重做栈：空</p>
+<h5 id="1-创建元素-A"><a href="#1-创建元素-A" class="headerlink" title="1. 创建元素 A"></a>1. 创建元素 A</h5><p>当创建元素 A 时，系统会生成一个快照命令，记录整个画布状态的变化。<br>撤销栈：[SnapshotCommand_A] (大小: 1)<br>重做栈：空</p>
+<h5 id="2-移动-A-到一个位置"><a href="#2-移动-A-到一个位置" class="headerlink" title="2. 移动 A 到一个位置"></a>2. 移动 A 到一个位置</h5><p>当移动元素 A 时，系统会生成一个更新元素命令（UpdateElementCommand），只记录 A 元素位置的变化。<br>撤销栈：[SnapshotCommand_A, UpdateElementCommand_MoveA] (大小: 2)<br>重做栈：空</p>
+<h5 id="3-创建元素-B"><a href="#3-创建元素-B" class="headerlink" title="3. 创建元素 B"></a>3. 创建元素 B</h5><p>当创建元素 B 时，系统会生成另一个快照命令，记录添加 B 元素后的状态。<br>撤销栈：[SnapshotCommand_A, UpdateElementCommand_MoveA, SnapshotCommand_B] (大小: 3)<br>重做栈：空</p>
+<h5 id="4-缩放-B-到一个位置"><a href="#4-缩放-B-到一个位置" class="headerlink" title="4. 缩放 B 到一个位置"></a>4. 缩放 B 到一个位置</h5><p>当缩放元素 B 时，系统会生成一个更新元素命令，记录 B 元素尺寸和位置的变化。<br>撤销栈：[SnapshotCommand_A, UpdateElementCommand_MoveA, SnapshotCommand_B, UpdateElementCommand_ResizeB] (大小: 4)<br>重做栈：空</p>
+<h5 id="5-移动-B-到一个位置"><a href="#5-移动-B-到一个位置" class="headerlink" title="5. 移动 B 到一个位置"></a>5. 移动 B 到一个位置</h5><p>当再次移动元素 B 时，系统会生成另一个更新元素命令，记录 B 元素位置的新变化。<br>撤销栈：[SnapshotCommand_A, UpdateElementCommand_MoveA, SnapshotCommand_B, UpdateElementCommand_ResizeB, UpdateElementCommand_MoveB] (大小: 5)<br>重做栈：空</p>
+<h4 id="5-4-执行撤销操作时的状态变化"><a href="#5-4-执行撤销操作时的状态变化" class="headerlink" title="5.4 执行撤销操作时的状态变化"></a>5.4 执行撤销操作时的状态变化</h4><h5 id="第一次撤销（移动-B-操作）"><a href="#第一次撤销（移动-B-操作）" class="headerlink" title="第一次撤销（移动 B 操作）"></a>第一次撤销（移动 B 操作）</h5><ol>
+<li>从撤销栈弹出最后一个命令：UpdateElementCommand_MoveB</li>
+<li>执行该命令的 undo()方法，将 B 元素恢复到缩放后的位置</li>
+<li>将该命令推入重做栈</li>
+</ol>
+<p>撤销栈：[SnapshotCommand_A, UpdateElementCommand_MoveA, SnapshotCommand_B, UpdateElementCommand_ResizeB] (大小: 4)<br>重做栈：[UpdateElementCommand_MoveB] (大小: 1)</p>
+<h5 id="第二次撤销（缩放-B-操作）"><a href="#第二次撤销（缩放-B-操作）" class="headerlink" title="第二次撤销（缩放 B 操作）"></a>第二次撤销（缩放 B 操作）</h5><ol>
+<li>从撤销栈弹出最后一个命令：UpdateElementCommand_ResizeB</li>
+<li>执行该命令的 undo()方法，将 B 元素恢复到刚创建时的尺寸和位置</li>
+<li>将该命令推入重做栈</li>
+</ol>
+<p>撤销栈：[SnapshotCommand_A, UpdateElementCommand_MoveA, SnapshotCommand_B] (大小: 3)<br>重做栈：[UpdateElementCommand_MoveB, UpdateElementCommand_ResizeB] (大小: 2)</p>
+<h5 id="第三次撤销（创建-B-操作）"><a href="#第三次撤销（创建-B-操作）" class="headerlink" title="第三次撤销（创建 B 操作）"></a>第三次撤销（创建 B 操作）</h5><ol>
+<li>从撤销栈弹出最后一个命令：SnapshotCommand_B</li>
+<li>执行该命令的 undo()方法，将整个画布状态恢复到创建 B 之前的状态（即只包含 A 元素的状态）</li>
+<li>将该命令推入重做栈</li>
+</ol>
+<p>撤销栈：[SnapshotCommand_A, UpdateElementCommand_MoveA] (大小: 2)<br>重做栈：[UpdateElementCommand_MoveB, UpdateElementCommand_ResizeB, SnapshotCommand_B] (大小: 3)</p>
+<h5 id="第四次撤销（移动-A-操作）"><a href="#第四次撤销（移动-A-操作）" class="headerlink" title="第四次撤销（移动 A 操作）"></a>第四次撤销（移动 A 操作）</h5><ol>
+<li>从撤销栈弹出最后一个命令：UpdateElementCommand_MoveA</li>
+<li>执行该命令的 undo()方法，将 A 元素恢复到初始位置</li>
+<li>将该命令推入重做栈</li>
+</ol>
+<p>撤销栈：[SnapshotCommand_A] (大小: 1)<br>重做栈：[UpdateElementCommand_MoveB, UpdateElementCommand_ResizeB, SnapshotCommand_B, UpdateElementCommand_MoveA] (大小: 4)</p>
+<h5 id="第五次撤销（创建-A-操作）"><a href="#第五次撤销（创建-A-操作）" class="headerlink" title="第五次撤销（创建 A 操作）"></a>第五次撤销（创建 A 操作）</h5><ol>
+<li>从撤销栈弹出最后一个命令：SnapshotCommand_A</li>
+<li>执行该命令的 undo()方法，将整个画布状态恢复到初始状态（空画布）</li>
+<li>将该命令推入重做栈</li>
+</ol>
+<p>撤销栈：空<br>重做栈：[UpdateElementCommand_MoveB, UpdateElementCommand_ResizeB, SnapshotCommand_B, UpdateElementCommand_MoveA, SnapshotCommand_A] (大小: 5)</p>
+<h3 id="6-逻辑流程-Logic-Flow"><a href="#6-逻辑流程-Logic-Flow" class="headerlink" title="6. 逻辑流程 (Logic Flow)"></a>6. 逻辑流程 (Logic Flow)</h3><h4 id="6-1-交互时序图-Mermaid"><a href="#6-1-交互时序图-Mermaid" class="headerlink" title="6.1 交互时序图 (Mermaid)"></a>6.1 交互时序图 (Mermaid)</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><code class="hljs mermaid">sequenceDiagram<br>    participant U as 用户<br>    participant SM as StageManager<br>    participant URM as UndoRedoManager<br>    participant C as Command<br>    participant ZS as Zustand Store<br><br>    U-&gt;&gt;SM: 执行操作（如拖拽元素）<br>    SM-&gt;&gt;SM: 记录操作初始状态<br>    SM-&gt;&gt;ZS: 更新元素状态<br>    SM-&gt;&gt;C: 创建 UpdateElementCommand<br>    SM-&gt;&gt;URM: executeCommand(command)<br>    URM-&gt;&gt;C: command.execute()<br>    C-&gt;&gt;URM: 命令入撤销栈<br>    URM-&gt;&gt;URM: 清空重做栈<br><br>    U-&gt;&gt;URM: 执行撤销 (Ctrl+Z)<br>    URM-&gt;&gt;URM: 锁定管理器<br>    URM-&gt;&gt;C: command.undo()<br>    C-&gt;&gt;ZS: 恢复初始状态<br>    C-&gt;&gt;URM: 命令入重做栈<br>    URM-&gt;&gt;URM: 解锁管理器<br><br>    U-&gt;&gt;URM: 执行重做 (Ctrl+Y)<br>    URM-&gt;&gt;URM: 锁定管理器<br>    URM-&gt;&gt;C: command.redo()<br>    C-&gt;&gt;ZS: 恢复最终状态<br>    C-&gt;&gt;URM: 命令入撤销栈<br>    URM-&gt;&gt;URM: 解锁管理器<br></code></pre></td></tr></table></figure>
+<h4 id="6-2-核心函数解析"><a href="#6-2-核心函数解析" class="headerlink" title="6.2 核心函数解析"></a>6.2 核心函数解析</h4><p><strong>executeCommand 函数</strong>：</p>
+<ul>
+<li><strong>触发时机</strong>: 当用户完成一个操作（如创建、更新、删除元素）时触发</li>
+<li><strong>逻辑闭环</strong>: 执行命令并将命令添加到撤销栈，同时清空重做栈</li>
+<li><p><strong>核心实现</strong>:</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs typescript"><span class="hljs-title function_">executeCommand</span>(<span class="hljs-params"><span class="hljs-attr">command</span>: <span class="hljs-title class_">Command</span></span>) {<br>  <span class="hljs-keyword">if</span> (<span class="hljs-variable language_">this</span>.<span class="hljs-property">locked</span>) {<br>    <span class="hljs-comment">// 如果管理器被锁定，忽略命令</span><br>    <span class="hljs-keyword">return</span><br>  }<br><br>  <span class="hljs-comment">// 执行命令</span><br>  command.<span class="hljs-title function_">execute</span>()<br><br>  <span class="hljs-comment">// 将命令添加到撤销栈</span><br>  <span class="hljs-variable language_">this</span>.<span class="hljs-property">undoStack</span>.<span class="hljs-title function_">push</span>(command)<br><br>  <span class="hljs-comment">// 清空重做栈</span><br>  <span class="hljs-variable language_">this</span>.<span class="hljs-property">redoStack</span> = []<br>}<br></code></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><strong>undo 函数</strong>：</p>
+<ul>
+<li><strong>触发时机</strong>: 当用户执行撤销操作（如按 Ctrl+Z）时触发</li>
+<li><strong>逻辑闭环</strong>: 从撤销栈弹出命令，执行命令的 undo 方法，并将命令放入重做栈</li>
+<li><p><strong>核心实现</strong>:</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs typescript"><span class="hljs-title function_">undo</span>(<span class="hljs-params"></span>) {<br>  <span class="hljs-keyword">if</span> (<span class="hljs-variable language_">this</span>.<span class="hljs-property">undoStack</span>.<span class="hljs-property">length</span> === <span class="hljs-number">0</span>) {<br>    <span class="hljs-comment">// 撤销栈为空，无法撤销</span><br>    <span class="hljs-keyword">return</span><br>  }<br><br>  <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">lock</span>()  <span class="hljs-comment">// 锁定管理器</span><br>  <span class="hljs-keyword">const</span> command = <span class="hljs-variable language_">this</span>.<span class="hljs-property">undoStack</span>.<span class="hljs-title function_">pop</span>()!  <span class="hljs-comment">// 弹出命令</span><br>  command.<span class="hljs-title function_">undo</span>()  <span class="hljs-comment">// 执行撤销</span><br>  <span class="hljs-variable language_">this</span>.<span class="hljs-property">redoStack</span>.<span class="hljs-title function_">push</span>(command)  <span class="hljs-comment">// 命令入重做栈</span><br>  <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">unlock</span>()  <span class="hljs-comment">// 解锁管理器</span><br>}<br></code></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><strong>redo 函数</strong>：</p>
+<ul>
+<li><strong>触发时机</strong>: 当用户执行重做操作（如按 Ctrl+Y）时触发</li>
+<li><strong>逻辑闭环</strong>: 从重做栈弹出命令，执行命令的 redo 方法，并将命令放入撤销栈</li>
+<li><p><strong>核心实现</strong>:</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs typescript"><span class="hljs-title function_">redo</span>(<span class="hljs-params"></span>) {<br>  <span class="hljs-keyword">if</span> (<span class="hljs-variable language_">this</span>.<span class="hljs-property">redoStack</span>.<span class="hljs-property">length</span> === <span class="hljs-number">0</span>) {<br>    <span class="hljs-comment">// 重做栈为空，无法重做</span><br>    <span class="hljs-keyword">return</span><br>  }<br><br>  <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">lock</span>()  <span class="hljs-comment">// 锁定管理器</span><br>  <span class="hljs-keyword">const</span> command = <span class="hljs-variable language_">this</span>.<span class="hljs-property">redoStack</span>.<span class="hljs-title function_">pop</span>()!  <span class="hljs-comment">// 弹出命令</span><br>  command.<span class="hljs-title function_">redo</span>()  <span class="hljs-comment">// 执行重做</span><br>  <span class="hljs-variable language_">this</span>.<span class="hljs-property">undoStack</span>.<span class="hljs-title function_">push</span>(command)  <span class="hljs-comment">// 命令入撤销栈</span><br>  <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">unlock</span>()  <span class="hljs-comment">// 解锁管理器</span><br>}<br></code></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="7-UI-与样式实现-UI-Implementation"><a href="#7-UI-与样式实现-UI-Implementation" class="headerlink" title="7. UI 与样式实现 (UI Implementation)"></a>7. UI 与样式实现 (UI Implementation)</h3><p>Undo/Redo 机制通过快捷键和控制台界面与用户交互：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs mermaid">graph TD<br>    A[用户交互] --&gt; B{交互方式}<br>    B --&gt; C[键盘快捷键]<br>    B --&gt; D[控制台界面]<br>    C --&gt; E[Ctrl+Z 撤销]<br>    C --&gt; F[Ctrl+Y 重做]<br>    D --&gt; G[命令栈控制台]<br>    G --&gt; H[撤销按钮]<br>    G --&gt; I[重做按钮]<br>    G --&gt; J[清空按钮]<br><br>    style A fill:#e1f5fe<br>    style C fill:#f3e5f5<br>    style D fill:#f3e5f5<br>    style E fill:#e8f5e8<br>    style F fill:#e8f5e8<br>    style G fill:#fff3e0<br></code></pre></td></tr></table></figure>
+<ul>
+<li><strong>布局策略</strong>: 通过 hooks 和快捷键系统监听用户输入，在控制台组件中显示命令栈状态</li>
+<li><strong>样式方案</strong>: 控制台界面使用深色主题，清晰显示撤销栈和重做栈的内容，通过颜色区分不同状态（锁定/解锁）</li>
+</ul>
+<blockquote>
+<p>⚠️ 为防止在执行撤销/重做操作时记录新的命令，系统实现了锁定机制。在执行命令时会先锁定管理器，执行完成后再解锁，确保操作的原子性。</p>
+</blockquote>
+<div id="paginator"></div></div><div id="post-footer"><div id="pages"><div class="footer-link" style="width: 50%;text-align:right;border-right:1px #fe2 solid"><a href="/Arknight-notes/posts/36977.html">← 下一篇 2025-11-23-canvas项目相关-工具栏选择机制</a></div><div class="footer-link" style="width: 50%;right:1px;border-left:1px #fe2 solid"><a href="/Arknight-notes/posts/55740.html">2025-11-23-canvas项目相关-图像编辑机制 上一篇 →</a></div></div></div><div id="comments"><div id="gitalk"></div></div></div><div class="bottom-btn"><div><a class="i-top" id="to-top" onClick="scrolls.scrolltop();" title="回到顶部" style="opacity: 0; display: none;">∧ </a><a class="i-index" id="to-index" href="#toc-div" title="文章目录">≡</a><a class="i-color" id="color-mode" onClick="colorMode.change()" title="切换主题"></a></div></div></article><aside><div id="about"><a href="/Arknight-notes/" id="logo"><img src="https://pic4.zhimg.com/80/v2-d9884f32711e19e80979eac58e943897_720w.webp" alt="Logo" style="margin:20;border-radius:0;"></a><h1 id="Dr"><a href="zhongye">柊野</a></h1><div id="description"><p></p></div></div><div id="aside-block"><div id="toc-div"><h1>目录</h1><ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E6%A8%A1%E5%9D%97%E6%91%98%E8%A6%81-Executive-Summary"><span class="toc-number">1.</span> <span class="toc-text">1. 模块摘要 (Executive Summary)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-Props-%E5%92%8C%E7%9B%B8%E5%85%B3%E7%B1%BB%E5%9E%8B%E5%AE%9A%E4%B9%89"><span class="toc-number">2.</span> <span class="toc-text">2. Props 和相关类型定义</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-1-UndoRedoManager-%E6%A0%B8%E5%BF%83%E6%96%B9%E6%B3%95"><span class="toc-number">2.1.</span> <span class="toc-text">2.1 UndoRedoManager 核心方法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-2-%E6%A0%B8%E5%BF%83%E7%B1%BB%E5%9E%8B%E5%AE%9A%E4%B9%89"><span class="toc-number">2.2.</span> <span class="toc-text">2.2 核心类型定义</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E6%A0%B8%E5%BF%83%E7%8A%B6%E6%80%81%E7%AE%A1%E7%90%86-State-Architecture"><span class="toc-number">3.</span> <span class="toc-text">3. 核心状态管理 (State Architecture)</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#3-1-%E5%86%85%E9%83%A8%E7%8A%B6%E6%80%81-Local-State"><span class="toc-number">3.1.</span> <span class="toc-text">3.1 内部状态 (Local State)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-2-%E5%A4%96%E9%83%A8%E7%8A%B6%E6%80%81-Global-Server-State"><span class="toc-number">3.2.</span> <span class="toc-text">3.2 外部状态 (Global&#x2F;Server State)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-3-%E7%8A%B6%E6%80%81%E5%90%8C%E6%AD%A5%E6%9C%BA%E5%88%B6"><span class="toc-number">3.3.</span> <span class="toc-text">3.3 状态同步机制</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E5%91%BD%E4%BB%A4%E7%AE%A1%E7%90%86%E6%9C%BA%E5%88%B6"><span class="toc-number">4.</span> <span class="toc-text">4. 命令管理机制</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#4-1-%E5%91%BD%E4%BB%A4%E7%B1%BB%E5%9E%8B"><span class="toc-number">4.1.</span> <span class="toc-text">4.1 命令类型</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-2-%E5%91%BD%E4%BB%A4%E6%8E%A5%E5%8F%A3%E5%AE%9A%E4%B9%89"><span class="toc-number">4.2.</span> <span class="toc-text">4.2 命令接口定义</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-3-%E5%BF%AB%E7%85%A7%E5%91%BD%E4%BB%A4%EF%BC%88SnapshotCommand%EF%BC%89"><span class="toc-number">4.3.</span> <span class="toc-text">4.3 快照命令（SnapshotCommand）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-4-%E6%9B%B4%E6%96%B0%E5%85%83%E7%B4%A0%E5%91%BD%E4%BB%A4%EF%BC%88UpdateElementCommand%EF%BC%89"><span class="toc-number">4.4.</span> <span class="toc-text">4.4 更新元素命令（UpdateElementCommand）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-5-%E5%91%BD%E4%BB%A4%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F"><span class="toc-number">4.5.</span> <span class="toc-text">4.5 命令生命周期</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-%E5%91%BD%E4%BB%A4%E6%A0%88%E7%AE%A1%E7%90%86%E6%9C%BA%E5%88%B6"><span class="toc-number">5.</span> <span class="toc-text">5. 命令栈管理机制</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#5-1-%E5%91%BD%E4%BB%A4%E6%A0%88%E6%93%8D%E4%BD%9C%E6%B5%81%E7%A8%8B"><span class="toc-number">5.1.</span> <span class="toc-text">5.1 命令栈操作流程</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-2-%E4%B8%8D%E5%90%8C%E7%B1%BB%E5%9E%8B%E7%9A%84%E5%91%BD%E4%BB%A4"><span class="toc-number">5.2.</span> <span class="toc-text">5.2 不同类型的命令</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-3-%E6%93%8D%E4%BD%9C%E5%BA%8F%E5%88%97%E5%92%8C%E6%92%A4%E9%94%80%E6%A0%88%E7%8A%B6%E6%80%81%E5%8F%98%E5%8C%96%E7%A4%BA%E4%BE%8B"><span class="toc-number">5.3.</span> <span class="toc-text">5.3 操作序列和撤销栈状态变化示例</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%88%9D%E5%A7%8B%E7%8A%B6%E6%80%81"><span class="toc-number">5.3.1.</span> <span class="toc-text">初始状态</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#1-%E5%88%9B%E5%BB%BA%E5%85%83%E7%B4%A0-A"><span class="toc-number">5.3.2.</span> <span class="toc-text">1. 创建元素 A</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-%E7%A7%BB%E5%8A%A8-A-%E5%88%B0%E4%B8%80%E4%B8%AA%E4%BD%8D%E7%BD%AE"><span class="toc-number">5.3.3.</span> <span class="toc-text">2. 移动 A 到一个位置</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3-%E5%88%9B%E5%BB%BA%E5%85%83%E7%B4%A0-B"><span class="toc-number">5.3.4.</span> <span class="toc-text">3. 创建元素 B</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#4-%E7%BC%A9%E6%94%BE-B-%E5%88%B0%E4%B8%80%E4%B8%AA%E4%BD%8D%E7%BD%AE"><span class="toc-number">5.3.5.</span> <span class="toc-text">4. 缩放 B 到一个位置</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#5-%E7%A7%BB%E5%8A%A8-B-%E5%88%B0%E4%B8%80%E4%B8%AA%E4%BD%8D%E7%BD%AE"><span class="toc-number">5.3.6.</span> <span class="toc-text">5. 移动 B 到一个位置</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-4-%E6%89%A7%E8%A1%8C%E6%92%A4%E9%94%80%E6%93%8D%E4%BD%9C%E6%97%B6%E7%9A%84%E7%8A%B6%E6%80%81%E5%8F%98%E5%8C%96"><span class="toc-number">5.4.</span> <span class="toc-text">5.4 执行撤销操作时的状态变化</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%AC%AC%E4%B8%80%E6%AC%A1%E6%92%A4%E9%94%80%EF%BC%88%E7%A7%BB%E5%8A%A8-B-%E6%93%8D%E4%BD%9C%EF%BC%89"><span class="toc-number">5.4.1.</span> <span class="toc-text">第一次撤销（移动 B 操作）</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%AC%AC%E4%BA%8C%E6%AC%A1%E6%92%A4%E9%94%80%EF%BC%88%E7%BC%A9%E6%94%BE-B-%E6%93%8D%E4%BD%9C%EF%BC%89"><span class="toc-number">5.4.2.</span> <span class="toc-text">第二次撤销（缩放 B 操作）</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%AC%AC%E4%B8%89%E6%AC%A1%E6%92%A4%E9%94%80%EF%BC%88%E5%88%9B%E5%BB%BA-B-%E6%93%8D%E4%BD%9C%EF%BC%89"><span class="toc-number">5.4.3.</span> <span class="toc-text">第三次撤销（创建 B 操作）</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%AC%AC%E5%9B%9B%E6%AC%A1%E6%92%A4%E9%94%80%EF%BC%88%E7%A7%BB%E5%8A%A8-A-%E6%93%8D%E4%BD%9C%EF%BC%89"><span class="toc-number">5.4.4.</span> <span class="toc-text">第四次撤销（移动 A 操作）</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%AC%AC%E4%BA%94%E6%AC%A1%E6%92%A4%E9%94%80%EF%BC%88%E5%88%9B%E5%BB%BA-A-%E6%93%8D%E4%BD%9C%EF%BC%89"><span class="toc-number">5.4.5.</span> <span class="toc-text">第五次撤销（创建 A 操作）</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-%E9%80%BB%E8%BE%91%E6%B5%81%E7%A8%8B-Logic-Flow"><span class="toc-number">6.</span> <span class="toc-text">6. 逻辑流程 (Logic Flow)</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#6-1-%E4%BA%A4%E4%BA%92%E6%97%B6%E5%BA%8F%E5%9B%BE-Mermaid"><span class="toc-number">6.1.</span> <span class="toc-text">6.1 交互时序图 (Mermaid)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6-2-%E6%A0%B8%E5%BF%83%E5%87%BD%E6%95%B0%E8%A7%A3%E6%9E%90"><span class="toc-number">6.2.</span> <span class="toc-text">6.2 核心函数解析</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-UI-%E4%B8%8E%E6%A0%B7%E5%BC%8F%E5%AE%9E%E7%8E%B0-UI-Implementation"><span class="toc-number">7.</span> <span class="toc-text">7. UI 与样式实现 (UI Implementation)</span></a></li></ol></div></div><footer><nobr><span class="icp-title">GZHU</span><span class="icp-content">193001-0001</span></nobr><br><nobr><span class="icp-title">OUTPOST</span><span class="icp-content">169-2025-0331</span></nobr><br><nobr>构建自 <a target="_blank" rel="noopener" href="http://hexo.io">Hexo</a></nobr><wbr><nobr> 使用主题 <a target="_blank" rel="noopener" href="https://github.com/Yue-plus/hexo-theme-arknights">Arknights</a></nobr><wbr><nobr> 主题作者 <a target="_blank" rel="noopener" href="https://github.com/Yue-plus">Yue_plus</a></nobr></footer></aside></main><canvas id="canvas-dust"></canvas></body></html>

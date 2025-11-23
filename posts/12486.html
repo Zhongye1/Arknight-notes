@@ -1,0 +1,403 @@
+<!DOCTYPE html><html lang="en" theme-mode="dark"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>2025-11-23-canvas项目相关-视口管理机制 | Notes|笔记站</title><link rel="icon" type="image/x-icon" href="/Arknight-notes/favicon.ico"><link rel="preload" as="font" crossorigin="anonymous" href="/Arknight-notes/font/Bender.ttf"><link rel="preload" as="font" crossorigin="anonymous" href="/Arknight-notes/font/BenderLight.ttf"><link rel="preload" as="font" crossorigin="anonymous" href="/Arknight-notes/font/JetBrainsMono-Regular.woff2"><link rel="stylesheet" href="/Arknight-notes/css/arknights.css"><style>@font-face {
+  font-family: Bender;
+  src: local('Bender'), url("/Arknight-notes/font/Bender.ttf"), url("/Arknight-notes/font/Bender.otf");
+}
+@font-face {
+  font-family: BenderLight;
+  src: local('BenderLight'), url("/Arknight-notes/font/BenderLight.ttf");
+}
+@font-face {
+  font-family: 'JetBrains Mono';
+  src: local('JetBrains Mono'), url('/Arknight-notes/font/JetBrainsMono-Regular.woff2') format('woff2');
+}
+</style><script>var config = {"root":"/Arknight-notes/","code_fold":90,"search":{"preload":false,"activeHolder":"键入以继续","blurHolder":"数据检索","noResult":"无 $0 相关数据"},"code":{"codeInfo":"$0 - $1 行","copy":"复制"}}</script><link type="text/css" rel="stylesheet" href="/Arknight-notes/lib/encrypt/hbe.style.css"><script src="/Arknight-notes/js/gitalk.js"></script><script src="//unpkg.com/mermaid@10.5.0/dist/mermaid.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.6.1/MathJax.js"></script><script>MathJax.Hub.Config({
+ menuSettings: {
+   zoom: "None"
+ },
+ showMathMenu: false,
+ jax: ["input/TeX","output/CommonHTML"],
+ extensions: ["tex2jax.js"],
+ TeX: {
+   extensions: ["AMSmath.js","AMSsymbols.js"],
+   equationNumbers: {
+     autoNumber: "AMS"
+   }
+ },
+ tex2jax: {
+   inlineMath: [["\\(", "\\)"]],
+   displayMath: [["\\[", "\\]"]]
+ }
+});</script><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lightgallery.css"><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lg-zoom.css"><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lg-thumbnail.css"><link type="text/css" rel="stylesheet" href="/Arknight-notes/lib/fontawesome/css/all.min.css"><script>if (window.localStorage.getItem('theme-mode') === 'light')
+ document.documentElement.setAttribute('theme-mode', 'light')
+if (window.localStorage.getItem('theme-mode') === 'dark')
+ document.documentElement.setAttribute('theme-mode', 'dark')</script><style>@font-face {
+ font-family: BenderLight;
+ src: local('Bender'), url("/Arknight-notes/font/BenderLight.woff2") format('woff2');
+}
+@font-face {
+ font-family: 'JetBrains Mono';
+ src: local('JetBrains Mono'), url('/Arknight-notes/font/JetBrainsMono-Regular.woff2') format('woff2');
+}</style><style>:root {
+ --dark-background: url('https://pic2.zhimg.com/v2-6269d74b4dafe14781d03790e5a86b21_r.jpg');
+ --light-background: url('https://pic1.zhimg.com/v2-233b64b583642fc4a6d77e69ced33150_r.jpg');
+ --theme-encrypt-confirm: '确认'
+}</style><script defer src="/Arknight-notes/js/arknights.js"></script><script defer src="/Arknight-notes/js/search.js"></script><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><script async src="/Arknight-notes/js/gitalk.js"></script><script defer type="module">import mermaid from '//unpkg.com/mermaid@10.5.0/dist/mermaid.esm.mjs';
+window.mermaid = mermaid;
+code.paintMermaid();
+</script><script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.6.1/MathJax.js"></script><script>MathJax.Hub.Config({
+  menuSettings: {
+    zoom: "None"
+  },
+  showMathMenu: false,
+  jax: ["input/TeX","output/CommonHTML"],
+  extensions: ["tex2jax.js"],
+  TeX: {
+    extensions: ["AMSmath.js","AMSsymbols.js"],
+    equationNumbers: {
+      autoNumber: "AMS"
+    }
+  },
+  tex2jax: {
+    inlineMath: [["\\(", "\\)"]],
+    displayMath: [["\\[", "\\]"]]
+  }
+});
+</script><script async src="//unpkg.com/lightgallery@2.7.1/lightgallery.min.js"></script><script async src="//unpkg.com/lightgallery@2.7.1/plugins/zoom/lg-zoom.min.js"></script><script async src="//unpkg.com/lightgallery@2.7.1/plugins/thumbnail/lg-thumbnail.min.js"></script><script async src="/Arknight-notes/lib/encrypt/hbe.js"></script><script async src="/Arknight-notes/js/pjax.js"></script><script class="pjax-js">reset= () => {gitalk = new Gitalk({
+ clientID: 'Ov23ct13Fb0b67x23wnT',
+ clientSecret: 'f18ce69dd545e3c0f5e2456afde9c756fe8a254a',
+ repo: 'Arknight-notes',
+ owner: 'Zhongye1',
+ admin: ['Zhongye1'],
+ distractionFreeMode: false,
+ id: location.pathname
+});
+if (document.querySelector("#gitalk")) gitalk.render("gitalk");document.querySelector('.lg-container')?.remove()
+lightGallery(document.getElementById('post-bg'), {
+  plugins: [lgZoom,lgThumbnail],
+  selector: '.item-img'})}</script><script>window.addEventListener("load",() => {pjax = new Pjax({
+ cacheBust: false,
+ selectors: ['title','article','#aside-block','.pjax-js','data-pjax','.busuanzi'],
+ switches: {'article': Pjax.switches.sideBySide},
+ switchesOptions: {
+   'article': {
+     classNames: {
+       remove: "pjax-out",
+       add: "pjax-in"
+     }
+   }
+ }
+});
+document.addEventListener("pjax:complete", reset);document.addEventListener('pjax:success', _ => bszCaller.fetch(
+ "//busuanzi.ibruce.info/busuanzi?jsonpCallback=BusuanziCallback", a => {
+  bszTag.texts(a),
+  bszTag.shows()
+}));reset()})</script><script class="pjax-js">reset= () => {gitalk = new Gitalk({
+ clientID: 'Ov23ct13Fb0b67x23wnT',
+ clientSecret: 'f18ce69dd545e3c0f5e2456afde9c756fe8a254a',
+ repo: 'Arknight-notes',
+ owner: 'Zhongye1',
+ admin: ['Zhongye1'],
+ distractionFreeMode: false,
+ id: location.pathname
+});
+if (document.querySelector("#gitalk")) gitalk.render("gitalk");document.querySelector('.lg-container')?.remove()
+lightGallery(document.getElementById('post-bg'), {
+  plugins: [lgZoom,lgThumbnail],
+  selector: '.item-img'})}</script><script>window.addEventListener("load",() => {pjax = new Pjax({
+ cacheBust: false,
+ selectors: ['title','article','#aside-block','.pjax-js'],
+ switches: {'article': Pjax.switches.sideBySide},
+ switchesOptions: {
+   'article': {
+     classNames: {
+       remove: "pjax-out",
+       add: "pjax-in"
+     }
+   }
+ }
+});
+document.addEventListener("pjax:complete", reset);reset()})</script><meta name="generator" content="Hexo 7.3.0"><style>mjx-container[jax="SVG"] {
+  direction: ltr;
+}
+
+mjx-container[jax="SVG"] > svg {
+  overflow: visible;
+}
+
+mjx-container[jax="SVG"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="SVG"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="SVG"][justify="right"] {
+  text-align: right;
+}
+
+g[data-mml-node="merror"] > g {
+  fill: red;
+  stroke: red;
+}
+
+g[data-mml-node="merror"] > rect[data-background] {
+  fill: yellow;
+  stroke: none;
+}
+
+g[data-mml-node="mtable"] > line[data-line] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > rect[data-frame] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > .mjx-dashed {
+  stroke-dasharray: 140;
+}
+
+g[data-mml-node="mtable"] > .mjx-dotted {
+  stroke-linecap: round;
+  stroke-dasharray: 0,140;
+}
+
+g[data-mml-node="mtable"] > svg {
+  overflow: visible;
+}
+
+[jax="SVG"] mjx-tool {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+[jax="SVG"] mjx-tool > mjx-tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+mjx-tool > mjx-tip {
+  display: inline-block;
+  padding: .2em;
+  border: 1px solid #888;
+  font-size: 70%;
+  background-color: #F8F8F8;
+  color: black;
+  box-shadow: 2px 2px 5px #AAAAAA;
+}
+
+g[data-mml-node="maction"][data-toggle] {
+  cursor: pointer;
+}
+
+mjx-status {
+  display: block;
+  position: fixed;
+  left: 1em;
+  bottom: 1em;
+  min-width: 25%;
+  padding: .2em .4em;
+  border: 1px solid #888;
+  font-size: 90%;
+  background-color: #F8F8F8;
+  color: black;
+}
+
+foreignObject[data-mjx-xml] {
+  font-family: initial;
+  line-height: normal;
+  overflow: visible;
+}
+
+.MathJax path {
+  stroke-width: 3;
+}
+
+mjx-container[display="true"] {
+  overflow: auto hidden;
+}
+
+mjx-container[display="true"] + br {
+  display: none;
+}
+</style><link rel="alternate" href="/Arknight-notes/rss.xml" title="Notes|笔记站" type="application/atom+xml">
+</head><body><div class="loading" style="opacity: 0;"><div class="loadingBar left"></div><div class="loadingBar right"></div></div><main><header class="closed"><div class="navBtn"><i class="navBtnIcon"><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span></i></div><nav><div class="navItem" id="search-header"><span class="navItemTitle"><input autocomplete="off" autocorrect="off" autocapitalize="none" placeholder="数据检索" spellcheck="false" maxlength="50" type="text" id="search-input"></span></div><div class="navItem" id="search-holder"></div><div class="search-popup" tabindex="0"><div id="search-result"></div></div><ol class="navContent"><li class="navItem"><a class="navBlock" href="/Arknight-notes/"><span class="navItemTitle">Home</span></a></li><li class="navItem" matchdata="categories,tags"><a class="navBlock" href="/Arknight-notes/archives/"><span class="navItemTitle">Archives</span></a></li><li class="navItem"><a class="navBlock" href="/Arknight-notes/about/"><span class="navItemTitle">About</span></a></li></ol></nav></header><article><div id="post-bg"><div id="post-title"><h1>2025-11-23-canvas项目相关-视口管理机制</h1><div id="post-info"><span>文章发布时间: <div class="control"><time datetime="2025-11-23T13:45:00.000Z" id="date"> 2025-11-23</time></div></span><br><span>最后更新时间: <div class="control"><time datetime="2025-11-23T12:08:16.485Z" id="updated"> 2025-11-23</time></div></span><br><span id="busuanzi_container_page_pv">页面浏览: <span class="control" id="busuanzi_value_page_pv">加载中...</span></span></div></div><hr><div id="post-content"><h3 id="1-模块摘要-Executive-Summary"><a href="#1-模块摘要-Executive-Summary" class="headerlink" title="1. 模块摘要 (Executive Summary)"></a>1. 模块摘要 (Executive Summary)</h3><p>视口管理机制是画布应用中实现无限画布、缩放、拖拽等交互功能的核心模块。它基于 pixi-viewport 库实现，提供了完整的视口控制功能，包括平移、缩放、手势控制等。该机制使得用户可以在无限大的画布上进行浏览和编辑操作，提供了良好的用户体验。</p>
+<ul>
+<li><strong>核心职责</strong>：管理画布视口、处理用户交互、实现无限画布功能</li>
+<li><p><strong>项目结构树</strong>：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs bash">src/<br>└── pages/<br>    └── canvas/<br>        └── Pixi_STM_modules/<br>            └── core/<br>                └── StageManagerCore.ts    <span class="hljs-comment"># 视口管理核心实现</span><br></code></pre></td></tr></table></figure>
+</li>
+<li><p><strong>技术栈</strong>：</p>
+<ul>
+<li><code>pixi-viewport</code>：视口管理库，提供平移、缩放、手势等交互功能</li>
+<li><code>PixiJS</code>：WebGL 渲染引擎，作为视口的渲染基础</li>
+<li><code>TypeScript</code>：提供类型安全和代码可维护性</li>
+</ul>
+</li>
+</ul>
+<h3 id="2-视口管理机制类型定义"><a href="#2-视口管理机制类型定义" class="headerlink" title="2. 视口管理机制类型定义"></a>2. 视口管理机制类型定义</h3><h4 id="2-1-Viewport-相关配置"><a href="#2-1-Viewport-相关配置" class="headerlink" title="2.1 Viewport 相关配置"></a>2.1 Viewport 相关配置</h4><p>pixi-viewport 库的主要配置参数：</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs typescript"><span class="hljs-keyword">interface</span> <span class="hljs-title class_">ViewportOptions</span> {<br>  <span class="hljs-attr">screenWidth</span>: <span class="hljs-built_in">number</span>; <span class="hljs-comment">// 视口宽度</span><br>  <span class="hljs-attr">screenHeight</span>: <span class="hljs-built_in">number</span>; <span class="hljs-comment">// 视口高度</span><br>  <span class="hljs-attr">worldWidth</span>: <span class="hljs-built_in">number</span>; <span class="hljs-comment">// 世界宽度</span><br>  <span class="hljs-attr">worldHeight</span>: <span class="hljs-built_in">number</span>; <span class="hljs-comment">// 世界高度</span><br>  <span class="hljs-attr">events</span>: <span class="hljs-built_in">any</span>; <span class="hljs-comment">// 事件系统</span><br>}<br></code></pre></td></tr></table></figure>
+<h4 id="2-2-视口交互配置"><a href="#2-2-视口交互配置" class="headerlink" title="2.2 视口交互配置"></a>2.2 视口交互配置</h4><p>pixi-viewport 支持的交互配置：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>drag()</td>
+<td>启用拖拽功能</td>
+</tr>
+<tr>
+<td>pinch()</td>
+<td>启用捏合缩放功能</td>
+</tr>
+<tr>
+<td>wheel()</td>
+<td>启用滚轮缩放功能</td>
+</tr>
+<tr>
+<td>clampZoom()</td>
+<td>限制缩放范围</td>
+</tr>
+<tr>
+<td>decelerate()</td>
+<td>启用惯性滚动</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="3-视口管理机制架构"><a href="#3-视口管理机制架构" class="headerlink" title="3. 视口管理机制架构"></a>3. 视口管理机制架构</h3><h4 id="3-1-内部状态-Local-State"><a href="#3-1-内部状态-Local-State" class="headerlink" title="3.1 内部状态 (Local State)"></a>3.1 内部状态 (Local State)</h4><p>视口管理机制维护以下内部状态：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>状态名</th>
+<th>类型</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>viewport</td>
+<td>Viewport</td>
+<td>pixi-viewport 实例</td>
+</tr>
+<tr>
+<td>app</td>
+<td>PIXI.Application</td>
+<td>PixiJS 应用实例</td>
+</tr>
+<tr>
+<td>elementLayer</td>
+<td>PIXI.Container</td>
+<td>元素图层容器</td>
+</tr>
+<tr>
+<td>uiLayer</td>
+<td>PIXI.Container</td>
+<td>UI 图层容器</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h4 id="3-2-外部依赖-External-Dependencies"><a href="#3-2-外部依赖-External-Dependencies" class="headerlink" title="3.2 外部依赖 (External Dependencies)"></a>3.2 外部依赖 (External Dependencies)</h4><p>视口管理机制依赖以下外部组件：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>组件</th>
+<th>类型</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>HTML Container</td>
+<td>HTMLElement</td>
+<td>用于挂载 PixiJS 画布的 DOM 元素</td>
+</tr>
+<tr>
+<td>ElementRenderer</td>
+<td>ElementRenderer</td>
+<td>元素渲染器</td>
+</tr>
+<tr>
+<td>TransformerRenderer</td>
+<td>TransformerRenderer</td>
+<td>变换控制器渲染器</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h4 id="3-3-视口管理流程"><a href="#3-3-视口管理流程" class="headerlink" title="3.3 视口管理流程"></a>3.3 视口管理流程</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs mermaid">graph TD<br>    A[初始化 StageManager] --&gt; B{创建 PIXI.Application}<br>    B --&gt; C[初始化视口]<br>    C --&gt; D[配置视口交互]<br>    D --&gt; E[添加图层]<br>    E --&gt; F[挂载到 DOM]<br>    F --&gt; G[处理用户交互]<br>    G --&gt; H[更新视口状态]<br>    H --&gt; I[重新渲染元素]<br><br>    style A fill:#e1f5fe<br>    style C fill:#f3e5f5<br>    style D fill:#fff3e0<br>    style G fill:#e8f5e8<br></code></pre></td></tr></table></figure>
+<h3 id="4-视口初始化与配置"><a href="#4-视口初始化与配置" class="headerlink" title="4. 视口初始化与配置"></a>4. 视口初始化与配置</h3><h4 id="4-1-视口初始化流程"><a href="#4-1-视口初始化流程" class="headerlink" title="4.1 视口初始化流程"></a>4.1 视口初始化流程</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs mermaid">sequenceDiagram<br>    participant SM as StageManager<br>    participant PA as PixiJS Application<br>    participant PV as pixi-viewport<br>    participant DOM as HTML Container<br><br>    SM-&gt;&gt;PA: 创建 PIXI.Application<br>    PA-&gt;&gt;SM: 返回应用实例<br>    SM-&gt;&gt;PV: 创建 Viewport 实例<br>    PV-&gt;&gt;SM: 返回视口实例<br>    SM-&gt;&gt;PV: 配置视口交互<br>    SM-&gt;&gt;PA: 添加视口到舞台<br>    SM-&gt;&gt;DOM: 挂载画布到 DOM<br></code></pre></td></tr></table></figure>
+<h4 id="4-2-核心函数解析"><a href="#4-2-核心函数解析" class="headerlink" title="4.2 核心函数解析"></a>4.2 核心函数解析</h4><p><strong>setupViewport 函数</strong>：</p>
+<ul>
+<li><strong>触发时机</strong>: 在 StageManager 初始化时调用</li>
+<li><strong>逻辑闭环</strong>: 创建并配置 pixi-viewport 实例，设置交互功能</li>
+<li><p><strong>核心实现</strong>:</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs typescript"><span class="hljs-keyword">private</span> <span class="hljs-title function_">setupViewport</span>(<span class="hljs-params"><span class="hljs-attr">container</span>: <span class="hljs-title class_">HTMLElement</span></span>) {<br>  <span class="hljs-comment">// 创建视口实例</span><br>  <span class="hljs-variable language_">this</span>.<span class="hljs-property">viewport</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Viewport</span>({<br>    <span class="hljs-attr">screenWidth</span>: container.<span class="hljs-property">clientWidth</span>,<br>    <span class="hljs-attr">screenHeight</span>: container.<span class="hljs-property">clientHeight</span>,<br>    <span class="hljs-attr">worldWidth</span>: <span class="hljs-number">1000</span>,<br>    <span class="hljs-attr">worldHeight</span>: <span class="hljs-number">1000</span>,<br>    <span class="hljs-attr">events</span>: <span class="hljs-variable language_">this</span>.<span class="hljs-property">app</span>.<span class="hljs-property">renderer</span>.<span class="hljs-property">events</span>,<br>  })<br><br>  <span class="hljs-comment">// 添加视口到 Pixi 舞台</span><br>  <span class="hljs-variable language_">this</span>.<span class="hljs-property">app</span>.<span class="hljs-property">stage</span>.<span class="hljs-title function_">addChild</span>(<span class="hljs-variable language_">this</span>.<span class="hljs-property">viewport</span>)<br><br>  <span class="hljs-comment">// 配置视口交互功能</span><br>  <span class="hljs-variable language_">this</span>.<span class="hljs-property">viewport</span><br>    .<span class="hljs-title function_">drag</span>({ <span class="hljs-attr">mouseButtons</span>: <span class="hljs-string">'middle'</span> })  <span class="hljs-comment">// 鼠标中键拖拽</span><br>    .<span class="hljs-title function_">pinch</span>()                           <span class="hljs-comment">// 触摸捏合缩放</span><br>    .<span class="hljs-title function_">wheel</span>()                           <span class="hljs-comment">// 滚轮缩放</span><br>}<br></code></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="5-视口交互功能"><a href="#5-视口交互功能" class="headerlink" title="5. 视口交互功能"></a>5. 视口交互功能</h3><h4 id="5-1-拖拽功能"><a href="#5-1-拖拽功能" class="headerlink" title="5.1 拖拽功能"></a>5.1 拖拽功能</h4><p>用户可以通过鼠标中键拖拽画布，实现视口平移：</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs typescript"><span class="hljs-comment">// 鼠标中键拖拽</span><br><span class="hljs-variable language_">this</span>.<span class="hljs-property">viewport</span>.<span class="hljs-title function_">drag</span>({ <span class="hljs-attr">mouseButtons</span>: <span class="hljs-string">"middle"</span> });<br><br><span class="hljs-comment">// 空格键+左键拖拽（手型工具）</span><br><span class="hljs-variable language_">this</span>.<span class="hljs-property">viewport</span>.<span class="hljs-title function_">drag</span>({ <span class="hljs-attr">mouseButtons</span>: <span class="hljs-string">"all"</span> });<br></code></pre></td></tr></table></figure>
+<h4 id="5-2-缩放功能"><a href="#5-2-缩放功能" class="headerlink" title="5.2 缩放功能"></a>5.2 缩放功能</h4><p>支持多种缩放方式：</p>
+<ol>
+<li><p><strong>滚轮缩放</strong>：</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs typescript"><span class="hljs-variable language_">this</span>.<span class="hljs-property">viewport</span>.<span class="hljs-title function_">wheel</span>(); <span class="hljs-comment">// 鼠标滚轮缩放</span><br></code></pre></td></tr></table></figure>
+</li>
+<li><p><strong>手势缩放</strong>：</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs typescript"><span class="hljs-variable language_">this</span>.<span class="hljs-property">viewport</span>.<span class="hljs-title function_">pinch</span>(); <span class="hljs-comment">// 触摸设备捏合缩放</span><br></code></pre></td></tr></table></figure>
+</li>
+</ol>
+<h4 id="5-3-视口状态更新"><a href="#5-3-视口状态更新" class="headerlink" title="5.3 视口状态更新"></a>5.3 视口状态更新</h4><p>根据当前工具和用户操作更新视口状态：</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs typescript"><span class="hljs-keyword">public</span> <span class="hljs-title function_">updateViewportState</span>(<span class="hljs-params"><span class="hljs-attr">tool</span>: <span class="hljs-title class_">ToolType</span></span>) {<br>  <span class="hljs-keyword">if</span> (!<span class="hljs-variable language_">this</span>.<span class="hljs-property">viewport</span>) <span class="hljs-keyword">return</span><br>  <span class="hljs-keyword">const</span> isHandMode = tool === <span class="hljs-string">'hand'</span> || <span class="hljs-variable language_">this</span>.<span class="hljs-property">state</span>.<span class="hljs-property">isSpacePressed</span><br>  <span class="hljs-keyword">if</span> (isHandMode) {<br>    <span class="hljs-comment">// 手型工具或按下空格键时，启用全键拖拽</span><br>    <span class="hljs-variable language_">this</span>.<span class="hljs-property">viewport</span>.<span class="hljs-title function_">drag</span>({ <span class="hljs-attr">mouseButtons</span>: <span class="hljs-string">'all'</span> })<br>    <span class="hljs-variable language_">this</span>.<span class="hljs-property">viewport</span>.<span class="hljs-property">cursor</span> = <span class="hljs-string">'grab'</span><br>  } <span class="hljs-keyword">else</span> {<br>    <span class="hljs-comment">// 默认情况下，仅启用中键拖拽</span><br>    <span class="hljs-variable language_">this</span>.<span class="hljs-property">viewport</span>.<span class="hljs-title function_">drag</span>({ <span class="hljs-attr">mouseButtons</span>: <span class="hljs-string">'middle'</span> })<br>    <span class="hljs-variable language_">this</span>.<span class="hljs-property">viewport</span>.<span class="hljs-property">cursor</span> = <span class="hljs-string">'default'</span><br>  }<br>}<br></code></pre></td></tr></table></figure>
+<h3 id="6-UI-与样式实现"><a href="#6-UI-与样式实现" class="headerlink" title="6. UI 与样式实现"></a>6. UI 与样式实现</h3><h4 id="6-1-视口层次结构"><a href="#6-1-视口层次结构" class="headerlink" title="6.1 视口层次结构"></a>6.1 视口层次结构</h4><p>视口内部采用分层结构管理不同类型的元素：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs mermaid">graph TD<br>    A[Viewport] --&gt; B[elementLayer]<br>    A --&gt; C[uiLayer]<br>    B --&gt; D[图形元素]<br>    B --&gt; E[文本元素]<br>    B --&gt; F[图像元素]<br>    C --&gt; G[选区框]<br>    C --&gt; H[橡皮擦指示器]<br>    C --&gt; I[变换控制器]<br><br>    style A fill:#e1f5fe<br>    style B fill:#f3e5f5<br>    style C fill:#e8f5e8<br>    style D fill:#fff3e0<br>    style E fill:#fff3e0<br>    style F fill:#fff3e0<br>    style G fill:#ffebee<br>    style H fill:#ffebee<br>    style I fill:#ffebee<br></code></pre></td></tr></table></figure>
+<h4 id="6-2-光标样式管理"><a href="#6-2-光标样式管理" class="headerlink" title="6.2 光标样式管理"></a>6.2 光标样式管理</h4><p>根据不同状态和工具显示不同的光标样式：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>状态/工具</th>
+<th>光标样式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>默认状态</td>
+<td>default</td>
+</tr>
+<tr>
+<td>手型工具</td>
+<td>grab</td>
+</tr>
+<tr>
+<td>拖拽中</td>
+<td>grabbing</td>
+</tr>
+<tr>
+<td>选择工具</td>
+<td>default</td>
+</tr>
+<tr>
+<td>绘制工具</td>
+<td>crosshair</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>视口管理机制通过 worldWidth 和 worldHeight 设置了一个较大的画布区域，配合 pixi-viewport 的无限滚动功能，来实现无限画布的效果</p>
+<div id="paginator"></div></div><div id="post-footer"><div id="pages" style="justify-content: flex-end"><div class="footer-link" style="width: 50%;right:1px;border-left:1px #fe2 solid"><a href="/Arknight-notes/posts/61907.html">2025-11-23-canvas项目相关-富文本文本元素处理机制 上一篇 →</a></div></div></div><div id="comments"><div id="gitalk"></div></div></div><div class="bottom-btn"><div><a class="i-top" id="to-top" onClick="scrolls.scrolltop();" title="回到顶部" style="opacity: 0; display: none;">∧ </a><a class="i-index" id="to-index" href="#toc-div" title="文章目录">≡</a><a class="i-color" id="color-mode" onClick="colorMode.change()" title="切换主题"></a></div></div></article><aside><div id="about"><a href="/Arknight-notes/" id="logo"><img src="https://pic4.zhimg.com/80/v2-d9884f32711e19e80979eac58e943897_720w.webp" alt="Logo" style="margin:20;border-radius:0;"></a><h1 id="Dr"><a href="zhongye">柊野</a></h1><div id="description"><p></p></div></div><div id="aside-block"><div id="toc-div"><h1>目录</h1><ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E6%A8%A1%E5%9D%97%E6%91%98%E8%A6%81-Executive-Summary"><span class="toc-number">1.</span> <span class="toc-text">1. 模块摘要 (Executive Summary)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E8%A7%86%E5%8F%A3%E7%AE%A1%E7%90%86%E6%9C%BA%E5%88%B6%E7%B1%BB%E5%9E%8B%E5%AE%9A%E4%B9%89"><span class="toc-number">2.</span> <span class="toc-text">2. 视口管理机制类型定义</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-1-Viewport-%E7%9B%B8%E5%85%B3%E9%85%8D%E7%BD%AE"><span class="toc-number">2.1.</span> <span class="toc-text">2.1 Viewport 相关配置</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-2-%E8%A7%86%E5%8F%A3%E4%BA%A4%E4%BA%92%E9%85%8D%E7%BD%AE"><span class="toc-number">2.2.</span> <span class="toc-text">2.2 视口交互配置</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E8%A7%86%E5%8F%A3%E7%AE%A1%E7%90%86%E6%9C%BA%E5%88%B6%E6%9E%B6%E6%9E%84"><span class="toc-number">3.</span> <span class="toc-text">3. 视口管理机制架构</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#3-1-%E5%86%85%E9%83%A8%E7%8A%B6%E6%80%81-Local-State"><span class="toc-number">3.1.</span> <span class="toc-text">3.1 内部状态 (Local State)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-2-%E5%A4%96%E9%83%A8%E4%BE%9D%E8%B5%96-External-Dependencies"><span class="toc-number">3.2.</span> <span class="toc-text">3.2 外部依赖 (External Dependencies)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-3-%E8%A7%86%E5%8F%A3%E7%AE%A1%E7%90%86%E6%B5%81%E7%A8%8B"><span class="toc-number">3.3.</span> <span class="toc-text">3.3 视口管理流程</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E8%A7%86%E5%8F%A3%E5%88%9D%E5%A7%8B%E5%8C%96%E4%B8%8E%E9%85%8D%E7%BD%AE"><span class="toc-number">4.</span> <span class="toc-text">4. 视口初始化与配置</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#4-1-%E8%A7%86%E5%8F%A3%E5%88%9D%E5%A7%8B%E5%8C%96%E6%B5%81%E7%A8%8B"><span class="toc-number">4.1.</span> <span class="toc-text">4.1 视口初始化流程</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-2-%E6%A0%B8%E5%BF%83%E5%87%BD%E6%95%B0%E8%A7%A3%E6%9E%90"><span class="toc-number">4.2.</span> <span class="toc-text">4.2 核心函数解析</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-%E8%A7%86%E5%8F%A3%E4%BA%A4%E4%BA%92%E5%8A%9F%E8%83%BD"><span class="toc-number">5.</span> <span class="toc-text">5. 视口交互功能</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#5-1-%E6%8B%96%E6%8B%BD%E5%8A%9F%E8%83%BD"><span class="toc-number">5.1.</span> <span class="toc-text">5.1 拖拽功能</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-2-%E7%BC%A9%E6%94%BE%E5%8A%9F%E8%83%BD"><span class="toc-number">5.2.</span> <span class="toc-text">5.2 缩放功能</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-3-%E8%A7%86%E5%8F%A3%E7%8A%B6%E6%80%81%E6%9B%B4%E6%96%B0"><span class="toc-number">5.3.</span> <span class="toc-text">5.3 视口状态更新</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-UI-%E4%B8%8E%E6%A0%B7%E5%BC%8F%E5%AE%9E%E7%8E%B0"><span class="toc-number">6.</span> <span class="toc-text">6. UI 与样式实现</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#6-1-%E8%A7%86%E5%8F%A3%E5%B1%82%E6%AC%A1%E7%BB%93%E6%9E%84"><span class="toc-number">6.1.</span> <span class="toc-text">6.1 视口层次结构</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6-2-%E5%85%89%E6%A0%87%E6%A0%B7%E5%BC%8F%E7%AE%A1%E7%90%86"><span class="toc-number">6.2.</span> <span class="toc-text">6.2 光标样式管理</span></a></li></ol></li></ol></div></div><footer><nobr><span class="icp-title">GZHU</span><span class="icp-content">193001-0001</span></nobr><br><nobr><span class="icp-title">OUTPOST</span><span class="icp-content">169-2025-0331</span></nobr><br><nobr>构建自 <a target="_blank" rel="noopener" href="http://hexo.io">Hexo</a></nobr><wbr><nobr> 使用主题 <a target="_blank" rel="noopener" href="https://github.com/Yue-plus/hexo-theme-arknights">Arknights</a></nobr><wbr><nobr> 主题作者 <a target="_blank" rel="noopener" href="https://github.com/Yue-plus">Yue_plus</a></nobr></footer></aside></main><canvas id="canvas-dust"></canvas></body></html>
