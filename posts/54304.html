@@ -1,0 +1,515 @@
+<!DOCTYPE html><html lang="en" theme-mode="dark"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>2025-11-24-canvas项目相关-元素操作和打组机制实现 | Notes|笔记站</title><link rel="icon" type="image/x-icon" href="/Arknight-notes/favicon.ico"><link rel="preload" as="font" crossorigin="anonymous" href="/Arknight-notes/font/Bender.ttf"><link rel="preload" as="font" crossorigin="anonymous" href="/Arknight-notes/font/BenderLight.ttf"><link rel="preload" as="font" crossorigin="anonymous" href="/Arknight-notes/font/JetBrainsMono-Regular.woff2"><link rel="stylesheet" href="/Arknight-notes/css/arknights.css"><style>@font-face {
+  font-family: Bender;
+  src: local('Bender'), url("/Arknight-notes/font/Bender.ttf"), url("/Arknight-notes/font/Bender.otf");
+}
+@font-face {
+  font-family: BenderLight;
+  src: local('BenderLight'), url("/Arknight-notes/font/BenderLight.ttf");
+}
+@font-face {
+  font-family: 'JetBrains Mono';
+  src: local('JetBrains Mono'), url('/Arknight-notes/font/JetBrainsMono-Regular.woff2') format('woff2');
+}
+</style><script>var config = {"root":"/Arknight-notes/","code_fold":90,"search":{"preload":false,"activeHolder":"Enter here","blurHolder":"Search","noResult":"Data \"$0\" not found"},"code":{"codeInfo":"$0 - $1 lines","copy":"copy"}}</script><link type="text/css" rel="stylesheet" href="/Arknight-notes/lib/encrypt/hbe.style.css"><script src="/Arknight-notes/js/gitalk.js"></script><script src="//unpkg.com/mermaid@10.5.0/dist/mermaid.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.6.1/MathJax.js"></script><script>MathJax.Hub.Config({
+ menuSettings: {
+   zoom: "None"
+ },
+ showMathMenu: false,
+ jax: ["input/TeX","output/CommonHTML"],
+ extensions: ["tex2jax.js"],
+ TeX: {
+   extensions: ["AMSmath.js","AMSsymbols.js"],
+   equationNumbers: {
+     autoNumber: "AMS"
+   }
+ },
+ tex2jax: {
+   inlineMath: [["\\(", "\\)"]],
+   displayMath: [["\\[", "\\]"]]
+ }
+});</script><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lightgallery.css"><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lg-zoom.css"><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lg-thumbnail.css"><link type="text/css" rel="stylesheet" href="/Arknight-notes/lib/fontawesome/css/all.min.css"><script>if (window.localStorage.getItem('theme-mode') === 'light')
+ document.documentElement.setAttribute('theme-mode', 'light')
+if (window.localStorage.getItem('theme-mode') === 'dark')
+ document.documentElement.setAttribute('theme-mode', 'dark')</script><style>@font-face {
+ font-family: BenderLight;
+ src: local('Bender'), url("/Arknight-notes/font/BenderLight.woff2") format('woff2');
+}
+@font-face {
+ font-family: 'JetBrains Mono';
+ src: local('JetBrains Mono'), url('/Arknight-notes/font/JetBrainsMono-Regular.woff2') format('woff2');
+}</style><style>:root {
+ --dark-background: url('https://pic2.zhimg.com/v2-6269d74b4dafe14781d03790e5a86b21_r.jpg');
+ --light-background: url('https://pic1.zhimg.com/v2-233b64b583642fc4a6d77e69ced33150_r.jpg');
+ --theme-encrypt-confirm: 'confirm'
+}</style><script defer src="/Arknight-notes/js/arknights.js"></script><script defer src="/Arknight-notes/js/search.js"></script><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><script async src="/Arknight-notes/js/gitalk.js"></script><script defer type="module">import mermaid from '//unpkg.com/mermaid@10.5.0/dist/mermaid.esm.mjs';
+window.mermaid = mermaid;
+code.paintMermaid();
+</script><script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.6.1/MathJax.js"></script><script>MathJax.Hub.Config({
+  menuSettings: {
+    zoom: "None"
+  },
+  showMathMenu: false,
+  jax: ["input/TeX","output/CommonHTML"],
+  extensions: ["tex2jax.js"],
+  TeX: {
+    extensions: ["AMSmath.js","AMSsymbols.js"],
+    equationNumbers: {
+      autoNumber: "AMS"
+    }
+  },
+  tex2jax: {
+    inlineMath: [["\\(", "\\)"]],
+    displayMath: [["\\[", "\\]"]]
+  }
+});
+</script><script async src="//unpkg.com/lightgallery@2.7.1/lightgallery.min.js"></script><script async src="//unpkg.com/lightgallery@2.7.1/plugins/zoom/lg-zoom.min.js"></script><script async src="//unpkg.com/lightgallery@2.7.1/plugins/thumbnail/lg-thumbnail.min.js"></script><script async src="/Arknight-notes/lib/encrypt/hbe.js"></script><script async src="/Arknight-notes/js/pjax.js"></script><script class="pjax-js">reset= () => {gitalk = new Gitalk({
+ clientID: 'Ov23ct13Fb0b67x23wnT',
+ clientSecret: 'f18ce69dd545e3c0f5e2456afde9c756fe8a254a',
+ repo: 'Arknight-notes',
+ owner: 'Zhongye1',
+ admin: ['Zhongye1'],
+ distractionFreeMode: false,
+ id: location.pathname
+});
+if (document.querySelector("#gitalk")) gitalk.render("gitalk");document.querySelector('.lg-container')?.remove()
+lightGallery(document.getElementById('post-bg'), {
+  plugins: [lgZoom,lgThumbnail],
+  selector: '.item-img'})}</script><script>window.addEventListener("load",() => {pjax = new Pjax({
+ cacheBust: false,
+ selectors: ['title','article','#aside-block','.pjax-js','data-pjax','.busuanzi'],
+ switches: {'article': Pjax.switches.sideBySide},
+ switchesOptions: {
+   'article': {
+     classNames: {
+       remove: "pjax-out",
+       add: "pjax-in"
+     }
+   }
+ }
+});
+document.addEventListener("pjax:complete", reset);document.addEventListener('pjax:success', _ => bszCaller.fetch(
+ "//busuanzi.ibruce.info/busuanzi?jsonpCallback=BusuanziCallback", a => {
+  bszTag.texts(a),
+  bszTag.shows()
+}));reset()})</script><script class="pjax-js">reset= () => {gitalk = new Gitalk({
+ clientID: 'Ov23ct13Fb0b67x23wnT',
+ clientSecret: 'f18ce69dd545e3c0f5e2456afde9c756fe8a254a',
+ repo: 'Arknight-notes',
+ owner: 'Zhongye1',
+ admin: ['Zhongye1'],
+ distractionFreeMode: false,
+ id: location.pathname
+});
+if (document.querySelector("#gitalk")) gitalk.render("gitalk");document.querySelector('.lg-container')?.remove()
+lightGallery(document.getElementById('post-bg'), {
+  plugins: [lgZoom,lgThumbnail],
+  selector: '.item-img'})}</script><script>window.addEventListener("load",() => {pjax = new Pjax({
+ cacheBust: false,
+ selectors: ['title','article','#aside-block','.pjax-js'],
+ switches: {'article': Pjax.switches.sideBySide},
+ switchesOptions: {
+   'article': {
+     classNames: {
+       remove: "pjax-out",
+       add: "pjax-in"
+     }
+   }
+ }
+});
+document.addEventListener("pjax:complete", reset);reset()})</script><meta name="generator" content="Hexo 7.3.0"><style>mjx-container[jax="SVG"] {
+  direction: ltr;
+}
+
+mjx-container[jax="SVG"] > svg {
+  overflow: visible;
+}
+
+mjx-container[jax="SVG"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="SVG"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="SVG"][justify="right"] {
+  text-align: right;
+}
+
+g[data-mml-node="merror"] > g {
+  fill: red;
+  stroke: red;
+}
+
+g[data-mml-node="merror"] > rect[data-background] {
+  fill: yellow;
+  stroke: none;
+}
+
+g[data-mml-node="mtable"] > line[data-line] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > rect[data-frame] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > .mjx-dashed {
+  stroke-dasharray: 140;
+}
+
+g[data-mml-node="mtable"] > .mjx-dotted {
+  stroke-linecap: round;
+  stroke-dasharray: 0,140;
+}
+
+g[data-mml-node="mtable"] > svg {
+  overflow: visible;
+}
+
+[jax="SVG"] mjx-tool {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+[jax="SVG"] mjx-tool > mjx-tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+mjx-tool > mjx-tip {
+  display: inline-block;
+  padding: .2em;
+  border: 1px solid #888;
+  font-size: 70%;
+  background-color: #F8F8F8;
+  color: black;
+  box-shadow: 2px 2px 5px #AAAAAA;
+}
+
+g[data-mml-node="maction"][data-toggle] {
+  cursor: pointer;
+}
+
+mjx-status {
+  display: block;
+  position: fixed;
+  left: 1em;
+  bottom: 1em;
+  min-width: 25%;
+  padding: .2em .4em;
+  border: 1px solid #888;
+  font-size: 90%;
+  background-color: #F8F8F8;
+  color: black;
+}
+
+foreignObject[data-mjx-xml] {
+  font-family: initial;
+  line-height: normal;
+  overflow: visible;
+}
+
+.MathJax path {
+  stroke-width: 3;
+}
+
+mjx-container[display="true"] {
+  overflow: auto hidden;
+}
+
+mjx-container[display="true"] + br {
+  display: none;
+}
+</style><link rel="alternate" href="/Arknight-notes/rss.xml" title="Notes|笔记站" type="application/atom+xml">
+</head><body><div class="loading" style="opacity: 0;"><div class="loadingBar left"></div><div class="loadingBar right"></div></div><main><header class="closed"><div class="navBtn"><i class="navBtnIcon"><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span></i></div><nav><div class="navItem" id="search-header"><span class="navItemTitle"><input autocomplete="off" autocorrect="off" autocapitalize="none" placeholder="Search" spellcheck="false" maxlength="50" type="text" id="search-input"></span></div><div class="navItem" id="search-holder"></div><div class="search-popup" tabindex="0"><div id="search-result"></div></div><ol class="navContent"><li class="navItem"><a class="navBlock" href="/Arknight-notes/"><span class="navItemTitle">Home</span></a></li><li class="navItem" matchdata="categories,tags"><a class="navBlock" href="/Arknight-notes/archives/"><span class="navItemTitle">Archives</span></a></li><li class="navItem"><a class="navBlock" href="/Arknight-notes/about/"><span class="navItemTitle">About</span></a></li></ol></nav></header><article><div id="post-bg"><div id="post-title"><h1>2025-11-24-canvas项目相关-元素操作和打组机制实现</h1><div id="post-info"><span>First Post: <div class="control"><time datetime="2025-11-24T05:52:47.000Z" id="date"> 2025-11-24</time></div></span><br><span>Last Update: <div class="control"><time datetime="2025-11-24T05:57:53.077Z" id="updated"> 2025-11-24</time></div></span><br><span id="busuanzi_container_page_pv">Page View: <span class="control" id="busuanzi_value_page_pv">loading...</span></span></div></div><hr><div id="post-content"><h1 id="元素操作机制和元素打组机制实现文档"><a href="#元素操作机制和元素打组机制实现文档" class="headerlink" title="元素操作机制和元素打组机制实现文档"></a>元素操作机制和元素打组机制实现文档</h1><h2 id="1-DES"><a href="#1-DES" class="headerlink" title="1. DES"></a>1. DES</h2><p>元素操作机制（移动、缩放、旋转）和元素打组机制的实现方案，包括数据结构、交互逻辑、状态管理和相关组件的实现细节。</p>
+<h3 id="项目结构树"><a href="#项目结构树" class="headerlink" title="项目结构树"></a>项目结构树</h3><figure class="highlight nix"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs nix">src<span class="hljs-symbol">/</span><br>├── pages<span class="hljs-symbol">/</span><br>│   └── canvas<span class="hljs-symbol">/</span><br>│       └── Pixi_STM_modules<span class="hljs-symbol">/</span><br>│           ├── core<span class="hljs-symbol">/</span><br>│           │   └── StageManagerCore.ts     <span class="hljs-comment"># 主要操作逻辑实现</span><br>│           ├── rendering<span class="hljs-symbol">/</span><br>│           │   ├── ElementRenderer.ts      <span class="hljs-comment"># 元素渲染</span><br>│           │   └── TransformerRenderer.ts  <span class="hljs-comment"># 选择框和控制手柄渲染</span><br>│           └── core<span class="hljs-symbol">/</span><br>│               └── types.ts                <span class="hljs-comment"># 相关类型定义</span><br>├── stores<span class="hljs-symbol">/</span><br>│   └── canvasStore.ts                      <span class="hljs-comment"># CanvasElement 接口定义和状态管理</span><br>└── lib<span class="hljs-symbol">/</span><br>    └── UpdateElementCommand.ts             <span class="hljs-comment"># 撤销/重做命令实现</span><br></code></pre></td></tr></table></figure>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th></th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>PixiJS</td>
+<td>2D 渲染引擎，用于绘制图形元素和交互控制器</td>
+</tr>
+<tr>
+<td>pixi-viewport</td>
+<td>提供无限画布支持和视口控制</td>
+</tr>
+<tr>
+<td>TypeScript</td>
+<td>提供类型安全和更好的开发体验</td>
+</tr>
+<tr>
+<td>Zustand</td>
+<td>全局状态管理</td>
+</tr>
+<tr>
+<td>nanoid</td>
+<td>生成元素唯一标识符</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 id="2-Props-和相关类型定义"><a href="#2-Props-和相关类型定义" class="headerlink" title="2. Props 和相关类型定义"></a>2. Props 和相关类型定义</h2><h3 id="2-1-核心方法参数"><a href="#2-1-核心方法参数" class="headerlink" title="2.1 核心方法参数"></a>2.1 核心方法参数</h3><p>StageManagerCore 交互方法：</p>
+<h4 id="onPointerDown-方法"><a href="#onPointerDown-方法" class="headerlink" title="onPointerDown 方法"></a>onPointerDown 方法</h4><p>处理指针按下事件，开始各种操作</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>参数名</th>
+<th>类型</th>
+<th>必填</th>
+<th>默认值</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>e</td>
+<td><code>PIXI.FederatedPointerEvent</code></td>
+<td>是</td>
+<td>-</td>
+<td>PixiJS 指针事件对象</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h4 id="onPointerMove-方法"><a href="#onPointerMove-方法" class="headerlink" title="onPointerMove 方法"></a>onPointerMove 方法</h4><p>处理指针移动事件，执行操作过程</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>参数名</th>
+<th>类型</th>
+<th>必填</th>
+<th>默认值</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>e</td>
+<td><code>PIXI.FederatedPointerEvent</code></td>
+<td>是</td>
+<td>-</td>
+<td>PixiJS 指针事件对象</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h4 id="onPointerUp-方法"><a href="#onPointerUp-方法" class="headerlink" title="onPointerUp 方法"></a>onPointerUp 方法</h4><p>处理指针释放事件，结束操作</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>参数名</th>
+<th>类型</th>
+<th>必填</th>
+<th>默认值</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>无参数</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>无参数</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="代码示例"><a href="#代码示例" class="headerlink" title="代码示例"></a>代码示例</h3><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs typescript"><span class="hljs-comment">// 在 StageManagerCore 中注册指针事件处理</span><br><span class="hljs-variable language_">this</span>.<span class="hljs-property">interactionHandler</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">InteractionHandler</span>(<br>  <span class="hljs-variable language_">this</span>.<span class="hljs-property">viewport</span>,<br>  <span class="hljs-variable language_">this</span>.<span class="hljs-property">onPointerDown</span>, <span class="hljs-comment">// 指针按下处理</span><br>  <span class="hljs-variable language_">this</span>.<span class="hljs-property">onPointerMove</span>, <span class="hljs-comment">// 指针移动处理</span><br>  <span class="hljs-variable language_">this</span>.<span class="hljs-property">onPointerUp</span>, <span class="hljs-comment">// 指针释放处理</span><br>)<br></code></pre></td></tr></table></figure>
+<h3 id="2-2-类型定义"><a href="#2-2-类型定义" class="headerlink" title="2.2 类型定义"></a>2.2 类型定义</h3><h4 id="StageManagerState-类型"><a href="#StageManagerState-类型" class="headerlink" title="StageManagerState 类型"></a>StageManagerState 类型</h4><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><code class="hljs typescript"><span class="hljs-keyword">export</span> <span class="hljs-keyword">interface</span> <span class="hljs-title class_">StageManagerState</span> {<br>  <span class="hljs-attr">mode</span>: <span class="hljs-title class_">InteractionMode</span> <span class="hljs-comment">// 当前交互模式</span><br>  <span class="hljs-attr">startPos</span>: { <span class="hljs-attr">x</span>: <span class="hljs-built_in">number</span>; <span class="hljs-attr">y</span>: <span class="hljs-built_in">number</span> } <span class="hljs-comment">// 操作起始位置</span><br>  <span class="hljs-attr">currentId</span>: <span class="hljs-built_in">string</span> | <span class="hljs-literal">null</span> <span class="hljs-comment">// 当前操作元素ID</span><br>  <span class="hljs-attr">initialElementsMap</span>: <span class="hljs-title class_">Record</span>&lt;<span class="hljs-built_in">string</span>, <span class="hljs-title class_">Partial</span>&lt;<span class="hljs-title class_">CanvasElement</span>&gt;&gt; | <span class="hljs-literal">null</span> <span class="hljs-comment">// 调整大小初始状态</span><br>  <span class="hljs-attr">initialGroupBounds</span>: { <span class="hljs-attr">x</span>: <span class="hljs-built_in">number</span>; <span class="hljs-attr">y</span>: <span class="hljs-built_in">number</span>; <span class="hljs-attr">width</span>: <span class="hljs-built_in">number</span>; <span class="hljs-attr">height</span>: <span class="hljs-built_in">number</span> } | <span class="hljs-literal">null</span> <span class="hljs-comment">// 群组初始边界</span><br>  <span class="hljs-attr">activeHandle</span>: <span class="hljs-title class_">HandleType</span> | <span class="hljs-literal">null</span> <span class="hljs-comment">// 激活的控制手柄</span><br>  <span class="hljs-attr">isSpacePressed</span>: <span class="hljs-built_in">boolean</span> <span class="hljs-comment">// 空格键是否按下</span><br>  <span class="hljs-attr">destroyed</span>: <span class="hljs-built_in">boolean</span> <span class="hljs-comment">// 是否已销毁</span><br>  <span class="hljs-attr">resizeInitialStates</span>: <span class="hljs-title class_">Record</span>&lt;<span class="hljs-built_in">string</span>, <span class="hljs-title class_">Partial</span>&lt;<span class="hljs-title class_">CanvasElement</span>&gt;&gt; | <span class="hljs-literal">null</span> <span class="hljs-comment">// 缩放初始状态</span><br>  <span class="hljs-attr">dragInitialStates</span>: <span class="hljs-title class_">Record</span>&lt;<span class="hljs-built_in">string</span>, <span class="hljs-title class_">Partial</span>&lt;<span class="hljs-title class_">CanvasElement</span>&gt;&gt; | <span class="hljs-literal">null</span> <span class="hljs-comment">// 拖拽初始状态</span><br>  <span class="hljs-attr">rotationInitialStates</span>: <span class="hljs-title class_">Record</span>&lt;<br>    <span class="hljs-built_in">string</span>,<br>    {<br>      <span class="hljs-comment">// 旋转初始状态</span><br>      <span class="hljs-attr">x</span>: <span class="hljs-built_in">number</span><br>      <span class="hljs-attr">y</span>: <span class="hljs-built_in">number</span><br>      <span class="hljs-attr">width</span>: <span class="hljs-built_in">number</span><br>      <span class="hljs-attr">height</span>: <span class="hljs-built_in">number</span><br>      <span class="hljs-attr">rotation</span>: <span class="hljs-built_in">number</span><br>      <span class="hljs-attr">cx</span>: <span class="hljs-built_in">number</span><br>      <span class="hljs-attr">cy</span>: <span class="hljs-built_in">number</span><br>    }<br>  &gt; | <span class="hljs-literal">null</span><br>  <span class="hljs-attr">rotationCenter</span>: { <span class="hljs-attr">x</span>: <span class="hljs-built_in">number</span>; <span class="hljs-attr">y</span>: <span class="hljs-built_in">number</span> } | <span class="hljs-literal">null</span> <span class="hljs-comment">// 旋转中心点</span><br>  <span class="hljs-attr">startRotationAngle</span>: <span class="hljs-built_in">number</span> | <span class="hljs-literal">null</span> <span class="hljs-comment">// 起始旋转角度</span><br>}<br></code></pre></td></tr></table></figure>
+<h4 id="InteractionMode-类型"><a href="#InteractionMode-类型" class="headerlink" title="InteractionMode 类型"></a>InteractionMode 类型</h4><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs typescript"><span class="hljs-keyword">export</span> <span class="hljs-keyword">type</span> <span class="hljs-title class_">InteractionMode</span> =<br>  | <span class="hljs-string">'idle'</span> <span class="hljs-comment">// 空闲状态</span><br>  | <span class="hljs-string">'panning'</span> <span class="hljs-comment">// 画布平移</span><br>  | <span class="hljs-string">'selecting'</span> <span class="hljs-comment">// 选择元素</span><br>  | <span class="hljs-string">'dragging'</span> <span class="hljs-comment">// 拖拽元素</span><br>  | <span class="hljs-string">'resizing'</span> <span class="hljs-comment">// 调整大小</span><br>  | <span class="hljs-string">'drawing'</span> <span class="hljs-comment">// 绘制元素</span><br>  | <span class="hljs-string">'texting'</span> <span class="hljs-comment">// 文本编辑</span><br>  | <span class="hljs-string">'erasing'</span> <span class="hljs-comment">// 擦除元素</span><br>  | <span class="hljs-string">'rotating'</span> <span class="hljs-comment">// 旋转元素</span><br></code></pre></td></tr></table></figure>
+<h4 id="HandleType-类型"><a href="#HandleType-类型" class="headerlink" title="HandleType 类型"></a>HandleType 类型</h4><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs typescript"><span class="hljs-keyword">export</span> <span class="hljs-keyword">type</span> <span class="hljs-title class_">HandleType</span> =<br>  | <span class="hljs-string">'tl'</span><br>  | <span class="hljs-string">'t'</span><br>  | <span class="hljs-string">'tr'</span> <span class="hljs-comment">// 上方三个手柄</span><br>  | <span class="hljs-string">'r'</span> <span class="hljs-comment">// 右侧手柄</span><br>  | <span class="hljs-string">'br'</span><br>  | <span class="hljs-string">'b'</span><br>  | <span class="hljs-string">'bl'</span> <span class="hljs-comment">// 下方三个手柄</span><br>  | <span class="hljs-string">'l'</span> <span class="hljs-comment">// 左侧手柄</span><br>  | <span class="hljs-string">'p0'</span><br>  | <span class="hljs-string">'p1'</span> <span class="hljs-comment">// 线段端点手柄</span><br>  | <span class="hljs-string">'rotate'</span> <span class="hljs-comment">// 旋转手柄</span><br></code></pre></td></tr></table></figure>
+<h2 id="3-状态管理-State-Architecture"><a href="#3-状态管理-State-Architecture" class="headerlink" title="3. 状态管理 (State Architecture)"></a>3. 状态管理 (State Architecture)</h2><h3 id="3-1-内部状态-Local-State"><a href="#3-1-内部状态-Local-State" class="headerlink" title="3.1 内部状态 (Local State)"></a>3.1 内部状态 (Local State)</h3><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>状态名</th>
+<th>类型</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>mode</td>
+<td><code>InteractionMode</code></td>
+<td>当前交互模式</td>
+</tr>
+<tr>
+<td>startPos</td>
+<td><code>{ x: number; y: number }</code></td>
+<td>操作起始位置</td>
+</tr>
+<tr>
+<td>currentId</td>
+<td>`string</td>
+<td>null`</td>
+<td>当前操作元素 ID</td>
+</tr>
+<tr>
+<td>activeHandle</td>
+<td>`HandleType</td>
+<td>null`</td>
+<td>激活的控制手柄</td>
+</tr>
+<tr>
+<td>isSpacePressed</td>
+<td><code>boolean</code></td>
+<td>空格键是否按下</td>
+</tr>
+<tr>
+<td>destroyed</td>
+<td><code>boolean</code></td>
+<td>是否已销毁</td>
+</tr>
+<tr>
+<td>resizeInitialStates</td>
+<td>`Record<string, Partial<CanvasElement="">&gt;</string,></td>
+<td>null`</td>
+<td>缩放操作初始状态</td>
+</tr>
+<tr>
+<td>dragInitialStates</td>
+<td>`Record<string, Partial<CanvasElement="">&gt;</string,></td>
+<td>null`</td>
+<td>拖拽操作初始状态</td>
+</tr>
+<tr>
+<td>rotationInitialStates</td>
+<td>`Record&lt;…&gt;</td>
+<td>null`</td>
+<td>旋转操作初始状态</td>
+</tr>
+<tr>
+<td>rotationCenter</td>
+<td>`{ x: number; y: number }</td>
+<td>null`</td>
+<td>旋转中心点</td>
+</tr>
+<tr>
+<td>startRotationAngle</td>
+<td>`number</td>
+<td>null`</td>
+<td>起始旋转角度</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="3-2-外部状态-Global-Server-State"><a href="#3-2-外部状态-Global-Server-State" class="headerlink" title="3.2 外部状态 (Global/Server State)"></a>3.2 外部状态 (Global/Server State)</h3><p>StageManagerCore 订阅了 Zustand store 中的状态：</p>
+<ol>
+<li><code>elements</code>: 所有画布元素</li>
+<li><code>selectedIds</code>: 当前选中元素 ID 数组</li>
+<li><code>tool</code>: 当前工具类型</li>
+</ol>
+<h3 id="3-3-状态同步机制"><a href="#3-3-状态同步机制" class="headerlink" title="3.3 状态同步机制"></a>3.3 状态同步机制</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs mermaid">graph TD<br>    A[Zustand Store] --&gt; B[StageManager 订阅状态变化]<br>    B --&gt; C[获取 elements, selectedIds, tool]<br>    C --&gt; D[调用 ElementRenderer.renderElements]<br>    C --&gt; E[调用 TransformerRenderer.renderTransformer]<br>    F[用户交互] --&gt; G[onPointerDown/Move/Up]<br>    G --&gt; H[更新 Zustand Store]<br>    H --&gt; B<br></code></pre></td></tr></table></figure>
+<h2 id="4-逻辑流程-Logic-Flow"><a href="#4-逻辑流程-Logic-Flow" class="headerlink" title="4. 逻辑流程 (Logic Flow)"></a>4. 逻辑流程 (Logic Flow)</h2><h3 id="4-1-交互时序图"><a href="#4-1-交互时序图" class="headerlink" title="4.1 交互时序图"></a>4.1 交互时序图</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs mermaid">sequenceDiagram<br>    participant U as 用户<br>    participant SM as StageManager<br>    participant CS as CanvasStore<br>    participant ER as ElementRenderer<br>    participant TR as TransformerRenderer<br><br>    U-&gt;&gt;SM: 按下鼠标开始操作<br>    SM-&gt;&gt;SM: 设置操作模式(移动/缩放/旋转)<br>    SM-&gt;&gt;CS: 记录初始状态并锁定撤销管理器<br>    SM-&gt;&gt;CS: 更新元素属性<br><br>    CS-&gt;&gt;SM: 状态变更通知<br>    SM-&gt;&gt;ER: 重新渲染元素<br>    SM-&gt;&gt;TR: 重新渲染变换控制器<br><br>    U-&gt;&gt;SM: 移动鼠标执行操作<br>    SM-&gt;&gt;CS: 持续更新元素属性<br><br>    U-&gt;&gt;SM: 释放鼠标结束操作<br>    SM-&gt;&gt;CS: 解锁撤销管理器<br>    SM-&gt;&gt;CS: 创建并执行操作命令<br></code></pre></td></tr></table></figure>
+<h3 id="4-2-核心函数解析"><a href="#4-2-核心函数解析" class="headerlink" title="4.2 核心函数解析"></a>4.2 核心函数解析</h3><h4 id="onPointerDown-函数"><a href="#onPointerDown-函数" class="headerlink" title="onPointerDown 函数:"></a>onPointerDown 函数:</h4><p>用户在画布上按下鼠标时触发<br>根据当前工具和鼠标位置确定操作类型,设置相应的操作模式和初始状态,为后续的 onPointerMove 操作做准备</p>
+<p><strong>核心实现</strong>:</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><code class="hljs typescript"><span class="hljs-keyword">private</span> onPointerDown = <span class="hljs-function">(<span class="hljs-params"><span class="hljs-attr">e</span>: PIXI.<span class="hljs-title class_">FederatedPointerEvent</span></span>) =&gt;</span> {<br>  <span class="hljs-comment">// 省略部分代码...</span><br><br>  <span class="hljs-keyword">if</span> (e.<span class="hljs-property">target</span> &amp;&amp; e.<span class="hljs-property">target</span>.<span class="hljs-property">label</span> &amp;&amp; !e.<span class="hljs-property">target</span>.<span class="hljs-property">label</span>.<span class="hljs-title function_">startsWith</span>(<span class="hljs-string">'handle:'</span>)) {<br>    <span class="hljs-keyword">const</span> hitId = e.<span class="hljs-property">target</span>.<span class="hljs-property">label</span>;<br>    <span class="hljs-comment">// 如果我们不在选择模式，切换到选择模式</span><br>    <span class="hljs-keyword">if</span> (tool !== <span class="hljs-string">'select'</span>) {<br>      state.<span class="hljs-title function_">setTool</span>(<span class="hljs-string">'select'</span>);<br>    }<br>    <span class="hljs-comment">// 选择元素并开始拖拽</span><br>    <span class="hljs-variable language_">this</span>.<span class="hljs-property">state</span>.<span class="hljs-property">mode</span> = <span class="hljs-string">'dragging'</span>;<br>    <span class="hljs-variable language_">this</span>.<span class="hljs-property">state</span>.<span class="hljs-property">currentId</span> = hitId;<br>    <span class="hljs-keyword">if</span> (!state.<span class="hljs-property">selectedIds</span>.<span class="hljs-title function_">includes</span>(hitId)) {<br>      state.<span class="hljs-title function_">setSelected</span>([hitId]);<br>    }<br><br>    <span class="hljs-comment">// 捕获所有选中元素在拖拽前的初始状态</span><br>    <span class="hljs-keyword">const</span> <span class="hljs-attr">initialDragMap</span>: <span class="hljs-title class_">Record</span>&lt;<span class="hljs-built_in">string</span>, <span class="hljs-title class_">Partial</span>&lt;<span class="hljs-title class_">CanvasElement</span>&gt;&gt; = {};<br>    state.<span class="hljs-property">selectedIds</span>.<span class="hljs-title function_">forEach</span>(<span class="hljs-function">(<span class="hljs-params">id</span>) =&gt;</span> {<br>      <span class="hljs-keyword">const</span> el = state.<span class="hljs-property">elements</span>[id];<br>      <span class="hljs-keyword">if</span> (el) {<br>        <span class="hljs-comment">// 记录 x, y (如果是直线/箭头，可能也需要记录 points)</span><br>        initialDragMap[id] = {<br>          <span class="hljs-attr">x</span>: el.<span class="hljs-property">x</span>,<br>          <span class="hljs-attr">y</span>: el.<span class="hljs-property">y</span>,<br>          <span class="hljs-attr">points</span>: el.<span class="hljs-property">points</span> ? [...el.<span class="hljs-property">points</span>.<span class="hljs-title function_">map</span>(<span class="hljs-function">(<span class="hljs-params">p</span>) =&gt;</span> [...p])] : <span class="hljs-literal">undefined</span>,<br>        };<br>      }<br>    });<br>    <span class="hljs-variable language_">this</span>.<span class="hljs-property">state</span>.<span class="hljs-property">dragInitialStates</span> = initialDragMap;<br><br>    <span class="hljs-comment">// 开始拖拽时锁定撤销/重做管理器</span><br>    undoRedoManager.<span class="hljs-title function_">lock</span>();<br>    <span class="hljs-keyword">return</span>;<br>  }<br><br>  <span class="hljs-comment">// 省略部分代码...</span><br>}<br></code></pre></td></tr></table></figure>
+<p><strong>特殊处理</strong>:</p>
+<ul>
+<li>区分不同的操作类型（拖拽、缩放、旋转）</li>
+<li>记录操作前的初始状态用于撤销/重做</li>
+<li>锁定撤销管理器防止中间状态被记录</li>
+</ul>
+<h4 id="onHandleDown-函数"><a href="#onHandleDown-函数" class="headerlink" title="onHandleDown 函数:"></a>onHandleDown 函数:</h4><p><strong>触发时机</strong>: 用户点击控制手柄时触发</p>
+<p><strong>逻辑闭环</strong>:</p>
+<ol>
+<li>根据手柄类型确定操作类型（缩放或旋转）</li>
+<li>设置相应的操作模式和初始状态</li>
+<li>为后续的 onPointerMove 操作做准备</li>
+</ol>
+<p><strong>核心实现</strong>:</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br></pre></td><td class="code"><pre><code class="hljs typescript"><span class="hljs-keyword">private</span> onHandleDown = <span class="hljs-function">(<span class="hljs-params"></span></span><br><span class="hljs-params"><span class="hljs-function">  <span class="hljs-attr">e</span>: PIXI.<span class="hljs-title class_">FederatedPointerEvent</span>,</span></span><br><span class="hljs-params"><span class="hljs-function">  <span class="hljs-attr">handle</span>: <span class="hljs-title class_">HandleType</span> | <span class="hljs-string">'p0'</span> | <span class="hljs-string">'p1'</span> | <span class="hljs-string">'rotate'</span>,</span></span><br><span class="hljs-params"><span class="hljs-function">  <span class="hljs-attr">elementId</span>: <span class="hljs-built_in">string</span>,</span></span><br><span class="hljs-params"><span class="hljs-function"></span>) =&gt;</span> {<br>  e.<span class="hljs-title function_">stopPropagation</span>();<br><br>  <span class="hljs-comment">// 旋转逻辑分支</span><br>  <span class="hljs-keyword">if</span> (handle === <span class="hljs-string">'rotate'</span>) {<br>    <span class="hljs-variable language_">this</span>.<span class="hljs-property">state</span>.<span class="hljs-property">mode</span> = <span class="hljs-string">'rotating'</span>;<br>    <span class="hljs-variable language_">this</span>.<span class="hljs-property">state</span>.<span class="hljs-property">currentId</span> = elementId;<br><br>    <span class="hljs-keyword">const</span> state = useStore.<span class="hljs-title function_">getState</span>();<br>    <span class="hljs-keyword">const</span> { elements, selectedIds } = state;<br>    <span class="hljs-keyword">const</span> mousePos = e.<span class="hljs-title function_">getLocalPosition</span>(<span class="hljs-variable language_">this</span>.<span class="hljs-property">viewport</span>);<br><br>    <span class="hljs-comment">// 1. 计算旋转中心（选中元素的包围盒中心）</span><br>    <span class="hljs-keyword">const</span> bounds = <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">getSelectionBounds</span>(selectedIds, elements);<br>    <span class="hljs-keyword">if</span> (!bounds) <span class="hljs-keyword">return</span>;<br><br>    <span class="hljs-keyword">const</span> centerX = bounds.<span class="hljs-property">x</span> + bounds.<span class="hljs-property">width</span> / <span class="hljs-number">2</span>;<br>    <span class="hljs-keyword">const</span> centerY = bounds.<span class="hljs-property">y</span> + bounds.<span class="hljs-property">height</span> / <span class="hljs-number">2</span>;<br>    <span class="hljs-variable language_">this</span>.<span class="hljs-property">state</span>.<span class="hljs-property">rotationCenter</span> = { <span class="hljs-attr">x</span>: centerX, <span class="hljs-attr">y</span>: centerY };<br><br>    <span class="hljs-comment">// 2. 计算鼠标起始角度（相对于中心点）</span><br>    <span class="hljs-variable language_">this</span>.<span class="hljs-property">state</span>.<span class="hljs-property">startRotationAngle</span> = <span class="hljs-title class_">Math</span>.<span class="hljs-title function_">atan2</span>(mousePos.<span class="hljs-property">y</span> - centerY, mousePos.<span class="hljs-property">x</span> - centerX);<br><br>    <span class="hljs-comment">// 3. 记录所有选中元素的初始状态</span><br>    <span class="hljs-keyword">const</span> <span class="hljs-attr">initialMap</span>: <span class="hljs-title class_">Record</span>&lt;<span class="hljs-built_in">string</span>, <span class="hljs-built_in">any</span>&gt; = {};<br>    selectedIds.<span class="hljs-title function_">forEach</span>(<span class="hljs-function">(<span class="hljs-params">id</span>) =&gt;</span> {<br>      <span class="hljs-keyword">const</span> el = elements[id];<br>      <span class="hljs-keyword">if</span> (el) {<br>        initialMap[id] = {<br>          <span class="hljs-attr">x</span>: el.<span class="hljs-property">x</span>,<br>          <span class="hljs-attr">y</span>: el.<span class="hljs-property">y</span>,<br>          <span class="hljs-attr">width</span>: el.<span class="hljs-property">width</span>,<br>          <span class="hljs-attr">height</span>: el.<span class="hljs-property">height</span>,<br>          <span class="hljs-attr">rotation</span>: el.<span class="hljs-property">rotation</span> || <span class="hljs-number">0</span>,<br>          <span class="hljs-comment">// 记录元素自身的中心点，方便后续计算</span><br>          <span class="hljs-attr">cx</span>: el.<span class="hljs-property">x</span> + el.<span class="hljs-property">width</span> / <span class="hljs-number">2</span>,<br>          <span class="hljs-attr">cy</span>: el.<span class="hljs-property">y</span> + el.<span class="hljs-property">height</span> / <span class="hljs-number">2</span>,<br>        };<br>      }<br>    });<br>    <span class="hljs-variable language_">this</span>.<span class="hljs-property">state</span>.<span class="hljs-property">rotationInitialStates</span> = initialMap;<br><br>    undoRedoManager.<span class="hljs-title function_">lock</span>();<br>    <span class="hljs-keyword">return</span>;<br>  }<br><br>  <span class="hljs-comment">// 缩放逻辑</span><br>  <span class="hljs-variable language_">this</span>.<span class="hljs-property">state</span>.<span class="hljs-property">mode</span> = <span class="hljs-string">'resizing'</span>;<br>  <span class="hljs-variable language_">this</span>.<span class="hljs-property">state</span>.<span class="hljs-property">activeHandle</span> = handle <span class="hljs-keyword">as</span> <span class="hljs-title class_">HandleType</span> | <span class="hljs-literal">null</span>;<br>  <span class="hljs-variable language_">this</span>.<span class="hljs-property">state</span>.<span class="hljs-property">currentId</span> = elementId;<br>  <span class="hljs-variable language_">this</span>.<span class="hljs-property">state</span>.<span class="hljs-property">startPos</span> = e.<span class="hljs-title function_">getLocalPosition</span>(<span class="hljs-variable language_">this</span>.<span class="hljs-property">viewport</span>);<br><br>  <span class="hljs-keyword">const</span> state = useStore.<span class="hljs-title function_">getState</span>();<br>  <span class="hljs-keyword">const</span> { elements, selectedIds } = state;<br><br>  <span class="hljs-comment">// 捕捉所有选中元素的初始状态</span><br>  <span class="hljs-keyword">const</span> <span class="hljs-attr">initialMap</span>: <span class="hljs-title class_">Record</span>&lt;<span class="hljs-built_in">string</span>, <span class="hljs-title class_">Partial</span>&lt;<span class="hljs-title class_">CanvasElement</span>&gt;&gt; = {};<br>  selectedIds.<span class="hljs-title function_">forEach</span>(<span class="hljs-function">(<span class="hljs-params">id</span>) =&gt;</span> {<br>    <span class="hljs-keyword">const</span> el = elements[id];<br>    <span class="hljs-keyword">if</span> (el) {<br>      initialMap[id] = {<br>        <span class="hljs-attr">x</span>: el.<span class="hljs-property">x</span>,<br>        <span class="hljs-attr">y</span>: el.<span class="hljs-property">y</span>,<br>        <span class="hljs-attr">width</span>: el.<span class="hljs-property">width</span>,<br>        <span class="hljs-attr">height</span>: el.<span class="hljs-property">height</span>,<br>        <span class="hljs-attr">type</span>: el.<span class="hljs-property">type</span>,<br>        <span class="hljs-attr">points</span>: el.<span class="hljs-property">points</span> ? el.<span class="hljs-property">points</span>.<span class="hljs-title function_">map</span>(<span class="hljs-function">(<span class="hljs-params">p</span>) =&gt;</span> [...p]) : <span class="hljs-literal">undefined</span>,<br>      };<br>    }<br>  });<br>  <span class="hljs-variable language_">this</span>.<span class="hljs-property">state</span>.<span class="hljs-property">resizeInitialStates</span> = initialMap;<br><br>  <span class="hljs-comment">// 计算初始的群组包围盒</span><br>  <span class="hljs-variable language_">this</span>.<span class="hljs-property">state</span>.<span class="hljs-property">initialGroupBounds</span> = <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">getSelectionBounds</span>(selectedIds, elements);<br><br>  <span class="hljs-comment">// 保存初始元素映射用于调整大小计算</span><br>  <span class="hljs-variable language_">this</span>.<span class="hljs-property">state</span>.<span class="hljs-property">initialElementsMap</span> = initialMap;<br><br>  <span class="hljs-comment">// 开始调整大小时锁定撤销/重做管理器</span><br>  undoRedoManager.<span class="hljs-title function_">lock</span>();<br>}<br></code></pre></td></tr></table></figure>
+<p><strong>特殊处理</strong>:</p>
+<ul>
+<li>特殊处理旋转操作，计算旋转中心和起始角度</li>
+<li>记录所有选中元素的完整初始状态</li>
+<li>为多元素操作计算群组边界</li>
+</ul>
+<h4 id="onPointerMove-函数"><a href="#onPointerMove-函数" class="headerlink" title="onPointerMove 函数:"></a>onPointerMove 函数:</h4><p><strong>触发时机</strong>: 用户在按住鼠标移动时触发</p>
+<p><strong>逻辑闭环</strong>:</p>
+<ol>
+<li>根据当前操作模式执行相应的操作逻辑</li>
+<li>持续更新元素属性</li>
+<li>触发重新渲染</li>
+</ol>
+<p><strong>核心实现</strong>:</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br></pre></td><td class="code"><pre><code class="hljs typescript"><span class="hljs-keyword">private</span> onPointerMove = <span class="hljs-function">(<span class="hljs-params"><span class="hljs-attr">e</span>: PIXI.<span class="hljs-title class_">FederatedPointerEvent</span></span>) =&gt;</span> {<br>  <span class="hljs-comment">// 省略部分代码...</span><br><br>  } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (<span class="hljs-variable language_">this</span>.<span class="hljs-property">state</span>.<span class="hljs-property">mode</span> === <span class="hljs-string">'dragging'</span>) {<br>    <span class="hljs-keyword">const</span> dx = currentPos.<span class="hljs-property">x</span> - <span class="hljs-variable language_">this</span>.<span class="hljs-property">state</span>.<span class="hljs-property">startPos</span>.<span class="hljs-property">x</span>;<br>    <span class="hljs-keyword">const</span> dy = currentPos.<span class="hljs-property">y</span> - <span class="hljs-variable language_">this</span>.<span class="hljs-property">state</span>.<span class="hljs-property">startPos</span>.<span class="hljs-property">y</span>;<br><br>    <span class="hljs-keyword">if</span> (state.<span class="hljs-property">selectedIds</span>.<span class="hljs-property">length</span> &gt; <span class="hljs-number">0</span>) {<br>      state.<span class="hljs-property">selectedIds</span>.<span class="hljs-title function_">forEach</span>(<span class="hljs-function">(<span class="hljs-params">id</span>) =&gt;</span> {<br>        <span class="hljs-keyword">const</span> el = state.<span class="hljs-property">elements</span>[id];<br>        state.<span class="hljs-title function_">updateElement</span>(id, { <span class="hljs-attr">x</span>: el.<span class="hljs-property">x</span> + dx, <span class="hljs-attr">y</span>: el.<span class="hljs-property">y</span> + dy });<br>      });<br>      <span class="hljs-comment">// 重置起点，使 dx/dy 成为增量</span><br>      <span class="hljs-variable language_">this</span>.<span class="hljs-property">state</span>.<span class="hljs-property">startPos</span> = { <span class="hljs-attr">x</span>: currentPos.<span class="hljs-property">x</span>, <span class="hljs-attr">y</span>: currentPos.<span class="hljs-property">y</span> };<br>    }<br>  } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (<span class="hljs-variable language_">this</span>.<span class="hljs-property">state</span>.<span class="hljs-property">mode</span> === <span class="hljs-string">'resizing'</span> &amp;&amp; <span class="hljs-variable language_">this</span>.<span class="hljs-property">state</span>.<span class="hljs-property">initialElementsMap</span> &amp;&amp; <span class="hljs-variable language_">this</span>.<span class="hljs-property">state</span>.<span class="hljs-property">initialGroupBounds</span>) {<br>    <span class="hljs-comment">// 修复后的 Resize 逻辑</span><br>    <span class="hljs-keyword">const</span> selectedIds = state.<span class="hljs-property">selectedIds</span>;<br>    <span class="hljs-keyword">const</span> initBounds = <span class="hljs-variable language_">this</span>.<span class="hljs-property">state</span>.<span class="hljs-property">initialGroupBounds</span>;<br>    <span class="hljs-keyword">const</span> handle = <span class="hljs-variable language_">this</span>.<span class="hljs-property">state</span>.<span class="hljs-property">activeHandle</span>;<br><br>    <span class="hljs-comment">// 处理单个线段/箭头的端点拖拽 (特例)</span><br>    <span class="hljs-keyword">const</span> singleId = selectedIds[<span class="hljs-number">0</span>];<br>    <span class="hljs-keyword">const</span> singleEl = <span class="hljs-variable language_">this</span>.<span class="hljs-property">state</span>.<span class="hljs-property">initialElementsMap</span>[singleId];<br>    <span class="hljs-keyword">if</span> (<br>      selectedIds.<span class="hljs-property">length</span> === <span class="hljs-number">1</span> &amp;&amp;<br>      singleEl &amp;&amp;<br>      (singleEl.<span class="hljs-property">type</span> === <span class="hljs-string">'line'</span> || singleEl.<span class="hljs-property">type</span> === <span class="hljs-string">'arrow'</span>) &amp;&amp;<br>      (handle === <span class="hljs-string">'p0'</span> || handle === <span class="hljs-string">'p1'</span>)<br>    ) {<br>      <span class="hljs-comment">// 省略具体实现...</span><br>    }<br><br>    <span class="hljs-comment">// 通用群组缩放逻辑</span><br>    <span class="hljs-comment">// 计算鼠标相对于点击时的位移</span><br>    <span class="hljs-keyword">const</span> totalDx = currentPos.<span class="hljs-property">x</span> - <span class="hljs-variable language_">this</span>.<span class="hljs-property">state</span>.<span class="hljs-property">startPos</span>.<span class="hljs-property">x</span>;<br>    <span class="hljs-keyword">const</span> totalDy = currentPos.<span class="hljs-property">y</span> - <span class="hljs-variable language_">this</span>.<span class="hljs-property">state</span>.<span class="hljs-property">startPos</span>.<span class="hljs-property">y</span>;<br><br>    <span class="hljs-comment">// 基于初始包围盒计算新的包围盒</span><br>    <span class="hljs-keyword">let</span> finalL = initBounds.<span class="hljs-property">x</span>;<br>    <span class="hljs-keyword">let</span> finalR = initBounds.<span class="hljs-property">x</span> + initBounds.<span class="hljs-property">width</span>;<br>    <span class="hljs-keyword">let</span> finalT = initBounds.<span class="hljs-property">y</span>;<br>    <span class="hljs-keyword">let</span> finalB = initBounds.<span class="hljs-property">y</span> + initBounds.<span class="hljs-property">height</span>;<br><br>    <span class="hljs-comment">// 根据手柄方向应用位移</span><br>    <span class="hljs-keyword">if</span> (handle?.<span class="hljs-title function_">includes</span>(<span class="hljs-string">'l'</span>)) finalL += totalDx;<br>    <span class="hljs-keyword">if</span> (handle?.<span class="hljs-title function_">includes</span>(<span class="hljs-string">'r'</span>)) finalR += totalDx;<br>    <span class="hljs-keyword">if</span> (handle?.<span class="hljs-title function_">includes</span>(<span class="hljs-string">'t'</span>)) finalT += totalDy;<br>    <span class="hljs-keyword">if</span> (handle?.<span class="hljs-title function_">includes</span>(<span class="hljs-string">'b'</span>)) finalB += totalDy;<br><br>    <span class="hljs-comment">// 处理翻转（如果拉过了头）</span><br>    <span class="hljs-keyword">if</span> (finalR &lt; finalL) {<br>      [finalL, finalR] = [finalR, finalL];<br>    }<br>    <span class="hljs-keyword">if</span> (finalB &lt; finalT) {<br>      [finalT, finalB] = [finalB, finalT];<br>    }<br><br>    <span class="hljs-keyword">const</span> newBoundsW = finalR - finalL;<br>    <span class="hljs-keyword">const</span> newBoundsH = finalB - finalT;<br><br>    <span class="hljs-comment">// 计算缩放比例</span><br>    <span class="hljs-keyword">const</span> scaleX = initBounds.<span class="hljs-property">width</span> === <span class="hljs-number">0</span> ? <span class="hljs-number">1</span> : newBoundsW / initBounds.<span class="hljs-property">width</span>;<br>    <span class="hljs-keyword">const</span> scaleY = initBounds.<span class="hljs-property">height</span> === <span class="hljs-number">0</span> ? <span class="hljs-number">1</span> : newBoundsH / initBounds.<span class="hljs-property">height</span>;<br><br>    <span class="hljs-comment">// 应用到所有选中的元素</span><br>    selectedIds.<span class="hljs-title function_">forEach</span>(<span class="hljs-function">(<span class="hljs-params">id</span>) =&gt;</span> {<br>      <span class="hljs-keyword">const</span> initEl = <span class="hljs-variable language_">this</span>.<span class="hljs-property">state</span>.<span class="hljs-property">initialElementsMap</span>![id];<br>      <span class="hljs-keyword">if</span> (!initEl) <span class="hljs-keyword">return</span>;<br><br>      <span class="hljs-comment">// 计算新位置：新原点 + (相对位移 * 缩放)</span><br>      <span class="hljs-keyword">const</span> relX = initEl.<span class="hljs-property">x</span>! - initBounds.<span class="hljs-property">x</span>;<br>      <span class="hljs-keyword">const</span> relY = initEl.<span class="hljs-property">y</span>! - initBounds.<span class="hljs-property">y</span>;<br><br>      <span class="hljs-keyword">const</span> finalElX = finalL + relX * scaleX;<br>      <span class="hljs-keyword">const</span> finalElY = finalT + relY * scaleY;<br>      <span class="hljs-keyword">const</span> finalElW = initEl.<span class="hljs-property">width</span>! * scaleX;<br>      <span class="hljs-keyword">const</span> finalElH = initEl.<span class="hljs-property">height</span>! * scaleY;<br><br>      <span class="hljs-keyword">const</span> <span class="hljs-attr">updatePayload</span>: <span class="hljs-built_in">any</span> = {<br>        <span class="hljs-attr">x</span>: finalElX,<br>        <span class="hljs-attr">y</span>: finalElY,<br>        <span class="hljs-attr">width</span>: finalElW,<br>        <span class="hljs-attr">height</span>: finalElH,<br>      };<br><br>      <span class="hljs-comment">// 如果有内部点集，也需要缩放</span><br>      <span class="hljs-keyword">if</span> (initEl.<span class="hljs-property">points</span>) {<br>        updatePayload.<span class="hljs-property">points</span> = initEl.<span class="hljs-property">points</span>.<span class="hljs-title function_">map</span>(<span class="hljs-function">(<span class="hljs-params">p</span>) =&gt;</span> [p[<span class="hljs-number">0</span>] * scaleX, p[<span class="hljs-number">1</span>] * scaleY]);<br>      }<br><br>      state.<span class="hljs-title function_">updateElement</span>(id, updatePayload);<br>    });<br>  } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (<br>    <span class="hljs-variable language_">this</span>.<span class="hljs-property">state</span>.<span class="hljs-property">mode</span> === <span class="hljs-string">'rotating'</span> &amp;&amp;<br>    <span class="hljs-variable language_">this</span>.<span class="hljs-property">state</span>.<span class="hljs-property">rotationInitialStates</span> &amp;&amp;<br>    <span class="hljs-variable language_">this</span>.<span class="hljs-property">state</span>.<span class="hljs-property">rotationCenter</span> &amp;&amp;<br>    <span class="hljs-variable language_">this</span>.<span class="hljs-property">state</span>.<span class="hljs-property">startRotationAngle</span> !== <span class="hljs-literal">null</span><br>  ) {<br>    <span class="hljs-comment">// 旋转逻辑</span><br>    <span class="hljs-keyword">const</span> { <span class="hljs-attr">x</span>: cx, <span class="hljs-attr">y</span>: cy } = <span class="hljs-variable language_">this</span>.<span class="hljs-property">state</span>.<span class="hljs-property">rotationCenter</span>;<br><br>    <span class="hljs-comment">// 1. 计算当前鼠标角度</span><br>    <span class="hljs-keyword">const</span> currentAngle = <span class="hljs-title class_">Math</span>.<span class="hljs-title function_">atan2</span>(currentPos.<span class="hljs-property">y</span> - cy, currentPos.<span class="hljs-property">x</span> - cx);<br><br>    <span class="hljs-comment">// 2. 计算旋转增量（当前角度 - 起始角度）</span><br>    <span class="hljs-keyword">const</span> deltaAngle = currentAngle - <span class="hljs-variable language_">this</span>.<span class="hljs-property">state</span>.<span class="hljs-property">startRotationAngle</span>;<br><br>    <span class="hljs-comment">// 3. 更新每一个选中元素</span><br>    state.<span class="hljs-property">selectedIds</span>.<span class="hljs-title function_">forEach</span>(<span class="hljs-function">(<span class="hljs-params">id</span>) =&gt;</span> {<br>      <span class="hljs-keyword">const</span> initEl = <span class="hljs-variable language_">this</span>.<span class="hljs-property">state</span>.<span class="hljs-property">rotationInitialStates</span>![id];<br>      <span class="hljs-keyword">if</span> (!initEl) <span class="hljs-keyword">return</span>;<br><br>      <span class="hljs-comment">// A. 计算新的自转角度</span><br>      <span class="hljs-keyword">const</span> newRotation = initEl.<span class="hljs-property">rotation</span> + deltaAngle;<br><br>      <span class="hljs-comment">// B. 计算新的位置 (公转)</span><br>      <span class="hljs-comment">// 将元素的中心点 (initEl.cx, initEl.cy) 绕着 组中心 (cx, cy) 旋转 deltaAngle</span><br>      <span class="hljs-keyword">const</span> newCenter = <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">rotatePoint</span>(initEl.<span class="hljs-property">cx</span>, initEl.<span class="hljs-property">cy</span>, cx, cy, deltaAngle);<br><br>      <span class="hljs-comment">// C. 根据新的中心点反推 x, y (x = center.x - width/2)</span><br>      <span class="hljs-keyword">const</span> newX = newCenter.<span class="hljs-property">x</span> - initEl.<span class="hljs-property">width</span> / <span class="hljs-number">2</span>;<br>      <span class="hljs-keyword">const</span> newY = newCenter.<span class="hljs-property">y</span> - initEl.<span class="hljs-property">height</span> / <span class="hljs-number">2</span>;<br><br>      <span class="hljs-comment">// D. 更新 Store</span><br>      state.<span class="hljs-title function_">updateElement</span>(id, {<br>        <span class="hljs-attr">x</span>: newX,<br>        <span class="hljs-attr">y</span>: newY,<br>        <span class="hljs-attr">rotation</span>: newRotation,<br>      });<br>    });<br>    <span class="hljs-keyword">return</span>;<br>  }<br><br>  <span class="hljs-comment">// 省略部分代码...</span><br>}<br></code></pre></td></tr></table></figure>
+<p>分别处理拖拽、缩放和旋转操作,特殊处理线段元素的端点操作,处理多元素群组操作时的相对位置保持,实现旋转时元素公转和自转的计算</p>
+<h2 id="5-元素打组机制实现"><a href="#5-元素打组机制实现" class="headerlink" title="5. 元素打组机制实现"></a>5. 元素打组机制实现</h2><h3 id="5-1-当前实现状态"><a href="#5-1-当前实现状态" class="headerlink" title="5.1 当前实现状态"></a>5.1 当前实现状态</h3><p>目前项目中已经实现了多元素选择和同时操作的功能，但尚未实现完整的元素打组机制。</p>
+<h3 id="5-2-现有相关实现"><a href="#5-2-现有相关实现" class="headerlink" title="5.2 现有相关实现"></a>5.2 现有相关实现</h3><ol>
+<li><p><strong>多元素选择</strong>:</p>
+<ul>
+<li>支持框选多个元素</li>
+<li>支持同时对多个元素进行移动、缩放、旋转操作</li>
+</ul>
+</li>
+<li><p><strong>群组操作处理</strong>:</p>
+<ul>
+<li>在缩放操作中计算所有选中元素的包围盒</li>
+<li>保持元素间的相对位置关系</li>
+<li>同时更新所有选中元素的属性</li>
+</ul>
+</li>
+<li><p><strong>旋转操作中的群组处理</strong>:</p>
+<ul>
+<li>计算群组的中心点作为旋转中心</li>
+<li>每个元素围绕群组中心进行公转</li>
+<li>保持各自的自转角度</li>
+</ul>
+</li>
+</ol>
+<h3 id="5-3-群组操作核心逻辑"><a href="#5-3-群组操作核心逻辑" class="headerlink" title="5.3 群组操作核心逻辑"></a>5.3 群组操作核心逻辑</h3><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs typescript"><span class="hljs-comment">// 计算选中元素的整体包围盒</span><br><span class="hljs-keyword">private</span> <span class="hljs-title function_">getSelectionBounds</span>(<span class="hljs-params"><span class="hljs-attr">selectedIds</span>: <span class="hljs-built_in">string</span>[], <span class="hljs-attr">elements</span>: <span class="hljs-title class_">Record</span>&lt;<span class="hljs-built_in">string</span>, <span class="hljs-title class_">CanvasElement</span>&gt;</span>) {<br>  <span class="hljs-keyword">let</span> minX = <span class="hljs-title class_">Infinity</span>,<br>    minY = <span class="hljs-title class_">Infinity</span>,<br>    maxX = -<span class="hljs-title class_">Infinity</span>,<br>    maxY = -<span class="hljs-title class_">Infinity</span>;<br><br>  <span class="hljs-keyword">let</span> hasValid = <span class="hljs-literal">false</span>;<br>  selectedIds.<span class="hljs-title function_">forEach</span>(<span class="hljs-function">(<span class="hljs-params">id</span>) =&gt;</span> {<br>    <span class="hljs-keyword">const</span> el = elements[id];<br>    <span class="hljs-keyword">if</span> (!el) <span class="hljs-keyword">return</span>;<br>    hasValid = <span class="hljs-literal">true</span>;<br>    <span class="hljs-comment">// 使用数据模型中的宽高计算</span><br>    minX = <span class="hljs-title class_">Math</span>.<span class="hljs-title function_">min</span>(minX, el.<span class="hljs-property">x</span>);<br>    minY = <span class="hljs-title class_">Math</span>.<span class="hljs-title function_">min</span>(minY, el.<span class="hljs-property">y</span>);<br>    maxX = <span class="hljs-title class_">Math</span>.<span class="hljs-title function_">max</span>(maxX, el.<span class="hljs-property">x</span> + el.<span class="hljs-property">width</span>);<br>    maxY = <span class="hljs-title class_">Math</span>.<span class="hljs-title function_">max</span>(maxY, el.<span class="hljs-property">y</span> + el.<span class="hljs-property">height</span>);<br>  });<br><br>  <span class="hljs-keyword">if</span> (!hasValid) <span class="hljs-keyword">return</span> <span class="hljs-literal">null</span>;<br>  <span class="hljs-keyword">return</span> { <span class="hljs-attr">x</span>: minX, <span class="hljs-attr">y</span>: minY, <span class="hljs-attr">width</span>: maxX - minX, <span class="hljs-attr">height</span>: maxY - minY };<br>}<br></code></pre></td></tr></table></figure>
+<h3 id="5-4-待实现功能"><a href="#5-4-待实现功能" class="headerlink" title="5.4 待实现功能"></a>5.4 待实现功能</h3><p>要实现完整的元素打组机制，还需要添加以下功能：</p>
+<ol>
+<li><p><strong>创建组</strong>:</p>
+<ul>
+<li>将选中的多个元素组合成一个组对象</li>
+<li>组对象拥有自己的位置、尺寸和变换属性</li>
+</ul>
+</li>
+<li><p><strong>解散组</strong>:</p>
+<ul>
+<li>将组拆分为原来的独立元素</li>
+<li>保持元素在解散时的位置和属性</li>
+</ul>
+</li>
+<li><p><strong>嵌套组</strong>:</p>
+<ul>
+<li>支持组内包含其他组</li>
+<li>实现层级化的变换传递</li>
+</ul>
+</li>
+<li><p><strong>组专用操作</strong>:</p>
+<ul>
+<li>双击进入组编辑模式</li>
+<li>组的专用控制手柄和操作逻辑</li>
+</ul>
+</li>
+</ol>
+<h3 id="5-5-后续实现方案"><a href="#5-5-后续实现方案" class="headerlink" title="5.5 后续实现方案"></a>5.5 后续实现方案</h3><ol>
+<li><p><strong>数据结构扩展</strong>:</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs typescript"><span class="hljs-keyword">export</span> <span class="hljs-keyword">interface</span> <span class="hljs-title class_">CanvasGroup</span> {<br>  <span class="hljs-attr">id</span>: <span class="hljs-built_in">string</span><br>  <span class="hljs-attr">type</span>: <span class="hljs-string">'group'</span><br>  <span class="hljs-attr">x</span>: <span class="hljs-built_in">number</span><br>  <span class="hljs-attr">y</span>: <span class="hljs-built_in">number</span><br>  <span class="hljs-attr">width</span>: <span class="hljs-built_in">number</span><br>  <span class="hljs-attr">height</span>: <span class="hljs-built_in">number</span><br>  <span class="hljs-attr">rotation</span>?: <span class="hljs-built_in">number</span><br>  <span class="hljs-attr">children</span>: (<span class="hljs-title class_">CanvasElement</span> | <span class="hljs-title class_">CanvasGroup</span>)[] <span class="hljs-comment">// 组内元素</span><br>}<br></code></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>组操作时，将组视为单个元素处理，组内元素的变换需要相对于组坐标系计算，支持组的嵌套和递归操作</p>
+<p>组作为一个整体进行渲染优化，支持组的缓存渲染</p>
+<div id="paginator"></div></div><div id="post-footer"><div id="pages"><div class="footer-link" style="width: 50%;text-align:right;border-right:1px #fe2 solid"><a href="/Arknight-notes/posts/46327.html">← Next 2025-11-24-canvas项目相关-TransformerRenderer设计</a></div><div class="footer-link" style="width: 50%;right:1px;border-left:1px #fe2 solid"><a href="/Arknight-notes/posts/12487.html">2025-11-23-canvas项目相关-视口管理机制 Prev →</a></div></div></div><div id="comments"><div id="gitalk"></div></div></div><div class="bottom-btn"><div><a class="i-top" id="to-top" onClick="scrolls.scrolltop();" title="To Top" style="opacity: 0; display: none;">∧ </a><a class="i-index" id="to-index" href="#toc-div" title="To Catalog">≡</a><a class="i-color" id="color-mode" onClick="colorMode.change()" title="Change Theme"></a></div></div></article><aside><div id="about"><a href="/Arknight-notes/" id="logo"><img src="https://pic4.zhimg.com/80/v2-d9884f32711e19e80979eac58e943897_720w.webp" alt="Logo" style="margin:20;border-radius:0;"></a><h1 id="Dr"><a href="zhongye">柊野</a></h1><div id="description"><p></p></div></div><div id="aside-block"><div id="toc-div"><h1>Catalog</h1><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%85%83%E7%B4%A0%E6%93%8D%E4%BD%9C%E6%9C%BA%E5%88%B6%E5%92%8C%E5%85%83%E7%B4%A0%E6%89%93%E7%BB%84%E6%9C%BA%E5%88%B6%E5%AE%9E%E7%8E%B0%E6%96%87%E6%A1%A3"><span class="toc-number">1.</span> <span class="toc-text">元素操作机制和元素打组机制实现文档</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-DES"><span class="toc-number">1.1.</span> <span class="toc-text">1. DES</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A1%B9%E7%9B%AE%E7%BB%93%E6%9E%84%E6%A0%91"><span class="toc-number">1.1.1.</span> <span class="toc-text">项目结构树</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-Props-%E5%92%8C%E7%9B%B8%E5%85%B3%E7%B1%BB%E5%9E%8B%E5%AE%9A%E4%B9%89"><span class="toc-number">1.2.</span> <span class="toc-text">2. Props 和相关类型定义</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-%E6%A0%B8%E5%BF%83%E6%96%B9%E6%B3%95%E5%8F%82%E6%95%B0"><span class="toc-number">1.2.1.</span> <span class="toc-text">2.1 核心方法参数</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#onPointerDown-%E6%96%B9%E6%B3%95"><span class="toc-number">1.2.1.1.</span> <span class="toc-text">onPointerDown 方法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#onPointerMove-%E6%96%B9%E6%B3%95"><span class="toc-number">1.2.1.2.</span> <span class="toc-text">onPointerMove 方法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#onPointerUp-%E6%96%B9%E6%B3%95"><span class="toc-number">1.2.1.3.</span> <span class="toc-text">onPointerUp 方法</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E7%A4%BA%E4%BE%8B"><span class="toc-number">1.2.2.</span> <span class="toc-text">代码示例</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-%E7%B1%BB%E5%9E%8B%E5%AE%9A%E4%B9%89"><span class="toc-number">1.2.3.</span> <span class="toc-text">2.2 类型定义</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#StageManagerState-%E7%B1%BB%E5%9E%8B"><span class="toc-number">1.2.3.1.</span> <span class="toc-text">StageManagerState 类型</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#InteractionMode-%E7%B1%BB%E5%9E%8B"><span class="toc-number">1.2.3.2.</span> <span class="toc-text">InteractionMode 类型</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#HandleType-%E7%B1%BB%E5%9E%8B"><span class="toc-number">1.2.3.3.</span> <span class="toc-text">HandleType 类型</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E7%8A%B6%E6%80%81%E7%AE%A1%E7%90%86-State-Architecture"><span class="toc-number">1.3.</span> <span class="toc-text">3. 状态管理 (State Architecture)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-%E5%86%85%E9%83%A8%E7%8A%B6%E6%80%81-Local-State"><span class="toc-number">1.3.1.</span> <span class="toc-text">3.1 内部状态 (Local State)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-%E5%A4%96%E9%83%A8%E7%8A%B6%E6%80%81-Global-Server-State"><span class="toc-number">1.3.2.</span> <span class="toc-text">3.2 外部状态 (Global&#x2F;Server State)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3-%E7%8A%B6%E6%80%81%E5%90%8C%E6%AD%A5%E6%9C%BA%E5%88%B6"><span class="toc-number">1.3.3.</span> <span class="toc-text">3.3 状态同步机制</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-%E9%80%BB%E8%BE%91%E6%B5%81%E7%A8%8B-Logic-Flow"><span class="toc-number">1.4.</span> <span class="toc-text">4. 逻辑流程 (Logic Flow)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1-%E4%BA%A4%E4%BA%92%E6%97%B6%E5%BA%8F%E5%9B%BE"><span class="toc-number">1.4.1.</span> <span class="toc-text">4.1 交互时序图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-%E6%A0%B8%E5%BF%83%E5%87%BD%E6%95%B0%E8%A7%A3%E6%9E%90"><span class="toc-number">1.4.2.</span> <span class="toc-text">4.2 核心函数解析</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#onPointerDown-%E5%87%BD%E6%95%B0"><span class="toc-number">1.4.2.1.</span> <span class="toc-text">onPointerDown 函数:</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#onHandleDown-%E5%87%BD%E6%95%B0"><span class="toc-number">1.4.2.2.</span> <span class="toc-text">onHandleDown 函数:</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#onPointerMove-%E5%87%BD%E6%95%B0"><span class="toc-number">1.4.2.3.</span> <span class="toc-text">onPointerMove 函数:</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-%E5%85%83%E7%B4%A0%E6%89%93%E7%BB%84%E6%9C%BA%E5%88%B6%E5%AE%9E%E7%8E%B0"><span class="toc-number">1.5.</span> <span class="toc-text">5. 元素打组机制实现</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#5-1-%E5%BD%93%E5%89%8D%E5%AE%9E%E7%8E%B0%E7%8A%B6%E6%80%81"><span class="toc-number">1.5.1.</span> <span class="toc-text">5.1 当前实现状态</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-2-%E7%8E%B0%E6%9C%89%E7%9B%B8%E5%85%B3%E5%AE%9E%E7%8E%B0"><span class="toc-number">1.5.2.</span> <span class="toc-text">5.2 现有相关实现</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-3-%E7%BE%A4%E7%BB%84%E6%93%8D%E4%BD%9C%E6%A0%B8%E5%BF%83%E9%80%BB%E8%BE%91"><span class="toc-number">1.5.3.</span> <span class="toc-text">5.3 群组操作核心逻辑</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-4-%E5%BE%85%E5%AE%9E%E7%8E%B0%E5%8A%9F%E8%83%BD"><span class="toc-number">1.5.4.</span> <span class="toc-text">5.4 待实现功能</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-5-%E5%90%8E%E7%BB%AD%E5%AE%9E%E7%8E%B0%E6%96%B9%E6%A1%88"><span class="toc-number">1.5.5.</span> <span class="toc-text">5.5 后续实现方案</span></a></li></ol></li></ol></li></ol></div></div><footer><nobr><span class="icp-title">GZHU</span><span class="icp-content">193001-0001</span></nobr><br><nobr><span class="icp-title">OUTPOST</span><span class="icp-content">169-2025-0331</span></nobr><br><nobr>Published with <a target="_blank" rel="noopener" href="http://hexo.io">Hexo</a></nobr><wbr><nobr> Theme <a target="_blank" rel="noopener" href="https://github.com/Yue-plus/hexo-theme-arknights">Arknights</a></nobr><wbr><nobr> by <a target="_blank" rel="noopener" href="https://github.com/Yue-plus">Yue_plus</a></nobr></footer></aside></main><canvas id="canvas-dust"></canvas></body></html>

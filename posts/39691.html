@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en" theme-mode="dark"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>2025-11-21-canvas项目设计杂记其二 | Notes|笔记站</title><link rel="icon" type="image/x-icon" href="/Arknight-notes/favicon.ico"><link rel="preload" as="font" crossorigin="anonymous" href="/Arknight-notes/font/Bender.ttf"><link rel="preload" as="font" crossorigin="anonymous" href="/Arknight-notes/font/BenderLight.ttf"><link rel="preload" as="font" crossorigin="anonymous" href="/Arknight-notes/font/JetBrainsMono-Regular.woff2"><link rel="stylesheet" href="/Arknight-notes/css/arknights.css"><style>@font-face {
+<!DOCTYPE html><html lang="en" theme-mode="dark"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>2025-11-21-canvas设计项目杂记其二 | Notes|笔记站</title><link rel="icon" type="image/x-icon" href="/Arknight-notes/favicon.ico"><link rel="preload" as="font" crossorigin="anonymous" href="/Arknight-notes/font/Bender.ttf"><link rel="preload" as="font" crossorigin="anonymous" href="/Arknight-notes/font/BenderLight.ttf"><link rel="preload" as="font" crossorigin="anonymous" href="/Arknight-notes/font/JetBrainsMono-Regular.woff2"><link rel="stylesheet" href="/Arknight-notes/css/arknights.css"><style>@font-face {
   font-family: Bender;
   src: local('Bender'), url("/Arknight-notes/font/Bender.ttf"), url("/Arknight-notes/font/Bender.otf");
 }
@@ -10,7 +10,7 @@
   font-family: 'JetBrains Mono';
   src: local('JetBrains Mono'), url('/Arknight-notes/font/JetBrainsMono-Regular.woff2') format('woff2');
 }
-</style><script>var config = {"root":"/Arknight-notes/","code_fold":90,"search":{"preload":false,"activeHolder":"键入以继续","blurHolder":"数据检索","noResult":"无 $0 相关数据"},"code":{"codeInfo":"$0 - $1 行","copy":"复制"}}</script><link type="text/css" rel="stylesheet" href="/Arknight-notes/lib/encrypt/hbe.style.css"><script src="/Arknight-notes/js/gitalk.js"></script><script src="//unpkg.com/mermaid@10.5.0/dist/mermaid.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.6.1/MathJax.js"></script><script>MathJax.Hub.Config({
+</style><script>var config = {"root":"/Arknight-notes/","code_fold":90,"search":{"preload":false,"activeHolder":"Enter here","blurHolder":"Search","noResult":"Data \"$0\" not found"},"code":{"codeInfo":"$0 - $1 lines","copy":"copy"}}</script><link type="text/css" rel="stylesheet" href="/Arknight-notes/lib/encrypt/hbe.style.css"><script src="/Arknight-notes/js/gitalk.js"></script><script src="//unpkg.com/mermaid@10.5.0/dist/mermaid.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.6.1/MathJax.js"></script><script>MathJax.Hub.Config({
  menuSettings: {
    zoom: "None"
  },
@@ -40,7 +40,7 @@ if (window.localStorage.getItem('theme-mode') === 'dark')
 }</style><style>:root {
  --dark-background: url('https://pic2.zhimg.com/v2-6269d74b4dafe14781d03790e5a86b21_r.jpg');
  --light-background: url('https://pic1.zhimg.com/v2-233b64b583642fc4a6d77e69ced33150_r.jpg');
- --theme-encrypt-confirm: '确认'
+ --theme-encrypt-confirm: 'confirm'
 }</style><script defer src="/Arknight-notes/js/arknights.js"></script><script defer src="/Arknight-notes/js/search.js"></script><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><script async src="/Arknight-notes/js/gitalk.js"></script><script defer type="module">import mermaid from '//unpkg.com/mermaid@10.5.0/dist/mermaid.esm.mjs';
 window.mermaid = mermaid;
 code.paintMermaid();
@@ -229,7 +229,7 @@ mjx-container[display="true"] + br {
   display: none;
 }
 </style><link rel="alternate" href="/Arknight-notes/rss.xml" title="Notes|笔记站" type="application/atom+xml">
-</head><body><div class="loading" style="opacity: 0;"><div class="loadingBar left"></div><div class="loadingBar right"></div></div><main><header class="closed"><div class="navBtn"><i class="navBtnIcon"><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span></i></div><nav><div class="navItem" id="search-header"><span class="navItemTitle"><input autocomplete="off" autocorrect="off" autocapitalize="none" placeholder="数据检索" spellcheck="false" maxlength="50" type="text" id="search-input"></span></div><div class="navItem" id="search-holder"></div><div class="search-popup" tabindex="0"><div id="search-result"></div></div><ol class="navContent"><li class="navItem"><a class="navBlock" href="/Arknight-notes/"><span class="navItemTitle">Home</span></a></li><li class="navItem" matchdata="categories,tags"><a class="navBlock" href="/Arknight-notes/archives/"><span class="navItemTitle">Archives</span></a></li><li class="navItem"><a class="navBlock" href="/Arknight-notes/about/"><span class="navItemTitle">About</span></a></li></ol></nav></header><article><div id="post-bg"><div id="post-title"><h1>2025-11-21-canvas项目设计杂记其二</h1><div id="post-info"><span>文章发布时间: <div class="control"><time datetime="2025-11-21T10:10:06.000Z" id="date"> 2025-11-21</time></div></span><br><span>最后更新时间: <div class="control"><time datetime="2025-11-23T09:37:40.640Z" id="updated"> 2025-11-23</time></div></span><br><span id="busuanzi_container_page_pv">页面浏览: <span class="control" id="busuanzi_value_page_pv">加载中...</span></span></div></div><hr><div id="post-content"><p><del>设计还原 Excalidraw 顶部栏工具样式</del></p>
+</head><body><div class="loading" style="opacity: 0;"><div class="loadingBar left"></div><div class="loadingBar right"></div></div><main><header class="closed"><div class="navBtn"><i class="navBtnIcon"><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span></i></div><nav><div class="navItem" id="search-header"><span class="navItemTitle"><input autocomplete="off" autocorrect="off" autocapitalize="none" placeholder="Search" spellcheck="false" maxlength="50" type="text" id="search-input"></span></div><div class="navItem" id="search-holder"></div><div class="search-popup" tabindex="0"><div id="search-result"></div></div><ol class="navContent"><li class="navItem"><a class="navBlock" href="/Arknight-notes/"><span class="navItemTitle">Home</span></a></li><li class="navItem" matchdata="categories,tags"><a class="navBlock" href="/Arknight-notes/archives/"><span class="navItemTitle">Archives</span></a></li><li class="navItem"><a class="navBlock" href="/Arknight-notes/about/"><span class="navItemTitle">About</span></a></li></ol></nav></header><article><div id="post-bg"><div id="post-title"><h1>2025-11-21-canvas设计项目杂记其二</h1><div id="post-info"><span>First Post: <div class="control"><time datetime="2025-11-21T10:10:06.000Z" id="date"> 2025-11-21</time></div></span><br><span>Last Update: <div class="control"><time datetime="2025-11-23T16:44:43.096Z" id="updated"> 2025-11-24</time></div></span><br><span id="busuanzi_container_page_pv">Page View: <span class="control" id="busuanzi_value_page_pv">loading...</span></span></div></div><hr><div id="post-content"><p>设计还原 Excalidraw 顶部栏工具样式</p>
 <div class="table-container">
 <table>
 <thead>
@@ -286,146 +286,313 @@ mjx-container[display="true"] + br {
 </tbody>
 </table>
 </div>
-<h3 id="重构-Pixi-stageManager-ts"><a href="#重构-Pixi-stageManager-ts" class="headerlink" title="重构  Pixi_stageManager.ts"></a><del>重构  Pixi_stageManager.ts</del></h3><p><del>我们需要做比较大的改动：</del></p>
+<h3 id="重构-Pixi-stageManager-ts"><a href="#重构-Pixi-stageManager-ts" class="headerlink" title="重构  Pixi_stageManager.ts"></a>重构  Pixi_stageManager.ts</h3><p>我们需要做比较大的改动：</p>
 <ol>
-<li><del>引入  Viewport  并将其添加到  app.stage。</del></li>
-<li><del>所有的绘图元素（Graphics）现在都添加到  viewport  中，而不是  app.stage。</del></li>
-<li><del>根据当前工具（hand vs rect/select）来启用或禁用 Viewport 的拖拽插件。</del></li>
+<li>引入  Viewport  并将其添加到  app.stage。</li>
+<li>所有的绘图元素（Graphics）现在都添加到  viewport  中，而不是  app.stage。</li>
+<li>根据当前工具（hand vs rect/select）来启用或禁用 Viewport 的拖拽插件。</li>
 </ol>
-<h3 id="如何实现-Minimap（小地图）"><a href="#如何实现-Minimap（小地图）" class="headerlink" title="如何实现 Minimap（小地图）"></a><del>如何实现 Minimap（小地图）</del></h3><p><del>你提到了 Minimap，虽然代码量较大不便在此全部贴出，但我可以告诉你<strong>行业标准的实现思路</strong>。</del></p>
-<p><del>有了  pixi-viewport  和 Zustand Store，实现 Minimap 其实就是做一个<strong>数据映射</strong></del></p>
-<h4 id="1-原理"><a href="#1-原理" class="headerlink" title="1. 原理"></a><del>1. 原理</del></h4><p><del>Minimap 本质上是一个独立的、微缩的视图。不要尝试去截取 Pixi Canvas 的图（性能太差）。你应该再画一遍，用简化的图形。</del></p>
-<h4 id="2-实现步骤"><a href="#2-实现步骤" class="headerlink" title="2. 实现步骤"></a><del>2. 实现步骤</del></h4><p><del><strong>A. 创建 Minimap 组件</strong></del><br><del>创建一个 React 组件，它固定在右下角。</del></p>
-<p><del><strong>B. 坐标映射 (World -&gt; Minimap)</strong></del><br><del>假设你的 Minimap 大小是 200x150px。</del><br><del>你需要计算当前所有元素的<strong>包围盒 (Bounding Box)</strong>：</del></p>
+<h3 id="如何实现-Minimap（小地图）"><a href="#如何实现-Minimap（小地图）" class="headerlink" title="如何实现 Minimap（小地图）"></a>如何实现 Minimap（小地图）</h3><p>你提到了 Minimap，虽然代码量较大不便在此全部贴出，但我可以告诉你<strong>行业标准的实现思路</strong>。</p>
+<p>有了  pixi-viewport  和 Zustand Store，实现 Minimap 其实就是做一个<strong>数据映射</strong></p>
+<h4 id="1-原理"><a href="#1-原理" class="headerlink" title="1. 原理"></a>1. 原理</h4><p>Minimap 本质上是一个独立的、微缩的视图。不要尝试去截取 Pixi Canvas 的图（性能太差）。你应该再画一遍，用简化的图形。</p>
+<h4 id="2-实现步骤"><a href="#2-实现步骤" class="headerlink" title="2. 实现步骤"></a>2. 实现步骤</h4><p><strong>A. 创建 Minimap 组件</strong><br>创建一个 React 组件，它固定在右下角。</p>
+<p><strong>B. 坐标映射 (World -&gt; Minimap)</strong><br>假设你的 Minimap 大小是 200x150px。<br>你需要计算当前所有元素的<strong>包围盒 (Bounding Box)</strong>：</p>
 <ul>
-<li><del>minX, minY: 最左上角的元素位置</del></li>
-<li><del>maxX, maxY: 最右下角的元素位置</del></li>
-<li><del>contentWidth = maxX - minX</del></li>
-<li><del>scale = minimapWidth / contentWidth</del></li>
+<li>minX, minY: 最左上角的元素位置</li>
+<li>maxX, maxY: 最右下角的元素位置</li>
+<li>contentWidth = maxX - minX</li>
+<li>scale = minimapWidth / contentWidth</li>
 </ul>
-<p><del><strong>C. 渲染内容</strong></del><br><del>因为我们已经在 Zustand Store 里存了  { type: ‘rect’, x: 100, y: 100 … }  这样的纯数据，所以 Minimap 不需要 PixiJS。直接用 HTML5 <canvas>  或 SVG 渲染即可！</canvas></del></p>
-<p><del>codeTsx</del></p>
-<p><del>```</del><br><del>// 伪代码示例：Minimap SVG 实现</del><br><del>&lt;svg width="200" height="150" viewBox={`<mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.025ex;" xmlns="http://www.w3.org/2000/svg" width="6.052ex" height="1.57ex" role="img" focusable="false" viewBox="0 -683 2675 694"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="TeXAtom" data-mjx-texclass="ORD"><g data-mml-node="mi"><path data-c="1D45A" d="M21 287Q22 293 24 303T36 341T56 388T88 425T132 442T175 435T205 417T221 395T229 376L231 369Q231 367 232 367L243 378Q303 442 384 442Q401 442 415 440T441 433T460 423T475 411T485 398T493 385T497 373T500 364T502 357L510 367Q573 442 659 442Q713 442 746 415T780 336Q780 285 742 178T704 50Q705 36 709 31T724 26Q752 26 776 56T815 138Q818 149 821 151T837 153Q857 153 857 145Q857 144 853 130Q845 101 831 73T785 17T716 -10Q669 -10 648 17T627 73Q627 92 663 193T700 345Q700 404 656 404H651Q565 404 506 303L499 291L466 157Q433 26 428 16Q415 -11 385 -11Q372 -11 364 -4T353 8T350 18Q350 29 384 161L420 307Q423 322 423 345Q423 404 379 404H374Q288 404 229 303L222 291L189 157Q156 26 151 16Q138 -11 108 -11Q95 -11 87 -5T76 7T74 17Q74 30 112 181Q151 335 151 342Q154 357 154 369Q154 405 129 405Q107 405 92 377T69 316T57 280Q55 278 41 278H27Q21 284 21 287Z"></path></g><g data-mml-node="mi" transform="translate(878,0)"><path data-c="1D456" d="M184 600Q184 624 203 642T247 661Q265 661 277 649T290 619Q290 596 270 577T226 557Q211 557 198 567T184 600ZM21 287Q21 295 30 318T54 369T98 420T158 442Q197 442 223 419T250 357Q250 340 236 301T196 196T154 83Q149 61 149 51Q149 26 166 26Q175 26 185 29T208 43T235 78T260 137Q263 149 265 151T282 153Q302 153 302 143Q302 135 293 112T268 61T223 11T161 -11Q129 -11 102 10T74 74Q74 91 79 106T122 220Q160 321 166 341T173 380Q173 404 156 404H154Q124 404 99 371T61 287Q60 286 59 284T58 281T56 279T53 278T49 278T41 278H27Q21 284 21 287Z"></path></g><g data-mml-node="mi" transform="translate(1223,0)"><path data-c="1D45B" d="M21 287Q22 293 24 303T36 341T56 388T89 425T135 442Q171 442 195 424T225 390T231 369Q231 367 232 367L243 378Q304 442 382 442Q436 442 469 415T503 336T465 179T427 52Q427 26 444 26Q450 26 453 27Q482 32 505 65T540 145Q542 153 560 153Q580 153 580 145Q580 144 576 130Q568 101 554 73T508 17T439 -10Q392 -10 371 17T350 73Q350 92 386 193T423 345Q423 404 379 404H374Q288 404 229 303L222 291L189 157Q156 26 151 16Q138 -11 108 -11Q95 -11 87 -5T76 7T74 17Q74 30 112 180T152 343Q153 348 153 366Q153 405 129 405Q91 405 66 305Q60 285 60 284Q58 278 41 278H27Q21 284 21 287Z"></path></g><g data-mml-node="mi" transform="translate(1823,0)"><path data-c="1D44B" d="M42 0H40Q26 0 26 11Q26 15 29 27Q33 41 36 43T55 46Q141 49 190 98Q200 108 306 224T411 342Q302 620 297 625Q288 636 234 637H206Q200 643 200 645T202 664Q206 677 212 683H226Q260 681 347 681Q380 681 408 681T453 682T473 682Q490 682 490 671Q490 670 488 658Q484 643 481 640T465 637Q434 634 411 620L488 426L541 485Q646 598 646 610Q646 628 622 635Q617 635 609 637Q594 637 594 648Q594 650 596 664Q600 677 606 683H618Q619 683 643 683T697 681T738 680Q828 680 837 683H845Q852 676 852 672Q850 647 840 637H824Q790 636 763 628T722 611T698 593L687 584Q687 585 592 480L505 384Q505 383 536 304T601 142T638 56Q648 47 699 46Q734 46 734 37Q734 35 732 23Q728 7 725 4T711 1Q708 1 678 1T589 2Q528 2 496 2T461 1Q444 1 444 10Q444 11 446 25Q448 35 450 39T455 44T464 46T480 47T506 54Q523 62 523 64Q522 64 476 181L429 299Q241 95 236 84Q232 76 232 72Q232 53 261 47Q262 47 267 47T273 46Q276 46 277 46T280 45T283 42T284 35Q284 26 282 19Q279 6 276 4T261 1Q258 1 243 1T201 2T142 2Q64 2 42 0Z"></path></g></g></g></g></svg></mjx-container>{minY} <mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.025ex;" xmlns="http://www.w3.org/2000/svg" width="5.697ex" height="1.595ex" role="img" focusable="false" viewBox="0 -694 2518 705"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="TeXAtom" data-mjx-texclass="ORD"><g data-mml-node="mi"><path data-c="1D464" d="M580 385Q580 406 599 424T641 443Q659 443 674 425T690 368Q690 339 671 253Q656 197 644 161T609 80T554 12T482 -11Q438 -11 404 5T355 48Q354 47 352 44Q311 -11 252 -11Q226 -11 202 -5T155 14T118 53T104 116Q104 170 138 262T173 379Q173 380 173 381Q173 390 173 393T169 400T158 404H154Q131 404 112 385T82 344T65 302T57 280Q55 278 41 278H27Q21 284 21 287Q21 293 29 315T52 366T96 418T161 441Q204 441 227 416T250 358Q250 340 217 250T184 111Q184 65 205 46T258 26Q301 26 334 87L339 96V119Q339 122 339 128T340 136T341 143T342 152T345 165T348 182T354 206T362 238T373 281Q402 395 406 404Q419 431 449 431Q468 431 475 421T483 402Q483 389 454 274T422 142Q420 131 420 107V100Q420 85 423 71T442 42T487 26Q558 26 600 148Q609 171 620 213T632 273Q632 306 619 325T593 357T580 385Z"></path></g><g data-mml-node="mi" transform="translate(716,0)"><path data-c="1D456" d="M184 600Q184 624 203 642T247 661Q265 661 277 649T290 619Q290 596 270 577T226 557Q211 557 198 567T184 600ZM21 287Q21 295 30 318T54 369T98 420T158 442Q197 442 223 419T250 357Q250 340 236 301T196 196T154 83Q149 61 149 51Q149 26 166 26Q175 26 185 29T208 43T235 78T260 137Q263 149 265 151T282 153Q302 153 302 143Q302 135 293 112T268 61T223 11T161 -11Q129 -11 102 10T74 74Q74 91 79 106T122 220Q160 321 166 341T173 380Q173 404 156 404H154Q124 404 99 371T61 287Q60 286 59 284T58 281T56 279T53 278T49 278T41 278H27Q21 284 21 287Z"></path></g><g data-mml-node="mi" transform="translate(1061,0)"><path data-c="1D451" d="M366 683Q367 683 438 688T511 694Q523 694 523 686Q523 679 450 384T375 83T374 68Q374 26 402 26Q411 27 422 35Q443 55 463 131Q469 151 473 152Q475 153 483 153H487H491Q506 153 506 145Q506 140 503 129Q490 79 473 48T445 8T417 -8Q409 -10 393 -10Q359 -10 336 5T306 36L300 51Q299 52 296 50Q294 48 292 46Q233 -10 172 -10Q117 -10 75 30T33 157Q33 205 53 255T101 341Q148 398 195 420T280 442Q336 442 364 400Q369 394 369 396Q370 400 396 505T424 616Q424 629 417 632T378 637H357Q351 643 351 645T353 664Q358 683 366 683ZM352 326Q329 405 277 405Q242 405 210 374T160 293Q131 214 119 129Q119 126 119 118T118 106Q118 61 136 44T179 26Q233 26 290 98L298 109L352 326Z"></path></g><g data-mml-node="mi" transform="translate(1581,0)"><path data-c="1D461" d="M26 385Q19 392 19 395Q19 399 22 411T27 425Q29 430 36 430T87 431H140L159 511Q162 522 166 540T173 566T179 586T187 603T197 615T211 624T229 626Q247 625 254 615T261 596Q261 589 252 549T232 470L222 433Q222 431 272 431H323Q330 424 330 420Q330 398 317 385H210L174 240Q135 80 135 68Q135 26 162 26Q197 26 230 60T283 144Q285 150 288 151T303 153H307Q322 153 322 145Q322 142 319 133Q314 117 301 95T267 48T216 6T155 -11Q125 -11 98 4T59 56Q57 64 57 83V101L92 241Q127 382 128 383Q128 385 77 385H26Z"></path></g><g data-mml-node="mi" transform="translate(1942,0)"><path data-c="210E" d="M137 683Q138 683 209 688T282 694Q294 694 294 685Q294 674 258 534Q220 386 220 383Q220 381 227 388Q288 442 357 442Q411 442 444 415T478 336Q478 285 440 178T402 50Q403 36 407 31T422 26Q450 26 474 56T513 138Q516 149 519 151T535 153Q555 153 555 145Q555 144 551 130Q535 71 500 33Q466 -10 419 -10H414Q367 -10 346 17T325 74Q325 90 361 192T398 345Q398 404 354 404H349Q266 404 205 306L198 293L164 158Q132 28 127 16Q114 -11 83 -11Q69 -11 59 -2T48 16Q48 30 121 320L195 616Q195 629 188 632T149 637H128Q122 643 122 645T124 664Q129 683 137 683Z"></path></g></g></g></g></svg></mjx-container>{height}`}&gt;</del><br>   <del>{elements.map(el =&gt; (</del><br>      <del><rect x="{el.x}" y="{el.y}" width="{el.width}" height="{el.height}" fill="#ccc"></rect></del><br>   <del>))}</del></p>
-<p>   <del>{/<em> 视口框：显示当前你正在看哪个区域 </em>/}</del><br>   <del>&lt;rect</del><br>     <del>x={viewport.center.x - viewport.worldScreenWidth/2}</del><br>     <del>y={viewport.center.y - viewport.worldScreenHeight/2}</del><br>     <del>width={viewport.worldScreenWidth}</del><br>     <del>height={viewport.worldScreenHeight}</del><br>     <del>stroke=”red” fill=”none”</del><br>   <del>/&gt;</del><br><del>&lt;/svg&gt;</del><br><del>```</del></p>
-<p><del>#### 3. 双向绑定</del></p>
-<p><del>1. <strong>View -&gt; Map</strong>: 当主画布  viewport  移动 (moved  事件) 时，更新 Minimap 里的红框位置。</del><br><del>2. <strong>Map -&gt; View</strong>: 当拖拽 Minimap 里的红框时，调用  stageManager.viewport.moveCenter(x, y)  来移动主画布。</del></p>
-<p><del>### 总结</del></p>
-<p><del>1. <strong>无限画布</strong>：使用  pixi-viewport  代替原生  app.stage  容器。</del><br><del>2. <strong>手型工具</strong>：</del></p>
-<p>   <del>- 当  tool === ‘hand’  时，调用  viewport.drag()  启用拖拽。</del><br>   <del>- 当  tool !== ‘hand’  时，viewport.plugins.pause(‘drag’)  暂停拖拽，以便进行绘图。</del></p>
-<p><del>3. <strong>Minimap</strong>：使用 SVG 或第二个轻量 Canvas，通过 Store 数据渲染所有元素的微缩版，并计算一个“视口矩形”覆盖在上面。</del></p>
-<p><del>### 改动说明</del></p>
-<p><del>1. <strong>updateViewportState  逻辑变更</strong>：</del></p>
-<p>   <del>- 之前：hand  模式开启 drag，其他模式暂停 drag。</del><br>   <del>- 现在：所有模式都开启 drag。</del><br>     <del>- 普通模式：drag({ mouseButtons: ‘middle’ })。中键拖动画布，左键留给选择。</del><br>     <del>- 手型模式：drag({ mouseButtons: ‘all’ })。左键或中键都可以拖动画布。</del></p>
-<p><del>2. <strong>onPointerDown  拦截</strong>：</del></p>
-<p>   <del>- 新增  if (e.button === 1) return。</del><br>   <del>- 这样当用户按下中键时，Pixi_stageManager  的自定义逻辑（选择元素、创建元素）会被跳过，控制权完全交给  pixi-viewport  进行画布平移。</del></p>
-<p><del>3. <strong>默认行为阻止</strong>：</del></p>
-<p>   <del>- 在  initApp  中添加了  container.addEventListener(‘mousedown’, …)  来阻止中键点击时的默认滚动图标出现，体验更顺滑。</del></p>
-<p><del>现在，你可以在保持“选择工具”激活的情况下，直接按住鼠标中键来拖拽画布，释放中键后继续使用左键选择或移动元素。同时，左侧工具栏的“手型工具”和“空格键”快捷键依然有效（它们会把左键也变成拖拽）。</del></p>
-<p><del>## <strong>“Rubber-band Selection” (框选)</strong>  和  <strong>“Transformer / Gizmo” (变换控制器)</strong>。</del></p>
-<p><del>对  Pixi_stageManager.ts  进行较大幅度的扩展。为了保持代码清晰，我们将逻辑分为两部分：</del></p>
-<p><del>1. <strong>框选逻辑</strong>：在空白处拖拽绘制蓝色半透明矩形，松开时计算碰撞。</del><br><del>2. <strong>变换逻辑</strong>：选中元素时绘制 8 个控制点，拖拽控制点改变元素尺寸。</del></p>
-<p><del>以下是完整的实现方案。</del></p>
-<p><del>### 1. 核心逻辑修改思路</del></p>
-<p><del>我们需要引入一个新的图层概念（UI Layer），确保框选框和控制手柄永远画在元素之上。</del></p>
-<p><del>- <strong>状态增加</strong>：增加  interactionMode  状态，区分  idle | panning | dragging (拖拽元素) | selecting (框选) | resizing (调整大小)。</del><br><del>- <strong>Resize 算法</strong>：根据当前拖拽的是哪个角（如 Top-Left），反向计算  x, y, width, height。</del></p>
-<p><del>### 2. 更新  Pixi_stageManager.ts</del></p>
-<p><del>—-</del></p>
-<p><del>改用世界坐标系进行计算：</del></p>
-<p><del>1. 通过  <code>e.getLocalPosition(this.viewport)</code>  获取鼠标在世界坐标系中的当前位置</del><br><del>2. 计算当前位置与起始位置的差值  <code>dx</code>  和  <code>dy</code></del><br><del>3. 直接将这个差值应用到元素的位置上，无需考虑缩放因子</del><br><del>4. 更新起始位置为当前位置，为下次移动计算做准备</del></p>
-<p><del>—-</del></p>
-<p><del>StageManager 类</del><br><del>├── 类属性定义模块</del><br><del>│ ├── PIXI 应用和视口</del><br><del>│ ├── 图层管理</del><br><del>│ ├── 元素映射</del><br><del>│ ├── 交互状态</del><br><del>│ ├── 辅助图形</del><br><del>│ └── 变换/拖拽相关数据</del><br><del>├── 构造函数与初始化模块</del><br><del>│ ├── 主构造函数</del><br><del>│ │ ├── 应用初始化</del><br><del>│ │ ├── 视口设置</del><br><del>│ │ ├── 图层结构初始化</del><br><del>│ │ ├── UI 元素初始化</del><br><del>│ │ ├── 交互设置</del><br><del>│ │ └── 状态订阅</del><br><del>│ └── 应用初始化方法 (initApp)</del><br><del>├── 视口管理模块</del><br><del>│ └── 视口设置 (setupViewport)</del><br><del>├── 渲染核心模块</del><br><del>│ ├── 画布元素渲染 (renderElements)</del><br><del>│ └── 变换控制器渲染 (renderTransformer)</del><br><del>├── 交互逻辑模块</del><br><del>│ ├── 交互设置 (setupInteraction)</del><br><del>│ ├── 指针按下处理 (onPointerDown)</del><br><del>│ ├── 手柄按下处理 (onHandleDown)</del><br><del>│ ├── 指针移动处理 (onPointerMove)</del><br><del>│ └── 指针抬起处理 (onPointerUp)</del><br><del>├── 辅助函数模块</del><br><del>│ ├── 获取手柄光标样式 (getCursorForHandle)</del><br><del>│ ├── 更新视口状态 (updateViewportState)</del><br><del>│ ├── 设置空格键状态 (setSpacePressed)</del><br><del>│ ├── 更新光标 (updateCursor)</del><br><del>│ └── 销毁方法 (destroy)</del></p>
-<p><del>—-</del></p>
-<p><del>修复了图像创建后没有立即渲染的问题。主要的修改包括：</del></p>
-<p><del>1. 当图像纹理正在加载时，创建一个占位符图形（灰色矩形）立即显示在画布上，这样用户就能立即看到图像的位置和大小。</del><br><del>2. 在纹理加载完成后，更新纹理缓存并直接更新已存在的图形，而不是等待下一次重新渲染。</del><br><del>3. 移除了使用非空断言操作符（<code>!</code>）的代码，使类型检查更加安全。</del><br><del>4. 简化了图像渲染逻辑，确保在纹理加载完成前也能显示占位符。</del></p>
-<p><del>这些修改确保了图像元素在创建时能够立即显示（虽然是占位符），而不是完全不可见直到其他操作触发重新渲染。当图像纹理加载完成后，占位符会自动更新为实际的图像。</del></p>
-<p><del>## 图像加载机制详解</del></p>
-<p><del>### 1. 整体流程</del></p>
-<p><del>图像加载采用异步方式处理，主要分为以下几个步骤：</del></p>
-<p><del>1. <strong>检查缓存</strong>：首先检查纹理是否已经在缓存中存在</del><br><del>2. <strong>加载纹理</strong>：如果不存在，则启动纹理加载过程</del><br><del>3. <strong>显示占位符</strong>：在纹理加载期间，显示一个灰色占位符矩形</del><br><del>4. <strong>更新显示</strong>：纹理加载完成后，将占位符替换为实际图像</del></p>
-<p><del>### 2. 核心组件</del></p>
-<p><del>typescript</del></p>
-<p><del><code>private spriteMap: Map&lt;string, PIXI.Graphics | HTMLText | PIXI.Sprite&gt; = new Map() private textureCache: Map&lt;string, PIXI.Texture&gt; = new Map() private loadingSet: Set&lt;string&gt; = new Set()</code></del></p>
-<p><del>- <strong>spriteMap</strong>：存储所有已创建的图形对象（包括占位符和实际图像）</del><br><del>- <strong>textureCache</strong>：缓存已加载的纹理，避免重复加载</del><br><del>- <strong>loadingSet</strong>：记录正在加载的 URL，防止重复发起加载请求</del></p>
-<p><del>### 3. 加载过程详解</del></p>
-<p><del>#### 3.1 检查缓存</del></p>
-<p><del>typescript</del></p>
-<p><del><code>let texture = this.textureCache.get(data.imageUrl)</code></del></p>
-<p><del>如果纹理已存在缓存中，直接使用，无需重新加载。</del></p>
-<p><del>#### 3.2 防止重复加载</del></p>
-<p><del>typescript</del></p>
-<p><del><code>if (!this.loadingSet.has(data.imageUrl)) {   this.loadingSet.add(data.imageUrl)   // 开始加载 }</code></del></p>
-<p><del>通过 loadingSet 确保同一 URL 不会被重复加载。</del></p>
-<p><del>#### 3.3 异步加载</del></p>
-<p><del>typescript</del></p>
-<p><del><code>PIXI.Assets.load(data.imageUrl)   .then((loadedTexture) =&gt; {     // 加载成功处理   })   .catch((err) =&gt; {     // 加载失败处理   })</code></del></p>
-<p><del>使用 PIXI 的资源加载器进行异步加载。</del></p>
-<p><del>#### 3.4 占位符显示</del></p>
-<p><del>在纹理加载期间，创建一个灰色矩形作为占位符：</del></p>
-<p><del>typescript</del></p>
-<p><del><code>graphic = new PIXI.Graphics() graphic.rect(0, 0, data.width, data.height) graphic.fill({ color: 0xdddddd }) graphic.stroke({ width: 1, color: 0x999999 })</code></del></p>
-<p><del>#### 3.5 加载完成后更新</del></p>
-<p><del>纹理加载完成后，立即替换占位符：</del></p>
-<p><del>typescript</del></p>
-<p><del><code>// 替换占位符为真实图像 elementLayer.removeChild(graphic) graphic.destroy() // 创建新的Sprite const sprite = new PIXI.Sprite(loadedTexture) // 设置属性... elementLayer.addChild(sprite) this.spriteMap.set(id, sprite)</code></del></p>
-<p><del>### 4. 性能优化措施</del></p>
-<p><del>1. <strong>缓存机制</strong>：避免重复加载相同 URL 的图像</del><br><del>2. <strong>防止重复请求</strong>：通过 loadingSet 避免对同一 URL 发起多次加载请求</del><br><del>3. <strong>及时清理</strong>：元素移除时清理相关资源和引用</del><br><del>4. <strong>立即更新</strong>：纹理加载完成后立即更新显示，无需等待其他操作</del></p>
-<p><del>### 5. 错误处理</del></p>
-<p><del>当图像加载失败时，会输出错误日志并从加载集合中移除 URL：</del></p>
-<p><del>typescript</del></p>
-<p><del><code>.catch((err) =&gt; {   console.error('Failed to load asset:', err)   this.loadingSet.delete(data.imageUrl) })</code></del></p>
-<p><del>### 6. 资源清理</del></p>
-<p><del>当元素被移除时，会进行适当的资源清理：</del></p>
-<p><del>1. 移除图形对象</del><br><del>2. 销毁不再使用的纹理</del><br><del>3. 清理相关引用和定时器</del></p>
-<p><del>这套机制确保了图像加载既高效又用户友好，在图像加载期间提供视觉反馈，并在加载完成后立即显示图像。</del></p>
-<p><del>1. <strong>types.ts</strong>: 增加了  initialElementsMap  和  initialGroupBounds  来存储多选时的初始状态。</del><br><del>2. <strong>StageManagerCore.ts</strong>:</del></p>
-<p>   <del>- onHandleDown: 现在会捕捉所有选中元素的快照，并计算初始的群组包围盒。</del><br>   <del>- onPointerMove: 重写了  resizing  逻辑。它不再单纯调整单个元素，而是先计算鼠标移动导致的<strong>新包围盒</strong>，计算出<strong>宽高的缩放比例</strong>，然后应用到所有选中元素上（包括坐标、宽高和内部点集）。</del></p>
-<p><del>这是一个典型的多选缩放问题。</del></p>
-<p><del><strong>问题原因：</strong></del><br><del>在现有的  StageManagerCore.ts  中，onPointerMove  的  resizing  逻辑只处理了单体元素 (this.state.currentId) 的更新。当你选中多个元素时，虽然  TransformerRenderer  画出了一个大的包围盒，但交互逻辑实际上只在操作第一个被选中的元素，导致其他元素不动，或者计算逻辑完全错误（因为没有基于群组包围盒进行整体缩放），从而出现“锚点脱离”和“大小失控”的现象。</del></p>
-<p><del><strong>解决方案：</strong></del><br><del>我们需要修改  StageManagerCore.ts  和  types.ts。</del></p>
-<p><del>1. <strong>状态存储</strong>：在  onHandleDown  时，不再只存储单个元素的初始状态，而是需要计算并存储<strong>整个选区的初始包围盒 (Group Bounds)</strong>  以及<strong>所有被选元素的初始状态</strong>。</del><br><del>2. <strong>移动计算</strong>：在  onPointerMove  时，根据鼠标位移计算出<strong>新的群组包围盒</strong>，得出宽高的<strong>缩放比例 (scaleX, scaleY)</strong>，然后根据这个比例更新所有被选元素的坐标和尺寸。</del></p>
-<p><del>—-</del></p>
-<p><del>1. <strong>使用 Command Pattern</strong>：</del></p>
-<p>   <del>- 实现了基本的命令接口  Command</del><br>   <del>- 提供了  SnapshotCommand  类处理完整的状态快照</del><br>   <del>- 使用两个栈管理撤销和重做操作</del></p>
-<p><del>2. <strong>使用 structuredClone 进行快照</strong>：</del></p>
-<p>   <del>- 对整个 store 状态进行深克隆</del><br>   <del>- 保证状态回退时不会出现引用问题</del></p>
-<p><del>3. <strong>自动捕获状态变更</strong>：</del></p>
-<p>   <del>- 通过包装 Zustand 的 set 方法自动捕获所有状态变更</del><br>   <del>- 无需手动在每个操作后调用记录方法</del></p>
-<p><del>4. <strong>防止递归记录</strong>：</del></p>
-<p>   <del>- 使用锁定机制避免在执行撤销/重做操作时记录新命令</del></p>
-<p><del>5. <strong>键盘快捷键支持</strong>：</del></p>
-<p>   <del>- 支持标准的 Ctrl+Z 撤销和 Ctrl+Y/Ctrl+Shift+Z 重做</del></p>
-<p><del>这种实现方式简单有效，能够满足大部分撤销/重做需求，并且与现有的项目架构很好地集成。</del></p>
-<p><del>1. <strong>使用  <code>structuredClone()</code> API</strong>：</del></p>
-<p>   <del>- 我们使用浏览器内置的  <a target="_blank" rel="noopener" href="https://developer.mozilla.org/en-US/docs/Web/API/structuredClone">structuredClone()</a>  函数来创建状态对象的深拷贝</del><br>   <del>- 这个 API 可以创建对象的完整副本，包括嵌套的对象和数组</del></p>
-<p><del>2. <strong>只克隆数据部分</strong>：</del></p>
-<p>   <del>- 由于 Zustand store 状态既包含数据属性也包含函数属性，而  <code>structuredClone()</code>  无法克隆函数，所以我们需要分离这两部分</del><br>   <del>- 使用解构赋值语法排除所有函数属性：</del><br>     <del>javascript</del><br>     <del><code>const {    setTool, addElement, updateElement, removeElements, setSelected,   setEditingId, copyElements, pasteElements, undo, redo, canUndo, canRedo,   ...dataOnlyState  } = state;</code></del><br>   <del>- 这样  dataOnlyState  就只包含纯数据属性，如  tool、elements、selectedIds  等</del></p>
-<p><del>3. <strong>在撤销/重做系统中的应用</strong>：</del></p>
-<p>   <del>- 在每次状态更改前后捕获快照</del><br>   <del>- 将这些快照传递给  SnapshotCommand  来记录状态变化</del><br>   <del>- 当用户执行撤销或重做操作时，可以从这些快照恢复到之前的状态</del></p>
-<p><del>这种机制确保我们可以准确地跟踪和恢复画布状态的变化历史，同时避免了尝试克隆不可序列化函数的错误。</del></p>
-<p><del>你提到的问题非常准确。目前的实现方式确实会在创建选框等操作过程中记录每一步的状态变化，这会导致撤销/重做系统产生过多不必要的快照。</del></p>
-<p><del>对于绘图应用来说，用户期望的行为通常是：</del></p>
-<p><del>1. 在开始绘制时标记操作起点</del><br><del>2. 在绘制结束时才生成一个完整的撤销点</del><br><del>3. 而不是记录过程中的每个微小变化</del></p>
-<p><del>针对这个问题，常见的解决方案有几种：</del></p>
-<p><del>1. <strong>批量操作机制</strong>：允许临时锁定 undo/redo 系统，在一系列连续操作完成后再解锁并记录最终状态。</del><br><del>2. <strong>防抖动机制</strong>：在快速连续的操作中，只记录特定时间间隔的状态。</del><br><del>3. <strong>操作分组</strong>：将相关的操作归为一组，作为一个整体进行撤销/重做。</del></p>
-<p><del>考虑到你们项目的情况，我觉得第一种方案比较适合，即增加开始和结束批量操作的方法。</del></p>
-<p><del>不过目前的实现也有它的优势，就是可以精确还原到任意一个中间状态。在实际使用中可以根据用户体验需求来权衡是否需要优化这一点。</del></p>
-<p><del>~~添加一个防抖动机制。这样可以避免在连续操作（如绘制矩形）过程中产生过多的快照。</del>~~</p>
-<p><del>更好的方法是在绘制开始时记录初始状态，在绘制结束时记录最终状态，形成一个完整的操作单元。让我来实现这个机制：</del></p>
-<p><del>### 问题分析</del></p>
-<p><del>你当前的代码存在两个主要问题：</del></p>
-<p><del>1. <strong>Middleware 过于激进</strong>：subscribeWithSelector  会拦截每一次  set  调用。当你拖拽一个矩形移动 100px 时，会触发约 60 次  set，导致历史记录里塞满了 60 个微小的移动快照。这会导致内存爆炸且撤销体验极差（按一次撤销只动 1px）。</del><br><del>2. <strong>逻辑分散</strong>：你试图在  UndoRedoManager  里用计时器（setTimeout）来判断什么时候结束创建，这非常不稳定。</del></p>
-<p><del>### 核心思路：Excalidraw 模式</del></p>
-<p><del>Excalidraw 的核心逻辑是：</del></p>
-<p><del>1. <strong>PointerDown (开始)</strong>：记录当前画布的快照（作为“旧状态”）。</del><br><del>2. <strong>PointerMove (过程)</strong>：疯狂更新 Store（瞬时状态），<strong>但不</strong>推入历史记录。</del><br><del>3. <strong>PointerUp (结束)</strong>：对比当前状态和旧状态。如果有变化，将“旧状态”和“新状态”封装成一个命令，推入历史栈。</del></p>
-<p><del>—-</del></p>
-<p><del>### 重构方案</del></p>
-<p><del>我们将移除 Store 中的自动拦截中间件，改为由<strong>交互层 (StageManagerCore)</strong>  主动控制历史记录的时机。</del></p>
-<p><del>#### 1. 重写  UndoRedoManager.ts (简化版)</del></p>
-<p><del>不再需要复杂的计时器和模式判断，回归纯粹的栈管理。</del></p>
-<p><del>1. <strong>移动（Move/Drag）操作丢失</strong>：</del></p>
-<p>   <del>- 在  onPointerDown  中，当检测到点击元素（dragging  模式）时，你调用了  undoRedoManager.lock()。</del><br>   <del>- 在  onPointerMove  中，元素位置被更新，但因为处于锁定状态，canvasStore  的中间件忽略了这些更新（这是正确的，防止产生大量快照）。</del><br>   <del>- <strong>关键缺漏</strong>：在  onPointerUp  中，当  mode === ‘dragging’  结束时，代码只执行了  unlock()，<strong>没有创建并执行任何 Command</strong>。</del><br>   <del>- <strong>结果</strong>：Store 中的状态变成了 B，但撤销栈里什么都没记。当你后续进行 Resize 操作（B -&gt; C）并记录了 Command 后，一旦撤销，Resize Command 会把状态恢复到 B。再次撤销时，由于 Move 操作没记录，状态无法回到 A，或者表现为“跳过”了某些步骤。</del></p>
-<p><del>2. <strong>Resize 操作的 “Redo 直接到 B” 现象</strong>：</del></p>
-<p>   <del>- 这通常是由于历史栈的不连续性造成的。如果 “Move A-&gt;B” 没被记录，那么栈里可能是  [Create(A), Resize(B-&gt;C), Resize(C-&gt;D)]。</del><br>   <del>- 当你撤销  Resize(C-&gt;D) -&gt; 变回 C。</del><br>   <del>- 撤销  Resize(B-&gt;C) -&gt; 变回 B。</del><br>   <del>- 此时再撤销，会直接遇到  Create(A)  或空栈，导致状态突变。</del><br>   <del>- 此外，如果 Resize 的逻辑只依赖于  initialMap，而没有正确处理连续操作间的状态同步，也可能导致此问题。</del></p>
-<p><del>### 解决方案</del></p>
-<p><del>我们需要做一个通用的  <strong>UpdateElementCommand</strong>（替换或扩展  ResizeCommand），并在  StageManagerCore  的  onPointerUp  中，<strong>为移动（Dragging）和调整大小（Resizing）都创建并执行这个命令</strong>。</del></p>
-<div id="paginator"></div></div><div id="post-footer"><div id="pages"><div class="footer-link" style="width: 50%;text-align:right;border-right:1px #fe2 solid"><a href="/Arknight-notes/posts/15704.html">← 下一篇 2025-11-22-canvas状态管理杂记其三</a></div><div class="footer-link" style="width: 50%;right:1px;border-left:1px #fe2 solid"><a href="/Arknight-notes/posts/14933.html">2025-11-21-canvas项目杂记 上一篇 →</a></div></div></div><div id="comments"><div id="gitalk"></div></div></div><div class="bottom-btn"><div><a class="i-top" id="to-top" onClick="scrolls.scrolltop();" title="回到顶部" style="opacity: 0; display: none;">∧ </a><a class="i-index" id="to-index" href="#toc-div" title="文章目录">≡</a><a class="i-color" id="color-mode" onClick="colorMode.change()" title="切换主题"></a></div></div></article><aside><div id="about"><a href="/Arknight-notes/" id="logo"><img src="https://pic4.zhimg.com/80/v2-d9884f32711e19e80979eac58e943897_720w.webp" alt="Logo" style="margin:20;border-radius:0;"></a><h1 id="Dr"><a href="zhongye">柊野</a></h1><div id="description"><p></p></div></div><div id="aside-block"><div id="toc-div"><h1>目录</h1><ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%87%8D%E6%9E%84-Pixi-stageManager-ts"><span class="toc-number">1.</span> <span class="toc-text">重构  Pixi_stageManager.ts</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0-Minimap%EF%BC%88%E5%B0%8F%E5%9C%B0%E5%9B%BE%EF%BC%89"><span class="toc-number">2.</span> <span class="toc-text">如何实现 Minimap（小地图）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E5%8E%9F%E7%90%86"><span class="toc-number">2.1.</span> <span class="toc-text">1. 原理</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E5%AE%9E%E7%8E%B0%E6%AD%A5%E9%AA%A4"><span class="toc-number">2.2.</span> <span class="toc-text">2. 实现步骤</span></a></li></ol></li></ol></div></div><footer><nobr><span class="icp-title">GZHU</span><span class="icp-content">193001-0001</span></nobr><br><nobr><span class="icp-title">OUTPOST</span><span class="icp-content">169-2025-0331</span></nobr><br><nobr>构建自 <a target="_blank" rel="noopener" href="http://hexo.io">Hexo</a></nobr><wbr><nobr> 使用主题 <a target="_blank" rel="noopener" href="https://github.com/Yue-plus/hexo-theme-arknights">Arknights</a></nobr><wbr><nobr> 主题作者 <a target="_blank" rel="noopener" href="https://github.com/Yue-plus">Yue_plus</a></nobr></footer></aside></main><canvas id="canvas-dust"></canvas></body></html>
+<p><strong>C. 渲染内容</strong><br>因为我们已经在 Zustand Store 里存了  { type: ‘rect’, x: 100, y: 100 … }  这样的纯数据，所以 Minimap 不需要 PixiJS。直接用 HTML5 <canvas>  或 SVG 渲染即可！</canvas></p>
+<p>codeTsx</p>
+<figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs arduino"><span class="hljs-comment">// 伪代码示例：Minimap SVG 实现</span><br>&lt;svg width=<span class="hljs-string">"200"</span> height=<span class="hljs-string">"150"</span> viewBox={`${minX} ${minY} ${width} ${height}`}&gt;<br>   {elements.<span class="hljs-built_in">map</span>(el =&gt; (<br>      &lt;rect x={el.x} y={el.y} width={el.width} height={el.height} fill=<span class="hljs-string">"#ccc"</span> /&gt;<br>   ))}<br><br>   {<span class="hljs-comment">/* 视口框：显示当前你正在看哪个区域 */</span>}<br>   &lt;rect<br>     x={viewport.center.x - viewport.worldScreenWidth/<span class="hljs-number">2</span>}<br>     y={viewport.center.y - viewport.worldScreenHeight/<span class="hljs-number">2</span>}<br>     width={viewport.worldScreenWidth}<br>     height={viewport.worldScreenHeight}<br>     stroke=<span class="hljs-string">"red"</span> fill=<span class="hljs-string">"none"</span><br>   /&gt;<br>&lt;/svg&gt;<br></code></pre></td></tr></table></figure>
+<h4 id="3-双向绑定"><a href="#3-双向绑定" class="headerlink" title="3. 双向绑定"></a>3. 双向绑定</h4><ol>
+<li><strong>View -&gt; Map</strong>: 当主画布  viewport  移动 (moved  事件) 时，更新 Minimap 里的红框位置。</li>
+<li><strong>Map -&gt; View</strong>: 当拖拽 Minimap 里的红框时，调用  stageManager.viewport.moveCenter(x, y)  来移动主画布。</li>
+</ol>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><ol>
+<li><strong>无限画布</strong>：使用  pixi-viewport  代替原生  app.stage  容器。</li>
+<li><p><strong>手型工具</strong>：</p>
+<ul>
+<li>当  tool === ‘hand’  时，调用  viewport.drag()  启用拖拽。</li>
+<li>当  tool !== ‘hand’  时，viewport.plugins.pause(‘drag’)  暂停拖拽，以便进行绘图。</li>
+</ul>
+</li>
+<li><p><strong>Minimap</strong>：使用 SVG 或第二个轻量 Canvas，通过 Store 数据渲染所有元素的微缩版，并计算一个“视口矩形”覆盖在上面。</p>
+</li>
+</ol>
+<h3 id="改动说明"><a href="#改动说明" class="headerlink" title="改动说明"></a>改动说明</h3><ol>
+<li><p><strong>updateViewportState  逻辑变更</strong>：</p>
+<ul>
+<li>之前：hand  模式开启 drag，其他模式暂停 drag。</li>
+<li>现在：所有模式都开启 drag。<ul>
+<li>普通模式：drag({ mouseButtons: ‘middle’ })。中键拖动画布，左键留给选择。</li>
+<li>手型模式：drag({ mouseButtons: ‘all’ })。左键或中键都可以拖动画布。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>onPointerDown  拦截</strong>：</p>
+<ul>
+<li>新增  if (e.button === 1) return。</li>
+<li>这样当用户按下中键时，Pixi_stageManager  的自定义逻辑（选择元素、创建元素）会被跳过，控制权完全交给  pixi-viewport  进行画布平移。</li>
+</ul>
+</li>
+<li><p><strong>默认行为阻止</strong>：</p>
+<ul>
+<li>在  initApp  中添加了  container.addEventListener(‘mousedown’, …)  来阻止中键点击时的默认滚动图标出现，体验更顺滑。</li>
+</ul>
+</li>
+</ol>
+<p>现在，你可以在保持“选择工具”激活的情况下，直接按住鼠标中键来拖拽画布，释放中键后继续使用左键选择或移动元素。同时，左侧工具栏的“手型工具”和“空格键”快捷键依然有效（它们会把左键也变成拖拽）。</p>
+<h2 id="“Rubber-band-Selection”-框选-和-“Transformer-Gizmo”-变换控制器-。"><a href="#“Rubber-band-Selection”-框选-和-“Transformer-Gizmo”-变换控制器-。" class="headerlink" title="“Rubber-band Selection” (框选)  和  “Transformer / Gizmo” (变换控制器)。"></a><strong>“Rubber-band Selection” (框选)</strong>  和  <strong>“Transformer / Gizmo” (变换控制器)</strong>。</h2><p>对  Pixi_stageManager.ts  进行较大幅度的扩展。为了保持代码清晰，我们将逻辑分为两部分：</p>
+<ol>
+<li><strong>框选逻辑</strong>：在空白处拖拽绘制蓝色半透明矩形，松开时计算碰撞。</li>
+<li><strong>变换逻辑</strong>：选中元素时绘制 8 个控制点，拖拽控制点改变元素尺寸。</li>
+</ol>
+<p>以下是完整的实现方案。</p>
+<h3 id="1-核心逻辑修改思路"><a href="#1-核心逻辑修改思路" class="headerlink" title="1. 核心逻辑修改思路"></a>1. 核心逻辑修改思路</h3><p>我们需要引入一个新的图层概念（UI Layer），确保框选框和控制手柄永远画在元素之上。</p>
+<ul>
+<li><strong>状态增加</strong>：增加  interactionMode  状态，区分  idle | panning | dragging (拖拽元素) | selecting (框选) | resizing (调整大小)。</li>
+<li><strong>Resize 算法</strong>：根据当前拖拽的是哪个角（如 Top-Left），反向计算  x, y, width, height。</li>
+</ul>
+<h3 id="2-更新-Pixi-stageManager-ts"><a href="#2-更新-Pixi-stageManager-ts" class="headerlink" title="2. 更新  Pixi_stageManager.ts"></a>2. 更新  Pixi_stageManager.ts</h3><hr>
+<p>改用世界坐标系进行计算：</p>
+<ol>
+<li>通过  <code>e.getLocalPosition(this.viewport)</code>  获取鼠标在世界坐标系中的当前位置</li>
+<li>计算当前位置与起始位置的差值  <code>dx</code>  和  <code>dy</code></li>
+<li>直接将这个差值应用到元素的位置上，无需考虑缩放因子</li>
+<li>更新起始位置为当前位置，为下次移动计算做准备</li>
+</ol>
+<hr>
+<p>StageManager 类<br>├── 类属性定义模块<br>│ ├── PIXI 应用和视口<br>│ ├── 图层管理<br>│ ├── 元素映射<br>│ ├── 交互状态<br>│ ├── 辅助图形<br>│ └── 变换/拖拽相关数据<br>├── 构造函数与初始化模块<br>│ ├── 主构造函数<br>│ │ ├── 应用初始化<br>│ │ ├── 视口设置<br>│ │ ├── 图层结构初始化<br>│ │ ├── UI 元素初始化<br>│ │ ├── 交互设置<br>│ │ └── 状态订阅<br>│ └── 应用初始化方法 (initApp)<br>├── 视口管理模块<br>│ └── 视口设置 (setupViewport)<br>├── 渲染核心模块<br>│ ├── 画布元素渲染 (renderElements)<br>│ └── 变换控制器渲染 (renderTransformer)<br>├── 交互逻辑模块<br>│ ├── 交互设置 (setupInteraction)<br>│ ├── 指针按下处理 (onPointerDown)<br>│ ├── 手柄按下处理 (onHandleDown)<br>│ ├── 指针移动处理 (onPointerMove)<br>│ └── 指针抬起处理 (onPointerUp)<br>├── 辅助函数模块<br>│ ├── 获取手柄光标样式 (getCursorForHandle)<br>│ ├── 更新视口状态 (updateViewportState)<br>│ ├── 设置空格键状态 (setSpacePressed)<br>│ ├── 更新光标 (updateCursor)<br>│ └── 销毁方法 (destroy)</p>
+<hr>
+<p>修复了图像创建后没有立即渲染的问题。主要的修改包括：</p>
+<ol>
+<li>当图像纹理正在加载时，创建一个占位符图形（灰色矩形）立即显示在画布上，这样用户就能立即看到图像的位置和大小。</li>
+<li>在纹理加载完成后，更新纹理缓存并直接更新已存在的图形，而不是等待下一次重新渲染。</li>
+<li>移除了使用非空断言操作符（<code>!</code>）的代码，使类型检查更加安全。</li>
+<li>简化了图像渲染逻辑，确保在纹理加载完成前也能显示占位符。</li>
+</ol>
+<p>这些修改确保了图像元素在创建时能够立即显示（虽然是占位符），而不是完全不可见直到其他操作触发重新渲染。当图像纹理加载完成后，占位符会自动更新为实际的图像。</p>
+<h2 id="图像加载机制详解"><a href="#图像加载机制详解" class="headerlink" title="图像加载机制详解"></a>图像加载机制详解</h2><h3 id="1-整体流程"><a href="#1-整体流程" class="headerlink" title="1. 整体流程"></a>1. 整体流程</h3><p>图像加载采用异步方式处理，主要分为以下几个步骤：</p>
+<ol>
+<li><strong>检查缓存</strong>：首先检查纹理是否已经在缓存中存在</li>
+<li><strong>加载纹理</strong>：如果不存在，则启动纹理加载过程</li>
+<li><strong>显示占位符</strong>：在纹理加载期间，显示一个灰色占位符矩形</li>
+<li><strong>更新显示</strong>：纹理加载完成后，将占位符替换为实际图像</li>
+</ol>
+<h3 id="2-核心组件"><a href="#2-核心组件" class="headerlink" title="2. 核心组件"></a>2. 核心组件</h3><p>typescript</p>
+<p><code>private spriteMap: Map&lt;string, PIXI.Graphics | HTMLText | PIXI.Sprite&gt; = new Map() private textureCache: Map&lt;string, PIXI.Texture&gt; = new Map() private loadingSet: Set&lt;string&gt; = new Set()</code></p>
+<ul>
+<li><strong>spriteMap</strong>：存储所有已创建的图形对象（包括占位符和实际图像）</li>
+<li><strong>textureCache</strong>：缓存已加载的纹理，避免重复加载</li>
+<li><strong>loadingSet</strong>：记录正在加载的 URL，防止重复发起加载请求</li>
+</ul>
+<h3 id="3-加载过程详解"><a href="#3-加载过程详解" class="headerlink" title="3. 加载过程详解"></a>3. 加载过程详解</h3><h4 id="3-1-检查缓存"><a href="#3-1-检查缓存" class="headerlink" title="3.1 检查缓存"></a>3.1 检查缓存</h4><p>typescript</p>
+<p><code>let texture = this.textureCache.get(data.imageUrl)</code></p>
+<p>如果纹理已存在缓存中，直接使用，无需重新加载。</p>
+<h4 id="3-2-防止重复加载"><a href="#3-2-防止重复加载" class="headerlink" title="3.2 防止重复加载"></a>3.2 防止重复加载</h4><p>typescript</p>
+<p><code>if (!this.loadingSet.has(data.imageUrl)) {   this.loadingSet.add(data.imageUrl)   // 开始加载 }</code></p>
+<p>通过 loadingSet 确保同一 URL 不会被重复加载。</p>
+<h4 id="3-3-异步加载"><a href="#3-3-异步加载" class="headerlink" title="3.3 异步加载"></a>3.3 异步加载</h4><p>typescript</p>
+<p><code>PIXI.Assets.load(data.imageUrl)   .then((loadedTexture) =&gt; {     // 加载成功处理   })   .catch((err) =&gt; {     // 加载失败处理   })</code></p>
+<p>使用 PIXI 的资源加载器进行异步加载。</p>
+<h4 id="3-4-占位符显示"><a href="#3-4-占位符显示" class="headerlink" title="3.4 占位符显示"></a>3.4 占位符显示</h4><p>在纹理加载期间，创建一个灰色矩形作为占位符：</p>
+<p>typescript</p>
+<p><code>graphic = new PIXI.Graphics() graphic.rect(0, 0, data.width, data.height) graphic.fill({ color: 0xdddddd }) graphic.stroke({ width: 1, color: 0x999999 })</code></p>
+<h4 id="3-5-加载完成后更新"><a href="#3-5-加载完成后更新" class="headerlink" title="3.5 加载完成后更新"></a>3.5 加载完成后更新</h4><p>纹理加载完成后，立即替换占位符：</p>
+<p>typescript</p>
+<p><code>// 替换占位符为真实图像 elementLayer.removeChild(graphic) graphic.destroy() // 创建新的Sprite const sprite = new PIXI.Sprite(loadedTexture) // 设置属性... elementLayer.addChild(sprite) this.spriteMap.set(id, sprite)</code></p>
+<h3 id="4-性能优化措施"><a href="#4-性能优化措施" class="headerlink" title="4. 性能优化措施"></a>4. 性能优化措施</h3><ol>
+<li><strong>缓存机制</strong>：避免重复加载相同 URL 的图像</li>
+<li><strong>防止重复请求</strong>：通过 loadingSet 避免对同一 URL 发起多次加载请求</li>
+<li><strong>及时清理</strong>：元素移除时清理相关资源和引用</li>
+<li><strong>立即更新</strong>：纹理加载完成后立即更新显示，无需等待其他操作</li>
+</ol>
+<h3 id="5-错误处理"><a href="#5-错误处理" class="headerlink" title="5. 错误处理"></a>5. 错误处理</h3><p>当图像加载失败时，会输出错误日志并从加载集合中移除 URL：</p>
+<p>typescript</p>
+<p><code>.catch((err) =&gt; {   console.error('Failed to load asset:', err)   this.loadingSet.delete(data.imageUrl) })</code></p>
+<h3 id="6-资源清理"><a href="#6-资源清理" class="headerlink" title="6. 资源清理"></a>6. 资源清理</h3><p>当元素被移除时，会进行适当的资源清理：</p>
+<ol>
+<li>移除图形对象</li>
+<li>销毁不再使用的纹理</li>
+<li>清理相关引用和定时器</li>
+</ol>
+<p>这套机制确保了图像加载既高效又用户友好，在图像加载期间提供视觉反馈，并在加载完成后立即显示图像。</p>
+<ol>
+<li><strong>types.ts</strong>: 增加了  initialElementsMap  和  initialGroupBounds  来存储多选时的初始状态。</li>
+<li><p><strong>StageManagerCore.ts</strong>:</p>
+<ul>
+<li>onHandleDown: 现在会捕捉所有选中元素的快照，并计算初始的群组包围盒。</li>
+<li>onPointerMove: 重写了  resizing  逻辑。它不再单纯调整单个元素，而是先计算鼠标移动导致的<strong>新包围盒</strong>，计算出<strong>宽高的缩放比例</strong>，然后应用到所有选中元素上（包括坐标、宽高和内部点集）。</li>
+</ul>
+</li>
+</ol>
+<p>这是一个典型的多选缩放问题。</p>
+<p><strong>问题原因：</strong><br>在现有的  StageManagerCore.ts  中，onPointerMove  的  resizing  逻辑只处理了单体元素 (this.state.currentId) 的更新。当你选中多个元素时，虽然  TransformerRenderer  画出了一个大的包围盒，但交互逻辑实际上只在操作第一个被选中的元素，导致其他元素不动，或者计算逻辑完全错误（因为没有基于群组包围盒进行整体缩放），从而出现“锚点脱离”和“大小失控”的现象。</p>
+<p><strong>解决方案：</strong><br>我们需要修改  StageManagerCore.ts  和  types.ts。</p>
+<ol>
+<li><strong>状态存储</strong>：在  onHandleDown  时，不再只存储单个元素的初始状态，而是需要计算并存储<strong>整个选区的初始包围盒 (Group Bounds)</strong>  以及<strong>所有被选元素的初始状态</strong>。</li>
+<li><strong>移动计算</strong>：在  onPointerMove  时，根据鼠标位移计算出<strong>新的群组包围盒</strong>，得出宽高的<strong>缩放比例 (scaleX, scaleY)</strong>，然后根据这个比例更新所有被选元素的坐标和尺寸。</li>
+</ol>
+<hr>
+<ol>
+<li><p><strong>使用 Command Pattern</strong>：</p>
+<ul>
+<li>实现了基本的命令接口  Command</li>
+<li>提供了  SnapshotCommand  类处理完整的状态快照</li>
+<li>使用两个栈管理撤销和重做操作</li>
+</ul>
+</li>
+<li><p><strong>使用 structuredClone 进行快照</strong>：</p>
+<ul>
+<li>对整个 store 状态进行深克隆</li>
+<li>保证状态回退时不会出现引用问题</li>
+</ul>
+</li>
+<li><p><strong>自动捕获状态变更</strong>：</p>
+<ul>
+<li>通过包装 Zustand 的 set 方法自动捕获所有状态变更</li>
+<li>无需手动在每个操作后调用记录方法</li>
+</ul>
+</li>
+<li><p><strong>防止递归记录</strong>：</p>
+<ul>
+<li>使用锁定机制避免在执行撤销/重做操作时记录新命令</li>
+</ul>
+</li>
+<li><p><strong>键盘快捷键支持</strong>：</p>
+<ul>
+<li>支持标准的 Ctrl+Z 撤销和 Ctrl+Y/Ctrl+Shift+Z 重做</li>
+</ul>
+</li>
+</ol>
+<p>这种实现方式简单有效，能够满足大部分撤销/重做需求，并且与现有的项目架构很好地集成。</p>
+<ol>
+<li><p><strong>使用  <code>structuredClone()</code> API</strong>：</p>
+<ul>
+<li>我们使用浏览器内置的  <a target="_blank" rel="noopener" href="https://developer.mozilla.org/en-US/docs/Web/API/structuredClone">structuredClone()</a>  函数来创建状态对象的深拷贝</li>
+<li>这个 API 可以创建对象的完整副本，包括嵌套的对象和数组</li>
+</ul>
+</li>
+<li><p><strong>只克隆数据部分</strong>：</p>
+<ul>
+<li>由于 Zustand store 状态既包含数据属性也包含函数属性，而  <code>structuredClone()</code>  无法克隆函数，所以我们需要分离这两部分</li>
+<li>使用解构赋值语法排除所有函数属性：<br>javascript<br><code>const {    setTool, addElement, updateElement, removeElements, setSelected,   setEditingId, copyElements, pasteElements, undo, redo, canUndo, canRedo,   ...dataOnlyState  } = state;</code></li>
+<li>这样  dataOnlyState  就只包含纯数据属性，如  tool、elements、selectedIds  等</li>
+</ul>
+</li>
+<li><p><strong>在撤销/重做系统中的应用</strong>：</p>
+<ul>
+<li>在每次状态更改前后捕获快照</li>
+<li>将这些快照传递给  SnapshotCommand  来记录状态变化</li>
+<li>当用户执行撤销或重做操作时，可以从这些快照恢复到之前的状态</li>
+</ul>
+</li>
+</ol>
+<p>这种机制确保我们可以准确地跟踪和恢复画布状态的变化历史，同时避免了尝试克隆不可序列化函数的错误。</p>
+<p>你提到的问题非常准确。目前的实现方式确实会在创建选框等操作过程中记录每一步的状态变化，这会导致撤销/重做系统产生过多不必要的快照。</p>
+<p>对于绘图应用来说，用户期望的行为通常是：</p>
+<ol>
+<li>在开始绘制时标记操作起点</li>
+<li>在绘制结束时才生成一个完整的撤销点</li>
+<li>而不是记录过程中的每个微小变化</li>
+</ol>
+<p>针对这个问题，常见的解决方案有几种：</p>
+<ol>
+<li><strong>批量操作机制</strong>：允许临时锁定 undo/redo 系统，在一系列连续操作完成后再解锁并记录最终状态。</li>
+<li><strong>防抖动机制</strong>：在快速连续的操作中，只记录特定时间间隔的状态。</li>
+<li><strong>操作分组</strong>：将相关的操作归为一组，作为一个整体进行撤销/重做。</li>
+</ol>
+<p>考虑到你们项目的情况，我觉得第一种方案比较适合，即增加开始和结束批量操作的方法。</p>
+<p>不过目前的实现也有它的优势，就是可以精确还原到任意一个中间状态。在实际使用中可以根据用户体验需求来权衡是否需要优化这一点。</p>
+<p><del>添加一个防抖动机制。这样可以避免在连续操作（如绘制矩形）过程中产生过多的快照。</del></p>
+<p>更好的方法是在绘制开始时记录初始状态，在绘制结束时记录最终状态，形成一个完整的操作单元。让我来实现这个机制：</p>
+<h3 id="问题分析"><a href="#问题分析" class="headerlink" title="问题分析"></a>问题分析</h3><p>你当前的代码存在两个主要问题：</p>
+<ol>
+<li><strong>Middleware 过于激进</strong>：subscribeWithSelector  会拦截每一次  set  调用。当你拖拽一个矩形移动 100px 时，会触发约 60 次  set，导致历史记录里塞满了 60 个微小的移动快照。这会导致内存爆炸且撤销体验极差（按一次撤销只动 1px）。</li>
+<li><strong>逻辑分散</strong>：你试图在  UndoRedoManager  里用计时器（setTimeout）来判断什么时候结束创建，这非常不稳定。</li>
+</ol>
+<h3 id="核心思路：Excalidraw-模式"><a href="#核心思路：Excalidraw-模式" class="headerlink" title="核心思路：Excalidraw 模式"></a>核心思路：Excalidraw 模式</h3><p>Excalidraw 的核心逻辑是：</p>
+<ol>
+<li><strong>PointerDown (开始)</strong>：记录当前画布的快照（作为“旧状态”）。</li>
+<li><strong>PointerMove (过程)</strong>：疯狂更新 Store（瞬时状态），<strong>但不</strong>推入历史记录。</li>
+<li><strong>PointerUp (结束)</strong>：对比当前状态和旧状态。如果有变化，将“旧状态”和“新状态”封装成一个命令，推入历史栈。</li>
+</ol>
+<hr>
+<h3 id="重构方案"><a href="#重构方案" class="headerlink" title="重构方案"></a>重构方案</h3><p>我们将移除 Store 中的自动拦截中间件，改为由<strong>交互层 (StageManagerCore)</strong>  主动控制历史记录的时机。</p>
+<h4 id="1-重写-UndoRedoManager-ts-简化版"><a href="#1-重写-UndoRedoManager-ts-简化版" class="headerlink" title="1. 重写  UndoRedoManager.ts (简化版)"></a>1. 重写  UndoRedoManager.ts (简化版)</h4><p>不再需要复杂的计时器和模式判断，回归纯粹的栈管理。</p>
+<ol>
+<li><p><strong>移动（Move/Drag）操作丢失</strong>：</p>
+<ul>
+<li>在  onPointerDown  中，当检测到点击元素（dragging  模式）时，你调用了  undoRedoManager.lock()。</li>
+<li>在  onPointerMove  中，元素位置被更新，但因为处于锁定状态，canvasStore  的中间件忽略了这些更新（这是正确的，防止产生大量快照）。</li>
+<li><strong>关键缺漏</strong>：在  onPointerUp  中，当  mode === ‘dragging’  结束时，代码只执行了  unlock()，<strong>没有创建并执行任何 Command</strong>。</li>
+<li><strong>结果</strong>：Store 中的状态变成了 B，但撤销栈里什么都没记。当你后续进行 Resize 操作（B -&gt; C）并记录了 Command 后，一旦撤销，Resize Command 会把状态恢复到 B。再次撤销时，由于 Move 操作没记录，状态无法回到 A，或者表现为“跳过”了某些步骤。</li>
+</ul>
+</li>
+<li><p><strong>Resize 操作的 “Redo 直接到 B” 现象</strong>：</p>
+<ul>
+<li>这通常是由于历史栈的不连续性造成的。如果 “Move A-&gt;B” 没被记录，那么栈里可能是  [Create(A), Resize(B-&gt;C), Resize(C-&gt;D)]。</li>
+<li>当你撤销  Resize(C-&gt;D) -&gt; 变回 C。</li>
+<li>撤销  Resize(B-&gt;C) -&gt; 变回 B。</li>
+<li>此时再撤销，会直接遇到  Create(A)  或空栈，导致状态突变。</li>
+<li>此外，如果 Resize 的逻辑只依赖于  initialMap，而没有正确处理连续操作间的状态同步，也可能导致此问题。</li>
+</ul>
+</li>
+</ol>
+<h3 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h3><p>我们需要做一个通用的  <strong>UpdateElementCommand</strong>（替换或扩展  ResizeCommand），并在  StageManagerCore  的  onPointerUp  中，<strong>为移动（Dragging）和调整大小（Resizing）都创建并执行这个命令</strong>。</p>
+<p>时间点操作画布状态（实际）命令 ID说明22:40:08创建矩形 A有 A808615第一次画矩形22:40:25创建矩形 B有 A + B825552第二次画矩形22:40:40撤销（Undo）只剩 A825552撤销“添加 B”22:40:47再次撤销（Undo）画布完全为空808615撤销“添加 A”22:41:48重做（Redo）第一次出现 A（但没看到（可能大小为0位置也不对））808615执行“添加 A”的命令22:41:49重做（Redo）第二次出现 A + B825552执行“添加 B”的命令</p>
+<p>第一次重做“没反应”<br>第二次重做突然正常</p>
+<p>修复这个问题</p>
+<p>Model</p>
+<p class='item-img' data-src='https://www.gstatic.com/aistudio/watermark/watermark.png'><img src="https://www.gstatic.com/aistudio/watermark/watermark.png" alt="Thinking">Thoughts</p>
+<p>Expand to view model thoughts</p>
+<p>chevron_right</p>
+<p>这是一个非常经典的 Canvas 编辑器撤销/重做状态不同步问题。</p>
+<h3 id="问题分析-1"><a href="#问题分析-1" class="headerlink" title="问题分析"></a>问题分析</h3><p><strong>现象：</strong></p>
+<ol>
+<li><p>创建矩形 A（此时宽/高为 0）。</p>
+</li>
+<li><p>拖拽绘制矩形 A（宽/高变为 100）。</p>
+</li>
+<li><p>撤销。</p>
+</li>
+<li><p>重做 -&gt; <strong>矩形 A 虽然出现了，但大小可能为 0 或者不可见。</strong></p>
+</li>
+</ol>
+<p><strong>原因：</strong></p>
+<ol>
+<li><p>当你在 onPointerDown 中调用 state.addElement 时，Zustand 的中间件（或监听器）立即捕获了状态变更并创建了一个 SnapshotCommand。</p>
+</li>
+<li><p><strong>关键点</strong>：此时创建的 SnapshotCommand 中记录的 nextState 是元素刚创建时的状态（即 width: 0, height: 0）。</p>
+</li>
+<li><p>随后你调用了 undoRedoManager.lock()。</p>
+</li>
+<li><p>在 onPointerMove 和 onPointerUp 过程中，虽然元素的属性更新了，但由于管理器被 <strong>Locked</strong>，且之前的 SnapshotCommand 已经生成完毕，<strong>历史记录中存储的“最终状态”仍然是宽高为 0 的状态</strong>。</p>
+</li>
+<li><p>当你执行 <strong>Undo</strong> 再 <strong>Redo</strong> 时，它恢复的是历史记录中的 nextState (宽高为 0)，导致元素看起来“没反应”或不可见。</p>
+</li>
+</ol>
+<h3 id="解决方案-1"><a href="#解决方案-1" class="headerlink" title="解决方案"></a>解决方案</h3><p>我们需要在绘制结束（onPointerUp）时，更新历史栈顶那个“创建命令”的 nextState，将其替换为绘制完成后的最终状态。</p>
+<p>以下是修复代码：</p>
+<h4 id="1-修改-UndoRedoManager-ts"><a href="#1-修改-UndoRedoManager-ts" class="headerlink" title="1. 修改 UndoRedoManager.ts"></a>1. 修改 UndoRedoManager.ts</h4><p>我们需要给 SnapshotCommand 和 UndoRedoManager 添加更新状态的能力。</p>
+<p>codeTypeScript</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><code class="hljs typescript"><span class="hljs-comment">// --- UndoRedoManager.ts ---</span><br><br><span class="hljs-comment">// ... imports</span><br><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">UndoRedoManager</span> {<br>  <span class="hljs-comment">// ... existing code ...</span><br><br>  <span class="hljs-comment">// [新增] 用于在操作结束时更新栈顶命令的最终状态</span><br>  <span class="hljs-title function_">updateLatestSnapshot</span>(<span class="hljs-params"><span class="hljs-attr">nextState</span>: <span class="hljs-built_in">any</span></span>) {<br>    <span class="hljs-keyword">if</span> (<span class="hljs-variable language_">this</span>.<span class="hljs-property">undoStack</span>.<span class="hljs-property">length</span> === <span class="hljs-number">0</span>) <span class="hljs-keyword">return</span><br>    <span class="hljs-keyword">const</span> lastCommand = <span class="hljs-variable language_">this</span>.<span class="hljs-property">undoStack</span>[<span class="hljs-variable language_">this</span>.<span class="hljs-property">undoStack</span>.<span class="hljs-property">length</span> - <span class="hljs-number">1</span>]<br>    <br>    <span class="hljs-comment">// 确保只更新 SnapshotCommand 类型的命令</span><br>    <span class="hljs-keyword">if</span> (lastCommand <span class="hljs-keyword">instanceof</span> <span class="hljs-title class_">SnapshotCommand</span>) {<br>      lastCommand.<span class="hljs-title function_">updateNextState</span>(nextState)<br>      logger.<span class="hljs-title function_">debug</span>(<span class="hljs-string">'[UndoRedoManager] 已更新最近一次快照的最终状态'</span>)<br>    }<br>  }<br>}<br><br><span class="hljs-comment">// ... existing code ...</span><br><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">SnapshotCommand</span> <span class="hljs-keyword">implements</span> <span class="hljs-title class_">Command</span> {<br>  <span class="hljs-comment">// ... existing properties ...</span><br><br>  <span class="hljs-title function_">constructor</span>(<span class="hljs-params"><span class="hljs-attr">prevState</span>: <span class="hljs-built_in">any</span>, <span class="hljs-attr">nextState</span>: <span class="hljs-built_in">any</span>, <span class="hljs-attr">description</span>: <span class="hljs-built_in">string</span></span>) {<br>    <span class="hljs-comment">// ... existing constructor code ...</span><br>  }<br><br>  <span class="hljs-comment">// [新增] 更新 nextState 的方法</span><br>  <span class="hljs-title function_">updateNextState</span>(<span class="hljs-params"><span class="hljs-attr">nextState</span>: <span class="hljs-built_in">any</span></span>) {<br>    <span class="hljs-variable language_">this</span>.<span class="hljs-property">nextState</span> = nextState<br>    logger.<span class="hljs-title function_">debug</span>(<span class="hljs-string">`[SnapshotCommand] 命令 ID: <span class="hljs-subst">${<span class="hljs-variable language_">this</span>.commandId}</span> 的最终状态已更新`</span>)<br>  }<br><br>  <span class="hljs-comment">// ... execute, undo, redo ...</span><br>}<br></code></pre></td></tr></table></figure>
+<h4 id="2-修改-StageManagerCore-ts"><a href="#2-修改-StageManagerCore-ts" class="headerlink" title="2. 修改 StageManagerCore.ts"></a>2. 修改 StageManagerCore.ts</h4><p>在 onPointerUp 的绘制结束逻辑中，调用刚刚添加的 updateLatestSnapshot 方法。</p>
+<p>codeTypeScript</p>
+<figure class="highlight pf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><code class="hljs pf">// --- StageManagerCore.ts ---<br><br>// ... imports ... <br>// 确保引入了 store<br>import { useStore } <span class="hljs-keyword">from</span> '@/stores/canvasStore' <br><br>export class StageManagerCore {<br>  // ... existing code ...<br><br>  private <span class="hljs-keyword">on</span>PointerUp = () =&gt; {<br>    // 触发防抖检查<br>    this.triggerDebounceSnapshot()<br><br>    <span class="hljs-keyword">const</span> <span class="hljs-keyword">state</span> = useStore.getState()<br>    <br>    // ... erasing logic ...<br>    // ... selecting logic ...<br><br>    // === 修复的核心位置：Drawing 模式结束 ===<br>    if (this.<span class="hljs-keyword">state</span>.mode === 'drawing' &amp;&amp; this.<span class="hljs-keyword">state</span>.currentId) {<br>      <span class="hljs-keyword">const</span> el = <span class="hljs-keyword">state</span>.elements[this.<span class="hljs-keyword">state</span>.currentId]<br>      if ((el.type === 'pencil' || el.type === 'line' || el.type === 'arrow') &amp;&amp; el.points) {<br>        // ... 计算 points 的逻辑 ...<br>        <span class="hljs-keyword">state</span>.updateElement(this.<span class="hljs-keyword">state</span>.currentId, {<br>          x: newX,<br>          y: newY,<br>          width: <span class="hljs-keyword">max</span>X - <span class="hljs-keyword">min</span>X,<br>          height: <span class="hljs-keyword">max</span>Y - <span class="hljs-keyword">min</span>Y,<br>          points: newPoints,<br>        })<br>      }<br>      <br>      // [新增] 修复 Undo/Redo Bug<br>      // 在解锁前或解锁后均可，关键是获取当前的最新 State（包含了最终宽高的 State）<br>      // 并更新掉 <span class="hljs-keyword">on</span>PointerDown 时记录的那个“<span class="hljs-number">0</span>宽高”的快照<br>      undoRedoManager.updateLatestSnapshot(useStore.getState())<br><br>      // 解锁撤销/重做管理器<br>      undoRedoManager.unlock()<br>      console.<span class="hljs-keyword">log</span>('[StageManager] 解锁撤销/重做管理器')<br>    }<br><br>    // ... dragging logic ...<br>    // ... resizing logic ...<br>    <br>    // ... cleanup ...<br>  }<br>}<br></code></pre></td></tr></table></figure>
+<h3 id="为什么这样做有效？"><a href="#为什么这样做有效？" class="headerlink" title="为什么这样做有效？"></a>为什么这样做有效？</h3><ol>
+<li><p><strong>Down</strong>: 创建元素(0x0) -&gt; 触发快照 -&gt; 锁定管理器。栈顶命令记录为：Prev: 无, Next: 元素(0x0)。</p>
+</li>
+<li><p><strong>Move</strong>: 更新元素(100x100) -&gt; 管理器锁定中，不产生新命令。</p>
+</li>
+<li><p><strong>Up</strong>: 更新元素最终位置 -&gt; <strong>调用 updateLatestSnapshot</strong>。<br> 栈顶命令变为：Prev: 无, Next: 元素(100x100)。</p>
+</li>
+<li><p><strong>Undo</strong>: 回退到 Prev (无)。</p>
+</li>
+<li><p><strong>Redo</strong>: 前进到 Next (元素 100x100)。<strong>现在元素可见了！</strong></p>
+</li>
+</ol>
+<div id="paginator"></div></div><div id="post-footer"><div id="pages"><div class="footer-link" style="width: 50%;text-align:right;border-right:1px #fe2 solid"><a href="/Arknight-notes/posts/15704.html">← Next 2025-11-22-canvas状态管理杂记其三</a></div><div class="footer-link" style="width: 50%;right:1px;border-left:1px #fe2 solid"><a href="/Arknight-notes/posts/14933.html">2025-11-21-canvas项目杂记 Prev →</a></div></div></div><div id="comments"><div id="gitalk"></div></div></div><div class="bottom-btn"><div><a class="i-top" id="to-top" onClick="scrolls.scrolltop();" title="To Top" style="opacity: 0; display: none;">∧ </a><a class="i-index" id="to-index" href="#toc-div" title="To Catalog">≡</a><a class="i-color" id="color-mode" onClick="colorMode.change()" title="Change Theme"></a></div></div></article><aside><div id="about"><a href="/Arknight-notes/" id="logo"><img src="https://pic4.zhimg.com/80/v2-d9884f32711e19e80979eac58e943897_720w.webp" alt="Logo" style="margin:20;border-radius:0;"></a><h1 id="Dr"><a href="zhongye">柊野</a></h1><div id="description"><p></p></div></div><div id="aside-block"><div id="toc-div"><h1>Catalog</h1><ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%87%8D%E6%9E%84-Pixi-stageManager-ts"><span class="toc-number">1.</span> <span class="toc-text">重构  Pixi_stageManager.ts</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0-Minimap%EF%BC%88%E5%B0%8F%E5%9C%B0%E5%9B%BE%EF%BC%89"><span class="toc-number">2.</span> <span class="toc-text">如何实现 Minimap（小地图）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E5%8E%9F%E7%90%86"><span class="toc-number">2.1.</span> <span class="toc-text">1. 原理</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E5%AE%9E%E7%8E%B0%E6%AD%A5%E9%AA%A4"><span class="toc-number">2.2.</span> <span class="toc-text">2. 实现步骤</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-%E5%8F%8C%E5%90%91%E7%BB%91%E5%AE%9A"><span class="toc-number">2.3.</span> <span class="toc-text">3. 双向绑定</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-number">3.</span> <span class="toc-text">总结</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%94%B9%E5%8A%A8%E8%AF%B4%E6%98%8E"><span class="toc-number">4.</span> <span class="toc-text">改动说明</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E2%80%9CRubber-band-Selection%E2%80%9D-%E6%A1%86%E9%80%89-%E5%92%8C-%E2%80%9CTransformer-Gizmo%E2%80%9D-%E5%8F%98%E6%8D%A2%E6%8E%A7%E5%88%B6%E5%99%A8-%E3%80%82"><span class="toc-number"></span> <span class="toc-text">“Rubber-band Selection” (框选)  和  “Transformer &#x2F; Gizmo” (变换控制器)。</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E6%A0%B8%E5%BF%83%E9%80%BB%E8%BE%91%E4%BF%AE%E6%94%B9%E6%80%9D%E8%B7%AF"><span class="toc-number">1.</span> <span class="toc-text">1. 核心逻辑修改思路</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E6%9B%B4%E6%96%B0-Pixi-stageManager-ts"><span class="toc-number">2.</span> <span class="toc-text">2. 更新  Pixi_stageManager.ts</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%BE%E5%83%8F%E5%8A%A0%E8%BD%BD%E6%9C%BA%E5%88%B6%E8%AF%A6%E8%A7%A3"><span class="toc-number"></span> <span class="toc-text">图像加载机制详解</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E6%95%B4%E4%BD%93%E6%B5%81%E7%A8%8B"><span class="toc-number">1.</span> <span class="toc-text">1. 整体流程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E6%A0%B8%E5%BF%83%E7%BB%84%E4%BB%B6"><span class="toc-number">2.</span> <span class="toc-text">2. 核心组件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E5%8A%A0%E8%BD%BD%E8%BF%87%E7%A8%8B%E8%AF%A6%E8%A7%A3"><span class="toc-number">3.</span> <span class="toc-text">3. 加载过程详解</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#3-1-%E6%A3%80%E6%9F%A5%E7%BC%93%E5%AD%98"><span class="toc-number">3.1.</span> <span class="toc-text">3.1 检查缓存</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-2-%E9%98%B2%E6%AD%A2%E9%87%8D%E5%A4%8D%E5%8A%A0%E8%BD%BD"><span class="toc-number">3.2.</span> <span class="toc-text">3.2 防止重复加载</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-3-%E5%BC%82%E6%AD%A5%E5%8A%A0%E8%BD%BD"><span class="toc-number">3.3.</span> <span class="toc-text">3.3 异步加载</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-4-%E5%8D%A0%E4%BD%8D%E7%AC%A6%E6%98%BE%E7%A4%BA"><span class="toc-number">3.4.</span> <span class="toc-text">3.4 占位符显示</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-5-%E5%8A%A0%E8%BD%BD%E5%AE%8C%E6%88%90%E5%90%8E%E6%9B%B4%E6%96%B0"><span class="toc-number">3.5.</span> <span class="toc-text">3.5 加载完成后更新</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E6%8E%AA%E6%96%BD"><span class="toc-number">4.</span> <span class="toc-text">4. 性能优化措施</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-%E9%94%99%E8%AF%AF%E5%A4%84%E7%90%86"><span class="toc-number">5.</span> <span class="toc-text">5. 错误处理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-%E8%B5%84%E6%BA%90%E6%B8%85%E7%90%86"><span class="toc-number">6.</span> <span class="toc-text">6. 资源清理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%97%AE%E9%A2%98%E5%88%86%E6%9E%90"><span class="toc-number">7.</span> <span class="toc-text">问题分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A0%B8%E5%BF%83%E6%80%9D%E8%B7%AF%EF%BC%9AExcalidraw-%E6%A8%A1%E5%BC%8F"><span class="toc-number">8.</span> <span class="toc-text">核心思路：Excalidraw 模式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%87%8D%E6%9E%84%E6%96%B9%E6%A1%88"><span class="toc-number">9.</span> <span class="toc-text">重构方案</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E9%87%8D%E5%86%99-UndoRedoManager-ts-%E7%AE%80%E5%8C%96%E7%89%88"><span class="toc-number">9.1.</span> <span class="toc-text">1. 重写  UndoRedoManager.ts (简化版)</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88"><span class="toc-number">10.</span> <span class="toc-text">解决方案</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%97%AE%E9%A2%98%E5%88%86%E6%9E%90-1"><span class="toc-number">11.</span> <span class="toc-text">问题分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88-1"><span class="toc-number">12.</span> <span class="toc-text">解决方案</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E4%BF%AE%E6%94%B9-UndoRedoManager-ts"><span class="toc-number">12.1.</span> <span class="toc-text">1. 修改 UndoRedoManager.ts</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E4%BF%AE%E6%94%B9-StageManagerCore-ts"><span class="toc-number">12.2.</span> <span class="toc-text">2. 修改 StageManagerCore.ts</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E8%BF%99%E6%A0%B7%E5%81%9A%E6%9C%89%E6%95%88%EF%BC%9F"><span class="toc-number">13.</span> <span class="toc-text">为什么这样做有效？</span></a></li></ol></div></div><footer><nobr><span class="icp-title">GZHU</span><span class="icp-content">193001-0001</span></nobr><br><nobr><span class="icp-title">OUTPOST</span><span class="icp-content">169-2025-0331</span></nobr><br><nobr>Published with <a target="_blank" rel="noopener" href="http://hexo.io">Hexo</a></nobr><wbr><nobr> Theme <a target="_blank" rel="noopener" href="https://github.com/Yue-plus/hexo-theme-arknights">Arknights</a></nobr><wbr><nobr> by <a target="_blank" rel="noopener" href="https://github.com/Yue-plus">Yue_plus</a></nobr></footer></aside></main><canvas id="canvas-dust"></canvas></body></html>

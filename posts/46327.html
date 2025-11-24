@@ -1,0 +1,430 @@
+<!DOCTYPE html><html lang="en" theme-mode="dark"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>2025-11-24-canvas项目相关-TransformerRenderer设计 | Notes|笔记站</title><link rel="icon" type="image/x-icon" href="/Arknight-notes/favicon.ico"><link rel="preload" as="font" crossorigin="anonymous" href="/Arknight-notes/font/Bender.ttf"><link rel="preload" as="font" crossorigin="anonymous" href="/Arknight-notes/font/BenderLight.ttf"><link rel="preload" as="font" crossorigin="anonymous" href="/Arknight-notes/font/JetBrainsMono-Regular.woff2"><link rel="stylesheet" href="/Arknight-notes/css/arknights.css"><style>@font-face {
+  font-family: Bender;
+  src: local('Bender'), url("/Arknight-notes/font/Bender.ttf"), url("/Arknight-notes/font/Bender.otf");
+}
+@font-face {
+  font-family: BenderLight;
+  src: local('BenderLight'), url("/Arknight-notes/font/BenderLight.ttf");
+}
+@font-face {
+  font-family: 'JetBrains Mono';
+  src: local('JetBrains Mono'), url('/Arknight-notes/font/JetBrainsMono-Regular.woff2') format('woff2');
+}
+</style><script>var config = {"root":"/Arknight-notes/","code_fold":90,"search":{"preload":false,"activeHolder":"Enter here","blurHolder":"Search","noResult":"Data \"$0\" not found"},"code":{"codeInfo":"$0 - $1 lines","copy":"copy"}}</script><link type="text/css" rel="stylesheet" href="/Arknight-notes/lib/encrypt/hbe.style.css"><script src="/Arknight-notes/js/gitalk.js"></script><script src="//unpkg.com/mermaid@10.5.0/dist/mermaid.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.6.1/MathJax.js"></script><script>MathJax.Hub.Config({
+ menuSettings: {
+   zoom: "None"
+ },
+ showMathMenu: false,
+ jax: ["input/TeX","output/CommonHTML"],
+ extensions: ["tex2jax.js"],
+ TeX: {
+   extensions: ["AMSmath.js","AMSsymbols.js"],
+   equationNumbers: {
+     autoNumber: "AMS"
+   }
+ },
+ tex2jax: {
+   inlineMath: [["\\(", "\\)"]],
+   displayMath: [["\\[", "\\]"]]
+ }
+});</script><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lightgallery.css"><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lg-zoom.css"><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lg-thumbnail.css"><link type="text/css" rel="stylesheet" href="/Arknight-notes/lib/fontawesome/css/all.min.css"><script>if (window.localStorage.getItem('theme-mode') === 'light')
+ document.documentElement.setAttribute('theme-mode', 'light')
+if (window.localStorage.getItem('theme-mode') === 'dark')
+ document.documentElement.setAttribute('theme-mode', 'dark')</script><style>@font-face {
+ font-family: BenderLight;
+ src: local('Bender'), url("/Arknight-notes/font/BenderLight.woff2") format('woff2');
+}
+@font-face {
+ font-family: 'JetBrains Mono';
+ src: local('JetBrains Mono'), url('/Arknight-notes/font/JetBrainsMono-Regular.woff2') format('woff2');
+}</style><style>:root {
+ --dark-background: url('https://pic2.zhimg.com/v2-6269d74b4dafe14781d03790e5a86b21_r.jpg');
+ --light-background: url('https://pic1.zhimg.com/v2-233b64b583642fc4a6d77e69ced33150_r.jpg');
+ --theme-encrypt-confirm: 'confirm'
+}</style><script defer src="/Arknight-notes/js/arknights.js"></script><script defer src="/Arknight-notes/js/search.js"></script><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><script async src="/Arknight-notes/js/gitalk.js"></script><script defer type="module">import mermaid from '//unpkg.com/mermaid@10.5.0/dist/mermaid.esm.mjs';
+window.mermaid = mermaid;
+code.paintMermaid();
+</script><script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.6.1/MathJax.js"></script><script>MathJax.Hub.Config({
+  menuSettings: {
+    zoom: "None"
+  },
+  showMathMenu: false,
+  jax: ["input/TeX","output/CommonHTML"],
+  extensions: ["tex2jax.js"],
+  TeX: {
+    extensions: ["AMSmath.js","AMSsymbols.js"],
+    equationNumbers: {
+      autoNumber: "AMS"
+    }
+  },
+  tex2jax: {
+    inlineMath: [["\\(", "\\)"]],
+    displayMath: [["\\[", "\\]"]]
+  }
+});
+</script><script async src="//unpkg.com/lightgallery@2.7.1/lightgallery.min.js"></script><script async src="//unpkg.com/lightgallery@2.7.1/plugins/zoom/lg-zoom.min.js"></script><script async src="//unpkg.com/lightgallery@2.7.1/plugins/thumbnail/lg-thumbnail.min.js"></script><script async src="/Arknight-notes/lib/encrypt/hbe.js"></script><script async src="/Arknight-notes/js/pjax.js"></script><script class="pjax-js">reset= () => {gitalk = new Gitalk({
+ clientID: 'Ov23ct13Fb0b67x23wnT',
+ clientSecret: 'f18ce69dd545e3c0f5e2456afde9c756fe8a254a',
+ repo: 'Arknight-notes',
+ owner: 'Zhongye1',
+ admin: ['Zhongye1'],
+ distractionFreeMode: false,
+ id: location.pathname
+});
+if (document.querySelector("#gitalk")) gitalk.render("gitalk");document.querySelector('.lg-container')?.remove()
+lightGallery(document.getElementById('post-bg'), {
+  plugins: [lgZoom,lgThumbnail],
+  selector: '.item-img'})}</script><script>window.addEventListener("load",() => {pjax = new Pjax({
+ cacheBust: false,
+ selectors: ['title','article','#aside-block','.pjax-js','data-pjax','.busuanzi'],
+ switches: {'article': Pjax.switches.sideBySide},
+ switchesOptions: {
+   'article': {
+     classNames: {
+       remove: "pjax-out",
+       add: "pjax-in"
+     }
+   }
+ }
+});
+document.addEventListener("pjax:complete", reset);document.addEventListener('pjax:success', _ => bszCaller.fetch(
+ "//busuanzi.ibruce.info/busuanzi?jsonpCallback=BusuanziCallback", a => {
+  bszTag.texts(a),
+  bszTag.shows()
+}));reset()})</script><script class="pjax-js">reset= () => {gitalk = new Gitalk({
+ clientID: 'Ov23ct13Fb0b67x23wnT',
+ clientSecret: 'f18ce69dd545e3c0f5e2456afde9c756fe8a254a',
+ repo: 'Arknight-notes',
+ owner: 'Zhongye1',
+ admin: ['Zhongye1'],
+ distractionFreeMode: false,
+ id: location.pathname
+});
+if (document.querySelector("#gitalk")) gitalk.render("gitalk");document.querySelector('.lg-container')?.remove()
+lightGallery(document.getElementById('post-bg'), {
+  plugins: [lgZoom,lgThumbnail],
+  selector: '.item-img'})}</script><script>window.addEventListener("load",() => {pjax = new Pjax({
+ cacheBust: false,
+ selectors: ['title','article','#aside-block','.pjax-js'],
+ switches: {'article': Pjax.switches.sideBySide},
+ switchesOptions: {
+   'article': {
+     classNames: {
+       remove: "pjax-out",
+       add: "pjax-in"
+     }
+   }
+ }
+});
+document.addEventListener("pjax:complete", reset);reset()})</script><meta name="generator" content="Hexo 7.3.0"><style>mjx-container[jax="SVG"] {
+  direction: ltr;
+}
+
+mjx-container[jax="SVG"] > svg {
+  overflow: visible;
+}
+
+mjx-container[jax="SVG"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="SVG"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="SVG"][justify="right"] {
+  text-align: right;
+}
+
+g[data-mml-node="merror"] > g {
+  fill: red;
+  stroke: red;
+}
+
+g[data-mml-node="merror"] > rect[data-background] {
+  fill: yellow;
+  stroke: none;
+}
+
+g[data-mml-node="mtable"] > line[data-line] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > rect[data-frame] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > .mjx-dashed {
+  stroke-dasharray: 140;
+}
+
+g[data-mml-node="mtable"] > .mjx-dotted {
+  stroke-linecap: round;
+  stroke-dasharray: 0,140;
+}
+
+g[data-mml-node="mtable"] > svg {
+  overflow: visible;
+}
+
+[jax="SVG"] mjx-tool {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+[jax="SVG"] mjx-tool > mjx-tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+mjx-tool > mjx-tip {
+  display: inline-block;
+  padding: .2em;
+  border: 1px solid #888;
+  font-size: 70%;
+  background-color: #F8F8F8;
+  color: black;
+  box-shadow: 2px 2px 5px #AAAAAA;
+}
+
+g[data-mml-node="maction"][data-toggle] {
+  cursor: pointer;
+}
+
+mjx-status {
+  display: block;
+  position: fixed;
+  left: 1em;
+  bottom: 1em;
+  min-width: 25%;
+  padding: .2em .4em;
+  border: 1px solid #888;
+  font-size: 90%;
+  background-color: #F8F8F8;
+  color: black;
+}
+
+foreignObject[data-mjx-xml] {
+  font-family: initial;
+  line-height: normal;
+  overflow: visible;
+}
+
+.MathJax path {
+  stroke-width: 3;
+}
+
+mjx-container[display="true"] {
+  overflow: auto hidden;
+}
+
+mjx-container[display="true"] + br {
+  display: none;
+}
+</style><link rel="alternate" href="/Arknight-notes/rss.xml" title="Notes|笔记站" type="application/atom+xml">
+</head><body><div class="loading" style="opacity: 0;"><div class="loadingBar left"></div><div class="loadingBar right"></div></div><main><header class="closed"><div class="navBtn"><i class="navBtnIcon"><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span></i></div><nav><div class="navItem" id="search-header"><span class="navItemTitle"><input autocomplete="off" autocorrect="off" autocapitalize="none" placeholder="Search" spellcheck="false" maxlength="50" type="text" id="search-input"></span></div><div class="navItem" id="search-holder"></div><div class="search-popup" tabindex="0"><div id="search-result"></div></div><ol class="navContent"><li class="navItem"><a class="navBlock" href="/Arknight-notes/"><span class="navItemTitle">Home</span></a></li><li class="navItem" matchdata="categories,tags"><a class="navBlock" href="/Arknight-notes/archives/"><span class="navItemTitle">Archives</span></a></li><li class="navItem"><a class="navBlock" href="/Arknight-notes/about/"><span class="navItemTitle">About</span></a></li></ol></nav></header><article><div id="post-bg"><div id="post-title"><h1>2025-11-24-canvas项目相关-TransformerRenderer设计</h1><div id="post-info"><span>First Post: <div class="control"><time datetime="2025-11-24T05:58:19.000Z" id="date"> 2025-11-24</time></div></span><br><span>Last Update: <div class="control"><time datetime="2025-11-24T06:01:03.121Z" id="updated"> 2025-11-24</time></div></span><br><span id="busuanzi_container_page_pv">Page View: <span class="control" id="busuanzi_value_page_pv">loading...</span></span></div></div><hr><div id="post-content"><h1 id="TransformerRenderer-设计"><a href="#TransformerRenderer-设计" class="headerlink" title="TransformerRenderer 设计"></a>TransformerRenderer 设计</h1><p>TransformerRenderer 模块负责渲染画布中选中元素的变换控制器（选择框和控制手柄），包括：</p>
+<ul>
+<li>绘制元素选择边界框</li>
+<li>显示控制手柄（用于移动、缩放、旋转等操作）</li>
+<li>处理用户与控制手柄的交互</li>
+</ul>
+<h3 id="项目结构树"><a href="#项目结构树" class="headerlink" title="项目结构树"></a>项目结构树</h3><figure class="highlight nix"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs nix">src<span class="hljs-symbol">/</span><br>└── pages<span class="hljs-symbol">/</span><br>    └── canvas<span class="hljs-symbol">/</span><br>        └── Pixi_STM_modules<span class="hljs-symbol">/</span><br>            └── rendering<span class="hljs-symbol">/</span><br>                └── TransformerRenderer.ts<br></code></pre></td></tr></table></figure>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th></th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>PixiJS</td>
+<td>2D 渲染引擎，用于绘制图形元素和交互控制器</td>
+</tr>
+<tr>
+<td>TypeScript</td>
+<td>提供类型安全和更好的开发体验</td>
+</tr>
+<tr>
+<td>CanvasElement</td>
+<td>数据模型，提供元素属性用于渲染</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 id="2-Props-和相关类型定义"><a href="#2-Props-和相关类型定义" class="headerlink" title="2. Props 和相关类型定义"></a>2. Props 和相关类型定义</h2><h3 id="2-1-renderTransformer-参数"><a href="#2-1-renderTransformer-参数" class="headerlink" title="2.1 renderTransformer 参数"></a>2.1 renderTransformer 参数</h3><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>参数名</th>
+<th>类型</th>
+<th>必填</th>
+<th>默认值</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>elements</td>
+<td><code>Record&lt;string, CanvasElement&gt;</code></td>
+<td>是</td>
+<td>-</td>
+<td>所有画布元素的集合</td>
+</tr>
+<tr>
+<td>selectedIds</td>
+<td><code>string[]</code></td>
+<td>是</td>
+<td>-</td>
+<td>当前选中元素的 ID 数组</td>
+</tr>
+<tr>
+<td>spriteMap</td>
+<td>`Map&lt;string, PIXI.Graphics \</td>
+<td>PIXI.HTMLText \</td>
+<td>PIXI.Sprite&gt;`</td>
+<td>是</td>
+<td>-</td>
+<td>元素 ID 到 Pixi 图形对象的映射</td>
+</tr>
+<tr>
+<td>onHandleDown</td>
+<td>`(e: PIXI.FederatedPointerEvent, handle: HandleType \</td>
+<td>‘p0’ \</td>
+<td>‘p1’, elementId: string) =&gt; void`</td>
+<td>是</td>
+<td>-</td>
+<td>控制手柄按下时的回调函数</td>
+</tr>
+<tr>
+<td>viewportScale</td>
+<td><code>number</code></td>
+<td>是</td>
+<td>-</td>
+<td>视口缩放比例，用于调整手柄大小</td>
+</tr>
+</tbody>
+</table>
+</div>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs typescript">transformerRenderer.<span class="hljs-title function_">renderTransformer</span>(<br>  elements, <span class="hljs-comment">// 所有画布元素</span><br>  selectedIds, <span class="hljs-comment">// 选中元素ID数组</span><br>  spriteMap, <span class="hljs-comment">// 元素到图形对象的映射</span><br>  onHandleDown, <span class="hljs-comment">// 手柄按下回调</span><br>  viewport.<span class="hljs-property">scale</span>.<span class="hljs-property">x</span> <span class="hljs-comment">// 视口缩放比例</span><br>);<br></code></pre></td></tr></table></figure>
+<h3 id="2-2-类型定义"><a href="#2-2-类型定义" class="headerlink" title="2.2 类型定义"></a>2.2 类型定义</h3><h4 id="CanvasElement-类型"><a href="#CanvasElement-类型" class="headerlink" title="CanvasElement 类型"></a>CanvasElement 类型</h4><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs typescript"><span class="hljs-keyword">export</span> <span class="hljs-keyword">interface</span> <span class="hljs-title class_">CanvasElement</span> {<br>  <span class="hljs-attr">id</span>: <span class="hljs-built_in">string</span>;<br>  <span class="hljs-attr">type</span>: <span class="hljs-title class_">ToolType</span>;<br>  <span class="hljs-attr">x</span>: <span class="hljs-built_in">number</span>;<br>  <span class="hljs-attr">y</span>: <span class="hljs-built_in">number</span>;<br>  <span class="hljs-attr">width</span>: <span class="hljs-built_in">number</span>;<br>  <span class="hljs-attr">height</span>: <span class="hljs-built_in">number</span>;<br>  <span class="hljs-attr">fill</span>: <span class="hljs-built_in">string</span>;<br>  <span class="hljs-attr">stroke</span>: <span class="hljs-built_in">string</span>;<br>  <span class="hljs-attr">strokeWidth</span>: <span class="hljs-built_in">number</span>;<br>  <span class="hljs-attr">alpha</span>?: <span class="hljs-built_in">number</span>;<br>  <span class="hljs-attr">points</span>?: <span class="hljs-built_in">number</span>[][];<br>  <span class="hljs-attr">rotation</span>?: <span class="hljs-built_in">number</span>; <span class="hljs-comment">// 旋转角度（弧度）</span><br>  <span class="hljs-comment">// 其他文本和图像相关属性...</span><br>}<br></code></pre></td></tr></table></figure>
+<p>字段说明：</p>
+<ul>
+<li><code>id</code>: 元素唯一标识符</li>
+<li><code>type</code>: 元素类型（如’rect’, ‘circle’, ‘text’等）</li>
+<li><code>x, y</code>: 元素位置坐标</li>
+<li><code>width, height</code>: 元素尺寸</li>
+<li><code>fill, stroke, strokeWidth</code>: 填充色、边框色和边框宽度</li>
+<li><code>alpha</code>: 透明度</li>
+<li><code>points</code>: 点集（用于 pencil, line, arrow 等）</li>
+<li><code>rotation</code>: 旋转角度（弧度制）</li>
+</ul>
+<h4 id="HandleType-类型"><a href="#HandleType-类型" class="headerlink" title="HandleType 类型"></a>HandleType 类型</h4><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs typescript"><span class="hljs-keyword">export</span> <span class="hljs-keyword">type</span> <span class="hljs-title class_">HandleType</span> =<br>  | <span class="hljs-string">"tl"</span><br>  | <span class="hljs-string">"t"</span><br>  | <span class="hljs-string">"tr"</span><br>  | <span class="hljs-string">"r"</span><br>  | <span class="hljs-string">"br"</span><br>  | <span class="hljs-string">"b"</span><br>  | <span class="hljs-string">"bl"</span><br>  | <span class="hljs-string">"l"</span><br>  | <span class="hljs-string">"p0"</span><br>  | <span class="hljs-string">"p1"</span><br>  | <span class="hljs-string">"rotate"</span>;<br></code></pre></td></tr></table></figure>
+<p>各控制手柄类型含义：</p>
+<ul>
+<li><code>tl</code>, <code>t</code>, <code>tr</code>, <code>r</code>, <code>br</code>, <code>b</code>, <code>bl</code>, <code>l</code>: 八个方向的缩放手柄</li>
+<li><code>p0</code>, <code>p1</code>: 线段两个端点的移动手柄</li>
+<li><code>rotate</code>: 旋转手柄</li>
+</ul>
+<h2 id="3-状态管理-State-Architecture"><a href="#3-状态管理-State-Architecture" class="headerlink" title="3. 状态管理 (State Architecture)"></a>3. 状态管理 (State Architecture)</h2><h3 id="3-1-内部状态-Local-State"><a href="#3-1-内部状态-Local-State" class="headerlink" title="3.1 内部状态 (Local State)"></a>3.1 内部状态 (Local State)</h3><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>状态名</th>
+<th>类型</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>transformerGraphic</td>
+<td><code>PIXI.Graphics</code></td>
+<td>用于绘制变换控制器的 Pixi 图形对象</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="3-2-外部状态-Global-Server-State"><a href="#3-2-外部状态-Global-Server-State" class="headerlink" title="3.2 外部状态 (Global/Server State)"></a>3.2 外部状态 (Global/Server State)</h3><p>TransformerRenderer 是一个纯渲染模块，不直接管理外部状态。它通过以下方式接收外部状态：</p>
+<ol>
+<li><code>elements</code>: 从 Zustand store 获取的所有画布元素</li>
+<li><code>selectedIds</code>: 从 Zustand store 获取的当前选中元素 ID 数组</li>
+<li><code>spriteMap</code>: 从 ElementRenderer 获取的元素到图形对象的映射</li>
+</ol>
+<h3 id="3-3-状态同步机制"><a href="#3-3-状态同步机制" class="headerlink" title="3.3 状态同步机制"></a>3.3 状态同步机制</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs mermaid">graph TD<br>    A[Zustand Store] --&gt; B[StageManager 订阅状态变化]<br>    B --&gt; C[获取 elements 和 selectedIds]<br>    C --&gt; D[调用 TransformerRenderer.renderTransformer]<br>    D --&gt; E[根据选中元素绘制变换控制器]<br>    F[ElementRenderer] --&gt; G[提供 spriteMap]<br>    G --&gt; D<br></code></pre></td></tr></table></figure>
+<h2 id="4-逻辑流程-Logic-Flow"><a href="#4-逻辑流程-Logic-Flow" class="headerlink" title="4. 逻辑流程 (Logic Flow)"></a>4. 逻辑流程 (Logic Flow)</h2><h3 id="4-1-交互时序图"><a href="#4-1-交互时序图" class="headerlink" title="4.1 交互时序图"></a>4.1 交互时序图</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs mermaid">sequenceDiagram<br>    participant U as 用户<br>    participant TR as TransformerRenderer<br>    participant SM as StageManager<br>    participant CS as CanvasStore<br><br>    U-&gt;&gt;TR: 点击控制手柄<br>    TR-&gt;&gt;SM: 调用 onHandleDown 回调<br>    SM-&gt;&gt;SM: 设置交互模式(移动/缩放/旋转)<br>    SM-&gt;&gt;CS: 更新元素属性<br>    CS-&gt;&gt;SM: 状态变更通知<br>    SM-&gt;&gt;TR: 重新调用 renderTransformer<br>    TR-&gt;&gt;TR: 重新绘制变换控制器<br></code></pre></td></tr></table></figure>
+<h3 id="4-2-核心函数解析"><a href="#4-2-核心函数解析" class="headerlink" title="4.2 核心函数解析"></a>4.2 核心函数解析</h3><h4 id="renderTransformer-函数"><a href="#renderTransformer-函数" class="headerlink" title="renderTransformer 函数:"></a>renderTransformer 函数:</h4><p>当画布元素或选中状态发生变化时，由 StageManager 调用，接收当前所有元素和选中元素 ID，根据选中元素类型和状态决定绘制方式，调用相应方法绘制变换控制器</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><code class="hljs typescript"><span class="hljs-keyword">public</span> <span class="hljs-title function_">renderTransformer</span>(<span class="hljs-params"></span><br><span class="hljs-params">  <span class="hljs-attr">elements</span>: <span class="hljs-title class_">Record</span>&lt;<span class="hljs-built_in">string</span>, <span class="hljs-title class_">CanvasElement</span>&gt;,</span><br><span class="hljs-params">  <span class="hljs-attr">selectedIds</span>: <span class="hljs-built_in">string</span>[],</span><br><span class="hljs-params">  <span class="hljs-attr">spriteMap</span>: <span class="hljs-title class_">Map</span>&lt;<span class="hljs-built_in">string</span>, PIXI.<span class="hljs-title class_">Graphics</span> | PIXI.<span class="hljs-title class_">HTMLText</span> | PIXI.<span class="hljs-title class_">Sprite</span>&gt;,</span><br><span class="hljs-params">  <span class="hljs-attr">onHandleDown</span>: (e: PIXI.FederatedPointerEvent, handle: HandleType | <span class="hljs-string">'p0'</span> | <span class="hljs-string">'p1'</span>, elementId: <span class="hljs-built_in">string</span>) =&gt; <span class="hljs-built_in">void</span>,</span><br><span class="hljs-params">  <span class="hljs-attr">viewportScale</span>: <span class="hljs-built_in">number</span>,</span><br><span class="hljs-params"></span>) {<br>  <span class="hljs-comment">// 清空之前的绘制内容</span><br>  <span class="hljs-variable language_">this</span>.<span class="hljs-property">transformerGraphic</span>.<span class="hljs-title function_">clear</span>()<br>  <span class="hljs-variable language_">this</span>.<span class="hljs-property">transformerGraphic</span>.<span class="hljs-title function_">removeChildren</span>()<br><br>  <span class="hljs-keyword">if</span> (selectedIds.<span class="hljs-property">length</span> === <span class="hljs-number">0</span>) <span class="hljs-keyword">return</span><br><br>  <span class="hljs-comment">// 根据选中元素类型决定绘制方式</span><br>  <span class="hljs-keyword">const</span> el = elements[selectedIds[<span class="hljs-number">0</span>]]<br>  <span class="hljs-keyword">const</span> isLinearElement = selectedIds.<span class="hljs-property">length</span> === <span class="hljs-number">1</span> &amp;&amp; (el.<span class="hljs-property">type</span> === <span class="hljs-string">'line'</span> || el.<span class="hljs-property">type</span> === <span class="hljs-string">'arrow'</span>) &amp;&amp; el.<span class="hljs-property">points</span>?.<span class="hljs-property">length</span> === <span class="hljs-number">2</span><br><br>  <span class="hljs-keyword">if</span> (isLinearElement) {<br>    <span class="hljs-comment">// 绘制线段控制手柄</span><br>    <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">drawLinearHandles</span>(el, selectedIds, onHandleDown, viewportScale)<br>  } <span class="hljs-keyword">else</span> {<br>    <span class="hljs-comment">// 绘制包围盒控制手柄</span><br>    <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">drawBoundingBoxHandles</span>(elements, selectedIds, spriteMap, onHandleDown, viewportScale)<br>  }<br>}<br></code></pre></td></tr></table></figure>
+<p>一些处理</p>
+<ul>
+<li>区分线性元素（line/arrow）和普通元素的不同控制手柄绘制方式</li>
+<li>根据是否有旋转属性决定绘制普通边界框还是旋转边界框</li>
+<li>根据选中元素数量决定是否显示控制手柄</li>
+</ul>
+<h4 id="drawRotatedBounds-函数"><a href="#drawRotatedBounds-函数" class="headerlink" title="drawRotatedBounds 函数:"></a>drawRotatedBounds 函数:</h4><p>当选中元素具有旋转属性时，在 renderTransformer 中被调用，接收边界框信息和旋转角度，计算旋转后各角点坐标，绘制旋转后的边界框和控制手柄</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><code class="hljs typescript"><span class="hljs-keyword">private</span> <span class="hljs-title function_">drawRotatedBounds</span>(<span class="hljs-params"></span><br><span class="hljs-params">  <span class="hljs-attr">bounds</span>: { x: <span class="hljs-built_in">number</span>; y: <span class="hljs-built_in">number</span>; width: <span class="hljs-built_in">number</span>; height: <span class="hljs-built_in">number</span> },</span><br><span class="hljs-params">  <span class="hljs-attr">rotation</span>: <span class="hljs-built_in">number</span>,</span><br><span class="hljs-params">  <span class="hljs-attr">viewportScale</span>: <span class="hljs-built_in">number</span>,</span><br><span class="hljs-params">  <span class="hljs-attr">selectedIds</span>: <span class="hljs-built_in">string</span>[],</span><br><span class="hljs-params">  <span class="hljs-attr">onHandleDown</span>: (e: PIXI.FederatedPointerEvent, handle: HandleType | <span class="hljs-string">'p0'</span> | <span class="hljs-string">'p1'</span>, elementId: <span class="hljs-built_in">string</span>) =&gt; <span class="hljs-built_in">void</span>,</span><br><span class="hljs-params"></span>) {<br>  <span class="hljs-keyword">const</span> centerX = bounds.<span class="hljs-property">x</span> + bounds.<span class="hljs-property">width</span> / <span class="hljs-number">2</span><br>  <span class="hljs-keyword">const</span> centerY = bounds.<span class="hljs-property">y</span> + bounds.<span class="hljs-property">height</span> / <span class="hljs-number">2</span><br><br>  <span class="hljs-comment">// 计算旋转后的四个角点</span><br>  <span class="hljs-keyword">const</span> halfWidth = bounds.<span class="hljs-property">width</span> / <span class="hljs-number">2</span><br>  <span class="hljs-keyword">const</span> halfHeight = bounds.<span class="hljs-property">height</span> / <span class="hljs-number">2</span><br><br>  <span class="hljs-keyword">const</span> corners = [<br>    { <span class="hljs-attr">x</span>: -halfWidth, <span class="hljs-attr">y</span>: -halfHeight }, <span class="hljs-comment">// 左上</span><br>    { <span class="hljs-attr">x</span>: halfWidth, <span class="hljs-attr">y</span>: -halfHeight },  <span class="hljs-comment">// 右上</span><br>    { <span class="hljs-attr">x</span>: halfWidth, <span class="hljs-attr">y</span>: halfHeight },   <span class="hljs-comment">// 右下</span><br>    { <span class="hljs-attr">x</span>: -halfWidth, <span class="hljs-attr">y</span>: halfHeight }   <span class="hljs-comment">// 左下</span><br>  ]<br><br>  <span class="hljs-comment">// 应用旋转矩阵计算实际坐标</span><br>  <span class="hljs-keyword">const</span> rotatedCorners = corners.<span class="hljs-title function_">map</span>(<span class="hljs-function"><span class="hljs-params">corner</span> =&gt;</span> {<br>    <span class="hljs-keyword">const</span> cos = <span class="hljs-title class_">Math</span>.<span class="hljs-title function_">cos</span>(rotation)<br>    <span class="hljs-keyword">const</span> sin = <span class="hljs-title class_">Math</span>.<span class="hljs-title function_">sin</span>(rotation)<br>    <span class="hljs-keyword">return</span> {<br>      <span class="hljs-attr">x</span>: centerX + corner.<span class="hljs-property">x</span> * cos - corner.<span class="hljs-property">y</span> * sin,<br>      <span class="hljs-attr">y</span>: centerY + corner.<span class="hljs-property">x</span> * sin + corner.<span class="hljs-property">y</span> * cos<br>    }<br>  })<br><br>  <span class="hljs-comment">// 绘制旋转后的边界框</span><br>  <span class="hljs-variable language_">this</span>.<span class="hljs-property">transformerGraphic</span>.<span class="hljs-title function_">poly</span>(rotatedCorners)<br>  <span class="hljs-variable language_">this</span>.<span class="hljs-property">transformerGraphic</span>.<span class="hljs-title function_">stroke</span>({ <span class="hljs-attr">width</span>: <span class="hljs-number">1</span>, <span class="hljs-attr">color</span>: <span class="hljs-number">0x8b5cf6</span> })<br>  <span class="hljs-variable language_">this</span>.<span class="hljs-property">transformerGraphic</span>.<span class="hljs-title function_">closePath</span>()<br><br>  <span class="hljs-comment">// 绘制控制手柄和其他UI元素</span><br>  <span class="hljs-comment">// ...</span><br>}<br></code></pre></td></tr></table></figure>
+<ul>
+<li>使用三角函数计算旋转后坐标</li>
+<li>正确放置旋转手柄位置，使其始终位于边界框上方</li>
+<li>保持手柄与边界框一同旋转</li>
+</ul>
+<h2 id="5-UI-与样式实现-UI-Implementation"><a href="#5-UI-与样式实现-UI-Implementation" class="headerlink" title="5. UI 与样式实现 (UI Implementation)"></a>5. UI 与样式实现 (UI Implementation)</h2><h3 id="布局策略"><a href="#布局策略" class="headerlink" title="布局策略"></a>布局策略</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs mermaid">graph TD<br>    A[transformerGraphic 容器] --&gt; B[边界框/多边形]<br>    A --&gt; C[控制手柄]<br>    A --&gt; D[旋转手柄]<br>    A --&gt; E[手柄点击区域]<br><br>    C --&gt; C1[左上手柄]<br>    C --&gt; C2[上边手柄]<br>    C --&gt; C3[右上手柄]<br>    C --&gt; C4[右边手柄]<br>    C --&gt; C5[右下手柄]<br>    C --&gt; C6[下边手柄]<br>    C --&gt; C7[左下手柄]<br>    C --&gt; C8[左边手柄]<br><br>    D --&gt; D1[旋转手柄圆形]<br>    D --&gt; D2[连接线]<br><br>    E --&gt; E1[手柄透明点击区域]<br></code></pre></td></tr></table></figure>
+<h3 id="样式方案"><a href="#样式方案" class="headerlink" title="样式方案"></a>样式方案</h3><p>TransformerRenderer 使用 PixiJS 的 Graphics API 进行绘制：</p>
+<ol>
+<li><p><strong>边界框样式</strong>:</p>
+<ul>
+<li>颜色: 紫色 (#8b5cf6)</li>
+<li>线宽: 1px</li>
+</ul>
+</li>
+<li><p><strong>控制手柄样式</strong>:</p>
+<ul>
+<li>形状: 矩形</li>
+<li>填充色: 白色</li>
+<li>边框色: 紫色 (#8b5cf6)</li>
+<li>边框宽度: 1px</li>
+</ul>
+</li>
+<li><p><strong>旋转手柄样式</strong>:</p>
+<ul>
+<li>形状: 圆形</li>
+<li>填充色: 白色</li>
+<li>边框色: 紫色 (#8b5cf6)</li>
+<li>边框宽度: 1px</li>
+</ul>
+</li>
+<li><p><strong>手柄大小自适应</strong>:<br>根据视口缩放比例调整手柄大小:</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs typescript"><span class="hljs-keyword">const</span> handleSize = <span class="hljs-number">8</span> / viewportScale;<br></code></pre></td></tr></table></figure>
+</li>
+</ol>
+<h3 id="元素操作机制实现"><a href="#元素操作机制实现" class="headerlink" title="元素操作机制实现"></a>元素操作机制实现</h3><h4 id="旋转操作"><a href="#旋转操作" class="headerlink" title="旋转操作"></a>旋转操作</h4><ol>
+<li>检测元素是否有 rotation 属性</li>
+<li>计算元素中心点和旋转后各角点坐标</li>
+<li>绘制旋转后的边界框</li>
+<li><p>旋转手柄位置通过以下方式计算:</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs typescript"><span class="hljs-comment">// 计算未旋转时顶部中心点</span><br><span class="hljs-keyword">const</span> topCenterX = centerX;<br><span class="hljs-keyword">const</span> topCenterY = bounds.<span class="hljs-property">y</span>;<br><br><span class="hljs-comment">// 将顶部中心点也进行旋转</span><br><span class="hljs-keyword">const</span> rotatedTopCenterX =<br>  centerX +<br>  (topCenterX - centerX) * <span class="hljs-title class_">Math</span>.<span class="hljs-title function_">cos</span>(rotation) -<br>  (topCenterY - centerY) * <span class="hljs-title class_">Math</span>.<span class="hljs-title function_">sin</span>(rotation);<br><span class="hljs-keyword">const</span> rotatedTopCenterY =<br>  centerY +<br>  (topCenterX - centerX) * <span class="hljs-title class_">Math</span>.<span class="hljs-title function_">sin</span>(rotation) +<br>  (topCenterY - centerY) * <span class="hljs-title class_">Math</span>.<span class="hljs-title function_">cos</span>(rotation);<br></code></pre></td></tr></table></figure>
+</li>
+</ol>
+<h4 id="缩放操作"><a href="#缩放操作" class="headerlink" title="缩放操作"></a>缩放操作</h4><ol>
+<li>根据手柄类型确定缩放方向</li>
+<li>通过拖拽距离计算新的元素尺寸</li>
+<li>更新元素的 width/height 属性</li>
+</ol>
+<h4 id="移动操作"><a href="#移动操作" class="headerlink" title="移动操作"></a>移动操作</h4><ol>
+<li>通过拖拽偏移量更新元素的 x/y 属性</li>
+<li>对于多选元素，保持相对位置不变</li>
+</ol>
+<h4 id="元素打组机制"><a href="#元素打组机制" class="headerlink" title="元素打组机制"></a>元素打组机制</h4><p>当前实现中，多元素选择时:</p>
+<ol>
+<li>计算所有选中元素的包围盒</li>
+<li>在包围盒周围显示控制手柄</li>
+<li>操作时同时影响所有选中元素</li>
+</ol>
+<div id="paginator"></div></div><div id="post-footer"><div id="pages" style="justify-content: flex-end"><div class="footer-link" style="width: 50%;right:1px;border-left:1px #fe2 solid"><a href="/Arknight-notes/posts/54304.html">2025-11-24-canvas项目相关-元素操作和打组机制实现 Prev →</a></div></div></div><div id="comments"><div id="gitalk"></div></div></div><div class="bottom-btn"><div><a class="i-top" id="to-top" onClick="scrolls.scrolltop();" title="To Top" style="opacity: 0; display: none;">∧ </a><a class="i-index" id="to-index" href="#toc-div" title="To Catalog">≡</a><a class="i-color" id="color-mode" onClick="colorMode.change()" title="Change Theme"></a></div></div></article><aside><div id="about"><a href="/Arknight-notes/" id="logo"><img src="https://pic4.zhimg.com/80/v2-d9884f32711e19e80979eac58e943897_720w.webp" alt="Logo" style="margin:20;border-radius:0;"></a><h1 id="Dr"><a href="zhongye">柊野</a></h1><div id="description"><p></p></div></div><div id="aside-block"><div id="toc-div"><h1>Catalog</h1><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#TransformerRenderer-%E8%AE%BE%E8%AE%A1"><span class="toc-number">1.</span> <span class="toc-text">TransformerRenderer 设计</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A1%B9%E7%9B%AE%E7%BB%93%E6%9E%84%E6%A0%91"><span class="toc-number">1.0.1.</span> <span class="toc-text">项目结构树</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-Props-%E5%92%8C%E7%9B%B8%E5%85%B3%E7%B1%BB%E5%9E%8B%E5%AE%9A%E4%B9%89"><span class="toc-number">1.1.</span> <span class="toc-text">2. Props 和相关类型定义</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-renderTransformer-%E5%8F%82%E6%95%B0"><span class="toc-number">1.1.1.</span> <span class="toc-text">2.1 renderTransformer 参数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-%E7%B1%BB%E5%9E%8B%E5%AE%9A%E4%B9%89"><span class="toc-number">1.1.2.</span> <span class="toc-text">2.2 类型定义</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#CanvasElement-%E7%B1%BB%E5%9E%8B"><span class="toc-number">1.1.2.1.</span> <span class="toc-text">CanvasElement 类型</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#HandleType-%E7%B1%BB%E5%9E%8B"><span class="toc-number">1.1.2.2.</span> <span class="toc-text">HandleType 类型</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E7%8A%B6%E6%80%81%E7%AE%A1%E7%90%86-State-Architecture"><span class="toc-number">1.2.</span> <span class="toc-text">3. 状态管理 (State Architecture)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-%E5%86%85%E9%83%A8%E7%8A%B6%E6%80%81-Local-State"><span class="toc-number">1.2.1.</span> <span class="toc-text">3.1 内部状态 (Local State)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-%E5%A4%96%E9%83%A8%E7%8A%B6%E6%80%81-Global-Server-State"><span class="toc-number">1.2.2.</span> <span class="toc-text">3.2 外部状态 (Global&#x2F;Server State)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3-%E7%8A%B6%E6%80%81%E5%90%8C%E6%AD%A5%E6%9C%BA%E5%88%B6"><span class="toc-number">1.2.3.</span> <span class="toc-text">3.3 状态同步机制</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-%E9%80%BB%E8%BE%91%E6%B5%81%E7%A8%8B-Logic-Flow"><span class="toc-number">1.3.</span> <span class="toc-text">4. 逻辑流程 (Logic Flow)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1-%E4%BA%A4%E4%BA%92%E6%97%B6%E5%BA%8F%E5%9B%BE"><span class="toc-number">1.3.1.</span> <span class="toc-text">4.1 交互时序图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-%E6%A0%B8%E5%BF%83%E5%87%BD%E6%95%B0%E8%A7%A3%E6%9E%90"><span class="toc-number">1.3.2.</span> <span class="toc-text">4.2 核心函数解析</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#renderTransformer-%E5%87%BD%E6%95%B0"><span class="toc-number">1.3.2.1.</span> <span class="toc-text">renderTransformer 函数:</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#drawRotatedBounds-%E5%87%BD%E6%95%B0"><span class="toc-number">1.3.2.2.</span> <span class="toc-text">drawRotatedBounds 函数:</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-UI-%E4%B8%8E%E6%A0%B7%E5%BC%8F%E5%AE%9E%E7%8E%B0-UI-Implementation"><span class="toc-number">1.4.</span> <span class="toc-text">5. UI 与样式实现 (UI Implementation)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B8%83%E5%B1%80%E7%AD%96%E7%95%A5"><span class="toc-number">1.4.1.</span> <span class="toc-text">布局策略</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A0%B7%E5%BC%8F%E6%96%B9%E6%A1%88"><span class="toc-number">1.4.2.</span> <span class="toc-text">样式方案</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%83%E7%B4%A0%E6%93%8D%E4%BD%9C%E6%9C%BA%E5%88%B6%E5%AE%9E%E7%8E%B0"><span class="toc-number">1.4.3.</span> <span class="toc-text">元素操作机制实现</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%97%8B%E8%BD%AC%E6%93%8D%E4%BD%9C"><span class="toc-number">1.4.3.1.</span> <span class="toc-text">旋转操作</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%BC%A9%E6%94%BE%E6%93%8D%E4%BD%9C"><span class="toc-number">1.4.3.2.</span> <span class="toc-text">缩放操作</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%A7%BB%E5%8A%A8%E6%93%8D%E4%BD%9C"><span class="toc-number">1.4.3.3.</span> <span class="toc-text">移动操作</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%85%83%E7%B4%A0%E6%89%93%E7%BB%84%E6%9C%BA%E5%88%B6"><span class="toc-number">1.4.3.4.</span> <span class="toc-text">元素打组机制</span></a></li></ol></li></ol></li></ol></li></ol></div></div><footer><nobr><span class="icp-title">GZHU</span><span class="icp-content">193001-0001</span></nobr><br><nobr><span class="icp-title">OUTPOST</span><span class="icp-content">169-2025-0331</span></nobr><br><nobr>Published with <a target="_blank" rel="noopener" href="http://hexo.io">Hexo</a></nobr><wbr><nobr> Theme <a target="_blank" rel="noopener" href="https://github.com/Yue-plus/hexo-theme-arknights">Arknights</a></nobr><wbr><nobr> by <a target="_blank" rel="noopener" href="https://github.com/Yue-plus">Yue_plus</a></nobr></footer></aside></main><canvas id="canvas-dust"></canvas></body></html>
