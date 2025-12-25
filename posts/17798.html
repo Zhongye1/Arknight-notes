@@ -1,0 +1,445 @@
+<!DOCTYPE html><html lang="en" theme-mode="dark"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>2025-12-05-字节工训营画布项目相关设计 | Notes|笔记站</title><link rel="icon" type="image/x-icon" href="/Arknight-notes/favicon.ico"><link rel="preload" as="font" crossorigin="anonymous" href="/Arknight-notes/font/Bender.ttf"><link rel="preload" as="font" crossorigin="anonymous" href="/Arknight-notes/font/BenderLight.ttf"><link rel="preload" as="font" crossorigin="anonymous" href="/Arknight-notes/font/JetBrainsMono-Regular.woff2"><link rel="stylesheet" href="/Arknight-notes/css/arknights.css"><style>@font-face {
+  font-family: Bender;
+  src: local('Bender'), url("/Arknight-notes/font/Bender.ttf"), url("/Arknight-notes/font/Bender.otf");
+}
+@font-face {
+  font-family: BenderLight;
+  src: local('BenderLight'), url("/Arknight-notes/font/BenderLight.ttf");
+}
+@font-face {
+  font-family: 'JetBrains Mono';
+  src: local('JetBrains Mono'), url('/Arknight-notes/font/JetBrainsMono-Regular.woff2') format('woff2');
+}
+</style><script>var config = {"root":"/Arknight-notes/","code_fold":90,"search":{"preload":false,"activeHolder":"Enter here","blurHolder":"Search","noResult":"Data \"$0\" not found"},"code":{"codeInfo":"$0 - $1 lines","copy":"copy"}}</script><link type="text/css" rel="stylesheet" href="/Arknight-notes/lib/encrypt/hbe.style.css"><script src="/Arknight-notes/js/gitalk.js"></script><script src="//unpkg.com/mermaid@10.5.0/dist/mermaid.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.6.1/MathJax.js"></script><script>MathJax.Hub.Config({
+ menuSettings: {
+   zoom: "None"
+ },
+ showMathMenu: false,
+ jax: ["input/TeX","output/CommonHTML"],
+ extensions: ["tex2jax.js"],
+ TeX: {
+   extensions: ["AMSmath.js","AMSsymbols.js"],
+   equationNumbers: {
+     autoNumber: "AMS"
+   }
+ },
+ tex2jax: {
+   inlineMath: [["\\(", "\\)"]],
+   displayMath: [["\\[", "\\]"]]
+ }
+});</script><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lightgallery.css"><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lg-zoom.css"><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lg-thumbnail.css"><link type="text/css" rel="stylesheet" href="/Arknight-notes/lib/fontawesome/css/all.min.css"><script>if (window.localStorage.getItem('theme-mode') === 'light')
+ document.documentElement.setAttribute('theme-mode', 'light')
+if (window.localStorage.getItem('theme-mode') === 'dark')
+ document.documentElement.setAttribute('theme-mode', 'dark')</script><style>@font-face {
+ font-family: BenderLight;
+ src: local('Bender'), url("/Arknight-notes/font/BenderLight.woff2") format('woff2');
+}
+@font-face {
+ font-family: 'JetBrains Mono';
+ src: local('JetBrains Mono'), url('/Arknight-notes/font/JetBrainsMono-Regular.woff2') format('woff2');
+}</style><style>:root {
+ --dark-background: url('https://pic2.zhimg.com/v2-6269d74b4dafe14781d03790e5a86b21_r.jpg');
+ --light-background: url('https://pic1.zhimg.com/v2-233b64b583642fc4a6d77e69ced33150_r.jpg');
+ --theme-encrypt-confirm: 'confirm'
+}</style><script defer src="/Arknight-notes/js/arknights.js"></script><script defer src="/Arknight-notes/js/search.js"></script><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><script async src="/Arknight-notes/js/gitalk.js"></script><script defer type="module">import mermaid from '//unpkg.com/mermaid@10.5.0/dist/mermaid.esm.mjs';
+window.mermaid = mermaid;
+code.paintMermaid();
+</script><script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.6.1/MathJax.js"></script><script>MathJax.Hub.Config({
+  menuSettings: {
+    zoom: "None"
+  },
+  showMathMenu: false,
+  jax: ["input/TeX","output/CommonHTML"],
+  extensions: ["tex2jax.js"],
+  TeX: {
+    extensions: ["AMSmath.js","AMSsymbols.js"],
+    equationNumbers: {
+      autoNumber: "AMS"
+    }
+  },
+  tex2jax: {
+    inlineMath: [["\\(", "\\)"]],
+    displayMath: [["\\[", "\\]"]]
+  }
+});
+</script><script async src="//unpkg.com/lightgallery@2.7.1/lightgallery.min.js"></script><script async src="//unpkg.com/lightgallery@2.7.1/plugins/zoom/lg-zoom.min.js"></script><script async src="//unpkg.com/lightgallery@2.7.1/plugins/thumbnail/lg-thumbnail.min.js"></script><script async src="/Arknight-notes/lib/encrypt/hbe.js"></script><script async src="/Arknight-notes/js/pjax.js"></script><script class="pjax-js">reset= () => {gitalk = new Gitalk({
+ clientID: 'Ov23ct13Fb0b67x23wnT',
+ clientSecret: 'f18ce69dd545e3c0f5e2456afde9c756fe8a254a',
+ repo: 'Arknight-notes',
+ owner: 'Zhongye1',
+ admin: ['Zhongye1'],
+ distractionFreeMode: false,
+ id: location.pathname
+});
+if (document.querySelector("#gitalk")) gitalk.render("gitalk");document.querySelector('.lg-container')?.remove()
+lightGallery(document.getElementById('post-bg'), {
+  plugins: [lgZoom,lgThumbnail],
+  selector: '.item-img'})}</script><script>window.addEventListener("load",() => {pjax = new Pjax({
+ cacheBust: false,
+ selectors: ['title','article','#aside-block','.pjax-js','data-pjax','.busuanzi'],
+ switches: {'article': Pjax.switches.sideBySide},
+ switchesOptions: {
+   'article': {
+     classNames: {
+       remove: "pjax-out",
+       add: "pjax-in"
+     }
+   }
+ }
+});
+document.addEventListener("pjax:complete", reset);document.addEventListener('pjax:success', _ => bszCaller.fetch(
+ "//busuanzi.ibruce.info/busuanzi?jsonpCallback=BusuanziCallback", a => {
+  bszTag.texts(a),
+  bszTag.shows()
+}));reset()})</script><script class="pjax-js">reset= () => {gitalk = new Gitalk({
+ clientID: 'Ov23ct13Fb0b67x23wnT',
+ clientSecret: 'f18ce69dd545e3c0f5e2456afde9c756fe8a254a',
+ repo: 'Arknight-notes',
+ owner: 'Zhongye1',
+ admin: ['Zhongye1'],
+ distractionFreeMode: false,
+ id: location.pathname
+});
+if (document.querySelector("#gitalk")) gitalk.render("gitalk");document.querySelector('.lg-container')?.remove()
+lightGallery(document.getElementById('post-bg'), {
+  plugins: [lgZoom,lgThumbnail],
+  selector: '.item-img'})}</script><script>window.addEventListener("load",() => {pjax = new Pjax({
+ cacheBust: false,
+ selectors: ['title','article','#aside-block','.pjax-js'],
+ switches: {'article': Pjax.switches.sideBySide},
+ switchesOptions: {
+   'article': {
+     classNames: {
+       remove: "pjax-out",
+       add: "pjax-in"
+     }
+   }
+ }
+});
+document.addEventListener("pjax:complete", reset);reset()})</script><meta name="generator" content="Hexo 7.3.0"><style>mjx-container[jax="SVG"] {
+  direction: ltr;
+}
+
+mjx-container[jax="SVG"] > svg {
+  overflow: visible;
+}
+
+mjx-container[jax="SVG"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="SVG"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="SVG"][justify="right"] {
+  text-align: right;
+}
+
+g[data-mml-node="merror"] > g {
+  fill: red;
+  stroke: red;
+}
+
+g[data-mml-node="merror"] > rect[data-background] {
+  fill: yellow;
+  stroke: none;
+}
+
+g[data-mml-node="mtable"] > line[data-line] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > rect[data-frame] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > .mjx-dashed {
+  stroke-dasharray: 140;
+}
+
+g[data-mml-node="mtable"] > .mjx-dotted {
+  stroke-linecap: round;
+  stroke-dasharray: 0,140;
+}
+
+g[data-mml-node="mtable"] > svg {
+  overflow: visible;
+}
+
+[jax="SVG"] mjx-tool {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+[jax="SVG"] mjx-tool > mjx-tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+mjx-tool > mjx-tip {
+  display: inline-block;
+  padding: .2em;
+  border: 1px solid #888;
+  font-size: 70%;
+  background-color: #F8F8F8;
+  color: black;
+  box-shadow: 2px 2px 5px #AAAAAA;
+}
+
+g[data-mml-node="maction"][data-toggle] {
+  cursor: pointer;
+}
+
+mjx-status {
+  display: block;
+  position: fixed;
+  left: 1em;
+  bottom: 1em;
+  min-width: 25%;
+  padding: .2em .4em;
+  border: 1px solid #888;
+  font-size: 90%;
+  background-color: #F8F8F8;
+  color: black;
+}
+
+foreignObject[data-mjx-xml] {
+  font-family: initial;
+  line-height: normal;
+  overflow: visible;
+}
+
+.MathJax path {
+  stroke-width: 3;
+}
+
+mjx-container[display="true"] {
+  overflow: auto hidden;
+}
+
+mjx-container[display="true"] + br {
+  display: none;
+}
+</style><link rel="alternate" href="/Arknight-notes/rss.xml" title="Notes|笔记站" type="application/atom+xml">
+</head><body><div class="loading" style="opacity: 0;"><div class="loadingBar left"></div><div class="loadingBar right"></div></div><main><header class="closed"><div class="navBtn"><i class="navBtnIcon"><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span></i></div><nav><div class="navItem" id="search-header"><span class="navItemTitle"><input autocomplete="off" autocorrect="off" autocapitalize="none" placeholder="Search" spellcheck="false" maxlength="50" type="text" id="search-input"></span></div><div class="navItem" id="search-holder"></div><div class="search-popup" tabindex="0"><div id="search-result"></div></div><ol class="navContent"><li class="navItem"><a class="navBlock" href="/Arknight-notes/"><span class="navItemTitle">Home</span></a></li><li class="navItem" matchdata="categories,tags"><a class="navBlock" href="/Arknight-notes/archives/"><span class="navItemTitle">Archives</span></a></li><li class="navItem"><a class="navBlock" href="/Arknight-notes/about/"><span class="navItemTitle">About</span></a></li></ol></nav></header><article><div id="post-bg"><div id="post-title"><h1>2025-12-05-字节工训营画布项目相关设计</h1><div id="post-info"><span>First Post: <div class="control"><time datetime="2025-12-04T18:00:16.000Z" id="date"> 2025-12-05</time></div></span><br><span>Last Update: <div class="control"><time datetime="2025-12-14T18:06:50.658Z" id="updated"> 2025-12-15</time></div></span><br><span id="busuanzi_container_page_pv">Page View: <span class="control" id="busuanzi_value_page_pv">loading...</span></span></div></div><hr><div id="post-content"><h1 id="BDdraw-DEV"><a href="#BDdraw-DEV" class="headerlink" title="BDdraw_DEV"></a>BDdraw_DEV</h1><p>代码仓库：<br><a target="_blank" rel="noopener" href="https://github.com/Zhongye1/BDdraw_DEV">https://github.com/Zhongye1/BDdraw_DEV</a></p>
+<p>现代协同 2D 画布编辑器 · React 18 + TypeScript + Vite + TailwindCSS + Zustand + PixiJS v8</p>
+<h4 id="技术栈-·-Tech-Stack"><a href="#技术栈-·-Tech-Stack" class="headerlink" title="技术栈 · Tech Stack"></a>技术栈 · Tech Stack</h4><p class='item-img' data-src='https://img.shields.io/badge/React-18.2.0-61DAFB?logo=react&logoColor=white'><img src="https://img.shields.io/badge/React-18.2.0-61DAFB?logo=react&logoColor=white" alt="React 18"> <img src="https://img.shields.io/badge/TypeScript-5.3.3-3178C6?logo=typescript&logoColor=white" alt="TypeScript 5" class='item-img' data-src='https://img.shields.io/badge/TypeScript-5.3.3-3178C6?logo=typescript&logoColor=white'><img src="https://img.shields.io/badge/TypeScript-5.3.3-3178C6?logo=typescript&logoColor=white" alt="TypeScript 5"> <img src="https://img.shields.io/badge/React_Router-6-CA4245?logo=reactrouter&logoColor=white" alt="React Router 6" class='item-img' data-src='https://img.shields.io/badge/React_Router-6-CA4245?logo=reactrouter&logoColor=white'><img src="https://img.shields.io/badge/React_Router-6-CA4245?logo=reactrouter&logoColor=white" alt="React Router 6"> <img src="https://img.shields.io/badge/tailwindcss--animate-1.0.7-06B6D4" alt="animate" class='item-img' data-src='https://img.shields.io/badge/tailwindcss--animate-1.0.7-06B6D4'><img src="https://img.shields.io/badge/tailwindcss--animate-1.0.7-06B6D4" alt="animate"> <img src="https://img.shields.io/badge/Arco_Design-2.66.8-006AFF?logo=arco-design&logoColor=white" alt="Arco Design" class='item-img' data-src='https://img.shields.io/badge/Arco_Design-2.66.8-006AFF?logo=arco-design&logoColor=white'><img src="https://img.shields.io/badge/Arco_Design-2.66.8-006AFF?logo=arco-design&logoColor=white" alt="Arco Design"> <img src="https://img.shields.io/badge/Lucide_React-0.554.0-000000?logo=lucide&logoColor=white" alt="Lucide" class='item-img' data-src='https://img.shields.io/badge/Lucide_React-0.554.0-000000?logo=lucide&logoColor=white'><img src="https://img.shields.io/badge/Lucide_React-0.554.0-000000?logo=lucide&logoColor=white" alt="Lucide"> <img src="https://img.shields.io/badge/Immer-10.2.0-00E0C8?logo=immer&logoColor=white" alt="Immer" class='item-img' data-src='https://img.shields.io/badge/Immer-10.2.0-00E0C8?logo=immer&logoColor=white'><img src="https://img.shields.io/badge/Immer-10.2.0-00E0C8?logo=immer&logoColor=white" alt="Immer"> <img src="https://img.shields.io/badge/PixiJS-8.14.3-CC0066?logo=pixijs&logoColor=white" alt="PixiJS v8" class='item-img' data-src='https://img.shields.io/badge/PixiJS-8.14.3-CC0066?logo=pixijs&logoColor=white'><img src="https://img.shields.io/badge/PixiJS-8.14.3-CC0066?logo=pixijs&logoColor=white" alt="PixiJS v8"> <img src="https://img.shields.io/badge/Tiptap-3.11.0-1F1F1F?logo=tiptap&logoColor=white" alt="Tiptap v3" class='item-img' data-src='https://img.shields.io/badge/Tiptap-3.11.0-1F1F1F?logo=tiptap&logoColor=white'><img src="https://img.shields.io/badge/Tiptap-3.11.0-1F1F1F?logo=tiptap&logoColor=white" alt="Tiptap v3"> <img src="https://img.shields.io/badge/Framer_Motion-12.23.24-9D5CFF?logo=framer&logoColor=white" alt="Framer Motion 12" class='item-img' data-src='https://img.shields.io/badge/Framer_Motion-12.23.24-9D5CFF?logo=framer&logoColor=white'><img src="https://img.shields.io/badge/Framer_Motion-12.23.24-9D5CFF?logo=framer&logoColor=white" alt="Framer Motion 12"> <img src="https://img.shields.io/badge/nanoid-5.1.6-000000" alt="nanoid" class='item-img' data-src='https://img.shields.io/badge/nanoid-5.1.6-000000'><img src="https://img.shields.io/badge/nanoid-5.1.6-000000" alt="nanoid"> <img src="https://img.shields.io/badge/ESLint-8.38.0-4B32C3?logo=eslint&logoColor=white" alt="ESLint" class='item-img' data-src='https://img.shields.io/badge/ESLint-8.38.0-4B32C3?logo=eslint&logoColor=white'><img src="https://img.shields.io/badge/ESLint-8.38.0-4B32C3?logo=eslint&logoColor=white" alt="ESLint"> <img src="https://img.shields.io/badge/Husky-8.0.3-7711A4" alt="Husky" class='item-img' data-src='https://img.shields.io/badge/Husky-8.0.3-7711A4'><img src="https://img.shields.io/badge/Husky-8.0.3-7711A4" alt="Husky"> <img src="https://img.shields.io/badge/Deploy-GitHub_Pages-222222?logo=githubpages&logoColor=white" alt="GitHub Pages"></p>
+<h4 id="运行项目"><a href="#运行项目" class="headerlink" title="运行项目"></a>运行项目</h4><p><strong>frontend</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs bash">git <span class="hljs-built_in">clone</span> git@github.com:Zhongye1/BDdraw_DEV.git<br><br><span class="hljs-built_in">cd</span> BDdraw_DEV (进入项目)<br>bun install (安装依赖包)<br>bun start (启动服务)<br></code></pre></td></tr></table></figure>
+<p><strong>backend</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">cd</span> BDdraw_DEV/ALD_Backend/<br>bun install <span class="hljs-comment">#安装依赖</span><br>bun index.ts  <span class="hljs-comment">#启动后端服务</span><br></code></pre></td></tr></table></figure>
+<p>推荐使用 bun 包管理器，见个人博客</p>
+<p><a href="https://zhongye1.github.io/Arknight-notes/posts/15722.html">关于包管理器 npm,pnpm,yarn 和 bun 以及我为何选择后者</a></p>
+<h4 id="Docker-部署"><a href="#Docker-部署" class="headerlink" title="Docker 部署"></a>Docker 部署</h4><p>项目支持通过 Docker 进行容器化部署，使用 Node 22 和 Bun 包管理器。</p>
+<p><strong>开发环境部署：</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">docker-compose up -d<br></code></pre></td></tr></table></figure>
+<p><strong>生产环境部署：</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">docker-compose -f docker-compose.prod.yml up -d<br></code></pre></td></tr></table></figure>
+<p>部署完成后，可以通过以下地址访问：</p>
+<ul>
+<li>前端应用: <a target="_blank" rel="noopener" href="http://localhost:5000/BDdraw_DEV/">http://localhost:5000/BDdraw_DEV/</a></li>
+<li>后端 API 文档: <a target="_blank" rel="noopener" href="http://localhost:3000/swagger-ui">http://localhost:3000/swagger-ui</a></li>
+</ul>
+<h4 id="整体架构设计"><a href="#整体架构设计" class="headerlink" title="整体架构设计"></a>整体架构设计</h4><p>项目采用了模块化的架构设计，将不同的功能划分为独立的模块，以方便后续维护和扩展</p>
+<h2 id="特性"><a href="#特性" class="headerlink" title="特性"></a>特性</h2><ul>
+<li>60 FPS 渲染（得益于 PixiJS WebGL）</li>
+<li>完整撤销/重做（Command Pattern + 防抖快照）</li>
+<li>多元素选择与群组操作</li>
+<li>画布元素变换控制器</li>
+<li>富文本所见即所得编辑（WanngEditor + PIXI.HTMLText）</li>
+<li>图片插入 + 内置滤镜（模糊、亮度、灰度等）</li>
+<li>插件式元素系统</li>
+<li>插件式元素系统</li>
+<li>完整的 TypeScript 类型支持</li>
+<li>现代开发体验（Vite + ESLint + Prettier + Husky）</li>
+<li>集成 GitHub-Actions 支持， 实现每次 push 到 main 分支后，GitHub 自动构建 → 自动发布页面的操作</li>
+</ul>
+<hr>
+<h3 id="技术选型"><a href="#技术选型" class="headerlink" title="技术选型"></a>技术选型</h3><p>这时候需要简单做一个技术选型分析，根据任务拆解，选择了如下技术栈</p>
+<p><strong>【框架】</strong>【技术方案：采用 React 18 + TypeScript 5 构建应用，React 提供完整的 UI 生态，TypeScript 提供更清晰可靠的类型安全，相比 JavaScript 更易于维护】</p>
+<p><strong>【构建工具】</strong>【技术方案：使用 Vite 5 作为构建工具，其开发服务器启动和热模块替换（HMR）速度明显快于 Webpack】</p>
+<p><strong>【路由】</strong>【技术方案：采用 React Router DOM 6 实现路由管理，API 稳定且文档完善】</p>
+<p><strong>【样式】</strong>【技术方案：使用 Tailwind CSS 3 + PostCSS 处理样式，开发时编写样式更快，生产环境会自动进行 tree-shaking 优化，相比 CSS Modules 和 styled-components 更高效且原子化更直观，对 AI 工具友好】</p>
+<p><strong>【样式扩展】</strong>【技术方案：少量使用 Less 覆盖 Tailwind 主题变量，保持兼容性】</p>
+<p><strong>【SVG 处理】</strong>【技术方案：使用 SVGR 1.5 处理 SVG，Vite 原生支持，可以将 SVG 作为 React 组件使用，比直接使用 SVG 或 SVG sprite 更灵活】</p>
+<p><strong>【UI 组件库】</strong>【技术方案：采用 shadcn/ui（latest）和 Arco Design 2 实现 UI 组件，易于使用，符合字节项目使用字节组件库的习惯】</p>
+<p><strong>【全局状态】</strong>【技术方案：采用 Zustand 4 管理全局状态，API 简洁、性能良好且无样板代码，相比 Redux Toolkit、Pinia、Jotai 代码量更少且配有 Devtools】</p>
+<p><strong>【图形/画布】</strong>【技术方案：使用 PixiJS 8 + pixi-viewport 实现图形和画布功能，基于 WebGL 渲染，适合处理大量精灵元素，相比其他可选方案性能更高】</p>
+<p><strong>【富文本编辑器】</strong>【技术方案：采用 WangEditor 5 作为富文本编辑器，轻量且文档和社区均为中文，相比 Slate/TipTap 等编辑器，默认输出的 HTML 可直接给 PixiJS HTMLText 进行渲染】</p>
+<p><strong>【图标】</strong>【技术方案：使用 Lucide React 图标库，图标数量多、风格统一且支持 Tree-shaking】</p>
+<p><strong>【工具库】</strong>【技术方案：采用 nanoid 3 为画布元素生成唯一标识符等操作，轻量实用】</p>
+<p><strong>【代码质量】</strong>【技术方案：使用 ESLint + Stylelint + Prettier + Husky + lint-staged + commitlint 保证团队代码风格一致，这是中大型项目的基本配置，有利于多人协作开发】</p>
+<p>此外，还配置了 react 开发者工具 react-dev-inspector，配置了一下，开发环境下 ctrl+q 可以实现点击页面上的组件，在 VSCode 中自动跳转到对应文件，并定位到对应行号，方便调试（先前写 vue 也用过类似的）</p>
+<p>项目 <a target="_blank" rel="noopener" href="https://react-dev-inspector.zthxxx.me/docs">https://react-dev-inspector.zthxxx.me/docs</a></p>
+<h3 id="功能要素和方案"><a href="#功能要素和方案" class="headerlink" title="功能要素和方案"></a>功能要素和方案</h3><p>分析以上需求，查阅相关资料后，进行各个核心模块的技术方案选型，确定初步实现方案</p>
+<p><strong>【基础渲染引擎】</strong>【技术方案：PixiJS v8（WebGL）提供高性能 2D 渲染，根据不同元素类型创建对应的 Pixi 对象（图形、文本、图像），通过 pixi-viewport 实现无限画布的视口控制，支持缩放、拖拽等交互】</p>
+<p><strong>【无限画布视口】</strong>【技术方案：pixi-viewport（内置 zoom、drag、decelerate、clampZoom）库创建无限画布，在 StageManagerCore.ts 中初始化 viewport，并添加拖拽、缩放等交互功能，支持鼠标中键拖拽画布、滚轮缩放等常见操作】</p>
+<p><strong>【富文本编辑】</strong>【技术方案：WangEditor 5 作为富文本编辑器，提供完整的文本编辑功能，编辑结果以 HTML 格式存储在元素的 text/string 属性中，元素使用 PixiJS 内置的 HTMLText 进行渲染实现富文本效果】</p>
+<p><strong>【状态管理与数据结构】</strong>【技术方案：Zustand 作为全局状态管理库，通过 structuredClone 函数手动创建状态快照，管理画布元素、选中状态、工具类型等，通过中间件监听状态变化并触发重渲染，在特定的 ts 中定义所有状态和操作方法】</p>
+<p><strong>【图片上传显示与滤镜】</strong>【技术方案：PixiJS 内置 Filter 系统包括 BlurFilter、ColorMatrixFilter（黑白、对比度、饱和度）实现图像处理效果，支持模糊、亮度调整、灰度等多种滤镜效果，在 ElementRenderer.ts 中根据元素的 filter 属性应用相应滤镜，支持 blur（模糊）、brightness（亮度）、grayscale（灰度）等滤镜类型】</p>
+<p><strong>【选中与变换系统】</strong>【技术方案：SelectionManager + TransformOverlay（8 个把手 + 旋转把手）实现变换控件渲染，支持单个元素选中和多个元素群组选中，提供 8 个控制点和 1 个旋转点进行变换操作，根据不同元素类型提供不同的控制方式】</p>
+<p><strong>【旋转与组合嵌套】</strong>【技术方案：每个元素维护自己的 matrix（局部矩阵），组合后父容器统一应用矩阵变换，支持多层级嵌套和复杂变换】</p>
+<p><strong>【Minimap】</strong>【技术方案：单独一个小的 Pixi.Application（共享 texture 缓存）实现缩略图功能，主画布所有容器使用 cacheAsBitmap 后生成低分辨率 texture，实时更新到小画布，视口框用一个半透明矩形表示在主画布中的位置】</p>
+<p><strong>【元素永久缓存】</strong>【技术方案：使用 spriteMap 来存储 PIXI 对象，元素更新时只修改属性并设置 container.dirty = true，而不是销毁重建，来解决拖拽中断、光标丢失、闪烁等问题】</p>
+<p><strong>【辅助对齐线】</strong>【技术方案：拖拽时实时遍历所有元素 bounds，计算对齐情况（水平/垂直/间距相等），差值&lt;6px 就吸附并画蓝线，支持水平、垂直对齐以及等间距对齐等多种对齐方式，当距离小于阈值时自动吸附并对齐】</p>
+<p><strong>【Undo/Redo】</strong>【技术方案：Command Pattern + structuredClone 完整快照（每步 before/after）实现撤销/重做功能，通过管理命令栈（undo，redo 栈），使用 structuredClone 创建状态快照，记录操作前后的完整状态，来支持添加元素、删除元素、修改元素属性等操作的撤销/重做，针对拖拽和调整大小操作的命令生成逻辑可能还要具体再处理一套】</p>
+<p><strong>【数据持久化与离线】</strong>【技术方案：Zustand-persist + localForage（IndexedDB）实现数据持久化和离线使用，使用 Zustand 的持久化中间件保存状态，通过 localForage 将数据存储到 IndexedDB 中，实现数据的自动保存和恢复功能】</p>
+<p><strong>【实时协同】</strong>【技术方案：Y.js + y-websocket（或自己写 CRDT）+ Operation Transform 合并策略实现无冲突的实时协同编辑，通过 y-websocket 插件实现服务端同步（问的 AI），有个思路是把操作打给时间 tag，然后然后按时间合并】</p>
+<hr>
+<h4 id="项目架构树"><a href="#项目架构树" class="headerlink" title="项目架构树"></a>项目架构树</h4><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br></pre></td><td class="code"><pre><code class="hljs sh">BDdraw_DEV/<br>├── ALD_Backend/                    <span class="hljs-comment"># 后端服务目录</span><br>│   ├── src/                        <span class="hljs-comment"># 后端源代码</span><br>│   │   ├── api/                    <span class="hljs-comment"># API接口目录</span><br>│   │   │   ├── Room_management/    <span class="hljs-comment"># 房间管理相关API</span><br>│   │   │   │   ├── types/          <span class="hljs-comment"># 房间管理相关类型定义</span><br>│   │   │   │   │   ├── Room_CRUD_types.ts  <span class="hljs-comment"># 房间增删改查类型定义</span><br>│   │   │   │   │   ├── Room_List_types.ts  <span class="hljs-comment"># 房间列表类型定义</span><br>│   │   │   │   │   ├── Room_users_types.ts <span class="hljs-comment"># 房间用户类型定义</span><br>│   │   │   │   │   └── index.ts            <span class="hljs-comment"># 类型索引文件</span><br>│   │   │   │   ├── CORE.ts         <span class="hljs-comment"># 核心房间管理逻辑</span><br>│   │   │   │   ├── Room_CRUD.ts    <span class="hljs-comment"># 房间增删改查操作实现</span><br>│   │   │   │   ├── Room_List.ts    <span class="hljs-comment"># 房间列表管理实现</span><br>│   │   │   │   └── Room_users.ts   <span class="hljs-comment"># 房间用户管理实现</span><br>│   │   │   ├── USER_management/    <span class="hljs-comment"># 用户管理相关API</span><br>│   │   │   │   ├── auth_API.ts     <span class="hljs-comment"># 用户认证API实现</span><br>│   │   │   │   └── auth_API_types.ts  <span class="hljs-comment"># 用户认证类型定义</span><br>│   │   │   └── index.ts            <span class="hljs-comment"># API索引文件</span><br>│   │   ├── auth.ts                 <span class="hljs-comment"># 认证模块实现</span><br>│   │   ├── collab.ts               <span class="hljs-comment"># 协作功能模块实现</span><br>│   │   └── db.ts                   <span class="hljs-comment"># 数据库连接和操作实现</span><br>│   ├── ARCHITECTURE.md             <span class="hljs-comment"># 后端架构说明文档</span><br>│   ├── README.md                   <span class="hljs-comment"># 后端说明文档</span><br>│   ├── index.ts                    <span class="hljs-comment"># 后端服务入口文件</span><br>│   ├── package.json                <span class="hljs-comment"># 后端依赖配置文件</span><br>│   └── tsconfig.json               <span class="hljs-comment"># 后端TypeScript配置</span><br>├── src/                            <span class="hljs-comment"># 前端源代码目录</span><br>│   ├── api/                        <span class="hljs-comment"># 前端API客户端</span><br>│   │   ├── types/                  <span class="hljs-comment"># API类型定义</span><br>│   │   │   ├── Room_management/    <span class="hljs-comment"># 房间管理相关类型定义</span><br>│   │   │   │   ├── Room_CRUD_types.ts  <span class="hljs-comment"># 房间增删改查类型定义</span><br>│   │   │   │   ├── Room_List_types.ts  <span class="hljs-comment"># 房间列表类型定义</span><br>│   │   │   │   ├── Room_users_types.ts <span class="hljs-comment"># 房间用户类型定义</span><br>│   │   │   │   └── index.ts            <span class="hljs-comment"># 类型索引文件</span><br>│   │   │   ├── auth_API_types.ts   <span class="hljs-comment"># 认证相关类型定义</span><br>│   │   │   └── index.ts            <span class="hljs-comment"># API类型索引文件</span><br>│   │   ├── utils/                  <span class="hljs-comment"># API工具函数</span><br>│   │   │   └── apiClient.ts        <span class="hljs-comment"># API客户端工具</span><br>│   │   ├── apiService.ts           <span class="hljs-comment"># API服务封装实现</span><br>│   │   └── index.ts                <span class="hljs-comment"># API索引文件</span><br>│   ├── components/                 <span class="hljs-comment"># React组件目录</span><br>│   │   ├── Richtext_editor/        <span class="hljs-comment"># 富文本编辑器组件</span><br>│   │   │   ├── BottomTextEditor.tsx    <span class="hljs-comment"># 底部文本编辑器实现</span><br>│   │   │   └── Richtext_editor.tsx     <span class="hljs-comment"># 富文本编辑器主组件</span><br>│   │   ├── canvas_toolbar/         <span class="hljs-comment"># 画布工具栏组件</span><br>│   │   │   ├── ContextMenu.tsx     <span class="hljs-comment"># 上下文菜单实现</span><br>│   │   │   └── TopToolbar.tsx      <span class="hljs-comment"># 顶部工具栏实现</span><br>│   │   ├── collaboration/          <span class="hljs-comment"># 协作功能组件</span><br>│   │   │   ├── CollaboratorCursors.tsx <span class="hljs-comment"># 协作者光标显示组件</span><br>│   │   │   └── RemoteSelectionLayer.tsx <span class="hljs-comment"># 远程选择层组件</span><br>│   │   ├── error-page/             <span class="hljs-comment"># 错误页面组件</span><br>│   │   │   └── index.tsx           <span class="hljs-comment"># 错误页面实现</span><br>│   │   ├── header/                 <span class="hljs-comment"># 页面头部组件</span><br>│   │   │   ├── contents/           <span class="hljs-comment"># 头部内容组件</span><br>│   │   │   │   ├── ExportCanvasModal.tsx   <span class="hljs-comment"># 导出画布模态框</span><br>│   │   │   │   └── StageManagerContext.tsx <span class="hljs-comment"># 舞台管理上下文</span><br>│   │   │   └── index.tsx           <span class="hljs-comment"># 头部组件入口</span><br>│   │   ├── image-insert-modal/     <span class="hljs-comment"># 图片插入模态框组件</span><br>│   │   │   └── index.tsx           <span class="hljs-comment"># 图片插入模态框实现</span><br>│   │   ├── layout/                 <span class="hljs-comment"># 布局组件</span><br>│   │   │   └── index.tsx           <span class="hljs-comment"># 布局组件实现</span><br>│   │   ├── minimap/                <span class="hljs-comment"># 小地图组件</span><br>│   │   │   └── Minimap.tsx         <span class="hljs-comment"># 小地图实现</span><br>│   │   ├── property-panel/         <span class="hljs-comment"># 属性面板组件</span><br>│   │   │   └── index.tsx           <span class="hljs-comment"># 属性面板实现</span><br>│   │   ├── settings/               <span class="hljs-comment"># 设置组件</span><br>│   │   │   └── setting.tsx         <span class="hljs-comment"># 设置组件实现</span><br>│   │   ├── ui/                     <span class="hljs-comment"># 基础UI组件</span><br>│   │   │   ├── blackwhitebutton.tsx    <span class="hljs-comment"># 黑白按钮组件</span><br>│   │   │   ├── button.tsx          <span class="hljs-comment"># 按钮组件</span><br>│   │   │   ├── icon-circle.tsx     <span class="hljs-comment"># 圆形图标组件</span><br>│   │   │   ├── icon-clear.tsx      <span class="hljs-comment"># 清除图标组件</span><br>│   │   │   ├── icon-rect.tsx       <span class="hljs-comment"># 矩形图标组件</span><br>│   │   │   ├── icon-select.tsx     <span class="hljs-comment"># 选择图标组件</span><br>│   │   │   └── icon-triangle.tsx   <span class="hljs-comment"># 三角形图标组件</span><br>│   │   ├── AnimatedRoutes.tsx      <span class="hljs-comment"># 动画路由组件</span><br>│   │   ├── ParallaxBackground.tsx  <span class="hljs-comment"># 视差背景组件</span><br>│   │   └── WipeTransition.tsx      <span class="hljs-comment"># 擦除过渡动画组件</span><br>│   ├── hooks/                      <span class="hljs-comment"># 自定义React Hooks</span><br>│   │   ├── use-localstorage-state.ts   <span class="hljs-comment"># localStorage状态管理Hook</span><br>│   │   └── use_React_hotkeys_management.ts <span class="hljs-comment"># 快捷键管理Hook</span><br>│   ├── lib/                        <span class="hljs-comment"># 工具库和核心功能模块</span><br>│   │   ├── AddElementCommand.ts    <span class="hljs-comment"># 添加元素命令实现</span><br>│   │   ├── RemoveElementCommand.ts <span class="hljs-comment"># 删除元素命令实现</span><br>│   │   ├── UndoRedoManager.ts      <span class="hljs-comment"># 撤销重做管理器实现</span><br>│   │   ├── UpdateElementCommand.ts <span class="hljs-comment"># 更新元素命令实现</span><br>│   │   ├── UpdateElementPropertyCommand.ts <span class="hljs-comment"># 更新元素属性命令实现</span><br>│   │   ├── constants.ts            <span class="hljs-comment"># 常量定义文件</span><br>│   │   ├── env.ts                  <span class="hljs-comment"># 环境变量配置</span><br>│   │   ├── minimapUtils.ts         <span class="hljs-comment"># 小地图工具函数</span><br>│   │   └── utils.ts                <span class="hljs-comment"># 通用工具函数</span><br>│   ├── pages/                      <span class="hljs-comment"># 页面组件目录</span><br>│   │   ├── auth/                   <span class="hljs-comment"># 认证相关页面</span><br>│   │   │   ├── Login.tsx           <span class="hljs-comment"># 登录页面实现</span><br>│   │   │   └── Register.tsx        <span class="hljs-comment"># 注册页面实现</span><br>│   │   ├── canvas/                 <span class="hljs-comment"># 画布主页面</span><br>│   │   │   ├── Pixi_STM_modules/   <span class="hljs-comment"># Pixi.js状态管理模块</span><br>│   │   │   │   ├── core/           <span class="hljs-comment"># 核心类和初始化逻辑</span><br>│   │   │   │   │   ├── Core_StageManager.ts    <span class="hljs-comment"># 核心舞台管理器</span><br>│   │   │   │   │   ├── ElementRender.ts        <span class="hljs-comment"># 元素渲染器</span><br>│   │   │   │   │   ├── TF_controler_Renderer.ts <span class="hljs-comment"># 变换控制器渲染器</span><br>│   │   │   │   │   └── types.ts                <span class="hljs-comment"># 核心类型定义</span><br>│   │   │   │   ├── interaction/    <span class="hljs-comment"># 交互处理模块</span><br>│   │   │   │   │   ├── Base_InteractionHandler.ts   <span class="hljs-comment"># 基础交互处理器</span><br>│   │   │   │   │   └── Stage_InteractionHandler.ts  <span class="hljs-comment"># 舞台交互处理器</span><br>│   │   │   │   ├── shared/         <span class="hljs-comment"># 共享类型定义</span><br>│   │   │   │   │   └── types.ts    <span class="hljs-comment"># 共享类型定义文件</span><br>│   │   │   │   ├── utils/          <span class="hljs-comment"># 工具函数目录</span><br>│   │   │   │   │   ├── commandUtils.ts      <span class="hljs-comment"># 命令工具函数</span><br>│   │   │   │   │   ├── cursorUtils.ts       <span class="hljs-comment"># 光标工具函数</span><br>│   │   │   │   │   ├── destroyUtils.ts      <span class="hljs-comment"># 销毁工具函数</span><br>│   │   │   │   │   ├── dragUtils.ts         <span class="hljs-comment"># 拖拽工具函数</span><br>│   │   │   │   │   ├── drawingUtils.ts      <span class="hljs-comment"># 绘图工具函数</span><br>│   │   │   │   │   ├── eraserUtils.ts       <span class="hljs-comment"># 橡皮擦工具函数</span><br>│   │   │   │   │   ├── geometryUtils.ts     <span class="hljs-comment"># 几何工具函数</span><br>│   │   │   │   │   ├── guidelineUtils.ts    <span class="hljs-comment"># 辅助线工具函数</span><br>│   │   │   │   │   ├── interactionUtils.ts  <span class="hljs-comment"># 交互工具函数</span><br>│   │   │   │   │   ├── renderUtils.ts       <span class="hljs-comment"># 渲染工具函数</span><br>│   │   │   │   │   ├── resizeUtils.ts       <span class="hljs-comment"># 调整大小工具函数</span><br>│   │   │   │   │   ├── rotationUtils.ts     <span class="hljs-comment"># 旋转工具函数</span><br>│   │   │   │   │   ├── scaleUtils.ts        <span class="hljs-comment"># 缩放工具函数</span><br>│   │   │   │   │   ├── selectionUtils.ts    <span class="hljs-comment"># 选择工具函数</span><br>│   │   │   │   │   └── stateUtils.ts        <span class="hljs-comment"># 状态工具函数</span><br>│   │   │   │   └── STM_modules.md  <span class="hljs-comment"># 状态管理模块说明文档</span><br>│   │   │   ├── Pixi_stageManager.ts    <span class="hljs-comment"># Pixi舞台管理器入口</span><br>│   │   │   └── index.tsx           <span class="hljs-comment"># 画布页面入口文件</span><br>│   │   ├── home/                   <span class="hljs-comment"># 主页</span><br>│   │   │   ├── contents/           <span class="hljs-comment"># 主页内容组件</span><br>│   │   │   │   └── AKN.tsx         <span class="hljs-comment"># AKN内容组件</span><br>│   │   │   └── index.tsx           <span class="hljs-comment"># 主页入口文件</span><br>│   │   ├── intro/                  <span class="hljs-comment"># 介绍页面</span><br>│   │   │   └── index.tsx           <span class="hljs-comment"># 介绍页面实现</span><br>│   │   └── room/                   <span class="hljs-comment"># 房间管理页面</span><br>│   │       └── RoomManagement.tsx  <span class="hljs-comment"># 房间管理页面实现</span><br>│   ├── router/                     <span class="hljs-comment"># 路由配置目录</span><br>│   │   └── router.tsx              <span class="hljs-comment"># 路由配置实现</span><br>│   ├── stores/                     <span class="hljs-comment"># 状态存储目录(Zustand)</span><br>│   │   ├── canvasStore.ts          <span class="hljs-comment"># 画布状态存储</span><br>│   │   ├── persistenceStore.ts     <span class="hljs-comment"># 持久化状态存储</span><br>│   │   └── themeStore.ts           <span class="hljs-comment"># 主题状态存储</span><br>│   ├── app.tsx                     <span class="hljs-comment"># 应用根组件</span><br>│   ├── main.tsx                    <span class="hljs-comment"># 应用入口文件</span><br>│   └── vite-env.d.ts               <span class="hljs-comment"># Vite环境声明文件</span><br>├── README.md                       <span class="hljs-comment"># 项目说明文档</span><br>├── components.json                 <span class="hljs-comment"># 组件配置文件</span><br>├── index.html                      <span class="hljs-comment"># HTML入口文件</span><br>├── lint-staged.config.js           <span class="hljs-comment"># Lint-staged配置</span><br>├── package.json                    <span class="hljs-comment"># 项目依赖和脚本配置</span><br>├── postcss.config.js               <span class="hljs-comment"># PostCSS配置</span><br>├── tailwind.config.js              <span class="hljs-comment"># Tailwind CSS配置</span><br>├── transmart.config.ts             <span class="hljs-comment"># Transmart配置</span><br>├── tsconfig.json                   <span class="hljs-comment"># TypeScript配置</span><br>├── tsconfig.node.json              <span class="hljs-comment"># Node.js TypeScript配置</span><br>└── vite.config.ts                  <span class="hljs-comment"># Vite构建配置</span><br></code></pre></td></tr></table></figure>
+<h3 id="项目架构设计"><a href="#项目架构设计" class="headerlink" title="项目架构设计"></a>项目架构设计</h3><p>项目采用数据驱动视图（Data-Driven View）模式，使用<strong>React (UI) + Zustand (数据) + PixiJS (渲染)</strong>的三层架构</p>
+<p>React 只负责 UI 和事件入口<br>Zustand 是唯一的真实数据源（纯 JSON，可持久化、可协同）<br>PixiJS 层只做”渲染 + 交互计算”，所有对象永久缓存（Map），绝不每帧重建<br>所有变换（拖拽、缩放、旋转、组合）都在 Pixi 层完成，最后再同步回 Zustand（单向数据流）</p>
+<p>项目主要划分为三个层次：渲染层、状态管理层和逻辑层，来实现关注点分离，提高代码的可维护性和可扩展性。</p>
+<h4 id="渲染层"><a href="#渲染层" class="headerlink" title="渲染层"></a><strong>渲染层</strong></h4><p>主要由 PixiJS (WebGL) 负责处理图形渲染，包括创建、更新和删除图形对象。这一层负责将状态管理层的数据转换为可视化的图形元素，并处理用户的交互操作，如拖拽、缩放和旋转等</p>
+<h4 id="状态管理层"><a href="#状态管理层" class="headerlink" title="状态管理层"></a><strong>状态管理层</strong></h4><p>采用 Zustand 管理 JSON 画布数据。<br>先定义一个 CanvasState 接口（JSON 数据结构，包含 id, type, x, y, width, height 等属性）</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs ts"><span class="hljs-keyword">interface</span> <span class="hljs-title class_">CanvasState</span> {<br>  <span class="hljs-attr">tool</span>: <span class="hljs-title class_">ToolType</span> <span class="hljs-comment">// 当前工具类型</span><br>  <span class="hljs-attr">elements</span>: <span class="hljs-title class_">Record</span>&lt;<span class="hljs-built_in">string</span>, <span class="hljs-title class_">CanvasElement</span>&gt; <span class="hljs-comment">// 画布元素集合</span><br>  <span class="hljs-attr">selectedIds</span>: <span class="hljs-built_in">string</span>[] <span class="hljs-comment">// 选中元素ID列表</span><br>  <span class="hljs-attr">editingId</span>: <span class="hljs-built_in">string</span> | <span class="hljs-literal">null</span> <span class="hljs-comment">// 正在编辑的元素ID</span><br>  <span class="hljs-attr">clipboard</span>: <span class="hljs-title class_">CanvasElement</span>[] | <span class="hljs-literal">null</span> <span class="hljs-comment">// 剪贴板数据</span><br>  <span class="hljs-attr">pasteOffset</span>: <span class="hljs-built_in">number</span> <span class="hljs-comment">// 粘贴偏移计数</span><br>  <span class="hljs-attr">currentStyle</span>: {<br>    <span class="hljs-attr">fill</span>: <span class="hljs-built_in">string</span><br>    <span class="hljs-attr">stroke</span>: <span class="hljs-built_in">string</span><br>    <span class="hljs-attr">strokeWidth</span>: <span class="hljs-built_in">number</span><br>    <span class="hljs-comment">// ... 其他样式属性</span><br>  }<br>}<br></code></pre></td></tr></table></figure>
+<p>使用 Zustand 状态管理库，其中 elements 被定义为 Record<string, CanvasElement="">类型，表示一个以 id 为键，CanvasElement 为值的对象，用于存储画布上的所有元素。更新元素时使用 structuredClone 函数来克隆状态数据。后续持久化存储和撤销重做机制也是基于这一套状态管理来实现。这一层作为数据核心，主要维护画布上所有元素的状态信息，通过集中管理状态，确保了数据的一致性，便于后续的协同编辑和撤销重做功能的开发。</string,></p>
+<h4 id="逻辑层"><a href="#逻辑层" class="headerlink" title="逻辑层"></a><strong>逻辑层</strong></h4><p>核心是 StageManagerCore 类，通过 StageManagerState 接口管理交互状态，包括当前交互模式、起始位置、当前元素 ID、初始元素状态等，处理多种交互模式：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs bash">idle - 空闲状态<br>panning - 画布平移<br>selecting - 选择元素<br>dragging - 拖拽元素<br>resizing - 调整元素大小<br>drawing - 绘制元素<br>texting - 文本编辑<br>erasing - 擦除元素<br></code></pre></td></tr></table></figure>
+<p>处理多种元素操作逻辑：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs bash">创建元素 - 根据不同工具类型创建相应元素<br>选择元素 - 支持单选和多选<br>拖拽元素 - 记录初始状态，计算偏移量<br>调整大小 - 通过控制手柄调整元素尺寸<br>删除元素 - 通过橡皮擦工具删除元素<br></code></pre></td></tr></table></figure>
+<p>通过这种方式来实现面向对象编程并封装业务逻辑，提高代码的可维护性，利用后续拓展</p>
+<hr>
+<h3 id="数据流程"><a href="#数据流程" class="headerlink" title="数据流程"></a>数据流程</h3><p class='item-img' data-src='./assets/image-20251123121234358.png'><img src="./assets/image-20251123121234358.png" alt="image-20251123121234358"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><code class="hljs mermaid">graph TD<br>    A[用户交互] --&gt; B{交互类型}<br>    B --&gt;|创建元素| C[StageManagerCore.onPointerDown]<br>    B --&gt;|拖拽元素| D[StageManagerCore.onPointerMove]<br>    B --&gt;|调整大小| E[StageManagerCore.onHandleDown]<br>    B --&gt;|选择元素| F[StageManagerCore.onPointerUp]<br><br>    C --&gt; G[Zustand Store.addElement]<br>    D --&gt; H[Zustand Store.updateElement]<br>    E --&gt; I[Zustand Store.updateElement]<br>    F --&gt; J[Zustand Store.setSelected]<br><br>    G --&gt; K[Zustand 状态更新]<br>    H --&gt; K<br>    I --&gt; K<br>    J --&gt; K<br><br>    K --&gt; L{状态变化}<br>    L --&gt;|元素变化| M[ElementRenderer.renderElements]<br>    L --&gt;|选择变化| N[TransformerRenderer.renderTransformer]<br><br>    M --&gt; O[PixiJS 图形渲染]<br>    N --&gt; O<br><br>    O --&gt; P[用户看到更新结果]<br><br>    K --&gt; Q[Zustand 持久化]<br>    Q --&gt; R[本地存储/IndexedDB]<br><br>    K --&gt; S[撤销/重做管理]<br>    S --&gt; T[命令栈管理]<br><br>    style A fill:#e1f5fe<br>    style O fill:#e8f5e8<br>    style K fill:#fff3e0<br>    style Q fill:#fce4ec<br></code></pre></td></tr></table></figure>
+<p>流程如下：</p>
+<h4 id="用户交互输入"><a href="#用户交互输入" class="headerlink" title="用户交互输入"></a>用户交互输入</h4><p>所有用户交互事件由 StageManagerCore 处理<br>用户通过鼠标、键盘等方式与画布进行交互：</p>
+<ul>
+<li>创建新元素（点击工具栏选择图形类型后在画布上绘制）</li>
+<li>拖拽元素（选中元素后拖动）</li>
+<li>调整元素大小（拖拽元素控制点）</li>
+<li>选择元素（点击或框选元素）</li>
+</ul>
+<h4 id="创建元素流程"><a href="#创建元素流程" class="headerlink" title="创建元素流程"></a>创建元素流程</h4><ol>
+<li>用户在画布上按下鼠标开始绘制</li>
+<li><a href="">onPointerDown</a>捕获事件，创建新元素</li>
+<li>调用 Zustand store 的<a href="">addElement</a>方法添加元素</li>
+</ol>
+<blockquote>
+<p>创建元素时的中间状态要锁定撤销/重做管理器防止记录中间的一堆状态</p>
+</blockquote>
+<h4 id="拖拽元素流程"><a href="#拖拽元素流程" class="headerlink" title="拖拽元素流程"></a>拖拽元素流程</h4><ol>
+<li>用户按下并拖动已选中的元素</li>
+<li><a href="">onPointerMove</a>持续捕获鼠标移动事件</li>
+<li>实时调用 Zustand store 的<a href="">updateElement</a>更新元素位置</li>
+</ol>
+<blockquote>
+<p>拖拽元素时也是中间状态要锁定撤销/重做管理器防止记录中间的一堆状态</p>
+</blockquote>
+<h4 id="调整大小流程"><a href="#调整大小流程" class="headerlink" title="调整大小流程"></a>调整大小流程</h4><ol>
+<li>用户拖拽元素的控制点（resize handle）</li>
+<li><a href="">onHandleDown</a>捕获控制点拖拽事件</li>
+<li><a href="">onPointerMove</a>计算缩放比例并更新元素大小</li>
+<li>调用 Zustand store 的<a href="">updateElement</a>更新元素属性</li>
+</ol>
+<blockquote>
+<p>调整元素大小时也是中间状态要锁定撤销/重做管理器防止记录中间的一堆状态</p>
+</blockquote>
+<h4 id="交互结束处理"><a href="#交互结束处理" class="headerlink" title="交互结束处理"></a>交互结束处理</h4><ol>
+<li>用户释放鼠标按键，<a href="">onPointerUp</a>处理交互结束,解锁撤销/重做管理器</li>
+<li>创建相应的命令（<a href="">UpdateElementCommand</a>并添加到命令栈中</li>
+<li>清理临时状态</li>
+</ol>
+<h4 id="状态更新"><a href="#状态更新" class="headerlink" title="状态更新"></a>状态更新</h4><p>Zustand 作为全局状态管理器，处理所有状态更新：</p>
+<ol>
+<li><strong>状态更新</strong>：自定义一套<a href="">originalSet</a>方法更新状态</li>
+<li><strong>撤销/重做处理</strong>：创建状态快照并生成命令对象</li>
+<li><strong>状态订阅</strong>：通知所有订阅者状态变化</li>
+</ol>
+<h4 id="渲染更新"><a href="#渲染更新" class="headerlink" title="渲染更新"></a>渲染更新</h4><p>Zustand 状态变化触发 StageManagerCore 的订阅回调：</p>
+<ol>
+<li><a href="">ElementRenderer.renderElements</a> 根据元素数据更新 PixiJS 图形对象</li>
+<li><a href="">TransformerRenderer.renderTransformer</a> 更新选中元素的变换控制器</li>
+<li>PixiJS 自动进行渲染</li>
+</ol>
+<h4 id="撤销-重做管理"><a href="#撤销-重做管理" class="headerlink" title="撤销/重做管理"></a>撤销/重做管理</h4><p>通过命令模式实现撤销/重做功能：</p>
+<ol>
+<li>每个操作生成对应的命令对象（<a href="">UpdateElementCommand</a>、<a href="">SnapshotCommand</a>等）</li>
+<li>命令对象保存操作前后的状态快照</li>
+<li>通过<a href="">UndoRedoManager</a>管理命令栈，实现撤销和重做功能</li>
+</ol>
+<h4 id="数据持久化阶段"><a href="#数据持久化阶段" class="headerlink" title="数据持久化阶段"></a>数据持久化阶段</h4><p>Zustand 状态变化同时触发数据持久化：</p>
+<ol>
+<li>状态通过<a href="">persist</a>中间件自动保存到本地存储</li>
+<li>数据存储在 IndexedDB 中，来支持离线使用</li>
+</ol>
+<blockquote>
+<p>这一块还在写</p>
+</blockquote>
+<hr>
+<h3 id="设计的相关考虑"><a href="#设计的相关考虑" class="headerlink" title="设计的相关考虑"></a>设计的相关考虑</h3><p><strong>解耦</strong>：渲染层、状态管理层和逻辑层相互独立，便于维护和扩展</p>
+<p><strong>便于后续的协同编辑</strong>：实现多人协同，要监听 WebSocket 消息，然后更新 Zustand Store。StageManager 可以去监听到 Store 的变化，并作出相应的渲染更新</p>
+<p><strong>对撤销/重做的实现</strong>：因为所有状态都在 Store 里，只需要保存/恢复 Store 的快照</p>
+<p><strong>序列化/反序列化</strong>：保存项目只需 JSON.stringify(store.elements)</p>
+<h4 id="目前的问题"><a href="#目前的问题" class="headerlink" title="目前的问题"></a>目前的问题</h4><p>【待补充】</p>
+<h2 id="项目预览"><a href="#项目预览" class="headerlink" title="项目预览"></a>项目预览</h2><p>部署地址：<a href="https://zhongye1.github.io/BDdraw_DEV/">https://zhongye1.github.io/BDdraw_DEV/</a></p>
+<h3 id="TODO"><a href="#TODO" class="headerlink" title="TODO"></a>TODO</h3><h4 id="【P0】基础渲染"><a href="#【P0】基础渲染" class="headerlink" title="【P0】基础渲染"></a><del>【P0】基础渲染</del></h4><ul>
+<li><del>支持图形渲染，需要支持至少 3 种不同图形，比如矩形、圆角矩形、圆形、三角形等。需要支持以下图形属性：</del><ul>
+<li><del>背景色（background）</del></li>
+<li><del>边框宽度（border-width）</del></li>
+<li><del>边框颜色（border-color）</del></li>
+</ul>
+</li>
+<li><del>支持图片渲染，需要支持 png、jpeg 格式，支持设置三种简单滤镜</del></li>
+<li><del>支持富文本文字渲染，需要支持以下文本属性：</del><ul>
+<li><del>字体（font-family）</del></li>
+<li><del>字号（font-size）</del></li>
+<li><del>颜色（color）</del></li>
+<li><del>背景色（background）</del></li>
+<li><del>BIUS（加粗、斜体、下划线、删除线）</del></li>
+</ul>
+</li>
+</ul>
+<h4 id="【P0】画布交互"><a href="#【P0】画布交互" class="headerlink" title="【P0】画布交互"></a><del>【P0】画布交互</del></h4><ul>
+<li><del>支持无限画布的缩放、滚动、拖拽</del><ul>
+<li><del>支持无限画布滚动条</del></li>
+<li><del>支持无限画布的 minimap 功能</del></li>
+</ul>
+</li>
+<li><del>支持选区功能：</del><ul>
+<li><del>点击选中单个元素</del></li>
+<li><del>框选选中多个元素</del></li>
+</ul>
+</li>
+<li><del>支持数据持久化，每次操作后自动保存数据，刷新页面数据仍然存在</del></li>
+<li><del>快捷键复制选中元素</del></li>
+<li><del>支持辅助线功能</del></li>
+</ul>
+<h4 id="【P0】调参工具栏"><a href="#【P0】调参工具栏" class="headerlink" title="【P0】调参工具栏"></a><del>【P0】调参工具栏</del></h4><ul>
+<li><del>浮动工具栏</del><ul>
+<li><del>当选中文本元素时出现在上方，支持设置不同文本属性</del>（做了个编辑器）</li>
+<li><del>当选中图形元素时出现在上方，支持设置不同图形属性</del></li>
+<li><del>选中文本元素的部分文字时也能够出现，支持设置局部文本的文本属性</del>（编辑器内编辑可实现）</li>
+</ul>
+</li>
+</ul>
+<h4 id="【P0】元素编辑"><a href="#【P0】元素编辑" class="headerlink" title="【P0】元素编辑"></a><del>【P0】元素编辑</del></h4><ul>
+<li><del>支持双击文本进入编辑，可以输入/删除文本内容</del></li>
+<li><del>支持对选中元素（单个或多个）删除</del></li>
+<li><del>支持对选中元素（单个或多个）拖拽</del></li>
+<li><del>支持对选中元素（单个或多个）缩放</del></li>
+<li><del>支持对选中元素（单个或多个）旋转</del></li>
+<li><del>支持对多个元素进行组合操作，组合可以嵌套</del></li>
+<li><del>支持对多个元素进行打组、解组</del><del>(组操作 bug 复现了，目前在修)</del>（已修复）</li>
+</ul>
+<h4 id="【P0】性能优化"><a href="#【P0】性能优化" class="headerlink" title="【P0】性能优化"></a><del>【P0】性能优化</del></h4><ul>
+<li><del>画布存在 100 个元素，打开页面到渲染完成 &lt; 3s</del></li>
+<li><del>同时操作 100 个元素，FPS 50+</del></li>
+</ul>
+<h4 id="【P1】协同"><a href="#【P1】协同" class="headerlink" title="【P1】协同"></a><del>【P1】协同</del></h4><ul>
+<li><del>支持 undo &amp; redo 操作</del> <del>（大体实现了，可能要修一下 undo，redo 栈，有个不能稳定复现的 bug）</del>（已实现）</li>
+<li><del>支持协同编辑，多人打开同一个画布可以协同编辑</del> (写了个 Node.js 后端)</li>
+<li><del>支持离线编辑，断网后仍然可以对画布编辑，恢复网络后自动提交数据</del>（IndexedDB）</li>
+</ul>
+<blockquote>
+<p>各模块的技术文档补充中<br>此文档最后编辑于 2025.11.27<br>项目开发中，欢迎提 issue 和 pr</p>
+</blockquote>
+<div id="paginator"></div></div><div id="post-footer"><div id="pages"><div class="footer-link" style="width: 50%;text-align:right;border-right:1px #fe2 solid"><a href="/Arknight-notes/posts/7900.html">← Next 2025-12-06-杂记-前端图拓扑渲染优化</a></div><div class="footer-link" style="width: 50%;right:1px;border-left:1px #fe2 solid"><a href="/Arknight-notes/posts/52695.html">2025-11-23-Undo/Redo机制具体实现 Prev →</a></div></div></div><div id="comments"><div id="gitalk"></div></div></div><div class="bottom-btn"><div><a class="i-top" id="to-top" onClick="scrolls.scrolltop();" title="To Top" style="opacity: 0; display: none;">∧ </a><a class="i-index" id="to-index" href="#toc-div" title="To Catalog">≡</a><a class="i-color" id="color-mode" onClick="colorMode.change()" title="Change Theme"></a></div></div></article><aside><div id="about"><a href="/Arknight-notes/" id="logo"><img src="https://pic4.zhimg.com/80/v2-d9884f32711e19e80979eac58e943897_720w.webp" alt="Logo" style="margin:20;border-radius:0;"></a><h1 id="Dr"><a href="zhongye">柊野</a></h1><div id="description"><p></p></div></div><div id="aside-block"><div id="toc-div"><h1>Catalog</h1><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#BDdraw-DEV"><span class="toc-number">1.</span> <span class="toc-text">BDdraw_DEV</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%8A%80%E6%9C%AF%E6%A0%88-%C2%B7-Tech-Stack"><span class="toc-number">1.0.0.1.</span> <span class="toc-text">技术栈 · Tech Stack</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%BF%90%E8%A1%8C%E9%A1%B9%E7%9B%AE"><span class="toc-number">1.0.0.2.</span> <span class="toc-text">运行项目</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Docker-%E9%83%A8%E7%BD%B2"><span class="toc-number">1.0.0.3.</span> <span class="toc-text">Docker 部署</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%95%B4%E4%BD%93%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1"><span class="toc-number">1.0.0.4.</span> <span class="toc-text">整体架构设计</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%89%B9%E6%80%A7"><span class="toc-number">1.1.</span> <span class="toc-text">特性</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8A%80%E6%9C%AF%E9%80%89%E5%9E%8B"><span class="toc-number">1.1.1.</span> <span class="toc-text">技术选型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8A%9F%E8%83%BD%E8%A6%81%E7%B4%A0%E5%92%8C%E6%96%B9%E6%A1%88"><span class="toc-number">1.1.2.</span> <span class="toc-text">功能要素和方案</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%A1%B9%E7%9B%AE%E6%9E%B6%E6%9E%84%E6%A0%91"><span class="toc-number">1.1.2.1.</span> <span class="toc-text">项目架构树</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A1%B9%E7%9B%AE%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1"><span class="toc-number">1.1.3.</span> <span class="toc-text">项目架构设计</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B8%B2%E6%9F%93%E5%B1%82"><span class="toc-number">1.1.3.1.</span> <span class="toc-text">渲染层</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%8A%B6%E6%80%81%E7%AE%A1%E7%90%86%E5%B1%82"><span class="toc-number">1.1.3.2.</span> <span class="toc-text">状态管理层</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%80%BB%E8%BE%91%E5%B1%82"><span class="toc-number">1.1.3.3.</span> <span class="toc-text">逻辑层</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E6%B5%81%E7%A8%8B"><span class="toc-number">1.1.4.</span> <span class="toc-text">数据流程</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%94%A8%E6%88%B7%E4%BA%A4%E4%BA%92%E8%BE%93%E5%85%A5"><span class="toc-number">1.1.4.1.</span> <span class="toc-text">用户交互输入</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E5%85%83%E7%B4%A0%E6%B5%81%E7%A8%8B"><span class="toc-number">1.1.4.2.</span> <span class="toc-text">创建元素流程</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%8B%96%E6%8B%BD%E5%85%83%E7%B4%A0%E6%B5%81%E7%A8%8B"><span class="toc-number">1.1.4.3.</span> <span class="toc-text">拖拽元素流程</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%B0%83%E6%95%B4%E5%A4%A7%E5%B0%8F%E6%B5%81%E7%A8%8B"><span class="toc-number">1.1.4.4.</span> <span class="toc-text">调整大小流程</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BA%A4%E4%BA%92%E7%BB%93%E6%9D%9F%E5%A4%84%E7%90%86"><span class="toc-number">1.1.4.5.</span> <span class="toc-text">交互结束处理</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%8A%B6%E6%80%81%E6%9B%B4%E6%96%B0"><span class="toc-number">1.1.4.6.</span> <span class="toc-text">状态更新</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B8%B2%E6%9F%93%E6%9B%B4%E6%96%B0"><span class="toc-number">1.1.4.7.</span> <span class="toc-text">渲染更新</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%92%A4%E9%94%80-%E9%87%8D%E5%81%9A%E7%AE%A1%E7%90%86"><span class="toc-number">1.1.4.8.</span> <span class="toc-text">撤销&#x2F;重做管理</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E6%8C%81%E4%B9%85%E5%8C%96%E9%98%B6%E6%AE%B5"><span class="toc-number">1.1.4.9.</span> <span class="toc-text">数据持久化阶段</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%BE%E8%AE%A1%E7%9A%84%E7%9B%B8%E5%85%B3%E8%80%83%E8%99%91"><span class="toc-number">1.1.5.</span> <span class="toc-text">设计的相关考虑</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%9B%AE%E5%89%8D%E7%9A%84%E9%97%AE%E9%A2%98"><span class="toc-number">1.1.5.1.</span> <span class="toc-text">目前的问题</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A1%B9%E7%9B%AE%E9%A2%84%E8%A7%88"><span class="toc-number">1.2.</span> <span class="toc-text">项目预览</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#TODO"><span class="toc-number">1.2.1.</span> <span class="toc-text">TODO</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E3%80%90P0%E3%80%91%E5%9F%BA%E7%A1%80%E6%B8%B2%E6%9F%93"><span class="toc-number">1.2.1.1.</span> <span class="toc-text">【P0】基础渲染</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E3%80%90P0%E3%80%91%E7%94%BB%E5%B8%83%E4%BA%A4%E4%BA%92"><span class="toc-number">1.2.1.2.</span> <span class="toc-text">【P0】画布交互</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E3%80%90P0%E3%80%91%E8%B0%83%E5%8F%82%E5%B7%A5%E5%85%B7%E6%A0%8F"><span class="toc-number">1.2.1.3.</span> <span class="toc-text">【P0】调参工具栏</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E3%80%90P0%E3%80%91%E5%85%83%E7%B4%A0%E7%BC%96%E8%BE%91"><span class="toc-number">1.2.1.4.</span> <span class="toc-text">【P0】元素编辑</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E3%80%90P0%E3%80%91%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96"><span class="toc-number">1.2.1.5.</span> <span class="toc-text">【P0】性能优化</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E3%80%90P1%E3%80%91%E5%8D%8F%E5%90%8C"><span class="toc-number">1.2.1.6.</span> <span class="toc-text">【P1】协同</span></a></li></ol></li></ol></li></ol></li></ol></div></div><footer><nobr><span class="icp-title">GZHU</span><span class="icp-content">193001-0001</span></nobr><br><nobr><span class="icp-title">OUTPOST</span><span class="icp-content">169-2025-0331</span></nobr><br><nobr>Published with <a target="_blank" rel="noopener" href="http://hexo.io">Hexo</a></nobr><wbr><nobr> Theme <a target="_blank" rel="noopener" href="https://github.com/Yue-plus/hexo-theme-arknights">Arknights</a></nobr><wbr><nobr> by <a target="_blank" rel="noopener" href="https://github.com/Yue-plus">Yue_plus</a></nobr></footer></aside></main><canvas id="canvas-dust"></canvas></body></html>
