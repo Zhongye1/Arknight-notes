@@ -1,0 +1,266 @@
+<!DOCTYPE html><html lang="en" theme-mode="dark"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>关于JavaScript链表 | Notes|笔记站</title><link rel="icon" type="image/x-icon" href="/Arknight-notes/favicon.ico"><link rel="preload" as="font" crossorigin="anonymous" href="/Arknight-notes/font/Bender.ttf"><link rel="preload" as="font" crossorigin="anonymous" href="/Arknight-notes/font/BenderLight.ttf"><link rel="preload" as="font" crossorigin="anonymous" href="/Arknight-notes/font/JetBrainsMono-Regular.woff2"><link rel="stylesheet" href="/Arknight-notes/css/arknights.css"><style>@font-face {
+  font-family: Bender;
+  src: local('Bender'), url("/Arknight-notes/font/Bender.ttf"), url("/Arknight-notes/font/Bender.otf");
+}
+@font-face {
+  font-family: BenderLight;
+  src: local('BenderLight'), url("/Arknight-notes/font/BenderLight.ttf");
+}
+@font-face {
+  font-family: 'JetBrains Mono';
+  src: local('JetBrains Mono'), url('/Arknight-notes/font/JetBrainsMono-Regular.woff2') format('woff2');
+}
+</style><script>var config = {"root":"/Arknight-notes/","code_fold":90,"search":{"preload":false,"activeHolder":"Enter here","blurHolder":"Search","noResult":"Data \"$0\" not found"},"code":{"codeInfo":"$0 - $1 lines","copy":"copy"}}</script><link type="text/css" rel="stylesheet" href="/Arknight-notes/lib/encrypt/hbe.style.css"><script src="/Arknight-notes/js/gitalk.js"></script><script src="//unpkg.com/mermaid@10.5.0/dist/mermaid.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.6.1/MathJax.js"></script><script>MathJax.Hub.Config({
+ menuSettings: {
+   zoom: "None"
+ },
+ showMathMenu: false,
+ jax: ["input/TeX","output/CommonHTML"],
+ extensions: ["tex2jax.js"],
+ TeX: {
+   extensions: ["AMSmath.js","AMSsymbols.js"],
+   equationNumbers: {
+     autoNumber: "AMS"
+   }
+ },
+ tex2jax: {
+   inlineMath: [["\\(", "\\)"]],
+   displayMath: [["\\[", "\\]"]]
+ }
+});</script><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lightgallery.css"><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lg-zoom.css"><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lg-thumbnail.css"><link type="text/css" rel="stylesheet" href="/Arknight-notes/lib/fontawesome/css/all.min.css"><script>if (window.localStorage.getItem('theme-mode') === 'light')
+ document.documentElement.setAttribute('theme-mode', 'light')
+if (window.localStorage.getItem('theme-mode') === 'dark')
+ document.documentElement.setAttribute('theme-mode', 'dark')</script><style>@font-face {
+ font-family: BenderLight;
+ src: local('Bender'), url("/Arknight-notes/font/BenderLight.woff2") format('woff2');
+}
+@font-face {
+ font-family: 'JetBrains Mono';
+ src: local('JetBrains Mono'), url('/Arknight-notes/font/JetBrainsMono-Regular.woff2') format('woff2');
+}</style><style>:root {
+ --dark-background: url('https://pic2.zhimg.com/v2-6269d74b4dafe14781d03790e5a86b21_r.jpg');
+ --light-background: url('https://pic1.zhimg.com/v2-233b64b583642fc4a6d77e69ced33150_r.jpg');
+ --theme-encrypt-confirm: 'confirm'
+}</style><script defer src="/Arknight-notes/js/arknights.js"></script><script defer src="/Arknight-notes/js/search.js"></script><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><script async src="/Arknight-notes/js/gitalk.js"></script><script defer type="module">import mermaid from '//unpkg.com/mermaid@10.5.0/dist/mermaid.esm.mjs';
+window.mermaid = mermaid;
+code.paintMermaid();
+</script><script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.6.1/MathJax.js"></script><script>MathJax.Hub.Config({
+  menuSettings: {
+    zoom: "None"
+  },
+  showMathMenu: false,
+  jax: ["input/TeX","output/CommonHTML"],
+  extensions: ["tex2jax.js"],
+  TeX: {
+    extensions: ["AMSmath.js","AMSsymbols.js"],
+    equationNumbers: {
+      autoNumber: "AMS"
+    }
+  },
+  tex2jax: {
+    inlineMath: [["\\(", "\\)"]],
+    displayMath: [["\\[", "\\]"]]
+  }
+});
+</script><script async src="//unpkg.com/lightgallery@2.7.1/lightgallery.min.js"></script><script async src="//unpkg.com/lightgallery@2.7.1/plugins/zoom/lg-zoom.min.js"></script><script async src="//unpkg.com/lightgallery@2.7.1/plugins/thumbnail/lg-thumbnail.min.js"></script><script async src="/Arknight-notes/lib/encrypt/hbe.js"></script><script async src="/Arknight-notes/js/pjax.js"></script><script class="pjax-js">reset= () => {gitalk = new Gitalk({
+ clientID: 'Ov23ct13Fb0b67x23wnT',
+ clientSecret: 'f18ce69dd545e3c0f5e2456afde9c756fe8a254a',
+ repo: 'Arknight-notes',
+ owner: 'Zhongye1',
+ admin: ['Zhongye1'],
+ distractionFreeMode: false,
+ id: location.pathname
+});
+if (document.querySelector("#gitalk")) gitalk.render("gitalk");document.querySelector('.lg-container')?.remove()
+lightGallery(document.getElementById('post-bg'), {
+  plugins: [lgZoom,lgThumbnail],
+  selector: '.item-img'})}</script><script>window.addEventListener("load",() => {pjax = new Pjax({
+ cacheBust: false,
+ selectors: ['title','article','#aside-block','.pjax-js','data-pjax','.busuanzi'],
+ switches: {'article': Pjax.switches.sideBySide},
+ switchesOptions: {
+   'article': {
+     classNames: {
+       remove: "pjax-out",
+       add: "pjax-in"
+     }
+   }
+ }
+});
+document.addEventListener("pjax:complete", reset);document.addEventListener('pjax:success', _ => bszCaller.fetch(
+ "//busuanzi.ibruce.info/busuanzi?jsonpCallback=BusuanziCallback", a => {
+  bszTag.texts(a),
+  bszTag.shows()
+}));reset()})</script><script class="pjax-js">reset= () => {gitalk = new Gitalk({
+ clientID: 'Ov23ct13Fb0b67x23wnT',
+ clientSecret: 'f18ce69dd545e3c0f5e2456afde9c756fe8a254a',
+ repo: 'Arknight-notes',
+ owner: 'Zhongye1',
+ admin: ['Zhongye1'],
+ distractionFreeMode: false,
+ id: location.pathname
+});
+if (document.querySelector("#gitalk")) gitalk.render("gitalk");document.querySelector('.lg-container')?.remove()
+lightGallery(document.getElementById('post-bg'), {
+  plugins: [lgZoom,lgThumbnail],
+  selector: '.item-img'})}</script><script>window.addEventListener("load",() => {pjax = new Pjax({
+ cacheBust: false,
+ selectors: ['title','article','#aside-block','.pjax-js'],
+ switches: {'article': Pjax.switches.sideBySide},
+ switchesOptions: {
+   'article': {
+     classNames: {
+       remove: "pjax-out",
+       add: "pjax-in"
+     }
+   }
+ }
+});
+document.addEventListener("pjax:complete", reset);reset()})</script><meta name="generator" content="Hexo 7.3.0"><style>mjx-container[jax="SVG"] {
+  direction: ltr;
+}
+
+mjx-container[jax="SVG"] > svg {
+  overflow: visible;
+}
+
+mjx-container[jax="SVG"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="SVG"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="SVG"][justify="right"] {
+  text-align: right;
+}
+
+g[data-mml-node="merror"] > g {
+  fill: red;
+  stroke: red;
+}
+
+g[data-mml-node="merror"] > rect[data-background] {
+  fill: yellow;
+  stroke: none;
+}
+
+g[data-mml-node="mtable"] > line[data-line] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > rect[data-frame] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > .mjx-dashed {
+  stroke-dasharray: 140;
+}
+
+g[data-mml-node="mtable"] > .mjx-dotted {
+  stroke-linecap: round;
+  stroke-dasharray: 0,140;
+}
+
+g[data-mml-node="mtable"] > svg {
+  overflow: visible;
+}
+
+[jax="SVG"] mjx-tool {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+[jax="SVG"] mjx-tool > mjx-tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+mjx-tool > mjx-tip {
+  display: inline-block;
+  padding: .2em;
+  border: 1px solid #888;
+  font-size: 70%;
+  background-color: #F8F8F8;
+  color: black;
+  box-shadow: 2px 2px 5px #AAAAAA;
+}
+
+g[data-mml-node="maction"][data-toggle] {
+  cursor: pointer;
+}
+
+mjx-status {
+  display: block;
+  position: fixed;
+  left: 1em;
+  bottom: 1em;
+  min-width: 25%;
+  padding: .2em .4em;
+  border: 1px solid #888;
+  font-size: 90%;
+  background-color: #F8F8F8;
+  color: black;
+}
+
+foreignObject[data-mjx-xml] {
+  font-family: initial;
+  line-height: normal;
+  overflow: visible;
+}
+
+.MathJax path {
+  stroke-width: 3;
+}
+
+mjx-container[display="true"] {
+  overflow: auto hidden;
+}
+
+mjx-container[display="true"] + br {
+  display: none;
+}
+</style><link rel="alternate" href="/Arknight-notes/rss.xml" title="Notes|笔记站" type="application/atom+xml">
+</head><body><div class="loading" style="opacity: 0;"><div class="loadingBar left"></div><div class="loadingBar right"></div></div><main><header class="closed"><div class="navBtn"><i class="navBtnIcon"><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span></i></div><nav><div class="navItem" id="search-header"><span class="navItemTitle"><input autocomplete="off" autocorrect="off" autocapitalize="none" placeholder="Search" spellcheck="false" maxlength="50" type="text" id="search-input"></span></div><div class="navItem" id="search-holder"></div><div class="search-popup" tabindex="0"><div id="search-result"></div></div><ol class="navContent"><li class="navItem"><a class="navBlock" href="/Arknight-notes/"><span class="navItemTitle">Home</span></a></li><li class="navItem" matchdata="categories,tags"><a class="navBlock" href="/Arknight-notes/archives/"><span class="navItemTitle">Archives</span></a></li><li class="navItem"><a class="navBlock" href="/Arknight-notes/about/"><span class="navItemTitle">About</span></a></li></ol></nav></header><article><div id="post-bg"><div id="post-title"><h1>关于JavaScript链表</h1><div id="post-info"><span>First Post: <div class="control"><time datetime="2025-12-25T05:00:48.000Z" id="date"> 2025-12-25</time></div></span><br><span>Last Update: <div class="control"><time datetime="2025-12-25T06:02:22.240Z" id="updated"> 2025-12-25</time></div></span><br><span id="busuanzi_container_page_pv">Page View: <span class="control" id="busuanzi_value_page_pv">loading...</span></span></div></div><hr><div id="post-content"><h1 id="关于-JavaScript-链表"><a href="#关于-JavaScript-链表" class="headerlink" title="关于 JavaScript 链表"></a>关于 JavaScript 链表</h1><p>链表是一种常见的数据结构，由一系列节点组成，每个节点包含数据和指向下一个节点的引用。链表在 JavaScript 中广泛应用于算法问题和实际开发中。</p>
+<h2 id="链表的基本结构"><a href="#链表的基本结构" class="headerlink" title="链表的基本结构"></a>链表的基本结构</h2><p>首先理解链表的结构：每个节点只知道<strong>自己的值</strong>和<strong>下一个节点的地址</strong>。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-comment">// 定义链表节点类</span><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">ListNode</span> {<br>  <span class="hljs-attr">val</span>: number; <span class="hljs-comment">// 当前节点的值</span><br>  <span class="hljs-attr">next</span>: <span class="hljs-title class_">ListNode</span> | <span class="hljs-literal">null</span>; <span class="hljs-comment">// 指向下一个节点的指针/引用</span><br><br>  <span class="hljs-comment">// 构造函数，接受可选的值和下一个节点</span><br>  <span class="hljs-title function_">constructor</span>(<span class="hljs-params">val?: number, next?: ListNode | <span class="hljs-literal">null</span></span>) {<br>    <span class="hljs-comment">// 如果值未定义则默认为0，否则使用传入的值</span><br>    <span class="hljs-variable language_">this</span>.<span class="hljs-property">val</span> = val === <span class="hljs-literal">undefined</span> ? <span class="hljs-number">0</span> : val;<br>    <span class="hljs-comment">// 如果下一个节点未定义则为null，否则使用传入的节点</span><br>    <span class="hljs-variable language_">this</span>.<span class="hljs-property">next</span> = next === <span class="hljs-literal">undefined</span> ? <span class="hljs-literal">null</span> : next;<br>  }<br>}<br></code></pre></td></tr></table></figure>
+<h2 id="链表操作详解"><a href="#链表操作详解" class="headerlink" title="链表操作详解"></a>链表操作详解</h2><h3 id="1-获取第-n-个节点的值"><a href="#1-获取第-n-个节点的值" class="headerlink" title="1. 获取第 n 个节点的值"></a>1. 获取第 n 个节点的值</h3><p>在链表中，<strong>没有直接的索引访问</strong>（不像数组的 <code>arr[index]</code>）。要获取第 n 个节点的值，必须<strong>从头开始遍历</strong>。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-comment">// 获取链表第n个节点的值（从0开始计数）</span><br><span class="hljs-keyword">function</span> <span class="hljs-title function_">getNodeValue</span>(<span class="hljs-params">head: ListNode | <span class="hljs-literal">null</span>, index: number</span>): number | <span class="hljs-literal">null</span> {<br>  <span class="hljs-keyword">let</span> current = head; <span class="hljs-comment">// 从头节点开始</span><br>  <span class="hljs-keyword">let</span> currentIndex = <span class="hljs-number">0</span>; <span class="hljs-comment">// 当前索引</span><br><br>  <span class="hljs-comment">// 遍历链表直到当前节点为空</span><br>  <span class="hljs-keyword">while</span> (current !== <span class="hljs-literal">null</span>) {<br>    <span class="hljs-comment">// 如果当前索引等于目标索引</span><br>    <span class="hljs-keyword">if</span> (currentIndex === index) {<br>      <span class="hljs-keyword">return</span> current.<span class="hljs-property">val</span>; <span class="hljs-comment">// 返回当前节点的值</span><br>    }<br>    current = current.<span class="hljs-property">next</span>; <span class="hljs-comment">// 移动到下一个节点</span><br>    currentIndex++; <span class="hljs-comment">// 索引加1</span><br>  }<br><br>  <span class="hljs-keyword">return</span> <span class="hljs-literal">null</span>; <span class="hljs-comment">// 索引超出链表长度，返回null</span><br>}<br></code></pre></td></tr></table></figure>
+<h3 id="2-在链表中插入节点"><a href="#2-在链表中插入节点" class="headerlink" title="2. 在链表中插入节点"></a>2. 在链表中插入节点</h3><p>在链表中插入节点有三种情况：</p>
+<ul>
+<li>在头部插入</li>
+<li>在尾部插入</li>
+<li>在中间指定位置插入</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-comment">// 在头部插入节点</span><br><span class="hljs-keyword">function</span> <span class="hljs-title function_">insertAtHead</span>(<span class="hljs-params">head: ListNode | <span class="hljs-literal">null</span>, val: number</span>): <span class="hljs-title class_">ListNode</span> {<br>  <span class="hljs-comment">// 创建新节点，值为val，下一个节点为原来的头节点</span><br>  <span class="hljs-keyword">const</span> newNode = <span class="hljs-keyword">new</span> <span class="hljs-title class_">ListNode</span>(val);<br>  <span class="hljs-comment">// 新节点的下一个节点指向原来的头节点</span><br>  newNode.<span class="hljs-property">next</span> = head;<br>  <span class="hljs-comment">// 返回新节点作为新的头节点</span><br>  <span class="hljs-keyword">return</span> newNode;<br>}<br><br><span class="hljs-comment">// 在尾部插入节点</span><br><span class="hljs-keyword">function</span> <span class="hljs-title function_">insertAtTail</span>(<span class="hljs-params">head: ListNode | <span class="hljs-literal">null</span>, val: number</span>): <span class="hljs-title class_">ListNode</span> {<br>  <span class="hljs-comment">// 创建新节点</span><br>  <span class="hljs-keyword">const</span> newNode = <span class="hljs-keyword">new</span> <span class="hljs-title class_">ListNode</span>(val);<br><br>  <span class="hljs-comment">// 如果链表为空，直接返回新节点作为头节点</span><br>  <span class="hljs-keyword">if</span> (!head) <span class="hljs-keyword">return</span> newNode;<br><br>  <span class="hljs-comment">// 从头节点开始遍历</span><br>  <span class="hljs-keyword">let</span> current = head;<br>  <span class="hljs-comment">// 遍历直到找到最后一个节点（next为null）</span><br>  <span class="hljs-keyword">while</span> (current.<span class="hljs-property">next</span>) {<br>    current = current.<span class="hljs-property">next</span>;<br>  }<br><br>  <span class="hljs-comment">// 将最后一个节点的next指向新节点</span><br>  current.<span class="hljs-property">next</span> = newNode;<br>  <span class="hljs-comment">// 返回原始头节点（因为头节点没有改变）</span><br>  <span class="hljs-keyword">return</span> head;<br>}<br><br><span class="hljs-comment">// 在指定位置插入节点</span><br><span class="hljs-keyword">function</span> <span class="hljs-title function_">insertAtIndex</span>(<span class="hljs-params"></span><br><span class="hljs-params">  head: ListNode | <span class="hljs-literal">null</span>,</span><br><span class="hljs-params">  val: number,</span><br><span class="hljs-params">  index: number</span><br><span class="hljs-params"></span>): <span class="hljs-title class_">ListNode</span> | <span class="hljs-literal">null</span> {<br>  <span class="hljs-comment">// 如果索引为0，在头部插入</span><br>  <span class="hljs-keyword">if</span> (index === <span class="hljs-number">0</span>) {<br>    <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">ListNode</span>(val, head);<br>  }<br><br>  <span class="hljs-comment">// 从头节点开始遍历</span><br>  <span class="hljs-keyword">let</span> current = head;<br>  <span class="hljs-comment">// 当前索引从0开始</span><br>  <span class="hljs-keyword">let</span> currentIndex = <span class="hljs-number">0</span>;<br><br>  <span class="hljs-comment">// 遍历到要插入位置的前一个节点</span><br>  <span class="hljs-keyword">while</span> (current &amp;&amp; currentIndex &lt; index - <span class="hljs-number">1</span>) {<br>    current = current.<span class="hljs-property">next</span>;<br>    currentIndex++;<br>  }<br><br>  <span class="hljs-comment">// 如果当前节点为空，说明索引超出范围</span><br>  <span class="hljs-keyword">if</span> (!current) <span class="hljs-keyword">return</span> head; <span class="hljs-comment">// 索引超出范围</span><br><br>  <span class="hljs-comment">// 创建新节点</span><br>  <span class="hljs-keyword">const</span> newNode = <span class="hljs-keyword">new</span> <span class="hljs-title class_">ListNode</span>(val);<br>  <span class="hljs-comment">// 新节点的next指向当前节点的下一个节点</span><br>  newNode.<span class="hljs-property">next</span> = current.<span class="hljs-property">next</span>;<br>  <span class="hljs-comment">// 当前节点的next指向新节点</span><br>  current.<span class="hljs-property">next</span> = newNode;<br><br>  <span class="hljs-comment">// 返回头节点（因为头节点可能未改变）</span><br>  <span class="hljs-keyword">return</span> head;<br>}<br></code></pre></td></tr></table></figure>
+<h3 id="3-删除链表中的节点"><a href="#3-删除链表中的节点" class="headerlink" title="3. 删除链表中的节点"></a>3. 删除链表中的节点</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-comment">// 删除指定值的第一个节点</span><br><span class="hljs-keyword">function</span> <span class="hljs-title function_">deleteNode</span>(<span class="hljs-params">head: ListNode | <span class="hljs-literal">null</span>, val: number</span>): <span class="hljs-title class_">ListNode</span> | <span class="hljs-literal">null</span> {<br>  <span class="hljs-comment">// 如果头节点为空，返回null</span><br>  <span class="hljs-keyword">if</span> (!head) <span class="hljs-keyword">return</span> <span class="hljs-literal">null</span>;<br><br>  <span class="hljs-comment">// 如果头节点的值就是要删除的值</span><br>  <span class="hljs-keyword">if</span> (head.<span class="hljs-property">val</span> === val) {<br>    <span class="hljs-comment">// 返回头节点的下一个节点作为新的头节点</span><br>    <span class="hljs-keyword">return</span> head.<span class="hljs-property">next</span>;<br>  }<br><br>  <span class="hljs-comment">// 从头节点开始遍历</span><br>  <span class="hljs-keyword">let</span> current = head;<br>  <span class="hljs-comment">// 遍历直到找到值为val的节点的前一个节点</span><br>  <span class="hljs-keyword">while</span> (current.<span class="hljs-property">next</span> &amp;&amp; current.<span class="hljs-property">next</span>.<span class="hljs-property">val</span> !== val) {<br>    current = current.<span class="hljs-property">next</span>;<br>  }<br><br>  <span class="hljs-comment">// 如果找到了值为val的节点</span><br>  <span class="hljs-keyword">if</span> (current.<span class="hljs-property">next</span>) {<br>    <span class="hljs-comment">// 将当前节点的next指向要删除节点的下一个节点</span><br>    current.<span class="hljs-property">next</span> = current.<span class="hljs-property">next</span>.<span class="hljs-property">next</span>;<br>  }<br><br>  <span class="hljs-comment">// 返回原始头节点</span><br>  <span class="hljs-keyword">return</span> head;<br>}<br><br><span class="hljs-comment">// 删除指定索引的节点</span><br><span class="hljs-keyword">function</span> <span class="hljs-title function_">deleteAtIndex</span>(<span class="hljs-params">head: ListNode | <span class="hljs-literal">null</span>, index: number</span>): <span class="hljs-title class_">ListNode</span> | <span class="hljs-literal">null</span> {<br>  <span class="hljs-comment">// 如果头节点为空，返回null</span><br>  <span class="hljs-keyword">if</span> (!head) <span class="hljs-keyword">return</span> <span class="hljs-literal">null</span>;<br>  <span class="hljs-comment">// 如果要删除的是头节点（索引为0），返回头节点的下一个节点</span><br>  <span class="hljs-keyword">if</span> (index === <span class="hljs-number">0</span>) <span class="hljs-keyword">return</span> head.<span class="hljs-property">next</span>;<br><br>  <span class="hljs-comment">// 从头节点开始遍历</span><br>  <span class="hljs-keyword">let</span> current = head;<br>  <span class="hljs-comment">// 当前索引从0开始</span><br>  <span class="hljs-keyword">let</span> currentIndex = <span class="hljs-number">0</span>;<br><br>  <span class="hljs-comment">// 遍历到要删除节点的前一个节点</span><br>  <span class="hljs-keyword">while</span> (current &amp;&amp; currentIndex &lt; index - <span class="hljs-number">1</span>) {<br>    current = current.<span class="hljs-property">next</span>;<br>    currentIndex++;<br>  }<br><br>  <span class="hljs-comment">// 如果当前节点为空或当前节点的下一个节点为空，说明索引超出范围</span><br>  <span class="hljs-keyword">if</span> (!current || !current.<span class="hljs-property">next</span>) <span class="hljs-keyword">return</span> head;<br><br>  <span class="hljs-comment">// 将当前节点的next指向要删除节点的下一个节点</span><br>  current.<span class="hljs-property">next</span> = current.<span class="hljs-property">next</span>.<span class="hljs-property">next</span>;<br>  <span class="hljs-comment">// 返回头节点</span><br>  <span class="hljs-keyword">return</span> head;<br>}<br></code></pre></td></tr></table></figure>
+<h3 id="4-查找节点"><a href="#4-查找节点" class="headerlink" title="4. 查找节点"></a>4. 查找节点</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-comment">// 根据值查找节点（返回索引）</span><br><span class="hljs-keyword">function</span> <span class="hljs-title function_">findNode</span>(<span class="hljs-params">head: ListNode | <span class="hljs-literal">null</span>, val: number</span>): number {<br>  <span class="hljs-comment">// 从头节点开始遍历</span><br>  <span class="hljs-keyword">let</span> current = head;<br>  <span class="hljs-comment">// 索引从0开始</span><br>  <span class="hljs-keyword">let</span> index = <span class="hljs-number">0</span>;<br><br>  <span class="hljs-comment">// 遍历链表直到当前节点为空</span><br>  <span class="hljs-keyword">while</span> (current) {<br>    <span class="hljs-comment">// 如果当前节点的值等于目标值</span><br>    <span class="hljs-keyword">if</span> (current.<span class="hljs-property">val</span> === val) {<br>      <span class="hljs-comment">// 返回当前索引</span><br>      <span class="hljs-keyword">return</span> index;<br>    }<br>    <span class="hljs-comment">// 移动到下一个节点</span><br>    current = current.<span class="hljs-property">next</span>;<br>    <span class="hljs-comment">// 索引加1</span><br>  }<br><br>  <span class="hljs-comment">// 如果未找到，返回-1</span><br>  <span class="hljs-keyword">return</span> -<span class="hljs-number">1</span>; <span class="hljs-comment">// 未找到</span><br>}<br><br><span class="hljs-comment">// 计算链表长度</span><br><span class="hljs-keyword">function</span> <span class="hljs-title function_">getLength</span>(<span class="hljs-params">head: ListNode | <span class="hljs-literal">null</span></span>): number {<br>  <span class="hljs-comment">// 初始化长度为0</span><br>  <span class="hljs-keyword">let</span> length = <span class="hljs-number">0</span>;<br>  <span class="hljs-comment">// 从头节点开始遍历</span><br>  <span class="hljs-keyword">let</span> current = head;<br><br>  <span class="hljs-comment">// 遍历链表直到当前节点为空</span><br>  <span class="hljs-keyword">while</span> (current) {<br>    <span class="hljs-comment">// 长度加1</span><br>    length++;<br>    <span class="hljs-comment">// 移动到下一个节点</span><br>    current = current.<span class="hljs-property">next</span>;<br>  }<br><br>  <span class="hljs-comment">// 返回链表长度</span><br>  <span class="hljs-keyword">return</span> length;<br>}<br></code></pre></td></tr></table></figure>
+<h3 id="5-反转链表"><a href="#5-反转链表" class="headerlink" title="5. 反转链表"></a>5. 反转链表</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-comment">// 反转链表</span><br><span class="hljs-keyword">function</span> <span class="hljs-title function_">reverseList</span>(<span class="hljs-params">head: ListNode | <span class="hljs-literal">null</span></span>): <span class="hljs-title class_">ListNode</span> | <span class="hljs-literal">null</span> {<br>  <span class="hljs-comment">// 初始化前一个节点为null</span><br>  <span class="hljs-keyword">let</span> <span class="hljs-attr">prev</span>: <span class="hljs-title class_">ListNode</span> | <span class="hljs-literal">null</span> = <span class="hljs-literal">null</span>;<br>  <span class="hljs-comment">// 当前节点从头节点开始</span><br>  <span class="hljs-keyword">let</span> current = head;<br><br>  <span class="hljs-comment">// 遍历链表直到当前节点为空</span><br>  <span class="hljs-keyword">while</span> (current) {<br>    <span class="hljs-comment">// 保存下一个节点</span><br>    <span class="hljs-keyword">const</span> next = current.<span class="hljs-property">next</span>;<br>    <span class="hljs-comment">// 将当前节点的next指向前一个节点（反转指针）</span><br>    current.<span class="hljs-property">next</span> = prev;<br>    <span class="hljs-comment">// 前一个节点移动到当前节点</span><br>    prev = current;<br>    <span class="hljs-comment">// 当前节点移动到下一个节点</span><br>    current = next;<br>  }<br><br>  <span class="hljs-comment">// 返回新的头节点（原来的最后一个节点）</span><br>  <span class="hljs-keyword">return</span> prev; <span class="hljs-comment">// prev现在是新的头节点</span><br>}<br></code></pre></td></tr></table></figure>
+<h3 id="6-遍历链表"><a href="#6-遍历链表" class="headerlink" title="6. 遍历链表"></a>6. 遍历链表</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-comment">// 打印链表所有值</span><br><span class="hljs-keyword">function</span> <span class="hljs-title function_">printList</span>(<span class="hljs-params">head: ListNode | <span class="hljs-literal">null</span></span>): <span class="hljs-keyword">void</span> {<br>  <span class="hljs-comment">// 创建数组存储节点值</span><br>  <span class="hljs-keyword">const</span> <span class="hljs-attr">values</span>: number[] = [];<br>  <span class="hljs-comment">// 从头节点开始遍历</span><br>  <span class="hljs-keyword">let</span> current = head;<br><br>  <span class="hljs-comment">// 遍历链表直到当前节点为空</span><br>  <span class="hljs-keyword">while</span> (current) {<br>    <span class="hljs-comment">// 将当前节点的值添加到数组</span><br>    values.<span class="hljs-title function_">push</span>(current.<span class="hljs-property">val</span>);<br>    <span class="hljs-comment">// 移动到下一个节点</span><br>    current = current.<span class="hljs-property">next</span>;<br>  }<br><br>  <span class="hljs-comment">// 打印节点值，用箭头连接</span><br>  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(values.<span class="hljs-title function_">join</span>(<span class="hljs-string">" -&gt; "</span>));<br>}<br></code></pre></td></tr></table></figure>
+<h2 id="链表的优缺点"><a href="#链表的优缺点" class="headerlink" title="链表的优缺点"></a>链表的优缺点</h2><h3 id="优点："><a href="#优点：" class="headerlink" title="优点："></a>优点：</h3><ul>
+<li><strong>动态大小</strong>：可以在运行时根据需要扩展</li>
+<li><strong>高效插入/删除</strong>：在已知节点位置的情况下，插入和删除操作是 O(1)时间复杂度</li>
+<li><strong>内存利用率</strong>：只分配需要的内存，不浪费空间</li>
+</ul>
+<h3 id="缺点："><a href="#缺点：" class="headerlink" title="缺点："></a>缺点：</h3><ul>
+<li><strong>无索引访问</strong>：访问特定位置的元素需要 O(n)时间</li>
+<li><strong>额外内存开销</strong>：每个节点需要存储指针</li>
+<li><strong>缓存性能差</strong>：节点在内存中不连续，缓存命中率低</li>
+</ul>
+<hr>
+<p>链表是重要的数据结构，适用于以下场景：</p>
+<ul>
+<li>需要频繁插入和删除操作的场景</li>
+<li>不确定数据大小的情况</li>
+<li>实现其他数据结构，如栈、队列等</li>
+</ul>
+<p>虽然访问特定元素不如数组高效，但在需要频繁插入和删除操作的场景下具有优势。理解链表的基本操作对于算法设计和解决实际问题非常重要。</p>
+<div id="paginator"></div></div><div id="post-footer"><div id="pages"><div class="footer-link" style="width: 50%;text-align:right;border-right:1px #fe2 solid"><a href="/Arknight-notes/posts/39687.html">← Next 2025-12-25-力扣百题速练</a></div><div class="footer-link" style="width: 50%;right:1px;border-left:1px #fe2 solid"><a href="/Arknight-notes/posts/39960.html">2025-12-25-前端学习-关于JavaScript 实现哈希表 Prev →</a></div></div></div><div id="comments"><div id="gitalk"></div></div></div><div class="bottom-btn"><div><a class="i-top" id="to-top" onClick="scrolls.scrolltop();" title="To Top" style="opacity: 0; display: none;">∧ </a><a class="i-index" id="to-index" href="#toc-div" title="To Catalog">≡</a><a class="i-color" id="color-mode" onClick="colorMode.change()" title="Change Theme"></a></div></div></article><aside><div id="about"><a href="/Arknight-notes/" id="logo"><img src="https://pic4.zhimg.com/80/v2-d9884f32711e19e80979eac58e943897_720w.webp" alt="Logo" style="margin:20;border-radius:0;"></a><h1 id="Dr"><a href="zhongye">柊野</a></h1><div id="description"><p></p></div></div><div id="aside-block"><div id="toc-div"><h1>Catalog</h1><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%85%B3%E4%BA%8E-JavaScript-%E9%93%BE%E8%A1%A8"><span class="toc-number">1.</span> <span class="toc-text">关于 JavaScript 链表</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%93%BE%E8%A1%A8%E7%9A%84%E5%9F%BA%E6%9C%AC%E7%BB%93%E6%9E%84"><span class="toc-number">1.1.</span> <span class="toc-text">链表的基本结构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%93%BE%E8%A1%A8%E6%93%8D%E4%BD%9C%E8%AF%A6%E8%A7%A3"><span class="toc-number">1.2.</span> <span class="toc-text">链表操作详解</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E8%8E%B7%E5%8F%96%E7%AC%AC-n-%E4%B8%AA%E8%8A%82%E7%82%B9%E7%9A%84%E5%80%BC"><span class="toc-number">1.2.1.</span> <span class="toc-text">1. 获取第 n 个节点的值</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E5%9C%A8%E9%93%BE%E8%A1%A8%E4%B8%AD%E6%8F%92%E5%85%A5%E8%8A%82%E7%82%B9"><span class="toc-number">1.2.2.</span> <span class="toc-text">2. 在链表中插入节点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E5%88%A0%E9%99%A4%E9%93%BE%E8%A1%A8%E4%B8%AD%E7%9A%84%E8%8A%82%E7%82%B9"><span class="toc-number">1.2.3.</span> <span class="toc-text">3. 删除链表中的节点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E6%9F%A5%E6%89%BE%E8%8A%82%E7%82%B9"><span class="toc-number">1.2.4.</span> <span class="toc-text">4. 查找节点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-%E5%8F%8D%E8%BD%AC%E9%93%BE%E8%A1%A8"><span class="toc-number">1.2.5.</span> <span class="toc-text">5. 反转链表</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-%E9%81%8D%E5%8E%86%E9%93%BE%E8%A1%A8"><span class="toc-number">1.2.6.</span> <span class="toc-text">6. 遍历链表</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%93%BE%E8%A1%A8%E7%9A%84%E4%BC%98%E7%BC%BA%E7%82%B9"><span class="toc-number">1.3.</span> <span class="toc-text">链表的优缺点</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BC%98%E7%82%B9%EF%BC%9A"><span class="toc-number">1.3.1.</span> <span class="toc-text">优点：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BC%BA%E7%82%B9%EF%BC%9A"><span class="toc-number">1.3.2.</span> <span class="toc-text">缺点：</span></a></li></ol></li></ol></li></ol></div></div><footer><nobr><span class="icp-title">GZHU</span><span class="icp-content">193001-0001</span></nobr><br><nobr><span class="icp-title">OUTPOST</span><span class="icp-content">169-2025-0331</span></nobr><br><nobr>Published with <a target="_blank" rel="noopener" href="http://hexo.io">Hexo</a></nobr><wbr><nobr> Theme <a target="_blank" rel="noopener" href="https://github.com/Yue-plus/hexo-theme-arknights">Arknights</a></nobr><wbr><nobr> by <a target="_blank" rel="noopener" href="https://github.com/Yue-plus">Yue_plus</a></nobr></footer></aside></main><canvas id="canvas-dust"></canvas></body></html>
