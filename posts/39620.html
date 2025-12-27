@@ -1,0 +1,486 @@
+<!DOCTYPE html><html lang="en" theme-mode="dark"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>2025-12-26-力扣百题速练（Javascript、TypeScript）Vol.2 | Notes|笔记站</title><link rel="icon" type="image/x-icon" href="/Arknight-notes/favicon.ico"><link rel="preload" as="font" crossorigin="anonymous" href="/Arknight-notes/font/Bender.ttf"><link rel="preload" as="font" crossorigin="anonymous" href="/Arknight-notes/font/BenderLight.ttf"><link rel="preload" as="font" crossorigin="anonymous" href="/Arknight-notes/font/JetBrainsMono-Regular.woff2"><link rel="stylesheet" href="/Arknight-notes/css/arknights.css"><style>@font-face {
+  font-family: Bender;
+  src: local('Bender'), url("/Arknight-notes/font/Bender.ttf"), url("/Arknight-notes/font/Bender.otf");
+}
+@font-face {
+  font-family: BenderLight;
+  src: local('BenderLight'), url("/Arknight-notes/font/BenderLight.ttf");
+}
+@font-face {
+  font-family: 'JetBrains Mono';
+  src: local('JetBrains Mono'), url('/Arknight-notes/font/JetBrainsMono-Regular.woff2') format('woff2');
+}
+</style><script>var config = {"root":"/Arknight-notes/","code_fold":90,"search":{"preload":false,"activeHolder":"Enter here","blurHolder":"Search","noResult":"Data \"$0\" not found"},"code":{"codeInfo":"$0 - $1 lines","copy":"copy"}}</script><link type="text/css" rel="stylesheet" href="/Arknight-notes/lib/encrypt/hbe.style.css"><script src="/Arknight-notes/js/gitalk.js"></script><script src="//unpkg.com/mermaid@10.5.0/dist/mermaid.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.6.1/MathJax.js"></script><script>MathJax.Hub.Config({
+ menuSettings: {
+   zoom: "None"
+ },
+ showMathMenu: false,
+ jax: ["input/TeX","output/CommonHTML"],
+ extensions: ["tex2jax.js"],
+ TeX: {
+   extensions: ["AMSmath.js","AMSsymbols.js"],
+   equationNumbers: {
+     autoNumber: "AMS"
+   }
+ },
+ tex2jax: {
+   inlineMath: [["\\(", "\\)"]],
+   displayMath: [["\\[", "\\]"]]
+ }
+});</script><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lightgallery.css"><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lg-zoom.css"><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lg-thumbnail.css"><link type="text/css" rel="stylesheet" href="/Arknight-notes/lib/fontawesome/css/all.min.css"><script>if (window.localStorage.getItem('theme-mode') === 'light')
+ document.documentElement.setAttribute('theme-mode', 'light')
+if (window.localStorage.getItem('theme-mode') === 'dark')
+ document.documentElement.setAttribute('theme-mode', 'dark')</script><style>@font-face {
+ font-family: BenderLight;
+ src: local('Bender'), url("/Arknight-notes/font/BenderLight.woff2") format('woff2');
+}
+@font-face {
+ font-family: 'JetBrains Mono';
+ src: local('JetBrains Mono'), url('/Arknight-notes/font/JetBrainsMono-Regular.woff2') format('woff2');
+}</style><style>:root {
+ --dark-background: url('https://pic2.zhimg.com/v2-6269d74b4dafe14781d03790e5a86b21_r.jpg');
+ --light-background: url('https://pic1.zhimg.com/v2-233b64b583642fc4a6d77e69ced33150_r.jpg');
+ --theme-encrypt-confirm: 'confirm'
+}</style><script defer src="/Arknight-notes/js/arknights.js"></script><script defer src="/Arknight-notes/js/search.js"></script><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><script async src="/Arknight-notes/js/gitalk.js"></script><script defer type="module">import mermaid from '//unpkg.com/mermaid@10.5.0/dist/mermaid.esm.mjs';
+window.mermaid = mermaid;
+code.paintMermaid();
+</script><script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.6.1/MathJax.js"></script><script>MathJax.Hub.Config({
+  menuSettings: {
+    zoom: "None"
+  },
+  showMathMenu: false,
+  jax: ["input/TeX","output/CommonHTML"],
+  extensions: ["tex2jax.js"],
+  TeX: {
+    extensions: ["AMSmath.js","AMSsymbols.js"],
+    equationNumbers: {
+      autoNumber: "AMS"
+    }
+  },
+  tex2jax: {
+    inlineMath: [["\\(", "\\)"]],
+    displayMath: [["\\[", "\\]"]]
+  }
+});
+</script><script async src="//unpkg.com/lightgallery@2.7.1/lightgallery.min.js"></script><script async src="//unpkg.com/lightgallery@2.7.1/plugins/zoom/lg-zoom.min.js"></script><script async src="//unpkg.com/lightgallery@2.7.1/plugins/thumbnail/lg-thumbnail.min.js"></script><script async src="/Arknight-notes/lib/encrypt/hbe.js"></script><script async src="/Arknight-notes/js/pjax.js"></script><script class="pjax-js">reset= () => {gitalk = new Gitalk({
+ clientID: 'Ov23ct13Fb0b67x23wnT',
+ clientSecret: 'f18ce69dd545e3c0f5e2456afde9c756fe8a254a',
+ repo: 'Arknight-notes',
+ owner: 'Zhongye1',
+ admin: ['Zhongye1'],
+ distractionFreeMode: false,
+ id: location.pathname
+});
+if (document.querySelector("#gitalk")) gitalk.render("gitalk");document.querySelector('.lg-container')?.remove()
+lightGallery(document.getElementById('post-bg'), {
+  plugins: [lgZoom,lgThumbnail],
+  selector: '.item-img'})}</script><script>window.addEventListener("load",() => {pjax = new Pjax({
+ cacheBust: false,
+ selectors: ['title','article','#aside-block','.pjax-js','data-pjax','.busuanzi'],
+ switches: {'article': Pjax.switches.sideBySide},
+ switchesOptions: {
+   'article': {
+     classNames: {
+       remove: "pjax-out",
+       add: "pjax-in"
+     }
+   }
+ }
+});
+document.addEventListener("pjax:complete", reset);document.addEventListener('pjax:success', _ => bszCaller.fetch(
+ "//busuanzi.ibruce.info/busuanzi?jsonpCallback=BusuanziCallback", a => {
+  bszTag.texts(a),
+  bszTag.shows()
+}));reset()})</script><script class="pjax-js">reset= () => {gitalk = new Gitalk({
+ clientID: 'Ov23ct13Fb0b67x23wnT',
+ clientSecret: 'f18ce69dd545e3c0f5e2456afde9c756fe8a254a',
+ repo: 'Arknight-notes',
+ owner: 'Zhongye1',
+ admin: ['Zhongye1'],
+ distractionFreeMode: false,
+ id: location.pathname
+});
+if (document.querySelector("#gitalk")) gitalk.render("gitalk");document.querySelector('.lg-container')?.remove()
+lightGallery(document.getElementById('post-bg'), {
+  plugins: [lgZoom,lgThumbnail],
+  selector: '.item-img'})}</script><script>window.addEventListener("load",() => {pjax = new Pjax({
+ cacheBust: false,
+ selectors: ['title','article','#aside-block','.pjax-js'],
+ switches: {'article': Pjax.switches.sideBySide},
+ switchesOptions: {
+   'article': {
+     classNames: {
+       remove: "pjax-out",
+       add: "pjax-in"
+     }
+   }
+ }
+});
+document.addEventListener("pjax:complete", reset);reset()})</script><meta name="generator" content="Hexo 7.3.0"><style>mjx-container[jax="SVG"] {
+  direction: ltr;
+}
+
+mjx-container[jax="SVG"] > svg {
+  overflow: visible;
+}
+
+mjx-container[jax="SVG"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="SVG"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="SVG"][justify="right"] {
+  text-align: right;
+}
+
+g[data-mml-node="merror"] > g {
+  fill: red;
+  stroke: red;
+}
+
+g[data-mml-node="merror"] > rect[data-background] {
+  fill: yellow;
+  stroke: none;
+}
+
+g[data-mml-node="mtable"] > line[data-line] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > rect[data-frame] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > .mjx-dashed {
+  stroke-dasharray: 140;
+}
+
+g[data-mml-node="mtable"] > .mjx-dotted {
+  stroke-linecap: round;
+  stroke-dasharray: 0,140;
+}
+
+g[data-mml-node="mtable"] > svg {
+  overflow: visible;
+}
+
+[jax="SVG"] mjx-tool {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+[jax="SVG"] mjx-tool > mjx-tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+mjx-tool > mjx-tip {
+  display: inline-block;
+  padding: .2em;
+  border: 1px solid #888;
+  font-size: 70%;
+  background-color: #F8F8F8;
+  color: black;
+  box-shadow: 2px 2px 5px #AAAAAA;
+}
+
+g[data-mml-node="maction"][data-toggle] {
+  cursor: pointer;
+}
+
+mjx-status {
+  display: block;
+  position: fixed;
+  left: 1em;
+  bottom: 1em;
+  min-width: 25%;
+  padding: .2em .4em;
+  border: 1px solid #888;
+  font-size: 90%;
+  background-color: #F8F8F8;
+  color: black;
+}
+
+foreignObject[data-mjx-xml] {
+  font-family: initial;
+  line-height: normal;
+  overflow: visible;
+}
+
+.MathJax path {
+  stroke-width: 3;
+}
+
+mjx-container[display="true"] {
+  overflow: auto hidden;
+}
+
+mjx-container[display="true"] + br {
+  display: none;
+}
+</style><link rel="alternate" href="/Arknight-notes/rss.xml" title="Notes|笔记站" type="application/atom+xml">
+</head><body><div class="loading" style="opacity: 0;"><div class="loadingBar left"></div><div class="loadingBar right"></div></div><main><header class="closed"><div class="navBtn"><i class="navBtnIcon"><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span></i></div><nav><div class="navItem" id="search-header"><span class="navItemTitle"><input autocomplete="off" autocorrect="off" autocapitalize="none" placeholder="Search" spellcheck="false" maxlength="50" type="text" id="search-input"></span></div><div class="navItem" id="search-holder"></div><div class="search-popup" tabindex="0"><div id="search-result"></div></div><ol class="navContent"><li class="navItem"><a class="navBlock" href="/Arknight-notes/"><span class="navItemTitle">Home</span></a></li><li class="navItem" matchdata="categories,tags"><a class="navBlock" href="/Arknight-notes/archives/"><span class="navItemTitle">Archives</span></a></li><li class="navItem"><a class="navBlock" href="/Arknight-notes/about/"><span class="navItemTitle">About</span></a></li></ol></nav></header><article><div id="post-bg"><div id="post-title"><h1>2025-12-26-力扣百题速练（Javascript、TypeScript）Vol.2</h1><div id="post-info"><span>First Post: <div class="control"><time datetime="2025-12-26T05:57:08.000Z" id="date"> 2025-12-26</time></div></span><br><span>Last Update: <div class="control"><time datetime="2025-12-27T12:52:43.608Z" id="updated"> 2025-12-27</time></div></span><br><span id="busuanzi_container_page_pv">Page View: <span class="control" id="busuanzi_value_page_pv">loading...</span></span></div></div><hr><div id="post-content"><p>这里是力扣速刷第二期awa<br>说是速刷其实卡了挺久</p>
+<p class='item-img' data-src='https://picx.zhimg.com/v2-1e47d2da440013ae7d4262f54c26dd52_720w.webp?source=d16d100b'><img src="https://picx.zhimg.com/v2-1e47d2da440013ae7d4262f54c26dd52_720w.webp?source=d16d100b" style="height=100px"></p>
+<h2 id="11-盛最多水的容器"><a href="#11-盛最多水的容器" class="headerlink" title="11. 盛最多水的容器"></a>11. 盛最多水的容器</h2><p>给定一个长度为  <code>n</code>  的整数数组  <code>height</code> 。有  <code>n</code>  条垂线，第  <code>i</code>  条线的两个端点是  <code>(i, 0)</code>  和  <code>(i, height[i])</code><br>找出其中的两条线，使得它们与  <code>x</code>  轴共同构成的容器可以容纳最多的水<br>返回容器可以储存的最大水量</p>
+<p>输入：[1,8,6,2,5,4,8,3,7]<br>输出：49<br>解释：图中垂直线代表输入数组 [1,8,6,2,5,4,8,3,7]。在此情况下，容器能够容纳水（表示为蓝色部分）的最大值为 49</p>
+<p>最开始直接暴力解</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs ts"><span class="hljs-keyword">function</span> <span class="hljs-title function_">maxArea</span>(<span class="hljs-params"><span class="hljs-attr">height</span>: <span class="hljs-built_in">number</span>[]</span>): <span class="hljs-built_in">number</span> {<br>  <span class="hljs-keyword">let</span> res = <span class="hljs-number">0</span>;<br>  <span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>;<br>  <span class="hljs-keyword">let</span> j = <span class="hljs-number">1</span>;<br><br>  <span class="hljs-keyword">for</span> (i = <span class="hljs-number">0</span>; i &lt; height.<span class="hljs-property">length</span> - <span class="hljs-number">1</span>; i++) {<br>    <span class="hljs-keyword">for</span> (j = <span class="hljs-number">1</span>; j &lt; height.<span class="hljs-property">length</span>; j++) {<br>      <span class="hljs-keyword">let</span> xin = (j - i) * <span class="hljs-title class_">Math</span>.<span class="hljs-title function_">min</span>(height[i], height[j]);<br>      <span class="hljs-keyword">if</span> (xin &gt; res) {<br>        res = xin;<br>      }<br>    }<br>  }<br>  <span class="hljs-keyword">return</span> res;<br>}<br></code></pre></td></tr></table></figure>
+<p>后面想了一下，做了些改进</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs ts"><span class="hljs-keyword">function</span> <span class="hljs-title function_">maxArea</span>(<span class="hljs-params"><span class="hljs-attr">height</span>: <span class="hljs-built_in">number</span>[]</span>): <span class="hljs-built_in">number</span> {<br>  <span class="hljs-keyword">let</span> res = <span class="hljs-number">0</span>;<br>  <span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>;<br>  <span class="hljs-keyword">let</span> j = height.<span class="hljs-property">length</span> - <span class="hljs-number">1</span>;<br><br>  <span class="hljs-keyword">while</span> (i &lt; j) {<br>    <span class="hljs-keyword">let</span> fin = <span class="hljs-title class_">Math</span>.<span class="hljs-title function_">min</span>(height[i], height[j]) * (j - i);<br>    <span class="hljs-keyword">if</span> (fin &gt; res) {<br>      res = fin;<br>    }<br>    <span class="hljs-keyword">if</span> (height[i] &lt; height[j]) {<br>      i++;<br>    } <span class="hljs-keyword">else</span> {<br>      j--;<br>    }<br>  }<br>  <span class="hljs-keyword">return</span> res;<br>}<br></code></pre></td></tr></table></figure>
+<p>初始时宽度最大，若当前面积不是最大，则必须通过增加高度来补偿宽度损失<br>移动较短指针是因为：保持较短边不动，宽度只会变小，面积不可能增大；只有移动较短边才可能遇到更高的高度，从而提升面积</p>
+<p>经典双指针加贪心的题</p>
+<hr>
+<h2 id="12-整数转罗马数字"><a href="#12-整数转罗马数字" class="headerlink" title="12.整数转罗马数字"></a>12.整数转罗马数字</h2><p>七个不同的符号代表罗马数字，其值如下：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>符号</th>
+<th>值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>I</td>
+<td>1</td>
+</tr>
+<tr>
+<td>V</td>
+<td>5</td>
+</tr>
+<tr>
+<td>X</td>
+<td>10</td>
+</tr>
+<tr>
+<td>L</td>
+<td>50</td>
+</tr>
+<tr>
+<td>C</td>
+<td>100</td>
+</tr>
+<tr>
+<td>D</td>
+<td>500</td>
+</tr>
+<tr>
+<td>M</td>
+<td>1000</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>罗马数字是通过添加从最高到最低的小数位值的转换而形成的。将小数位值转换为罗马数字有以下规则：</p>
+<ul>
+<li>如果该值不是以 4 或 9 开头，请选择可以从输入中减去的最大值的符号，将该符号附加到结果，减去其值，然后将其余部分转换为罗马数字。</li>
+<li>如果该值以 4 或 9 开头，使用  <strong>减法形式</strong>，表示从以下符号中减去一个符号，例如 4 是 5 (<code>V</code>) 减 1 (<code>I</code>): <code>IV</code> ，9 是 10 (<code>X</code>) 减 1 (<code>I</code>)：<code>IX</code>。仅使用以下减法形式：4 (<code>IV</code>)，9 (<code>IX</code>)，40 (<code>XL</code>)，90 (<code>XC</code>)，400 (<code>CD</code>) 和 900 (<code>CM</code>)。</li>
+<li>只有 10 的次方（<code>I</code>, <code>X</code>, <code>C</code>, <code>M</code>）最多可以连续附加 3 次以代表 10 的倍数。你不能多次附加 5 (<code>V</code>)，50 (<code>L</code>) 或 500 (<code>D</code>)。如果需要将符号附加 4 次，请使用  <strong>减法形式</strong>。</li>
+</ul>
+<p>给定一个整数，将其转换为罗马数字。</p>
+<p><strong>示例 1：</strong></p>
+<p>**输入：num = 3749</p>
+<p><strong>输出：</strong> “MMMDCCXLIX”</p>
+<p><strong>解释：</strong></p>
+<p>3000 = MMM 由于 1000 (M) + 1000 (M) + 1000 (M)<br>700 = DCC 由于 500 (D) + 100 (C) + 100 (C)<br>40 = XL 由于 50 (L) 减 10 (X)<br>9 = IX 由于 10 (X) 减 1 (I)<br>注意：49 不是 50 (L) 减 1 (I) 因为转换是基于小数位</p>
+<p><strong>示例 2：</strong></p>
+<p>**输入：num = 58</p>
+<p><strong>输出：</strong>“LVIII”</p>
+<p><strong>解释：</strong></p>
+<p>50 = L<br>8 = VIII</p>
+<p><strong>示例 3：</strong></p>
+<p>**输入：num = 1994</p>
+<p><strong>输出：</strong>“MCMXCIV”</p>
+<p><strong>解释：</strong></p>
+<p>1000 = M<br>900 = CM<br>90 = XC<br>4 = IV</p>
+<p>最初想法是尝试通过<strong>逐位处理数字</strong>的方式将整数转换为罗马数字：</p>
+<ol>
+<li><strong>将数字转换为字符串并反转</strong>： 使用 reverseString(num.toString()) 将数字从高位到低位变为低位到高位（例如 1994 → “4991”）,从个位开始依次处理每个数位（个位、十位、百位、千位）</li>
+<li><strong>为每个数位定义对应的罗马符号</strong>：<ul>
+<li><code>个位（i===0）：1→"I", 5→"V", 10→"X"</code></li>
+<li><code>十位（i===1）：1→"X", 5→"L", 10→"C"</code></li>
+<li><code>百位（i===2）：1→"C", 5→"D", 10→"M"</code></li>
+<li><code>千位（i===3）：直接用 "M" 重复</code></li>
+</ul>
+</li>
+<li><strong>根据当前位上的数字（0-9）生成对应罗马表示</strong>：<ul>
+<li>1-3：重复添加 “1” 的符号（curr1）</li>
+<li>4：curr1 + curr2（如 “IV”）</li>
+<li>5：curr2（如 “V”）</li>
+<li>6-8：curr2 + 重复 (digit-5) 次 curr1</li>
+<li>9：curr1 + curr3（如 “IX”）</li>
+</ul>
+</li>
+<li><strong>使用数组 + unshift 收集符号</strong>： 因为已反转数字，低位先处理，使用 unshift（从数组头部插入）试图让高位符号最终出现在前面</li>
+<li><strong>最后 join 成字符串返回</strong></li>
+</ol>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br></pre></td><td class="code"><pre><code class="hljs ts"><span class="hljs-keyword">function</span> <span class="hljs-title function_">intToRoman</span>(<span class="hljs-params"><span class="hljs-attr">num</span>: <span class="hljs-built_in">number</span></span>): <span class="hljs-built_in">string</span> {<br>  <span class="hljs-keyword">let</span> curr1 = <span class="hljs-string">""</span>;<br>  <span class="hljs-keyword">let</span> curr2 = <span class="hljs-string">""</span>;<br>  <span class="hljs-keyword">let</span> curr3 = <span class="hljs-string">""</span>;<br>  <span class="hljs-keyword">const</span> reverseString = (<span class="hljs-attr">str</span>: <span class="hljs-built_in">string</span>): <span class="hljs-function"><span class="hljs-params">string</span> =&gt;</span><br>    str.<span class="hljs-title function_">split</span>(<span class="hljs-string">""</span>).<span class="hljs-title function_">reverse</span>().<span class="hljs-title function_">join</span>(<span class="hljs-string">""</span>);<br><br>  <span class="hljs-keyword">let</span> top = <span class="hljs-title function_">reverseString</span>(num.<span class="hljs-title function_">toString</span>());<br>  <span class="hljs-keyword">let</span> l = top.<span class="hljs-property">length</span>;<br><br>  <span class="hljs-keyword">let</span> <span class="hljs-attr">finalstr</span>: <span class="hljs-built_in">string</span>[] = [];<br>  <span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>;<br><br>  <span class="hljs-keyword">function</span> <span class="hljs-title function_">nums</span>(<span class="hljs-params"><span class="hljs-attr">pos</span>: <span class="hljs-built_in">number</span></span>) {<br>    <span class="hljs-keyword">const</span> di = <span class="hljs-title class_">Number</span>(top[pos]);<br>    <span class="hljs-keyword">if</span> (di === <span class="hljs-number">0</span>) <span class="hljs-keyword">return</span>;<br><br>    <span class="hljs-keyword">if</span> (di &lt;= <span class="hljs-number">3</span>) {<br>      <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> j = <span class="hljs-number">0</span>; j &lt; di; j++) {<br>        finalstr.<span class="hljs-title function_">unshift</span>(curr1);<br>      }<br>    } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (di === <span class="hljs-number">4</span>) {<br>      finalstr.<span class="hljs-title function_">unshift</span>(curr1 + curr2);<br>    } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (di === <span class="hljs-number">5</span>) {<br>      finalstr.<span class="hljs-title function_">unshift</span>(curr2);<br>    } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (di &lt;= <span class="hljs-number">8</span>) {<br>      <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> j = <span class="hljs-number">0</span>; j &lt; di - <span class="hljs-number">5</span>; j++) {<br>        finalstr.<span class="hljs-title function_">unshift</span>(curr1);<br>      }<br>      finalstr.<span class="hljs-title function_">unshift</span>(curr2);<br>    } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (di === <span class="hljs-number">9</span>) {<br>      finalstr.<span class="hljs-title function_">unshift</span>(curr1 + curr3);<br>    }<br>  }<br>  <span class="hljs-keyword">while</span> (i &lt; l) {<br>    <span class="hljs-keyword">if</span> (i === <span class="hljs-number">0</span>) {<br>      curr1 = <span class="hljs-string">"I"</span>;<br>      curr2 = <span class="hljs-string">"V"</span>;<br>      curr3 = <span class="hljs-string">"X"</span>;<br>      <span class="hljs-title function_">nums</span>(i);<br>      i++;<br>    }<br><br>    <span class="hljs-keyword">if</span> (i === <span class="hljs-number">1</span>) {<br>      curr1 = <span class="hljs-string">"X"</span>;<br>      curr2 = <span class="hljs-string">"L"</span>;<br>      curr3 = <span class="hljs-string">"C"</span>;<br>      <span class="hljs-title function_">nums</span>(i);<br>      i++;<br>    }<br><br>    <span class="hljs-keyword">if</span> (i === <span class="hljs-number">2</span>) {<br>      curr1 = <span class="hljs-string">"C"</span>;<br>      curr2 = <span class="hljs-string">"D"</span>;<br>      curr3 = <span class="hljs-string">"M"</span>;<br>      <span class="hljs-title function_">nums</span>(i);<br>      i++;<br>    }<br><br>    <span class="hljs-keyword">if</span> (i === <span class="hljs-number">3</span>) {<br>      <span class="hljs-keyword">const</span> vas = <span class="hljs-title class_">Number</span>(top[i]);<br>      <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> j = <span class="hljs-number">0</span>; j &lt; vas; j++) {<br>        finalstr.<span class="hljs-title function_">unshift</span>(<span class="hljs-string">"M"</span>);<br>      }<br>      i++;<br>    }<br>  }<br>  <span class="hljs-keyword">return</span> finalstr.<span class="hljs-title function_">join</span>(<span class="hljs-string">""</span>);<br>}<br></code></pre></td></tr></table></figure>
+<p>题目标准解法是<strong>贪心算法 + 值-符号映射表</strong>，从高位到低位匹配最大可能值，这个写法确实没有想出来：</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs TypeScript"><span class="hljs-keyword">function</span> <span class="hljs-title function_">intToRoman</span>(<span class="hljs-params"><span class="hljs-attr">num</span>: <span class="hljs-built_in">number</span></span>): <span class="hljs-built_in">string</span> {<br>    <span class="hljs-keyword">const</span> <span class="hljs-attr">valueSymbols</span>: [<span class="hljs-built_in">number</span>, <span class="hljs-built_in">string</span>][] = [<br>        [<span class="hljs-number">1000</span>, <span class="hljs-string">"M"</span>], [<span class="hljs-number">900</span>, <span class="hljs-string">"CM"</span>], [<span class="hljs-number">500</span>, <span class="hljs-string">"D"</span>], [<span class="hljs-number">400</span>, <span class="hljs-string">"CD"</span>],<br>        [<span class="hljs-number">100</span>,  <span class="hljs-string">"C"</span>], [<span class="hljs-number">90</span>,  <span class="hljs-string">"XC"</span>], [<span class="hljs-number">50</span>,  <span class="hljs-string">"L"</span>], [<span class="hljs-number">40</span>,  <span class="hljs-string">"XL"</span>],<br>        [<span class="hljs-number">10</span>,   <span class="hljs-string">"X"</span>], [<span class="hljs-number">9</span>,   <span class="hljs-string">"IX"</span>], [<span class="hljs-number">5</span>,   <span class="hljs-string">"V"</span>], [<span class="hljs-number">4</span>,   <span class="hljs-string">"IV"</span>],<br>        [<span class="hljs-number">1</span>,    <span class="hljs-string">"I"</span>]<br>    ];<br><br>    <span class="hljs-keyword">let</span> result = <span class="hljs-string">''</span>;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> [value, <span class="hljs-built_in">symbol</span>] <span class="hljs-keyword">of</span> valueSymbols) {<br>        <span class="hljs-keyword">while</span> (num &gt;= value) {<br>            result += <span class="hljs-built_in">symbol</span>;<br>            num -= value;<br>        }<br>    }<br>    <span class="hljs-keyword">return</span> result;<br>}<br></code></pre></td></tr></table></figure>
+<hr>
+<h2 id="13-罗马数字转整数"><a href="#13-罗马数字转整数" class="headerlink" title="13. 罗马数字转整数"></a>13. 罗马数字转整数</h2><p>罗马数字包含以下七种字符: <code>I</code>， <code>V</code>， <code>X</code>， <code>L</code>，<code>C</code>，<code>D</code>  和  <code>M</code>。</p>
+<p><strong>字符</strong> <strong>数值</strong><br>I 1<br>V 5<br>X 10<br>L 50<br>C 100<br>D 500<br>M 1000</p>
+<p>例如， 罗马数字  <code>2</code>  写做  <code>II</code> ，即为两个并列的 1 。<code>12</code>  写做  <code>XII</code> ，即为  <code>X</code> + <code>II</code> 。 <code>27</code>  写做  <code>XXVII</code>, 即为  <code>XX</code> + <code>V</code> + <code>II</code> 。</p>
+<p>通常情况下，罗马数字中小的数字在大的数字的右边。但也存在特例，例如 4 不写做  <code>IIII</code>，而是  <code>IV</code>。数字 1 在数字 5 的左边，所表示的数等于大数 5 减小数 1 得到的数值 4 。同样地，数字 9 表示为  <code>IX</code>。这个特殊的规则只适用于以下六种情况：</p>
+<ul>
+<li><code>I</code>  可以放在  <code>V</code> (5) 和  <code>X</code> (10) 的左边，来表示 4 和 9。</li>
+<li><code>X</code>  可以放在  <code>L</code> (50) 和  <code>C</code> (100) 的左边，来表示 40 和 90。</li>
+<li><code>C</code>  可以放在  <code>D</code> (500) 和  <code>M</code> (1000) 的左边，来表示 400 和 900。</li>
+</ul>
+<p>给定一个罗马数字，将其转换成整数。</p>
+<p><strong>示例 1:</strong></p>
+<p><strong>输入:</strong> s = “III”<br><strong>输出:</strong> 3</p>
+<p><strong>示例 2:</strong></p>
+<p><strong>输入:</strong> s = “IV”<br><strong>输出:</strong> 4</p>
+<p><strong>示例 3:</strong></p>
+<p><strong>输入:</strong> s = “IX”<br><strong>输出:</strong> 9</p>
+<p><strong>示例 4:</strong></p>
+<p><strong>输入:</strong> s = “LVIII”<br><strong>输出:</strong> 58<br><strong>解释:</strong> L = 50, V= 5, III = 3.</p>
+<p><strong>示例 5:</strong></p>
+<p><strong>输入:</strong> s = “MCMXCIV”<br><strong>输出:</strong> 1994<br><strong>解释:</strong> M = 1000, CM = 900, XC = 90, IV = 4.</p>
+<p>直接从左到右遍历字符串，比较当前符号与下一个符号的值：</p>
+<ul>
+<li>如果当前值 &lt; 下一个值，则减去当前值（形成减法组合）。</li>
+<li>否则加上当前值</li>
+</ul>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><code class="hljs ts"><span class="hljs-keyword">function</span> <span class="hljs-title function_">romanToInt</span>(<span class="hljs-params"><span class="hljs-attr">s</span>: <span class="hljs-built_in">string</span></span>): <span class="hljs-built_in">number</span> {<br>  <span class="hljs-keyword">const</span> map = {<br>    <span class="hljs-attr">I</span>: <span class="hljs-number">1</span>,<br>    <span class="hljs-attr">V</span>: <span class="hljs-number">5</span>,<br>    <span class="hljs-attr">X</span>: <span class="hljs-number">10</span>,<br>    <span class="hljs-attr">L</span>: <span class="hljs-number">50</span>,<br>    <span class="hljs-attr">C</span>: <span class="hljs-number">100</span>,<br>    <span class="hljs-attr">D</span>: <span class="hljs-number">500</span>,<br>    <span class="hljs-attr">M</span>: <span class="hljs-number">1000</span>,<br>  };<br><br>  <span class="hljs-keyword">let</span> res = <span class="hljs-number">0</span>;<br><br>  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; s.<span class="hljs-property">length</span>; i++) {<br>    <span class="hljs-keyword">const</span> current = map[s[i]];<br>    <span class="hljs-keyword">const</span> next = map[s[i + <span class="hljs-number">1</span>]];<br><br>    <span class="hljs-keyword">if</span> (next &amp;&amp; current &lt; next) {<br>      res += next - current;<br>      i++;<br>    } <span class="hljs-keyword">else</span> {<br>      res += current;<br>    }<br>  }<br>  <span class="hljs-keyword">return</span> res;<br>}<br></code></pre></td></tr></table></figure>
+<hr>
+<h2 id="14-最长公共前缀"><a href="#14-最长公共前缀" class="headerlink" title="14. 最长公共前缀"></a>14. 最长公共前缀</h2><p>编写一个函数来查找字符串数组中的最长公共前缀</p>
+<p>如果不存在公共前缀，返回空字符串  <code>""</code></p>
+<p><strong>示例 1：</strong></p>
+<p>输入：strs = [“flower”,”flow”,”flight”]<br>输出：”fl”</p>
+<p><strong>示例 2：</strong></p>
+<p>输入：strs = [“dog”,”racecar”,”car”]<br>输出：””<br>解释：输入不存在公共前缀</p>
+<p>题解比较简单，如下</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs ts"><span class="hljs-keyword">function</span> <span class="hljs-title function_">longestCommonPrefix</span>(<span class="hljs-params"><span class="hljs-attr">strs</span>: <span class="hljs-built_in">string</span>[]</span>): <span class="hljs-built_in">string</span> {<br>  <span class="hljs-keyword">if</span> (strs.<span class="hljs-property">length</span> === <span class="hljs-number">0</span>) <span class="hljs-keyword">return</span> <span class="hljs-string">""</span>;<br><br>  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; strs[<span class="hljs-number">0</span>].<span class="hljs-property">length</span>; i++) {<br>    <span class="hljs-keyword">const</span> char = strs[<span class="hljs-number">0</span>][i];<br>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> j = <span class="hljs-number">1</span>; j &lt; strs.<span class="hljs-property">length</span>; j++) {<br>      <span class="hljs-keyword">if</span> (i === strs[j].<span class="hljs-property">length</span> || strs[j][i] !== char) {<br>        <span class="hljs-keyword">return</span> strs[<span class="hljs-number">0</span>].<span class="hljs-title function_">substring</span>(<span class="hljs-number">0</span>, i);<br>      }<br>    }<br>  }<br>  <span class="hljs-keyword">return</span> strs[<span class="hljs-number">0</span>];<br>}<br></code></pre></td></tr></table></figure>
+<p>主要就是注意一个写法，在 JavaScript（以及 TypeScript）中，<code>strs[0][i]</code> 是一种链式索引访问（chained indexing）的写法，用于访问二维结构或嵌套可索引对象中的元素</p>
+<p>假设 <code>strs = ["flower", "flow", "flight"]</code>，循环变量 <code>i = 2</code> 时：</p>
+<ul>
+<li><code>strs[0] → "flower"</code></li>
+<li><code>strs[0][2] → "flower"</code> 的第 2 个字符 → <code>'o'</code></li>
+</ul>
+<p>同理：</p>
+<ul>
+<li><code>strs[1][2] → "flow"[2] → 'o'</code></li>
+<li><code>strs[2][2] → "flight"[2] → 'i'</code></li>
+</ul>
+<p>通过比较 <code>strs[0][i]</code>与其他字符串的 <code>strs[j][i]</code> 是否相等，来判断第 i 位置是否仍属于公共前缀</p>
+<h3 id="等价的写法"><a href="#等价的写法" class="headerlink" title="等价的写法"></a>等价的写法</h3><figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs ts"><span class="hljs-keyword">const</span> firstStr = strs[<span class="hljs-number">0</span>];<br>firstStr[i];<br><br><span class="hljs-comment">// 使用 charAt 方法</span><br>strs[<span class="hljs-number">0</span>].<span class="hljs-title function_">charAt</span>(i);<br><br><span class="hljs-comment">// 使用 at 方法 ES2022+</span><br>strs[<span class="hljs-number">0</span>].<span class="hljs-title function_">at</span>(i);<br></code></pre></td></tr></table></figure>
+<hr>
+<h2 id="15-三数之和"><a href="#15-三数之和" class="headerlink" title="15. 三数之和"></a>15. 三数之和</h2><p>一个整数数组  <code>nums</code> ，判断是否存在三元组  <code>[nums[i], nums[j], nums[k]]</code>  满足  <code>i != j</code>、<code>i != k</code>  且  <code>j != k</code> ，同时还满足  <code>nums[i] + nums[j] + nums[k] == 0</code> ，返回所有和为  <code>0</code>  且不重复的三元组，且答案中不可以包含重复的三元组</p>
+<p>示例 1：<br>输入：<code>nums = [-1,0,1,2,-1,-4]</code><br>输出：<code>[[-1,-1,2],[-1,0,1]]</code><br>解释：<br><code>nums[0] + nums[1] + nums[2] = (-1) + 0 + 1 = 0</code><br><code>nums[1] + nums[2] + nums[4] = 0 + 1 + (-1) = 0</code><br><code>nums[0] + nums[3] + nums[4] = (-1) + 2 + (-1) = 0</code><br>不同的三元组是 <code>[-1,0,1]</code>和 <code>[-1,-1,2]</code></p>
+<p>示例 2：<br>输入：<code>nums = [0,1,1]</code><br>输出：<code>[]</code><br>解释：唯一可能的三元组和不为 0</p>
+<p>示例 3：<br>输入：<code>nums = [0,0,0]</code><br>输出：<code>[[0,0,0]]</code><br>解释：唯一可能的三元组和为 0</p>
+<p>最开始是想直接 n^3 暴力解，然后用 Set 去重</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs ts"><span class="hljs-keyword">function</span> <span class="hljs-title function_">threeSum</span>(<span class="hljs-params"><span class="hljs-attr">nums</span>: <span class="hljs-built_in">number</span>[]</span>): <span class="hljs-built_in">number</span>[][] {<br>  nums.<span class="hljs-title function_">sort</span>(<span class="hljs-function">(<span class="hljs-params">a, b</span>) =&gt;</span> a - b);<br>  <span class="hljs-keyword">const</span> <span class="hljs-attr">result</span>: <span class="hljs-built_in">number</span>[][] = [];<br>  <span class="hljs-keyword">const</span> seen = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Set</span>&lt;<span class="hljs-built_in">string</span>&gt;();<br><br>  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; nums.<span class="hljs-property">length</span> - <span class="hljs-number">2</span>; i++) {<br>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> j = i + <span class="hljs-number">1</span>; j &lt; nums.<span class="hljs-property">length</span> - <span class="hljs-number">1</span>; j++) {<br>      <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> k = j + <span class="hljs-number">1</span>; k &lt; nums.<span class="hljs-property">length</span>; k++) {<br>        <span class="hljs-keyword">if</span> (nums[i] + nums[j] + nums[k] === <span class="hljs-number">0</span>) {<br>          <span class="hljs-keyword">const</span> triplet = [nums[i], nums[j], nums[k]];<br>          <span class="hljs-keyword">const</span> key = triplet.<span class="hljs-title function_">join</span>(<span class="hljs-string">","</span>);<br>          <span class="hljs-keyword">if</span> (!seen.<span class="hljs-title function_">has</span>(key)) {<br>            seen.<span class="hljs-title function_">add</span>(key);<br>            result.<span class="hljs-title function_">push</span>(triplet);<br>          }<br>        }<br>      }<br>    }<br>  }<br><br>  <span class="hljs-keyword">return</span> result;<br>}<br></code></pre></td></tr></table></figure>
+<p>很明显，时间复杂度特别高，直接爆了</p>
+<p>解法的话依旧双指针降维</p>
+<h3 id="第一步：排序"><a href="#第一步：排序" class="headerlink" title="第一步：排序"></a>第一步：排序</h3><p>排序后可以：利用有序数组的特性，通过指针移动快速缩小范围</p>
+<p>比如原数组是 <code>[-1,0,1,2,-1,-4]</code>，排序后变成 <code>[-4,-1,-1,0,1,2]</code>。这时候，相同的元素（比如两个 <code>-1</code>）会挨在一起，方便后续去重（重复元素会相邻，容易跳过）</p>
+<h3 id="第二步：固定一个数，双指针找另外两个数"><a href="#第二步：固定一个数，双指针找另外两个数" class="headerlink" title="第二步：固定一个数，双指针找另外两个数"></a>第二步：固定一个数，双指针找另外两个数</h3><p>排序后，我们固定第一个数 <code>nums[i]</code>，然后用左指针 <code>left</code> 指向 <code>i+1</code>，右指针 <code>right</code> 指向数组末尾。三个数的和 <code>sum = nums[i] + nums[left] + nums[right]</code>：</p>
+<ul>
+<li>如果 <code>sum &lt; 0</code>：说明需要更大的数，左指针右移（<code>left++</code>）；</li>
+<li>如果 <code>sum &gt; 0</code>：说明需要更小的数，右指针左移（<code>right--</code>）；</li>
+<li>如果 <code>sum = 0</code>：找到一个有效三元组，记录结果。</li>
+</ul>
+<h3 id="第三步：去重"><a href="#第三步：去重" class="headerlink" title="第三步：去重"></a>第三步：去重</h3><p>具体分三种情况：</p>
+<h4 id="1-固定数-nums-i-重复"><a href="#1-固定数-nums-i-重复" class="headerlink" title="1. 固定数 nums[i] 重复"></a>1. 固定数 <code>nums[i]</code> 重复</h4><p>比如排序后的数组是 <code>[-4,-1,-1,0,1,2]</code>，当 <code>i=1</code>（<code>nums[i]=-1</code>）时，和 <code>i=2</code>（<code>nums[i]=-1</code>）时的情况是一样的。这时候需要跳过重复的 <code>nums[i]</code>。</p>
+<p><strong>判断条件</strong>：如果 <code>i &gt; 0</code> 且 <code>nums[i] === nums[i-1]</code>，说明当前 <code>nums[i]</code> 和前一个数重复，直接跳过。</p>
+<h4 id="2-左指针-nums-left-重复"><a href="#2-左指针-nums-left-重复" class="headerlink" title="2. 左指针 nums[left] 重复"></a>2. 左指针 <code>nums[left]</code> 重复</h4><p>假设已经找到 <code>i=0</code>（<code>nums[i]=-4</code>），<code>left=1</code>（<code>nums[left]=-1</code>），<code>right=5</code>（<code>nums[right]=2</code>），此时和为 <code>-4 + (-1) + 2 = -3</code>，不满足条件。左指针右移到 <code>left=2</code>（<code>nums[left]=-1</code>），这时候 <code>nums[left]</code> 和前一个 <code>left</code> 位置的数重复，需要跳过。</p>
+<p><strong>判断条件</strong>：当找到和为 0 的三元组后，需要循环判断 <code>nums[left] === nums[left+1]</code>，如果是，左指针右移，直到遇到不同的数。</p>
+<h4 id="3-右指针-nums-right-重复"><a href="#3-右指针-nums-right-重复" class="headerlink" title="3. 右指针 nums[right] 重复"></a>3. 右指针 <code>nums[right]</code> 重复</h4><p>同样，找到和为 0 的三元组后，如果 <code>nums[right]</code> 和前一个 <code>right</code> 位置的数重复（比如 <code>nums[right]=1</code> 和 <code>nums[right-1]=1</code>），需要跳过。</p>
+<p><strong>判断条件</strong>：循环判断 <code>nums[right] === nums[right-1]</code>，如果是，右指针左移，直到遇到不同的数。</p>
+<ol>
+<li><strong>先排序</strong>：nums.sort((a, b) =&gt; a - b)，使得相同元素相邻，便于跳过重复。</li>
+<li><strong>外层循环跳过重复的 i</strong>：如果当前 nums[i] 与前一个相同，则跳过（避免同一值的 i 产生重复三元组）。</li>
+<li><strong>内层双指针移动时跳过重复的 left 和 right</strong>：找到一个有效三元组后，跳过所有相同的 left 和 right 值。</li>
+</ol>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><code class="hljs ts"><span class="hljs-keyword">function</span> <span class="hljs-title function_">threeSum</span>(<span class="hljs-params"><span class="hljs-attr">nums</span>: <span class="hljs-built_in">number</span>[]</span>): <span class="hljs-built_in">number</span>[][] {<br>  nums.<span class="hljs-title function_">sort</span>(<span class="hljs-function">(<span class="hljs-params">a, b</span>) =&gt;</span> a - b); <span class="hljs-comment">// 先排序，关键一步</span><br>  <span class="hljs-keyword">const</span> <span class="hljs-attr">result</span>: <span class="hljs-built_in">number</span>[][] = [];<br><br>  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; nums.<span class="hljs-property">length</span> - <span class="hljs-number">2</span>; i++) {<br>    <span class="hljs-comment">// 跳过重复的 nums[i]</span><br>    <span class="hljs-keyword">if</span> (i &gt; <span class="hljs-number">0</span> &amp;&amp; nums[i] === nums[i - <span class="hljs-number">1</span>]) {<br>      <span class="hljs-keyword">continue</span>;<br>    }<br><br>    <span class="hljs-keyword">let</span> left = i + <span class="hljs-number">1</span>;<br>    <span class="hljs-keyword">let</span> right = nums.<span class="hljs-property">length</span> - <span class="hljs-number">1</span>;<br><br>    <span class="hljs-keyword">while</span> (left &lt; right) {<br>      <span class="hljs-keyword">const</span> sum = nums[i] + nums[left] + nums[right];<br><br>      <span class="hljs-keyword">if</span> (sum === <span class="hljs-number">0</span>) {<br>        result.<span class="hljs-title function_">push</span>([nums[i], nums[left], nums[right]]); <span class="hljs-comment">//加入结果</span><br><br>        <span class="hljs-comment">// 跳过重复的 left</span><br>        <span class="hljs-keyword">while</span> (left &lt; right &amp;&amp; nums[left] === nums[left + <span class="hljs-number">1</span>]) {<br>          left++;<br>        }<br>        <span class="hljs-comment">// 跳过重复的 right</span><br>        <span class="hljs-keyword">while</span> (left &lt; right &amp;&amp; nums[right] === nums[right - <span class="hljs-number">1</span>]) {<br>          right--;<br>        }<br><br>        left++;<br>        right--;<br>      } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (sum &lt; <span class="hljs-number">0</span>) {<br>        left++;<br>      } <span class="hljs-keyword">else</span> {<br>        right--;<br>      }<br>    }<br>  }<br><br>  <span class="hljs-keyword">return</span> result;<br>}<br></code></pre></td></tr></table></figure>
+<h2 id="16-最接近的三数之和"><a href="#16-最接近的三数之和" class="headerlink" title="16. 最接近的三数之和"></a>16. 最接近的三数之和</h2><p>给你一个长度为  <code>n</code>  的整数数组  <code>nums</code>  和 一个目标值  <code>target</code>。请你从  <code>nums</code>  中选出三个整数，使它们的和与  <code>target</code>  最接近，返回这三个数的和<br>假定每组输入只存在恰好一个解</p>
+<p>示例：<br>输入：nums = <code>[-1,2,1,-4]</code> , <code>target = 1</code><br>输出：2<br>解释：与 target 最接近的和是 2 (-1 + 2 + 1 = 2)</p>
+<p>解法和三数之和一样都是双指针解题<br>多一些判断而已</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><code class="hljs ts"><span class="hljs-keyword">function</span> <span class="hljs-title function_">threeSumClosest</span>(<span class="hljs-params"><span class="hljs-attr">nums</span>: <span class="hljs-built_in">number</span>[], <span class="hljs-attr">target</span>: <span class="hljs-built_in">number</span></span>): <span class="hljs-built_in">number</span> {<br>  nums.<span class="hljs-title function_">sort</span>(<span class="hljs-function">(<span class="hljs-params">a, b</span>) =&gt;</span> a - b);<br>  <span class="hljs-keyword">let</span> closestSum = nums[<span class="hljs-number">0</span>] + nums[<span class="hljs-number">1</span>] + nums[<span class="hljs-number">2</span>];<br>  <span class="hljs-keyword">let</span> minDiff = <span class="hljs-title class_">Math</span>.<span class="hljs-title function_">abs</span>(closestSum - target);<br><br>  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; nums.<span class="hljs-property">length</span> - <span class="hljs-number">2</span>; i++) {<br>    <span class="hljs-keyword">let</span> left = i + <span class="hljs-number">1</span>;<br>    <span class="hljs-keyword">let</span> right = nums.<span class="hljs-property">length</span> - <span class="hljs-number">1</span>;<br><br>    <span class="hljs-keyword">while</span> (left &lt; right) {<br>      <span class="hljs-keyword">const</span> sum = nums[i] + nums[left] + nums[right];<br>      <span class="hljs-keyword">const</span> diff = <span class="hljs-title class_">Math</span>.<span class="hljs-title function_">abs</span>(sum - target);<br><br>      <span class="hljs-keyword">if</span> (diff &lt; minDiff) {<br>        minDiff = diff;<br>        closestSum = sum;<br>      }<br><br>      <span class="hljs-keyword">if</span> (sum &lt; target) {<br>        left++;<br>      } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (sum &gt; target) {<br>        right--;<br>      } <span class="hljs-keyword">else</span> {<br>        <span class="hljs-keyword">return</span> sum;<br>      }<br>    }<br>  }<br>  <span class="hljs-keyword">return</span> closestSum;<br>}<br></code></pre></td></tr></table></figure>
+<hr>
+<h2 id="17-电话号码的的数字组合"><a href="#17-电话号码的的数字组合" class="headerlink" title="17.电话号码的的数字组合"></a>17.电话号码的的数字组合</h2><p>给定一个仅包含数字  <code>2-9</code>  的字符串，返回所有它能表示的字母组合。答案可以按  <strong>任意顺序</strong>  返回。</p>
+<p>给出数字到字母的映射如下（与电话按键相同）。注意 1 不对应任何字母。</p>
+<p class='item-img' data-src='https://pic.leetcode.cn/1752723054-mfIHZs-image.png'><img src="https://pic.leetcode.cn/1752723054-mfIHZs-image.png" alt="电话按键" width="300"></p>
+<p>示例 1：<br>输入：digits = “23”<br>输出：[“ad”,”ae”,”af”,”bd”,”be”,”bf”,”cd”,”ce”,”cf”]</p>
+<p>示例 2：<br>输入：digits = “2”<br>输出：[“a”,”b”,”c”]</p>
+<p>练度不够，还得继续练</p>
+<p>主要解法是迭代法：</p>
+<ul>
+<li>外层循环遍历 digits 中的每一个数字（从左到右）。</li>
+<li>对于当前数字 digit：<ul>
+<li>获取其对应的所有可能字母 letters（如 ‘2’ → ‘abc’）。</li>
+<li>创建一个临时数组 temp，用于存储“加入当前数字字母后的新组合”。</li>
+<li>遍历当前 result 中的每一个已有组合 prev（这些是处理前几个数字得到的所有组合）。</li>
+<li>对 letters 中的每一个 letter，将其追加到 prev 后面，形成新字符串 prev + letter，并加入 temp。</li>
+</ul>
+</li>
+<li>一轮结束后，将 temp 赋值给 result，成为下一轮的“已有组合”。</li>
+</ul>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><code class="hljs ts"><span class="hljs-keyword">function</span> <span class="hljs-title function_">letterCombinations</span>(<span class="hljs-params"><span class="hljs-attr">digits</span>: <span class="hljs-built_in">string</span></span>): <span class="hljs-built_in">string</span>[] {<br>  <span class="hljs-keyword">if</span> (digits.<span class="hljs-property">length</span> === <span class="hljs-number">0</span>) <span class="hljs-keyword">return</span> [];<br><br>  <span class="hljs-keyword">const</span> <span class="hljs-attr">map</span>: { [<span class="hljs-attr">key</span>: <span class="hljs-built_in">string</span>]: <span class="hljs-built_in">string</span> } = {<br>    <span class="hljs-string">"2"</span>: <span class="hljs-string">"abc"</span>,<br>    <span class="hljs-string">"3"</span>: <span class="hljs-string">"def"</span>,<br>    <span class="hljs-string">"4"</span>: <span class="hljs-string">"ghi"</span>,<br>    <span class="hljs-string">"5"</span>: <span class="hljs-string">"jkl"</span>,<br>    <span class="hljs-string">"6"</span>: <span class="hljs-string">"mno"</span>,<br>    <span class="hljs-string">"7"</span>: <span class="hljs-string">"pqrs"</span>,<br>    <span class="hljs-string">"8"</span>: <span class="hljs-string">"tuv"</span>,<br>    <span class="hljs-string">"9"</span>: <span class="hljs-string">"wxyz"</span>,<br>  };<br><br>  <span class="hljs-keyword">let</span> <span class="hljs-attr">result</span>: <span class="hljs-built_in">string</span>[] = [<span class="hljs-string">""</span>];<br><br>  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> digit <span class="hljs-keyword">of</span> digits) {<br>    <span class="hljs-keyword">const</span> letters = map[digit];<br>    <span class="hljs-keyword">const</span> <span class="hljs-attr">temp</span>: <span class="hljs-built_in">string</span>[] = [];<br><br>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> prev <span class="hljs-keyword">of</span> result) {<br>      <span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> letter <span class="hljs-keyword">of</span> letters) {<br>        temp.<span class="hljs-title function_">push</span>(prev + letter);<br>      }<br>    }<br>    result = temp;<br>  }<br><br>  <span class="hljs-keyword">return</span> result;<br>}<br></code></pre></td></tr></table></figure>
+<p>从“空组合”开始，依次将每个新数字的字母可能性“横向扩展”到所有已有组合上，最终得到所有完整组合</p>
+<hr>
+<h2 id="18-四数之和"><a href="#18-四数之和" class="headerlink" title="18.四数之和"></a>18.四数之和</h2><p>给你一个由  <code>n</code>  个整数组成的数组  <code>nums</code> ，和一个目标值  <code>target</code> 。请你找出并返回满足下述全部条件且<strong>不重复</strong>的四元组  <code>[nums[a], nums[b], nums[c], nums[d]]</code> （若两个四元组元素一一对应，则认为两个四元组重复）：</p>
+<ul>
+<li><code>0 &lt;= a, b, c, d &lt; n</code></li>
+<li><code>a</code>、<code>b</code>、<code>c</code>  和  <code>d</code>  互不相同</li>
+<li><code>nums[a] + nums[b] + nums[c] + nums[d] == target</code></li>
+</ul>
+<p>输入：<code>nums = [1,0,-1,0,-2,2]</code>, <code>target = 0</code><br>输出：<code>[[-2,-1,1,2] , [-2,0,0,2] , [-1,0,0,1]]</code></p>
+<p>输入：<code>nums = [2,2,2,2,2]</code>, <code>target = 8</code><br>输出：<code>[[2,2,2,2]]</code></p>
+<p><strong>就是三数之和的基础上再套上一层 for 循环</strong></p>
+<p>题解</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><code class="hljs ts"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@param</span> {<span class="hljs-type">number[]</span>} <span class="hljs-variable">nums</span></span><br><span class="hljs-comment"> * <span class="hljs-doctag">@param</span> {<span class="hljs-type">number</span>} <span class="hljs-variable">target</span></span><br><span class="hljs-comment"> * <span class="hljs-doctag">@return</span> {<span class="hljs-type">number[][]</span>}</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">function</span>(<span class="hljs-params">nums, target</span>) {<br>    nums.<span class="hljs-title function_">sort</span>(<span class="hljs-function">(<span class="hljs-params">a, b</span>) =&gt;</span> a - b);  <span class="hljs-comment">// 先排序</span><br>    <span class="hljs-keyword">const</span> n = nums.<span class="hljs-property">length</span>;<br>    <span class="hljs-keyword">const</span> result = [];<br><br>    <span class="hljs-keyword">if</span> (n &lt; <span class="hljs-number">4</span>) <span class="hljs-keyword">return</span> result;<br><br>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; n - <span class="hljs-number">3</span>; i++) {<br>        <span class="hljs-comment">// 去重 i</span><br>        <span class="hljs-keyword">if</span> (i &gt; <span class="hljs-number">0</span> &amp;&amp; nums[i] === nums[i - <span class="hljs-number">1</span>]) <span class="hljs-keyword">continue</span>;<br><br>        <span class="hljs-comment">// 剪枝：当前四个最小值之和已大于 target，直接终止</span><br>        <span class="hljs-keyword">if</span> (nums[i] + nums[i + <span class="hljs-number">1</span>] + nums[i + <span class="hljs-number">2</span>] + nums[i + <span class="hljs-number">3</span>] &gt; target) <span class="hljs-keyword">break</span>;<br><br>        <span class="hljs-comment">// 剪枝：当前 i 与后面三个最大值之和小于 target，跳过本次 i</span><br>        <span class="hljs-keyword">if</span> (nums[i] + nums[n - <span class="hljs-number">3</span>] + nums[n - <span class="hljs-number">2</span>] + nums[n - <span class="hljs-number">1</span>] &lt; target) <span class="hljs-keyword">continue</span>;<br><br>        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> j = i + <span class="hljs-number">1</span>; j &lt; n - <span class="hljs-number">2</span>; j++) {<br>            <span class="hljs-comment">// 去重 j</span><br>            <span class="hljs-keyword">if</span> (j &gt; i + <span class="hljs-number">1</span> &amp;&amp; nums[j] === nums[j - <span class="hljs-number">1</span>]) <span class="hljs-keyword">continue</span>;<br><br>            <span class="hljs-comment">// 剪枝</span><br>            <span class="hljs-keyword">if</span> (nums[i] + nums[j] + nums[j + <span class="hljs-number">1</span>] + nums[j + <span class="hljs-number">2</span>] &gt; target) <span class="hljs-keyword">break</span>;<br>            <span class="hljs-keyword">if</span> (nums[i] + nums[j] + nums[n - <span class="hljs-number">2</span>] + nums[n - <span class="hljs-number">1</span>] &lt; target) <span class="hljs-keyword">continue</span>;<br><br>            <span class="hljs-keyword">let</span> left = j + <span class="hljs-number">1</span>;<br>            <span class="hljs-keyword">let</span> right = n - <span class="hljs-number">1</span>;<br><br>            <span class="hljs-keyword">while</span> (left &lt; right) {<br>                <span class="hljs-keyword">const</span> sum = nums[i] + nums[j] + nums[left] + nums[right];<br><br>                <span class="hljs-keyword">if</span> (sum === target) {<br>                    result.<span class="hljs-title function_">push</span>([nums[i], nums[j], nums[left], nums[right]]);<br><br>                    <span class="hljs-comment">// 去重 left</span><br>                    <span class="hljs-keyword">while</span> (left &lt; right &amp;&amp; nums[left] === nums[left + <span class="hljs-number">1</span>]) left++;<br>                    <span class="hljs-comment">// 去重 right</span><br>                    <span class="hljs-keyword">while</span> (left &lt; right &amp;&amp; nums[right] === nums[right - <span class="hljs-number">1</span>]) right--;<br><br>                    left++;<br>                    right--;<br>                } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (sum &lt; target) {<br>                    left++;<br>                } <span class="hljs-keyword">else</span> {<br>                    right--;<br>                }<br>            }<br>        }<br>    }<br><br>    <span class="hljs-keyword">return</span> result;<br>};<br></code></pre></td></tr></table></figure>
+<hr>
+<h2 id="19-删除链表的第-n-个节点"><a href="#19-删除链表的第-n-个节点" class="headerlink" title="19. 删除链表的第 n 个节点"></a>19. 删除链表的第 n 个节点</h2><p>给你一个链表，删除链表的倒数第  <code>n</code>  个结点，并且返回链表的头结点</p>
+<p>输入：head = [1,2,3,4,5], n = 2<br>输出：[1,2,3,5]</p>
+<p>输入：head = [1], n = 1<br>输出：[]</p>
+<p>自己写的一版，思路主要是遍历一趟链表搞到 length，再用 n 确定 index 来定位要删的位置，最后再删掉该节点</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><code class="hljs ts"><span class="hljs-keyword">function</span> <span class="hljs-title function_">removeNthFromEnd</span>(<span class="hljs-params"><span class="hljs-attr">head</span>: <span class="hljs-title class_">ListNode</span> | <span class="hljs-literal">null</span>, <span class="hljs-attr">n</span>: <span class="hljs-built_in">number</span></span>): <span class="hljs-title class_">ListNode</span> | <span class="hljs-literal">null</span> {<br>  <span class="hljs-keyword">let</span> len = <span class="hljs-number">0</span>;<br>  <span class="hljs-keyword">let</span> curr = head;<br>  <span class="hljs-keyword">while</span> (curr !== <span class="hljs-literal">null</span>) {<br>    len++;<br>    curr = curr.<span class="hljs-property">next</span>;<br>  }<br><br>  <span class="hljs-keyword">if</span> (len === n) {<br>    <span class="hljs-keyword">return</span> head?.<span class="hljs-property">next</span> ?? <span class="hljs-literal">null</span>;<br>  }<br><br>  <span class="hljs-keyword">let</span> index = len - n - <span class="hljs-number">1</span>;<br>  <span class="hljs-keyword">let</span> delindex = <span class="hljs-number">0</span>;<br><br>  <span class="hljs-keyword">let</span> del = head;<br>  <span class="hljs-keyword">let</span> prev = <span class="hljs-keyword">new</span> <span class="hljs-title class_">ListNode</span>(<span class="hljs-number">0</span>);<br>  prev.<span class="hljs-property">next</span> = head;<br>  <span class="hljs-keyword">while</span> (del !== <span class="hljs-literal">null</span>) {<br>    prev = prev.<span class="hljs-property">next</span>;<br>    del = del.<span class="hljs-property">next</span>;<br>    <span class="hljs-keyword">if</span> (delindex === index) {<br>      prev.<span class="hljs-property">next</span> = del.<span class="hljs-property">next</span>;<br>    }<br>    delindex++;<br>  }<br>  <span class="hljs-keyword">return</span> head;<br>}<br></code></pre></td></tr></table></figure>
+<p>题解的话主要是用快慢指针,这个思路挺不错的其实</p>
+<ul>
+<li>引入虚拟头结点 dummy</li>
+<li>让 fast 指针先走 n 步</li>
+<li>然后 slow 与 fast 同步移动，当 fast 到达末尾时，slow 指向的就是倒数第 n 个节点的前一个节点</li>
+<li>执行 slow.next = slow.next.next 删除目标节点</li>
+</ul>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><code class="hljs ts"><span class="hljs-keyword">function</span> <span class="hljs-title function_">removeNthFromEnd</span>(<span class="hljs-params"><span class="hljs-attr">head</span>: <span class="hljs-title class_">ListNode</span> | <span class="hljs-literal">null</span>, <span class="hljs-attr">n</span>: <span class="hljs-built_in">number</span></span>): <span class="hljs-title class_">ListNode</span> | <span class="hljs-literal">null</span> {<br>  <span class="hljs-comment">// 边界：空链表或 n 无效直接返回</span><br>  <span class="hljs-keyword">if</span> (head === <span class="hljs-literal">null</span>) <span class="hljs-keyword">return</span> <span class="hljs-literal">null</span>;<br><br>  <span class="hljs-keyword">const</span> dummy = <span class="hljs-keyword">new</span> <span class="hljs-title class_">ListNode</span>(<span class="hljs-number">0</span>);<br>  dummy.<span class="hljs-property">next</span> = head;<br><br>  <span class="hljs-keyword">let</span> <span class="hljs-attr">fast</span>: <span class="hljs-title class_">ListNode</span> | <span class="hljs-literal">null</span> = dummy;<br>  <span class="hljs-keyword">let</span> <span class="hljs-attr">slow</span>: <span class="hljs-title class_">ListNode</span> | <span class="hljs-literal">null</span> = dummy;<br><br>  <span class="hljs-comment">// fast 先走 n 步</span><br>  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; n; i++) {<br>    fast = fast!.<span class="hljs-property">next</span>; <span class="hljs-comment">// n 合法时不会为 null</span><br>  }<br><br>  <span class="hljs-comment">// fast 和 slow 同步移动，直到 fast 到达末尾</span><br>  <span class="hljs-keyword">while</span> (fast!.<span class="hljs-property">next</span> !== <span class="hljs-literal">null</span>) {<br>    fast = fast!.<span class="hljs-property">next</span>;<br>    slow = slow!.<span class="hljs-property">next</span>;<br>  }<br><br>  <span class="hljs-comment">// 此时 slow 指向倒数第 n 个节点的前一个节点</span><br>  <span class="hljs-keyword">if</span> (slow!.<span class="hljs-property">next</span> !== <span class="hljs-literal">null</span>) {<br>    slow!.<span class="hljs-property">next</span> = slow!.<span class="hljs-property">next</span>.<span class="hljs-property">next</span>;<br>  }<br><br>  <span class="hljs-keyword">return</span> dummy.<span class="hljs-property">next</span>;<br>}<br></code></pre></td></tr></table></figure>
+<hr>
+<h2 id="20-有效的括号"><a href="#20-有效的括号" class="headerlink" title="20.有效的括号"></a>20.有效的括号</h2><p>给定一个只包括  <code>'('</code>，<code>')'</code>，<code>'{'</code>，<code>'}'</code>，<code>'['</code>，<code>']'</code>  的字符串  <code>s</code> ，判断字符串是否有效</p>
+<p>有效字符串需满足：</p>
+<ol>
+<li>左括号必须用相同类型的右括号闭合。</li>
+<li>左括号必须以正确的顺序闭合。</li>
+<li>每个右括号都有一个对应的相同类型的左括号。</li>
+</ol>
+<p>示例 1：<br>输入：<code>s = "()"</code><br>输出：true</p>
+<p>示例 2：<br>输入：<code>s = "()[]{}"</code><br>输出：true</p>
+<p>示例 3：<br>输入：<code>s = "(]"</code><br>输出：false</p>
+<p>示例 4：<br>输入：<code>s = "([])"</code><br>输出：true</p>
+<p>示例 5：<br>输入：<code>s = "([)]"</code><br>输出：false</p>
+<p>提示：</p>
+<ul>
+<li><code>1 &lt;= s.length &lt;= 104</code></li>
+<li><code>s</code>  仅由括号  <code>'()[]{}'</code>  组成</li>
+</ul>
+<p>思路不难，主要就是栈匹配问题</p>
+<ul>
+<li>开括号 → 入栈 <code>stk.push(s[i])</code></li>
+<li>闭括号 → 元素出栈 <code>stk.pop()</code> 进行匹配  </li>
+<li>若栈空或栈顶不匹配 → 立即返回 false；否则弹出栈顶</li>
+<li>遍历结束 → 栈空返回 true，否则 false</li>
+</ul>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs ts"><span class="hljs-keyword">function</span> <span class="hljs-title function_">isValid</span>(<span class="hljs-params"><span class="hljs-attr">s</span>: <span class="hljs-built_in">string</span></span>): <span class="hljs-built_in">boolean</span> {<br>  <span class="hljs-keyword">let</span> <span class="hljs-attr">stk</span>: <span class="hljs-built_in">string</span>[] = [];<br>  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; s.<span class="hljs-property">length</span>; i++) {<br>    <span class="hljs-keyword">if</span> (s[i] === <span class="hljs-string">"("</span> || s[i] === <span class="hljs-string">"["</span> || s[i] === <span class="hljs-string">"{"</span>) {<br>      stk.<span class="hljs-title function_">push</span>(s[i]);<br>    } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (s[i] === <span class="hljs-string">")"</span> || s[i] === <span class="hljs-string">"]"</span> || s[i] === <span class="hljs-string">"}"</span>) {<br>      <span class="hljs-keyword">if</span> (stk.<span class="hljs-property">length</span> === <span class="hljs-number">0</span>) {<br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>      }<br>      <span class="hljs-keyword">let</span> curr = stk.<span class="hljs-title function_">pop</span>()!;<br>      <span class="hljs-keyword">if</span> (curr === <span class="hljs-string">"("</span> &amp;&amp; s[i] === <span class="hljs-string">")"</span>) {<br>      } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (curr === <span class="hljs-string">"["</span> &amp;&amp; s[i] === <span class="hljs-string">"]"</span>) {<br>      } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (curr === <span class="hljs-string">"{"</span> &amp;&amp; s[i] === <span class="hljs-string">"}"</span>) {<br>      } <span class="hljs-keyword">else</span> {<br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>      }<br>    }<br>  }<br>  <span class="hljs-keyword">return</span> stk.<span class="hljs-property">length</span> === <span class="hljs-number">0</span>;<br>}<br></code></pre></td></tr></table></figure>
+<div id="paginator"></div></div><div id="post-footer"><div id="pages"><div class="footer-link" style="width: 50%;text-align:right;border-right:1px #fe2 solid"><a href="/Arknight-notes/posts/40452.html">← Next 2025-12-27-算法刷题-关于链表操作</a></div><div class="footer-link" style="width: 50%;right:1px;border-left:1px #fe2 solid"><a href="/Arknight-notes/posts/46758.html">2025-12-26-关于Javascript/TypeScript 的顺序表，链表 Prev →</a></div></div></div><div id="comments"><div id="gitalk"></div></div></div><div class="bottom-btn"><div><a class="i-top" id="to-top" onClick="scrolls.scrolltop();" title="To Top" style="opacity: 0; display: none;">∧ </a><a class="i-index" id="to-index" href="#toc-div" title="To Catalog">≡</a><a class="i-color" id="color-mode" onClick="colorMode.change()" title="Change Theme"></a></div></div></article><aside><div id="about"><a href="/Arknight-notes/" id="logo"><img src="https://pic4.zhimg.com/80/v2-d9884f32711e19e80979eac58e943897_720w.webp" alt="Logo" style="margin:20;border-radius:0;"></a><h1 id="Dr"><a href="zhongye">柊野</a></h1><div id="description"><p></p></div></div><div id="aside-block"><div id="toc-div"><h1>Catalog</h1><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#11-%E7%9B%9B%E6%9C%80%E5%A4%9A%E6%B0%B4%E7%9A%84%E5%AE%B9%E5%99%A8"><span class="toc-number">1.</span> <span class="toc-text">11. 盛最多水的容器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#12-%E6%95%B4%E6%95%B0%E8%BD%AC%E7%BD%97%E9%A9%AC%E6%95%B0%E5%AD%97"><span class="toc-number">2.</span> <span class="toc-text">12.整数转罗马数字</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#13-%E7%BD%97%E9%A9%AC%E6%95%B0%E5%AD%97%E8%BD%AC%E6%95%B4%E6%95%B0"><span class="toc-number">3.</span> <span class="toc-text">13. 罗马数字转整数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#14-%E6%9C%80%E9%95%BF%E5%85%AC%E5%85%B1%E5%89%8D%E7%BC%80"><span class="toc-number">4.</span> <span class="toc-text">14. 最长公共前缀</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AD%89%E4%BB%B7%E7%9A%84%E5%86%99%E6%B3%95"><span class="toc-number">4.1.</span> <span class="toc-text">等价的写法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#15-%E4%B8%89%E6%95%B0%E4%B9%8B%E5%92%8C"><span class="toc-number">5.</span> <span class="toc-text">15. 三数之和</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E4%B8%80%E6%AD%A5%EF%BC%9A%E6%8E%92%E5%BA%8F"><span class="toc-number">5.1.</span> <span class="toc-text">第一步：排序</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E4%BA%8C%E6%AD%A5%EF%BC%9A%E5%9B%BA%E5%AE%9A%E4%B8%80%E4%B8%AA%E6%95%B0%EF%BC%8C%E5%8F%8C%E6%8C%87%E9%92%88%E6%89%BE%E5%8F%A6%E5%A4%96%E4%B8%A4%E4%B8%AA%E6%95%B0"><span class="toc-number">5.2.</span> <span class="toc-text">第二步：固定一个数，双指针找另外两个数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E4%B8%89%E6%AD%A5%EF%BC%9A%E5%8E%BB%E9%87%8D"><span class="toc-number">5.3.</span> <span class="toc-text">第三步：去重</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E5%9B%BA%E5%AE%9A%E6%95%B0-nums-i-%E9%87%8D%E5%A4%8D"><span class="toc-number">5.3.1.</span> <span class="toc-text">1. 固定数 nums[i] 重复</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E5%B7%A6%E6%8C%87%E9%92%88-nums-left-%E9%87%8D%E5%A4%8D"><span class="toc-number">5.3.2.</span> <span class="toc-text">2. 左指针 nums[left] 重复</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-%E5%8F%B3%E6%8C%87%E9%92%88-nums-right-%E9%87%8D%E5%A4%8D"><span class="toc-number">5.3.3.</span> <span class="toc-text">3. 右指针 nums[right] 重复</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#16-%E6%9C%80%E6%8E%A5%E8%BF%91%E7%9A%84%E4%B8%89%E6%95%B0%E4%B9%8B%E5%92%8C"><span class="toc-number">6.</span> <span class="toc-text">16. 最接近的三数之和</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#17-%E7%94%B5%E8%AF%9D%E5%8F%B7%E7%A0%81%E7%9A%84%E7%9A%84%E6%95%B0%E5%AD%97%E7%BB%84%E5%90%88"><span class="toc-number">7.</span> <span class="toc-text">17.电话号码的的数字组合</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#18-%E5%9B%9B%E6%95%B0%E4%B9%8B%E5%92%8C"><span class="toc-number">8.</span> <span class="toc-text">18.四数之和</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#19-%E5%88%A0%E9%99%A4%E9%93%BE%E8%A1%A8%E7%9A%84%E7%AC%AC-n-%E4%B8%AA%E8%8A%82%E7%82%B9"><span class="toc-number">9.</span> <span class="toc-text">19. 删除链表的第 n 个节点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#20-%E6%9C%89%E6%95%88%E7%9A%84%E6%8B%AC%E5%8F%B7"><span class="toc-number">10.</span> <span class="toc-text">20.有效的括号</span></a></li></ol></div></div><footer><nobr><span class="icp-title">GZHU</span><span class="icp-content">193001-0001</span></nobr><br><nobr><span class="icp-title">OUTPOST</span><span class="icp-content">169-2025-0331</span></nobr><br><nobr>Published with <a target="_blank" rel="noopener" href="http://hexo.io">Hexo</a></nobr><wbr><nobr> Theme <a target="_blank" rel="noopener" href="https://github.com/Yue-plus/hexo-theme-arknights">Arknights</a></nobr><wbr><nobr> by <a target="_blank" rel="noopener" href="https://github.com/Yue-plus">Yue_plus</a></nobr></footer></aside></main><canvas id="canvas-dust"></canvas></body></html>

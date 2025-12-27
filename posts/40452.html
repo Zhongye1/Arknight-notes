@@ -1,0 +1,448 @@
+<!DOCTYPE html><html lang="en" theme-mode="dark"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>2025-12-27-算法刷题-关于链表操作 | Notes|笔记站</title><link rel="icon" type="image/x-icon" href="/Arknight-notes/favicon.ico"><link rel="preload" as="font" crossorigin="anonymous" href="/Arknight-notes/font/Bender.ttf"><link rel="preload" as="font" crossorigin="anonymous" href="/Arknight-notes/font/BenderLight.ttf"><link rel="preload" as="font" crossorigin="anonymous" href="/Arknight-notes/font/JetBrainsMono-Regular.woff2"><link rel="stylesheet" href="/Arknight-notes/css/arknights.css"><style>@font-face {
+  font-family: Bender;
+  src: local('Bender'), url("/Arknight-notes/font/Bender.ttf"), url("/Arknight-notes/font/Bender.otf");
+}
+@font-face {
+  font-family: BenderLight;
+  src: local('BenderLight'), url("/Arknight-notes/font/BenderLight.ttf");
+}
+@font-face {
+  font-family: 'JetBrains Mono';
+  src: local('JetBrains Mono'), url('/Arknight-notes/font/JetBrainsMono-Regular.woff2') format('woff2');
+}
+</style><script>var config = {"root":"/Arknight-notes/","code_fold":90,"search":{"preload":false,"activeHolder":"Enter here","blurHolder":"Search","noResult":"Data \"$0\" not found"},"code":{"codeInfo":"$0 - $1 lines","copy":"copy"}}</script><link type="text/css" rel="stylesheet" href="/Arknight-notes/lib/encrypt/hbe.style.css"><script src="/Arknight-notes/js/gitalk.js"></script><script src="//unpkg.com/mermaid@10.5.0/dist/mermaid.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.6.1/MathJax.js"></script><script>MathJax.Hub.Config({
+ menuSettings: {
+   zoom: "None"
+ },
+ showMathMenu: false,
+ jax: ["input/TeX","output/CommonHTML"],
+ extensions: ["tex2jax.js"],
+ TeX: {
+   extensions: ["AMSmath.js","AMSsymbols.js"],
+   equationNumbers: {
+     autoNumber: "AMS"
+   }
+ },
+ tex2jax: {
+   inlineMath: [["\\(", "\\)"]],
+   displayMath: [["\\[", "\\]"]]
+ }
+});</script><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lightgallery.css"><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lg-zoom.css"><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lg-thumbnail.css"><link type="text/css" rel="stylesheet" href="/Arknight-notes/lib/fontawesome/css/all.min.css"><script>if (window.localStorage.getItem('theme-mode') === 'light')
+ document.documentElement.setAttribute('theme-mode', 'light')
+if (window.localStorage.getItem('theme-mode') === 'dark')
+ document.documentElement.setAttribute('theme-mode', 'dark')</script><style>@font-face {
+ font-family: BenderLight;
+ src: local('Bender'), url("/Arknight-notes/font/BenderLight.woff2") format('woff2');
+}
+@font-face {
+ font-family: 'JetBrains Mono';
+ src: local('JetBrains Mono'), url('/Arknight-notes/font/JetBrainsMono-Regular.woff2') format('woff2');
+}</style><style>:root {
+ --dark-background: url('https://pic2.zhimg.com/v2-6269d74b4dafe14781d03790e5a86b21_r.jpg');
+ --light-background: url('https://pic1.zhimg.com/v2-233b64b583642fc4a6d77e69ced33150_r.jpg');
+ --theme-encrypt-confirm: 'confirm'
+}</style><script defer src="/Arknight-notes/js/arknights.js"></script><script defer src="/Arknight-notes/js/search.js"></script><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><script async src="/Arknight-notes/js/gitalk.js"></script><script defer type="module">import mermaid from '//unpkg.com/mermaid@10.5.0/dist/mermaid.esm.mjs';
+window.mermaid = mermaid;
+code.paintMermaid();
+</script><script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.6.1/MathJax.js"></script><script>MathJax.Hub.Config({
+  menuSettings: {
+    zoom: "None"
+  },
+  showMathMenu: false,
+  jax: ["input/TeX","output/CommonHTML"],
+  extensions: ["tex2jax.js"],
+  TeX: {
+    extensions: ["AMSmath.js","AMSsymbols.js"],
+    equationNumbers: {
+      autoNumber: "AMS"
+    }
+  },
+  tex2jax: {
+    inlineMath: [["\\(", "\\)"]],
+    displayMath: [["\\[", "\\]"]]
+  }
+});
+</script><script async src="//unpkg.com/lightgallery@2.7.1/lightgallery.min.js"></script><script async src="//unpkg.com/lightgallery@2.7.1/plugins/zoom/lg-zoom.min.js"></script><script async src="//unpkg.com/lightgallery@2.7.1/plugins/thumbnail/lg-thumbnail.min.js"></script><script async src="/Arknight-notes/lib/encrypt/hbe.js"></script><script async src="/Arknight-notes/js/pjax.js"></script><script class="pjax-js">reset= () => {gitalk = new Gitalk({
+ clientID: 'Ov23ct13Fb0b67x23wnT',
+ clientSecret: 'f18ce69dd545e3c0f5e2456afde9c756fe8a254a',
+ repo: 'Arknight-notes',
+ owner: 'Zhongye1',
+ admin: ['Zhongye1'],
+ distractionFreeMode: false,
+ id: location.pathname
+});
+if (document.querySelector("#gitalk")) gitalk.render("gitalk");document.querySelector('.lg-container')?.remove()
+lightGallery(document.getElementById('post-bg'), {
+  plugins: [lgZoom,lgThumbnail],
+  selector: '.item-img'})}</script><script>window.addEventListener("load",() => {pjax = new Pjax({
+ cacheBust: false,
+ selectors: ['title','article','#aside-block','.pjax-js','data-pjax','.busuanzi'],
+ switches: {'article': Pjax.switches.sideBySide},
+ switchesOptions: {
+   'article': {
+     classNames: {
+       remove: "pjax-out",
+       add: "pjax-in"
+     }
+   }
+ }
+});
+document.addEventListener("pjax:complete", reset);document.addEventListener('pjax:success', _ => bszCaller.fetch(
+ "//busuanzi.ibruce.info/busuanzi?jsonpCallback=BusuanziCallback", a => {
+  bszTag.texts(a),
+  bszTag.shows()
+}));reset()})</script><script class="pjax-js">reset= () => {gitalk = new Gitalk({
+ clientID: 'Ov23ct13Fb0b67x23wnT',
+ clientSecret: 'f18ce69dd545e3c0f5e2456afde9c756fe8a254a',
+ repo: 'Arknight-notes',
+ owner: 'Zhongye1',
+ admin: ['Zhongye1'],
+ distractionFreeMode: false,
+ id: location.pathname
+});
+if (document.querySelector("#gitalk")) gitalk.render("gitalk");document.querySelector('.lg-container')?.remove()
+lightGallery(document.getElementById('post-bg'), {
+  plugins: [lgZoom,lgThumbnail],
+  selector: '.item-img'})}</script><script>window.addEventListener("load",() => {pjax = new Pjax({
+ cacheBust: false,
+ selectors: ['title','article','#aside-block','.pjax-js'],
+ switches: {'article': Pjax.switches.sideBySide},
+ switchesOptions: {
+   'article': {
+     classNames: {
+       remove: "pjax-out",
+       add: "pjax-in"
+     }
+   }
+ }
+});
+document.addEventListener("pjax:complete", reset);reset()})</script><meta name="generator" content="Hexo 7.3.0"><style>mjx-container[jax="SVG"] {
+  direction: ltr;
+}
+
+mjx-container[jax="SVG"] > svg {
+  overflow: visible;
+}
+
+mjx-container[jax="SVG"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="SVG"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="SVG"][justify="right"] {
+  text-align: right;
+}
+
+g[data-mml-node="merror"] > g {
+  fill: red;
+  stroke: red;
+}
+
+g[data-mml-node="merror"] > rect[data-background] {
+  fill: yellow;
+  stroke: none;
+}
+
+g[data-mml-node="mtable"] > line[data-line] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > rect[data-frame] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > .mjx-dashed {
+  stroke-dasharray: 140;
+}
+
+g[data-mml-node="mtable"] > .mjx-dotted {
+  stroke-linecap: round;
+  stroke-dasharray: 0,140;
+}
+
+g[data-mml-node="mtable"] > svg {
+  overflow: visible;
+}
+
+[jax="SVG"] mjx-tool {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+[jax="SVG"] mjx-tool > mjx-tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+mjx-tool > mjx-tip {
+  display: inline-block;
+  padding: .2em;
+  border: 1px solid #888;
+  font-size: 70%;
+  background-color: #F8F8F8;
+  color: black;
+  box-shadow: 2px 2px 5px #AAAAAA;
+}
+
+g[data-mml-node="maction"][data-toggle] {
+  cursor: pointer;
+}
+
+mjx-status {
+  display: block;
+  position: fixed;
+  left: 1em;
+  bottom: 1em;
+  min-width: 25%;
+  padding: .2em .4em;
+  border: 1px solid #888;
+  font-size: 90%;
+  background-color: #F8F8F8;
+  color: black;
+}
+
+foreignObject[data-mjx-xml] {
+  font-family: initial;
+  line-height: normal;
+  overflow: visible;
+}
+
+.MathJax path {
+  stroke-width: 3;
+}
+
+mjx-container[display="true"] {
+  overflow: auto hidden;
+}
+
+mjx-container[display="true"] + br {
+  display: none;
+}
+</style><link rel="alternate" href="/Arknight-notes/rss.xml" title="Notes|笔记站" type="application/atom+xml">
+</head><body><div class="loading" style="opacity: 0;"><div class="loadingBar left"></div><div class="loadingBar right"></div></div><main><header class="closed"><div class="navBtn"><i class="navBtnIcon"><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span></i></div><nav><div class="navItem" id="search-header"><span class="navItemTitle"><input autocomplete="off" autocorrect="off" autocapitalize="none" placeholder="Search" spellcheck="false" maxlength="50" type="text" id="search-input"></span></div><div class="navItem" id="search-holder"></div><div class="search-popup" tabindex="0"><div id="search-result"></div></div><ol class="navContent"><li class="navItem"><a class="navBlock" href="/Arknight-notes/"><span class="navItemTitle">Home</span></a></li><li class="navItem" matchdata="categories,tags"><a class="navBlock" href="/Arknight-notes/archives/"><span class="navItemTitle">Archives</span></a></li><li class="navItem"><a class="navBlock" href="/Arknight-notes/about/"><span class="navItemTitle">About</span></a></li></ol></nav></header><article><div id="post-bg"><div id="post-title"><h1>2025-12-27-算法刷题-关于链表操作</h1><div id="post-info"><span>First Post: <div class="control"><time datetime="2025-12-27T08:12:42.000Z" id="date"> 2025-12-27</time></div></span><br><span>Last Update: <div class="control"><time datetime="2025-12-27T10:53:26.438Z" id="updated"> 2025-12-27</time></div></span><br><span id="busuanzi_container_page_pv">Page View: <span class="control" id="busuanzi_value_page_pv">loading...</span></span></div></div><hr><div id="post-content"><p>后悔数据结构当初没有好好学的第n天<br>现在恶补，知识学爆</p>
+<p class='item-img' data-src='https://picx.zhimg.com/v2-1e47d2da440013ae7d4262f54c26dd52_720w.webp?source=d16d100b'><img src="https://picx.zhimg.com/v2-1e47d2da440013ae7d4262f54c26dd52_720w.webp?source=d16d100b" style="height=100px"></p>
+<p>基础操作：</p>
+<ul>
+<li>查找元素：根据值查找节点位置</li>
+<li>指定位置插入：在特定位置插入新节点</li>
+<li>指定位置获取：获取特定位置的节点值</li>
+<li>指定位置删除：删除特定位置的节点</li>
+<li>获取长度：统计链表中节点的数量</li>
+</ul>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th></th>
+<th>题目描述</th>
+<th>主要实现思路</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>BM1</td>
+<td>反转链表</td>
+<td>使用三指针（prev、curr、next）迭代反转：保存下一个节点，反转当前指向，移动指针。返回prev作为新头。</td>
+</tr>
+<tr>
+<td>BM2</td>
+<td>链表内指定区间反转</td>
+<td>引入虚拟头结点定位第m-1个节点（pre）。然后在[m,n]区间执行(n-m)次头插法（逐个将下一个节点插入pre后）。</td>
+</tr>
+<tr>
+<td>BM3</td>
+<td>链表中的节点每k个一组翻转</td>
+<td>每k个节点为一组，使用反转链表方法局部反转。若剩余不足k个，则保持原序。递归或迭代均可，推荐迭代分段处理。</td>
+</tr>
+<tr>
+<td>BM4</td>
+<td>合并两个排序的链表</td>
+<td>双指针模拟归并排序：比较两个链表当前节点值，小者接入新链表，移动对应指针。处理剩余部分。</td>
+</tr>
+<tr>
+<td>BM5</td>
+<td>合并k个已排序的链表</td>
+<td>使用小根堆（优先队列）维护k个链表头结点，每次弹出最小值并接入结果链表，同时推入其下一个节点。</td>
+</tr>
+<tr>
+<td>BM6</td>
+<td>判断链表中是否有环</td>
+<td>快慢指针（Floyd判圈算法）：fast每次走2步，slow走1步。若相遇则有环，否则无环。</td>
+</tr>
+<tr>
+<td>BM7</td>
+<td>链表中环的入口结点</td>
+<td>先用快慢指针相遇于环内某点，再令一指针从头启动，与慢指针同步移动，相遇处即环入口。</td>
+</tr>
+<tr>
+<td>BM8</td>
+<td>链表中倒数最后k个结点</td>
+<td>快慢指针：fast先走k步，然后slow与fast同步移动，至fast到尾时slow即为倒数第k个节点。</td>
+</tr>
+<tr>
+<td>BM9</td>
+<td>删除链表的倒数第n个节点</td>
+<td>同BM8定位倒数第n+1个节点（pre），然后pre.next = pre.next.next删除目标节点。注意头节点特殊处理。</td>
+</tr>
+<tr>
+<td>BM10</td>
+<td>两个链表的第一个公共结点</td>
+<td>双指针同步走：先计算长度差，长者先走差值步；或让指针走完一链表后换另一链表，总路程相等时相遇即公共节点。</td>
+</tr>
+<tr>
+<td>BM11</td>
+<td>链表相加(二)</td>
+<td>模拟加法从低位到高位（需先反转链表或用栈），处理进位。结果可能需反转回原序。</td>
+</tr>
+<tr>
+<td>BM12</td>
+<td>单链表的排序</td>
+<td>归并排序（自底向上）：分段合并有序子链表，或快慢指针找中点递归归并。时间O(n log n)。</td>
+</tr>
+<tr>
+<td>BM13</td>
+<td>判断一个链表是否为回文结构</td>
+<td>快慢指针找中点，反转后半部分，与前半部分逐节点比较值是否相等。恢复链表可选。</td>
+</tr>
+<tr>
+<td>BM14</td>
+<td>链表的奇偶重排</td>
+<td>分离奇偶位节点成两个链表（odd、even），然后even接odd尾部。注意偶数长度处理。</td>
+</tr>
+<tr>
+<td>BM15</td>
+<td>删除有序链表中重复的元素-I</td>
+<td>单指针遍历：若当前节点与下一节点值相同，跳过下一节点（保留首次出现）。</td>
+</tr>
+<tr>
+<td>BM16</td>
+<td>删除有序链表中重复的元素-II</td>
+<td>引入虚拟头结点，双指针或单指针遍历：若连续重复，跳过整个重复段（一个不留）。</td>
+</tr>
+</tbody>
+</table>
+</div>
+<hr>
+<p>一般会给出一个最基础的链表</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs JavaScript"><span class="hljs-keyword">function</span> <span class="hljs-title function_">ListNode</span>(<span class="hljs-params">val, next</span>) {<br>    <span class="hljs-variable language_">this</span>.<span class="hljs-property">val</span> = (val === <span class="hljs-literal">undefined</span> ? <span class="hljs-number">0</span> : val);<br>    <span class="hljs-variable language_">this</span>.<span class="hljs-property">next</span> = (next === <span class="hljs-literal">undefined</span> ? <span class="hljs-literal">null</span> : next);<br>}<br></code></pre></td></tr></table></figure>
+<ul>
+<li><strong>节点包含两个成员</strong>：<ul>
+<li>val：存储节点的值，通常为整数（int），题目中 |val| ≤ 1000。</li>
+<li>next：指向下一个节点的指针（引用），类型为同类 ListNode*（或 ListNode），初始可能为 NULL/null/None</li>
+</ul>
+</li>
+<li><strong>无哑头节点（dummy head）</strong>：输入的 head 就是真实头结点（有有效值），除非题目特别说明</li>
+<li><strong>单向链表</strong>：只能从头到尾遍历，无前向指针</li>
+<li><strong>输入形式</strong>：<ul>
+<li>函数签名通常为 ListNode* head（或类似），可能额外传入其他参数（如 m、n、k 等）</li>
+<li>空链表：head = NULL / null / None</li>
+</ul>
+</li>
+<li><strong>输出形式</strong>：<ul>
+<li>大多数题目要求返回新的头结点（ListNode*）</li>
+<li>操作通常要求<strong>原地修改</strong>，以满足空间复杂度 O(1)</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="常见操作"><a href="#常见操作" class="headerlink" title="常见操作"></a>常见操作</h2><h3 id="单链表常见操作的实现方法"><a href="#单链表常见操作的实现方法" class="headerlink" title="单链表常见操作的实现方法"></a>单链表常见操作的实现方法</h3><p>以下针对单链表（节点结构为 val 和 next）的几种常见操作，提供标准、高效的实现思路。所有操作均基于从头结点开始遍历，时间复杂度与空间复杂度分析清晰。假设节点定义如下（以 JavaScript 为例，其他语言类似）：</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs ts"><span class="hljs-keyword">function</span> <span class="hljs-title function_">ListNode</span>(<span class="hljs-params">val, next</span>) {<br>    <span class="hljs-variable language_">this</span>.<span class="hljs-property">val</span> = val;<br>    <span class="hljs-variable language_">this</span>.<span class="hljs-property">next</span> = next || <span class="hljs-literal">null</span>;<br>}<br></code></pre></td></tr></table></figure>
+<h4 id="1-查找元素：根据值查找节点位置（返回位置或节点）"><a href="#1-查找元素：根据值查找节点位置（返回位置或节点）" class="headerlink" title="1. 查找元素：根据值查找节点位置（返回位置或节点）"></a>1. 查找元素：根据值查找节点位置（返回位置或节点）</h4><p><strong>思路</strong>：从头遍历，逐个比较节点值，直到找到匹配值或到达链表末尾。</p>
+<p><strong>实现要点</strong>：</p>
+<ul>
+<li>返回第一个匹配节点的<strong>位置</strong>（从 1 开始）或节点本身。</li>
+<li>未找到返回 -1 或 null。</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">findNode</span>(<span class="hljs-params">head, target</span>) {<br>    <span class="hljs-keyword">let</span> pos = <span class="hljs-number">1</span>;<br>    <span class="hljs-keyword">let</span> curr = head;<br>    <span class="hljs-keyword">while</span> (curr !== <span class="hljs-literal">null</span>) {<br>        <span class="hljs-keyword">if</span> (curr.<span class="hljs-property">val</span> === target) {<br>            <span class="hljs-keyword">return</span> pos;  <span class="hljs-comment">// 或 return curr; 返回节点本身</span><br>        }<br>        curr = curr.<span class="hljs-property">next</span>;<br>        pos++;<br>    }<br>    <span class="hljs-keyword">return</span> -<span class="hljs-number">1</span>;  <span class="hljs-comment">// 未找到</span><br>}<br></code></pre></td></tr></table></figure>
+<ul>
+<li>时间复杂度：O(n)</li>
+<li>空间复杂度：O(1)</li>
+</ul>
+<h4 id="2-指定位置插入：在第-i-个位置插入新节点（i-从-1-开始）"><a href="#2-指定位置插入：在第-i-个位置插入新节点（i-从-1-开始）" class="headerlink" title="2. 指定位置插入：在第 i 个位置插入新节点（i 从 1 开始）"></a>2. 指定位置插入：在第 i 个位置插入新节点（i 从 1 开始）</h4><p><strong>思路</strong>：遍历到第 i-1 个节点，将新节点插入其后。特殊处理插入到头部（i=1）。</p>
+<p><strong>实现要点</strong>：</p>
+<ul>
+<li>若 i=1，新节点成为新头。</li>
+<li>若 i &gt; 长度，插入失败或插入尾部（视题目要求）。</li>
+</ul>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs ts"><span class="hljs-keyword">function</span> <span class="hljs-title function_">insertAtPosition</span>(<span class="hljs-params">head, i, val</span>) {<br>    <span class="hljs-keyword">let</span> newNode = <span class="hljs-keyword">new</span> <span class="hljs-title class_">ListNode</span>(val);<br>    <span class="hljs-keyword">if</span> (i === <span class="hljs-number">1</span>) {<br>        newNode.<span class="hljs-property">next</span> = head;<br>        <span class="hljs-keyword">return</span> newNode;  <span class="hljs-comment">// 新头结点</span><br>    }<br>    <br>    <span class="hljs-keyword">let</span> curr = head;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> pos = <span class="hljs-number">1</span>; pos &lt; i - <span class="hljs-number">1</span> &amp;&amp; curr !== <span class="hljs-literal">null</span>; pos++) {<br>        curr = curr.<span class="hljs-property">next</span>;<br>    }<br>    <span class="hljs-keyword">if</span> (curr === <span class="hljs-literal">null</span>) <span class="hljs-keyword">return</span> head;  <span class="hljs-comment">// i 超出范围，不插入</span><br>    <br>    newNode.<span class="hljs-property">next</span> = curr.<span class="hljs-property">next</span>;<br>    curr.<span class="hljs-property">next</span> = newNode;<br>    <span class="hljs-keyword">return</span> head;<br>}<br></code></pre></td></tr></table></figure>
+<ul>
+<li>时间复杂度：O(i) → 最坏 O(n)</li>
+<li>空间复杂度：O(1)</li>
+</ul>
+<h4 id="3-指定位置获取：获取第-i-个节点的値（i-从-1-开始）"><a href="#3-指定位置获取：获取第-i-个节点的値（i-从-1-开始）" class="headerlink" title="3. 指定位置获取：获取第 i 个节点的値（i 从 1 开始）"></a>3. 指定位置获取：获取第 i 个节点的値（i 从 1 开始）</h4><p><strong>思路</strong>：遍历 i-1 步，直接返回当前节点的值。</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs ts"><span class="hljs-keyword">function</span> <span class="hljs-title function_">getAtPosition</span>(<span class="hljs-params">head, i</span>) {<br>    <span class="hljs-keyword">let</span> curr = head;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> pos = <span class="hljs-number">1</span>; pos &lt; i &amp;&amp; curr !== <span class="hljs-literal">null</span>; pos++) {<br>        curr = curr.<span class="hljs-property">next</span>;<br>    }<br>    <span class="hljs-keyword">return</span> curr ? curr.<span class="hljs-property">val</span> : <span class="hljs-literal">null</span>;  <span class="hljs-comment">// 未找到返回 null</span><br>}<br></code></pre></td></tr></table></figure>
+<ul>
+<li>时间复杂度：O(i) → 最坏 O(n)</li>
+<li>空间复杂度：O(1)</li>
+</ul>
+<h4 id="4-指定位置删除：删除第-i-个节点（i-从-1-开始）"><a href="#4-指定位置删除：删除第-i-个节点（i-从-1-开始）" class="headerlink" title="4. 指定位置删除：删除第 i 个节点（i 从 1 开始）"></a>4. 指定位置删除：删除第 i 个节点（i 从 1 开始）</h4><p><strong>思路</strong>：遍历到第 i-1 个节点，修改其 next 指向跳过第 i 个节点。特殊处理删除头结点。</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs ts"><span class="hljs-keyword">function</span> <span class="hljs-title function_">deleteAtPosition</span>(<span class="hljs-params">head, i</span>) {<br>    <span class="hljs-keyword">if</span> (head === <span class="hljs-literal">null</span>) <span class="hljs-keyword">return</span> <span class="hljs-literal">null</span>;<br>    <span class="hljs-keyword">if</span> (i === <span class="hljs-number">1</span>) <span class="hljs-keyword">return</span> head.<span class="hljs-property">next</span>;  <span class="hljs-comment">// 删除头结点</span><br>    <br>    <span class="hljs-keyword">let</span> curr = head;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> pos = <span class="hljs-number">1</span>; pos &lt; i - <span class="hljs-number">1</span> &amp;&amp; curr !== <span class="hljs-literal">null</span>; pos++) {<br>        curr = curr.<span class="hljs-property">next</span>;<br>    }<br>    <span class="hljs-keyword">if</span> (curr === <span class="hljs-literal">null</span> || curr.<span class="hljs-property">next</span> === <span class="hljs-literal">null</span>) <span class="hljs-keyword">return</span> head;  <span class="hljs-comment">// i 超出范围</span><br>    <br>    curr.<span class="hljs-property">next</span> = curr.<span class="hljs-property">next</span>.<span class="hljs-property">next</span>;  <span class="hljs-comment">// 跳过第 i 个节点</span><br>    <span class="hljs-keyword">return</span> head;<br>}<br></code></pre></td></tr></table></figure>
+<ul>
+<li>时间复杂度：O(i) → 最坏 O(n)</li>
+<li>空间复杂度：O(1)</li>
+</ul>
+<h4 id="5-获取链表长度（节点数量）"><a href="#5-获取链表长度（节点数量）" class="headerlink" title="5. 获取链表长度（节点数量）"></a>5. 获取链表长度（节点数量）</h4><p><strong>思路</strong>：遍历链表，累计计数。</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs ts"><span class="hljs-keyword">function</span> <span class="hljs-title function_">getLength</span>(<span class="hljs-params">head</span>) {<br>    <span class="hljs-keyword">let</span> len = <span class="hljs-number">0</span>;<br>    <span class="hljs-keyword">let</span> curr = head;<br>    <span class="hljs-keyword">while</span> (curr !== <span class="hljs-literal">null</span>) {<br>        len++;<br>        curr = curr.<span class="hljs-property">next</span>;<br>    }<br>    <span class="hljs-keyword">return</span> len;<br>}<br></code></pre></td></tr></table></figure>
+<ul>
+<li>时间复杂度：O(n)</li>
+<li>空间复杂度：O(1)</li>
+</ul>
+<hr>
+<h2 id="反转链表"><a href="#反转链表" class="headerlink" title="反转链表"></a>反转链表</h2><h3 id="BM1-全量反转链表"><a href="#BM1-全量反转链表" class="headerlink" title="BM1  | 全量反转链表"></a>BM1  | 全量反转链表</h3><p>给定一个单链表的头结点pHead(该头节点是有值的，比如在下图，它的val是1)，长度为n，反转该链表后，返回新链表的表头。</p>
+<p>数据范围： 0≤n≤10000≤n≤1000</p>
+<p>要求：空间复杂度 O(1)O(1) ，时间复杂度 O(n)O(n) 。</p>
+<p>如当输入链表{1,2,3}时，</p>
+<p>经反转后，原链表变为{3,2,1}，所以对应的输出为{3,2,1}。</p>
+<p>以上转换过程如下图所示：</p>
+<p class='item-img' data-src='https://uploadfiles.nowcoder.com/images/20211014/423483716_1634206291971/4A47A0DB6E60853DEDFCFDF08A5CA249'><img src="https://uploadfiles.nowcoder.com/images/20211014/423483716_1634206291971/4A47A0DB6E60853DEDFCFDF08A5CA249" alt=""></p>
+<hr>
+<p>解法：</p>
+<ul>
+<li>初始化 prev 为 null（新链表的尾部）。</li>
+<li>current 从链表头节点开始。</li>
+<li>在循环中：<ul>
+<li>暂存 next = current.next（避免指针丢失）。</li>
+<li>将 current.next 指向 prev（反转当前指针）。</li>
+<li>更新 prev = current（前移 prev）。</li>
+<li>更新 current = next（前移 current）。</li>
+</ul>
+</li>
+<li>循环结束后，prev 指向原链表的尾节点（新头节点），更新 list.head = prev。</li>
+</ul>
+<p>其实就是三指针原地反转</p>
+<p class='item-img' data-src='https://pic4.zhimg.com/v2-6a742659e12b185569b64a1f773bd993_b.webp'><img src="https://pic4.zhimg.com/v2-6a742659e12b185569b64a1f773bd993_b.webp" alt="alt text"></p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs ts"><span class="hljs-keyword">export</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">ReverseList</span>(<span class="hljs-params"><span class="hljs-attr">head</span>: <span class="hljs-title class_">ListNode</span></span>): <span class="hljs-title class_">ListNode</span> {<br>    <span class="hljs-keyword">let</span> prev = <span class="hljs-literal">null</span>;<br>    <span class="hljs-keyword">let</span> curr = head;<br><br>    <span class="hljs-keyword">while</span> (curr !== <span class="hljs-literal">null</span>) {<br>    <br>        <span class="hljs-comment">// 保存下一个节点，防止断链</span><br>        <span class="hljs-keyword">let</span> next = curr.<span class="hljs-property">next</span>;<br><br>        <span class="hljs-comment">// 反转当前节点的指向</span><br>        curr.<span class="hljs-property">next</span> = prev;<br><br>        <span class="hljs-comment">// 指针向前移动</span><br>        prev = curr;<br>        curr = next;<br>    }<br>    <span class="hljs-comment">// prev 指向反转后的新头结点</span><br>    <span class="hljs-keyword">return</span> prev;<br>};<br></code></pre></td></tr></table></figure>
+<h3 id="BM2-反转链表部分区间"><a href="#BM2-反转链表部分区间" class="headerlink" title="BM2  | 反转链表部分区间"></a>BM2  | 反转链表部分区间</h3><p>给定一个单链表的头结点 head，长度为 n，反转该链表从位置 m 到 n 的部分，返回反转后的链表。</p>
+<p>数据范围： 0≤m≤n≤n≤1000 ，链表中任意节点的值满足 |val|≤1000</p>
+<p>例如：<br>给出的链表为 1→2→3→4→5→NULL1→2→3→4→5→NULL, m=2,n=4m=2,n=4,<br>返回 1→4→3→2→5→NULL1→4→3→2→5→NULL.  </p>
+<p>要实现原地反转指定区间，需要：</p>
+<ol>
+<li>找到反转区间的前一个节点（pre），即第 m-1 个节点。</li>
+<li>找到反转区间的最后一个节点（记为 end），即第 n 个节点。</li>
+<li>将 [m, n] 区间使用经典链表反转方法进行原地反转。</li>
+<li>正确连接反转后的区间与前后部分：<ul>
+<li>pre.next 指向反转后区间的新的头节点（原第 n 个节点）。</li>
+<li>反转后区间的尾节点（原第 m 个节点）指向 end.next。</li>
+</ul>
+</li>
+</ol>
+<p>关键操作：</p>
+<ul>
+<li>先遍历定位到 pre 和反转区间的起始节点 start（第 m 个节点）。</li>
+<li>然后在 [start, end] 区间内使用三指针迭代反转。</li>
+<li>最后调整指针连接。</li>
+</ul>
+<p class='item-img' data-src='https://pica.zhimg.com/v2-88b21fbd767be1a41379e156251ad554_1440w.gif'><img src="https://pica.zhimg.com/v2-88b21fbd767be1a41379e156251ad554_1440w.gif" alt="alt text"></p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><code class="hljs ts"><span class="hljs-keyword">export</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">reverseBetween</span>(<span class="hljs-params"><span class="hljs-attr">head</span>: <span class="hljs-title class_">ListNode</span> | <span class="hljs-literal">null</span>, <span class="hljs-attr">m</span>: <span class="hljs-built_in">number</span>, <span class="hljs-attr">n</span>: <span class="hljs-built_in">number</span></span>): <span class="hljs-title class_">ListNode</span> | <span class="hljs-literal">null</span> {<br>    <span class="hljs-keyword">if</span> (head === <span class="hljs-literal">null</span> || m === n) <span class="hljs-keyword">return</span> head;<br><br>    <span class="hljs-keyword">const</span> dummy = <span class="hljs-keyword">new</span> <span class="hljs-title class_">ListNode</span>(<span class="hljs-number">0</span>);<br>    dummy.<span class="hljs-property">next</span> = head;<br>    <span class="hljs-keyword">let</span> pre = dummy;<br><br>    <span class="hljs-comment">// 移动到第 m-1 个节点</span><br>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; m - <span class="hljs-number">1</span>; i++) {<br>        pre = pre.<span class="hljs-property">next</span>!;<br>    }<br><br>    <span class="hljs-keyword">let</span> start = pre.<span class="hljs-property">next</span>!;   <span class="hljs-comment">// 第 m 个节点（反转区间的原头部）</span><br>    <span class="hljs-keyword">let</span> then = start.<span class="hljs-property">next</span>;   <span class="hljs-comment">// 第 m+1 个节点（待头插的节点）</span><br><br>    <span class="hljs-comment">// 执行 (n - m) 次头插</span><br>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; n - m; i++) {<br>        start.<span class="hljs-property">next</span> = then.<span class="hljs-property">next</span>;   <span class="hljs-comment">// 从原区间摘除 then</span><br>        then.<span class="hljs-property">next</span> = pre.<span class="hljs-property">next</span>;     <span class="hljs-comment">// then 插入 pre 之后（成为新头部）</span><br>        pre.<span class="hljs-property">next</span> = then;          <span class="hljs-comment">// 更新 pre 的 next</span><br>        then = start.<span class="hljs-property">next</span>;        <span class="hljs-comment">// 更新 then 为下一个待移动节点</span><br>    }<br><br>    <span class="hljs-keyword">return</span> dummy.<span class="hljs-property">next</span>;<br>}<br></code></pre></td></tr></table></figure>
+<hr>
+<div id="paginator"></div></div><div id="post-footer"><div id="pages" style="justify-content: flex-end"><div class="footer-link" style="width: 50%;right:1px;border-left:1px #fe2 solid"><a href="/Arknight-notes/posts/39620.html">2025-12-26-力扣百题速练（Javascript、TypeScript）Vol.2 Prev →</a></div></div></div><div id="comments"><div id="gitalk"></div></div></div><div class="bottom-btn"><div><a class="i-top" id="to-top" onClick="scrolls.scrolltop();" title="To Top" style="opacity: 0; display: none;">∧ </a><a class="i-index" id="to-index" href="#toc-div" title="To Catalog">≡</a><a class="i-color" id="color-mode" onClick="colorMode.change()" title="Change Theme"></a></div></div></article><aside><div id="about"><a href="/Arknight-notes/" id="logo"><img src="https://pic4.zhimg.com/80/v2-d9884f32711e19e80979eac58e943897_720w.webp" alt="Logo" style="margin:20;border-radius:0;"></a><h1 id="Dr"><a href="zhongye">柊野</a></h1><div id="description"><p></p></div></div><div id="aside-block"><div id="toc-div"><h1>Catalog</h1><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B8%B8%E8%A7%81%E6%93%8D%E4%BD%9C"><span class="toc-number">1.</span> <span class="toc-text">常见操作</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8D%95%E9%93%BE%E8%A1%A8%E5%B8%B8%E8%A7%81%E6%93%8D%E4%BD%9C%E7%9A%84%E5%AE%9E%E7%8E%B0%E6%96%B9%E6%B3%95"><span class="toc-number">1.1.</span> <span class="toc-text">单链表常见操作的实现方法</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E6%9F%A5%E6%89%BE%E5%85%83%E7%B4%A0%EF%BC%9A%E6%A0%B9%E6%8D%AE%E5%80%BC%E6%9F%A5%E6%89%BE%E8%8A%82%E7%82%B9%E4%BD%8D%E7%BD%AE%EF%BC%88%E8%BF%94%E5%9B%9E%E4%BD%8D%E7%BD%AE%E6%88%96%E8%8A%82%E7%82%B9%EF%BC%89"><span class="toc-number">1.1.1.</span> <span class="toc-text">1. 查找元素：根据值查找节点位置（返回位置或节点）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E6%8C%87%E5%AE%9A%E4%BD%8D%E7%BD%AE%E6%8F%92%E5%85%A5%EF%BC%9A%E5%9C%A8%E7%AC%AC-i-%E4%B8%AA%E4%BD%8D%E7%BD%AE%E6%8F%92%E5%85%A5%E6%96%B0%E8%8A%82%E7%82%B9%EF%BC%88i-%E4%BB%8E-1-%E5%BC%80%E5%A7%8B%EF%BC%89"><span class="toc-number">1.1.2.</span> <span class="toc-text">2. 指定位置插入：在第 i 个位置插入新节点（i 从 1 开始）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-%E6%8C%87%E5%AE%9A%E4%BD%8D%E7%BD%AE%E8%8E%B7%E5%8F%96%EF%BC%9A%E8%8E%B7%E5%8F%96%E7%AC%AC-i-%E4%B8%AA%E8%8A%82%E7%82%B9%E7%9A%84%E5%80%A4%EF%BC%88i-%E4%BB%8E-1-%E5%BC%80%E5%A7%8B%EF%BC%89"><span class="toc-number">1.1.3.</span> <span class="toc-text">3. 指定位置获取：获取第 i 个节点的値（i 从 1 开始）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-%E6%8C%87%E5%AE%9A%E4%BD%8D%E7%BD%AE%E5%88%A0%E9%99%A4%EF%BC%9A%E5%88%A0%E9%99%A4%E7%AC%AC-i-%E4%B8%AA%E8%8A%82%E7%82%B9%EF%BC%88i-%E4%BB%8E-1-%E5%BC%80%E5%A7%8B%EF%BC%89"><span class="toc-number">1.1.4.</span> <span class="toc-text">4. 指定位置删除：删除第 i 个节点（i 从 1 开始）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-%E8%8E%B7%E5%8F%96%E9%93%BE%E8%A1%A8%E9%95%BF%E5%BA%A6%EF%BC%88%E8%8A%82%E7%82%B9%E6%95%B0%E9%87%8F%EF%BC%89"><span class="toc-number">1.1.5.</span> <span class="toc-text">5. 获取链表长度（节点数量）</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%8D%E8%BD%AC%E9%93%BE%E8%A1%A8"><span class="toc-number">2.</span> <span class="toc-text">反转链表</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#BM1-%E5%85%A8%E9%87%8F%E5%8F%8D%E8%BD%AC%E9%93%BE%E8%A1%A8"><span class="toc-number">2.1.</span> <span class="toc-text">BM1  | 全量反转链表</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#BM2-%E5%8F%8D%E8%BD%AC%E9%93%BE%E8%A1%A8%E9%83%A8%E5%88%86%E5%8C%BA%E9%97%B4"><span class="toc-number">2.2.</span> <span class="toc-text">BM2  | 反转链表部分区间</span></a></li></ol></li></ol></div></div><footer><nobr><span class="icp-title">GZHU</span><span class="icp-content">193001-0001</span></nobr><br><nobr><span class="icp-title">OUTPOST</span><span class="icp-content">169-2025-0331</span></nobr><br><nobr>Published with <a target="_blank" rel="noopener" href="http://hexo.io">Hexo</a></nobr><wbr><nobr> Theme <a target="_blank" rel="noopener" href="https://github.com/Yue-plus/hexo-theme-arknights">Arknights</a></nobr><wbr><nobr> by <a target="_blank" rel="noopener" href="https://github.com/Yue-plus">Yue_plus</a></nobr></footer></aside></main><canvas id="canvas-dust"></canvas></body></html>
