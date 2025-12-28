@@ -1,0 +1,576 @@
+<!DOCTYPE html><html lang="en" theme-mode="dark"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>2025-10-28 前端学习-关于网络请求（Fetch、Axios、Ajax、XHR） | Notes|笔记站</title><link rel="icon" type="image/x-icon" href="/Arknight-notes/favicon.ico"><link rel="preload" as="font" crossorigin="anonymous" href="/Arknight-notes/font/Bender.ttf"><link rel="preload" as="font" crossorigin="anonymous" href="/Arknight-notes/font/BenderLight.ttf"><link rel="preload" as="font" crossorigin="anonymous" href="/Arknight-notes/font/JetBrainsMono-Regular.woff2"><link rel="stylesheet" href="/Arknight-notes/css/arknights.css"><style>@font-face {
+  font-family: Bender;
+  src: local('Bender'), url("/Arknight-notes/font/Bender.ttf"), url("/Arknight-notes/font/Bender.otf");
+}
+@font-face {
+  font-family: BenderLight;
+  src: local('BenderLight'), url("/Arknight-notes/font/BenderLight.ttf");
+}
+@font-face {
+  font-family: 'JetBrains Mono';
+  src: local('JetBrains Mono'), url('/Arknight-notes/font/JetBrainsMono-Regular.woff2') format('woff2');
+}
+</style><script>var config = {"root":"/Arknight-notes/","code_fold":90,"search":{"preload":false,"activeHolder":"Enter here","blurHolder":"Search","noResult":"Data \"$0\" not found"},"code":{"codeInfo":"$0 - $1 lines","copy":"copy"}}</script><link type="text/css" rel="stylesheet" href="/Arknight-notes/lib/encrypt/hbe.style.css"><script src="/Arknight-notes/js/gitalk.js"></script><script src="//unpkg.com/mermaid@10.5.0/dist/mermaid.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.6.1/MathJax.js"></script><script>MathJax.Hub.Config({
+ menuSettings: {
+   zoom: "None"
+ },
+ showMathMenu: false,
+ jax: ["input/TeX","output/CommonHTML"],
+ extensions: ["tex2jax.js"],
+ TeX: {
+   extensions: ["AMSmath.js","AMSsymbols.js"],
+   equationNumbers: {
+     autoNumber: "AMS"
+   }
+ },
+ tex2jax: {
+   inlineMath: [["\\(", "\\)"]],
+   displayMath: [["\\[", "\\]"]]
+ }
+});</script><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lightgallery.css"><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lg-zoom.css"><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lg-thumbnail.css"><link type="text/css" rel="stylesheet" href="/Arknight-notes/lib/fontawesome/css/all.min.css"><script>if (window.localStorage.getItem('theme-mode') === 'light')
+ document.documentElement.setAttribute('theme-mode', 'light')
+if (window.localStorage.getItem('theme-mode') === 'dark')
+ document.documentElement.setAttribute('theme-mode', 'dark')</script><style>@font-face {
+ font-family: BenderLight;
+ src: local('Bender'), url("/Arknight-notes/font/BenderLight.woff2") format('woff2');
+}
+@font-face {
+ font-family: 'JetBrains Mono';
+ src: local('JetBrains Mono'), url('/Arknight-notes/font/JetBrainsMono-Regular.woff2') format('woff2');
+}</style><style>:root {
+ --dark-background: url('https://pic2.zhimg.com/v2-6269d74b4dafe14781d03790e5a86b21_r.jpg');
+ --light-background: url('https://pic1.zhimg.com/v2-233b64b583642fc4a6d77e69ced33150_r.jpg');
+ --theme-encrypt-confirm: 'confirm'
+}</style><script defer src="/Arknight-notes/js/arknights.js"></script><script defer src="/Arknight-notes/js/search.js"></script><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><script async src="/Arknight-notes/js/gitalk.js"></script><script defer type="module">import mermaid from '//unpkg.com/mermaid@10.5.0/dist/mermaid.esm.mjs';
+window.mermaid = mermaid;
+code.paintMermaid();
+</script><script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.6.1/MathJax.js"></script><script>MathJax.Hub.Config({
+  menuSettings: {
+    zoom: "None"
+  },
+  showMathMenu: false,
+  jax: ["input/TeX","output/CommonHTML"],
+  extensions: ["tex2jax.js"],
+  TeX: {
+    extensions: ["AMSmath.js","AMSsymbols.js"],
+    equationNumbers: {
+      autoNumber: "AMS"
+    }
+  },
+  tex2jax: {
+    inlineMath: [["\\(", "\\)"]],
+    displayMath: [["\\[", "\\]"]]
+  }
+});
+</script><script async src="//unpkg.com/lightgallery@2.7.1/lightgallery.min.js"></script><script async src="//unpkg.com/lightgallery@2.7.1/plugins/zoom/lg-zoom.min.js"></script><script async src="//unpkg.com/lightgallery@2.7.1/plugins/thumbnail/lg-thumbnail.min.js"></script><script async src="/Arknight-notes/lib/encrypt/hbe.js"></script><script async src="/Arknight-notes/js/pjax.js"></script><script class="pjax-js">reset= () => {gitalk = new Gitalk({
+ clientID: 'Ov23ct13Fb0b67x23wnT',
+ clientSecret: 'f18ce69dd545e3c0f5e2456afde9c756fe8a254a',
+ repo: 'Arknight-notes',
+ owner: 'Zhongye1',
+ admin: ['Zhongye1'],
+ distractionFreeMode: false,
+ id: location.pathname
+});
+if (document.querySelector("#gitalk")) gitalk.render("gitalk");document.querySelector('.lg-container')?.remove()
+lightGallery(document.getElementById('post-bg'), {
+  plugins: [lgZoom,lgThumbnail],
+  selector: '.item-img'})}</script><script>window.addEventListener("load",() => {pjax = new Pjax({
+ cacheBust: false,
+ selectors: ['title','article','#aside-block','.pjax-js','data-pjax','.busuanzi'],
+ switches: {'article': Pjax.switches.sideBySide},
+ switchesOptions: {
+   'article': {
+     classNames: {
+       remove: "pjax-out",
+       add: "pjax-in"
+     }
+   }
+ }
+});
+document.addEventListener("pjax:complete", reset);document.addEventListener('pjax:success', _ => bszCaller.fetch(
+ "//busuanzi.ibruce.info/busuanzi?jsonpCallback=BusuanziCallback", a => {
+  bszTag.texts(a),
+  bszTag.shows()
+}));reset()})</script><script class="pjax-js">reset= () => {gitalk = new Gitalk({
+ clientID: 'Ov23ct13Fb0b67x23wnT',
+ clientSecret: 'f18ce69dd545e3c0f5e2456afde9c756fe8a254a',
+ repo: 'Arknight-notes',
+ owner: 'Zhongye1',
+ admin: ['Zhongye1'],
+ distractionFreeMode: false,
+ id: location.pathname
+});
+if (document.querySelector("#gitalk")) gitalk.render("gitalk");document.querySelector('.lg-container')?.remove()
+lightGallery(document.getElementById('post-bg'), {
+  plugins: [lgZoom,lgThumbnail],
+  selector: '.item-img'})}</script><script>window.addEventListener("load",() => {pjax = new Pjax({
+ cacheBust: false,
+ selectors: ['title','article','#aside-block','.pjax-js'],
+ switches: {'article': Pjax.switches.sideBySide},
+ switchesOptions: {
+   'article': {
+     classNames: {
+       remove: "pjax-out",
+       add: "pjax-in"
+     }
+   }
+ }
+});
+document.addEventListener("pjax:complete", reset);reset()})</script><meta name="generator" content="Hexo 7.3.0"><style>mjx-container[jax="SVG"] {
+  direction: ltr;
+}
+
+mjx-container[jax="SVG"] > svg {
+  overflow: visible;
+}
+
+mjx-container[jax="SVG"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="SVG"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="SVG"][justify="right"] {
+  text-align: right;
+}
+
+g[data-mml-node="merror"] > g {
+  fill: red;
+  stroke: red;
+}
+
+g[data-mml-node="merror"] > rect[data-background] {
+  fill: yellow;
+  stroke: none;
+}
+
+g[data-mml-node="mtable"] > line[data-line] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > rect[data-frame] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > .mjx-dashed {
+  stroke-dasharray: 140;
+}
+
+g[data-mml-node="mtable"] > .mjx-dotted {
+  stroke-linecap: round;
+  stroke-dasharray: 0,140;
+}
+
+g[data-mml-node="mtable"] > svg {
+  overflow: visible;
+}
+
+[jax="SVG"] mjx-tool {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+[jax="SVG"] mjx-tool > mjx-tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+mjx-tool > mjx-tip {
+  display: inline-block;
+  padding: .2em;
+  border: 1px solid #888;
+  font-size: 70%;
+  background-color: #F8F8F8;
+  color: black;
+  box-shadow: 2px 2px 5px #AAAAAA;
+}
+
+g[data-mml-node="maction"][data-toggle] {
+  cursor: pointer;
+}
+
+mjx-status {
+  display: block;
+  position: fixed;
+  left: 1em;
+  bottom: 1em;
+  min-width: 25%;
+  padding: .2em .4em;
+  border: 1px solid #888;
+  font-size: 90%;
+  background-color: #F8F8F8;
+  color: black;
+}
+
+foreignObject[data-mjx-xml] {
+  font-family: initial;
+  line-height: normal;
+  overflow: visible;
+}
+
+.MathJax path {
+  stroke-width: 3;
+}
+
+mjx-container[display="true"] {
+  overflow: auto hidden;
+}
+
+mjx-container[display="true"] + br {
+  display: none;
+}
+</style><link rel="alternate" href="/Arknight-notes/rss.xml" title="Notes|笔记站" type="application/atom+xml">
+</head><body><div class="loading" style="opacity: 0;"><div class="loadingBar left"></div><div class="loadingBar right"></div></div><main><header class="closed"><div class="navBtn"><i class="navBtnIcon"><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span></i></div><nav><div class="navItem" id="search-header"><span class="navItemTitle"><input autocomplete="off" autocorrect="off" autocapitalize="none" placeholder="Search" spellcheck="false" maxlength="50" type="text" id="search-input"></span></div><div class="navItem" id="search-holder"></div><div class="search-popup" tabindex="0"><div id="search-result"></div></div><ol class="navContent"><li class="navItem"><a class="navBlock" href="/Arknight-notes/"><span class="navItemTitle">Home</span></a></li><li class="navItem" matchdata="categories,tags"><a class="navBlock" href="/Arknight-notes/archives/"><span class="navItemTitle">Archives</span></a></li><li class="navItem"><a class="navBlock" href="/Arknight-notes/about/"><span class="navItemTitle">About</span></a></li></ol></nav></header><article><div id="post-bg"><div id="post-title"><h1>2025-10-28 前端学习-关于网络请求（Fetch、Axios、Ajax、XHR）</h1><div id="post-info"><span>First Post: <div class="control"><time datetime="2025-10-28T07:48:46.000Z" id="date"> 2025-10-28</time></div></span><br><span>Last Update: <div class="control"><time datetime="2025-12-28T08:17:39.684Z" id="updated"> 2025-12-28</time></div></span><br><span id="busuanzi_container_page_pv">Page View: <span class="control" id="busuanzi_value_page_pv">loading...</span></span></div></div><hr><div id="post-content"><h1 id="XHR、Ajax、Fetch、Axios"><a href="#XHR、Ajax、Fetch、Axios" class="headerlink" title="XHR、Ajax、Fetch、Axios"></a>XHR、Ajax、Fetch、Axios</h1><p>当涉及前端网络请求时，有许多工具/技术可供选择，包括 Fetch、Axios、Ajax 和 XHR 等。这些技术在发送和处理HTTP请求方面提供了不同的功能和方法。本文将深入探讨这些技术的特点、优势和用法，帮你更好地理解并选择最适合项目需求的技术。</p>
+<h2 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h2><p>Fetch、Axios、Ajax 和XHR都是前端用于发送HTTP请求的工具或技术：</p>
+<ul>
+<li><p><strong>XHR</strong>：一种在浏览器中用于与服务器进行异步通信的API，通过发送HTTP请求并处理服务器返回的数据，实现页面的无刷新更新和动态交互。</p>
+</li>
+<li><p><strong>Ajax</strong>：通过在浏览器和服务器之间进行异步通信，实现部分页面更新和动态交互，提升用户体验；可以在不重新加载整个页面的情况下，通过JavaScript发送HTTP请求到服务器，并处理服务器返回的数据；减少带宽消耗，提高页面加载速度；提高用户交互性，实现更多的动态效果和实时更新。</p>
+</li>
+<li><p><strong>Fetch</strong>：一种现代化的网络请求方法，通过使用 Promise 处理异步操作，简洁而直观地发送HTTP请求、处理响应，并支持各种功能和API，如设置请求头、传递参数、处理流数据、上传下载文件等。</p>
+</li>
+<li><p><strong>Axios</strong>：一个基于Promise的现代化HTTP客户端，是目前最流行的 HTTP 客户端，可以在浏览器和Node.js环境中发送HTTP请求，并具有拦截请求和响应、支持并发请求、提供丰富的API等功能。</p>
+</li>
+</ul>
+<p>下面就来看看这些技术都是怎么用的，以及都有什么特点</p>
+<hr>
+<h2 id="XHR"><a href="#XHR" class="headerlink" title="XHR"></a>XHR</h2><p>XMLHttpRequest 是一个内置的 JavaScript 对象，XMLHttpRequest（XHR）对象用于与服务器交互。通过 XMLHttpRequest 可以在不刷新页面的情况下请求特定 URL，获取数据。这允许网页在不影响用户操作的情况下，更新页面的局部内容。</p>
+<p>XMLHttpRequest 在 AJAX 编程中被大量使用。尽管名称包含XML，XMLHttpRequest 也可以用于获取任何类型的数据，而不仅仅是 XML。它甚至支持 HTTP 以外的协议（包括 <code>file://</code> 和 <code>FTP</code>）。</p>
+<p>XMLHttpRequest 存在一些缺点：</p>
+<ul>
+<li><p><strong>语法复杂性</strong>：使用原始的 XMLHttpRequest 进行复杂的 AJAX 请求需要编写更多的代码，并手动处理状态管理、错误处理等方面的逻辑。相比之下，Axios 和 Fetch API 提供了更简单和直观的语法，使得发送和处理 HTTP 请求更加方便。</p>
+</li>
+<li><p><strong>功能限制</strong>：XHR 提供的功能相对较少，需要手动设置请求头、处理超时、取消请求等。而 Axios 和 Fetch API 提供了更丰富的功能，如拦截请求和响应、自动转换数据格式、请求取消等。</p>
+</li>
+<li><p><strong>XSRF（跨站请求伪造）保护</strong>：在 Axios 中，可以通过设置 <code>withCredentials</code> 选项来自动处理 XSRF 保护。然而，在 XMLHttpRequest 和 Fetch API 中，需要手动设置请求头来实现类似的保护。</p>
+</li>
+<li><p><strong>错误处理</strong>：XHR 的错误处理较为繁琐，需要在回调函数中进行错误判断。而 Axios 和 Fetch API 使用 Promise 和 async/await 语法，能够更便捷地处理请求和响应的错误。</p>
+</li>
+<li><p><strong>仅限于浏览器环境</strong>：XMLHttpRequest 是浏览器提供的 API，因此只能在浏览器环境中使用，无法在其他环境中（如服务器端）直接使用。</p>
+</li>
+</ul>
+<h3 id="请求步骤"><a href="#请求步骤" class="headerlink" title="请求步骤"></a>请求步骤</h3><p>使用 XMLHttpRequest 发送请求的步骤如下：</p>
+<ol>
+<li>创建<code>XMLHttpRequest</code>对象：</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">let</span> xhr = <span class="hljs-keyword">new</span> <span class="hljs-title class_">XMLHttpRequest</span>();<br></code></pre></td></tr></table></figure>
+<ol>
+<li>设置请求参数：</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs javascript">xhr.<span class="hljs-title function_">open</span>(<span class="hljs-string">'GET'</span>, <span class="hljs-string">'https://example.com/api/data'</span>, <span class="hljs-literal">true</span>);<br></code></pre></td></tr></table></figure>
+<ol>
+<li>设置请求头（可选）：</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs javascript">xhr.<span class="hljs-title function_">setRequestHeader</span>(<span class="hljs-string">'Content-Type'</span>, <span class="hljs-string">'application/json'</span>);<br></code></pre></td></tr></table></figure>
+<ol>
+<li>监听状态变化：</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs javascript">xhr.<span class="hljs-property">onreadystatechange</span> = <span class="hljs-function">() =&gt;</span> {  <br>  <span class="hljs-keyword">if</span> (xhr.<span class="hljs-property">readyState</span> === <span class="hljs-number">4</span>) {  <br>    <span class="hljs-keyword">if</span> (xhr.<span class="hljs-property">status</span> === <span class="hljs-number">200</span>) {  <br>      <span class="hljs-comment">// 请求成功，处理响应  </span><br>      <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(xhr.<span class="hljs-property">responseText</span>);  <br>    } <span class="hljs-keyword">else</span> {  <br>      <span class="hljs-comment">// 请求失败  </span><br>      <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">error</span>(<span class="hljs-string">'请求失败'</span>);  <br>    }  <br>  }  <br>};<br></code></pre></td></tr></table></figure>
+<ol>
+<li>发送请求：</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs javascript">xhr.<span class="hljs-title function_">send</span>();<br></code></pre></td></tr></table></figure>
+<p>完整代码如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">var</span> xhr = <span class="hljs-keyword">new</span> <span class="hljs-title class_">XMLHttpRequest</span>();  <br>xhr.<span class="hljs-title function_">open</span>(<span class="hljs-string">'GET'</span>, <span class="hljs-string">'https://api.example.com/data'</span>, <span class="hljs-literal">true</span>);  <br><br>xhr.<span class="hljs-property">onreadystatechange</span> = <span class="hljs-function">() =&gt;</span> {  <br>  <span class="hljs-keyword">if</span> (xhr.<span class="hljs-property">readyState</span> === <span class="hljs-number">4</span>) {  <br>    <span class="hljs-keyword">if</span> (xhr.<span class="hljs-property">status</span> === <span class="hljs-number">200</span>) {  <br>      <span class="hljs-comment">// 请求成功，处理响应  </span><br>      <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(xhr.<span class="hljs-property">responseText</span>);  <br>    } <span class="hljs-keyword">else</span> {  <br>      <span class="hljs-comment">// 请求失败  </span><br>      <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">error</span>(<span class="hljs-string">'请求失败'</span>);  <br>    }  <br>  }  <br>};  <br><br>xhr.<span class="hljs-title function_">send</span>();<br></code></pre></td></tr></table></figure>
+<p>这里创建了一个<code>XMLHttpRequest</code>对象，并使用<code>open()</code>方法设置了一个GET请求类型和URL。然后，通过监听<code>onreadystatechange</code>事件来判断请求的状态并处理响应。当<code>readyState</code>为4时，表示请求已完成，此时可以通过<code>status</code>属性判断请求是否成功（200表示成功）。如果成功，可以通过<code>responseText</code>属性获取服务器返回的数据进行处理。如果失败，将到控制台输出错误信息。</p>
+<h3 id="open"><a href="#open" class="headerlink" title="open"></a>open</h3><p>XMLHttpRequest 的 <code>open()</code> 方法用于初始化一个请求。<code>open()</code> 方法接受三个必填参数和一个可选参数，它们是：</p>
+<ol>
+<li><strong>method</strong>: 表示请求的 HTTP 方法，例如 GET、POST、PUT 等。</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs javascript">xhr.<span class="hljs-title function_">open</span>(<span class="hljs-string">"GET"</span>, <span class="hljs-string">"https://example.com/api/data"</span>, <span class="hljs-literal">true</span>);<br></code></pre></td></tr></table></figure>
+<ol>
+<li><strong>url</strong>: 表示请求的 URL 地址。</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs javascript">xhr.<span class="hljs-title function_">open</span>(<span class="hljs-string">"GET"</span>, <span class="hljs-string">"https://example.com/api/data"</span>, <span class="hljs-literal">true</span>);<br></code></pre></td></tr></table></figure>
+<ol>
+<li><strong>async</strong>: 表示请求是否异步执行，即是否使用异步模式。默认为 <code>true</code>，表示异步执行；f<code>alse</code> 表示同步执行。</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs javascript">xhr.<span class="hljs-title function_">open</span>(<span class="hljs-string">"GET"</span>, <span class="hljs-string">"https://example.com/api/data"</span>, <span class="hljs-literal">true</span>);<br></code></pre></td></tr></table></figure>
+<ol>
+<li><strong>username</strong> (可选): 表示用于进行 HTTP 认证的用户名。</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs javascript">xhr.<span class="hljs-title function_">open</span>(<span class="hljs-string">"GET"</span>, <span class="hljs-string">"https://example.com/api/data"</span>, <span class="hljs-literal">true</span>, <span class="hljs-string">"username"</span>);<br></code></pre></td></tr></table></figure>
+<ol>
+<li><strong>password</strong> (可选): 表示用于进行 HTTP 认证的密码。</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs javascript">xhr.<span class="hljs-title function_">open</span>(<span class="hljs-string">"GET"</span>, <span class="hljs-string">"https://example.com/api/data"</span>, <span class="hljs-literal">true</span>, <span class="hljs-string">"username"</span>, <span class="hljs-string">"password"</span>);<br></code></pre></td></tr></table></figure>
+<p>综合起来，<code>open()</code> 方法的完整语法如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs javascript">xhr.<span class="hljs-title function_">open</span>(method, url, <span class="hljs-keyword">async</span>, username, password);<br></code></pre></td></tr></table></figure>
+<h3 id="请求头和响应头"><a href="#请求头和响应头" class="headerlink" title="请求头和响应头"></a>请求头和响应头</h3><p>可以使用 <code>setRequestHeader()</code> 方法设置 XMLHttpRequest 的请求头。这个方法接受两个参数：头字段的名称和值。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs javascript">xhr.<span class="hljs-title function_">setRequestHeader</span>(<span class="hljs-string">"Content-Type"</span>, <span class="hljs-string">"application/json"</span>);  <br>xhr.<span class="hljs-title function_">setRequestHeader</span>(<span class="hljs-string">"Authorization"</span>, <span class="hljs-string">"Bearer token123"</span>);<br></code></pre></td></tr></table></figure>
+<p>这里使用 <code>setRequestHeader()</code> 方法设置了两个请求头：<code>Content-Type</code> 和 <code>Authorization</code>。第一个参数是头字段的名称，第二个参数是头字段的值。</p>
+<p>可以使用 <code>getResponseHeader()</code> 方法或者 <code>getAllResponseHeaders()</code> 方法来获取 XMLHttpRequest 的响应头。</p>
+<ul>
+<li><code>getResponseHeader()</code>：通过指定头字段的名称，可以获取指定的响应头字段的值。</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> contentType = xhr.<span class="hljs-title function_">getResponseHeader</span>(<span class="hljs-string">"Content-Type"</span>);<br></code></pre></td></tr></table></figure>
+<p>这里使用 <code>getResponseHeader()</code> 方法获取了名为 <code>Content-Type</code>的响应头字段的值。</p>
+<ul>
+<li><code>getAllResponseHeaders()</code>：该方法返回一个包含所有响应头信息的字符串。</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> headers = xhr.<span class="hljs-title function_">getAllResponseHeaders</span>();<br></code></pre></td></tr></table></figure>
+<p>这里使用 <code>getAllResponseHeaders()</code> 方法获取了所有响应头信息，并将其存储在名为 <code>headers</code> 的变量中。</p>
+<p>这里返回的 <code>headers</code> 是一个包含所有响应头信息的字符串。该字符串中每一行表示一个响应头字段，具有以下形式：</p>
+<figure class="highlight avrasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs avrasm"><span class="hljs-symbol">HeaderName:</span> HeaderValue<br></code></pre></td></tr></table></figure>
+<p>例如，如果响应头中包含 <code>Content-Type</code> 和 <code>Authorization</code> 字段，那么返回的 <code>headers</code> 字符串可能如下所示：</p>
+<figure class="highlight nix"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs nix"><span class="hljs-params">Content-Type:</span> application<span class="hljs-symbol">/json</span>  <br><span class="hljs-params">Authorization:</span> Bearer token123<br></code></pre></td></tr></table></figure>
+<p>可以使用适当的方法（如字符串解析）将这个字符串进行进一步处理，以获取特定的响应头字段的名称和值。</p>
+<p>注意，要在调用 <code>open()</code> 方法之后、发送请求之前使用 <code>setRequestHeader()</code> 方法来设置请求头，以确保设置能够生效。同样，要在接收到响应之后才能使用 <code>getResponseHeader()</code> 或 <code>getAllResponseHeaders()</code> 来获取响应头信息。</p>
+<h3 id="readyState"><a href="#readyState" class="headerlink" title="readyState"></a>readyState</h3><p>上面示例中的 <code>readyState</code> 是 XMLHttpRequest 对象的一个属性，用于表示请求的状态。该属性有以下五种可能的取值：</p>
+<ol>
+<li><strong>0 (未初始化)</strong>: XMLHttpRequest 对象已创建，但尚未调用 <code>open</code> 方法。</li>
+<li><strong>1 (载入中)</strong>: <code>open</code> 方法已调用，但尚未调用 <code>send</code> 方法。</li>
+<li><strong>2 (载入完成)</strong>: s<code>end</code> 方法已调用，并且响应头和响应状态已经可用。</li>
+<li><strong>3 (交互中)</strong>: 正在接收响应数据，此时部分响应内容可能已经可以访问了。</li>
+<li><strong>4 (完成)</strong>: 响应数据接收完成，整个请求过程已经完全结束。</li>
+</ol>
+<p>通常情况下，我们主要关注 readyState 为 4 的状态，即请求完成状态。在这个状态下，我们可以通过检查 <code>status</code> 属性来获取请求的结果（比如响应状态码），并通过 <code>responseText</code> 或 <code>responseXML</code> 属性来获取服务器返回的数据。</p>
+<p>注意，readyState 属性是只读的，我们不能直接修改它的值。它会在请求过程中自动更新，我们可以通过监听 readystatechange 事件来进行相应的处理。</p>
+<h3 id="status"><a href="#status" class="headerlink" title="status"></a>status</h3><p>status 是 XMLHttpRequest 对象的一个属性，用于表示 HTTP 状态码。</p>
+<p>HTTP 状态码是服务器对请求处理的结果进行响应的标准化数字代码。常见的一些 HTTP 状态码包括：</p>
+<ul>
+<li><strong>200 OK</strong>：表示请求成功并返回所请求的数据。</li>
+<li><strong>201 Created</strong>：表示请求成功并在服务器上创建了新资源。</li>
+<li><strong>204 No Content</strong>：表示请求成功，但响应中无返回的内容。</li>
+<li><strong>400 Bad Request</strong>：表示请求有语法错误或参数错误，服务器无法理解。</li>
+<li><strong>401 Unauthorized</strong>：表示请求未经授权，需要用户进行身份验证。</li>
+<li><strong>403 Forbidden</strong>：表示服务器拒绝请求，通常是因为请求的资源没有访问权限。</li>
+<li><strong>404 Not Found</strong>：表示请求的资源不存在。</li>
+<li><strong>500 Internal Server Error</strong>：表示服务器内部发生错误，无法完成请求。</li>
+</ul>
+<p>在使用 XMLHttpRequest 发送请求后，可以通过检查 <code>status</code> 属性来获取服务器对请求的响应状态码，并根据不同的状态码进行相应的处理。</p>
+<h3 id="事件属性"><a href="#事件属性" class="headerlink" title="事件属性"></a>事件属性</h3><p>XMLHttpRequest (XHR) 对象具有以下常用的事件属性：</p>
+<ol>
+<li><strong>onreadystatechange</strong>: 当 <code>readyState</code> 属性发生变化时触发该事件。可以使用 <code>xhr.onreadystatechange</code> 属性来指定处理状态变化的回调函数。在每次状态变化时都会触发该事件，可以通过检查 <code>xhr.readyState</code> 属性来确定当前的状态。</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs javascript">xhr.<span class="hljs-property">onreadystatechange</span> = <span class="hljs-function">() =&gt;</span> {  <br>  <span class="hljs-keyword">if</span>(xhr.<span class="hljs-property">readyState</span> === <span class="hljs-number">4</span>) {  <br>    <span class="hljs-comment">// 请求已完成  </span><br>    <span class="hljs-keyword">if</span>(xhr.<span class="hljs-property">status</span> === <span class="hljs-number">200</span>) {  <br>      <span class="hljs-comment">// 请求成功  </span><br>    } <span class="hljs-keyword">else</span> {  <br>      <span class="hljs-comment">// 请求失败  </span><br>    }  <br>  } <span class="hljs-keyword">else</span> {  <br>    <span class="hljs-comment">// 请求进行中  </span><br>  }  <br>};<br></code></pre></td></tr></table></figure>
+<ol>
+<li><code>onload:</code> 当请求成功完成并且响应数据完全加载时触发该事件。可以使用 <code>xhr.onload</code> 属性来指定处理成功加载的回调函数。通常在这个事件中获取和处理响应数据。</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs javascript">xhr.<span class="hljs-property">onload</span> = <span class="hljs-function">() =&gt;</span> {  <br>  <span class="hljs-comment">// 获取和处理响应数据  </span><br>  <span class="hljs-keyword">const</span> responseData = <span class="hljs-title class_">JSON</span>.<span class="hljs-title function_">parse</span>(xhr.<span class="hljs-property">responseText</span>);  <br>  <span class="hljs-comment">// 其他操作...  </span><br>};<br></code></pre></td></tr></table></figure>
+<ol>
+<li><code>onerror</code>: 当请求发生错误时触发该事件。可以使用 <code>xhr.onerror</code> 属性来指定处理错误的回调函数。常见的错误包括网络错误、无法完成请求等。</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs javascript">xhr.<span class="hljs-property">onerror</span> = <span class="hljs-function">() =&gt;</span> {  <br>  <span class="hljs-comment">// 处理错误逻辑  </span><br>};<br></code></pre></td></tr></table></figure>
+<ol>
+<li><code>onprogress</code>: 在数据传输过程中持续触发，用于追踪请求的进度。可以使用 <code>xhr.onprogress</code> 属性来指定处理进度的回调函数。</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs javascript">xhr.<span class="hljs-property">onprogress</span> = <span class="hljs-function">(<span class="hljs-params">event</span>) =&gt;</span> {  <br>  <span class="hljs-comment">// 处理进度逻辑  </span><br>};<br></code></pre></td></tr></table></figure>
+<ol>
+<li><code>ontimeout</code>： 当请求超时时触发该事件。可以使用 <code>xhr.ontimeout</code> 属性来指定处理超时的回调函数。</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs javascript">xhr.<span class="hljs-property">ontimeout</span> = <span class="hljs-function">() =&gt;</span> {  <br>  <span class="hljs-comment">// 处理超时逻辑  </span><br>};<br></code></pre></td></tr></table></figure>
+<h3 id="responseType"><a href="#responseType" class="headerlink" title="responseType"></a>responseType</h3><p>responseType 是 XMLHttpRequest 对象的属性，用于指定响应的数据类型。它决定了如何解析从服务器返回的响应数据。</p>
+<p>常见的 responseType 值包括：</p>
+<ol>
+<li><strong>“” (默认值)</strong>: 表示响应的数据类型是字符串。</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs javascript">xhr.<span class="hljs-property">responseType</span> = <span class="hljs-string">""</span>;<br></code></pre></td></tr></table></figure>
+<ol>
+<li><strong>“text”</strong>: 表示响应的数据类型是字符串。</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs javascript">xhr.<span class="hljs-property">responseType</span> = <span class="hljs-string">"text"</span>;<br></code></pre></td></tr></table></figure>
+<ol>
+<li><strong>“json”</strong>: 表示响应的数据类型是 JSON 对象，会自动将响应数据解析为 JavaScript 对象。</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs javascript">xhr.<span class="hljs-property">responseType</span> = <span class="hljs-string">"json"</span>;<br></code></pre></td></tr></table></figure>
+<ol>
+<li><strong>“document”</strong>: 表示响应的数据类型是 XML 文档对象，会自动将响应数据解析为 XML 文档对象。</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs javascript">xhr.<span class="hljs-property">responseType</span> = <span class="hljs-string">"document"</span>;<br></code></pre></td></tr></table></figure>
+<ol>
+<li><strong>“arraybuffer”</strong>: 表示响应的数据类型是 <code>ArrayBuffer</code> 对象，适用于二进制数据的传输和处理。</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs javascript">xhr.<span class="hljs-property">responseType</span> = <span class="hljs-string">"arraybuffer"</span>;<br></code></pre></td></tr></table></figure>
+<ol>
+<li><strong>“blob”</strong>: 表示响应的数据类型是 Blob 对象，适用于文件下载等场景。</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs javascript">xhr.<span class="hljs-property">responseType</span> = <span class="hljs-string">"blob"</span>;<br></code></pre></td></tr></table></figure>
+<p>通过设置不同的 <code>responseType</code> 值，可以根据需要获取不同类型的响应数据。注意，在设置 <code>responseType</code> 之前，最好在调用 <code>open</code> 方法之后、发送请求之前设置，以确保设置生效。</p>
+<hr>
+<h2 id="Ajax"><a href="#Ajax" class="headerlink" title="Ajax"></a>Ajax</h2><p>AJAX（Asynchronous JavaScript and XML，异步 JavaScript 和 XML）是一种使用现有的网页技术来创建异步请求和更新页面内容的方法。Ajax 本身不是一种技术，而是一种将一些现有技术结合起来使用的方法，包括：HTML 或 XHTML、CSS、JavaScript、DOM、XML、XSLT、以及最重要的 XMLHttpRequest 对象。</p>
+<p>当使用结合了这些技术的 Ajax 模型以后，网页应用能够快速地将增量更新呈现在用户界面上，而不需要重载（刷新）整个页面。这使得程序能够更快地回应用户的操作。Ajax 最吸引人的特性是它的”异步”性质，这意味着它可以与服务器通信、交换数据并更新页面，而无需刷新页面。</p>
+<p>Ajax 是一种使用浏览器提供的 XMLHttpRequest 对象实现的技术，用于在不刷新整个页面的情况下进行异步请求和更新页面内容。<strong>可以说 Ajax 是基于浏览器提供的 XMLHttpRequest 对象来实现的。</strong></p>
+<p>以下是基于原生 JavaScript 的 AJAX 请求代码示例：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">// 创建 XMLHttpRequest 对象  </span><br><span class="hljs-keyword">const</span> xhr = <span class="hljs-keyword">new</span> <span class="hljs-title class_">XMLHttpRequest</span>();  <br><br><span class="hljs-comment">// 指定请求的方法和 URL  </span><br>xhr.<span class="hljs-title function_">open</span>(<span class="hljs-string">'GET'</span>, <span class="hljs-string">'api_url'</span>, <span class="hljs-literal">true</span>);  <span class="hljs-comment">// 第三个参数 true 表示异步请求  </span><br><br><span class="hljs-comment">// 设置请求头（如果需要）  </span><br>xhr.<span class="hljs-title function_">setRequestHeader</span>(<span class="hljs-string">'Content-Type'</span>, <span class="hljs-string">'application/json'</span>);  <span class="hljs-comment">// 根据实际需求设置请求头  </span><br><br><span class="hljs-comment">// 注册一个回调函数来处理响应  </span><br>xhr.<span class="hljs-property">onreadystatechange</span> = <span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) {  <br>  <span class="hljs-keyword">if</span> (xhr.<span class="hljs-property">readyState</span> === <span class="hljs-number">4</span> &amp;&amp; xhr.<span class="hljs-property">status</span> === <span class="hljs-number">200</span>) {  <br>    <span class="hljs-keyword">const</span> response = <span class="hljs-title class_">JSON</span>.<span class="hljs-title function_">parse</span>(xhr.<span class="hljs-property">responseText</span>);  <span class="hljs-comment">// 处理响应数据  </span><br>    <span class="hljs-comment">// 在这里执行相应的操作  </span><br>    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(response);  <br>  }  <br>};  <br><br><span class="hljs-comment">// 发送请求  </span><br>xhr.<span class="hljs-title function_">send</span>();<br></code></pre></td></tr></table></figure>
+<p>虽然 AJAX 是一种强大的技术，但相对于 Axios 和 Fetch API，它有以下一些缺点：</p>
+<ul>
+<li><p><strong>兼容性问题</strong>：AJAX 的兼容性相对较低，尤其在旧版本的浏览器中可能会出现问题。而 Axios 和 Fetch API 使用了更现代的 JavaScript 特性，具有更好的兼容性。</p>
+</li>
+<li><p><strong>代码冗余</strong>：使用原生的 AJAX 需要编写较多的代码来处理不同的状态码、错误处理以及请求的拼装等。而 Axios 和 Fetch API 提供了更简洁和易用的接口，减少了代码冗余。</p>
+</li>
+<li><p><strong>缺乏默认配置</strong>：AJAX 不提供默认的全局配置，如请求和响应拦截器、统一的错误处理等。而 Axios 和 Fetch API 支持全局配置，并且提供了更方便的拦截器机制。</p>
+</li>
+<li><p><strong>功能限制</strong>：AJAX 在处理跨域请求时需要注意添加额外的处理，比如设置 CORS 头部信息或者使用 JSONP。而 Axios 和 Fetch API 提供了更直接的方式来处理跨域请求。</p>
+</li>
+<li><p><strong>可读性较差</strong>：由于 AJAX 使用的是回调函数来处理异步请求，可能会导致代码逻辑比较复杂，可读性较差。而 Axios 和 Fetch API 使用的是 Promise 或 async/await，使代码结构更加清晰易读。</p>
+</li>
+</ul>
+<hr>
+<h2 id="Fetch"><a href="#Fetch" class="headerlink" title="Fetch"></a>Fetch</h2><p>Fetch 是一种用于进行网络请求的现代 JavaScript API。它提供了一种简单、灵活且功能强大的方式，用于从服务器获取资源并处理响应。</p>
+<p>Fetch API 在浏览器中原生支持，并且以 Promise 为基础，使得异步请求更加直观和易用。使用 Fetch API，可以执行各种类型的请求（如 GET、POST、PUT、DELETE 等），发送请求时可以设置请求头、请求参数，以及处理响应数据。</p>
+<p>与传统的 AJAX 相比，Fetch API 具有以下优点：</p>
+<ul>
+<li><strong>Promise 支持</strong>：Fetch API 使用 Promise 对象来处理异步操作，使得处理异步请求的流程更加清晰、易于阅读和编写。</li>
+<li><strong>更简洁的 API</strong>：Fetch API 提供了一个简洁的 API，使发送请求变得更加直观和简单，同时提供了丰富的配置选项（如设置请求头、请求参数等）。</li>
+<li><strong>内置的 JSON 解析</strong>：在处理响应时，Fetch API 内置了对 JSON 数据的解析，无需手动进行解析操作。</li>
+<li><strong>更好的错误处理</strong>：Fetch API 使用了更全面的错误处理机制，允许通过检查响应状态码来确定请求是否成功，并以不同的方式处理错误。</li>
+</ul>
+<h3 id="fetch"><a href="#fetch" class="headerlink" title="fetch()"></a>fetch()</h3><p>Fetch API 提供了一个全局的 <code>fetch()</code> 方法，该方法提供了一种简单、逻辑的方式来通过网络异步获取资源。</p>
+<p><code>fetch()</code> 方法的语法如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-title function_">fetch</span>(url, options)  <br>  .<span class="hljs-title function_">then</span>(<span class="hljs-function"><span class="hljs-params">response</span> =&gt;</span> {  <br>    <span class="hljs-comment">// 在这里处理响应  </span><br>  })  <br>  .<span class="hljs-title function_">catch</span>(<span class="hljs-function"><span class="hljs-params">error</span> =&gt;</span> {  <br>    <span class="hljs-comment">// 在这里处理错误  </span><br>  });  <br></code></pre></td></tr></table></figure>
+<p>这里有两个参数：</p>
+<ul>
+<li><code>url</code>：请求的 URL 地址。</li>
+<li><code>options</code>（可选）：一个包含请求选项的对象，可以指定请求的方法（method）、请求头（headers）、请求体（body）等。</li>
+</ul>
+<p>注意，<code>fetch()</code>默认使用的是 GET 请求，如果需要使用其他方法（如 POST、PUT 等），需要通过 <code>options</code> 参数进行设置。</p>
+<p><code>fetch()</code> 方法返回一个 Promise 对象，可以使用 <code>.then()</code> 方法来处理成功的响应，使用 <code>.catch()</code> 方法来处理错误的情况。</p>
+<ul>
+<li>在 <code>.then()</code> 中，可以访问到 <code>response</code> 对象，进一步处理响应的内容。</li>
+<li>在 <code>.catch()</code> 中，我们可以访问到 <code>error</code> 对象，用于处理请求过程中的任何错误。</li>
+</ul>
+<p><code>options</code> 对象包含的属性如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs javascript">{  <br>  <span class="hljs-attr">method</span>: <span class="hljs-string">'POST'</span>, <span class="hljs-comment">// *GET, POST, PUT, DELETE等  </span><br>  <span class="hljs-attr">mode</span>: <span class="hljs-string">'cors'</span>, <span class="hljs-comment">// no-cors, *cors, same-origin  </span><br>  <span class="hljs-attr">cache</span>: <span class="hljs-string">'no-cache'</span>, <span class="hljs-comment">// *default, no-cache, reload, force-cache, only-if-cached  </span><br>  <span class="hljs-attr">credentials</span>: <span class="hljs-string">'same-origin'</span>, <span class="hljs-comment">// include, *same-origin, omit  </span><br>  <span class="hljs-attr">headers</span>: {   <br>    <span class="hljs-string">'Content-Type'</span>: <span class="hljs-string">'application/json'</span>  <br>  },  <br>  <span class="hljs-attr">redirect</span>: <span class="hljs-string">'follow'</span>, <span class="hljs-comment">// manual, *follow, error  </span><br>  <span class="hljs-attr">referrerPolicy</span>: <span class="hljs-string">'no-referrer'</span>, <span class="hljs-comment">// no-referrer, *client  </span><br>  <span class="hljs-attr">body</span>: <span class="hljs-title class_">JSON</span>.<span class="hljs-title function_">stringify</span>(data)   <br>   <span class="hljs-comment">// body 数据类型必须与 "Content-Type" 请求头匹配  </span><br>}<br></code></pre></td></tr></table></figure>
+<ul>
+<li><code>method</code>：请求方法，例如 GET、POST、PUT、DELETE 等。</li>
+<li><code>mode</code>：请求模式，可以是 no-cors、*cors、same-origin 等。</li>
+<li><code>cache</code>：缓存模式，可以是 default、no-cache、reload、force-cache、only-if-cached 等。</li>
+<li><code>credentials</code>：请求的凭证模式，可以是 include、*same-origin、omit 等。</li>
+<li><code>headers</code>：请求头对象，用于设置请求头的键值对。</li>
+<li><code>redirect</code>：重定向模式，可以是 manual、*follow、error 等。</li>
+<li><code>referrerPolicy</code>：引用页面隐私设置，可以是 no-referrer、*client 等。</li>
+<li><code>body</code>：请求体数据，必须与 “Content-Type” 请求头指定的数据类型匹配。在示例中，使用<code>JSON.stringify()</code>将数据转换为 JSON 字符串。</li>
+</ul>
+<h3 id="response"><a href="#response" class="headerlink" title="response"></a>response</h3><p>一旦获取到响应（Response），返回的对象包含以下属性：</p>
+<ul>
+<li><code>response.body</code>：一个简单的 getter，提供了响应内容的可读流（ReadableStream）。</li>
+<li><code>response.bodyUsed</code>：一个布尔值，用于记录响应体是否已经被使用过。</li>
+<li><code>response.headers</code>：与响应相关联的头部信息对象。</li>
+<li><code>response.ok</code>：一个布尔值，指示响应是否成功。</li>
+<li><code>response.redirected</code>：指示响应是否是重定向结果的布尔值。</li>
+<li><code>response.status</code>：响应的状态码。</li>
+<li><code>response.statusText</code>：与状态码对应的状态消息。</li>
+<li><code>response.type</code>：响应的类型。</li>
+<li><code>response.url</code>：响应的 URL。</li>
+</ul>
+<p>我们可以使用 <code>response.type</code> 来确定响应的类型，并根据不同的类型采取相应的处理方法：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-title function_">fetch</span>(url)  <br>  .<span class="hljs-title function_">then</span>(<span class="hljs-function"><span class="hljs-params">response</span> =&gt;</span> {  <br>    <span class="hljs-comment">// 检查响应状态码  </span><br>    <span class="hljs-keyword">if</span> (!response.<span class="hljs-property">ok</span>) {  <br>      <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Error</span>(<span class="hljs-string">'Network response was not ok'</span>);  <br>    }  <br>    <span class="hljs-comment">// 定义一个响应类型与解析方法的映射关系  </span><br>    <span class="hljs-keyword">const</span> responseTypes = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Map</span>([  <br>      [<span class="hljs-string">'json'</span>, <span class="hljs-function">() =&gt;</span> response.<span class="hljs-title function_">json</span>()],  <br>      [<span class="hljs-string">'text'</span>, <span class="hljs-function">() =&gt;</span> response.<span class="hljs-title function_">text</span>()],  <br>      [<span class="hljs-string">'formData'</span>, <span class="hljs-function">() =&gt;</span> response.<span class="hljs-title function_">formData</span>()],  <br>      [<span class="hljs-string">'blob'</span>, <span class="hljs-function">() =&gt;</span> response.<span class="hljs-title function_">blob</span>()],  <br>      [<span class="hljs-string">'arrayBuffer'</span>, <span class="hljs-function">() =&gt;</span> response.<span class="hljs-title function_">arrayBuffer</span>()]  <br>    ]);  <br>    <span class="hljs-comment">// 根据响应类型选择相应的解析方法  </span><br>    <span class="hljs-keyword">const</span> parser = responseTypes.<span class="hljs-title function_">get</span>(response.<span class="hljs-property">type</span>);  <br>    <span class="hljs-keyword">if</span> (parser) {  <br>      <span class="hljs-keyword">return</span> <span class="hljs-title function_">parser</span>();  <br>    } <span class="hljs-keyword">else</span> {  <br>      <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Error</span>(<span class="hljs-string">'Unsupported response type'</span>);  <br>    }  <br>  })  <br>  .<span class="hljs-title function_">then</span>(<span class="hljs-function"><span class="hljs-params">data</span> =&gt;</span> {  <br>    <span class="hljs-comment">// 处理数据  </span><br>    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(data);  <br>  })  <br>  .<span class="hljs-title function_">catch</span>(<span class="hljs-function"><span class="hljs-params">error</span> =&gt;</span> {  <br>    <span class="hljs-comment">// 处理错误情况  </span><br>    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">error</span>(<span class="hljs-string">'Error:'</span>, error);  <br>  });<br></code></pre></td></tr></table></figure>
+<p><code>Response</code> 对象提供了 5 个方法，用于从 HTTP 响应中获取不同类型的数据：</p>
+<ul>
+<li><code>response.json()</code>：将响应体解析为 JSON 对象。如果响应的 Content-Type 是 <code>application/json</code>，则使用此方法。</li>
+<li><code>response.text()</code>：将响应体解析为文本字符串。如果响应的 Content-Type 是纯文本类型，如 text/plain 或 text/html，则使用此方法。</li>
+<li><code>response.formData()</code>：将响应体解析为 FormData 对象。如果响应的 Content-Type 是 multipart/form-data，则使用此方法。FormData 通常用于上传文件或提交表单数据。</li>
+<li><code>response.blob()</code>：将响应体解析为 Blob 对象。Blob 对象表示二进制大对象，可以是图像、音频、视频等类型的数据。</li>
+<li><code>response.arrayBuffer()</code>：将响应体解析为 ArrayBuffer 对象。ArrayBuffer 是一种表示二进制数据的固定长度缓冲区。</li>
+</ul>
+<p>这些方法返回一个 Promise，当解析完成时，Promise 将被解析为相应的数据类型。</p>
+<h3 id="请求头和响应头-1"><a href="#请求头和响应头-1" class="headerlink" title="请求头和响应头"></a>请求头和响应头</h3><p>fetch 函数的请求头包含在发起 HTTP 请求时发送给服务器的信息，用于传递额外的参数和配置。可以使用 <code>headers</code> 对象来设置和操作请求头。常见的请求头字段包括：</p>
+<ul>
+<li><code>Content-Type</code>：指定请求体的格式类型，如 <code>application/json</code>、<code>application/x-www-form-urlencoded</code> 等。</li>
+<li><code>Authorization</code>：用于身份验证，通常与 Token 或用户名密码一起使用。</li>
+<li><code>Accept</code>：指定客户端所能接受的响应数据类型。</li>
+<li><code>User-Agent</code>：标识发起请求的用户代理（浏览器或应用程序）的信息。</li>
+</ul>
+<p>在 fetch 函数中可以通过第二个参数进行配置，其中可以指定请求头：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-title function_">fetch</span>(url, {  <br>  <span class="hljs-attr">method</span>: <span class="hljs-string">'GET'</span>,  <br>  <span class="hljs-attr">headers</span>: {  <br>    <span class="hljs-string">'Content-Type'</span>: <span class="hljs-string">'application/json'</span>,  <br>    <span class="hljs-string">'Authorization'</span>: <span class="hljs-string">'Bearer token123'</span>  <br>  }  <br>})  <br>  .<span class="hljs-title function_">then</span>(<span class="hljs-function"><span class="hljs-params">response</span> =&gt;</span> {  <br>    <span class="hljs-comment">// 处理响应  </span><br>  })  <br>  .<span class="hljs-title function_">catch</span>(<span class="hljs-function"><span class="hljs-params">error</span> =&gt;</span> {  <br>    <span class="hljs-comment">// 处理错误  </span><br>  });<br></code></pre></td></tr></table></figure>
+<p>响应头是服务器在响应 HTTP 请求时发送给客户端的头部信息。可以通过 <code>Response</code> 对象的 <code>headers</code> 属性访问响应头。常见的响应头字段包括：</p>
+<ul>
+<li><code>Content-Type</code>：指定响应体的格式类型。</li>
+<li><code>Set-Cookie</code>：设置或修改客户端的 Cookie。</li>
+<li><code>Cache-Control</code>：控制缓存的行为，如 no-cache、max-age 等。</li>
+<li><code>Content-Disposition</code>：指定响应的内容该如何展示（如文件的下载）。</li>
+</ul>
+<p>在处理 <code>fetch</code> 返回的 <code>Response</code> 对象时，可以通过调用 <code>response.headers.get('Header-Name')</code> 方法来获取特定的响应头字段的值。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-title function_">fetch</span>(url)  <br>  .<span class="hljs-title function_">then</span>(<span class="hljs-function"><span class="hljs-params">response</span> =&gt;</span> {  <br>    <span class="hljs-keyword">const</span> contentType = response.<span class="hljs-property">headers</span>.<span class="hljs-title function_">get</span>(<span class="hljs-string">'Content-Type'</span>);  <br>    <span class="hljs-comment">// 其他处理逻辑  </span><br>  })  <br>  .<span class="hljs-title function_">catch</span>(<span class="hljs-function"><span class="hljs-params">error</span> =&gt;</span> {  <br>    <span class="hljs-comment">// 处理错误  </span><br>  });<br></code></pre></td></tr></table></figure>
+<h3 id="错误处理"><a href="#错误处理" class="headerlink" title="错误处理"></a>错误处理</h3><p>除了可以使用 catch() 来处理错误之外，与使用其他异步操作一样，我们也可以使用 <code>async/await</code> 来处理异步请求，使代码更加简洁和易读：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">async</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">fetchData</span>(<span class="hljs-params"></span>) {  <br>  <span class="hljs-keyword">try</span> {  <br>    <span class="hljs-keyword">const</span> response = <span class="hljs-keyword">await</span> <span class="hljs-title function_">fetch</span>(<span class="hljs-string">'https://api.example.com/data'</span>);  <br>    <span class="hljs-keyword">if</span> (response.<span class="hljs-property">ok</span>) {  <br>      <span class="hljs-keyword">const</span> data = <span class="hljs-keyword">await</span> response.<span class="hljs-title function_">json</span>();  <br>      <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(data); <span class="hljs-comment">// 处理解析后的数据  </span><br>    } <span class="hljs-keyword">else</span> {  <br>      <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Error</span>(<span class="hljs-string">'请求失败'</span>);  <br>    }  <br>  } <span class="hljs-keyword">catch</span> (error) {  <br>    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(error); <span class="hljs-comment">// 处理错误  </span><br>  }  <br>}  <br><br><span class="hljs-title function_">fetchData</span>();<br></code></pre></td></tr></table></figure>
+<h3 id="取消请求"><a href="#取消请求" class="headerlink" title="取消请求"></a>取消请求</h3><p>在标准的 Fetch API 中，没有提供直接取消 Fetch 请求的内置方法。但是，可以使用以下方法来模拟或实现取消 Fetch 请求的效果。</p>
+<p>使用 <code>AbortController</code> 和 <code>AbortSignal</code>：这是一种较新的浏览器特性，用于生成可以取消请求的信号。可以创建一个 <code>AbortController</code>对象，然后将其关联到 Fetch 请求中，当需要取消请求时，调用 <code>AbortController</code> 的 <code>abort()</code>方法：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">// 创建 AbortController 和关联的 signal  </span><br><span class="hljs-keyword">const</span> abortController = <span class="hljs-keyword">new</span> <span class="hljs-title class_">AbortController</span>();  <br><span class="hljs-keyword">const</span> signal = abortController.<span class="hljs-property">signal</span>;  <br><br><span class="hljs-comment">// 发起 Fetch 请求，并将 signal 传递给 fetch 函数  </span><br><span class="hljs-title function_">fetch</span>(url, { signal })  <br>  .<span class="hljs-title function_">then</span>(<span class="hljs-function"><span class="hljs-params">response</span> =&gt;</span> {  <br>    <span class="hljs-comment">// 处理响应  </span><br>  })  <br>  .<span class="hljs-title function_">catch</span>(<span class="hljs-function"><span class="hljs-params">error</span> =&gt;</span> {  <br>    <span class="hljs-keyword">if</span> (error.<span class="hljs-property">name</span> === <span class="hljs-string">'AbortError'</span>) {  <br>      <span class="hljs-comment">// 请求已被取消  </span><br>    } <span class="hljs-keyword">else</span> {  <br>      <span class="hljs-comment">// 处理其他错误  </span><br>    }  <br>  });  <br><br><span class="hljs-comment">// 当需要取消请求时，调用 abort() 方法  </span><br>abortController.<span class="hljs-title function_">abort</span>();<br></code></pre></td></tr></table></figure>
+<hr>
+<h2 id="Axios"><a href="#Axios" class="headerlink" title="Axios"></a>Axios</h2><p>Axios 是一个基于 Promise 网络请求库，用于在浏览器和 Node.js 中进行 HTTP 请求。在服务端它使用原生 node.js <code>http</code> 模块, 而在客户端 (浏览端) 则使用 <code>XMLHttpRequests</code>。Axios 是目前最流行的 HTTP 请求库，其 npm 每周下载量达到了 4500w+。</p>
+<p>Axios 库具有以下特点：</p>
+<ul>
+<li><strong>浏览器和 Node.js</strong>：Axios 可在浏览器和 Node.js 环境中使用，可以在不同的平台上执行 HTTP 请求。</li>
+<li><strong>Promise API</strong>：Axios 使用 Promise API 进行异步操作，能够更轻松地处理异步请求和响应。</li>
+<li><strong>请求拦截和响应拦截</strong>：可以通过拦截器，在请求发送之前或响应返回之后对请求进行全局性或个性化的变换和处理。可以在请求或响应的不同阶段添加公共的请求头、验证身份、处理错误等。</li>
+<li><strong>取消请求</strong>：Axios 允许取消未完成的请求，以避免无效的请求，并减轻服务器的负担。取消请求可以通过创建取消令牌、使用取消令牌进行请求配置或者在拦截器中中断请求来实现。</li>
+<li><strong>并发请求</strong>：Axios 提供了执行多个并发请求的能力，可以同时发起多个请求，并在所有请求完成后进行处理。</li>
+<li><strong>自动转换数据</strong>：Axios 可以自动将请求和响应的数据进行格式转换，包括 JSON、URL 编码等。无需手动处理数据转换的过程。</li>
+<li><strong>错误处理机制</strong>：当请求过程中出现错误时，Axios 会返回详细的错误信息，包括 HTTP 错误状态码、错误描述等。可以根据需要对这些错误进行处理和显示。</li>
+<li><strong>简洁的 API</strong>：Axios 的 API 设计简洁易用，具有直观的方法命名和参数配置。可以轻松地使用 Axios 进行 GET、POST、PUT、DELETE 等常见的 HTTP 请求。</li>
+</ul>
+<p>可以通过以下命令来安装 Axios：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs bash">// 使用 npm 安装  <br>npm install axios  <br><br>// 使用 yarn 安装  <br>yarn add axios<br></code></pre></td></tr></table></figure>
+<p>下面来进行一个简单的 get 请求：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs javascript">axios.<span class="hljs-title function_">get</span>(<span class="hljs-string">'https://api.example.com/data'</span>)  <br>  .<span class="hljs-title function_">then</span>(<span class="hljs-function"><span class="hljs-params">response</span> =&gt;</span> {  <br>    <span class="hljs-comment">// 处理成功响应  </span><br>    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(response.<span class="hljs-property">data</span>);  <br>  })  <br>  .<span class="hljs-title function_">catch</span>(<span class="hljs-function"><span class="hljs-params">error</span> =&gt;</span> {  <br>    <span class="hljs-comment">// 处理错误  </span><br>    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">error</span>(error);  <br>  });<br></code></pre></td></tr></table></figure>
+<p>这里使用 <code>axios.get</code> 方法发起了一个 GET 请求，并将请求的 URL 作为参数传递给该方法。然后使用 Promise 的 <code>.then</code> 方法处理成功响应，并通过 <code>response.data</code> 获取响应数据。如果请求失败，可以通过 Promise 的 <code>.catch</code> 方法捕获错误。</p>
+<h3 id="请求方法"><a href="#请求方法" class="headerlink" title="请求方法"></a>请求方法</h3><p>axios 支持通过简写方式来执行不同类型的请求：</p>
+<ul>
+<li>axios.request(config)</li>
+<li>axios.get(url[, config])</li>
+<li>axios.delete(url[, config])</li>
+<li>axios.head(url[, config])</li>
+<li>axios.options(url[, config])</li>
+<li>axios.post(url[, data[, config]])</li>
+<li>axios.put(url[, data[, config]])</li>
+<li>axios.patch(url[, data[, config]])</li>
+</ul>
+<p>对于这些方法，第一个参数是请求的 URL，config 和 data 分别是请求的配置项和请求参数，这两个参数都是可选的。例如，下面是一个 post 请求：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> options = {  <br>  <span class="hljs-attr">headers</span>: {<span class="hljs-string">'X-Custom-Header'</span>: <span class="hljs-string">'value'</span>}  <br>};  <br><br>axios.<span class="hljs-title function_">post</span>(<span class="hljs-string">'/save'</span>, { <span class="hljs-attr">a</span>: <span class="hljs-number">10</span> }, options)  <br>  .<span class="hljs-title function_">then</span>(<span class="hljs-function"><span class="hljs-params">response</span> =&gt;</span> {  <br>    <span class="hljs-comment">// 处理成功响应  </span><br>    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(response.<span class="hljs-property">data</span>);  <br>  })  <br>  .<span class="hljs-title function_">catch</span>(<span class="hljs-function"><span class="hljs-params">error</span> =&gt;</span> {  <br>    <span class="hljs-comment">// 处理错误  </span><br>    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">error</span>(error);  <br>  });<br></code></pre></td></tr></table></figure>
+<p>当作为第二个参数传递给 <code>axios.post</code> 函数时，Axios 会自动将 JavaScript 对象序列化为 JSON。 这样就无需将 POST 正文序列化为 JSON。Axios 还会自动将 <code>Content-Type</code> 请求头设置为 <code>application/json</code></p>
+<h3 id="多个请求"><a href="#多个请求" class="headerlink" title="多个请求"></a>多个请求</h3><p>在 Axios 中，可以使用 <code>axios.all</code> 和 <code>axios.spread</code> 来处理多个并发的请求：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> axios = <span class="hljs-built_in">require</span>(<span class="hljs-string">'axios'</span>);  <br><br><span class="hljs-comment">// 创建多个请求  </span><br><span class="hljs-keyword">const</span> request1 = axios.<span class="hljs-title function_">get</span>(<span class="hljs-string">'https://api.example.com/data1'</span>);  <br><span class="hljs-keyword">const</span> request2 = axios.<span class="hljs-title function_">get</span>(<span class="hljs-string">'https://api.example.com/data2'</span>);  <br><br><span class="hljs-comment">// 并发发送多个请求  </span><br>axios.<span class="hljs-title function_">all</span>([request1, request2])  <br>  .<span class="hljs-title function_">then</span>(axios.<span class="hljs-title function_">spread</span>(<span class="hljs-function">(<span class="hljs-params">response1, response2</span>) =&gt;</span> {  <br>    <span class="hljs-comment">// 处理各个请求的响应  </span><br>    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(response1.<span class="hljs-property">data</span>);  <br>    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(response2.<span class="hljs-property">data</span>);  <br>  }))  <br>  .<span class="hljs-title function_">catch</span>(<span class="hljs-function"><span class="hljs-params">error</span> =&gt;</span> {  <br>    <span class="hljs-comment">// 处理错误  </span><br>    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">error</span>(error);  <br>  });<br></code></pre></td></tr></table></figure>
+<p>可以看到，在 <code>.then</code> 方法中使用了 <code>axios.spread</code> 函数将多个请求的响应结果进行解构，通过多个参数分别接收各个请求的响应。可以根据实际情况命名这些参数，并通过 <code>response1.data</code>、r<code>esponse2.data</code> 等方式获取各个请求的响应数据。</p>
+<h3 id="请求拦截、响应拦截"><a href="#请求拦截、响应拦截" class="headerlink" title="请求拦截、响应拦截"></a>请求拦截、响应拦截</h3><p>在 Axios 中，可以使用 <code>transformRequest</code> 方法在请求发送之前对请求数据进行转换和处理，它是一个请求拦截器，是一个可选的函数。</p>
+<p>tran<code>sformRequest</code> 函数接收两个参数：<code>requestData</code> 和 <code>requestHeaders</code>。其中，<code>requestData</code> 是要发送的请求数据，<code>requestHeaders</code> 是要发送的请求头信息。可以在 <code>transformRequest</code> 函数内部对这些参数进行修改，并将修改后的值返回。返回的结果将作为实际发送请求的数据。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-title function_">axios</span>({  <br>  <span class="hljs-attr">url</span>: <span class="hljs-string">'https://api.example.com/data'</span>,  <br>  <span class="hljs-attr">method</span>: <span class="hljs-string">'post'</span>,  <br>  <span class="hljs-attr">data</span>: {  <br>    <span class="hljs-attr">id</span>: <span class="hljs-number">12345</span>,  <br>    <span class="hljs-attr">name</span>: <span class="hljs-string">'John Doe'</span>  <br>  },  <br>  <span class="hljs-attr">transformRequest</span>: <span class="hljs-function">(<span class="hljs-params">data, headers</span>) =&gt;</span> {  <br>    <span class="hljs-comment">// 对请求数据进行转换和处理  </span><br>    <span class="hljs-keyword">const</span> modifiedData = { ...data }; <span class="hljs-comment">// 复制原始数据  </span><br><br>    <span class="hljs-comment">// 修改数据或添加额外字段  </span><br>    modifiedData.<span class="hljs-property">extraField</span> = <span class="hljs-string">'Extra Value'</span>;  <br><br>    <span class="hljs-comment">// 修改请求头信息  </span><br>    headers[<span class="hljs-string">'Content-Type'</span>] = <span class="hljs-string">'application/json'</span>;  <br><br>    <span class="hljs-keyword">return</span> <span class="hljs-title class_">JSON</span>.<span class="hljs-title function_">stringify</span>(modifiedData); <span class="hljs-comment">// 返回处理后的数据  </span><br>  }  <br>})  <br>  .<span class="hljs-title function_">then</span>(<span class="hljs-function"><span class="hljs-params">response</span> =&gt;</span> {  <br>    <span class="hljs-comment">// 处理成功响应  </span><br>    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(response.<span class="hljs-property">data</span>);  <br>  })  <br>  .<span class="hljs-title function_">catch</span>(<span class="hljs-function"><span class="hljs-params">error</span> =&gt;</span> {  <br>    <span class="hljs-comment">// 处理错误  </span><br>    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">error</span>(error);  <br>  });  <br></code></pre></td></tr></table></figure>
+<p>这里使用 Axios 发起了一个 POST 请求。通过传递包含 <code>transformRequest</code> 函数的配置对象来定义请求。在 <code>transformRequest</code> 函数内部，复制了原始的请求数据 <code>data</code>，并进行了一些修改和处理，如添加了额外的字段和修改了请求头信息。最终，将修改后的数据以 JSON 字符串的形式返回。Axios 将使用 <code>transformRequest</code> 函数返回的结果作为实际发送请求的数据。</p>
+<p>除了可以对请求进行拦截之外，Axios 还支持对响应进行拦截，对响应数据进行转换和处理。可以通过 <code>transformResponse</code> 响应拦截器来实现。该函数接收一个参数：<code>responseData</code>，它是从服务器接收到的原始响应数据。可以在 <code>transformResponse</code> 函数内部对这个参数进行修改，并将修改后的值返回。返回的结果将作为实际处理响应的数据。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs javascript">axios.<span class="hljs-title function_">get</span>(<span class="hljs-string">'https://api.example.com/data'</span>, {  <br>  <span class="hljs-attr">transformResponse</span>: <span class="hljs-function">(<span class="hljs-params">data</span>) =&gt;</span> {  <br>    <span class="hljs-comment">// 对响应数据进行转换和处理  </span><br>    <span class="hljs-keyword">const</span> parsedData = <span class="hljs-title class_">JSON</span>.<span class="hljs-title function_">parse</span>(data); <span class="hljs-comment">// 解析 JSON 字符串  </span><br><br>    <span class="hljs-comment">// 修改数据或添加额外字段  </span><br>    parsedData.<span class="hljs-property">extraField</span> = <span class="hljs-string">'Extra Value'</span>;  <br><br>    <span class="hljs-keyword">return</span> parsedData; <span class="hljs-comment">// 返回处理后的数据  </span><br>  }  <br>})  <br>  .<span class="hljs-title function_">then</span>(<span class="hljs-function"><span class="hljs-params">response</span> =&gt;</span> {  <br>    <span class="hljs-comment">// 处理成功响应  </span><br>    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(response.<span class="hljs-property">data</span>);  <br>  })  <br>  .<span class="hljs-title function_">catch</span>(<span class="hljs-function"><span class="hljs-params">error</span> =&gt;</span> {  <br>    <span class="hljs-comment">// 处理错误  </span><br>    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">error</span>(error);  <br>  });  <br></code></pre></td></tr></table></figure>
+<p>这里使用 Axios 发起了一个 GET 请求，并通过传递包含 <code>transformResponse</code> 函数的配置对象来定义请求。在 <code>transformResponse</code> 函数内部，对从服务器接收到的响应数据 <code>data</code> 进行了一些修改和处理，如解析 JSON 字符串，添加了额外的字段。最终将修改后的数据返回。</p>
+<h3 id="拦截请求和响应"><a href="#拦截请求和响应" class="headerlink" title="拦截请求和响应"></a>拦截请求和响应</h3><p>Axios 中，可以使用拦截器来拦截请求和响应，并在其被发送或接收之前进行一些额外的处理，可以通过 <code>axios.interceptors</code> 对象来添加拦截器。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">// 添加请求拦截器  </span><br>axios.<span class="hljs-property">interceptors</span>.<span class="hljs-property">request</span>.<span class="hljs-title function_">use</span>(<span class="hljs-function"><span class="hljs-params">config</span> =&gt;</span> {  <br>  <span class="hljs-comment">// 在发送请求之前做一些处理  </span><br>  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">'请求拦截器'</span>);  <br><br>  <span class="hljs-comment">// 修改请求配置  </span><br>  config.<span class="hljs-property">headers</span>[<span class="hljs-string">'Authorization'</span>] = <span class="hljs-string">'Bearer token'</span>;  <br><br>  <span class="hljs-keyword">return</span> config;  <br>}, <span class="hljs-function"><span class="hljs-params">error</span> =&gt;</span> {  <br>  <span class="hljs-comment">// 处理请求错误  </span><br>  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">error</span>(<span class="hljs-string">'请求出错：'</span>, error);  <br>});  <br><br><span class="hljs-comment">// 添加响应拦截器  </span><br>axios.<span class="hljs-property">interceptors</span>.<span class="hljs-property">response</span>.<span class="hljs-title function_">use</span>(<span class="hljs-function"><span class="hljs-params">response</span> =&gt;</span> {  <br>  <span class="hljs-comment">// 在接收到响应数据之前做一些处理  </span><br>  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">'响应拦截器'</span>);  <br><br>  <span class="hljs-comment">// 修改响应数据  </span><br>  response.<span class="hljs-property">data</span> = { ...response.<span class="hljs-property">data</span>, <span class="hljs-attr">extraField</span>: <span class="hljs-string">'Extra Value'</span> };  <br><br>  <span class="hljs-keyword">return</span> response;  <br>}, <span class="hljs-function"><span class="hljs-params">error</span> =&gt;</span> {  <br>  <span class="hljs-comment">// 处理响应错误  </span><br>  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">error</span>(<span class="hljs-string">'响应出错：'</span>, error);  <br>});  <br><br><span class="hljs-comment">// 发送请求  </span><br>axios.<span class="hljs-title function_">get</span>(<span class="hljs-string">'https://api.example.com/data'</span>)  <br>  .<span class="hljs-title function_">then</span>(<span class="hljs-function"><span class="hljs-params">response</span> =&gt;</span> {  <br>    <span class="hljs-comment">// 处理成功响应  </span><br>    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(response.<span class="hljs-property">data</span>);  <br>  })  <br>  .<span class="hljs-title function_">catch</span>(<span class="hljs-function"><span class="hljs-params">error</span> =&gt;</span> {  <br>    <span class="hljs-comment">// 处理请求或响应错误  </span><br>    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">error</span>(error);  <br>  });<br></code></pre></td></tr></table></figure>
+<p>这里首先使用 <code>axios.interceptors.request.use</code> 方法添加了一个请求拦截器。该拦截器在发送请求之前被调用，并接收请求配置对象 <code>config</code> 作为参数。可以对请求配置进行修改，如添加请求头信息。最后，要确保返回修改后的配置对象。</p>
+<p>接下来，使用 <code>axios.interceptors.response.use</code> 方法添加了一个响应拦截器。该拦截器在接收到响应数据之前被调用，并接收响应对象 <code>response</code> 作为参数。可以对响应数据进行修改，如添加额外的字段。同样，要确保返回修改后的响应对象。</p>
+<h3 id="客户端支持-XSRF-防护"><a href="#客户端支持-XSRF-防护" class="headerlink" title="客户端支持 XSRF 防护"></a>客户端支持 XSRF 防护</h3><p>跨站请求伪造（简称 XSRF）是一种攻击 Web 应用的方法，其中攻击者将自己伪装成合法且受信任的用户，以影响应用程序与用户浏览器之间的交互。 有很多方法可以执行此类攻击，包括 <code>XMLHttpRequest</code>。</p>
+<p>幸运的是，Axios 通过允许在发出请求时嵌入额外的身份验证数据来防止 XSRF。 这使得服务器能够发现来自未经授权的位置的请求。以下是使用 Axios 完成此操作的方法：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> options = {  <br>  <span class="hljs-attr">method</span>: <span class="hljs-string">'post'</span>,  <br>  <span class="hljs-attr">url</span>: <span class="hljs-string">'/login'</span>,  <br>  <span class="hljs-attr">xsrfCookieName</span>: <span class="hljs-string">'XSRF-TOKEN'</span>,  <br>  <span class="hljs-attr">xsrfHeaderName</span>: <span class="hljs-string">'X-XSRF-TOKEN'</span>,  <br>};  <br><br><span class="hljs-title function_">axios</span>(options)  <br>  .<span class="hljs-title function_">then</span>(<span class="hljs-function"><span class="hljs-params">response</span> =&gt;</span> {  <br>    <span class="hljs-comment">// 处理成功响应  </span><br>    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(response.<span class="hljs-property">data</span>);  <br>  })  <br>  .<span class="hljs-title function_">catch</span>(<span class="hljs-function"><span class="hljs-params">error</span> =&gt;</span> {  <br>    <span class="hljs-comment">// 处理请求错误  </span><br>    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">error</span>(error);  <br>  });<br></code></pre></td></tr></table></figure>
+<p>这里有两个 xsrf 相关的属性：</p>
+<ul>
+<li><p><code>xsrfCookieName: 'XSRF-TOKEN'</code>：用于跨站请求伪造(XSRF/CSRF)保护的配置选项之一。它指定了存储 XSRF 令牌的 cookie 的名称。XSRF 令牌用于防止恶意网站发起对已验证用户的请求。</p>
+</li>
+<li><p><code>xsrfHeaderName: 'X-XSRF-TOKEN'</code>：用于跨站请求伪造(XSRF/CSRF)保护的配置选项之一。它指定了包含 XSRF 令牌的请求头的名称。服务器端可以通过检查该请求头来验证请求的合法性。</p>
+</li>
+</ul>
+<h3 id="请求进度"><a href="#请求进度" class="headerlink" title="请求进度"></a>请求进度</h3><p>Axios 的另一个有趣的功能是能够监控请求的进度，这在下载或上传大文件时特别有用，可以使用 <code>onUploadProgress</code> 和 <code>onDownloadProgress</code> 两个配置选项来实现。</p>
+<p>对于上传进度，可以使用 <code>onUploadProgress</code> 配置选项。它会在上传数据时触发，并提供关于上传进度的信息。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs javascript">axios.<span class="hljs-title function_">post</span>(<span class="hljs-string">'/upload'</span>, data, {  <br>  <span class="hljs-attr">onUploadProgress</span>: <span class="hljs-function"><span class="hljs-params">progressEvent</span> =&gt;</span> {  <br>    <span class="hljs-keyword">const</span> percentCompleted = <span class="hljs-title class_">Math</span>.<span class="hljs-title function_">round</span>((progressEvent.<span class="hljs-property">loaded</span> * <span class="hljs-number">100</span>) / progressEvent.<span class="hljs-property">total</span>);  <br>    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">`上传进度：<span class="hljs-subst">${percentCompleted}</span>%`</span>);  <br>  },  <br>})  <br>  .<span class="hljs-title function_">then</span>(<span class="hljs-function"><span class="hljs-params">response</span> =&gt;</span> {  <br>    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(response.<span class="hljs-property">data</span>);  <br>  })  <br>  .<span class="hljs-title function_">catch</span>(<span class="hljs-function"><span class="hljs-params">error</span> =&gt;</span> {  <br>    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">error</span>(error);  <br>  });<br></code></pre></td></tr></table></figure>
+<p>这里发送了一个 POST 请求，在配置选项中使用了 <code>onUploadProgress</code>。当数据上传过程中触发进度事件时，回调函数会被执行。在回调函数中，我们计算出了已上传数据的百分比，并将其打印出来。</p>
+<p>对于下载进度，可以使用 <code>onDownloadProgress</code> 配置选项。它会在接收到响应数据时触发，并提供关于下载进度的信息。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs javascript">axios.<span class="hljs-title function_">get</span>(<span class="hljs-string">'/download'</span>, {  <br>  <span class="hljs-attr">onDownloadProgress</span>: <span class="hljs-function"><span class="hljs-params">progressEvent</span> =&gt;</span> {  <br>    <span class="hljs-keyword">const</span> percentCompleted = <span class="hljs-title class_">Math</span>.<span class="hljs-title function_">round</span>((progressEvent.<span class="hljs-property">loaded</span> * <span class="hljs-number">100</span>) / progressEvent.<span class="hljs-property">total</span>);  <br>    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">`下载进度：<span class="hljs-subst">${percentCompleted}</span>%`</span>);  <br>  },  <br>})  <br>  .<span class="hljs-title function_">then</span>(<span class="hljs-function"><span class="hljs-params">response</span> =&gt;</span> {  <br>    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(response.<span class="hljs-property">data</span>);  <br>  })  <br>  .<span class="hljs-title function_">catch</span>(<span class="hljs-function"><span class="hljs-params">error</span> =&gt;</span> {  <br>    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">error</span>(error);  <br>  });<br></code></pre></td></tr></table></figure>
+<p>这里发送了一个 GET 请求，在配置选项中使用了 <code>onDownloadProgress</code>。当数据下载过程中触发进度事件时，回调函数会被执行。在回调函数中，我们计算出了已下载数据的百分比，并将其打印出来。</p>
+<h3 id="取消请求-1"><a href="#取消请求-1" class="headerlink" title="取消请求"></a>取消请求</h3><p>在 Axios 中，可以使用取消令牌（cancel token）来取消请求。取消令牌是一个对象，它表示一个具体的取消操作，并允许在需要时中止请求。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">// 创建一个取消令牌源  </span><br><span class="hljs-keyword">const</span> <span class="hljs-title class_">CancelToken</span> = axios.<span class="hljs-property">CancelToken</span>;  <br><span class="hljs-keyword">const</span> source = <span class="hljs-title class_">CancelToken</span>.<span class="hljs-title function_">source</span>();  <br><br><span class="hljs-comment">// 发送请求  </span><br>axios.<span class="hljs-title function_">get</span>(<span class="hljs-string">'/api/data'</span>, {  <br>  <span class="hljs-attr">cancelToken</span>: source.<span class="hljs-property">token</span>  <br>})  <br>  .<span class="hljs-title function_">then</span>(<span class="hljs-function"><span class="hljs-params">response</span> =&gt;</span> {  <br>    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(response.<span class="hljs-property">data</span>);  <br>  })  <br>  .<span class="hljs-title function_">catch</span>(<span class="hljs-function"><span class="hljs-params">error</span> =&gt;</span> {  <br>    <span class="hljs-keyword">if</span> (axios.<span class="hljs-title function_">isCancel</span>(error)) {  <br>      <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">'请求已被取消：'</span>, error.<span class="hljs-property">message</span>);  <br>    } <span class="hljs-keyword">else</span> {  <br>      <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">error</span>(error);  <br>    }  <br>  });  <br><br><span class="hljs-comment">// 取消请求  </span><br>source.<span class="hljs-title function_">cancel</span>(<span class="hljs-string">'取消请求的原因'</span>);  <br></code></pre></td></tr></table></figure>
+<p>这里，先创建了一个取消令牌源 <code>source</code>。然后，发送 GET 请求时将 <code>cancelToken</code> 配置选项设置为 <code>source.token</code>，即将取消令牌与该请求关联起来。当需要取消请求时，调用 <code>source.cancel()</code> 方法，并传入取消请求的原因作为参数。</p>
+<p>在请求的 <code>.catch()</code> 方法中，我们使用 <code>axios.isCancel(error)</code> 来判断捕获的错误是否是一个已取消的请求。如果是取消请求导致的错误，则会打印出 ‘请求已被取消’ 的提示信息。否则，将打印出其他类型的错误。</p>
+<h3 id="请求超时"><a href="#请求超时" class="headerlink" title="请求超时"></a>请求超时</h3><p>可以使用 <code>timeout</code> 配置选项设置 Axios 请求的超时时间，这个选项指定了请求在多少毫秒后如果没有得到响应就会超时。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs javascript">axios.<span class="hljs-title function_">get</span>(<span class="hljs-string">'/api/data'</span>, {  <br>  <span class="hljs-attr">timeout</span>: <span class="hljs-number">5000</span> <span class="hljs-comment">// 设置超时时间为5秒  </span><br>})  <br>  .<span class="hljs-title function_">then</span>(<span class="hljs-function"><span class="hljs-params">response</span> =&gt;</span> {  <br>    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(response.<span class="hljs-property">data</span>);  <br>  })  <br>  .<span class="hljs-title function_">catch</span>(<span class="hljs-function"><span class="hljs-params">error</span> =&gt;</span> {  <br>    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">error</span>(error);  <br>  });<br></code></pre></td></tr></table></figure>
+<p>发送了一个 GET 请求，并在配置选项中设置了 <code>timeout</code> 为 5000 毫秒（即 5 秒）。如果请求在 5 秒内没有得到响应，就会触发超时错误。在超时错误的情况下，请求会被自动取消，并且进入 <code>.catch()</code> 分支。您可以根据需要进行错误处理。</p>
+<p>注意，如果不设置 <code>timeout</code> 选项，默认情况下 Axios 请求是没有超时限制的。</p>
+<hr>
+<p>相对于 Fetch、XMLHttpRequest 和 Ajax，我还是更喜欢 Axios。它提供了简洁易用的 API，统一的错误处理和拦截器支持，取消请求和超时处理功能，以及基于 Promise 的链式调用和跨浏览器兼容性。这些特性使得使用 Axios 更方便、高效，并提供更好的开发体验。</p>
+<blockquote>
+<p>更新: 2024-02-24 16:18:33 原文: <a target="_blank" rel="noopener" href="https://www.yuque.com/cuggz/feplus/ouwmxw3uk0vdnz8p">https://www.yuque.com/cuggz/feplus/ouwmxw3uk0vdnz8p</a></p>
+</blockquote>
+<div id="paginator"></div></div><div id="post-footer"><div id="pages"><div class="footer-link" style="width: 50%;text-align:right;border-right:1px #fe2 solid"><a href="/Arknight-notes/posts/26939.html">← Next 2025-11-02 组会朝花夕拾</a></div><div class="footer-link" style="width: 50%;right:1px;border-left:1px #fe2 solid"><a href="/Arknight-notes/posts/40483.html">2025-10-28-常用杂记 Prev →</a></div></div></div><div id="comments"><div id="gitalk"></div></div></div><div class="bottom-btn"><div><a class="i-top" id="to-top" onClick="scrolls.scrolltop();" title="To Top" style="opacity: 0; display: none;">∧ </a><a class="i-index" id="to-index" href="#toc-div" title="To Catalog">≡</a><a class="i-color" id="color-mode" onClick="colorMode.change()" title="Change Theme"></a></div></div></article><aside><div id="about"><a href="/Arknight-notes/" id="logo"><img src="https://pic4.zhimg.com/80/v2-d9884f32711e19e80979eac58e943897_720w.webp" alt="Logo" style="margin:20;border-radius:0;"></a><h1 id="Dr"><a href="zhongye">柊野</a></h1><div id="description"><p></p></div></div><div id="aside-block"><div id="toc-div"><h1>Catalog</h1><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#XHR%E3%80%81Ajax%E3%80%81Fetch%E3%80%81Axios"><span class="toc-number">1.</span> <span class="toc-text">XHR、Ajax、Fetch、Axios</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5"><span class="toc-number">1.1.</span> <span class="toc-text">基本概念</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#XHR"><span class="toc-number">1.2.</span> <span class="toc-text">XHR</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AF%B7%E6%B1%82%E6%AD%A5%E9%AA%A4"><span class="toc-number">1.2.1.</span> <span class="toc-text">请求步骤</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#open"><span class="toc-number">1.2.2.</span> <span class="toc-text">open</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AF%B7%E6%B1%82%E5%A4%B4%E5%92%8C%E5%93%8D%E5%BA%94%E5%A4%B4"><span class="toc-number">1.2.3.</span> <span class="toc-text">请求头和响应头</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#readyState"><span class="toc-number">1.2.4.</span> <span class="toc-text">readyState</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#status"><span class="toc-number">1.2.5.</span> <span class="toc-text">status</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8B%E4%BB%B6%E5%B1%9E%E6%80%A7"><span class="toc-number">1.2.6.</span> <span class="toc-text">事件属性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#responseType"><span class="toc-number">1.2.7.</span> <span class="toc-text">responseType</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Ajax"><span class="toc-number">1.3.</span> <span class="toc-text">Ajax</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Fetch"><span class="toc-number">1.4.</span> <span class="toc-text">Fetch</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#fetch"><span class="toc-number">1.4.1.</span> <span class="toc-text">fetch()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#response"><span class="toc-number">1.4.2.</span> <span class="toc-text">response</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AF%B7%E6%B1%82%E5%A4%B4%E5%92%8C%E5%93%8D%E5%BA%94%E5%A4%B4-1"><span class="toc-number">1.4.3.</span> <span class="toc-text">请求头和响应头</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%94%99%E8%AF%AF%E5%A4%84%E7%90%86"><span class="toc-number">1.4.4.</span> <span class="toc-text">错误处理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%96%E6%B6%88%E8%AF%B7%E6%B1%82"><span class="toc-number">1.4.5.</span> <span class="toc-text">取消请求</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Axios"><span class="toc-number">1.5.</span> <span class="toc-text">Axios</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AF%B7%E6%B1%82%E6%96%B9%E6%B3%95"><span class="toc-number">1.5.1.</span> <span class="toc-text">请求方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A4%9A%E4%B8%AA%E8%AF%B7%E6%B1%82"><span class="toc-number">1.5.2.</span> <span class="toc-text">多个请求</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AF%B7%E6%B1%82%E6%8B%A6%E6%88%AA%E3%80%81%E5%93%8D%E5%BA%94%E6%8B%A6%E6%88%AA"><span class="toc-number">1.5.3.</span> <span class="toc-text">请求拦截、响应拦截</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8B%A6%E6%88%AA%E8%AF%B7%E6%B1%82%E5%92%8C%E5%93%8D%E5%BA%94"><span class="toc-number">1.5.4.</span> <span class="toc-text">拦截请求和响应</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%A2%E6%88%B7%E7%AB%AF%E6%94%AF%E6%8C%81-XSRF-%E9%98%B2%E6%8A%A4"><span class="toc-number">1.5.5.</span> <span class="toc-text">客户端支持 XSRF 防护</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AF%B7%E6%B1%82%E8%BF%9B%E5%BA%A6"><span class="toc-number">1.5.6.</span> <span class="toc-text">请求进度</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%96%E6%B6%88%E8%AF%B7%E6%B1%82-1"><span class="toc-number">1.5.7.</span> <span class="toc-text">取消请求</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AF%B7%E6%B1%82%E8%B6%85%E6%97%B6"><span class="toc-number">1.5.8.</span> <span class="toc-text">请求超时</span></a></li></ol></li></ol></li></ol></div></div><footer><nobr><span class="icp-title">GZHU</span><span class="icp-content">193001-0001</span></nobr><br><nobr><span class="icp-title">OUTPOST</span><span class="icp-content">169-2025-0331</span></nobr><br><nobr>Published with <a target="_blank" rel="noopener" href="http://hexo.io">Hexo</a></nobr><wbr><nobr> Theme <a target="_blank" rel="noopener" href="https://github.com/Yue-plus/hexo-theme-arknights">Arknights</a></nobr><wbr><nobr> by <a target="_blank" rel="noopener" href="https://github.com/Yue-plus">Yue_plus</a></nobr></footer></aside></main><canvas id="canvas-dust"></canvas></body></html>

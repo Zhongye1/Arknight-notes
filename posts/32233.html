@@ -1,0 +1,298 @@
+<!DOCTYPE html><html lang="en" theme-mode="dark"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>2025-11-15-配置 dnscrypt-proxy 实现加密 DNS 服务（Windows） | Notes|笔记站</title><link rel="icon" type="image/x-icon" href="/Arknight-notes/favicon.ico"><link rel="preload" as="font" crossorigin="anonymous" href="/Arknight-notes/font/Bender.ttf"><link rel="preload" as="font" crossorigin="anonymous" href="/Arknight-notes/font/BenderLight.ttf"><link rel="preload" as="font" crossorigin="anonymous" href="/Arknight-notes/font/JetBrainsMono-Regular.woff2"><link rel="stylesheet" href="/Arknight-notes/css/arknights.css"><style>@font-face {
+  font-family: Bender;
+  src: local('Bender'), url("/Arknight-notes/font/Bender.ttf"), url("/Arknight-notes/font/Bender.otf");
+}
+@font-face {
+  font-family: BenderLight;
+  src: local('BenderLight'), url("/Arknight-notes/font/BenderLight.ttf");
+}
+@font-face {
+  font-family: 'JetBrains Mono';
+  src: local('JetBrains Mono'), url('/Arknight-notes/font/JetBrainsMono-Regular.woff2') format('woff2');
+}
+</style><script>var config = {"root":"/Arknight-notes/","code_fold":90,"search":{"preload":false,"activeHolder":"Enter here","blurHolder":"Search","noResult":"Data \"$0\" not found"},"code":{"codeInfo":"$0 - $1 lines","copy":"copy"}}</script><link type="text/css" rel="stylesheet" href="/Arknight-notes/lib/encrypt/hbe.style.css"><script src="/Arknight-notes/js/gitalk.js"></script><script src="//unpkg.com/mermaid@10.5.0/dist/mermaid.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.6.1/MathJax.js"></script><script>MathJax.Hub.Config({
+ menuSettings: {
+   zoom: "None"
+ },
+ showMathMenu: false,
+ jax: ["input/TeX","output/CommonHTML"],
+ extensions: ["tex2jax.js"],
+ TeX: {
+   extensions: ["AMSmath.js","AMSsymbols.js"],
+   equationNumbers: {
+     autoNumber: "AMS"
+   }
+ },
+ tex2jax: {
+   inlineMath: [["\\(", "\\)"]],
+   displayMath: [["\\[", "\\]"]]
+ }
+});</script><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lightgallery.css"><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lg-zoom.css"><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lg-thumbnail.css"><link type="text/css" rel="stylesheet" href="/Arknight-notes/lib/fontawesome/css/all.min.css"><script>if (window.localStorage.getItem('theme-mode') === 'light')
+ document.documentElement.setAttribute('theme-mode', 'light')
+if (window.localStorage.getItem('theme-mode') === 'dark')
+ document.documentElement.setAttribute('theme-mode', 'dark')</script><style>@font-face {
+ font-family: BenderLight;
+ src: local('Bender'), url("/Arknight-notes/font/BenderLight.woff2") format('woff2');
+}
+@font-face {
+ font-family: 'JetBrains Mono';
+ src: local('JetBrains Mono'), url('/Arknight-notes/font/JetBrainsMono-Regular.woff2') format('woff2');
+}</style><style>:root {
+ --dark-background: url('https://pic2.zhimg.com/v2-6269d74b4dafe14781d03790e5a86b21_r.jpg');
+ --light-background: url('https://pic1.zhimg.com/v2-233b64b583642fc4a6d77e69ced33150_r.jpg');
+ --theme-encrypt-confirm: 'confirm'
+}</style><script defer src="/Arknight-notes/js/arknights.js"></script><script defer src="/Arknight-notes/js/search.js"></script><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><script async src="/Arknight-notes/js/gitalk.js"></script><script defer type="module">import mermaid from '//unpkg.com/mermaid@10.5.0/dist/mermaid.esm.mjs';
+window.mermaid = mermaid;
+code.paintMermaid();
+</script><script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.6.1/MathJax.js"></script><script>MathJax.Hub.Config({
+  menuSettings: {
+    zoom: "None"
+  },
+  showMathMenu: false,
+  jax: ["input/TeX","output/CommonHTML"],
+  extensions: ["tex2jax.js"],
+  TeX: {
+    extensions: ["AMSmath.js","AMSsymbols.js"],
+    equationNumbers: {
+      autoNumber: "AMS"
+    }
+  },
+  tex2jax: {
+    inlineMath: [["\\(", "\\)"]],
+    displayMath: [["\\[", "\\]"]]
+  }
+});
+</script><script async src="//unpkg.com/lightgallery@2.7.1/lightgallery.min.js"></script><script async src="//unpkg.com/lightgallery@2.7.1/plugins/zoom/lg-zoom.min.js"></script><script async src="//unpkg.com/lightgallery@2.7.1/plugins/thumbnail/lg-thumbnail.min.js"></script><script async src="/Arknight-notes/lib/encrypt/hbe.js"></script><script async src="/Arknight-notes/js/pjax.js"></script><script class="pjax-js">reset= () => {gitalk = new Gitalk({
+ clientID: 'Ov23ct13Fb0b67x23wnT',
+ clientSecret: 'f18ce69dd545e3c0f5e2456afde9c756fe8a254a',
+ repo: 'Arknight-notes',
+ owner: 'Zhongye1',
+ admin: ['Zhongye1'],
+ distractionFreeMode: false,
+ id: location.pathname
+});
+if (document.querySelector("#gitalk")) gitalk.render("gitalk");document.querySelector('.lg-container')?.remove()
+lightGallery(document.getElementById('post-bg'), {
+  plugins: [lgZoom,lgThumbnail],
+  selector: '.item-img'})}</script><script>window.addEventListener("load",() => {pjax = new Pjax({
+ cacheBust: false,
+ selectors: ['title','article','#aside-block','.pjax-js','data-pjax','.busuanzi'],
+ switches: {'article': Pjax.switches.sideBySide},
+ switchesOptions: {
+   'article': {
+     classNames: {
+       remove: "pjax-out",
+       add: "pjax-in"
+     }
+   }
+ }
+});
+document.addEventListener("pjax:complete", reset);document.addEventListener('pjax:success', _ => bszCaller.fetch(
+ "//busuanzi.ibruce.info/busuanzi?jsonpCallback=BusuanziCallback", a => {
+  bszTag.texts(a),
+  bszTag.shows()
+}));reset()})</script><script class="pjax-js">reset= () => {gitalk = new Gitalk({
+ clientID: 'Ov23ct13Fb0b67x23wnT',
+ clientSecret: 'f18ce69dd545e3c0f5e2456afde9c756fe8a254a',
+ repo: 'Arknight-notes',
+ owner: 'Zhongye1',
+ admin: ['Zhongye1'],
+ distractionFreeMode: false,
+ id: location.pathname
+});
+if (document.querySelector("#gitalk")) gitalk.render("gitalk");document.querySelector('.lg-container')?.remove()
+lightGallery(document.getElementById('post-bg'), {
+  plugins: [lgZoom,lgThumbnail],
+  selector: '.item-img'})}</script><script>window.addEventListener("load",() => {pjax = new Pjax({
+ cacheBust: false,
+ selectors: ['title','article','#aside-block','.pjax-js'],
+ switches: {'article': Pjax.switches.sideBySide},
+ switchesOptions: {
+   'article': {
+     classNames: {
+       remove: "pjax-out",
+       add: "pjax-in"
+     }
+   }
+ }
+});
+document.addEventListener("pjax:complete", reset);reset()})</script><meta name="generator" content="Hexo 7.3.0"><style>mjx-container[jax="SVG"] {
+  direction: ltr;
+}
+
+mjx-container[jax="SVG"] > svg {
+  overflow: visible;
+}
+
+mjx-container[jax="SVG"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="SVG"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="SVG"][justify="right"] {
+  text-align: right;
+}
+
+g[data-mml-node="merror"] > g {
+  fill: red;
+  stroke: red;
+}
+
+g[data-mml-node="merror"] > rect[data-background] {
+  fill: yellow;
+  stroke: none;
+}
+
+g[data-mml-node="mtable"] > line[data-line] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > rect[data-frame] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > .mjx-dashed {
+  stroke-dasharray: 140;
+}
+
+g[data-mml-node="mtable"] > .mjx-dotted {
+  stroke-linecap: round;
+  stroke-dasharray: 0,140;
+}
+
+g[data-mml-node="mtable"] > svg {
+  overflow: visible;
+}
+
+[jax="SVG"] mjx-tool {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+[jax="SVG"] mjx-tool > mjx-tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+mjx-tool > mjx-tip {
+  display: inline-block;
+  padding: .2em;
+  border: 1px solid #888;
+  font-size: 70%;
+  background-color: #F8F8F8;
+  color: black;
+  box-shadow: 2px 2px 5px #AAAAAA;
+}
+
+g[data-mml-node="maction"][data-toggle] {
+  cursor: pointer;
+}
+
+mjx-status {
+  display: block;
+  position: fixed;
+  left: 1em;
+  bottom: 1em;
+  min-width: 25%;
+  padding: .2em .4em;
+  border: 1px solid #888;
+  font-size: 90%;
+  background-color: #F8F8F8;
+  color: black;
+}
+
+foreignObject[data-mjx-xml] {
+  font-family: initial;
+  line-height: normal;
+  overflow: visible;
+}
+
+.MathJax path {
+  stroke-width: 3;
+}
+
+mjx-container[display="true"] {
+  overflow: auto hidden;
+}
+
+mjx-container[display="true"] + br {
+  display: none;
+}
+</style><link rel="alternate" href="/Arknight-notes/rss.xml" title="Notes|笔记站" type="application/atom+xml">
+</head><body><div class="loading" style="opacity: 0;"><div class="loadingBar left"></div><div class="loadingBar right"></div></div><main><header class="closed"><div class="navBtn"><i class="navBtnIcon"><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span></i></div><nav><div class="navItem" id="search-header"><span class="navItemTitle"><input autocomplete="off" autocorrect="off" autocapitalize="none" placeholder="Search" spellcheck="false" maxlength="50" type="text" id="search-input"></span></div><div class="navItem" id="search-holder"></div><div class="search-popup" tabindex="0"><div id="search-result"></div></div><ol class="navContent"><li class="navItem"><a class="navBlock" href="/Arknight-notes/"><span class="navItemTitle">Home</span></a></li><li class="navItem" matchdata="categories,tags"><a class="navBlock" href="/Arknight-notes/archives/"><span class="navItemTitle">Archives</span></a></li><li class="navItem"><a class="navBlock" href="/Arknight-notes/about/"><span class="navItemTitle">About</span></a></li></ol></nav></header><article><div id="post-bg"><div id="post-title"><h1>2025-11-15-配置 dnscrypt-proxy 实现加密 DNS 服务（Windows）</h1><div id="post-info"><span>First Post: <div class="control"><time datetime="2025-11-14T17:06:37.000Z" id="date"> 2025-11-15</time></div></span><br><span>Last Update: <div class="control"><time datetime="2025-12-27T17:33:18.718Z" id="updated"> 2025-12-28</time></div></span><br><span id="busuanzi_container_page_pv">Page View: <span class="control" id="busuanzi_value_page_pv">loading...</span></span></div></div><hr><div id="post-content"><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>随着互联网的飞速发展，网络安全问题日益成为公众关注的焦点。从个人用户到企业机构，如何保护网络通信的安全性成为了不可忽视的问题。而在这之中，域名系统（DNS）作为互联网的基础服务之一，其安全性直接影响着整个网络环境的安全性。</p>
+<p>DNS（Domain Name System），即域名系统，负责将人类易于记忆的域名转换为计算机可以识别的 IP 地址（如 192.168.1.1）。这一过程看似简单，但实际上 DNS 在互联网中扮演着至关重要的角色。然而，传统的 DNS 通信并不加密，这使得它成为了网络安全的一个薄弱环节。</p>
+<p>近年来，随着网络安全威胁的不断增加，尤其是中间人攻击、DNS 劫持和数据窃取等恶意行为的频发，传统的明文 DNS 通信方式已经无法满足现代网络的安全需求。为了应对这一挑战，加密 DNS 技术应运而生。加密 DNS 通过在客户端与 DNS 服务器之间建立加密通道，确保了 DNS 查询的安全性。</p>
+<h3 id="一、传统-DNS-的安全性问题"><a href="#一、传统-DNS-的安全性问题" class="headerlink" title="一、传统 DNS 的安全性问题"></a>一、传统 DNS 的安全性问题</h3><p>在深入了解加密 DNS 之前，我们需要先认识传统 DNS 通信中存在的安全漏洞，以及这些漏洞可能带来的风险。</p>
+<p><strong>中间人攻击（ManintheMiddle, MitM）</strong><br>传统的 DNS 通信是通过明文进行的，这意味着在数据传输过程中，任何处于客户端与 DNS 服务器之间的中间人都可以轻松截获和篡改 DNS 查询内容。这种中间人攻击可能导致以下后果：</p>
+<p><strong>DNS 劫持</strong><br>攻击者可以将原本正常的域名解析请求重定向到恶意网站。<br>数据窃取：攻击者可以直接获取用户的网络使用信息，甚至窃取敏感数据。</p>
+<p><strong>DNS 缓存投毒（Cache Poisoning）</strong><br>DNS 服务器通常会缓存查询结果以提高效率。然而，如果攻击者能够污染这一缓存，将导致后续的所有相关请求都被重定向到恶意地址。这种攻击方式不仅影响单个用户，还可能波及整个网络。</p>
+<p><strong>数据泄露风险</strong><br>由于传统 DNS 通信缺乏加密保护，用户的每一次 DNS 查询都会暴露其访问的网站信息。这使得用户的上网行为可以被轻易监控，进而导致隐私泄露。</p>
+<p><strong>缺乏身份验证机制</strong><br>传统的 DNS 协议中缺少有效的身份验证机制，攻击者可以伪造 DNS 响应，从而欺骗客户端或服务器，实施各类恶意活动。</p>
+<h3 id="二、加密-DNS-的优势"><a href="#二、加密-DNS-的优势" class="headerlink" title="二、加密 DNS 的优势"></a>二、加密 DNS 的优势</h3><p>为了应对上述问题，加密 DNS 技术应运而生。通过在客户端与 DNS 服务器之间建立加密通道，加密 DNS 能够有效保护 DNS 通信的安全性，防止中间人攻击和其他恶意行为。</p>
+<p><strong>数据传输加密</strong><br>加密 DNS（如 DNS over TLS  或  DNS over HTTPS）利用现代加密协议（如 TLS/SSL）对 DNS 查询和响应进行加密。这使得即使在中间人攻击的情况下，攻击者也无法窃取或篡改 DNS 通信内容。</p>
+<p><strong>防止缓存投毒</strong><br>加密 DNS 通过严格的认证机制确保了 DNS 响应的真实性，从而有效防范 DNS 缓存投毒攻击。</p>
+<p><strong>保护用户隐私</strong><br>加密 DNS 可以防止用户的 DNS 查询被第三方窃取或监控。这对于注重隐私的个人用户和企业用户来说尤为重要。</p>
+<p><strong>增强网络安全性</strong><br>通过加密 DNS 通信，整个网络的安全性得到显著提升。这不仅保护了用户的上网行为，还为企业的内部网络提供了更高的安全防护。</p>
+<hr>
+<h2 id="配置-dnscrypt-proxy"><a href="#配置-dnscrypt-proxy" class="headerlink" title="配置 dnscrypt-proxy"></a>配置 dnscrypt-proxy</h2><p>DNS 加密方案有 DNS over HTTPS（DoH）以及 DNS over TLS（DoT）两种，dnsmasq 似乎是不支持这两种方式的。而 dnscrypt-proxy 是一个灵活的本地 DNS 代理工具，支持 DNSCrypt、DNS over HTTPS (DoH)、DNS over TLS (DoT) 等加密协议，可有效防止 DNS 查询被窃听、篡改或污染。</p>
+<h4 id="1-下载与解压"><a href="#1-下载与解压" class="headerlink" title="1. 下载与解压"></a>1. 下载与解压</h4><ul>
+<li>访问 GitHub 发布页面：<a target="_blank" rel="noopener" href="https://github.com/DNSCrypt/dnscrypt-proxy/releases/latest">https://github.com/DNSCrypt/dnscrypt-proxy/releases/latest</a></li>
+<li>下载适用于 Windows 的压缩包（通常为 dnscrypt-proxy-win64-*.zip）。</li>
+<li>解压到任意目录，例如 C:\dnscrypt-proxy。</li>
+<li>目录中将包含 dnscrypt-proxy.exe、example-dnscrypt-proxy.toml 等文件。</li>
+</ul>
+<h4 id="2-配置-dnscrypt-proxy-toml"><a href="#2-配置-dnscrypt-proxy-toml" class="headerlink" title="2. 配置 dnscrypt-proxy.toml"></a>2. 配置 dnscrypt-proxy.toml</h4><p>配置文件应该为 <code>dnscrypt-proxy.toml</code><br>修改 dnscrypt-proxy 监听的端口，因为 53 端口已经被 dnsmasq 占用，这里修改成 5353</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">listen_addresses = [<span class="hljs-string">'127.0.0.1:5353'</span>]<br></code></pre></td></tr></table></figure>
+<p>来到 sources 这一块，把自带的远程源全部注释掉，不然每次启动都要到远程源下载可用服务器列表，影响启动速度，自带源又都放在 github 上，下不到就会启动失败，用自己配的自定义服务器就行，下面会写</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs bash">[sources]<br><br>  <span class="hljs-comment">## An example of a remote source from https://github.com/DNSCrypt/dnscrypt-resolvers</span><br><br>  <span class="hljs-comment"># [sources.'public-resolvers']</span><br>  <span class="hljs-comment">#   urls = ['https://raw.githubusercontent.com/DNSCrypt/dnscrypt-resolvers/master/v3/public-resolvers.md', 'https://download.dnscrypt.info/resolvers-list/v3/public-resolvers.md', 'https://ipv6.download.dnscrypt.info/resolvers-list/v3/public-resolvers.md', 'https://download.dnscrypt.net/resolvers-list/v3/public-resolvers.md']</span><br>  <span class="hljs-comment">#   cache_file = '/var/cache/dnscrypt-proxy/public-resolvers.md'</span><br>  <span class="hljs-comment">#   minisign_key = 'RWQf6LRCGA9i53mlYecO4IzT51TGPpvWucNSCh1CBM0QTaLn73Y7GFO3'</span><br>  <span class="hljs-comment">#   refresh_delay = 72</span><br>  <span class="hljs-comment">#   prefix = ''</span><br><br>  <span class="hljs-comment">## Anonymized DNS relays</span><br><br>  <span class="hljs-comment"># [sources.'relays']</span><br>  <span class="hljs-comment">#   urls = ['https://raw.githubusercontent.com/DNSCrypt/dnscrypt-resolvers/master/v3/relays.md', 'https://download.dnscrypt.info/resolvers-list/v3/relays.md', 'https://ipv6.download.dnscrypt.info/resolvers-list/v3/relays.md', 'https://download.dnscrypt.net/resolvers-list/v3/relays.md']</span><br>  <span class="hljs-comment">#   cache_file = '/var/cache/dnscrypt-proxy/relays.md'</span><br>  <span class="hljs-comment">#   minisign_key = 'RWQf6LRCGA9i53mlYecO4IzT51TGPpvWucNSCh1CBM0QTaLn73Y7GFO3'</span><br>  <span class="hljs-comment">#   refresh_delay = 72</span><br>  <span class="hljs-comment">#   prefix = ''</span><br></code></pre></td></tr></table></figure>
+<p>来到最底下，加上自定义服务器，可用的服务器可以在这里找到<br><a target="_blank" rel="noopener" href="https://dnscrypt.info/public-servers">https://dnscrypt.info/public-servers</a></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs bash">[static]<br><br>[static.<span class="hljs-string">'aliyun'</span>]<br>stamp = <span class="hljs-string">'sdns://AgAAAAAAAAAACTIyMy41LjUuNSCY49XlNq8pWM0vfxT3BO9KJ20l4zzWXy5l9eTycnwTMA5kbnMuYWxpZG5zLmNvbQovZG5zLXF1ZXJ5'</span><br><br>[static.<span class="hljs-string">'txyun'</span>]<br>stamp = <span class="hljs-string">'sdns://AgAAAAAAAAAACjEuMTIuMTIuMTIgj0tzmXxLBOpQ_q-pGiQx1CvKa1TCO8-du_VyJJOU4QwHZG9oLnB1YgovZG5zLXF1ZXJ5'</span><br></code></pre></td></tr></table></figure>
+<p>来到这一块，配置使用自定义服务器</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># server_names = ['scaleway-fr', 'google', 'yandex', 'cloudflare']</span><br>server_names = [<span class="hljs-string">'aliyun'</span>, <span class="hljs-string">'txyun'</span>]<br></code></pre></td></tr></table></figure>
+<p><strong>引导解析器（bootstrap_resolvers）</strong>：用于初始加载公共解析器列表。若默认解析器（Quad9 和 Google）被阻断或不可用，推荐修改为可靠组合：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">bootstrap_resolvers = [<span class="hljs-string">'1.1.1.1:53'</span>, <span class="hljs-string">'1.0.0.1:53'</span>, <span class="hljs-string">'8.8.8.8:53'</span>, <span class="hljs-string">'9.9.9.10:9953'</span>]<br></code></pre></td></tr></table></figure>
+<p>（Cloudflare 高度可靠；Quad9 的 9953 端口可绕过端口 53 阻断。）<br>修改检测网络是否连通的地址，可以是任意 ip 的任意端口，哪怕没有响应，只要端口是打开的，就认为网络连通</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># netprobe_address = '9.9.9.9:53'</span><br>netprobe_address = <span class="hljs-string">'223.5.5.5:53'</span><br></code></pre></td></tr></table></figure>
+<p>因为集群环境没有 ipv6，顺便禁用 ipv6 的 AAAA 查询</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># block_ipv6 = false</span><br>block_ipv6 = <span class="hljs-literal">true</span><br></code></pre></td></tr></table></figure>
+<p>启用 dns 查询日志（可选）</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">[query_log]<br>  file = <span class="hljs-string">'/var/log/dnscrypt-proxy/query.log'</span><br></code></pre></td></tr></table></figure>
+<h4 id="3-测试运行"><a href="#3-测试运行" class="headerlink" title="3. 测试运行"></a>3. 测试运行</h4><p>以管理员身份打开命令提示符，导航到解压目录：</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs powershell"><span class="hljs-built_in">cd</span> C:\[<span class="hljs-type">dir</span>]\dnscrypt<span class="hljs-literal">-proxy</span><br></code></pre></td></tr></table></figure>
+<p>运行代理：</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs powershell">dnscrypt<span class="hljs-literal">-proxy</span>.exe<br></code></pre></td></tr></table></figure>
+<p>观察控制台输出，应出现 “Source [public-resolvers] loaded” 和 “dnscrypt-proxy is ready”。</p>
+<p>测试解析：</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs powershell">nslookup example.com <span class="hljs-number">127.0</span>.<span class="hljs-number">0.1</span><br></code></pre></td></tr></table></figure>
+<p>若成功，返回正常 IP 地址。按 Ctrl+C 停止测试。</p>
+<h4 id="4-安装为-Windows-服务（开机自动运行）"><a href="#4-安装为-Windows-服务（开机自动运行）" class="headerlink" title="4. 安装为 Windows 服务（开机自动运行）"></a>4. 安装为 Windows 服务（开机自动运行）</h4><p>在同一管理员命令提示符中执行：</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs powershell">dnscrypt<span class="hljs-literal">-proxy</span>.exe <span class="hljs-literal">-service</span> install<br></code></pre></td></tr></table></figure>
+<p>启动服务：</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs powershell">dnscrypt<span class="hljs-literal">-proxy</span>.exe <span class="hljs-literal">-service</span> <span class="hljs-built_in">start</span><br></code></pre></td></tr></table></figure>
+<p>设置自动启动（可选，默认已自动）：<br>使用 services.msc（Win + R 输入）找到 “dnscrypt-proxy” 服务，属性中设为 “自动” 或 “自动（延迟启动）”。<br>或命令：</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs powershell"><span class="hljs-built_in">sc</span> config dnscrypt<span class="hljs-literal">-proxy</span> <span class="hljs-built_in">start</span>= delayed<span class="hljs-literal">-auto</span><br></code></pre></td></tr></table></figure>
+<h4 id="5-配置系统-DNS"><a href="#5-配置系统-DNS" class="headerlink" title="5. 配置系统 DNS"></a>5. 配置系统 DNS</h4><p>打开网络设置：右键网络图标 &gt; “打开网络和 Internet 设置” &gt; “更改适配器选项”。<br>右键当前网络适配器 &gt; 属性 &gt; Internet 协议版本 4 (TCP/IPv4) &gt; 属性。</p>
+<p class='item-img' data-src='https://picx.zhimg.com/v2-080621fc2c11e65c8283b78fae7a135d_r.jpg'><img src="https://picx.zhimg.com/v2-080621fc2c11e65c8283b78fae7a135d_r.jpg" alt="alt text"></p>
+<p>选择 “使用下面的 DNS 服务器地址”：<br>首选 DNS 服务器：127.0.0.1，备选 DNS 服务器：可留空或设为公共非加密（如 1.1.1.1）<br>然后确认并应用</p>
+<p>若要清空 DNS 缓存：</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs powershell">ipconfig /flushdns<br></code></pre></td></tr></table></figure>
+<h4 id="6-管理"><a href="#6-管理" class="headerlink" title="6. 管理"></a>6. 管理</h4><p><strong>服务管理</strong>：</p>
+<ul>
+<li>启动/停止/重启：dnscrypt-proxy.exe -service start/stop/restart</li>
+<li>状态查询：sc query dnscrypt-proxy（显示 RUNNING 或 STOPPED）</li>
+<li>图形化：services.msc 中管理 “dnscrypt-proxy”。</li>
+<li>卸载：dnscrypt-proxy.exe -service uninstall</li>
+<li>更新时：停止服务，替换可执行文件，重启服务。</li>
+</ul>
+<p>此配置后所有 DNS 查询将通过本地 127.0.0.1 代理转发至上游加密服务器实现隐私保护</p>
+<div id="paginator"></div></div><div id="post-footer"><div id="pages"><div class="footer-link" style="width: 50%;text-align:right;border-right:1px #fe2 solid"><a href="/Arknight-notes/posts/9503.html">← Next 2025-11-16-ES6相关</a></div><div class="footer-link" style="width: 50%;right:1px;border-left:1px #fe2 solid"><a href="/Arknight-notes/posts/53411.html">2025-11-09-关于软考高项网规 Prev →</a></div></div></div><div id="comments"><div id="gitalk"></div></div></div><div class="bottom-btn"><div><a class="i-top" id="to-top" onClick="scrolls.scrolltop();" title="To Top" style="opacity: 0; display: none;">∧ </a><a class="i-index" id="to-index" href="#toc-div" title="To Catalog">≡</a><a class="i-color" id="color-mode" onClick="colorMode.change()" title="Change Theme"></a></div></div></article><aside><div id="about"><a href="/Arknight-notes/" id="logo"><img src="https://pic4.zhimg.com/80/v2-d9884f32711e19e80979eac58e943897_720w.webp" alt="Logo" style="margin:20;border-radius:0;"></a><h1 id="Dr"><a href="zhongye">柊野</a></h1><div id="description"><p></p></div></div><div id="aside-block"><div id="toc-div"><h1>Catalog</h1><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AE%80%E4%BB%8B"><span class="toc-number">1.</span> <span class="toc-text">简介</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E4%BC%A0%E7%BB%9F-DNS-%E7%9A%84%E5%AE%89%E5%85%A8%E6%80%A7%E9%97%AE%E9%A2%98"><span class="toc-number">1.1.</span> <span class="toc-text">一、传统 DNS 的安全性问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E5%8A%A0%E5%AF%86-DNS-%E7%9A%84%E4%BC%98%E5%8A%BF"><span class="toc-number">1.2.</span> <span class="toc-text">二、加密 DNS 的优势</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE-dnscrypt-proxy"><span class="toc-number">2.</span> <span class="toc-text">配置 dnscrypt-proxy</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E4%B8%8B%E8%BD%BD%E4%B8%8E%E8%A7%A3%E5%8E%8B"><span class="toc-number">2.0.1.</span> <span class="toc-text">1. 下载与解压</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E9%85%8D%E7%BD%AE-dnscrypt-proxy-toml"><span class="toc-number">2.0.2.</span> <span class="toc-text">2. 配置 dnscrypt-proxy.toml</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-%E6%B5%8B%E8%AF%95%E8%BF%90%E8%A1%8C"><span class="toc-number">2.0.3.</span> <span class="toc-text">3. 测试运行</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-%E5%AE%89%E8%A3%85%E4%B8%BA-Windows-%E6%9C%8D%E5%8A%A1%EF%BC%88%E5%BC%80%E6%9C%BA%E8%87%AA%E5%8A%A8%E8%BF%90%E8%A1%8C%EF%BC%89"><span class="toc-number">2.0.4.</span> <span class="toc-text">4. 安装为 Windows 服务（开机自动运行）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-%E9%85%8D%E7%BD%AE%E7%B3%BB%E7%BB%9F-DNS"><span class="toc-number">2.0.5.</span> <span class="toc-text">5. 配置系统 DNS</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6-%E7%AE%A1%E7%90%86"><span class="toc-number">2.0.6.</span> <span class="toc-text">6. 管理</span></a></li></ol></li></ol></li></ol></div></div><footer><nobr><span class="icp-title">GZHU</span><span class="icp-content">193001-0001</span></nobr><br><nobr><span class="icp-title">OUTPOST</span><span class="icp-content">169-2025-0331</span></nobr><br><nobr>Published with <a target="_blank" rel="noopener" href="http://hexo.io">Hexo</a></nobr><wbr><nobr> Theme <a target="_blank" rel="noopener" href="https://github.com/Yue-plus/hexo-theme-arknights">Arknights</a></nobr><wbr><nobr> by <a target="_blank" rel="noopener" href="https://github.com/Yue-plus">Yue_plus</a></nobr></footer></aside></main><canvas id="canvas-dust"></canvas></body></html>

@@ -1,0 +1,276 @@
+<!DOCTYPE html><html lang="en" theme-mode="dark"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>2025-12-18-前端画布设计Vol.2 实现富文本编辑 | Notes|笔记站</title><link rel="icon" type="image/x-icon" href="/Arknight-notes/favicon.ico"><link rel="preload" as="font" crossorigin="anonymous" href="/Arknight-notes/font/Bender.ttf"><link rel="preload" as="font" crossorigin="anonymous" href="/Arknight-notes/font/BenderLight.ttf"><link rel="preload" as="font" crossorigin="anonymous" href="/Arknight-notes/font/JetBrainsMono-Regular.woff2"><link rel="stylesheet" href="/Arknight-notes/css/arknights.css"><style>@font-face {
+  font-family: Bender;
+  src: local('Bender'), url("/Arknight-notes/font/Bender.ttf"), url("/Arknight-notes/font/Bender.otf");
+}
+@font-face {
+  font-family: BenderLight;
+  src: local('BenderLight'), url("/Arknight-notes/font/BenderLight.ttf");
+}
+@font-face {
+  font-family: 'JetBrains Mono';
+  src: local('JetBrains Mono'), url('/Arknight-notes/font/JetBrainsMono-Regular.woff2') format('woff2');
+}
+</style><script>var config = {"root":"/Arknight-notes/","code_fold":90,"search":{"preload":false,"activeHolder":"Enter here","blurHolder":"Search","noResult":"Data \"$0\" not found"},"code":{"codeInfo":"$0 - $1 lines","copy":"copy"}}</script><link type="text/css" rel="stylesheet" href="/Arknight-notes/lib/encrypt/hbe.style.css"><script src="/Arknight-notes/js/gitalk.js"></script><script src="//unpkg.com/mermaid@10.5.0/dist/mermaid.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.6.1/MathJax.js"></script><script>MathJax.Hub.Config({
+ menuSettings: {
+   zoom: "None"
+ },
+ showMathMenu: false,
+ jax: ["input/TeX","output/CommonHTML"],
+ extensions: ["tex2jax.js"],
+ TeX: {
+   extensions: ["AMSmath.js","AMSsymbols.js"],
+   equationNumbers: {
+     autoNumber: "AMS"
+   }
+ },
+ tex2jax: {
+   inlineMath: [["\\(", "\\)"]],
+   displayMath: [["\\[", "\\]"]]
+ }
+});</script><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lightgallery.css"><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lg-zoom.css"><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lg-thumbnail.css"><link type="text/css" rel="stylesheet" href="/Arknight-notes/lib/fontawesome/css/all.min.css"><script>if (window.localStorage.getItem('theme-mode') === 'light')
+ document.documentElement.setAttribute('theme-mode', 'light')
+if (window.localStorage.getItem('theme-mode') === 'dark')
+ document.documentElement.setAttribute('theme-mode', 'dark')</script><style>@font-face {
+ font-family: BenderLight;
+ src: local('Bender'), url("/Arknight-notes/font/BenderLight.woff2") format('woff2');
+}
+@font-face {
+ font-family: 'JetBrains Mono';
+ src: local('JetBrains Mono'), url('/Arknight-notes/font/JetBrainsMono-Regular.woff2') format('woff2');
+}</style><style>:root {
+ --dark-background: url('https://pic2.zhimg.com/v2-6269d74b4dafe14781d03790e5a86b21_r.jpg');
+ --light-background: url('https://pic1.zhimg.com/v2-233b64b583642fc4a6d77e69ced33150_r.jpg');
+ --theme-encrypt-confirm: 'confirm'
+}</style><script defer src="/Arknight-notes/js/arknights.js"></script><script defer src="/Arknight-notes/js/search.js"></script><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><script async src="/Arknight-notes/js/gitalk.js"></script><script defer type="module">import mermaid from '//unpkg.com/mermaid@10.5.0/dist/mermaid.esm.mjs';
+window.mermaid = mermaid;
+code.paintMermaid();
+</script><script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.6.1/MathJax.js"></script><script>MathJax.Hub.Config({
+  menuSettings: {
+    zoom: "None"
+  },
+  showMathMenu: false,
+  jax: ["input/TeX","output/CommonHTML"],
+  extensions: ["tex2jax.js"],
+  TeX: {
+    extensions: ["AMSmath.js","AMSsymbols.js"],
+    equationNumbers: {
+      autoNumber: "AMS"
+    }
+  },
+  tex2jax: {
+    inlineMath: [["\\(", "\\)"]],
+    displayMath: [["\\[", "\\]"]]
+  }
+});
+</script><script async src="//unpkg.com/lightgallery@2.7.1/lightgallery.min.js"></script><script async src="//unpkg.com/lightgallery@2.7.1/plugins/zoom/lg-zoom.min.js"></script><script async src="//unpkg.com/lightgallery@2.7.1/plugins/thumbnail/lg-thumbnail.min.js"></script><script async src="/Arknight-notes/lib/encrypt/hbe.js"></script><script async src="/Arknight-notes/js/pjax.js"></script><script class="pjax-js">reset= () => {gitalk = new Gitalk({
+ clientID: 'Ov23ct13Fb0b67x23wnT',
+ clientSecret: 'f18ce69dd545e3c0f5e2456afde9c756fe8a254a',
+ repo: 'Arknight-notes',
+ owner: 'Zhongye1',
+ admin: ['Zhongye1'],
+ distractionFreeMode: false,
+ id: location.pathname
+});
+if (document.querySelector("#gitalk")) gitalk.render("gitalk");document.querySelector('.lg-container')?.remove()
+lightGallery(document.getElementById('post-bg'), {
+  plugins: [lgZoom,lgThumbnail],
+  selector: '.item-img'})}</script><script>window.addEventListener("load",() => {pjax = new Pjax({
+ cacheBust: false,
+ selectors: ['title','article','#aside-block','.pjax-js','data-pjax','.busuanzi'],
+ switches: {'article': Pjax.switches.sideBySide},
+ switchesOptions: {
+   'article': {
+     classNames: {
+       remove: "pjax-out",
+       add: "pjax-in"
+     }
+   }
+ }
+});
+document.addEventListener("pjax:complete", reset);document.addEventListener('pjax:success', _ => bszCaller.fetch(
+ "//busuanzi.ibruce.info/busuanzi?jsonpCallback=BusuanziCallback", a => {
+  bszTag.texts(a),
+  bszTag.shows()
+}));reset()})</script><script class="pjax-js">reset= () => {gitalk = new Gitalk({
+ clientID: 'Ov23ct13Fb0b67x23wnT',
+ clientSecret: 'f18ce69dd545e3c0f5e2456afde9c756fe8a254a',
+ repo: 'Arknight-notes',
+ owner: 'Zhongye1',
+ admin: ['Zhongye1'],
+ distractionFreeMode: false,
+ id: location.pathname
+});
+if (document.querySelector("#gitalk")) gitalk.render("gitalk");document.querySelector('.lg-container')?.remove()
+lightGallery(document.getElementById('post-bg'), {
+  plugins: [lgZoom,lgThumbnail],
+  selector: '.item-img'})}</script><script>window.addEventListener("load",() => {pjax = new Pjax({
+ cacheBust: false,
+ selectors: ['title','article','#aside-block','.pjax-js'],
+ switches: {'article': Pjax.switches.sideBySide},
+ switchesOptions: {
+   'article': {
+     classNames: {
+       remove: "pjax-out",
+       add: "pjax-in"
+     }
+   }
+ }
+});
+document.addEventListener("pjax:complete", reset);reset()})</script><meta name="generator" content="Hexo 7.3.0"><style>mjx-container[jax="SVG"] {
+  direction: ltr;
+}
+
+mjx-container[jax="SVG"] > svg {
+  overflow: visible;
+}
+
+mjx-container[jax="SVG"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="SVG"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="SVG"][justify="right"] {
+  text-align: right;
+}
+
+g[data-mml-node="merror"] > g {
+  fill: red;
+  stroke: red;
+}
+
+g[data-mml-node="merror"] > rect[data-background] {
+  fill: yellow;
+  stroke: none;
+}
+
+g[data-mml-node="mtable"] > line[data-line] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > rect[data-frame] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > .mjx-dashed {
+  stroke-dasharray: 140;
+}
+
+g[data-mml-node="mtable"] > .mjx-dotted {
+  stroke-linecap: round;
+  stroke-dasharray: 0,140;
+}
+
+g[data-mml-node="mtable"] > svg {
+  overflow: visible;
+}
+
+[jax="SVG"] mjx-tool {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+[jax="SVG"] mjx-tool > mjx-tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+mjx-tool > mjx-tip {
+  display: inline-block;
+  padding: .2em;
+  border: 1px solid #888;
+  font-size: 70%;
+  background-color: #F8F8F8;
+  color: black;
+  box-shadow: 2px 2px 5px #AAAAAA;
+}
+
+g[data-mml-node="maction"][data-toggle] {
+  cursor: pointer;
+}
+
+mjx-status {
+  display: block;
+  position: fixed;
+  left: 1em;
+  bottom: 1em;
+  min-width: 25%;
+  padding: .2em .4em;
+  border: 1px solid #888;
+  font-size: 90%;
+  background-color: #F8F8F8;
+  color: black;
+}
+
+foreignObject[data-mjx-xml] {
+  font-family: initial;
+  line-height: normal;
+  overflow: visible;
+}
+
+.MathJax path {
+  stroke-width: 3;
+}
+
+mjx-container[display="true"] {
+  overflow: auto hidden;
+}
+
+mjx-container[display="true"] + br {
+  display: none;
+}
+</style><link rel="alternate" href="/Arknight-notes/rss.xml" title="Notes|笔记站" type="application/atom+xml">
+</head><body><div class="loading" style="opacity: 0;"><div class="loadingBar left"></div><div class="loadingBar right"></div></div><main><header class="closed"><div class="navBtn"><i class="navBtnIcon"><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span></i></div><nav><div class="navItem" id="search-header"><span class="navItemTitle"><input autocomplete="off" autocorrect="off" autocapitalize="none" placeholder="Search" spellcheck="false" maxlength="50" type="text" id="search-input"></span></div><div class="navItem" id="search-holder"></div><div class="search-popup" tabindex="0"><div id="search-result"></div></div><ol class="navContent"><li class="navItem"><a class="navBlock" href="/Arknight-notes/"><span class="navItemTitle">Home</span></a></li><li class="navItem" matchdata="categories,tags"><a class="navBlock" href="/Arknight-notes/archives/"><span class="navItemTitle">Archives</span></a></li><li class="navItem"><a class="navBlock" href="/Arknight-notes/about/"><span class="navItemTitle">About</span></a></li></ol></nav></header><article><div id="post-bg"><div id="post-title"><h1>2025-12-18-前端画布设计Vol.2 实现富文本编辑</h1><div id="post-info"><span>First Post: <div class="control"><time datetime="2025-12-27T18:58:47.000Z" id="date"> 2025-12-28</time></div></span><br><span>Last Update: <div class="control"><time datetime="2025-12-27T20:23:25.959Z" id="updated"> 2025-12-28</time></div></span><br><span id="busuanzi_container_page_pv">Page View: <span class="control" id="busuanzi_value_page_pv">loading...</span></span></div></div><hr><div id="post-content"><h2 id="画布项目中富文本编辑器的实现浅析"><a href="#画布项目中富文本编辑器的实现浅析" class="headerlink" title="画布项目中富文本编辑器的实现浅析"></a>画布项目中富文本编辑器的实现浅析</h2><h4 id="0x00-概述"><a href="#0x00-概述" class="headerlink" title="0x00 概述"></a>0x00 概述</h4><p>该画布项目采用 <strong>wangEditor</strong>（v5 版本）的 React 封装组件 @wangeditor/editor-for-react 实现富文本编辑功能。主要通过两个组件协作完成：</p>
+<ul>
+<li>RichTextEditor.tsx：核心富文本编辑器封装，负责工具栏和编辑区的渲染与配置。</li>
+<li>BottomTextEditor.tsx：底部面板式编辑器，仅在选中单个文本元素时显示，将富文本编辑器集成到画布操作流程中，支持实时更新元素内容并记录撤销/重做操作。</li>
+</ul>
+<p>主要形式是一个底部面板，单击文本元素会出现</p>
+<h4 id="0x01-RichTextEditor-组件实现"><a href="#0x01-RichTextEditor-组件实现" class="headerlink" title="0x01 RichTextEditor 组件实现"></a>0x01 RichTextEditor 组件实现</h4><p>RichTextEditor 是对 wangEditor 的二次封装，提供可复用的富文本编辑器</p>
+<figure class="highlight tsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><code class="hljs tsx"><span class="hljs-keyword">import</span> <span class="hljs-string">"@wangeditor/editor/dist/css/style.css"</span>;<br><span class="hljs-keyword">import</span> { useState, useEffect } <span class="hljs-keyword">from</span> <span class="hljs-string">"react"</span>;<br><span class="hljs-keyword">import</span> { <span class="hljs-title class_">Editor</span>, <span class="hljs-title class_">Toolbar</span> } <span class="hljs-keyword">from</span> <span class="hljs-string">"@wangeditor/editor-for-react"</span>;<br><br><span class="hljs-keyword">const</span> <span class="hljs-attr">toolbarConfig</span>: <span class="hljs-title class_">Partial</span>&lt;<span class="hljs-title class_">IToolbarConfig</span>&gt; = {<br>  <span class="hljs-attr">toolbarKeys</span>: [<br>    <span class="hljs-string">"bold"</span>,<br>    <span class="hljs-string">"italic"</span>,<br>    <span class="hljs-string">"underline"</span>,<br>    <span class="hljs-string">"through"</span>,<br>    <span class="hljs-string">"|"</span>,<br>    <span class="hljs-string">"fontSize"</span>,<br>    <span class="hljs-string">"fontFamily"</span>,<br>    <span class="hljs-string">"color"</span>,<br>    <span class="hljs-string">"bgColor"</span>,<br>    <span class="hljs-string">"|"</span>,<br>    <span class="hljs-string">"justifyLeft"</span>,<br>    <span class="hljs-string">"justifyCenter"</span>,<br>    <span class="hljs-string">"justifyRight"</span>,<br>    <span class="hljs-string">"|"</span>,<br>    <span class="hljs-string">"undo"</span>,<br>    <span class="hljs-string">"redo"</span>,<br>  ],<br>};<br><br><span class="hljs-keyword">const</span> <span class="hljs-attr">editorConfig</span>: <span class="hljs-title class_">Partial</span>&lt;<span class="hljs-title class_">IEditorConfig</span>&gt; = {<br>  <span class="hljs-attr">placeholder</span>: <span class="hljs-string">"请输入文本..."</span>,<br>  <span class="hljs-attr">autoFocus</span>: <span class="hljs-literal">true</span>,<br>};<br><br><span class="hljs-title function_">useEffect</span>(<span class="hljs-function">() =&gt;</span> {<br>  <span class="hljs-keyword">return</span> <span class="hljs-function">() =&gt;</span> {<br>    <span class="hljs-keyword">if</span> (editor == <span class="hljs-literal">null</span>) <span class="hljs-keyword">return</span>;<br>    editor.<span class="hljs-title function_">destroy</span>();<br>    <span class="hljs-title function_">setEditor</span>(<span class="hljs-literal">null</span>);<br>  };<br>}, [editor]);<br><br><span class="hljs-keyword">return</span> (<br>  <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">className</span>=<span class="hljs-string">"..."</span>&gt;</span></span><br><span class="language-xml">    <span class="hljs-tag">&lt;<span class="hljs-name">Toolbar</span> <span class="hljs-attr">editor</span>=<span class="hljs-string">{editor}</span> <span class="hljs-attr">defaultConfig</span>=<span class="hljs-string">{toolbarConfig}</span> <span class="hljs-attr">mode</span>=<span class="hljs-string">"simple"</span> /&gt;</span></span><br><span class="language-xml">    <span class="hljs-tag">&lt;<span class="hljs-name">Editor</span></span></span><br><span class="hljs-tag"><span class="language-xml">      <span class="hljs-attr">defaultConfig</span>=<span class="hljs-string">{editorConfig}</span></span></span><br><span class="hljs-tag"><span class="language-xml">      <span class="hljs-attr">value</span>=<span class="hljs-string">{value}</span></span></span><br><span class="hljs-tag"><span class="language-xml">      <span class="hljs-attr">onCreated</span>=<span class="hljs-string">{setEditor}</span></span></span><br><span class="hljs-tag"><span class="language-xml">      <span class="hljs-attr">onChange</span>=<span class="hljs-string">{(editor)</span> =&gt;</span> onChange(editor.getHtml())}</span><br><span class="language-xml">      mode="simple"</span><br><span class="language-xml">      style={{ height: "200px", overflowY: "auto" }}</span><br><span class="language-xml">    /&gt;</span><br><span class="language-xml">  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span><br>);<br></code></pre></td></tr></table></figure>
+<ol>
+<li><strong>工具栏配置（toolbarConfig）</strong> 通过 toolbarKeys 指定显示的菜单键（加粗、斜体、下划线、删除线、字体大小/家族、颜色、背景色、对齐方式）以及撤销/重做。</li>
+<li><strong>编辑器配置（editorConfig）</strong> 设置占位符和自动聚焦。wangEditor 支持更丰富的配置（如最大长度、自定义菜单等），此处保持最小化。</li>
+<li><strong>生命周期管理</strong> 使用 useEffect 在组件卸载或 editor 实例变化时调用 editor.destroy()，防止内存泄漏。</li>
+<li><strong>内容同步</strong>value props 控制初始 HTML，onChange 回调通过 editor.getHtml() 获取最新 HTML 内容并向上通知。</li>
+</ol>
+<h4 id="0x02-BottomTextEditor-组件实现"><a href="#0x02-BottomTextEditor-组件实现" class="headerlink" title="0x02 BottomTextEditor 组件实现"></a>0x02 BottomTextEditor 组件实现</h4><p>BottomTextEditor 将富文本编辑器集成到画布状态管理中，仅针对选中单个文本元素时激活。</p>
+<figure class="highlight tsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><code class="hljs tsx"><span class="hljs-keyword">const</span> { selectedIds, elements, updateElement } = <span class="hljs-title function_">useStore</span>();<br><br><span class="hljs-keyword">const</span> selectedId = selectedIds.<span class="hljs-property">length</span> === <span class="hljs-number">1</span> ? selectedIds[<span class="hljs-number">0</span>] : <span class="hljs-literal">null</span>;<br><span class="hljs-keyword">const</span> element = selectedId ? elements[selectedId] : <span class="hljs-literal">null</span>;<br><br><span class="hljs-keyword">const</span> [localHtml, setLocalHtml] = <span class="hljs-title function_">useState</span>(<span class="hljs-string">""</span>);<br><br><span class="hljs-title function_">useEffect</span>(<span class="hljs-function">() =&gt;</span> {<br>  <span class="hljs-keyword">if</span> (element &amp;&amp; element.<span class="hljs-property">type</span> === <span class="hljs-string">"text"</span>) {<br>    <span class="hljs-title function_">setLocalHtml</span>(element.<span class="hljs-property">text</span> || <span class="hljs-string">""</span>);<br>  }<br>}, [element?.<span class="hljs-property">id</span>, element?.<span class="hljs-property">text</span>]);<br><br><span class="hljs-keyword">const</span> <span class="hljs-title function_">handleChange</span> = (<span class="hljs-params"><span class="hljs-attr">html</span>: <span class="hljs-built_in">string</span></span>) =&gt; {<br>  <span class="hljs-title function_">setLocalHtml</span>(html);<br>  <span class="hljs-keyword">const</span> initialText = element.<span class="hljs-property">text</span> || <span class="hljs-string">""</span>;<br>  <span class="hljs-title function_">updateElement</span>(element.<span class="hljs-property">id</span>, { <span class="hljs-attr">text</span>: html });<br><br>  <span class="hljs-keyword">const</span> updateCommand = <span class="hljs-keyword">new</span> <span class="hljs-title class_">UpdateElementPropertyCommand</span>(<br>    { <span class="hljs-attr">id</span>: element.<span class="hljs-property">id</span>, <span class="hljs-attr">property</span>: <span class="hljs-string">"text"</span>, <span class="hljs-attr">oldValue</span>: initialText, <span class="hljs-attr">newValue</span>: html },<br>    <span class="hljs-string">"修改文本内容"</span><br>  );<br>  undoRedoManager.<span class="hljs-title function_">executeCommand</span>(updateCommand);<br>};<br><br><span class="hljs-keyword">return</span> (<br>  <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">className</span>=<span class="hljs-string">"fixed bottom-8 ... animate-slide-up"</span>&gt;</span></span><br><span class="language-xml">    <span class="hljs-tag">&lt;<span class="hljs-name">RichTextEditor</span> <span class="hljs-attr">value</span>=<span class="hljs-string">{localHtml}</span> <span class="hljs-attr">onChange</span>=<span class="hljs-string">{handleChange}</span> /&gt;</span></span><br><span class="language-xml">  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span><br>);<br></code></pre></td></tr></table></figure>
+<ol>
+<li><strong>选中元素判断</strong> 从 Zustand store（canvasStore）获取选中 ID 和元素集合，仅当选中单个文本类型元素时渲染编辑器。</li>
+<li><strong>本地状态（localHtml）</strong> 使用 useState 维护本地 HTML 副本，并在选中元素变化时通过 useEffect 同步 store 中的 element.text。 此设计主要解决中文输入法（IME）组成阶段的问题：在拼音输入过程中，wangEditor 的 onChange 会频繁触发，若直接更新全局 store，可能导致输入延迟、光标跳动或内容混乱。通过本地状态缓冲实时变化，避免不必要的 store 更新。</li>
+<li><strong>内容变更处理（handleChange）</strong><ul>
+<li>更新本地状态。</li>
+<li>实时调用 updateElement 更新画布 store，驱动 canvas 重新渲染文本元素。</li>
+<li>创建 UpdateElementPropertyCommand 命令并执行，支持撤销/重做（undo/redo）。命令记录旧值和新值，处理历史操作</li>
+</ul>
+</li>
+</ol>
+<h4 id="0x03-关键问题解决与设计"><a href="#0x03-关键问题解决与设计" class="headerlink" title="0x03 关键问题解决与设计"></a>0x03 关键问题解决与设计</h4><ol>
+<li><strong>输入法兼容性</strong> 中文输入过程中，组成事件（composition）会多次触发编辑器变更。若直接在 onChange 中更新全局状态，可能导致性能问题或输入体验不佳。本实现通过本地状态缓冲 setLocalHtml(html) 缓解该问题</li>
+<li><strong>实时渲染与历史管理</strong> 实时更新 store 确保画布文本即时反映变更；同时通过命令模式记录操作，实现完整的 undo/redo 支持。</li>
+</ol>
+<h4 id="0x04-当前实现的风险与不足分析"><a href="#0x04-当前实现的风险与不足分析" class="headerlink" title="0x04 当前实现的风险与不足分析"></a>0x04 当前实现的风险与不足分析</h4><p>当前实现虽已满足基础富文本编辑需求，但是还是有一些问题</p>
+<ol>
+<li><strong>输入法体验优化不彻底</strong> 虽通过本地状态缓冲缓解了 IME 组成阶段的频繁更新问题，但未监听 compositionstart/compositionend 事件。在某些极端输入场景（如快速切换输入法或长句输入）下，仍可能出现光标偏移或临时内容丢失的现象。</li>
+<li><strong>内容净化与 XSS 防护不足</strong> 完全依赖 wangEditor 内置的有限转义机制，未引入 DOMPurify 等专用净化库。在用户插入外部链接、图片或自定义 HTML 时，存在潜在的存储型或 DOM 型 XSS 风险，尤其在内容后续导出或分享场景中。</li>
+<li><strong>样式与对齐精度问题</strong> wangEditor 生成的 HTML 结构（如多层 span/div 嵌套）与画布自定义文本渲染逻辑可能不完全匹配，导致编辑器中预览效果与画布最终渲染存在细微差异（如行高、字间距、对齐方式）。</li>
+<li><strong>性能与内存管理</strong> 频繁的实时更新（onChange 触发 store 更新与命令记录）在长文本场景下可能导致轻微卡顿；此外，未对编辑器实例进行复用，当快速切换不同文本元素时会反复创建/销毁实例，增加内存开销。</li>
+</ol>
+<p>面对这些问题后续都可以做一些改进：</p>
+<ol>
+<li><strong>引入 DOMPurify 进行内容净化来处理 XSS 问题</strong> 在内容存储前（提交到 store 或后端）及渲染时统一调用 DOMPurify.sanitize，对 HTML 进行严格过滤。自定义白名单以保留 wangEditor 支持的必要标签与属性，同时移除所有事件处理器及危险协议。</li>
+<li><strong>完善输入法兼容性</strong> 在 RichTextEditor 中监听 composition 事件，在组成阶段暂不触发 handleChange，仅在 compositionend 后统一更新 store 与命令记录，进一步消除输入延迟与光标问题。</li>
+<li><strong>性能优化</strong> 实现编辑器实例复用（单一全局实例，根据选中元素动态切换内容），并在长文本时增加防抖处理，减少不必要的 store 更新与命令执行。</li>
+</ol>
+<h4 id="0x05-总结"><a href="#0x05-总结" class="headerlink" title="0x05 总结"></a>0x05 总结</h4><p>主要就是 wangEditor 的 React 封装，结合 Zustand 状态管理和命令模式，来适配画布类项目的文本编辑需求，实现了基础的文本编辑功能</p>
+<div id="paginator"></div></div><div id="post-footer"><div id="pages"><div class="footer-link" style="width: 50%;text-align:right;border-right:1px #fe2 solid"><a href="/Arknight-notes/posts/43445.html">← Next 2025-12-17-前端画布设计Vol.1 实现基础元素渲染和状态控制</a></div><div class="footer-link" style="width: 50%;right:1px;border-left:1px #fe2 solid"><a href="/Arknight-notes/posts/40452.html">2025-12-27-算法刷题-关于链表操作 Prev →</a></div></div></div><div id="comments"><div id="gitalk"></div></div></div><div class="bottom-btn"><div><a class="i-top" id="to-top" onClick="scrolls.scrolltop();" title="To Top" style="opacity: 0; display: none;">∧ </a><a class="i-index" id="to-index" href="#toc-div" title="To Catalog">≡</a><a class="i-color" id="color-mode" onClick="colorMode.change()" title="Change Theme"></a></div></div></article><aside><div id="about"><a href="/Arknight-notes/" id="logo"><img src="https://pic4.zhimg.com/80/v2-d9884f32711e19e80979eac58e943897_720w.webp" alt="Logo" style="margin:20;border-radius:0;"></a><h1 id="Dr"><a href="zhongye">柊野</a></h1><div id="description"><p></p></div></div><div id="aside-block"><div id="toc-div"><h1>Catalog</h1><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%94%BB%E5%B8%83%E9%A1%B9%E7%9B%AE%E4%B8%AD%E5%AF%8C%E6%96%87%E6%9C%AC%E7%BC%96%E8%BE%91%E5%99%A8%E7%9A%84%E5%AE%9E%E7%8E%B0%E6%B5%85%E6%9E%90"><span class="toc-number">1.</span> <span class="toc-text">画布项目中富文本编辑器的实现浅析</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#0x00-%E6%A6%82%E8%BF%B0"><span class="toc-number">1.0.1.</span> <span class="toc-text">0x00 概述</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#0x01-RichTextEditor-%E7%BB%84%E4%BB%B6%E5%AE%9E%E7%8E%B0"><span class="toc-number">1.0.2.</span> <span class="toc-text">0x01 RichTextEditor 组件实现</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#0x02-BottomTextEditor-%E7%BB%84%E4%BB%B6%E5%AE%9E%E7%8E%B0"><span class="toc-number">1.0.3.</span> <span class="toc-text">0x02 BottomTextEditor 组件实现</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#0x03-%E5%85%B3%E9%94%AE%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3%E4%B8%8E%E8%AE%BE%E8%AE%A1"><span class="toc-number">1.0.4.</span> <span class="toc-text">0x03 关键问题解决与设计</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#0x04-%E5%BD%93%E5%89%8D%E5%AE%9E%E7%8E%B0%E7%9A%84%E9%A3%8E%E9%99%A9%E4%B8%8E%E4%B8%8D%E8%B6%B3%E5%88%86%E6%9E%90"><span class="toc-number">1.0.5.</span> <span class="toc-text">0x04 当前实现的风险与不足分析</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#0x05-%E6%80%BB%E7%BB%93"><span class="toc-number">1.0.6.</span> <span class="toc-text">0x05 总结</span></a></li></ol></li></ol></li></ol></div></div><footer><nobr><span class="icp-title">GZHU</span><span class="icp-content">193001-0001</span></nobr><br><nobr><span class="icp-title">OUTPOST</span><span class="icp-content">169-2025-0331</span></nobr><br><nobr>Published with <a target="_blank" rel="noopener" href="http://hexo.io">Hexo</a></nobr><wbr><nobr> Theme <a target="_blank" rel="noopener" href="https://github.com/Yue-plus/hexo-theme-arknights">Arknights</a></nobr><wbr><nobr> by <a target="_blank" rel="noopener" href="https://github.com/Yue-plus">Yue_plus</a></nobr></footer></aside></main><canvas id="canvas-dust"></canvas></body></html>
