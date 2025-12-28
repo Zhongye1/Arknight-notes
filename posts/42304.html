@@ -1,0 +1,295 @@
+<!DOCTYPE html><html lang="en" theme-mode="dark"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>2025-11-23-前端学习-身份验证管理-基于 JWT Token 的实现 | Notes|笔记站</title><link rel="icon" type="image/x-icon" href="/Arknight-notes/favicon.ico"><link rel="preload" as="font" crossorigin="anonymous" href="/Arknight-notes/font/Bender.ttf"><link rel="preload" as="font" crossorigin="anonymous" href="/Arknight-notes/font/BenderLight.ttf"><link rel="preload" as="font" crossorigin="anonymous" href="/Arknight-notes/font/JetBrainsMono-Regular.woff2"><link rel="stylesheet" href="/Arknight-notes/css/arknights.css"><style>@font-face {
+  font-family: Bender;
+  src: local('Bender'), url("/Arknight-notes/font/Bender.ttf"), url("/Arknight-notes/font/Bender.otf");
+}
+@font-face {
+  font-family: BenderLight;
+  src: local('BenderLight'), url("/Arknight-notes/font/BenderLight.ttf");
+}
+@font-face {
+  font-family: 'JetBrains Mono';
+  src: local('JetBrains Mono'), url('/Arknight-notes/font/JetBrainsMono-Regular.woff2') format('woff2');
+}
+</style><script>var config = {"root":"/Arknight-notes/","code_fold":90,"search":{"preload":false,"activeHolder":"Enter here","blurHolder":"Search","noResult":"Data \"$0\" not found"},"code":{"codeInfo":"$0 - $1 lines","copy":"copy"}}</script><link type="text/css" rel="stylesheet" href="/Arknight-notes/lib/encrypt/hbe.style.css"><script src="/Arknight-notes/js/gitalk.js"></script><script src="//unpkg.com/mermaid@10.5.0/dist/mermaid.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.6.1/MathJax.js"></script><script>MathJax.Hub.Config({
+ menuSettings: {
+   zoom: "None"
+ },
+ showMathMenu: false,
+ jax: ["input/TeX","output/CommonHTML"],
+ extensions: ["tex2jax.js"],
+ TeX: {
+   extensions: ["AMSmath.js","AMSsymbols.js"],
+   equationNumbers: {
+     autoNumber: "AMS"
+   }
+ },
+ tex2jax: {
+   inlineMath: [["\\(", "\\)"]],
+   displayMath: [["\\[", "\\]"]]
+ }
+});</script><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lightgallery.css"><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lg-zoom.css"><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lg-thumbnail.css"><link type="text/css" rel="stylesheet" href="/Arknight-notes/lib/fontawesome/css/all.min.css"><script>if (window.localStorage.getItem('theme-mode') === 'light')
+ document.documentElement.setAttribute('theme-mode', 'light')
+if (window.localStorage.getItem('theme-mode') === 'dark')
+ document.documentElement.setAttribute('theme-mode', 'dark')</script><style>@font-face {
+ font-family: BenderLight;
+ src: local('Bender'), url("/Arknight-notes/font/BenderLight.woff2") format('woff2');
+}
+@font-face {
+ font-family: 'JetBrains Mono';
+ src: local('JetBrains Mono'), url('/Arknight-notes/font/JetBrainsMono-Regular.woff2') format('woff2');
+}</style><style>:root {
+ --dark-background: url('https://pic2.zhimg.com/v2-6269d74b4dafe14781d03790e5a86b21_r.jpg');
+ --light-background: url('https://pic1.zhimg.com/v2-233b64b583642fc4a6d77e69ced33150_r.jpg');
+ --theme-encrypt-confirm: 'confirm'
+}</style><script defer src="/Arknight-notes/js/arknights.js"></script><script defer src="/Arknight-notes/js/search.js"></script><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><script async src="/Arknight-notes/js/gitalk.js"></script><script defer type="module">import mermaid from '//unpkg.com/mermaid@10.5.0/dist/mermaid.esm.mjs';
+window.mermaid = mermaid;
+code.paintMermaid();
+</script><script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.6.1/MathJax.js"></script><script>MathJax.Hub.Config({
+  menuSettings: {
+    zoom: "None"
+  },
+  showMathMenu: false,
+  jax: ["input/TeX","output/CommonHTML"],
+  extensions: ["tex2jax.js"],
+  TeX: {
+    extensions: ["AMSmath.js","AMSsymbols.js"],
+    equationNumbers: {
+      autoNumber: "AMS"
+    }
+  },
+  tex2jax: {
+    inlineMath: [["\\(", "\\)"]],
+    displayMath: [["\\[", "\\]"]]
+  }
+});
+</script><script async src="//unpkg.com/lightgallery@2.7.1/lightgallery.min.js"></script><script async src="//unpkg.com/lightgallery@2.7.1/plugins/zoom/lg-zoom.min.js"></script><script async src="//unpkg.com/lightgallery@2.7.1/plugins/thumbnail/lg-thumbnail.min.js"></script><script async src="/Arknight-notes/lib/encrypt/hbe.js"></script><script async src="/Arknight-notes/js/pjax.js"></script><script class="pjax-js">reset= () => {gitalk = new Gitalk({
+ clientID: 'Ov23ct13Fb0b67x23wnT',
+ clientSecret: 'f18ce69dd545e3c0f5e2456afde9c756fe8a254a',
+ repo: 'Arknight-notes',
+ owner: 'Zhongye1',
+ admin: ['Zhongye1'],
+ distractionFreeMode: false,
+ id: location.pathname
+});
+if (document.querySelector("#gitalk")) gitalk.render("gitalk");document.querySelector('.lg-container')?.remove()
+lightGallery(document.getElementById('post-bg'), {
+  plugins: [lgZoom,lgThumbnail],
+  selector: '.item-img'})}</script><script>window.addEventListener("load",() => {pjax = new Pjax({
+ cacheBust: false,
+ selectors: ['title','article','#aside-block','.pjax-js','data-pjax','.busuanzi'],
+ switches: {'article': Pjax.switches.sideBySide},
+ switchesOptions: {
+   'article': {
+     classNames: {
+       remove: "pjax-out",
+       add: "pjax-in"
+     }
+   }
+ }
+});
+document.addEventListener("pjax:complete", reset);document.addEventListener('pjax:success', _ => bszCaller.fetch(
+ "//busuanzi.ibruce.info/busuanzi?jsonpCallback=BusuanziCallback", a => {
+  bszTag.texts(a),
+  bszTag.shows()
+}));reset()})</script><script class="pjax-js">reset= () => {gitalk = new Gitalk({
+ clientID: 'Ov23ct13Fb0b67x23wnT',
+ clientSecret: 'f18ce69dd545e3c0f5e2456afde9c756fe8a254a',
+ repo: 'Arknight-notes',
+ owner: 'Zhongye1',
+ admin: ['Zhongye1'],
+ distractionFreeMode: false,
+ id: location.pathname
+});
+if (document.querySelector("#gitalk")) gitalk.render("gitalk");document.querySelector('.lg-container')?.remove()
+lightGallery(document.getElementById('post-bg'), {
+  plugins: [lgZoom,lgThumbnail],
+  selector: '.item-img'})}</script><script>window.addEventListener("load",() => {pjax = new Pjax({
+ cacheBust: false,
+ selectors: ['title','article','#aside-block','.pjax-js'],
+ switches: {'article': Pjax.switches.sideBySide},
+ switchesOptions: {
+   'article': {
+     classNames: {
+       remove: "pjax-out",
+       add: "pjax-in"
+     }
+   }
+ }
+});
+document.addEventListener("pjax:complete", reset);reset()})</script><meta name="generator" content="Hexo 7.3.0"><style>mjx-container[jax="SVG"] {
+  direction: ltr;
+}
+
+mjx-container[jax="SVG"] > svg {
+  overflow: visible;
+}
+
+mjx-container[jax="SVG"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="SVG"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="SVG"][justify="right"] {
+  text-align: right;
+}
+
+g[data-mml-node="merror"] > g {
+  fill: red;
+  stroke: red;
+}
+
+g[data-mml-node="merror"] > rect[data-background] {
+  fill: yellow;
+  stroke: none;
+}
+
+g[data-mml-node="mtable"] > line[data-line] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > rect[data-frame] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > .mjx-dashed {
+  stroke-dasharray: 140;
+}
+
+g[data-mml-node="mtable"] > .mjx-dotted {
+  stroke-linecap: round;
+  stroke-dasharray: 0,140;
+}
+
+g[data-mml-node="mtable"] > svg {
+  overflow: visible;
+}
+
+[jax="SVG"] mjx-tool {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+[jax="SVG"] mjx-tool > mjx-tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+mjx-tool > mjx-tip {
+  display: inline-block;
+  padding: .2em;
+  border: 1px solid #888;
+  font-size: 70%;
+  background-color: #F8F8F8;
+  color: black;
+  box-shadow: 2px 2px 5px #AAAAAA;
+}
+
+g[data-mml-node="maction"][data-toggle] {
+  cursor: pointer;
+}
+
+mjx-status {
+  display: block;
+  position: fixed;
+  left: 1em;
+  bottom: 1em;
+  min-width: 25%;
+  padding: .2em .4em;
+  border: 1px solid #888;
+  font-size: 90%;
+  background-color: #F8F8F8;
+  color: black;
+}
+
+foreignObject[data-mjx-xml] {
+  font-family: initial;
+  line-height: normal;
+  overflow: visible;
+}
+
+.MathJax path {
+  stroke-width: 3;
+}
+
+mjx-container[display="true"] {
+  overflow: auto hidden;
+}
+
+mjx-container[display="true"] + br {
+  display: none;
+}
+</style><link rel="alternate" href="/Arknight-notes/rss.xml" title="Notes|笔记站" type="application/atom+xml">
+</head><body><div class="loading" style="opacity: 0;"><div class="loadingBar left"></div><div class="loadingBar right"></div></div><main><header class="closed"><div class="navBtn"><i class="navBtnIcon"><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span></i></div><nav><div class="navItem" id="search-header"><span class="navItemTitle"><input autocomplete="off" autocorrect="off" autocapitalize="none" placeholder="Search" spellcheck="false" maxlength="50" type="text" id="search-input"></span></div><div class="navItem" id="search-holder"></div><div class="search-popup" tabindex="0"><div id="search-result"></div></div><ol class="navContent"><li class="navItem"><a class="navBlock" href="/Arknight-notes/"><span class="navItemTitle">Home</span></a></li><li class="navItem" matchdata="categories,tags"><a class="navBlock" href="/Arknight-notes/archives/"><span class="navItemTitle">Archives</span></a></li><li class="navItem"><a class="navBlock" href="/Arknight-notes/about/"><span class="navItemTitle">About</span></a></li></ol></nav></header><article><div id="post-bg"><div id="post-title"><h1>2025-11-23-前端学习-身份验证管理-基于 JWT Token 的实现</h1><div id="post-info"><span>First Post: <div class="control"><time datetime="2025-12-28T14:04:41.000Z" id="date"> 2025-12-28</time></div></span><br><span>Last Update: <div class="control"><time datetime="2025-12-28T15:19:20.787Z" id="updated"> 2025-12-28</time></div></span><br><span id="busuanzi_container_page_pv">Page View: <span class="control" id="busuanzi_value_page_pv">loading...</span></span></div></div><hr><div id="post-content"><h1 id="前端身份验证管理-基于-JWT-Token-的实现"><a href="#前端身份验证管理-基于-JWT-Token-的实现" class="headerlink" title="前端身份验证管理-基于 JWT Token 的实现"></a>前端身份验证管理-基于 JWT Token 的实现</h1><h2 id="0x01-JWT-简介与工作原理"><a href="#0x01-JWT-简介与工作原理" class="headerlink" title="0x01 JWT 简介与工作原理"></a>0x01 JWT 简介与工作原理</h2><p>JSON Web Token（JWT）是一种开放标准（RFC 7519），用于在网络应用环境中安全传输声明。它是一种紧凑、自包含的令牌格式，由三部分组成：Header（头部）、Payload（载荷）和 Signature（签名），以点（.）分隔，形成 Base64Url 编码的字符串。</p>
+<ul>
+<li><strong>Header</strong>：包含令牌类型（”typ”: “JWT”）和签名算法（如 “alg”: “HS256” 或 “RS256”）。</li>
+<li><strong>Payload</strong>：承载声明信息，包括注册声明（iss、exp、sub 等）和自定义声明（用户 ID、角色等）。注意，Payload 未加密，仅编码，不应存放敏感数据。</li>
+<li><strong>Signature</strong>：使用密钥对 Header 和 Payload 进行签名，确保令牌完整性和真实性。</li>
+</ul>
+<p>JWT 的典型认证流程：</p>
+<ol>
+<li>用户提交用户名和密码登录。</li>
+<li>服务器验证凭证成功后，生成 JWT 并返回给客户端。</li>
+<li>客户端存储 JWT（通常在 localStorage 或 HttpOnly Cookie 中）。</li>
+<li>后续请求中，客户端在 Authorization 头携带 JWT（<code>Bearer &lt;token&gt;</code>）。</li>
+<li>服务器验证 JWT 的签名、过期时间和声明，若有效则授权访问。</li>
+</ol>
+<p>相比传统 Session 认证，JWT 无状态，便于分布式系统扩展，但需注意令牌不可主动撤销（依赖短过期时间和刷新机制）。</p>
+<h2 id="0x02-前端-Token-存储与管理"><a href="#0x02-前端-Token-存储与管理" class="headerlink" title="0x02 前端 Token 存储与管理"></a>0x02 前端 Token 存储与管理</h2><p>前端管理 JWT 的核心是通过 setAuthToken 和 clearAuthToken 函数统一处理认证状态，通常结合 Axios 实例实现。</p>
+<ul>
+<li><strong>存储方式</strong>：<ul>
+<li>优先使用 <strong>HttpOnly + Secure + SameSite Cookie</strong>：防止 XSS 攻击（JavaScript 无法访问），并通过 SameSite 属性缓解 CSRF。</li>
+<li>避免 localStorage/sessionStorage：易受 XSS 窃取。</li>
+<li>若必须使用 JavaScript 存储，结合短过期时间和刷新令牌。</li>
+</ul>
+</li>
+<li><p><strong>Axios 封装示例</strong>（apiClient.ts）：</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs TypeScript"><span class="hljs-keyword">import</span> axios <span class="hljs-keyword">from</span> <span class="hljs-string">'axios'</span>;<br><br><span class="hljs-keyword">const</span> apiClient = axios.<span class="hljs-title function_">create</span>({ <span class="hljs-attr">baseURL</span>: <span class="hljs-string">'/api'</span> });<br><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> <span class="hljs-title function_">setAuthToken</span> = (<span class="hljs-params"><span class="hljs-attr">token</span>: <span class="hljs-built_in">string</span></span>) =&gt; {<br>  <span class="hljs-keyword">if</span> (token) {<br>    apiClient.<span class="hljs-property">defaults</span>.<span class="hljs-property">headers</span>.<span class="hljs-property">common</span>[<span class="hljs-string">'Authorization'</span>] = <span class="hljs-string">`Bearer <span class="hljs-subst">${token}</span>`</span>;<br>  }<br>};<br><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> <span class="hljs-title function_">clearAuthToken</span> = (<span class="hljs-params"></span>) =&gt; {<br>  <span class="hljs-keyword">delete</span> apiClient.<span class="hljs-property">defaults</span>.<span class="hljs-property">headers</span>.<span class="hljs-property">common</span>[<span class="hljs-string">'Authorization'</span>];<br>};<br><br><span class="hljs-comment">// 请求拦截器：可选统一添加其他逻辑</span><br>apiClient.<span class="hljs-property">interceptors</span>.<span class="hljs-property">request</span>.<span class="hljs-title function_">use</span>(<span class="hljs-function"><span class="hljs-params">config</span> =&gt;</span> {<br>  <span class="hljs-comment">// 可从 Cookie 或存储中读取 token</span><br>  <span class="hljs-keyword">return</span> config;<br>});<br><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> apiClient;<br></code></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>登录成功后：</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs TypeScript"><span class="hljs-comment">// 登录接口调用后</span><br><span class="hljs-keyword">const</span> response = <span class="hljs-keyword">await</span> <span class="hljs-title function_">login</span>(username, password);<br><span class="hljs-variable language_">localStorage</span>.<span class="hljs-title function_">setItem</span>(<span class="hljs-string">'token'</span>, response.<span class="hljs-property">data</span>.<span class="hljs-property">token</span>); <span class="hljs-comment">// 或依赖 Cookie</span><br><span class="hljs-title function_">setAuthToken</span>(response.<span class="hljs-property">data</span>.<span class="hljs-property">token</span>);<br></code></pre></td></tr></table></figure>
+<p>登出时：</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs TypeScript"><span class="hljs-title function_">clearAuthToken</span>();<br><span class="hljs-variable language_">localStorage</span>.<span class="hljs-title function_">removeItem</span>(<span class="hljs-string">'token'</span>); <span class="hljs-comment">// 或清除 Cookie</span><br></code></pre></td></tr></table></figure>
+<h2 id="0x03-通过钩子或守卫验证用户权限"><a href="#0x03-通过钩子或守卫验证用户权限" class="headerlink" title="0x03 通过钩子或守卫验证用户权限"></a>0x03 通过钩子或守卫验证用户权限</h2><p>在前端框架中，使用路由守卫或钩子（如 Vue Router 的 beforeEach 或 React 的自定义钩子）验证权限，确保未认证用户无法访问受保护路由。</p>
+<ul>
+<li><p><strong>Vue 示例</strong>（router/index.ts）：</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs TypeScript"><span class="hljs-keyword">import</span> router <span class="hljs-keyword">from</span> <span class="hljs-string">'@/router'</span>;<br><span class="hljs-keyword">import</span> { getToken } <span class="hljs-keyword">from</span> <span class="hljs-string">'@/utils/auth'</span>; <span class="hljs-comment">// 从存储获取 token</span><br><br>router.<span class="hljs-title function_">beforeEach</span>(<span class="hljs-function">(<span class="hljs-params">to, <span class="hljs-keyword">from</span>, next</span>) =&gt;</span> {<br>  <span class="hljs-keyword">if</span> (to.<span class="hljs-property">meta</span>.<span class="hljs-property">requiresAuth</span>) { <span class="hljs-comment">// 路由元信息标记需认证</span><br>    <span class="hljs-keyword">const</span> token = <span class="hljs-title function_">getToken</span>();<br>    <span class="hljs-keyword">if</span> (token) {<br>      <span class="hljs-comment">// 可选：调用后端验证 token 有效性</span><br>      <span class="hljs-title function_">next</span>();<br>    } <span class="hljs-keyword">else</span> {<br>      <span class="hljs-title function_">next</span>(<span class="hljs-string">'/login'</span>); <span class="hljs-comment">// 重定向登录</span><br>    }<br>  } <span class="hljs-keyword">else</span> {<br>    <span class="hljs-title function_">next</span>();<br>  }<br>});<br></code></pre></td></tr></table></figure>
+</li>
+<li><p><strong>React 示例</strong>（ProtectedRoute 组件）： 使用 Context 或 Redux 管理认证状态，在路由组件中检查：</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs jsx"><span class="hljs-keyword">import</span> { <span class="hljs-title class_">Navigate</span> } <span class="hljs-keyword">from</span> <span class="hljs-string">"react-router-dom"</span>;<br><br><span class="hljs-keyword">const</span> <span class="hljs-title function_">ProtectedRoute</span> = (<span class="hljs-params">{ children }</span>) =&gt; {<br>  <span class="hljs-keyword">const</span> token = <span class="hljs-variable language_">localStorage</span>.<span class="hljs-title function_">getItem</span>(<span class="hljs-string">"token"</span>);<br>  <span class="hljs-keyword">return</span> token ? children : <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">Navigate</span> <span class="hljs-attr">to</span>=<span class="hljs-string">"/login"</span> /&gt;</span></span>;<br>};<br></code></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>此外，可结合角色声明（Payload 中的 roles）实现细粒度权限控制，如按钮级隐藏。</p>
+<h2 id="0x04-Token-刷新与过期处理"><a href="#0x04-Token-刷新与过期处理" class="headerlink" title="0x04 Token 刷新与过期处理"></a>0x04 Token 刷新与过期处理</h2><p>为提升用户体验，实施刷新令牌机制：</p>
+<ul>
+<li>Access Token：短过期（15-60 分钟）。</li>
+<li>Refresh Token：长过期，存储在 HttpOnly Cookie。</li>
+<li>在 Axios 响应拦截器中捕获 401 错误，调用刷新接口获取新 Access Token。</li>
+</ul>
+<p>示例：</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs TypeScript">apiClient.<span class="hljs-property">interceptors</span>.<span class="hljs-property">response</span>.<span class="hljs-title function_">use</span>(<br>  <span class="hljs-function"><span class="hljs-params">response</span> =&gt;</span> response,<br>  <span class="hljs-keyword">async</span> error =&gt; {<br>    <span class="hljs-keyword">if</span> (error.<span class="hljs-property">response</span>.<span class="hljs-property">status</span> === <span class="hljs-number">401</span>) {<br>      <span class="hljs-comment">// 调用刷新接口，更新 token</span><br>      <span class="hljs-keyword">const</span> newToken = <span class="hljs-keyword">await</span> <span class="hljs-title function_">refreshToken</span>();<br>      <span class="hljs-title function_">setAuthToken</span>(newToken);<br>      <span class="hljs-comment">// 重试原请求</span><br>      <span class="hljs-keyword">return</span> <span class="hljs-title function_">apiClient</span>(error.<span class="hljs-property">config</span>);<br>    }<br>    <span class="hljs-keyword">return</span> <span class="hljs-title class_">Promise</span>.<span class="hljs-title function_">reject</span>(error);<br>  }<br>);<br></code></pre></td></tr></table></figure>
+<h2 id="0x05-安全实践"><a href="#0x05-安全实践" class="headerlink" title="0x05 安全实践"></a>0x05 安全实践</h2><ul>
+<li>使用 HTTPS</li>
+<li>严格验证服务器端签名、exp、iss 和 aud</li>
+<li>避免 Payload 中存放敏感信息</li>
+<li>实施 CSRF 防护（SameSite Cookie 或 token）</li>
+<li>定期轮换密钥，支持刷新令牌旋转</li>
+<li>监控异常登录，实施黑名单（短期令牌下可选）</li>
+</ul>
+<h2 id="0x06-参考资料"><a href="#0x06-参考资料" class="headerlink" title="0x06 参考资料"></a>0x06 参考资料</h2><ul>
+<li>RFC 7519: JSON Web Token</li>
+<li>OWASP JWT Cheat Sheet</li>
+<li>Auth0 JWT Best Practices</li>
+<li>Curity JWT Security Guide</li>
+</ul>
+<div id="paginator"></div></div><div id="post-footer"><div id="pages" style="justify-content: flex-end"><div class="footer-link" style="width: 50%;right:1px;border-left:1px #fe2 solid"><a href="/Arknight-notes/posts/60473.html">2025-12-27-前端画布设计Vol.3 实现CRDT Prev →</a></div></div></div><div id="comments"><div id="gitalk"></div></div></div><div class="bottom-btn"><div><a class="i-top" id="to-top" onClick="scrolls.scrolltop();" title="To Top" style="opacity: 0; display: none;">∧ </a><a class="i-index" id="to-index" href="#toc-div" title="To Catalog">≡</a><a class="i-color" id="color-mode" onClick="colorMode.change()" title="Change Theme"></a></div></div></article><aside><div id="about"><a href="/Arknight-notes/" id="logo"><img src="https://pic4.zhimg.com/80/v2-d9884f32711e19e80979eac58e943897_720w.webp" alt="Logo" style="margin:20;border-radius:0;"></a><h1 id="Dr"><a href="zhongye">柊野</a></h1><div id="description"><p></p></div></div><div id="aside-block"><div id="toc-div"><h1>Catalog</h1><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%89%8D%E7%AB%AF%E8%BA%AB%E4%BB%BD%E9%AA%8C%E8%AF%81%E7%AE%A1%E7%90%86-%E5%9F%BA%E4%BA%8E-JWT-Token-%E7%9A%84%E5%AE%9E%E7%8E%B0"><span class="toc-number">1.</span> <span class="toc-text">前端身份验证管理-基于 JWT Token 的实现</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#0x01-JWT-%E7%AE%80%E4%BB%8B%E4%B8%8E%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86"><span class="toc-number">1.1.</span> <span class="toc-text">0x01 JWT 简介与工作原理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x02-%E5%89%8D%E7%AB%AF-Token-%E5%AD%98%E5%82%A8%E4%B8%8E%E7%AE%A1%E7%90%86"><span class="toc-number">1.2.</span> <span class="toc-text">0x02 前端 Token 存储与管理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x03-%E9%80%9A%E8%BF%87%E9%92%A9%E5%AD%90%E6%88%96%E5%AE%88%E5%8D%AB%E9%AA%8C%E8%AF%81%E7%94%A8%E6%88%B7%E6%9D%83%E9%99%90"><span class="toc-number">1.3.</span> <span class="toc-text">0x03 通过钩子或守卫验证用户权限</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x04-Token-%E5%88%B7%E6%96%B0%E4%B8%8E%E8%BF%87%E6%9C%9F%E5%A4%84%E7%90%86"><span class="toc-number">1.4.</span> <span class="toc-text">0x04 Token 刷新与过期处理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x05-%E5%AE%89%E5%85%A8%E5%AE%9E%E8%B7%B5"><span class="toc-number">1.5.</span> <span class="toc-text">0x05 安全实践</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x06-%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99"><span class="toc-number">1.6.</span> <span class="toc-text">0x06 参考资料</span></a></li></ol></li></ol></div></div><footer><nobr><span class="icp-title">GZHU</span><span class="icp-content">193001-0001</span></nobr><br><nobr><span class="icp-title">OUTPOST</span><span class="icp-content">169-2025-0331</span></nobr><br><nobr>Published with <a target="_blank" rel="noopener" href="http://hexo.io">Hexo</a></nobr><wbr><nobr> Theme <a target="_blank" rel="noopener" href="https://github.com/Yue-plus/hexo-theme-arknights">Arknights</a></nobr><wbr><nobr> by <a target="_blank" rel="noopener" href="https://github.com/Yue-plus">Yue_plus</a></nobr></footer></aside></main><canvas id="canvas-dust"></canvas></body></html>

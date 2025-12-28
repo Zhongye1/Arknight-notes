@@ -229,7 +229,7 @@ mjx-container[display="true"] + br {
   display: none;
 }
 </style><link rel="alternate" href="/Arknight-notes/rss.xml" title="Notes|笔记站" type="application/atom+xml">
-</head><body><div class="loading" style="opacity: 0;"><div class="loadingBar left"></div><div class="loadingBar right"></div></div><main><header class="closed"><div class="navBtn"><i class="navBtnIcon"><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span></i></div><nav><div class="navItem" id="search-header"><span class="navItemTitle"><input autocomplete="off" autocorrect="off" autocapitalize="none" placeholder="Search" spellcheck="false" maxlength="50" type="text" id="search-input"></span></div><div class="navItem" id="search-holder"></div><div class="search-popup" tabindex="0"><div id="search-result"></div></div><ol class="navContent"><li class="navItem"><a class="navBlock" href="/Arknight-notes/"><span class="navItemTitle">Home</span></a></li><li class="navItem" matchdata="categories,tags"><a class="navBlock" href="/Arknight-notes/archives/"><span class="navItemTitle">Archives</span></a></li><li class="navItem"><a class="navBlock" href="/Arknight-notes/about/"><span class="navItemTitle">About</span></a></li></ol></nav></header><article><div id="post-bg"><div id="post-title"><h1>2025-12-27-关于画布项目的相关考虑</h1><div id="post-info"><span>First Post: <div class="control"><time datetime="2025-12-27T20:52:15.000Z" id="date"> 2025-12-28</time></div></span><br><span>Last Update: <div class="control"><time datetime="2025-12-28T09:26:34.103Z" id="updated"> 2025-12-28</time></div></span><br><span id="busuanzi_container_page_pv">Page View: <span class="control" id="busuanzi_value_page_pv">loading...</span></span></div></div><hr><div id="post-content"><p>当候选人向面试官展示 GitHub 仓库 <a target="_blank" rel="noopener" href="https://github.com/Zhongye1/BDdraw_DEV?referrer=grok.com">https://github.com/Zhongye1/BDdraw_DEV</a>（一个现代协作式 2D 画布编辑器）时，面试官通常会以此项目为切入点，进行针对性较强的技术深度考察。该项目技术栈先进（React 18 + TypeScript + Vite + TailwindCSS + Zustand + PixiJS v8），涉及高性能渲染、无限画布、撤销/重做、实时协作等复杂功能，因此问题往往聚焦于性能优化、状态管理、图形渲染、架构设计以及实际工程实践。</p>
+</head><body><div class="loading" style="opacity: 0;"><div class="loadingBar left"></div><div class="loadingBar right"></div></div><main><header class="closed"><div class="navBtn"><i class="navBtnIcon"><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span></i></div><nav><div class="navItem" id="search-header"><span class="navItemTitle"><input autocomplete="off" autocorrect="off" autocapitalize="none" placeholder="Search" spellcheck="false" maxlength="50" type="text" id="search-input"></span></div><div class="navItem" id="search-holder"></div><div class="search-popup" tabindex="0"><div id="search-result"></div></div><ol class="navContent"><li class="navItem"><a class="navBlock" href="/Arknight-notes/"><span class="navItemTitle">Home</span></a></li><li class="navItem" matchdata="categories,tags"><a class="navBlock" href="/Arknight-notes/archives/"><span class="navItemTitle">Archives</span></a></li><li class="navItem"><a class="navBlock" href="/Arknight-notes/about/"><span class="navItemTitle">About</span></a></li></ol></nav></header><article><div id="post-bg"><div id="post-title"><h1>2025-12-27-关于画布项目的相关考虑</h1><div id="post-info"><span>First Post: <div class="control"><time datetime="2025-12-27T20:52:15.000Z" id="date"> 2025-12-28</time></div></span><br><span>Last Update: <div class="control"><time datetime="2025-12-28T13:15:43.242Z" id="updated"> 2025-12-28</time></div></span><br><span id="busuanzi_container_page_pv">Page View: <span class="control" id="busuanzi_value_page_pv">loading...</span></span></div></div><hr><div id="post-content"><p>当候选人向面试官展示 GitHub 仓库 <a target="_blank" rel="noopener" href="https://github.com/Zhongye1/BDdraw_DEV?referrer=grok.com">https://github.com/Zhongye1/BDdraw_DEV</a>（一个现代协作式 2D 画布编辑器）时，面试官通常会以此项目为切入点，进行针对性较强的技术深度考察。该项目技术栈先进（React 18 + TypeScript + Vite + TailwindCSS + Zustand + PixiJS v8），涉及高性能渲染、无限画布、撤销/重做、实时协作等复杂功能，因此问题往往聚焦于性能优化、状态管理、图形渲染、架构设计以及实际工程实践。</p>
 <h3 id="1-项目整体介绍与架构设计"><a href="#1-项目整体介绍与架构设计" class="headerlink" title="1. 项目整体介绍与架构设计"></a>1. 项目整体介绍与架构设计</h3><p><strong>请整体介绍一下 BDdraw_DEV 项目的主要功能、目标用户以及它解决了哪些实际问题？</strong></p>
 <blockquote>
 <p>BDdraw_DEV 是一个现代化的协同 2D 画布编辑器，采用 React + TypeScript + PixiJS 技术栈构建。该项目提供多种基本图形（矩形、圆形、菱形、线条、箭头、画笔等）元素的绘制，支持背景色、边框宽度、边框颜色等图形属性设置、富文本编辑、图片插入与滤镜处理，支持无限画布缩放、拖拽、提供 minimap，实现元素选择、分组、旋转、调整大小，支持撤销重做，快捷键，数据持久化，本地优先编辑，海量元素处理等交互功能。</p>
@@ -243,15 +243,13 @@ mjx-container[display="true"] + br {
 <p><strong>项目是如何组织目录结构的（例如 src/lib、src/stores、src/Pixi_STM_modules）？这种模块化设计带来了哪些好处？</strong></p>
 <p><em>主要是分为五个模块：</em></p>
 <ol>
-<li><p><strong>*src/api</strong> - API 客户端和类型定义（处理前后端通信）*</p>
-<ul>
+<li><strong>*src/api</strong> - API 客户端和类型定义（处理前后端通信）*<ul>
 <li><em>types - API 类型定义</em></li>
 <li><em>utils - API 工具函数</em></li>
 <li><em>API 服务封装和客户端工具</em></li>
 </ul>
 </li>
-<li><p><strong>*src/components</strong> - React UI 组件（各种 UI 组件）*</p>
-<ul>
+<li><strong>*src/components</strong> - React UI 组件（各种 UI 组件）*<ul>
 <li><em>canvas_toolbar - 画布工具栏组件</em></li>
 <li><em>collaboration - 协作功能组件</em></li>
 <li><em>header - 页面头部组件</em></li>
@@ -259,29 +257,24 @@ mjx-container[display="true"] + br {
 <li><em>richtext_editor - 富文本编辑器组件</em></li>
 </ul>
 </li>
-<li><p><strong>*src/hooks</strong> - 自定义 React Hooks*</p>
-<ul>
+<li><strong>*src/hooks</strong> - 自定义 React Hooks*<ul>
 <li><em>状态管理（简单的本地存储，用于存储用户偏好、UI 状态等）</em></li>
 <li><em>快捷键处理</em></li>
 </ul>
 </li>
-<li><p><strong>*src/lib</strong> - 工具库和核心功能模块*</p>
-<ul>
+<li><strong>*src/lib</strong> - 工具库和核心功能模块*<ul>
 <li><em>AddElementCommand.ts、RemoveElementCommand.ts、UndoRedoManager.ts - 命令模式实现</em></li>
 <li><em>constants.ts - 常量定义</em></li>
 <li><em>utils.ts - 通用工具函数</em></li>
 </ul>
 </li>
-<li><p><strong>*src/pages</strong> - 页面组件*</p>
-<ul>
+<li><strong>*src/pages</strong> - 页面组件*<ul>
 <li><em>auth - 认证相关页面</em></li>
 <li><em>home - 主页</em></li>
-<li><em>room - 房间管理页面</em></li>
+<li><em>room - 房间管理页面</em><br><strong>*src/pages/canvas/Pixi_STM_modules</strong> - Pixi.js 状态管理模块*<br><em>- core - 核心类和初始化逻辑()</em><br><em>- interaction - 交互处理模块(例如拖拽、缩放、选择等)</em><br><em>- utils - 工具函数目录(各项操作的封装)</em><br><em>- shared - 共享类型定义</em></li>
 </ul>
-<p><strong>*src/pages/canvas/Pixi_STM_modules</strong> - Pixi.js 状态管理模块*<br><em>- core - 核心类和初始化逻辑()</em><br><em>- interaction - 交互处理模块(例如拖拽、缩放、选择等)</em><br><em>- utils - 工具函数目录(各项操作的封装)</em><br><em>- shared - 共享类型定义</em></p>
 </li>
-<li><p><strong>*src/stores</strong> - 状态管理（<strong>Yjs + IndexedDB</strong> - 复杂的协同数据存储，用于存储画布元素数据，支持实时协同和离线编辑）*</p>
-<ul>
+<li><strong>*src/stores</strong> - 状态管理（<strong>Yjs + IndexedDB</strong> - 复杂的协同数据存储，用于存储画布元素数据，支持实时协同和离线编辑）*<ul>
 <li><em>canvasStore.ts - 画布状态管理</em></li>
 <li><em>persistenceStore.ts - 持久化状态管理</em></li>
 <li><em>themeStore.ts - 主题状态管理</em></li>
@@ -292,12 +285,9 @@ mjx-container[display="true"] + br {
 <blockquote>
 <p>该项目前后端分离,前后端交互采用 REST API，前端通过 Axios 客户端与后端进行通信。</p>
 </blockquote>
+<p>Axios 是一个基于 Promise 的网络请求库，用于在浏览器和 Node.js 中进行 HTTP 请求，并支持请求/响应拦截、取消，并发请求，自动转换数据等功能</p>
 <ol>
-<li><p>API 客户端设计</p>
-<p> 主要使用axios来实现<br> Axios 是一个基于 Promise 的网络请求库，用于在浏览器和 Node.js 中进行 HTTP 请求，并支持请求/响应拦截、取消，并发请求，自动转换数据等功能</p>
-</li>
-<li><p>API 服务层</p>
-</li>
+<li>API 服务层</li>
 </ol>
 <ul>
 <li>apiService.ts  提供了封装好的 API 调用方法</li>
@@ -310,7 +300,7 @@ mjx-container[display="true"] + br {
 <ul>
 <li>使用 JWT Token 进行身份验证</li>
 <li>通过  setAuthToken  和  clearAuthToken  管理认证状态</li>
-<li>后端通过  <code>onAuthenticate</code>  钩子验证用户权限</li>
+<li><code>onAuthenticate</code>  钩子验证用户权限</li>
 </ul>
 <hr>
 <p><strong>实时协作部分是如何实现的？</strong></p>
