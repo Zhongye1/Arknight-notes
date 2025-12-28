@@ -1,0 +1,322 @@
+<!DOCTYPE html><html lang="en" theme-mode="dark"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>2025-12-28-前端学习-接口类型定义、Axios 封装与请求规范 | Notes|笔记站</title><link rel="icon" type="image/x-icon" href="/Arknight-notes/favicon.ico"><link rel="preload" as="font" crossorigin="anonymous" href="/Arknight-notes/font/Bender.ttf"><link rel="preload" as="font" crossorigin="anonymous" href="/Arknight-notes/font/BenderLight.ttf"><link rel="preload" as="font" crossorigin="anonymous" href="/Arknight-notes/font/JetBrainsMono-Regular.woff2"><link rel="stylesheet" href="/Arknight-notes/css/arknights.css"><style>@font-face {
+  font-family: Bender;
+  src: local('Bender'), url("/Arknight-notes/font/Bender.ttf"), url("/Arknight-notes/font/Bender.otf");
+}
+@font-face {
+  font-family: BenderLight;
+  src: local('BenderLight'), url("/Arknight-notes/font/BenderLight.ttf");
+}
+@font-face {
+  font-family: 'JetBrains Mono';
+  src: local('JetBrains Mono'), url('/Arknight-notes/font/JetBrainsMono-Regular.woff2') format('woff2');
+}
+</style><script>var config = {"root":"/Arknight-notes/","code_fold":90,"search":{"preload":false,"activeHolder":"Enter here","blurHolder":"Search","noResult":"Data \"$0\" not found"},"code":{"codeInfo":"$0 - $1 lines","copy":"copy"}}</script><link type="text/css" rel="stylesheet" href="/Arknight-notes/lib/encrypt/hbe.style.css"><script src="/Arknight-notes/js/gitalk.js"></script><script src="//unpkg.com/mermaid@10.5.0/dist/mermaid.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.6.1/MathJax.js"></script><script>MathJax.Hub.Config({
+ menuSettings: {
+   zoom: "None"
+ },
+ showMathMenu: false,
+ jax: ["input/TeX","output/CommonHTML"],
+ extensions: ["tex2jax.js"],
+ TeX: {
+   extensions: ["AMSmath.js","AMSsymbols.js"],
+   equationNumbers: {
+     autoNumber: "AMS"
+   }
+ },
+ tex2jax: {
+   inlineMath: [["\\(", "\\)"]],
+   displayMath: [["\\[", "\\]"]]
+ }
+});</script><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lightgallery.css"><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lg-zoom.css"><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lg-thumbnail.css"><link type="text/css" rel="stylesheet" href="/Arknight-notes/lib/fontawesome/css/all.min.css"><script>if (window.localStorage.getItem('theme-mode') === 'light')
+ document.documentElement.setAttribute('theme-mode', 'light')
+if (window.localStorage.getItem('theme-mode') === 'dark')
+ document.documentElement.setAttribute('theme-mode', 'dark')</script><style>@font-face {
+ font-family: BenderLight;
+ src: local('Bender'), url("/Arknight-notes/font/BenderLight.woff2") format('woff2');
+}
+@font-face {
+ font-family: 'JetBrains Mono';
+ src: local('JetBrains Mono'), url('/Arknight-notes/font/JetBrainsMono-Regular.woff2') format('woff2');
+}</style><style>:root {
+ --dark-background: url('https://pic2.zhimg.com/v2-6269d74b4dafe14781d03790e5a86b21_r.jpg');
+ --light-background: url('https://pic1.zhimg.com/v2-233b64b583642fc4a6d77e69ced33150_r.jpg');
+ --theme-encrypt-confirm: 'confirm'
+}</style><script defer src="/Arknight-notes/js/arknights.js"></script><script defer src="/Arknight-notes/js/search.js"></script><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><script async src="/Arknight-notes/js/gitalk.js"></script><script defer type="module">import mermaid from '//unpkg.com/mermaid@10.5.0/dist/mermaid.esm.mjs';
+window.mermaid = mermaid;
+code.paintMermaid();
+</script><script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.6.1/MathJax.js"></script><script>MathJax.Hub.Config({
+  menuSettings: {
+    zoom: "None"
+  },
+  showMathMenu: false,
+  jax: ["input/TeX","output/CommonHTML"],
+  extensions: ["tex2jax.js"],
+  TeX: {
+    extensions: ["AMSmath.js","AMSsymbols.js"],
+    equationNumbers: {
+      autoNumber: "AMS"
+    }
+  },
+  tex2jax: {
+    inlineMath: [["\\(", "\\)"]],
+    displayMath: [["\\[", "\\]"]]
+  }
+});
+</script><script async src="//unpkg.com/lightgallery@2.7.1/lightgallery.min.js"></script><script async src="//unpkg.com/lightgallery@2.7.1/plugins/zoom/lg-zoom.min.js"></script><script async src="//unpkg.com/lightgallery@2.7.1/plugins/thumbnail/lg-thumbnail.min.js"></script><script async src="/Arknight-notes/lib/encrypt/hbe.js"></script><script async src="/Arknight-notes/js/pjax.js"></script><script class="pjax-js">reset= () => {gitalk = new Gitalk({
+ clientID: 'Ov23ct13Fb0b67x23wnT',
+ clientSecret: 'f18ce69dd545e3c0f5e2456afde9c756fe8a254a',
+ repo: 'Arknight-notes',
+ owner: 'Zhongye1',
+ admin: ['Zhongye1'],
+ distractionFreeMode: false,
+ id: location.pathname
+});
+if (document.querySelector("#gitalk")) gitalk.render("gitalk");document.querySelector('.lg-container')?.remove()
+lightGallery(document.getElementById('post-bg'), {
+  plugins: [lgZoom,lgThumbnail],
+  selector: '.item-img'})}</script><script>window.addEventListener("load",() => {pjax = new Pjax({
+ cacheBust: false,
+ selectors: ['title','article','#aside-block','.pjax-js','data-pjax','.busuanzi'],
+ switches: {'article': Pjax.switches.sideBySide},
+ switchesOptions: {
+   'article': {
+     classNames: {
+       remove: "pjax-out",
+       add: "pjax-in"
+     }
+   }
+ }
+});
+document.addEventListener("pjax:complete", reset);document.addEventListener('pjax:success', _ => bszCaller.fetch(
+ "//busuanzi.ibruce.info/busuanzi?jsonpCallback=BusuanziCallback", a => {
+  bszTag.texts(a),
+  bszTag.shows()
+}));reset()})</script><script class="pjax-js">reset= () => {gitalk = new Gitalk({
+ clientID: 'Ov23ct13Fb0b67x23wnT',
+ clientSecret: 'f18ce69dd545e3c0f5e2456afde9c756fe8a254a',
+ repo: 'Arknight-notes',
+ owner: 'Zhongye1',
+ admin: ['Zhongye1'],
+ distractionFreeMode: false,
+ id: location.pathname
+});
+if (document.querySelector("#gitalk")) gitalk.render("gitalk");document.querySelector('.lg-container')?.remove()
+lightGallery(document.getElementById('post-bg'), {
+  plugins: [lgZoom,lgThumbnail],
+  selector: '.item-img'})}</script><script>window.addEventListener("load",() => {pjax = new Pjax({
+ cacheBust: false,
+ selectors: ['title','article','#aside-block','.pjax-js'],
+ switches: {'article': Pjax.switches.sideBySide},
+ switchesOptions: {
+   'article': {
+     classNames: {
+       remove: "pjax-out",
+       add: "pjax-in"
+     }
+   }
+ }
+});
+document.addEventListener("pjax:complete", reset);reset()})</script><meta name="generator" content="Hexo 7.3.0"><style>mjx-container[jax="SVG"] {
+  direction: ltr;
+}
+
+mjx-container[jax="SVG"] > svg {
+  overflow: visible;
+}
+
+mjx-container[jax="SVG"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="SVG"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="SVG"][justify="right"] {
+  text-align: right;
+}
+
+g[data-mml-node="merror"] > g {
+  fill: red;
+  stroke: red;
+}
+
+g[data-mml-node="merror"] > rect[data-background] {
+  fill: yellow;
+  stroke: none;
+}
+
+g[data-mml-node="mtable"] > line[data-line] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > rect[data-frame] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > .mjx-dashed {
+  stroke-dasharray: 140;
+}
+
+g[data-mml-node="mtable"] > .mjx-dotted {
+  stroke-linecap: round;
+  stroke-dasharray: 0,140;
+}
+
+g[data-mml-node="mtable"] > svg {
+  overflow: visible;
+}
+
+[jax="SVG"] mjx-tool {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+[jax="SVG"] mjx-tool > mjx-tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+mjx-tool > mjx-tip {
+  display: inline-block;
+  padding: .2em;
+  border: 1px solid #888;
+  font-size: 70%;
+  background-color: #F8F8F8;
+  color: black;
+  box-shadow: 2px 2px 5px #AAAAAA;
+}
+
+g[data-mml-node="maction"][data-toggle] {
+  cursor: pointer;
+}
+
+mjx-status {
+  display: block;
+  position: fixed;
+  left: 1em;
+  bottom: 1em;
+  min-width: 25%;
+  padding: .2em .4em;
+  border: 1px solid #888;
+  font-size: 90%;
+  background-color: #F8F8F8;
+  color: black;
+}
+
+foreignObject[data-mjx-xml] {
+  font-family: initial;
+  line-height: normal;
+  overflow: visible;
+}
+
+.MathJax path {
+  stroke-width: 3;
+}
+
+mjx-container[display="true"] {
+  overflow: auto hidden;
+}
+
+mjx-container[display="true"] + br {
+  display: none;
+}
+</style><link rel="alternate" href="/Arknight-notes/rss.xml" title="Notes|笔记站" type="application/atom+xml">
+</head><body><div class="loading" style="opacity: 0;"><div class="loadingBar left"></div><div class="loadingBar right"></div></div><main><header class="closed"><div class="navBtn"><i class="navBtnIcon"><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span></i></div><nav><div class="navItem" id="search-header"><span class="navItemTitle"><input autocomplete="off" autocorrect="off" autocapitalize="none" placeholder="Search" spellcheck="false" maxlength="50" type="text" id="search-input"></span></div><div class="navItem" id="search-holder"></div><div class="search-popup" tabindex="0"><div id="search-result"></div></div><ol class="navContent"><li class="navItem"><a class="navBlock" href="/Arknight-notes/"><span class="navItemTitle">Home</span></a></li><li class="navItem" matchdata="categories,tags"><a class="navBlock" href="/Arknight-notes/archives/"><span class="navItemTitle">Archives</span></a></li><li class="navItem"><a class="navBlock" href="/Arknight-notes/about/"><span class="navItemTitle">About</span></a></li></ol></nav></header><article><div id="post-bg"><div id="post-title"><h1>2025-12-28-前端学习-接口类型定义、Axios 封装与请求规范</h1><div id="post-info"><span>First Post: <div class="control"><time datetime="2025-12-28T17:01:18.000Z" id="date"> 2025-12-29</time></div></span><br><span>Last Update: <div class="control"><time datetime="2025-12-28T17:49:02.045Z" id="updated"> 2025-12-29</time></div></span><br><span id="busuanzi_container_page_pv">Page View: <span class="control" id="busuanzi_value_page_pv">loading...</span></span></div></div><hr><div id="post-content"><h3 id="关于接口类型定义、Axios-封装与请求规范的常见问题"><a href="#关于接口类型定义、Axios-封装与请求规范的常见问题" class="headerlink" title="关于接口类型定义、Axios 封装与请求规范的常见问题"></a>关于接口类型定义、Axios 封装与请求规范的常见问题</h3><p>使用 TypeScript 的 React 或 Vue 项目中，通常会高度重视网络层的工程化实践，通常会从实际项目经验入手，逐步深入到设计理念、类型安全和最佳实践</p>
+<p>关于接口类型定义、Axios 封装与请求规范的常见问题整理如下：</p>
+<h4 id="基本经验与动机"><a href="#基本经验与动机" class="headerlink" title="基本经验与动机"></a>基本经验与动机</h4><ul>
+<li><p><strong>在项目中是否对 Axios 进行过二次封装？为什么需要封装，而不是直接使用原生 Axios？</strong> 是的，在所有中大型项目中都会对 Axios 进行二次封装。主要原因是原生 Axios 配置分散、重复代码多（如每个请求都需手动设置 baseURL、headers 和错误处理）。封装后可以统一管理公共逻辑，减少冗余，提升代码一致性和可维护性，避免直接使用导致的配置不统一和后期修改困难。</p>
+</li>
+<li><p><strong>Vue/React 项目中，你们是怎么管理 API 接口的？有统一的请求封装吗？</strong> 我们采用统一的请求封装层。通常创建一个独立的 apiClient 实例作为基础，然后在 services 或 api 目录下按业务模块（如 auth、user、room）划分文件，每个模块导出具体的请求函数。所有接口调用都通过这些封装函数进行，确保风格一致、类型安全，并便于后期维护和 mock。</p>
+</li>
+<li><p><strong>说说 Axios 二次封装的主要目的和好处？</strong> 主要目的是统一配置和公共逻辑处理，包括 baseURL、超时、Token 添加、错误统一处理等。好处包括：减少重复代码、提升可维护性、统一错误提示和加载状态、便于环境切换、支持类型安全（TS 项目），最终降低 bug 率并提高团队开发效率。</p>
+</li>
+</ul>
+<h4 id="实现细节与规范"><a href="#实现细节与规范" class="headerlink" title="实现细节与规范"></a>实现细节与规范</h4><ul>
+<li><p><strong>怎么封装 Axios 的？主要封装了哪些方面（如 baseURL、超时、请求/响应拦截器、错误处理）？</strong> 首先使用 axios.create() 创建实例，设置 baseURL、timeout 和默认 headers。然后添加请求拦截器统一注入 Token 和加载状态；响应拦截器中提取 data、处理业务 code、统一错误提示（如 401 跳转登录），并支持 Token 刷新重试。</p>
+</li>
+<li><p><strong>在项目中，如何统一处理请求头（如添加 Token）、环境切换（开发/生产 baseURL）和错误提示？</strong> 请求头通过请求拦截器或 setAuthToken 函数统一添加 Authorization；环境切换利用 Vite 或 Webpack 的环境变量动态设置 baseURL；错误提示在响应拦截器中根据 status 或业务 code 统一处理，使用 toast 组件显示消息，或触发全局错误处理逻辑。</p>
+</li>
+<li><p><strong>封装后，如何组织和管理具体的 API 接口？（如按模块分文件、统一导出）</strong> 按业务模块分文件（如 auth.ts、room.ts），每个文件定义相关接口函数并导出；再创建一个 index.ts 统一导出所有模块，便于在业务组件中按需导入（如 import { login } from ‘@/api’）。这样结构清晰，便于维护和权限控制。</p>
+</li>
+<li><p><strong>如何处理请求取消、重复请求防抖或加载状态？</strong> 使用 Axios CancelToken 或 AbortController 实现请求取消，适用于组件卸载或搜索防抖场景；重复请求通过 URL + 方法 + 参数的 Map 缓存取消函数实现防重；加载状态可在拦截器中 dispatch 全局 loading action，或在单个请求中使用 async/await 结合状态管理。</p>
+</li>
+</ul>
+<h4 id="类型安全与工程化（TypeScript）"><a href="#类型安全与工程化（TypeScript）" class="headerlink" title="类型安全与工程化（TypeScript）"></a>类型安全与工程化（TypeScript）</h4><ul>
+<li><p><strong>在使用 TypeScript 的项目中，你是怎么结合接口类型定义来封装 Axios 的？如何实现响应数据的类型推导？</strong> 先在 types/api.ts 中集中定义所有接口的请求参数和响应类型。然后在服务函数中使用 Axios 泛型，如 <code>apiClient.get&lt;RoomListResponse&gt;(url)</code>，这样返回值的类型自动推导为定义的接口类型，实现全程类型检查和编辑器提示。</p>
+</li>
+<li><p><strong>说说 Axios 泛型的使用，比如如何通过 <code>&lt;T&gt;</code> 指定返回类型，确保调用时有类型提示和检查？</strong> 通过 <code>apiClient.post&lt;T&gt;(url, data)</code>的方式指定泛型 T 为具体响应类型（如 LoginResponse）。这样调用时 TypeScript 会自动推导返回值属性，提供属性提示和编译时错误检查（如访问不存在字段会报错），显著提升类型安全。</p>
+</li>
+<li><p><strong>怎么定义接口请求参数和响应类型的？有统一的响应包装类型（如 <code>ApiResponse&lt;T&gt;</code>）吗？</strong> 定义通用包装类型 <code>interface ApiResponse&lt;T&gt; { code: number; data: T; message?: string; }</code> 所有接口响应类型继承此泛型（如 <code>type LoginResponse = ApiResponse&lt;{ token: string }&gt;;）</code>，便于统一处理业务 code 和错误。</p>
+</li>
+<li><p><strong>在封装中，如何处理拦截器或自定义配置的 TypeScript 类型扩展（如扩展 AxiosRequestConfig）？</strong> 通过模块声明扩展 AxiosRequestConfig 接口，添加自定义字段（如 _retry: boolean 用于 Token 刷新）。拦截器参数类型自然继承扩展后的配置，确保类型兼容和提示完整。</p>
+</li>
+<li><p><strong>如果后端返回结构不统一，怎么通过类型守卫或转型确保类型安全？</strong></p>
+</li>
+</ul>
+<blockquote>
+<p>类型守卫（Type Guard）是 TypeScript 中的一种机制，用于在运行时缩小变量的类型范围，从而让编译器在特定代码块中更精确地推断变量的类型。它本质上是一个返回布尔值的表达式或函数，当该表达式为 true 时，TypeScript 会自动将变量的类型收窄（narrow）为更具体的类型。</p>
+</blockquote>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs TypeScript"><span class="hljs-comment">//typeof 类型守卫 使用 JavaScript 的 typeof 操作符</span><br><span class="hljs-keyword">function</span> <span class="hljs-title function_">print</span>(<span class="hljs-params"><span class="hljs-attr">value</span>: <span class="hljs-built_in">string</span> | <span class="hljs-built_in">number</span></span>) {<br>  <span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> value === <span class="hljs-string">'string'</span>) {<br>    <span class="hljs-comment">// 这里 value 被收窄为 string</span><br>    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(value.<span class="hljs-title function_">toUpperCase</span>());<br>  } <span class="hljs-keyword">else</span> {<br>  <span class="hljs-comment">// 这里 value 被收窄为 number</span><br>    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(value.<span class="hljs-title function_">toFixed</span>(<span class="hljs-number">2</span>));<br>  }<br>}<br></code></pre></td></tr></table></figure>
+<p>在响应拦截器中先转型为 any 或 unknown，然后使用类型守卫（如 if (‘code’ in res &amp;&amp; res.code === 0)）判断成功，再返回 res.data 并断言为具体类型。这样既兼容不统一结构，又保持业务层类型安全</p>
+<h4 id="深度与实践相关"><a href="#深度与实践相关" class="headerlink" title="深度与实践相关"></a>深度与实践相关</h4><ul>
+<li><p><strong>封装后，在业务组件中调用接口的体验如何？相比直接用 Axios 有哪些改进？</strong> 体验显著提升：调用简洁，自动获得类型提示和错误检查；无需关心 Token、baseURL 或错误处理。相比直接使用，减少了大量样板代码，降低了出错概率，并提高了代码可读性。</p>
+</li>
+<li><p><strong>有考虑过从 OpenAPI/Swagger 自动生成类型和接口函数吗？</strong> 是的，在较大项目中会使用 openapi-typescript 或 swagger-typescript-api 从后端 OpenAPI 文档自动生成类型和请求函数。这样保持前后端类型一致，减少手动维护成本，并进一步提升工程化水平。</p>
+</li>
+<li><p><strong>如果项目规模很大，是怎么进一步优化网络层的（如模块化、服务层分离）？</strong> 通过严格的服务层分离：apiClient 只负责基础请求，services 层按领域划分（如 userService、orderService），每个服务聚合相关接口并处理业务逻辑；结合代码生成和 mock 工具，实现高度模块化和可测试性。</p>
+</li>
+<li><p><strong>说说项目中网络请求的常见痛点，以及封装如何解决的。</strong> 常见痛点包括 Token 管理散乱、错误处理不统一、环境配置易错、类型不安全。二次封装通过拦截器统一 Token 和错误、环境变量管理配置、TS 泛型确保类型安全，有效解决了这些问题，显著降低了联调和维护成本。</p>
+</li>
+</ul>
+<hr>
+<h3 id="Axios-封装与接口管理具体实现"><a href="#Axios-封装与接口管理具体实现" class="headerlink" title="Axios 封装与接口管理具体实现"></a>Axios 封装与接口管理具体实现</h3><h4 id="基础的实现"><a href="#基础的实现" class="headerlink" title="基础的实现"></a>基础的实现</h4><ol>
+<li><p><strong>如何封装 Axios？</strong> 一个典型的 Axios 封装结构如下：</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><code class="hljs ts"><span class="hljs-comment">// api/utils/apiClient.ts</span><br><span class="hljs-keyword">import</span> axios, { <span class="hljs-keyword">type</span> <span class="hljs-title class_">AxiosRequestConfig</span> } <span class="hljs-keyword">from</span> <span class="hljs-string">"axios"</span>;<br><br><span class="hljs-keyword">const</span> apiClient = axios.<span class="hljs-title function_">create</span>({<br>  <span class="hljs-attr">baseURL</span>: <span class="hljs-keyword">import</span>.<span class="hljs-property">meta</span>.<span class="hljs-property">env</span>.<span class="hljs-property">VITE_API_BASE_URL</span> || <span class="hljs-string">"/api"</span>,<br>  <span class="hljs-attr">timeout</span>: <span class="hljs-number">10000</span>,<br>  <span class="hljs-attr">headers</span>: {<br>    <span class="hljs-string">"Content-Type"</span>: <span class="hljs-string">"application/json"</span>,<br>  },<br>});<br><br><span class="hljs-comment">// 请求拦截器</span><br>apiClient.<span class="hljs-property">interceptors</span>.<span class="hljs-property">request</span>.<span class="hljs-title function_">use</span>(<br>  <span class="hljs-function">(<span class="hljs-params">config</span>) =&gt;</span> {<br>    <span class="hljs-keyword">const</span> token = <span class="hljs-variable language_">localStorage</span>.<span class="hljs-title function_">getItem</span>(<span class="hljs-string">"token"</span>);<br>    <span class="hljs-keyword">if</span> (token) {<br>      config.<span class="hljs-property">headers</span>.<span class="hljs-property">Authorization</span> = <span class="hljs-string">`Bearer <span class="hljs-subst">${token}</span>`</span>;<br>    }<br>    <span class="hljs-keyword">return</span> config;<br>  },<br>  <span class="hljs-function">(<span class="hljs-params">error</span>) =&gt;</span> <span class="hljs-title class_">Promise</span>.<span class="hljs-title function_">reject</span>(error)<br>);<br><br><span class="hljs-comment">// 响应拦截器</span><br>apiClient.<span class="hljs-property">interceptors</span>.<span class="hljs-property">response</span>.<span class="hljs-title function_">use</span>(<br>  <span class="hljs-function">(<span class="hljs-params">response</span>) =&gt;</span> response.<span class="hljs-property">data</span>,<br>  <span class="hljs-function">(<span class="hljs-params">error</span>) =&gt;</span> {<br>    <span class="hljs-keyword">if</span> (error.<span class="hljs-property">response</span>?.<span class="hljs-property">status</span> === <span class="hljs-number">401</span>) {<br>      <span class="hljs-variable language_">localStorage</span>.<span class="hljs-title function_">removeItem</span>(<span class="hljs-string">"token"</span>);<br>      <span class="hljs-variable language_">window</span>.<span class="hljs-property">location</span>.<span class="hljs-property">href</span> = <span class="hljs-string">"/login"</span>;<br>    }<br>    <span class="hljs-keyword">return</span> <span class="hljs-title class_">Promise</span>.<span class="hljs-title function_">reject</span>(error);<br>  }<br>);<br><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> apiClient;<br></code></pre></td></tr></table></figure>
+</li>
+<li><p><strong>如何统一处理请求头、环境切换和错误提示？</strong></p>
+<ul>
+<li><strong>环境切换</strong>：通过 Vite 或 Webpack 的环境变量（如 VITE_API_BASE_URL）动态配置 baseURL。</li>
+<li><strong>请求头处理</strong>：在请求拦截器中统一注入 Authorization 等认证头。</li>
+<li><strong>错误提示</strong>：在响应拦截器中根据状态码或业务码统一处理错误，例如 401 跳转登录、500 显示服务器错误提示。</li>
+</ul>
+</li>
+<li><p><strong>如何组织和管理具体的 API 接口？</strong> 按业务模块划分文件，并统一导出，便于维护。</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs ts"><span class="hljs-comment">// api/index.ts</span><br><span class="hljs-keyword">export</span> { <span class="hljs-keyword">default</span> <span class="hljs-keyword">as</span> userApi } <span class="hljs-keyword">from</span> <span class="hljs-string">"./user"</span>;<br><span class="hljs-keyword">export</span> { <span class="hljs-keyword">default</span> <span class="hljs-keyword">as</span> roomApi } <span class="hljs-keyword">from</span> <span class="hljs-string">"./room"</span>;<br><br><span class="hljs-comment">// api/room.ts</span><br><span class="hljs-keyword">import</span> apiClient <span class="hljs-keyword">from</span> <span class="hljs-string">"./utils/apiClient"</span>;<br><span class="hljs-keyword">import</span> <span class="hljs-keyword">type</span> { <span class="hljs-title class_">RoomResponse</span>, <span class="hljs-title class_">CreateRoomRequest</span> } <span class="hljs-keyword">from</span> <span class="hljs-string">"./types"</span>;<br><br><span class="hljs-keyword">const</span> roomApi = {<br>  <span class="hljs-attr">getRooms</span>: <span class="hljs-function">(<span class="hljs-params"><span class="hljs-attr">params</span>: { page: <span class="hljs-built_in">number</span>; size: <span class="hljs-built_in">number</span> }</span>) =&gt;</span><br>    apiClient.<span class="hljs-property">get</span>&lt;<span class="hljs-title class_">RoomResponse</span>&gt;(<span class="hljs-string">"/rooms"</span>, { params }),<br>  <span class="hljs-attr">createRoom</span>: <span class="hljs-function">(<span class="hljs-params"><span class="hljs-attr">data</span>: <span class="hljs-title class_">CreateRoomRequest</span></span>) =&gt;</span> apiClient.<span class="hljs-title function_">post</span>(<span class="hljs-string">"/rooms"</span>, data),<br>  <span class="hljs-attr">updateRoom</span>: <span class="hljs-function">(<span class="hljs-params"><span class="hljs-attr">id</span>: <span class="hljs-built_in">string</span>, <span class="hljs-attr">data</span>: <span class="hljs-title class_">Partial</span>&lt;<span class="hljs-title class_">CreateRoomRequest</span>&gt;</span>) =&gt;</span><br>    apiClient.<span class="hljs-title function_">put</span>(<span class="hljs-string">`/rooms/<span class="hljs-subst">${id}</span>`</span>, data),<br>  <span class="hljs-attr">deleteRoom</span>: <span class="hljs-function">(<span class="hljs-params"><span class="hljs-attr">id</span>: <span class="hljs-built_in">string</span></span>) =&gt;</span> apiClient.<span class="hljs-title function_">delete</span>(<span class="hljs-string">`/rooms/<span class="hljs-subst">${id}</span>`</span>),<br>};<br><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> roomApi;<br></code></pre></td></tr></table></figure>
+</li>
+<li><p><strong>如何处理请求取消、重复请求防抖或加载状态？</strong> 使用 AbortController 实现请求取消和防重提交。</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><code class="hljs ts"><span class="hljs-keyword">const</span> pendingRequests = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Map</span>&lt;<span class="hljs-built_in">string</span>, <span class="hljs-title class_">AbortController</span>&gt;();<br><br>apiClient.<span class="hljs-property">interceptors</span>.<span class="hljs-property">request</span>.<span class="hljs-title function_">use</span>(<span class="hljs-function">(<span class="hljs-params">config</span>) =&gt;</span> {<br>  <span class="hljs-keyword">const</span> requestKey = <span class="hljs-string">`<span class="hljs-subst">${config.method?.toUpperCase()}</span><span class="hljs-subst">${config.url}</span>`</span>;<br>  <span class="hljs-keyword">if</span> (pendingRequests.<span class="hljs-title function_">has</span>(requestKey)) {<br>    pendingRequests.<span class="hljs-title function_">get</span>(requestKey)?.<span class="hljs-title function_">abort</span>();<br>  }<br>  <span class="hljs-keyword">const</span> controller = <span class="hljs-keyword">new</span> <span class="hljs-title class_">AbortController</span>();<br>  config.<span class="hljs-property">signal</span> = controller.<span class="hljs-property">signal</span>;<br>  pendingRequests.<span class="hljs-title function_">set</span>(requestKey, controller);<br>  <span class="hljs-keyword">return</span> config;<br>});<br><br>apiClient.<span class="hljs-property">interceptors</span>.<span class="hljs-property">response</span>.<span class="hljs-title function_">use</span>(<br>  <span class="hljs-function">(<span class="hljs-params">response</span>) =&gt;</span> {<br>    <span class="hljs-keyword">const</span> requestKey = <span class="hljs-string">`<span class="hljs-subst">${response.config.method?.toUpperCase()}</span><span class="hljs-subst">${</span></span><br><span class="hljs-subst"><span class="hljs-string">      response.config.url</span></span><br><span class="hljs-subst"><span class="hljs-string">    }</span>`</span>;<br>    pendingRequests.<span class="hljs-title function_">delete</span>(requestKey);<br>    <span class="hljs-keyword">return</span> response;<br>  },<br>  <span class="hljs-function">(<span class="hljs-params">error</span>) =&gt;</span> {<br>    <span class="hljs-keyword">if</span> (error.<span class="hljs-property">config</span>) {<br>      <span class="hljs-keyword">const</span> requestKey = <span class="hljs-string">`<span class="hljs-subst">${error.config.method?.toUpperCase()}</span><span class="hljs-subst">${</span></span><br><span class="hljs-subst"><span class="hljs-string">        error.config.url</span></span><br><span class="hljs-subst"><span class="hljs-string">      }</span>`</span>;<br>      pendingRequests.<span class="hljs-title function_">delete</span>(requestKey);<br>    }<br>    <span class="hljs-keyword">return</span> <span class="hljs-title class_">Promise</span>.<span class="hljs-title function_">reject</span>(error);<br>  }<br>);<br></code></pre></td></tr></table></figure>
+</li>
+</ol>
+<h4 id="类型安全与工程化（TypeScript）-1"><a href="#类型安全与工程化（TypeScript）-1" class="headerlink" title="类型安全与工程化（TypeScript）"></a>类型安全与工程化（TypeScript）</h4><ol>
+<li><p><strong>如何结合接口类型定义封装 Axios？</strong></p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs ts"><span class="hljs-comment">// api/types/index.ts</span><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">interface</span> <span class="hljs-title class_">ApiResponse</span>&lt;T&gt; {<br>  <span class="hljs-attr">code</span>: <span class="hljs-built_in">number</span>;<br>  <span class="hljs-attr">message</span>: <span class="hljs-built_in">string</span>;<br>  <span class="hljs-attr">data</span>: T;<br>}<br><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">interface</span> <span class="hljs-title class_">Room</span> {<br>  <span class="hljs-attr">id</span>: <span class="hljs-built_in">string</span>;<br>  <span class="hljs-attr">name</span>: <span class="hljs-built_in">string</span>;<br>  <span class="hljs-attr">description</span>?: <span class="hljs-built_in">string</span>;<br>  <span class="hljs-attr">createdAt</span>: <span class="hljs-built_in">string</span>;<br>  <span class="hljs-attr">updatedAt</span>: <span class="hljs-built_in">string</span>;<br>}<br><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">interface</span> <span class="hljs-title class_">RoomResponse</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_">ApiResponse</span>&lt;<span class="hljs-title class_">Room</span>[]&gt; {<br>  <span class="hljs-attr">pagination</span>: { <span class="hljs-attr">page</span>: <span class="hljs-built_in">number</span>; <span class="hljs-attr">size</span>: <span class="hljs-built_in">number</span>; <span class="hljs-attr">total</span>: <span class="hljs-built_in">number</span> };<br>}<br><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">interface</span> <span class="hljs-title class_">CreateRoomRequest</span> {<br>  <span class="hljs-attr">name</span>: <span class="hljs-built_in">string</span>;<br>  <span class="hljs-attr">description</span>?: <span class="hljs-built_in">string</span>;<br>}<br></code></pre></td></tr></table></figure>
+</li>
+<li><p><strong>Axios 泛型的使用</strong></p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><code class="hljs ts"><span class="hljs-comment">// apiService.ts</span><br><span class="hljs-keyword">import</span> <span class="hljs-keyword">type</span> { <span class="hljs-title class_">AxiosRequestConfig</span>, <span class="hljs-title class_">AxiosResponse</span> } <span class="hljs-keyword">from</span> <span class="hljs-string">"axios"</span>;<br><span class="hljs-keyword">import</span> apiClient <span class="hljs-keyword">from</span> <span class="hljs-string">"./utils/apiClient"</span>;<br><span class="hljs-keyword">import</span> <span class="hljs-keyword">type</span> { <span class="hljs-title class_">ApiResponse</span> } <span class="hljs-keyword">from</span> <span class="hljs-string">"./types"</span>;<br><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">ApiService</span> {<br>  <span class="hljs-keyword">async</span> get&lt;T&gt;(<br>    <span class="hljs-attr">url</span>: <span class="hljs-built_in">string</span>,<br>    <span class="hljs-attr">config</span>?: <span class="hljs-title class_">AxiosRequestConfig</span><br>  ): <span class="hljs-title class_">Promise</span>&lt;<span class="hljs-title class_">ApiResponse</span>&lt;T&gt;&gt; {<br>    <span class="hljs-keyword">const</span> <span class="hljs-attr">response</span>: <span class="hljs-title class_">AxiosResponse</span>&lt;<span class="hljs-title class_">ApiResponse</span>&lt;T&gt;&gt; = <span class="hljs-keyword">await</span> apiClient.<span class="hljs-title function_">get</span>(<br>      url,<br>      config<br>    );<br>    <span class="hljs-keyword">return</span> response.<span class="hljs-property">data</span>;<br>  }<br><br>  <span class="hljs-keyword">async</span> post&lt;T, D = <span class="hljs-built_in">any</span>&gt;(<br>    <span class="hljs-attr">url</span>: <span class="hljs-built_in">string</span>,<br>    <span class="hljs-attr">data</span>?: D,<br>    <span class="hljs-attr">config</span>?: <span class="hljs-title class_">AxiosRequestConfig</span><br>  ): <span class="hljs-title class_">Promise</span>&lt;<span class="hljs-title class_">ApiResponse</span>&lt;T&gt;&gt; {<br>    <span class="hljs-keyword">const</span> <span class="hljs-attr">response</span>: <span class="hljs-title class_">AxiosResponse</span>&lt;<span class="hljs-title class_">ApiResponse</span>&lt;T&gt;&gt; = <span class="hljs-keyword">await</span> apiClient.<span class="hljs-title function_">post</span>(<br>      url,<br>      data,<br>      config<br>    );<br>    <span class="hljs-keyword">return</span> response.<span class="hljs-property">data</span>;<br>  }<br><br>  <span class="hljs-comment">// put、delete 同理</span><br>}<br><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> apiService = <span class="hljs-keyword">new</span> <span class="hljs-title class_">ApiService</span>();<br><br><span class="hljs-comment">// 使用示例</span><br><span class="hljs-keyword">const</span> <span class="hljs-title function_">getRooms</span> = <span class="hljs-keyword">async</span> (<span class="hljs-params"></span>) =&gt; {<br>  <span class="hljs-keyword">const</span> response = <span class="hljs-keyword">await</span> apiService.<span class="hljs-property">get</span>&lt;<span class="hljs-title class_">Room</span>[]&gt;(<span class="hljs-string">"/rooms"</span>, {<br>    <span class="hljs-attr">params</span>: { <span class="hljs-attr">page</span>: <span class="hljs-number">1</span>, <span class="hljs-attr">size</span>: <span class="hljs-number">10</span> },<br>  });<br>  <span class="hljs-keyword">return</span> response.<span class="hljs-property">data</span>; <span class="hljs-comment">// 类型为 Room[]</span><br>};<br></code></pre></td></tr></table></figure>
+</li>
+<li><p><strong>定义统一的响应包装类型</strong></p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs ts"><span class="hljs-keyword">export</span> <span class="hljs-keyword">interface</span> <span class="hljs-title class_">ApiResponse</span>&lt;T&gt; {<br>  <span class="hljs-attr">code</span>: <span class="hljs-built_in">number</span>;<br>  <span class="hljs-attr">message</span>: <span class="hljs-built_in">string</span>;<br>  <span class="hljs-attr">data</span>: T;<br>}<br><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">interface</span> <span class="hljs-title class_">ApiError</span> {<br>  <span class="hljs-attr">code</span>: <span class="hljs-built_in">number</span>;<br>  <span class="hljs-attr">message</span>: <span class="hljs-built_in">string</span>;<br>  <span class="hljs-attr">details</span>?: <span class="hljs-built_in">any</span>;<br>}<br></code></pre></td></tr></table></figure>
+</li>
+<li><p><strong>拦截器的 TypeScript 类型扩展</strong></p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs ts"><span class="hljs-comment">// 扩展 AxiosRequestConfig</span><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">interface</span> <span class="hljs-title class_">CustomAxiosRequestConfig</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_">AxiosRequestConfig</span> {<br>  <span class="hljs-attr">showLoading</span>?: <span class="hljs-built_in">boolean</span>;<br>  <span class="hljs-attr">showError</span>?: <span class="hljs-built_in">boolean</span>;<br>}<br><br><span class="hljs-comment">// 在拦截器中使用</span><br>apiClient.<span class="hljs-property">interceptors</span>.<span class="hljs-property">request</span>.<span class="hljs-title function_">use</span>(<span class="hljs-function">(<span class="hljs-params"><span class="hljs-attr">config</span>: <span class="hljs-title class_">CustomAxiosRequestConfig</span></span>) =&gt;</span> {<br>  <span class="hljs-keyword">if</span> (config.<span class="hljs-property">showLoading</span> !== <span class="hljs-literal">false</span>) {<br>    <span class="hljs-comment">// 显示加载状态</span><br>  }<br>  <span class="hljs-keyword">return</span> config;<br>});<br></code></pre></td></tr></table></figure>
+</li>
+<li><p><strong>处理不统一的后端返回结构</strong> 使用类型守卫确保类型安全。</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs ts"><span class="hljs-keyword">function</span> isApiResponse&lt;T&gt;(<span class="hljs-attr">data</span>: <span class="hljs-built_in">any</span>): data is <span class="hljs-title class_">ApiResponse</span>&lt;T&gt; {<br>  <span class="hljs-keyword">return</span> (<br>    data &amp;&amp; <span class="hljs-keyword">typeof</span> data === <span class="hljs-string">"object"</span> &amp;&amp; <span class="hljs-string">"code"</span> <span class="hljs-keyword">in</span> data &amp;&amp; <span class="hljs-string">"data"</span> <span class="hljs-keyword">in</span> data<br>  );<br>}<br><br>apiClient.<span class="hljs-property">interceptors</span>.<span class="hljs-property">response</span>.<span class="hljs-title function_">use</span>(<span class="hljs-function">(<span class="hljs-params">response</span>) =&gt;</span> {<br>  <span class="hljs-keyword">if</span> (<span class="hljs-title function_">isApiResponse</span>(response.<span class="hljs-property">data</span>)) {<br>    <span class="hljs-keyword">return</span> response.<span class="hljs-property">data</span>;<br>  } <span class="hljs-keyword">else</span> {<br>    <span class="hljs-keyword">return</span> { <span class="hljs-attr">code</span>: <span class="hljs-number">200</span>, <span class="hljs-attr">message</span>: <span class="hljs-string">"success"</span>, <span class="hljs-attr">data</span>: response.<span class="hljs-property">data</span> };<br>  }<br>});<br></code></pre></td></tr></table></figure>
+</li>
+</ol>
+<h4 id="应用及其后期实践"><a href="#应用及其后期实践" class="headerlink" title="应用及其后期实践"></a>应用及其后期实践</h4><ol>
+<li><p><strong>封装后在业务组件中的使用</strong> 封装后调用更加简洁、安全，无需重复处理 Token、错误或类型。</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs ts"><span class="hljs-comment">// 未封装前</span><br><span class="hljs-keyword">const</span> <span class="hljs-title function_">fetchRooms</span> = <span class="hljs-keyword">async</span> (<span class="hljs-params"></span>) =&gt; {<br>  <span class="hljs-keyword">try</span> {<br>    <span class="hljs-keyword">const</span> response = <span class="hljs-keyword">await</span> axios.<span class="hljs-title function_">get</span>(<span class="hljs-string">"/api/rooms"</span>);<br>    <span class="hljs-keyword">return</span> response.<span class="hljs-property">data</span>;<br>  } <span class="hljs-keyword">catch</span> (error) {<br>    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">error</span>(error);<br>  }<br>};<br><br><span class="hljs-comment">// 封装后</span><br><span class="hljs-keyword">import</span> { roomApi } <span class="hljs-keyword">from</span> <span class="hljs-string">"@/api"</span>;<br><br><span class="hljs-keyword">const</span> <span class="hljs-title function_">fetchRooms</span> = <span class="hljs-keyword">async</span> (<span class="hljs-params"></span>) =&gt; {<br>  <span class="hljs-keyword">try</span> {<br>    <span class="hljs-keyword">const</span> response = <span class="hljs-keyword">await</span> roomApi.<span class="hljs-title function_">getRooms</span>({ <span class="hljs-attr">page</span>: <span class="hljs-number">1</span>, <span class="hljs-attr">size</span>: <span class="hljs-number">10</span> });<br>    <span class="hljs-keyword">return</span> response.<span class="hljs-property">data</span>;<br>  } <span class="hljs-keyword">catch</span> (error) {<br>    <span class="hljs-comment">// 错误已统一处理</span><br>  }<br>};<br></code></pre></td></tr></table></figure>
+</li>
+<li><p><strong>OpenAPI/Swagger 自动生成类型和接口函数</strong> 可使用 openapi-typescript-codegen 或 swagger-typescript-api 等工具从后端 OpenAPI 文档自动生成类型定义和请求函数，实现前后端类型完全一致，显著减少手动维护成本。</p>
+</li>
+</ol>
+<div id="paginator"></div></div><div id="post-footer"><div id="pages" style="justify-content: flex-end"><div class="footer-link" style="width: 50%;right:1px;border-left:1px #fe2 solid"><a href="/Arknight-notes/posts/42304.html">2025-11-23-前端学习-身份验证管理-基于 JWT Token 的实现 Prev →</a></div></div></div><div id="comments"><div id="gitalk"></div></div></div><div class="bottom-btn"><div><a class="i-top" id="to-top" onClick="scrolls.scrolltop();" title="To Top" style="opacity: 0; display: none;">∧ </a><a class="i-index" id="to-index" href="#toc-div" title="To Catalog">≡</a><a class="i-color" id="color-mode" onClick="colorMode.change()" title="Change Theme"></a></div></div></article><aside><div id="about"><a href="/Arknight-notes/" id="logo"><img src="https://pic4.zhimg.com/80/v2-d9884f32711e19e80979eac58e943897_720w.webp" alt="Logo" style="margin:20;border-radius:0;"></a><h1 id="Dr"><a href="zhongye">柊野</a></h1><div id="description"><p></p></div></div><div id="aside-block"><div id="toc-div"><h1>Catalog</h1><ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B3%E4%BA%8E%E6%8E%A5%E5%8F%A3%E7%B1%BB%E5%9E%8B%E5%AE%9A%E4%B9%89%E3%80%81Axios-%E5%B0%81%E8%A3%85%E4%B8%8E%E8%AF%B7%E6%B1%82%E8%A7%84%E8%8C%83%E7%9A%84%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98"><span class="toc-number">1.</span> <span class="toc-text">关于接口类型定义、Axios 封装与请求规范的常见问题</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E7%BB%8F%E9%AA%8C%E4%B8%8E%E5%8A%A8%E6%9C%BA"><span class="toc-number">1.1.</span> <span class="toc-text">基本经验与动机</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%9E%E7%8E%B0%E7%BB%86%E8%8A%82%E4%B8%8E%E8%A7%84%E8%8C%83"><span class="toc-number">1.2.</span> <span class="toc-text">实现细节与规范</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%B1%BB%E5%9E%8B%E5%AE%89%E5%85%A8%E4%B8%8E%E5%B7%A5%E7%A8%8B%E5%8C%96%EF%BC%88TypeScript%EF%BC%89"><span class="toc-number">1.3.</span> <span class="toc-text">类型安全与工程化（TypeScript）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B7%B1%E5%BA%A6%E4%B8%8E%E5%AE%9E%E8%B7%B5%E7%9B%B8%E5%85%B3"><span class="toc-number">1.4.</span> <span class="toc-text">深度与实践相关</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Axios-%E5%B0%81%E8%A3%85%E4%B8%8E%E6%8E%A5%E5%8F%A3%E7%AE%A1%E7%90%86%E5%85%B7%E4%BD%93%E5%AE%9E%E7%8E%B0"><span class="toc-number">2.</span> <span class="toc-text">Axios 封装与接口管理具体实现</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%9F%BA%E7%A1%80%E7%9A%84%E5%AE%9E%E7%8E%B0"><span class="toc-number">2.1.</span> <span class="toc-text">基础的实现</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%B1%BB%E5%9E%8B%E5%AE%89%E5%85%A8%E4%B8%8E%E5%B7%A5%E7%A8%8B%E5%8C%96%EF%BC%88TypeScript%EF%BC%89-1"><span class="toc-number">2.2.</span> <span class="toc-text">类型安全与工程化（TypeScript）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%BA%94%E7%94%A8%E5%8F%8A%E5%85%B6%E5%90%8E%E6%9C%9F%E5%AE%9E%E8%B7%B5"><span class="toc-number">2.3.</span> <span class="toc-text">应用及其后期实践</span></a></li></ol></li></ol></div></div><footer><nobr><span class="icp-title">GZHU</span><span class="icp-content">193001-0001</span></nobr><br><nobr><span class="icp-title">OUTPOST</span><span class="icp-content">169-2025-0331</span></nobr><br><nobr>Published with <a target="_blank" rel="noopener" href="http://hexo.io">Hexo</a></nobr><wbr><nobr> Theme <a target="_blank" rel="noopener" href="https://github.com/Yue-plus/hexo-theme-arknights">Arknights</a></nobr><wbr><nobr> by <a target="_blank" rel="noopener" href="https://github.com/Yue-plus">Yue_plus</a></nobr></footer></aside></main><canvas id="canvas-dust"></canvas></body></html>
