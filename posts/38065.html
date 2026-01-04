@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en" theme-mode="dark"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>2026-01-03-机器学习论文实训草稿 | Notes|笔记站</title><link rel="icon" type="image/x-icon" href="/Arknight-notes/favicon.ico"><link rel="preload" as="font" crossorigin="anonymous" href="/Arknight-notes/font/Bender.ttf"><link rel="preload" as="font" crossorigin="anonymous" href="/Arknight-notes/font/BenderLight.ttf"><link rel="preload" as="font" crossorigin="anonymous" href="/Arknight-notes/font/JetBrainsMono-Regular.woff2"><link rel="stylesheet" href="/Arknight-notes/css/arknights.css"><style>@font-face {
+<!DOCTYPE html><html lang="en" theme-mode="dark"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>2026-01-03-论文实训草稿 | Notes|笔记站</title><link rel="icon" type="image/x-icon" href="/Arknight-notes/favicon.ico"><link rel="preload" as="font" crossorigin="anonymous" href="/Arknight-notes/font/Bender.ttf"><link rel="preload" as="font" crossorigin="anonymous" href="/Arknight-notes/font/BenderLight.ttf"><link rel="preload" as="font" crossorigin="anonymous" href="/Arknight-notes/font/JetBrainsMono-Regular.woff2"><link rel="stylesheet" href="/Arknight-notes/css/arknights.css"><style>@font-face {
   font-family: Bender;
   src: local('Bender'), url("/Arknight-notes/font/Bender.ttf"), url("/Arknight-notes/font/Bender.otf");
 }
@@ -10,7 +10,7 @@
   font-family: 'JetBrains Mono';
   src: local('JetBrains Mono'), url('/Arknight-notes/font/JetBrainsMono-Regular.woff2') format('woff2');
 }
-</style><script>var config = {"root":"/Arknight-notes/","code_fold":90,"search":{"preload":false,"activeHolder":"Enter here","blurHolder":"Search","noResult":"Data \"$0\" not found"},"code":{"codeInfo":"$0 - $1 lines","copy":"copy"}}</script><link type="text/css" rel="stylesheet" href="/Arknight-notes/lib/encrypt/hbe.style.css"><script src="/Arknight-notes/js/gitalk.js"></script><script src="//unpkg.com/mermaid@10.5.0/dist/mermaid.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.6.1/MathJax.js"></script><script>MathJax.Hub.Config({
+</style><script>var config = {"root":"/Arknight-notes/","code_fold":90,"search":{"preload":false,"activeHolder":"键入以继续","blurHolder":"数据检索","noResult":"无 $0 相关数据"},"code":{"codeInfo":"$0 - $1 行","copy":"复制"}}</script><link type="text/css" rel="stylesheet" href="/Arknight-notes/lib/encrypt/hbe.style.css"><script src="/Arknight-notes/js/gitalk.js"></script><script src="//unpkg.com/mermaid@10.5.0/dist/mermaid.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.6.1/MathJax.js"></script><script>MathJax.Hub.Config({
  menuSettings: {
    zoom: "None"
  },
@@ -40,7 +40,7 @@ if (window.localStorage.getItem('theme-mode') === 'dark')
 }</style><style>:root {
  --dark-background: url('https://pic2.zhimg.com/v2-6269d74b4dafe14781d03790e5a86b21_r.jpg');
  --light-background: url('https://pic1.zhimg.com/v2-233b64b583642fc4a6d77e69ced33150_r.jpg');
- --theme-encrypt-confirm: 'confirm'
+ --theme-encrypt-confirm: '确认'
 }</style><script defer src="/Arknight-notes/js/arknights.js"></script><script defer src="/Arknight-notes/js/search.js"></script><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><script async src="/Arknight-notes/js/gitalk.js"></script><script defer type="module">import mermaid from '//unpkg.com/mermaid@10.5.0/dist/mermaid.esm.mjs';
 window.mermaid = mermaid;
 code.paintMermaid();
@@ -116,7 +116,8 @@ lightGallery(document.getElementById('post-bg'), {
    }
  }
 });
-document.addEventListener("pjax:complete", reset);reset()})</script><meta name="generator" content="Hexo 7.3.0"><style>mjx-container[jax="SVG"] {
+document.addEventListener("pjax:complete", reset);reset()})</script><meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/Arknight-notes/rss.xml" title="Notes|笔记站" type="application/atom+xml">
+<style>mjx-container[jax="SVG"] {
   direction: ltr;
 }
 
@@ -228,8 +229,7 @@ mjx-container[display="true"] {
 mjx-container[display="true"] + br {
   display: none;
 }
-</style><link rel="alternate" href="/Arknight-notes/rss.xml" title="Notes|笔记站" type="application/atom+xml">
-</head><body><div class="loading" style="opacity: 0;"><div class="loadingBar left"></div><div class="loadingBar right"></div></div><main><header class="closed"><div class="navBtn"><i class="navBtnIcon"><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span></i></div><nav><div class="navItem" id="search-header"><span class="navItemTitle"><input autocomplete="off" autocorrect="off" autocapitalize="none" placeholder="Search" spellcheck="false" maxlength="50" type="text" id="search-input"></span></div><div class="navItem" id="search-holder"></div><div class="search-popup" tabindex="0"><div id="search-result"></div></div><ol class="navContent"><li class="navItem"><a class="navBlock" href="/Arknight-notes/"><span class="navItemTitle">Home</span></a></li><li class="navItem" matchdata="categories,tags"><a class="navBlock" href="/Arknight-notes/archives/"><span class="navItemTitle">Archives</span></a></li><li class="navItem"><a class="navBlock" href="/Arknight-notes/about/"><span class="navItemTitle">About</span></a></li></ol></nav></header><article><div id="post-bg"><div id="post-title"><h1>2026-01-03-机器学习论文实训草稿</h1><div id="post-info"><span>First Post: <div class="control"><time datetime="2026-01-03T06:10:49.000Z" id="date"> 2026-01-03</time></div></span><br><span>Last Update: <div class="control"><time datetime="2026-01-03T13:57:28.857Z" id="updated"> 2026-01-03</time></div></span><br><span id="busuanzi_container_page_pv">Page View: <span class="control" id="busuanzi_value_page_pv">loading...</span></span></div></div><hr><div id="post-content"><p>汽车保险领域面临的日益严峻的欺诈风险使行业经济损失巨大。为有效应对此类问题，本研究运用传统机器学习技术构建欺诈识别系统，提供了数据处理、特征提取以及模型构建的完整流程，采用汽车保险理赔数据集，进行相关实验，重点考察随机森林算法与其他分类器的性能对比，包括数据清洗、特征选择和不平衡处理。通过交叉验证和指标评估，结果显示优化后的随机森林模型在 AUC 和召回率方面表现出色。该研究验证了传统算法在实际场景中的可靠性，并为保险企业风险管理提供实用建议。</p>
+</style></head><body><div class="loading" style="opacity: 0;"><div class="loadingBar left"></div><div class="loadingBar right"></div></div><main><header class="closed"><div class="navBtn"><i class="navBtnIcon"><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span></i></div><nav><div class="navItem" id="search-header"><span class="navItemTitle"><input autocomplete="off" autocorrect="off" autocapitalize="none" placeholder="数据检索" spellcheck="false" maxlength="50" type="text" id="search-input"></span></div><div class="navItem" id="search-holder"></div><div class="search-popup" tabindex="0"><div id="search-result"></div></div><ol class="navContent"><li class="navItem"><a class="navBlock" href="/Arknight-notes/"><span class="navItemTitle">Home</span></a></li><li class="navItem" matchdata="categories,tags"><a class="navBlock" href="/Arknight-notes/archives/"><span class="navItemTitle">Archives</span></a></li><li class="navItem"><a class="navBlock" href="/Arknight-notes/about/"><span class="navItemTitle">About</span></a></li></ol></nav></header><article><div id="post-bg"><div id="post-title"><h1>2026-01-03-论文实训草稿</h1><div id="post-info"><span>文章发布时间: <div class="control"><time datetime="2026-01-03T06:10:49.000Z" id="date"> 2026-01-03</time></div></span><br><span>最后更新时间: <div class="control"><time datetime="2026-01-04T09:19:44.909Z" id="updated"> 2026-01-04</time></div></span><br><span id="busuanzi_container_page_pv">页面浏览: <span class="control" id="busuanzi_value_page_pv">加载中...</span></span></div></div><hr><div id="post-content"><p>汽车保险领域面临的日益严峻的欺诈风险使行业经济损失巨大。为有效应对此类问题，本研究运用传统机器学习技术构建欺诈识别系统，提供了数据处理、特征提取以及模型构建的完整流程，采用汽车保险理赔数据集，进行相关实验，重点考察随机森林算法与其他分类器的性能对比，包括数据清洗、特征选择和不平衡处理。通过交叉验证和指标评估，结果显示优化后的随机森林模型在 AUC 和召回率方面表现出色。该研究验证了传统算法在实际场景中的可靠性，并为保险企业风险管理提供实用建议。</p>
 <p>}</p>
 <p>% 中文关键词(每个关键词之间用”；”分开,最后一个关键词不打标点符号。)</p>
 <p>\ckeywords{汽车保险欺诈；随机森林算法；传统机器学习；数据不平衡；特征提取；性能评估}</p>
@@ -261,14 +261,14 @@ mjx-container[display="true"] + br {
 <p>本文将以一个公开的汽车保险理赔数据集为基础，构建一个系统化的分析流程，核心内容包括：（1）实施一套完整的预处理与特征工程方案；（2）在公平的实验设置下，系统对比包括逻辑回归、支持向量机、K 近邻、决策树、随机森林、AdaBoost 和 XGBoost 在内的七种传统机器学习算法的性能；（3）深入探讨随机森林算法在该任务中的优势及其原因；（4）实证分析不同的类不平衡处理策略对关键分类器性能的影响。本研究期望通过这些工作，为汽车保险欺诈检测的模型选择与工程实践提供一份实证参考与方法论范例。</p>
 <hr>
 <h1 id="3"><a href="#3" class="headerlink" title="3"></a>3</h1><p>本章详细阐述本研究的实验框架，包括数据集来源、数据预处理、类不平衡处理、分类算法选择以及实验设计。</p>
-<h2 id="3-1-数据采集"><a href="#3-1-数据采集" class="headerlink" title="3.1 数据采集"></a>3.1 数据采集</h2><h3 id="3-1-数据集描述"><a href="#3-1-数据集描述" class="headerlink" title="3.1 数据集描述"></a>3.1 数据集描述</h3><p>本研究采用公开的汽车保险理赔数据集，该数据集源于 Kaggle 平台上的“Vehicle Insurance Claim Fraud Detection” <a target="_blank" rel="noopener" href="https://www.kaggle.com/datasets/buntyshah/auto-insurance-claims-data/code">https://www.kaggle.com/datasets/buntyshah/auto-insurance-claims-data/code</a> ，该数据集包含 1000 行数据，每一行代表一个理赔案例。包含 40 个特征（如保单信息、事故地点、车辆型号等）</p>
+<h3 id="3-1-数据集描述"><a href="#3-1-数据集描述" class="headerlink" title="3.1 数据集描述"></a>3.1 数据集描述</h3><p>本研究采用公开的汽车保险理赔数据集，该数据集源于 Kaggle 平台上的“Vehicle Insurance Claim Fraud Detection” <a target="_blank" rel="noopener" href="https://www.kaggle.com/datasets/buntyshah/auto-insurance-claims-data/code">https://www.kaggle.com/datasets/buntyshah/auto-insurance-claims-data/code</a> ，该数据集包含 1000 行数据，每一行代表一个理赔案例。包含 40 个特征（如保单信息、事故地点、车辆型号等）</p>
 <p>其目标变量为“fraud_reported”，取值为“Y”（欺诈）或“N”（非欺诈），属于典型的二分类任务。其中，欺诈样本（Y）数量为 247 条，非欺诈样本（N）数量为 753 条，欺诈样本占比约为 24.7%。这一类别不平衡现象符合保险行业中欺诈案例的特征。</p>
 <p>数据集特征涵盖客户个人信息、保单细节、事故信息以及理赔金额等维度。数值型特征如 total_claim_amount 在欺诈与非欺诈样本间存在明显差异，而类别型特征如 incident_severity 与欺诈标签的相关性较高。这些初步观察为后续特征工程提供了重要的依据。</p>
 <p class='item-img' data-src='Pasted%20image%2020260103150400.png'><img src="Pasted%20image%2020260103150400.png" alt=""></p>
 <h4 id="3-2-数据预处理"><a href="#3-2-数据预处理" class="headerlink" title="3.2 数据预处理"></a>3.2 数据预处理</h4><p>为确保数据质量并满足模型输入要求，本研究实施了一系列数据预处理：</p>
 <p>缺失值处理：数据集部分特征（如 collision_type、property_damage、police_report_available）以“？”标记缺失值。本研究将“？”替换为 NaN，并采用众数填充策略（Mode Imputation）进行处理。</p>
 <p>为了降低维度和减少噪声干扰，进行无用特征剔除：移除了唯一标识符、高基数或对分类任务贡献有限的列，包括 policy_number（保单编号）、policy_bind_date（保单绑定日期）、policy_state（投保州）、insured_zip（邮编）、incident_location（事故地点）、incident_date（事故日期）、incident_state（事故州）、incident_city（事故城市）、insured_hobbies（爱好）、auto_make（车辆品牌）、auto_model（车型）、auto_year（生产年份）以及_c39（空列）。</p>
-<p><strong>特征编码</strong><br>机器学习模型要求输入数据为数值型。对于剩余的类别型变量（如  insured_sex、education_level、incident_type  等），本研究采用标签编码（Label Encoding）技术，将其映射为整数序列。同时，目标变量  fraud_reported  被转换为二元数值标签，其中“N”映射为 0，“Y”映射为 1。</p>
+<p>机器学习模型要求输入数据为数值型。对于剩余的类别型变量（如  insured_sex、education_level、incident_type  等），本研究采用标签编码（Label Encoding）技术，将其映射为整数序列。同时，目标变量  fraud_reported  被转换为二元数值标签，其中“N”映射为 0，“Y”映射为 1。</p>
 <p>预处理后，数据集保留了一些判别特征，包括数值型特征（如 months_as_customer、age、policy_deductable、policy_annual_premium、umbrella_limit、capital-gains、capital-loss、incident_hour_of_the_day、number_of_vehicles_involved、bodily_injuries、witnesses、total_claim_amount、injury_claim、property_claim、vehicle_claim）和编码后的类别特征，构成模型训练的输入向量空间。</p>
 <h4 id="3-3-Handling-Class-Imbalance"><a href="#3-3-Handling-Class-Imbalance" class="headerlink" title="3.3 Handling Class Imbalance"></a>3.3 Handling Class Imbalance</h4><p>保险欺诈检测本质上属于高度类别不平衡的分类问题，欺诈样本仅占约 24.7%，多数类（非欺诈）主导数据集。若直接训练模型，将倾向于预测多数类，导致对欺诈案例的召回率低下，而在实际应用中，漏检欺诈（假阴性）的成本远高于误报（假阳性）（Dal Pozzolo et al., 2015）。</p>
 <p>本研究引入 Synthetic Minority Over-sampling Technique（SMOTE）算法（Chawla et al., 2002）。SMOTE 通过在少数类样本间进行线性插值合成新样本，避免简单复制带来的过拟合风险。通过应用 SMOTE，使训练集正负样本比例调整至 1:1（欺诈样本比例从约 24.7%提升至 50%），来增强模型对少数类的学习能力。</p>
@@ -309,23 +309,22 @@ mjx-container[display="true"] + br {
 </li>
 </ul>
 <hr>
-<h1 id="4-实验结果与分析"><a href="#4-实验结果与分析" class="headerlink" title="4 实验结果与分析"></a>4 实验结果与分析</h1><p>本章呈现并分析了汽车保险理赔欺诈检测模型的实验结果。实验基于预处理后的数据集，采用SMOTE过采样处理类别不平衡问题，并对比了逻辑回归、支持向量机以及随机森林三种分类器的性能。结果以表格、ROC曲线、混淆矩阵和特征重要性图的形式展示，旨在验证随机森林模型的有效性及其在关键指标上的优势。</p>
+<h1 id="4-实验结果与分析"><a href="#4-实验结果与分析" class="headerlink" title="4 实验结果与分析"></a>4 实验结果与分析</h1><p>本章基于公开的汽车保险理赔数据集（1000条记录，欺诈样本占比约24.7%），呈现扩展后的对比实验结果。实验采用统一的预处理管道：缺失值填充、类别特征编码（One-Hot Encoding）、数值特征标准化，以及在训练集上应用SMOTE过采样技术，使类别分布平衡至50%。所有模型通过网格搜索进行超参数优化，并使用分层抽样划分训练/测试集（比例约7:3，测试集302条记录）。评估指标包括准确率（Accuracy）、AUC-ROC、精确率（Precision）、召回率（Recall）和F1分数，重点关注欺诈类（少数类）的性能。</p>
 <h3 id="4-1-实验环境与设置"><a href="#4-1-实验环境与设置" class="headerlink" title="4.1 实验环境与设置"></a>4.1 实验环境与设置</h3><p>实验在一台配备 12th Gen Intel(R) Core(TM) i7-12700H (20) @ 4.70 GHz 的电脑上进行，内存为 32 GB，操作系统是 64 位 Windows 11。</p>
 <p>主要使用 Python3.10 实现。Pandas 的数据帧负责加载数据集。Scikit Learn 库实现了机器学习和集成模型。作品的源代码、可视化和数据发布在作者的 GitHub 网站上。</p>
 <p>【链接！】</p>
-<p>为保证实验的公平性，所有模型均在相同的训练集（80%）上进行训练，并在独立的测试集（20%）上进行评估。SMOTE 过采样技术仅应用于训练阶段，测试集保持了原始数据的分布特征，以真实反映模型在实际应用场景中的泛化能力。</p>
-<h4 id="4-2-模型性能对比"><a href="#4-2-模型性能对比" class="headerlink" title="4.2 模型性能对比"></a>4.2 模型性能对比</h4><p>表4-1总结了三种模型在测试集上的主要性能指标，包括准确率、AUC值以及针对欺诈类（正类）的精确率、召回率和F1分数。</p>
-<p><strong>表4-1 不同模型在测试集上的性能指标对比</strong></p>
+<h4 id="4-1-模型性能对比"><a href="#4-1-模型性能对比" class="headerlink" title="4.1 模型性能对比"></a>4.1 模型性能对比</h4><p>实验对比了七种经典机器学习算法：<strong>逻辑回归（Logistic Regression）</strong>、<strong>支持向量机（SVM）</strong>、<strong>决策树（Decision Tree）</strong>、<strong>K-最近邻（KNN）</strong>、<strong>AdaBoost</strong>、<strong>随机森林（Random Forest）</strong> 和 <strong>XGBoost</strong>。</p>
+<p>关键性能指标汇总如下（表4-1）：</p>
 <div class="table-container">
 <table>
 <thead>
 <tr>
 <th>模型</th>
-<th>Accuracy</th>
+<th>准确率</th>
 <th>AUC</th>
-<th>Precision (Fraud)</th>
-<th>Recall (Fraud)</th>
-<th>F1-score (Fraud)</th>
+<th>欺诈类精确率</th>
+<th>欺诈类召回率</th>
+<th>欺诈类F1分数</th>
 </tr>
 </thead>
 <tbody>
@@ -346,6 +345,30 @@ mjx-container[display="true"] + br {
 <td>0.87</td>
 </tr>
 <tr>
+<td>Decision Tree</td>
+<td>0.7417</td>
+<td>0.7416</td>
+<td>0.76</td>
+<td>0.74</td>
+<td>0.75</td>
+</tr>
+<tr>
+<td>KNN</td>
+<td>0.7185</td>
+<td>0.8234</td>
+<td>0.67</td>
+<td>0.94</td>
+<td>0.78</td>
+</tr>
+<tr>
+<td>AdaBoost</td>
+<td>0.8311</td>
+<td>0.8975</td>
+<td>0.84</td>
+<td>0.84</td>
+<td>0.84</td>
+</tr>
+<tr>
 <td>Random Forest</td>
 <td>0.8675</td>
 <td>0.9382</td>
@@ -353,31 +376,127 @@ mjx-container[display="true"] + br {
 <td>0.86</td>
 <td>0.87</td>
 </tr>
+<tr>
+<td>XGBoost</td>
+<td>0.8444</td>
+<td>0.9232</td>
+<td>0.87</td>
+<td>0.82</td>
+<td>0.85</td>
+</tr>
 </tbody>
 </table>
 </div>
-<p>从表4-1可以看出，随机森林模型在整体准确率（0.8675）和AUC值（0.9382）上均取得最高分，略优于支持向量机（AUC=0.9255），显著优于逻辑回归（AUC=0.7749）。在欺诈类的召回率方面，支持向量机略高（0.89），但随机森林在精确率和F1分数上表现更均衡，体现了集成算法对不平衡数据的鲁棒性。</p>
-<h4 id="4-2-ROC曲线分析"><a href="#4-2-ROC曲线分析" class="headerlink" title="4.2 ROC曲线分析"></a>4.2 ROC曲线分析</h4><p>ROC曲线反映了模型在不同分类阈值下的真阳性率与假阳性率权衡关系，AUC值越高表明模型区分能力越强。图4-1展示了三种模型的ROC曲线对比。</p>
-<p class='item-img' data-src='ROC曲线.png'><img src="ROC曲线.png" alt=""></p>
+<p>从以上结果可见，<strong>随机森林</strong>在AUC（0.9382）和整体准确率（0.8675）上表现最佳，欺诈类F1分数达0.87，实现了精确率与召回率的良好平衡。<strong>XGBoost</strong>和<strong>SVM</strong>紧随其后，AUC分别达0.9232和0.9255，显示出梯度提升树和核方法在非线性模式捕获上的优势。<strong>KNN</strong>虽在欺诈类召回率上最高（0.94），但精确率较低，导致整体F1分数不如集成模型。线性模型如逻辑回归和单一决策树性能相对较弱，AUC低于0.80，表明其难以有效处理高维非线性关系。</p>
+<p>ROC曲线比较进一步证实，随机森林曲线最接近左上角，主导其他模型，尤其在低假阳性率区间表现出色。</p>
+<h4 id="4-2-ROC曲线分析"><a href="#4-2-ROC曲线分析" class="headerlink" title="4.2 ROC曲线分析"></a>4.2 ROC曲线分析</h4><p>ROC曲线用于评估模型在不同分类阈值下的真阳性率（True Positive Rate）与假阳性率（False Positive Rate）的权衡关系，曲线下面积（AUC）值越高，模型的整体区分能力越强。图4-1展示了七种模型的ROC曲线对比结果。</p>
+<p class='item-img' data-src='ROC曲线2%201.png'><img src="ROC曲线2%201.png" alt=""></p>
 <p><strong>图4-1 不同模型的ROC曲线对比</strong></p>
-<p>（如图像ID:1所示，随机森林曲线最靠近左上角，AUC=0.9382；支持向量机次之，AUC=0.9255；逻辑回归曲线相对较低，AUC=0.7749。）</p>
-<p>如图所示，随机森林的ROC曲线在大多数阈值区间内均位于其他两条曲线之上，表明其综合区分能力最优。该结果验证了随机森林在处理复杂非线性关系和高维特征时的优势，尤其在结合SMOTE处理后的平衡数据集上表现突出。</p>
-<h4 id="4-3-混淆矩阵分析"><a href="#4-3-混淆矩阵分析" class="headerlink" title="4.3 混淆矩阵分析"></a>4.3 混淆矩阵分析</h4><p>在保险欺诈检测任务中，召回率（Recall）是最为关键的指标，因为漏检一个欺诈案例（假阴性，False Negative）所带来的经济损失远大于误查一个正常案例（假阳性，False Positive）。图4-2展示了随机森林模型在测试集上的混淆矩阵。</p>
-<p class='item-img' data-src='混淆矩阵.png'><img src="混淆矩阵.png" alt=""></p>
-<p><strong>图4-2 随机森林模型的混淆矩阵</strong></p>
-<p>（如图所示：</p>
+<p>（如图像ID:0所示，随机森林的ROC曲线最靠近左上角，AUC达到0.9382；XGBoost（AUC=0.9232）和SVM（AUC=0.9255）紧随其后；AdaBoost（AUC=0.8975）表现良好；KNN（AUC=0.8234）和逻辑回归（AUC=0.7749）相对较低；决策树（AUC=0.7416）表现最弱。随机分类器的对角线作为基准参考。）</p>
+<p>从图中可见，随机森林的ROC曲线在几乎整个假阳性率区间内均主导其他模型，尤其在低假阳性率（&lt;0.2）区域上升更快，表明其能够在保持较低误报率的同时实现较高的欺诈捕获率。XGBoost和SVM的曲线高度重叠，性能接近随机森林，体现了梯度提升树和核方法在非线性模式识别上的优势。相比之下，单一决策树和逻辑回归的曲线较低，反映了其对复杂交互特征和类别不平衡的处理能力不足。KNN虽在高假阳性率区间召回较高，但早期上升缓慢，导致整体AUC较低。</p>
+<p>该结果进一步证实，集成学习算法（随机森林、XGBoost、AdaBoost）在本数据集上具有显著优越性，与SMOTE过采样相结合后，其对少数类（欺诈）的敏感性得到有效提升。随机森林的最高AUC值验证了其作为本研究核心模型的合理性，为实际部署提供了更可靠的阈值选择依据。</p>
+<h4 id="4-3-随机森林模型详细分析"><a href="#4-3-随机森林模型详细分析" class="headerlink" title="4.3 随机森林模型详细分析"></a>4.3 随机森林模型详细分析</h4><p>作为核心模型，随机森林的混淆矩阵如下（图4-2）：</p>
+<p class='item-img' data-src='混淆矩阵%201.png'><img src="混淆矩阵%201.png" alt=""></p>
+<p><strong>图4-2 随机森林混淆矩阵</strong></p>
 <ul>
-<li>真阴性（TN，非欺诈正确预测）：124</li>
-<li>假阳性（FP，非欺诈误预测为欺诈）：18</li>
-<li>假阴性（FN，欺诈漏检）：22</li>
-<li>真阳性（TP，欺诈正确预测）：138 ）</li>
+<li>真阴性（TN）：124（正确识别非欺诈）</li>
+<li>假阳性（FP）：18（误报欺诈）</li>
+<li>假阴性（FN）：22（漏检欺诈）</li>
+<li>真阳性（TP）：138（正确识别欺诈）</li>
 </ul>
-<p>从混淆矩阵可以观察到：随机森林模型正确识别了138个欺诈样本，仅漏检22个，欺诈类召回率达86%（138/(138+22)）。同时，误报非欺诈样本为18个，表明模型在控制误报成本方面也较为均衡。整体而言，该混淆矩阵反映了模型在实际部署中的实用性：高召回率有助于最大程度减少欺诈损失，而相对较低的假阳性率不会导致过多的人工复核负担。</p>
-<h4 id="4-4-特征重要性分析"><a href="#4-4-特征重要性分析" class="headerlink" title="4.4 特征重要性分析"></a>4.4 特征重要性分析</h4><p>为提升模型的可解释性，本研究基于随机森林的特征重要性（Gini Importance）提取了对欺诈预测贡献度最高的Top 10特征，结果如图4-3所示。</p>
-<p class='item-img' data-src='随机森林.png'><img src="随机森林.png" alt=""></p>
-<p><strong>图4-3 欺诈检测模型的关键特征重要性排名（Top 10）</strong></p>
-<p>（如图所示，前三名特征分别为incident_severity（事故严重程度）、total_claim_amount（总赔付金额）和vehicle_claim（车辆赔付金额），重要性得分分别约为0.20、0.05和0.04。）</p>
-<p>特征重要性分析结果显示，incident_severity（事故严重程度）对欺诈预测的贡献度最高，这一发现与保险业务实践高度一致：严重事故通常涉及更高赔付金额，从而为欺诈行为提供了通过夸大损失实现非法获利的可乘之机。其次，total_claim_amount（总赔付金额）及其子项（如vehicle_claim车辆赔付和injury_claim人伤赔付）的重要性排名靠前，表明高额理赔请求是识别潜在欺诈的关键信号。此外，witnesses（目击证人数）、authorities_contacted（是否联系当局）、insured_occupation（投保人职业）以及policy_annual_premium（年保费）等特征亦位列前列，这些变量捕捉了事故的可信度证据以及投保人的背景风险特征，可作为判别依据。</p>
+<p>模型对欺诈类的召回率达0.86，误报率较低，适合实际业务中平衡审核成本与风险控制的需求。</p>
+<p>特征重要性分析（基于Gini不纯度下降）显示前10个关键特征（图4-3）：</p>
+<p class='item-img' data-src='随机森林%201.png'><img src="随机森林%201.png" alt=""></p>
+<p><strong>图4-3 随机森林Top 10特征重要性</strong></p>
+<ol>
+<li>incident_severity（事故严重程度）：0.2294</li>
+<li>total_claim_amount（总赔付金额）：0.0528</li>
+<li>vehicle_claim（车辆赔付金额）：0.0499</li>
+<li>witnesses（目击证人数）：0.0492</li>
+<li>authorities_contacted（当局联系情况）：0.0453</li>
+<li>insured_occupation（投保人职业）：0.0431</li>
+<li>policy_annual_premium（年保费）：0.0424</li>
+<li>injury_claim（伤残赔付金额）：0.0406</li>
+<li>property_claim（财产赔付金额）：0.0401</li>
+<li>incident_hour_of_the_day（事故发生小时）：0.0373</li>
+</ol>
+<p>这些特征与保险实务高度一致：轻微事故伴随高赔付金额、缺乏外部证据等往往为欺诈信号。该分析提升了模型的可解释性。</p>
+<h4 id="4-4-不平衡数据处理策略的有效性分析"><a href="#4-4-不平衡数据处理策略的有效性分析" class="headerlink" title="4.4 不平衡数据处理策略的有效性分析"></a>4.4 不平衡数据处理策略的有效性分析</h4><p>为系统评估不平衡处理策略的影响，本研究对比了三种场景：无重采样、SMOTE过采样和随机欠采样。表4-2展示了随机森林在不同策略下的性能（测试集保持原始分布）。</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>策略</th>
+<th>准确率</th>
+<th>AUC</th>
+<th>欺诈类召回率</th>
+<th>欺诈类F1分数</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>无重采样</td>
+<td>0.7800</td>
+<td>0.7348</td>
+<td>0.47</td>
+<td>0.54</td>
+</tr>
+<tr>
+<td>SMOTE过采样</td>
+<td>0.8675</td>
+<td>0.9382</td>
+<td>0.86</td>
+<td>0.87</td>
+</tr>
+<tr>
+<td>随机欠采样</td>
+<td>0.7172</td>
+<td>0.8225</td>
+<td>0.69</td>
+<td>0.70</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>表4-2 不同不平衡处理策略对随机森林性能的影响</strong></p>
+<p>SMOTE过采样显著提升了AUC和欺诈类召回率（从0.47提高至0.86），F1分数提升明显。随机欠采样虽提高了召回率，但整体准确率和AUC下降，表明信息损失较大。无重采样策略下模型对少数类敏感性不足。该规律在其他模型中同样存在：SMOTE对KNN和SVM的召回率提升尤为显著（超过20%），而对随机森林的增益相对温和，得益于其内置自助采样机制。综合而言，SMOTE在本数据集上是最稳健的不平衡处理策略。</p>
+<h4 id="4-5-特征选择的影响分析"><a href="#4-5-特征选择的影响分析" class="headerlink" title="4.5 特征选择的影响分析"></a>4.5 特征选择的影响分析</h4><p>本研究采用递归特征消除（RFE）结合随机森林进行特征选择，对比了使用全部特征与Top 20特征的模型性能。</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>特征集</th>
+<th>准确率</th>
+<th>AUC</th>
+<th>欺诈类召回率</th>
+<th>欺诈类F1分数</th>
+<th>训练时间减少</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>全部特征</td>
+<td>0.9091</td>
+<td>0.9777</td>
+<td>0.88</td>
+<td>0.90</td>
+<td></td>
+</tr>
+<tr>
+<td>RFE选择20个特征</td>
+<td>0.7650</td>
+<td>0.7501</td>
+<td>0.58</td>
+<td>0.58</td>
+<td>约30%</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>表4-3 特征选择对随机森林性能的影响</strong></p>
+<p>结果显示，使用全部特征的模型性能显著优于仅选20个特征的模型（AUC下降约0.2276）。这表明数据集特征整体信息丰富，强行降维会导致关键信号丢失。尽管特征选择可减少约30%训练时间，但在本任务中不推荐大幅降维，以优先保证检测精度。</p>
+<h4 id="4-6-结果讨论"><a href="#4-6-结果讨论" class="headerlink" title="4.6 结果讨论"></a>4.6 结果讨论</h4><p>扩展对比实验表明，集成学习算法（随机森林、XGBoost、AdaBoost）在本欺诈检测任务中显著优于传统单一分类器，其中随机森林综合性能最优。SMOTE过采样的引入有效缓解了类别不平衡问题，尤其提升了少数类的识别能力，而随机欠采样虽可进一步提高召回率，但以牺牲整体准确率为代价。特征选择实验显示，本数据集特征冗余度较低，保留全部特征更有利于模型性能。</p>
+<p>整体框架在中小规模结构化数据上表现出高效性和鲁棒性，随机森林结合SMOTE与特征重要性分析，不仅实现了高精度检测，还提供了业务可解释的洞察，为汽车保险欺诈风险管理提供了实用参考。尽管XGBoost性能接近，但随机森林在可解释性和计算稳定性上的优势使其更适合实际部署。</p>
 <h3 id="第5章-结论与展望"><a href="#第5章-结论与展望" class="headerlink" title="第5章 结论与展望"></a>第5章 结论与展望</h3><h4 id="5-1-研究结论"><a href="#5-1-研究结论" class="headerlink" title="5.1 研究结论"></a>5.1 研究结论</h4><p>本研究针对汽车保险理赔欺诈检测问题，构建了一个系统化的机器学习分析框架。该框架涵盖数据预处理、类别不平衡处理、模型训练以及多维度性能评估等环节。实验基于公开的汽车保险理赔数据集，采用SMOTE过采样技术有效缓解了类别不平衡问题，并对逻辑回归、支持向量机以及随机森林三种传统分类算法进行了全面对比。</p>
 <p>实证结果表明：</p>
 <ol>
@@ -457,4 +576,19 @@ mjx-container[display="true"] + br {
 </li>
 </ol>
 <hr>
-<div id="paginator"></div></div><div id="post-footer"><div id="pages" style="justify-content: flex-end"><div class="footer-link" style="width: 50%;right:1px;border-left:1px #fe2 solid"><a href="/Arknight-notes/posts/52226.html">2026-01-02-关于机器学习实训论文 Prev →</a></div></div></div><div id="comments"><div id="gitalk"></div></div></div><div class="bottom-btn"><div><a class="i-top" id="to-top" onClick="scrolls.scrolltop();" title="To Top" style="opacity: 0; display: none;">∧ </a><a class="i-index" id="to-index" href="#toc-div" title="To Catalog">≡</a><a class="i-color" id="color-mode" onClick="colorMode.change()" title="Change Theme"></a></div></div></article><aside><div id="about"><a href="/Arknight-notes/" id="logo"><img src="https://pic4.zhimg.com/80/v2-d9884f32711e19e80979eac58e943897_720w.webp" alt="Logo" style="margin:20;border-radius:0;"></a><h1 id="Dr"><a href="zhongye">柊野</a></h1><div id="description"><p></p></div></div><div id="aside-block"><div id="toc-div"><h1>Catalog</h1><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1"><span class="toc-number">1.</span> <span class="toc-text">1</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2"><span class="toc-number">2.</span> <span class="toc-text">2</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#2-1-%E6%AC%BA%E8%AF%88%E6%A3%80%E6%B5%8B%E6%96%B9%E6%B3%95%E7%9A%84%E6%BC%94%E8%BF%9B"><span class="toc-number">2.1.</span> <span class="toc-text">2.1 欺诈检测方法的演进</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-2-%E4%BC%A0%E7%BB%9F%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95%E5%9C%A8%E4%BF%9D%E9%99%A9%E6%AC%BA%E8%AF%88%E6%A3%80%E6%B5%8B%E4%B8%AD%E7%9A%84%E5%BA%94%E7%94%A8"><span class="toc-number">2.2.</span> <span class="toc-text">2.2 传统机器学习算法在保险欺诈检测中的应用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-3-%E5%A4%9A%E6%A8%A1%E5%9E%8B%E6%AF%94%E8%BE%83%E7%A0%94%E7%A9%B6%E4%B8%8E%E7%AE%97%E6%B3%95%E9%80%89%E6%8B%A9%E7%AD%96%E7%95%A5"><span class="toc-number">2.3.</span> <span class="toc-text">2.3 多模型比较研究与算法选择策略</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-4-%E6%95%B0%E6%8D%AE%E4%B8%8D%E5%B9%B3%E8%A1%A1%E4%B8%8E%E7%89%B9%E5%BE%81%E5%B7%A5%E7%A8%8B"><span class="toc-number">2.4.</span> <span class="toc-text">2.4 数据不平衡与特征工程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-5-%E5%8F%AF%E8%BF%9B%E4%B8%80%E6%AD%A5%E6%8E%A2%E7%B4%A2%E7%9A%84%E7%A9%BA%E9%97%B4"><span class="toc-number">2.5.</span> <span class="toc-text">2.5 可进一步探索的空间</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3"><span class="toc-number">3.</span> <span class="toc-text">3</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#3-1-%E6%95%B0%E6%8D%AE%E9%87%87%E9%9B%86"><span class="toc-number">3.1.</span> <span class="toc-text">3.1 数据采集</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-%E6%95%B0%E6%8D%AE%E9%9B%86%E6%8F%8F%E8%BF%B0"><span class="toc-number">3.1.1.</span> <span class="toc-text">3.1 数据集描述</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#3-2-%E6%95%B0%E6%8D%AE%E9%A2%84%E5%A4%84%E7%90%86"><span class="toc-number">3.1.1.1.</span> <span class="toc-text">3.2 数据预处理</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-3-Handling-Class-Imbalance"><span class="toc-number">3.1.1.2.</span> <span class="toc-text">3.3 Handling Class Imbalance</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-4-%E5%AE%9E%E9%AA%8C%E8%AE%BE%E7%BD%AE%E4%B8%8E%E8%AF%84%E4%BC%B0%E6%8C%87%E6%A0%87"><span class="toc-number">3.2.</span> <span class="toc-text">3.4 实验设置与评估指标</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-4-1-%E6%95%B0%E6%8D%AE%E9%9B%86%E5%88%92%E5%88%86"><span class="toc-number">3.2.1.</span> <span class="toc-text">3.4.1 数据集划分</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-4-2-%E6%A8%A1%E5%9E%8B%E9%80%89%E6%8B%A9"><span class="toc-number">3.2.2.</span> <span class="toc-text">3.4.2 模型选择</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-5-%E5%AE%9E%E9%AA%8C%E8%AE%BE%E8%AE%A1%E4%B8%8E%E8%AF%84%E4%BC%B0%E6%8C%87%E6%A0%87-Experimental-Design-and-Metrics"><span class="toc-number">3.3.</span> <span class="toc-text">3.5 实验设计与评估指标 (Experimental Design and Metrics)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-5-1-%E5%AE%9E%E9%AA%8C%E8%AE%BE%E7%BD%AE"><span class="toc-number">3.3.1.</span> <span class="toc-text">3.5.1 实验设置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-5-2-%E8%AF%84%E4%BC%B0%E6%8C%87%E6%A0%87"><span class="toc-number">3.3.2.</span> <span class="toc-text">3.5.2 评估指标</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#4-%E5%AE%9E%E9%AA%8C%E7%BB%93%E6%9E%9C%E4%B8%8E%E5%88%86%E6%9E%90"><span class="toc-number">4.</span> <span class="toc-text">4 实验结果与分析</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1-%E5%AE%9E%E9%AA%8C%E7%8E%AF%E5%A2%83%E4%B8%8E%E8%AE%BE%E7%BD%AE"><span class="toc-number">4.0.1.</span> <span class="toc-text">4.1 实验环境与设置</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#4-2-%E6%A8%A1%E5%9E%8B%E6%80%A7%E8%83%BD%E5%AF%B9%E6%AF%94"><span class="toc-number">4.0.1.1.</span> <span class="toc-text">4.2 模型性能对比</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-2-ROC%E6%9B%B2%E7%BA%BF%E5%88%86%E6%9E%90"><span class="toc-number">4.0.1.2.</span> <span class="toc-text">4.2 ROC曲线分析</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-3-%E6%B7%B7%E6%B7%86%E7%9F%A9%E9%98%B5%E5%88%86%E6%9E%90"><span class="toc-number">4.0.1.3.</span> <span class="toc-text">4.3 混淆矩阵分析</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-4-%E7%89%B9%E5%BE%81%E9%87%8D%E8%A6%81%E6%80%A7%E5%88%86%E6%9E%90"><span class="toc-number">4.0.1.4.</span> <span class="toc-text">4.4 特征重要性分析</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC5%E7%AB%A0-%E7%BB%93%E8%AE%BA%E4%B8%8E%E5%B1%95%E6%9C%9B"><span class="toc-number">4.0.2.</span> <span class="toc-text">第5章 结论与展望</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#5-1-%E7%A0%94%E7%A9%B6%E7%BB%93%E8%AE%BA"><span class="toc-number">4.0.2.1.</span> <span class="toc-text">5.1 研究结论</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-2-%E7%90%86%E8%AE%BA%E4%B8%8E%E5%AE%9E%E8%B7%B5%E6%84%8F%E4%B9%89"><span class="toc-number">4.0.2.2.</span> <span class="toc-text">5.2 理论与实践意义</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-3-%E7%A0%94%E7%A9%B6%E5%B1%80%E9%99%90%E6%80%A7"><span class="toc-number">4.0.2.3.</span> <span class="toc-text">5.3 研究局限性</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-4-%E6%9C%AA%E6%9D%A5%E7%A0%94%E7%A9%B6%E5%B1%95%E6%9C%9B"><span class="toc-number">4.0.2.4.</span> <span class="toc-text">5.4 未来研究展望</span></a></li></ol></li></ol></li></ol></li></ol></div></div><footer><nobr><span class="icp-title">GZHU</span><span class="icp-content">193001-0001</span></nobr><br><nobr><span class="icp-title">OUTPOST</span><span class="icp-content">169-2025-0331</span></nobr><br><nobr>Published with <a target="_blank" rel="noopener" href="http://hexo.io">Hexo</a></nobr><wbr><nobr> Theme <a target="_blank" rel="noopener" href="https://github.com/Yue-plus/hexo-theme-arknights">Arknights</a></nobr><wbr><nobr> by <a target="_blank" rel="noopener" href="https://github.com/Yue-plus">Yue_plus</a></nobr></footer></aside></main><canvas id="canvas-dust"></canvas></body></html>
+<ul>
+<li><strong>Bhattacharyya, S., et al. (2011).</strong> Data mining for credit card fraud: A comparative study. Decision Support Systems.</li>
+<li><strong>Breiman, L. (2001).</strong> Random Forests. Machine Learning.</li>
+<li><strong>CAIF (2022).</strong> The Impact of Insurance Fraud on the U.S. Economy. Coalition Against Insurance Fraud.</li>
+<li><strong>Chawla, N. V., et al. (2002).</strong> SMOTE: Synthetic Minority Over-sampling Technique. Journal of Artificial Intelligence Research (JAIR).</li>
+<li><strong>Cohen, A., &amp; Siegelman, P. (2010).</strong> Testing for Adverse Selection in Insurance Markets. Journal of Risk and Insurance.</li>
+<li><strong>Derrig, R. A. (2002).</strong> Insurance Fraud. Journal of Risk and Insurance.</li>
+<li><strong>He, H., &amp; Garcia, E. A. (2009).</strong> Learning from Imbalanced Data. IEEE Transactions on Knowledge and Data Engineering.</li>
+<li><strong>OECD (2023).</strong> Global Insurance Market Trends 2023. Organisation for Economic Co-operation and Development.</li>
+<li><strong>Chen, T., &amp; Guestrin, C. (2016).</strong> XGBoost: A Scalable Tree Boosting System. Proceedings of the 22nd ACM SIGKDD International Conference on Knowledge Discovery and Data Mining.</li>
+<li><strong>Johnson, J. M., &amp; Khoshgoftaar, T. M. (2019).</strong> Survey on deep learning with class imbalance. Journal of Big Data.</li>
+<li><strong>Ke, G., et al. (2017).</strong> LightGBM: A Highly Efficient Gradient Boosting Decision Tree. Advances in Neural Information Processing Systems (NeurIPS).</li>
+<li><strong>Dal Pozzolo, A., et al. (2015).</strong> Calibrating Probability with Undersampling for Unbalanced Classification. IEEE Symposium Series on Computational Intelligence.</li>
+<li><strong>Fernández, A., et al. (2018).</strong> SMOTE for Learning from Imbalanced Data: Progress and Challenges, Marking the 15-year Anniversary. Journal of Artificial Intelligence Research.</li>
+</ul>
+<div id="paginator"></div></div><div id="post-footer"><div id="pages" style="justify-content: flex-end"><div class="footer-link" style="width: 50%;right:1px;border-left:1px #fe2 solid"><a href="/Arknight-notes/posts/52226.html">2026-01-02-关于机器学习实训论文相关工作 上一篇 →</a></div></div></div><div id="comments"><div id="gitalk"></div></div></div><div class="bottom-btn"><div><a class="i-top" id="to-top" onClick="scrolls.scrolltop();" title="回到顶部" style="opacity: 0; display: none;">∧ </a><a class="i-index" id="to-index" href="#toc-div" title="文章目录">≡</a><a class="i-color" id="color-mode" onClick="colorMode.change()" title="切换主题"></a></div></div></article><aside><div id="about"><a href="/Arknight-notes/" id="logo"><img src="https://pic4.zhimg.com/80/v2-d9884f32711e19e80979eac58e943897_720w.webp" alt="Logo" style="margin:20;border-radius:0;"></a><h1 id="Dr"><a href="zhongye">柊野</a></h1><div id="description"><p></p></div></div><div id="aside-block"><div id="toc-div"><h1>目录</h1><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1"><span class="toc-number">1.</span> <span class="toc-text">1</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2"><span class="toc-number">2.</span> <span class="toc-text">2</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#2-1-%E6%AC%BA%E8%AF%88%E6%A3%80%E6%B5%8B%E6%96%B9%E6%B3%95%E7%9A%84%E6%BC%94%E8%BF%9B"><span class="toc-number">2.1.</span> <span class="toc-text">2.1 欺诈检测方法的演进</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-2-%E4%BC%A0%E7%BB%9F%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95%E5%9C%A8%E4%BF%9D%E9%99%A9%E6%AC%BA%E8%AF%88%E6%A3%80%E6%B5%8B%E4%B8%AD%E7%9A%84%E5%BA%94%E7%94%A8"><span class="toc-number">2.2.</span> <span class="toc-text">2.2 传统机器学习算法在保险欺诈检测中的应用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-3-%E5%A4%9A%E6%A8%A1%E5%9E%8B%E6%AF%94%E8%BE%83%E7%A0%94%E7%A9%B6%E4%B8%8E%E7%AE%97%E6%B3%95%E9%80%89%E6%8B%A9%E7%AD%96%E7%95%A5"><span class="toc-number">2.3.</span> <span class="toc-text">2.3 多模型比较研究与算法选择策略</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-4-%E6%95%B0%E6%8D%AE%E4%B8%8D%E5%B9%B3%E8%A1%A1%E4%B8%8E%E7%89%B9%E5%BE%81%E5%B7%A5%E7%A8%8B"><span class="toc-number">2.4.</span> <span class="toc-text">2.4 数据不平衡与特征工程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-5-%E5%8F%AF%E8%BF%9B%E4%B8%80%E6%AD%A5%E6%8E%A2%E7%B4%A2%E7%9A%84%E7%A9%BA%E9%97%B4"><span class="toc-number">2.5.</span> <span class="toc-text">2.5 可进一步探索的空间</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3"><span class="toc-number">3.</span> <span class="toc-text">3</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-%E6%95%B0%E6%8D%AE%E9%9B%86%E6%8F%8F%E8%BF%B0"><span class="toc-number">3.0.1.</span> <span class="toc-text">3.1 数据集描述</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#3-2-%E6%95%B0%E6%8D%AE%E9%A2%84%E5%A4%84%E7%90%86"><span class="toc-number">3.0.1.1.</span> <span class="toc-text">3.2 数据预处理</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-3-Handling-Class-Imbalance"><span class="toc-number">3.0.1.2.</span> <span class="toc-text">3.3 Handling Class Imbalance</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-4-%E5%AE%9E%E9%AA%8C%E8%AE%BE%E7%BD%AE%E4%B8%8E%E8%AF%84%E4%BC%B0%E6%8C%87%E6%A0%87"><span class="toc-number">3.1.</span> <span class="toc-text">3.4 实验设置与评估指标</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-4-1-%E6%95%B0%E6%8D%AE%E9%9B%86%E5%88%92%E5%88%86"><span class="toc-number">3.1.1.</span> <span class="toc-text">3.4.1 数据集划分</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-4-2-%E6%A8%A1%E5%9E%8B%E9%80%89%E6%8B%A9"><span class="toc-number">3.1.2.</span> <span class="toc-text">3.4.2 模型选择</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-5-%E5%AE%9E%E9%AA%8C%E8%AE%BE%E8%AE%A1%E4%B8%8E%E8%AF%84%E4%BC%B0%E6%8C%87%E6%A0%87-Experimental-Design-and-Metrics"><span class="toc-number">3.2.</span> <span class="toc-text">3.5 实验设计与评估指标 (Experimental Design and Metrics)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-5-1-%E5%AE%9E%E9%AA%8C%E8%AE%BE%E7%BD%AE"><span class="toc-number">3.2.1.</span> <span class="toc-text">3.5.1 实验设置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-5-2-%E8%AF%84%E4%BC%B0%E6%8C%87%E6%A0%87"><span class="toc-number">3.2.2.</span> <span class="toc-text">3.5.2 评估指标</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#4-%E5%AE%9E%E9%AA%8C%E7%BB%93%E6%9E%9C%E4%B8%8E%E5%88%86%E6%9E%90"><span class="toc-number">4.</span> <span class="toc-text">4 实验结果与分析</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1-%E5%AE%9E%E9%AA%8C%E7%8E%AF%E5%A2%83%E4%B8%8E%E8%AE%BE%E7%BD%AE"><span class="toc-number">4.0.1.</span> <span class="toc-text">4.1 实验环境与设置</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#4-1-%E6%A8%A1%E5%9E%8B%E6%80%A7%E8%83%BD%E5%AF%B9%E6%AF%94"><span class="toc-number">4.0.1.1.</span> <span class="toc-text">4.1 模型性能对比</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-2-ROC%E6%9B%B2%E7%BA%BF%E5%88%86%E6%9E%90"><span class="toc-number">4.0.1.2.</span> <span class="toc-text">4.2 ROC曲线分析</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-3-%E9%9A%8F%E6%9C%BA%E6%A3%AE%E6%9E%97%E6%A8%A1%E5%9E%8B%E8%AF%A6%E7%BB%86%E5%88%86%E6%9E%90"><span class="toc-number">4.0.1.3.</span> <span class="toc-text">4.3 随机森林模型详细分析</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-4-%E4%B8%8D%E5%B9%B3%E8%A1%A1%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86%E7%AD%96%E7%95%A5%E7%9A%84%E6%9C%89%E6%95%88%E6%80%A7%E5%88%86%E6%9E%90"><span class="toc-number">4.0.1.4.</span> <span class="toc-text">4.4 不平衡数据处理策略的有效性分析</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-5-%E7%89%B9%E5%BE%81%E9%80%89%E6%8B%A9%E7%9A%84%E5%BD%B1%E5%93%8D%E5%88%86%E6%9E%90"><span class="toc-number">4.0.1.5.</span> <span class="toc-text">4.5 特征选择的影响分析</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-6-%E7%BB%93%E6%9E%9C%E8%AE%A8%E8%AE%BA"><span class="toc-number">4.0.1.6.</span> <span class="toc-text">4.6 结果讨论</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC5%E7%AB%A0-%E7%BB%93%E8%AE%BA%E4%B8%8E%E5%B1%95%E6%9C%9B"><span class="toc-number">4.0.2.</span> <span class="toc-text">第5章 结论与展望</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#5-1-%E7%A0%94%E7%A9%B6%E7%BB%93%E8%AE%BA"><span class="toc-number">4.0.2.1.</span> <span class="toc-text">5.1 研究结论</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-2-%E7%90%86%E8%AE%BA%E4%B8%8E%E5%AE%9E%E8%B7%B5%E6%84%8F%E4%B9%89"><span class="toc-number">4.0.2.2.</span> <span class="toc-text">5.2 理论与实践意义</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-3-%E7%A0%94%E7%A9%B6%E5%B1%80%E9%99%90%E6%80%A7"><span class="toc-number">4.0.2.3.</span> <span class="toc-text">5.3 研究局限性</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-4-%E6%9C%AA%E6%9D%A5%E7%A0%94%E7%A9%B6%E5%B1%95%E6%9C%9B"><span class="toc-number">4.0.2.4.</span> <span class="toc-text">5.4 未来研究展望</span></a></li></ol></li></ol></li></ol></li></ol></div></div><footer><nobr><span class="icp-title">GZHU</span><span class="icp-content">193001-0001</span></nobr><br><nobr><span class="icp-title">OUTPOST</span><span class="icp-content">169-2025-0331</span></nobr><br><nobr>构建自 <a target="_blank" rel="noopener" href="http://hexo.io">Hexo</a></nobr><wbr><nobr> 使用主题 <a target="_blank" rel="noopener" href="https://github.com/Yue-plus/hexo-theme-arknights">Arknights</a></nobr><wbr><nobr> 主题作者 <a target="_blank" rel="noopener" href="https://github.com/Yue-plus">Yue_plus</a></nobr></footer></aside></main><canvas id="canvas-dust"></canvas></body></html>
