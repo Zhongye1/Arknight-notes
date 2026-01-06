@@ -1,0 +1,839 @@
+<!DOCTYPE html><html lang="en" theme-mode="dark"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>2026-01-06-人工智能导论复习 | Notes|笔记站</title><link rel="icon" type="image/x-icon" href="/Arknight-notes/favicon.ico"><link rel="preload" as="font" crossorigin="anonymous" href="/Arknight-notes/font/Bender.ttf"><link rel="preload" as="font" crossorigin="anonymous" href="/Arknight-notes/font/BenderLight.ttf"><link rel="preload" as="font" crossorigin="anonymous" href="/Arknight-notes/font/JetBrainsMono-Regular.woff2"><link rel="stylesheet" href="/Arknight-notes/css/arknights.css"><style>@font-face {
+  font-family: Bender;
+  src: local('Bender'), url("/Arknight-notes/font/Bender.ttf"), url("/Arknight-notes/font/Bender.otf");
+}
+@font-face {
+  font-family: BenderLight;
+  src: local('BenderLight'), url("/Arknight-notes/font/BenderLight.ttf");
+}
+@font-face {
+  font-family: 'JetBrains Mono';
+  src: local('JetBrains Mono'), url('/Arknight-notes/font/JetBrainsMono-Regular.woff2') format('woff2');
+}
+</style><script>var config = {"root":"/Arknight-notes/","code_fold":90,"search":{"preload":false,"activeHolder":"Enter here","blurHolder":"Search","noResult":"Data \"$0\" not found"},"code":{"codeInfo":"$0 - $1 lines","copy":"copy"}}</script><link type="text/css" rel="stylesheet" href="/Arknight-notes/lib/encrypt/hbe.style.css"><script src="/Arknight-notes/js/gitalk.js"></script><script src="//unpkg.com/mermaid@10.5.0/dist/mermaid.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.6.1/MathJax.js"></script><script>MathJax.Hub.Config({
+ menuSettings: {
+   zoom: "None"
+ },
+ showMathMenu: false,
+ jax: ["input/TeX","output/CommonHTML"],
+ extensions: ["tex2jax.js"],
+ TeX: {
+   extensions: ["AMSmath.js","AMSsymbols.js"],
+   equationNumbers: {
+     autoNumber: "AMS"
+   }
+ },
+ tex2jax: {
+   inlineMath: [["\\(", "\\)"]],
+   displayMath: [["\\[", "\\]"]]
+ }
+});</script><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lightgallery.css"><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lg-zoom.css"><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lg-thumbnail.css"><link type="text/css" rel="stylesheet" href="/Arknight-notes/lib/fontawesome/css/all.min.css"><script>if (window.localStorage.getItem('theme-mode') === 'light')
+ document.documentElement.setAttribute('theme-mode', 'light')
+if (window.localStorage.getItem('theme-mode') === 'dark')
+ document.documentElement.setAttribute('theme-mode', 'dark')</script><style>@font-face {
+ font-family: BenderLight;
+ src: local('Bender'), url("/Arknight-notes/font/BenderLight.woff2") format('woff2');
+}
+@font-face {
+ font-family: 'JetBrains Mono';
+ src: local('JetBrains Mono'), url('/Arknight-notes/font/JetBrainsMono-Regular.woff2') format('woff2');
+}</style><style>:root {
+ --dark-background: url('https://pica.zhimg.com/v2-1d14a5f80bbe62302dce99b273e3a948_r.jpg');
+ --light-background: url('https://pic2.zhimg.com/v2-6269d74b4dafe14781d03790e5a86b21_r.jpg');
+ --theme-encrypt-confirm: 'confirm'
+}</style><script defer src="/Arknight-notes/js/arknights.js"></script><script defer src="/Arknight-notes/js/search.js"></script><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><script async src="/Arknight-notes/js/gitalk.js"></script><script defer type="module">import mermaid from '//unpkg.com/mermaid@10.5.0/dist/mermaid.esm.mjs';
+window.mermaid = mermaid;
+code.paintMermaid();
+</script><script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.6.1/MathJax.js"></script><script>MathJax.Hub.Config({
+  menuSettings: {
+    zoom: "None"
+  },
+  showMathMenu: false,
+  jax: ["input/TeX","output/CommonHTML"],
+  extensions: ["tex2jax.js"],
+  TeX: {
+    extensions: ["AMSmath.js","AMSsymbols.js"],
+    equationNumbers: {
+      autoNumber: "AMS"
+    }
+  },
+  tex2jax: {
+    inlineMath: [["\\(", "\\)"]],
+    displayMath: [["\\[", "\\]"]]
+  }
+});
+</script><script async src="//unpkg.com/lightgallery@2.7.1/lightgallery.min.js"></script><script async src="//unpkg.com/lightgallery@2.7.1/plugins/zoom/lg-zoom.min.js"></script><script async src="//unpkg.com/lightgallery@2.7.1/plugins/thumbnail/lg-thumbnail.min.js"></script><script async src="/Arknight-notes/lib/encrypt/hbe.js"></script><script async src="/Arknight-notes/js/pjax.js"></script><script class="pjax-js">reset= () => {gitalk = new Gitalk({
+ clientID: 'Ov23ct13Fb0b67x23wnT',
+ clientSecret: 'f18ce69dd545e3c0f5e2456afde9c756fe8a254a',
+ repo: 'Arknight-notes',
+ owner: 'Zhongye1',
+ admin: ['Zhongye1'],
+ distractionFreeMode: false,
+ id: location.pathname
+});
+if (document.querySelector("#gitalk")) gitalk.render("gitalk");document.querySelector('.lg-container')?.remove()
+lightGallery(document.getElementById('post-bg'), {
+  plugins: [lgZoom,lgThumbnail],
+  selector: '.item-img'})}</script><script>window.addEventListener("load",() => {pjax = new Pjax({
+ cacheBust: false,
+ selectors: ['title','article','#aside-block','.pjax-js','data-pjax','.busuanzi'],
+ switches: {'article': Pjax.switches.sideBySide},
+ switchesOptions: {
+   'article': {
+     classNames: {
+       remove: "pjax-out",
+       add: "pjax-in"
+     }
+   }
+ }
+});
+document.addEventListener("pjax:complete", reset);document.addEventListener('pjax:success', _ => bszCaller.fetch(
+ "//busuanzi.ibruce.info/busuanzi?jsonpCallback=BusuanziCallback", a => {
+  bszTag.texts(a),
+  bszTag.shows()
+}));reset()})</script><script class="pjax-js">reset= () => {gitalk = new Gitalk({
+ clientID: 'Ov23ct13Fb0b67x23wnT',
+ clientSecret: 'f18ce69dd545e3c0f5e2456afde9c756fe8a254a',
+ repo: 'Arknight-notes',
+ owner: 'Zhongye1',
+ admin: ['Zhongye1'],
+ distractionFreeMode: false,
+ id: location.pathname
+});
+if (document.querySelector("#gitalk")) gitalk.render("gitalk");document.querySelector('.lg-container')?.remove()
+lightGallery(document.getElementById('post-bg'), {
+  plugins: [lgZoom,lgThumbnail],
+  selector: '.item-img'})}</script><script>window.addEventListener("load",() => {pjax = new Pjax({
+ cacheBust: false,
+ selectors: ['title','article','#aside-block','.pjax-js'],
+ switches: {'article': Pjax.switches.sideBySide},
+ switchesOptions: {
+   'article': {
+     classNames: {
+       remove: "pjax-out",
+       add: "pjax-in"
+     }
+   }
+ }
+});
+document.addEventListener("pjax:complete", reset);reset()})</script><meta name="generator" content="Hexo 7.3.0"><style>mjx-container[jax="SVG"] {
+  direction: ltr;
+}
+
+mjx-container[jax="SVG"] > svg {
+  overflow: visible;
+}
+
+mjx-container[jax="SVG"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="SVG"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="SVG"][justify="right"] {
+  text-align: right;
+}
+
+g[data-mml-node="merror"] > g {
+  fill: red;
+  stroke: red;
+}
+
+g[data-mml-node="merror"] > rect[data-background] {
+  fill: yellow;
+  stroke: none;
+}
+
+g[data-mml-node="mtable"] > line[data-line] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > rect[data-frame] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > .mjx-dashed {
+  stroke-dasharray: 140;
+}
+
+g[data-mml-node="mtable"] > .mjx-dotted {
+  stroke-linecap: round;
+  stroke-dasharray: 0,140;
+}
+
+g[data-mml-node="mtable"] > svg {
+  overflow: visible;
+}
+
+[jax="SVG"] mjx-tool {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+[jax="SVG"] mjx-tool > mjx-tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+mjx-tool > mjx-tip {
+  display: inline-block;
+  padding: .2em;
+  border: 1px solid #888;
+  font-size: 70%;
+  background-color: #F8F8F8;
+  color: black;
+  box-shadow: 2px 2px 5px #AAAAAA;
+}
+
+g[data-mml-node="maction"][data-toggle] {
+  cursor: pointer;
+}
+
+mjx-status {
+  display: block;
+  position: fixed;
+  left: 1em;
+  bottom: 1em;
+  min-width: 25%;
+  padding: .2em .4em;
+  border: 1px solid #888;
+  font-size: 90%;
+  background-color: #F8F8F8;
+  color: black;
+}
+
+foreignObject[data-mjx-xml] {
+  font-family: initial;
+  line-height: normal;
+  overflow: visible;
+}
+
+.MathJax path {
+  stroke-width: 3;
+}
+
+mjx-container[display="true"] {
+  overflow: auto hidden;
+}
+
+mjx-container[display="true"] + br {
+  display: none;
+}
+</style><link rel="alternate" href="/Arknight-notes/rss.xml" title="Notes|笔记站" type="application/atom+xml">
+</head><body><div class="loading" style="opacity: 0;"><div class="loadingBar left"></div><div class="loadingBar right"></div></div><main><header class="closed"><div class="navBtn"><i class="navBtnIcon"><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span></i></div><nav><div class="navItem" id="search-header"><span class="navItemTitle"><input autocomplete="off" autocorrect="off" autocapitalize="none" placeholder="Search" spellcheck="false" maxlength="50" type="text" id="search-input"></span></div><div class="navItem" id="search-holder"></div><div class="search-popup" tabindex="0"><div id="search-result"></div></div><ol class="navContent"><li class="navItem"><a class="navBlock" href="/Arknight-notes/"><span class="navItemTitle">Home</span></a></li><li class="navItem" matchdata="categories,tags"><a class="navBlock" href="/Arknight-notes/archives/"><span class="navItemTitle">Archives</span></a></li><li class="navItem"><a class="navBlock" href="/Arknight-notes/about/"><span class="navItemTitle">About</span></a></li></ol></nav></header><article><div id="post-bg"><div id="post-title"><h1>2026-01-06-人工智能导论复习</h1><div id="post-info"><span>First Post: <div class="control"><time datetime="2026-01-06T19:25:49.000Z" id="date"> 2026-01-07</time></div></span><br><span>Last Update: <div class="control"><time datetime="2026-01-06T19:45:45.680Z" id="updated"> 2026-01-07</time></div></span><br><span id="busuanzi_container_page_pv">Page View: <span class="control" id="busuanzi_value_page_pv">loading...</span></span></div></div><hr><div id="post-content"><h1 id="第一章"><a href="#第一章" class="headerlink" title="第一章"></a>第一章</h1><p><strong>1.1 什么是人类智能？它有哪些特点？</strong></p>
+<ul>
+<li><strong>人类智能</strong>是指人类在认识、适应和改造客观世界的过程中，由一系列核心能力构成的综合性心智功能。其本质在于能<strong>理解、推理、学习</strong>并运用知识解决复杂问题。</li>
+<li><strong>主要特点</strong>：<ol>
+<li><strong>感知与理解</strong>：能通过感官获取信息，并理解其含义。</li>
+<li><strong>学习与适应</strong>：能从经验中学习，更新知识，适应新环境。</li>
+<li><strong>推理与解决问题</strong>：能运用逻辑、归纳、演绎等方法，从已知推知未知，并制定策略解决问题。</li>
+<li><strong>使用语言</strong>：能用复杂的符号系统（语言）进行交流、表达和思考。</li>
+<li><strong>具有意识与能动性</strong>：有自我意识，能进行有目的、有计划的主动行为。</li>
+</ol>
+</li>
+</ul>
+<p><strong>1.2 什么是人工智能？它的发展过程经历了哪些阶段？</strong></p>
+<ul>
+<li><strong>人工智能</strong>是计算机科学的一个分支，旨在<strong>研究、开发用于模拟、延伸和扩展人的智能的理论、方法、技术及应用系统</strong>。其目标是使机器能够胜任一些通常需要人类智能才能完成的复杂工作。</li>
+<li><strong>主要发展阶段</strong>：<ol>
+<li><strong>孕育期（1956 年以前）</strong>：数理逻辑、控制论、信息论等理论为 AI 诞生奠定基础。图灵提出“机器能思考吗？”的划时代问题。</li>
+<li><strong>形成与热潮期（1956-1970s 初）</strong>：<strong>1956 年达特茅斯会议</strong>正式提出“人工智能”学科名称。早期在问题求解、定理证明、机器翻译等方面取得突破，乐观情绪高涨。</li>
+<li><strong>知识应用与专家系统时期（1970s-1980s）</strong>：研究者意识到“知识”的重要性，<strong>专家系统</strong>（将人类专家的知识规则化）成为主流，AI 走向商业化应用。</li>
+<li><strong>机器学习兴起与平稳发展期（1980s 末-2010 初）</strong>：随着互联网兴起和数据量增长，以<strong>统计学习</strong>和<strong>神经网络复兴（连接主义）</strong>为代表的机器学习方法成为核心。支持向量机、决策树等方法广泛应用。</li>
+<li><strong>深度学习与大数据驱动期（2010s 至今）</strong>：得益于大数据、强算力（如 GPU）和算法改进（如深度神经网络），<strong>深度学习</strong>在图像识别、自然语言处理等领域取得突破性进展，引发新一轮 AI 热潮。</li>
+</ol>
+</li>
+</ul>
+<p><strong>1.3 人工智能研究的基本内容有哪些？</strong></p>
+<p>根据您图片中的提示并综合常见分类，其基本内容包括：</p>
+<ol>
+<li><strong>知识表示</strong>：研究如何用机器可处理的形式来<strong>表示和存储</strong>人类的知识（如事实、规则）。</li>
+<li><strong>机器感知</strong>：研究如何让机器通过“<strong>感官</strong>”获取外部信息，核心领域包括<strong>计算机视觉</strong>（看）和<strong>语音识别</strong>（听）。</li>
+<li><strong>机器思维</strong>：在感知的基础上，研究如何对信息进行<strong>推理、决策和问题求解</strong>，是 AI 的核心。</li>
+<li><strong>机器学习</strong>：研究如何让机器<strong>自动从数据中学习规律和知识</strong>，从而不断改进性能，是实现人工智能的关键途径。</li>
+<li><strong>自然语言处理</strong>：研究如何实现<strong>人机间的自然语言通信</strong>，包括理解和生成。</li>
+<li><strong>行为主义与智能系统</strong>：研究如何将上述能力综合，构建能对外界环境做出<strong>合理反应和行动</strong>的智能体或机器人。</li>
+</ol>
+<p><strong>1.4 人工智能有哪些主要的研究领域？</strong></p>
+<p>（以下是部分核心与活跃的研究领域）</p>
+<ol>
+<li><strong>机器感知</strong>：计算机视觉、语音识别、多模态感知。</li>
+<li><strong>自然语言处理</strong>：机器翻译、文本理解与生成、对话系统（聊天机器人）。</li>
+<li><strong>机器学习</strong>：深度学习、强化学习、迁移学习、联邦学习。</li>
+<li><strong>知识表示与推理</strong>：知识图谱、自动推理、专家系统。</li>
+<li><strong>机器人学</strong>：环境感知、运动控制、人机协作。</li>
+<li><p><strong>人工智能交叉与应用领域</strong>：</p>
+<ul>
+<li><strong>智能控制</strong>：如智能驾驶。</li>
+<li><strong>智能计算</strong>：演化计算、群智能优化。</li>
+<li><strong>数据挖掘与大数据分析</strong>。</li>
+<li><strong>人工智能与其他学科的交叉</strong>：如生物信息学、计算金融、智慧医疗等。</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h1 id="第二章"><a href="#第二章" class="headerlink" title="第二章"></a>第二章</h1><p>2.1 什么是知识？它有哪些特性？有哪几种分类方法？</p>
+<p>2.2 什么是知识表示？如何选择知识表示方法？</p>
+<p>2.3 什么是命题？请写出三个真值为 T 及真值为 F 的命题。</p>
+<p>2.4 什么是谓词？什么是谓词个体及个体域？函数与谓词的区别是什么？</p>
+<p>2.5 谓词逻辑和命题逻辑的关系如何？有何异同？</p>
+<p>2.6 什么是谓词的项？什么是谓词的阶？请写出谓词的一般形式。</p>
+<p>2.7 什么是谓词公式？什么是谓词公式的解释？</p>
+<p>2.8 一阶谓词逻辑表示法是结构化知识还是非结构化知识？适合于表示哪种类型的知识？它有哪些特点？</p>
+<p>2.9 请写出用一阶谓词逻辑表示法表示知识的步骤。</p>
+<p>2.10 产生式的基本形式是什么？它与谓词逻辑中蕴涵式有什么共同处和不同处？</p>
+<p>2.11 产生式系统由哪几部分组成？</p>
+<p>2.12 试述产生式系统求解问题的一般步骤。</p>
+<p>2.13 产生式系统中，推理机的推理方式有哪几种？在产生式推理过程中，如果发生策略冲突，如何解决？</p>
+<p>2.14 试述产生式表示法的特点。</p>
+<p>2.15 框架的一般表示形式是什么？</p>
+<p>2.16 框架表示法有何特点？请叙述用框架表示法表示知识的步骤。</p>
+<p>2.17 试构造一个描述读者的办公室或卧室的框架系统。</p>
+<p>2.18 试构造一个描述计算机主机的框架系统。</p>
+<p>2.19 请给出一个知识图谱实例。</p>
+<h2 id="参考答案"><a href="#参考答案" class="headerlink" title="参考答案"></a>参考答案</h2><h4 id="2-1-什么是知识？它有哪些特性？有哪几种分类方法？"><a href="#2-1-什么是知识？它有哪些特性？有哪几种分类方法？" class="headerlink" title="2.1 什么是知识？它有哪些特性？有哪几种分类方法？"></a><strong>2.1 什么是知识？它有哪些特性？有哪几种分类方法？</strong></h4><ul>
+<li><strong>知识</strong>：知识是经过<strong>加工、整理、解释、挑选和改造</strong>的信息，是人们在长期实践中积累的对客观世界的规律性认识。在人工智能中，知识是使机器具备智能的基石。</li>
+<li><strong>特性</strong>：相对正确性（在特定条件下成立）、不确定性、可表示性、可利用性。</li>
+<li><strong>分类方法</strong>：<ol>
+<li><strong>按作用层次</strong>：事实性知识、过程性知识、控制性知识。</li>
+<li><strong>按确定性</strong>：确定性知识、不确定性知识。</li>
+<li><strong>按表现形式</strong>：显性知识（可编码）、隐性知识（经验、直觉）。</li>
+</ol>
+</li>
+</ul>
+<h4 id="2-2-什么是知识表示？如何选择知识表示方法？"><a href="#2-2-什么是知识表示？如何选择知识表示方法？" class="headerlink" title="2.2 什么是知识表示？如何选择知识表示方法？"></a><strong>2.2 什么是知识表示？如何选择知识表示方法？</strong></h4><ul>
+<li><strong>知识表示</strong>：将人类知识<strong>形式化、模型化</strong>，以便计算机能够存储、处理和运用的一套方法和约定。它是数据结构和解释过程的结合。</li>
+<li><strong>选择依据</strong>：① 充分表示领域知识；② 支持高效推理；③ 便于知识的获取与管理；④ 易于理解、维护。</li>
+</ul>
+<h4 id="2-3-什么是命题？请写出三个真值为-T-及真值为-F-的命题。"><a href="#2-3-什么是命题？请写出三个真值为-T-及真值为-F-的命题。" class="headerlink" title="2.3 什么是命题？请写出三个真值为 T 及真值为 F 的命题。"></a><strong>2.3 什么是命题？请写出三个真值为 T 及真值为 F 的命题。</strong></h4><ul>
+<li><strong>命题</strong>：一个能判断其<strong>真（T）或假（F）</strong>​ 的陈述句。</li>
+<li><strong>示例</strong>：<ul>
+<li>真命题：北京是中国的首都。1+1=2。太阳从东方升起。</li>
+<li>假命题：2 大于 3。鱼在天上飞。地球是平的。</li>
+</ul>
+</li>
+</ul>
+<h4 id="2-4-什么是谓词？什么是谓词个体及个体域？函数与谓词的区别是什么？"><a href="#2-4-什么是谓词？什么是谓词个体及个体域？函数与谓词的区别是什么？" class="headerlink" title="2.4 什么是谓词？什么是谓词个体及个体域？函数与谓词的区别是什么？"></a><strong>2.4 什么是谓词？什么是谓词个体及个体域？函数与谓词的区别是什么？</strong></h4><ul>
+<li><strong>谓词</strong>：用于描述<strong>个体性质</strong>或<strong>个体间关系</strong>的语句成分。例如，“是红色的(x)”描述性质，“朋友(x, y)”描述关系。</li>
+<li><strong>个体</strong>：可以独立存在的具体或抽象<strong>对象</strong>（如“小明”、“5”）。</li>
+<li><strong>个体域</strong>：个体所组成的<strong>集合</strong>（讨论范围）。</li>
+<li><strong>函数与谓词的区别</strong>：<strong>函数</strong>的返回值是一个<strong>个体</strong>（如 <code>父亲(小明)</code>返回一个人），而<strong>谓词</strong>的返回值是一个<strong>真值</strong>（T 或 F）（如 <code>朋友(小明, 小红)</code>判断真假）。</li>
+</ul>
+<h4 id="2-5-谓词逻辑和命题逻辑的关系如何？有何异同？"><a href="#2-5-谓词逻辑和命题逻辑的关系如何？有何异同？" class="headerlink" title="2.5 谓词逻辑和命题逻辑的关系如何？有何异同？"></a><strong>2.5 谓词逻辑和命题逻辑的关系如何？有何异同？</strong></h4><ul>
+<li><strong>关系</strong>：命题逻辑是谓词逻辑的基础，谓词逻辑是命题逻辑的<strong>细化和扩展</strong>。</li>
+<li><strong>相同点</strong>：都使用逻辑连接词（与、或、非等）和真值运算。</li>
+<li><strong>不同点</strong>：<ul>
+<li><strong>描述粒度</strong>：命题逻辑以<strong>整个句子</strong>为基本单元，无法分析内部结构。谓词逻辑可分析到<strong>个体、谓词和量词</strong>。</li>
+<li><strong>表达能力</strong>：谓词逻辑能表达“所有”、“存在”等量化的普遍性知识，表达能力<strong>远强于</strong>命题逻辑。</li>
+</ul>
+</li>
+</ul>
+<h4 id="2-6-什么是谓词的项？什么是谓词的阶？请写出谓词的一般形式。"><a href="#2-6-什么是谓词的项？什么是谓词的阶？请写出谓词的一般形式。" class="headerlink" title="2.6 什么是谓词的项？什么是谓词的阶？请写出谓词的一般形式。"></a><strong>2.6 什么是谓词的项？什么是谓词的阶？请写出谓词的一般形式。</strong></h4><ul>
+<li><strong>谓词的项</strong>：充当谓词<strong>逻辑自变量的个体</strong>。可以是常量、变量或函数。</li>
+<li><strong>谓词的阶</strong>：由项的取值范围决定。<strong>一阶谓词</strong>的项是个体，<strong>二阶谓词</strong>的项可以是谓词或集合。</li>
+<li><strong>一般形式</strong>：<code>P(x1, x2, ..., xn)</code>。其中 P 是谓词名，x1~xn 是项。</li>
+</ul>
+<h4 id="2-7-什么是谓词公式？什么是谓词公式的解释？"><a href="#2-7-什么是谓词公式？什么是谓词公式的解释？" class="headerlink" title="2.7 什么是谓词公式？什么是谓词公式的解释？"></a><strong>2.7 什么是谓词公式？什么是谓词公式的解释？</strong></h4><ul>
+<li><strong>谓词公式</strong>：由谓词、项、逻辑连接词、量词和括号按规则组成的合法符号串，用于表达一个完整的判断。</li>
+<li><strong>解释</strong>：给谓词公式中的<strong>个体常量、函数符号、谓词符号</strong>赋予具体的含义（指定个体域、对应关系和函数映射），从而确定公式的<strong>真值</strong>。</li>
+</ul>
+<h4 id="2-8-一阶谓词逻辑表示法是结构化知识还是非结构化知识？适合于表示哪种类型的知识？它有哪些特点？"><a href="#2-8-一阶谓词逻辑表示法是结构化知识还是非结构化知识？适合于表示哪种类型的知识？它有哪些特点？" class="headerlink" title="2.8 一阶谓词逻辑表示法是结构化知识还是非结构化知识？适合于表示哪种类型的知识？它有哪些特点？"></a><strong>2.8 一阶谓词逻辑表示法是结构化知识还是非结构化知识？适合于表示哪种类型的知识？它有哪些特点？</strong></h4><ul>
+<li><strong>结构化/非结构化</strong>：属于<strong>结构化知识</strong>表示。它精确地描述了知识内部的逻辑结构（个体、谓词、量词）。</li>
+<li><strong>适合类型</strong>：适合表示<strong>事物的状态、属性、概念</strong>以及<strong>它们之间精确的逻辑关系</strong>。尤其擅长表达“所有 A 都是 B”、“存在某个 A 具有性质 P”这类精确的、能用公式严格定义的事实和规则。</li>
+<li><strong>特点</strong>：<ul>
+<li><strong>优点</strong>：严密性、精确性、自然性好，接近自然语言和人类思维。</li>
+<li><strong>缺点</strong>：知识粒度细，表示复杂知识时组合爆炸；推理效率相对较低；处理不确定性知识能力弱。</li>
+</ul>
+</li>
+</ul>
+<h4 id="2-9-请写出用一阶谓词逻辑表示法表示知识的步骤。"><a href="#2-9-请写出用一阶谓词逻辑表示法表示知识的步骤。" class="headerlink" title="2.9 请写出用一阶谓词逻辑表示法表示知识的步骤。"></a><strong>2.9 请写出用一阶谓词逻辑表示法表示知识的步骤。</strong></h4><ol>
+<li><strong>定义个体域</strong>：确定所讨论对象的集合。</li>
+<li><strong>定义谓词和函数</strong>：用符号表示个体性质和关系。</li>
+<li><strong>用连接词和量词将原子谓词公式组合</strong>，构成复合公式。</li>
+<li><strong>对公式进行化简，化为标准式</strong>（如前束范式），便于推理。</li>
+</ol>
+<h4 id="2-10-产生式的基本形式是什么？它与谓词逻辑中蕴涵式有什么共同处和不同处？"><a href="#2-10-产生式的基本形式是什么？它与谓词逻辑中蕴涵式有什么共同处和不同处？" class="headerlink" title="2.10 产生式的基本形式是什么？它与谓词逻辑中蕴涵式有什么共同处和不同处？"></a><strong>2.10 产生式的基本形式是什么？它与谓词逻辑中蕴涵式有什么共同处和不同处？</strong></h4><ul>
+<li><strong>基本形式</strong>：<code>IF (前提) THEN (结论/动作)</code>，也称为条件-行动对。</li>
+<li><strong>与谓词逻辑蕴涵式的异同</strong>：<ul>
+<li><strong>共同点</strong>：在确定性知识下，形式上都表现为“如果 P，则 Q”。</li>
+<li><strong>不同点</strong>：<ol>
+<li><strong>匹配过程</strong>：产生式规则的前提与<strong>动态数据库</strong>匹配，匹配即执行；蕴涵式是静态逻辑关系。</li>
+<li><strong>操作</strong>：产生式的 THEN 部分不仅可以<strong>断言新事实</strong>，也可以<strong>执行动作</strong>（如修改数据库、输出）；蕴涵式仅表示逻辑推导关系。</li>
+<li><strong>控制</strong>：产生式系统有独立的推理机控制规则触发顺序；逻辑系统依赖通用推理规则。</li>
+</ol>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="2-11-产生式系统由哪几部分组成？"><a href="#2-11-产生式系统由哪几部分组成？" class="headerlink" title="2.11 产生式系统由哪几部分组成？"></a><strong>2.11 产生式系统由哪几部分组成？</strong></h4><ol>
+<li><strong>规则库</strong>：存储所有产生式规则的知识库。</li>
+<li><strong>综合数据库/工作存储器</strong>：存储当前已知的事实、初始数据和中间结论的动态数据库。</li>
+<li><strong>推理机</strong>：控制系统的运行。负责<strong>匹配</strong>（规则前提与数据库事实）、<strong>冲突消解</strong>（选择激活的规则）、<strong>执行</strong>（执行规则结论，更新数据库）。</li>
+</ol>
+<h4 id="2-12-试述产生式系统求解问题的一般步骤。"><a href="#2-12-试述产生式系统求解问题的一般步骤。" class="headerlink" title="2.12 试述产生式系统求解问题的一般步骤。"></a><strong>2.12 试述产生式系统求解问题的一般步骤。</strong></h4><ol>
+<li><strong>初始化</strong>：将初始事实和数据存入综合数据库。</li>
+<li><strong>匹配</strong>：推理机将规则库中每条规则的前提与综合数据库中的当前事实进行比对。</li>
+<li><strong>冲突消解</strong>：若有多条规则可被激活，按某种策略（如优先级、特殊性、顺序）选择一条。</li>
+<li><strong>执行</strong>：执行被选中规则的 THEN 部分，可能添加新事实、修改旧事实或执行外部动作，从而<strong>更新综合数据库</strong>。</li>
+<li><strong>循环</strong>：重复步骤 2-4，直到达到目标状态（数据库包含目标事实）或没有规则可被激活为止。</li>
+</ol>
+<h4 id="2-13-产生式系统中，推理机的推理方式有哪几种？在产生式推理过程中，如果发生策略冲突，如何解决？"><a href="#2-13-产生式系统中，推理机的推理方式有哪几种？在产生式推理过程中，如果发生策略冲突，如何解决？" class="headerlink" title="2.13 产生式系统中，推理机的推理方式有哪几种？在产生式推理过程中，如果发生策略冲突，如何解决？"></a><strong>2.13 产生式系统中，推理机的推理方式有哪几种？在产生式推理过程中，如果发生策略冲突，如何解决？</strong></h4><ul>
+<li><strong>推理方式</strong>：<ol>
+<li><strong>正向推理</strong>（数据驱动）：从已知事实出发，匹配规则前提，逐步推出结论。</li>
+<li><strong>反向推理</strong>（目标驱动）：从假设目标出发，寻找支持该目标的证据（规则）。</li>
+<li><strong>混合推理</strong>：结合正向和反向推理。</li>
+</ol>
+</li>
+<li><strong>冲突解决策略</strong>：<ol>
+<li><strong>专一性排序</strong>：优先选择条件更具体、更特殊的规则。</li>
+<li><strong>规则排序</strong>：按事先指定的固定优先级。</li>
+<li><strong>数据排序</strong>：按前提中条件的<strong>新鲜性</strong>（新加入的事实优先）或<strong>特殊性</strong>排序。</li>
+<li><strong>就近排序</strong>：优先选择最近使用过的规则。</li>
+<li><strong>规模排序</strong>：优先选择前提条件多的规则。</li>
+</ol>
+</li>
+</ul>
+<h4 id="2-14-试述产生式表示法的特点。"><a href="#2-14-试述产生式表示法的特点。" class="headerlink" title="2.14 试述产生式表示法的特点。"></a><strong>2.14 试述产生式表示法的特点。</strong></h4><ul>
+<li><strong>优点</strong>：<ul>
+<li><strong>自然性</strong>：接近人类“如果…那么…”的思维习惯。</li>
+<li><strong>模块性</strong>：规则形式单一、相互独立，易于增、删、改。</li>
+<li><strong>清晰性</strong>：知识与控制分离，结构清晰。</li>
+</ul>
+</li>
+<li><strong>缺点</strong>：<ul>
+<li><strong>效率低</strong>：匹配是组合爆炸问题，求解效率可能不高。</li>
+<li><strong>不能表达结构性知识</strong>：不擅长描述具有复杂内在结构的知识对象。</li>
+</ul>
+</li>
+</ul>
+<h4 id="2-15-框架的一般表示形式是什么？"><a href="#2-15-框架的一般表示形式是什么？" class="headerlink" title="2.15 框架的一般表示形式是什么？"></a><strong>2.15 框架的一般表示形式是什么？</strong></h4><p>框架是一种描述<strong>固定、典型情景</strong>中对象的结构化表示。其一般形式为：</p>
+<p>框架名：&lt;框架名&gt;<br>槽 1：&lt;侧面 11&gt; &lt;值 111&gt;…<br>       &lt;侧面 12&gt; &lt;值 121&gt;…<br>槽 2：&lt;侧面 21&gt; &lt;值 211&gt;…<br>…<br>约束：&lt;约束条件 1&gt;<br>     …</p>
+<p>其中，“槽”描述对象的属性或方面，“侧面”描述属性的更详细信息（如默认值、取值范围、触发过程等）。</p>
+<h4 id="2-16-框架表示法有何特点？请叙述用框架表示法表示知识的步骤。"><a href="#2-16-框架表示法有何特点？请叙述用框架表示法表示知识的步骤。" class="headerlink" title="2.16 框架表示法有何特点？请叙述用框架表示法表示知识的步骤。"></a><strong>2.16 框架表示法有何特点？请叙述用框架表示法表示知识的步骤。</strong></h4><ul>
+<li><strong>特点</strong>：结构性好、继承性（通过 AKO 槽实现）、自然性（符合人们对典型事物的认知）、便于表达默认知识。</li>
+<li><strong>表示步骤</strong>：<ol>
+<li>分析待描述对象，确定其<strong>框架名</strong>。</li>
+<li>确定描述该对象所需的关键属性，作为<strong>槽</strong>。</li>
+<li>为每个槽配备相应的<strong>侧面</strong>（如值类型、默认值、附加过程）。</li>
+<li>填写各侧面的具体<strong>值</strong>。</li>
+<li>确定与其它框架的<strong>继承关系</strong>（如<code>AKO</code>， <code>ISA</code>槽）。</li>
+</ol>
+</li>
+</ul>
+<h4 id="2-17-试构造一个描述读者的办公室或卧室的框架系统。"><a href="#2-17-试构造一个描述读者的办公室或卧室的框架系统。" class="headerlink" title="2.17 试构造一个描述读者的办公室或卧室的框架系统。"></a><strong>2.17 试构造一个描述读者的办公室或卧室的框架系统。</strong></h4><p>框架名：&lt;卧室&gt;<br>AKO：&lt;房间&gt;<br>位置：&lt;家&gt;<br>面积：&lt;15 平方米&gt;<br>功能：&lt;休息， 学习， 储物&gt;<br>包含家具：&lt;床&gt;， &lt;书桌&gt;， &lt;衣柜&gt;<br>   子框架：&lt;床&gt;<br>       类型：&lt;双人床&gt;<br>       材质：&lt;实木&gt;<br>   子框架：&lt;书桌&gt;<br>       位置：&lt;窗前&gt;<br>       状态：&lt;正在使用&gt;<br>       上放物品：&lt;笔记本电脑&gt;， &lt;台灯&gt;， &lt;书本&gt;<br>所有者：&lt;读者的名字&gt;</p>
+<h4 id="2-18-试构造一个描述计算机主机的框架系统。"><a href="#2-18-试构造一个描述计算机主机的框架系统。" class="headerlink" title="2.18 试构造一个描述计算机主机的框架系统。"></a><strong>2.18 试构造一个描述计算机主机的框架系统。</strong></h4><p>框架名：&lt;计算机主机&gt;<br>AKO：&lt;电子设备&gt;<br>品牌：<code>&lt;Dell&gt;</code><br>型号：&lt;OptiPlex 7080&gt;<br>状态：&lt;运行中&gt;<br>包含组件：<br>   槽：&lt;中央处理器&gt;<br>       型号：<intel Core="" i7-10700=""><br>       主频：&lt;2.9 GHz&gt;<br>   槽：&lt;内存&gt;<br>       容量：&lt;16 GB&gt;<br>       类型：<code>&lt;DDR4&gt;</code><br>  槽：&lt;硬盘&gt;<br>       类型：<code>&lt;SSD&gt;</code><br>       容量：&lt;512 GB&gt;<br>   槽：&lt;主板&gt;<br>       型号：&lt;Dell 0WVNPW&gt;<br>   槽：&lt;电源&gt;<br>       功率：&lt;260W&gt;<br>操作系统：&lt;Windows 10 专业版&gt;</intel></p>
+<h4 id="2-19-请给出一个知识图谱实例。"><a href="#2-19-请给出一个知识图谱实例。" class="headerlink" title="2.19 请给出一个知识图谱实例。"></a><strong>2.19 请给出一个知识图谱实例。</strong></h4><p>知识图谱是一种以<strong>图结构</strong>表示实体及其关系的语义网络。</p>
+<ul>
+<li><strong>示例</strong>：一个关于《红楼梦》的微型知识图谱。</li>
+<li><strong>表示</strong>（三元组形式）：<ul>
+<li><code>(曹雪芹， 创作， 《红楼梦》)</code></li>
+<li><code>(《红楼梦》， 文学体裁， 长篇小说)</code></li>
+<li><code>(《红楼梦》， 主角， 贾宝玉)</code></li>
+<li><code>(《红楼梦》， 主角， 林黛玉)</code></li>
+<li><code>(贾宝玉， 居住地， 大观园)</code></li>
+<li><code>(林黛玉， 性格特点， 多愁善感)</code></li>
+<li><code>(贾宝玉， 爱慕， 林黛玉)</code></li>
+<li><code>(林黛玉， 表兄妹， 贾宝玉)</code></li>
+</ul>
+</li>
+<li><strong>可视化</strong>：可以想象成一个图，其中“曹雪芹”、“《红楼梦》”、“贾宝玉”、“林黛玉”、“大观园”等是<strong>节点</strong>（实体），“创作”、“文学体裁”、“主角”、“居住地”、“爱慕”等是<strong>边</strong>（关系）。</li>
+</ul>
+<hr>
+<h1 id="第-3-章"><a href="#第-3-章" class="headerlink" title="第 3 章"></a>第 3 章</h1><p><strong>3.1</strong>​ 什么是推理、正向推理、逆向推理、混合推理？试列出常用的几种推理方式并列出每种推理方式的特点。</p>
+<p><strong>3.2</strong>​ 什么是冲突？在产生式系统中解决冲突的策略有哪些？</p>
+<p><strong>3.3</strong>​ 什么是子句？什么是子句集？请写出求谓词公式子句集的步骤。</p>
+<p><strong>3.4</strong>​ 谓词公式与它的子句集等价吗？在什么情况下它们才会等价？</p>
+<p><strong>3.5</strong>​ 引入鲁宾孙归结原理有何意义？什么是归结原理？什么是归结式？</p>
+<p><strong>3.6</strong>​ 请写出利用归结原理求解问题答案的步骤。</p>
+<h4 id="解答"><a href="#解答" class="headerlink" title="解答"></a>解答</h4><p><strong>3.1 什么是推理、正向推理、逆向推理、混合推理？试列出常用的几种推理方式并列出每种推理方式的特点。</strong></p>
+<ul>
+<li><strong>推理</strong>：从已知事实出发，运用知识推出结论的思维过程。</li>
+<li><strong>推理方式及其特点</strong>：<ol>
+<li><strong>正向推理</strong>（数据驱动）：从已知事实出发，匹配规则，不断推出新事实直至目标。<strong>特点</strong>：适用于初始数据明确、目标众多的场合，但可能进行大量与目标无关的推理。</li>
+<li><strong>逆向推理</strong>（目标驱动）：从假设目标出发，反向寻找支持它的证据。<strong>特点</strong>：目的性强，适用于目标单一的场合，但对初始数据的指导性弱。</li>
+<li><strong>混合推理</strong>：结合正向与逆向推理。<strong>特点</strong>：从初始事实正向推理，得到中间结论；再从目标逆向推理，寻求支持，效率更高。</li>
+</ol>
+</li>
+</ul>
+<p><strong>3.2 什么是冲突？在产生式系统中解决冲突的策略有哪些？</strong></p>
+<ul>
+<li><strong>冲突</strong>：在推理的某一时刻，有多条规则的前提同时与综合数据库匹配成功的情况。</li>
+<li><strong>冲突解决策略</strong>：<ol>
+<li><strong>专一性排序</strong>：优先使用条件更具体、范围更小的规则。</li>
+<li><strong>规则排序</strong>：按规则优先级事先固定排序。</li>
+<li><strong>数据排序</strong>：按匹配事实的“新旧”程度（如最新加入的事实优先）或特定性排序。</li>
+<li><strong>就近排序</strong>：优先使用最近被触发过的规则。</li>
+</ol>
+</li>
+</ul>
+<p><strong>3.3 什么是子句？什么是子句集？请写出求谓词公式子句集的步骤。</strong></p>
+<ul>
+<li><strong>子句</strong>：若干文字的析取式（<code>L₁ ∨ L₂ ∨ ...</code>），其中每个文字是原子公式或其否定。</li>
+<li><strong>子句集</strong>：若干子句的集合，是合取范式（即子句之间是“与”的关系）。</li>
+<li><strong>求子句集的步骤</strong>：<ol>
+<li><strong>消去蕴涵符号</strong>：用 <code>¬A ∨ B</code>替换 <code>A → B</code>。</li>
+<li><strong>内移否定符</strong>：将 <code>¬</code>移到原子公式前，如 <code>¬(A ∧ B)</code>化为 <code>¬A ∨ ¬B</code>。</li>
+<li><strong>变量标准化</strong>：使不同量词约束的变量名不同。</li>
+<li><strong>消去存在量词</strong>（Skolem 化）。</li>
+<li><strong>化为前束形</strong>：将所有全称量词移到公式最前面。</li>
+<li><strong>化为合取范式</strong>：将公式内化为子句的合取。</li>
+<li><strong>消去全称量词和合取词</strong>，得到子句集。</li>
+</ol>
+</li>
+</ul>
+<p><strong>3.4 谓词公式与它的子句集等价吗？在什么情况下它们才会等价？</strong></p>
+<ul>
+<li>谓词公式与其子句集<strong>并不等价</strong>。在<strong>转化过程中（特别是 Skolem 化）</strong>​ 会引入新常量/函数，导致两者在逻辑上不完全等价。</li>
+<li>它们只是在<strong>不可满足性上等价</strong>。即，<strong>原谓词公式是不可满足的，当且仅当其子句集是不可满足的</strong>。这是归结原理能用于自动定理证明的基础。</li>
+</ul>
+<p><strong>3.5 引入鲁宾孙归结原理有何意义？什么是归结原理？什么是归结式？</strong></p>
+<ul>
+<li><strong>意义</strong>：为定理的<strong>机器自动证明</strong>提供了一个简洁、规范且完备的推理方法。它将复杂的推理过程归结为简单的<strong>子句归结</strong>，奠定了自动推理的理论基础。</li>
+<li><strong>归结原理</strong>：在<strong>子句集</strong>中进行。如果两个子句中分别包含互补文字（如 <code>P</code>和 <code>¬P</code>），则可消去这对互补文字，将两个子句的其余部分合并构成新子句。</li>
+<li><strong>归结式</strong>：由归结操作生成的新子句。</li>
+</ul>
+<p><strong>3.6 请写出利用归结原理求解问题答案的步骤。</strong></p>
+<ol>
+<li><strong>化已知条件为谓词公式</strong>：将已知事实和知识表示为谓词公式集合 <code>F</code>。</li>
+<li><strong>化待证目标为谓词公式</strong>：将待证明的结论表示为谓词公式 <code>G</code>。</li>
+<li><strong>构造子句集</strong>：将公式集合 <code>{F, ¬G}</code>化为子句集 <code>S</code>。</li>
+<li><strong>归结演绎</strong>：对子句集 <code>S</code>反复应用归结原理，若最终能推出<strong>空子句</strong>（<code>□</code>），则说明 <code>F → G</code>成立，证明结束。若无法归结出空子句，且无法继续归结，则说明原结论不成立。</li>
+</ol>
+<hr>
+<h1 id="第四章"><a href="#第四章" class="headerlink" title="第四章"></a>第四章</h1><p>4.1​ 什么是不确定性推理？有哪几类不确定性推理方法？不确定性推理中需要解决的基本问题有哪些？ 4.2​ 什么是可信度？由可信度因子 CF(H,E)的定义说明它的含义。 4.3​ 简述求取问题结论可信度的步骤。 4.4​ 说明概率分配函数、信任函数、似然函数的含义。 4.5​ 概率分配函数与概率相同吗？为什么？ 4.6​ 如何用 D-S 证据理论描述假设、规则和证据的不确定性，并实现不确定性的推理组合？ 4.7​ 什么是模糊性？它与随机性有什么区别？试举出几个日常生活中的模糊概念。 4.8​ 模糊推理的一般过程是什么？</p>
+<p>答案</p>
+<p><strong>4.1 什么是不确定性推理？有哪几类不确定性推理方法？不确定性推理中需要解决的基本问题有哪些？</strong></p>
+<ul>
+<li><strong>定义</strong>：不确定性推理是指在知识（规则）和证据（事实）不精确、不完备、模糊或存在矛盾的情况下，依然能够进行推理并得出结论的一种方法。其结论通常附带有不确定性度量。</li>
+<li><strong>主要方法</strong>：<ol>
+<li><strong>可信度方法</strong>（如 MYCIN 系统模型）</li>
+<li><strong>主观贝叶斯方法</strong></li>
+<li><strong>证据理论</strong>（D-S 理论）</li>
+<li><strong>模糊推理</strong></li>
+</ol>
+</li>
+<li><strong>基本问题</strong>：<ol>
+<li><strong>不确定性的表示</strong>：如何描述知识、证据和结论的不确定性度量（如可信度、概率、隶属度等）。</li>
+<li><strong>不确定性的计算</strong>：如何定义不确定性在推理过程中的传播、更新和组合的算法。</li>
+<li><strong>不确定性度量的语义</strong>：明确不确定性度量的实际含义（如可信度是信任增长度，概率是客观频率等）。</li>
+<li><strong>证据的组合</strong>：当多条证据支持同一结论时，如何合并它们的影响。</li>
+</ol>
+</li>
+</ul>
+<p><strong>4.2 什么是可信度？由可信度因子 CF(H,E)的定义说明它的含义。</strong></p>
+<ul>
+<li><strong>可信度</strong>：是专家系统中用来表示<strong>假设 H</strong>在<strong>证据 E</strong>成立的前提下，其<strong>为真的信任程度</strong>的一种不确定性度量。</li>
+<li><strong>可信度因子 CF(H,E)</strong>：定义为信任增长度。其经典定义为： <code>CF(H,E) = MB(H,E) - MD(H,E)</code><ul>
+<li><code>MB(H,E)</code>：证据 E 对假设 H 的信任增加度量。</li>
+<li><code>MD(H,E)</code>：证据 E 对假设 H 的不信任增加度量。</li>
+</ul>
+</li>
+<li><strong>含义</strong>：<ul>
+<li><code>CF(H,E) &gt; 0</code>：表示证据 E 的出现增加了假设 H 为真的信任度，正值越大，信任度增加越多。</li>
+<li><code>CF(H,E) = 0</code>：表示证据 E 与假设 H 无关，或<code>MB=MD</code>，即信任与不信任的增量相同。</li>
+<li><code>CF(H,E) &lt; 0</code>：表示证据 E 的出现增加了假设 H 为假的不信任度。</li>
+</ul>
+</li>
+</ul>
+<p><strong>4.3 简述求取问题结论可信度的步骤。</strong></p>
+<ol>
+<li><strong>建立规则库</strong>：用<code>IF...THEN...</code>的形式定义知识，并为每条规则赋予可信度因子<code>CF(Rule)</code>。</li>
+<li><strong>初始化证据可信度</strong>：为已知的初始证据<code>E</code>赋予初始可信度<code>CF(E)</code>。</li>
+<li><strong>进行正向推理</strong>：从已知证据出发，匹配可用的规则。</li>
+<li><strong>计算结论的可信度</strong>：对于匹配成功的规则<code>IF E THEN H (CF(Rule))</code>，结论<code>H</code>的可信度<code>CF(H)</code>由前提<code>E</code>的可信度<code>CF(E)</code>和规则的可信度<code>CF(Rule)</code>共同决定，公式通常为：<code>CF(H) = CF(E) * CF(Rule)</code>。</li>
+<li><strong>组合不同证据</strong>：如果同一个结论<code>H</code>被多条路径（规则）推导出来，得到多个<code>CFi(H)</code>，则需使用组合公式（如合成法）计算最终的<code>CF(H)</code>。</li>
+</ol>
+<p><strong>4.4 说明概率分配函数、信任函数、似然函数的含义。</strong></p>
+<p>这是 D-S 证据理论中的核心概念。设<code>Θ</code>为识别框架（所有可能假设的集合）。</p>
+<ul>
+<li><strong>概率分配函数(m)</strong>：是一个从<code>Θ</code>的幂集<code>2^Θ</code>到[0,1]的映射，满足<code>m(∅)=0</code>且<code>∑m(A)=1</code>。<code>m(A)</code>表示<strong>证据本身</strong>支持命题<code>A</code>成立的基本概率分配，而不支持<code>A</code>的任何子集。</li>
+<li><strong>信任函数(Bel)</strong>：对任意命题<code>A ⊆ Θ</code>，<code>Bel(A) = ∑_{B ⊆ A} m(B)</code>。表示<strong>证据</strong>对<code>A</code>的<strong>总信任度</strong>，即所有支持<code>A</code>的子集（<code>B ⊆ A</code>）的基本概率之和。</li>
+<li><strong>似然函数(Pl)</strong>：对任意命题<code>A ⊆ Θ</code>，<code>Pl(A) = 1 - Bel(¬A)</code>。表示<strong>不否定<code>A</code></strong>的程度，即<code>A</code>的<strong>可能信任度</strong>。区间<code>[Bel(A), Pl(A)]</code>构成了信任区间，描述了对<code>A</code>的不确定性。</li>
+</ul>
+<p><strong>4.5 概率分配函数与概率相同吗？为什么？</strong></p>
+<p><strong>不同。</strong>​ 主要原因：</p>
+<ol>
+<li><strong>定义域不同</strong>：概率分配函数<code>m</code>的定义域是识别框架<code>Θ</code>的幂集<code>2^Θ</code>（即所有子集），而概率函数的定义域是<code>Θ</code>本身（基本事件）。</li>
+<li><strong>分配对象不同</strong>：<code>m(A)</code>可以分配给任何命题（子集）<code>A</code>，表示证据对<code>A</code>本身的直接支持度，<strong>无需</strong>将支持度再分配给<code>A</code>的内部元素。而概率必须满足可加性，分配给复合事件（如<code>{A, B}</code>）的概率必须等于分配给基本事件<code>P(A)+P(B)</code>。</li>
+<li><strong>对未知的处理不同</strong>：证据理论允许<code>m(Θ) &gt; 0</code>，即保留一部分信任度给“未知”，表示对识别框架中所有可能性的无知。而在经典概率中，<code>P(Θ)=1</code>是确定的，无法表示这种无知。</li>
+</ol>
+<p><strong>4.6 如何用 D-S 证据理论描述假设、规则和证据的不确定性，并实现不确定性的推理组合？</strong></p>
+<ul>
+<li><strong>描述不确定性</strong>：<ul>
+<li><strong>证据</strong>：用基本概率分配函数<code>m</code>来描述。每个证据对应一个<code>m</code>函数，表示该证据对识别框架<code>Θ</code>中各个命题的支持程度。</li>
+<li><strong>规则</strong>：通常可以表示为<code>IF E THEN H, with m</code>的形式，或者用规则强度、信度函数等与证据组合。</li>
+<li><strong>假设</strong>：是识别框架<code>Θ</code>中的子集。其不确定性由信任函数<code>Bel</code>和似然函数<code>Pl</code>构成的信任区间<code>[Bel, Pl]</code>来描述。</li>
+</ul>
+</li>
+<li><strong>推理组合</strong>：通过<strong>Dempster 组合规则</strong>实现。对于两个相互独立的证据源<code>E1</code>和<code>E2</code>，其对应的概率分配为<code>m1</code>和<code>m2</code>，组合后的新概率分配<code>m = m1 ⊕ m2</code>计算公式为： <code>m(C) = K^{-1} * ∑_{A∩B=C} m1(A)*m2(B)</code>，其中<code>C ≠ ∅</code>。 <code>K = 1 - ∑_{A∩B=∅} m1(A)*m2(B)</code>是归一化常数，用于排除冲突证据的影响。</li>
+</ul>
+<p><strong>4.7 什么是模糊性？它与随机性有什么区别？试举出几个日常生活中的模糊概念。</strong></p>
+<ul>
+<li><strong>模糊性</strong>：指事物在<strong>概念和外延</strong>上所具有的<strong>不分明性</strong>，源于事物类属的“亦此亦彼”性。是<strong>对静态事物本身状态</strong>的描述。</li>
+<li><strong>区别</strong>：<ul>
+<li><strong>产生原因</strong>：随机性源于<strong>因果律的缺失</strong>，是事件<strong>是否发生</strong>的不确定性；模糊性源于<strong>排中律的缺失</strong>，是事件<strong>本身状态</strong>的不确定性。</li>
+<li><strong>描述工具</strong>：随机性用<strong>概率论</strong>描述（事件发生的机会）；模糊性用<strong>模糊集合论</strong>描述（对象属于集合的程度）。</li>
+<li><strong>举例</strong>：“明天可能下雨”是随机性；“现在是阴天”是模糊性（“阴天”的边界是模糊的）。</li>
+</ul>
+</li>
+<li><strong>日常模糊概念</strong>：高个子、年轻人、热水、天气很好、有点咸、打扫干净。</li>
+</ul>
+<p><strong>4.8 模糊推理的一般过程是什么？</strong></p>
+<ol>
+<li><strong>模糊化</strong>：将输入的精确值，根据预先定义的<strong>隶属度函数</strong>，转化为对应模糊语言变量（如“高”，“中”，“低”）的隶属度。</li>
+<li><strong>模糊规则匹配</strong>：将模糊化后的输入，与知识库中的<strong>模糊规则</strong>（IF-THEN 形式）的前件进行匹配，计算每条规则的<strong>激活强度</strong>（通常用取小<code>min</code>或乘积运算）。</li>
+<li><strong>模糊推理</strong>：根据规则的激活强度，<strong>裁剪</strong>或<strong>缩放</strong>规则后件对应的模糊集的隶属度函数，得到每条规则输出的模糊结论。</li>
+<li><strong>模糊结论合成</strong>：将所有被激活的规则输出的模糊结论进行<strong>聚合</strong>（通常用取大<code>max</code>运算），形成一个综合的输出模糊集合。</li>
+<li><strong>去模糊化</strong>：将聚合后的输出模糊集合，通过某种算法（如<strong>重心法</strong>、<strong>最大隶属度法</strong>、<strong>中位数法</strong>等）转换成一个精确的输出值。</li>
+</ol>
+<h1 id="第五章"><a href="#第五章" class="headerlink" title="第五章"></a>第五章</h1><p><strong>5.1</strong>​ 什么是搜索？有哪两大类不同的搜索方法？两者的区别是什么？</p>
+<p><strong>5.2</strong>​ 什么是启发式搜索？什么是启发信息？</p>
+<p><strong>5.3</strong>​ 用状态空间法表示问题时，什么是问题的解？求解过程的本质是什么？什么是最优解？最优解唯一吗？</p>
+<p><strong>5.4</strong>​ 请写出状态空间图的一般搜索过程。在搜索过程中 open 表和 closed 表的作用分别是什么？有何区别？</p>
+<p><strong>5.5</strong>​ 什么是盲目搜索？主要有几种盲目搜索策略？</p>
+<p><strong>5.6</strong>​ 在深度优先搜索中，每个结点的子结点是按某种次序生成和扩展的，在决定生成子状态的最优次序时，应该用什么标准来衡量？</p>
+<p><strong>5.7</strong>​ 宽度优先搜索与深度优先搜索有何不同？分析深度和宽度优先的优缺点。在何种情况下，宽度优先搜索优于深度优先搜索？在何种情况下，深度优先搜索优于宽度优先搜索？</p>
+<p><strong>5.8</strong>​ 什么是 A<em>搜索算法？它的估价函数是如何确定的？A</em>搜索算法与 A 搜索算法的区别是什么？</p>
+<p>解答</p>
+<p><strong>5.1 搜索</strong>：在状态空间中寻找从初始状态到目标状态的路径的过程。分为<strong>盲目搜索</strong>（无额外信息，按固定顺序搜索）和<strong>启发式搜索</strong>（利用启发信息指导搜索）。区别在于是否使用启发信息。</p>
+<p><strong>5.2 启发式搜索</strong>：利用<strong>启发信息</strong>（即问题领域的额外知识，常表示为启发函数 <code>h(n)</code>，用于估计到目标的代价）来引导搜索方向，提高效率的搜索方法。</p>
+<p><strong>5.3 问题的解</strong>：一个从初始状态到目标状态的操作序列。<strong>求解本质</strong>：在状态空间中找路径。<strong>最优解</strong>：总代价最小的解。<strong>最优解不一定唯一</strong>。</p>
+<p><strong>5.4 一般搜索过程</strong>：</p>
+<ol>
+<li>初始状态放入 OPEN 表。</li>
+<li>若 OPEN 空则失败。</li>
+<li>取一状态。</li>
+<li>若是目标则成功。</li>
+<li>否则扩展，生成后继状态。</li>
+<li>处理后继状态。</li>
+<li>新状态按策略放入 OPEN，父状态移入 CLOSED。</li>
+<li><p>重复 2-7。</p>
+<p><strong>OPEN 表</strong>：存放待考察节点（前沿）。<strong>CLOSED 表</strong>：存放已考察节点（历史）。区别在于节点状态（待扩展 vs 已扩展）。</p>
+</li>
+</ol>
+<p><strong>5.5 盲目搜索</strong>：不利用问题特定信息，按预定顺序搜索的策略。主要有：<strong>宽度优先搜索</strong>、<strong>深度优先搜索</strong>、<strong>一致代价搜索</strong>、<strong>深度受限搜索</strong>、<strong>迭代加深搜索</strong>。</p>
+<p><strong>5.6 在深度优先搜索中，决定子状态生成的最优次序</strong>：DFS 本身无最优次序，按预设顺序（如字母序）。若想引入启发性，可按启发函数<code>h(n)</code>排序，优先扩展<code>h(n)</code>小的子节点（即更接近目标的状态）。</p>
+<p><strong>5.7 宽度优先 vs 深度优先</strong>：</p>
+<ul>
+<li><strong>不同</strong>：BFS 用队列逐层扩展；DFS 用栈沿分支深入。</li>
+<li><strong>优缺点</strong>：BFS 完备且（在等代价时）最优，但空间开销大；DFS 空间开销小，但可能不完备，且找到的解不一定最优。</li>
+<li><strong>BFS 优于 DFS</strong>：解在浅层、需求最优解、空间足够时。</li>
+<li><strong>DFS 优于 BFS</strong>：空间深度大、只求可行解、BFS 空间无法承受时。</li>
+</ul>
+<p>_<em>5.8 A</em>搜索算法_*：一种启发式搜索，用估价函数<code>f(n)=g(n)+h(n)</code>（<code>g(n)</code>为实际代价，<code>h(n)</code>为估计代价）选择节点扩展。</p>
+<ul>
+<li><strong>估价函数确定</strong>：<code>h(n)</code>需根据问题领域知识设计（如直线距离）。</li>
+<li><strong>与 A 搜索算法的区别</strong>：<strong>A 算法</strong>泛指使用<code>f(n)=g(n)+h(n)</code>的算法；<strong>A_算法</strong>是 A 算法的特例，要求<code>h(n)</code>满足<strong>可采纳性</strong>（即<code>h(n) ≤ h*(n)</code>，<code>h*(n)</code>为真实最小代价），此条件下 A_能保证找到最优解。</li>
+</ul>
+<hr>
+<h1 id="第六章"><a href="#第六章" class="headerlink" title="第六章"></a>第六章</h1><p><strong>6.1</strong>​ 遗传算法的基本步骤和主要特点是什么？</p>
+<p><strong>6.2</strong>​ 适应度函数在遗传算法中的作用是什么？试举例说明如何构造适应度函数。</p>
+<p><strong>6.3</strong>​ 选择的基本思想是什么？</p>
+<p><strong>6.4</strong>​ 简述多种群遗传算法与基本遗传算法的异同。</p>
+<p><strong>6.5</strong>​ 简述多倍体遗传算法与基本遗传算法的异同。</p>
+<p><strong>6.6</strong>​ 群智能算法的基本思想是什么？</p>
+<p><strong>6.7</strong>​ 群智能算法的主要特点是什么？</p>
+<p><strong>6.8</strong>​ 列举几种典型的群智能算法，分析它们的主要优点、缺点。</p>
+<p><strong>6.9</strong>​ 简述群智能算法与进化算法的异同。</p>
+<p><strong>6.10</strong>​ 简述粒子群算法的流程。</p>
+<p><strong>6.11</strong>​ 简述粒子群算法位置更新方程中各部分的影响。</p>
+<p><strong>6.12</strong>​ 举例说明粒子群算法的搜索原理，并简要叙述粒子群算法有哪些特点。</p>
+<p><strong>6.13</strong>​ 粒子群算法的寻优过程包含哪几个阶段？寻优的准则有哪些？</p>
+<p><strong>6.14</strong>​ 粒子群算法中的参数如何选择？</p>
+<p><strong>6.15</strong>​ 举例说明蚁群算法的搜索原理，并简要叙述蚁群算法的特点。</p>
+<p><strong>6.16</strong>​ 蚁群算法的寻优过程包含哪几个阶段？寻优的准则有哪些？</p>
+<p><strong>6.17</strong>​ 蚁群算法中的参数如何选择？</p>
+<hr>
+<p><strong>6.1 遗传算法的基本步骤和主要特点是什么？</strong></p>
+<ul>
+<li><strong>基本步骤</strong>：<ol>
+<li><strong>初始化</strong>：随机生成初始种群（一组候选解）。</li>
+<li><strong>适应度评估</strong>：计算种群中每个个体的适应度值。</li>
+<li><strong>选择</strong>：根据适应度高低，选择优良个体作为父代。</li>
+<li><strong>交叉</strong>：将选出的父代个体两两配对，以一定概率交换部分基因，产生新个体（子代）。</li>
+<li><strong>变异</strong>：以较低概率改变子代个体中某些基因的值，引入新特征。</li>
+<li><strong>生成新种群</strong>：用子代个体替换部分或全部父代，形成新一代种群。</li>
+<li><strong>终止判断</strong>：若满足终止条件（如达到最大迭代次数或找到满意解），则输出最优解；否则返回步骤 2。</li>
+</ol>
+</li>
+<li><strong>主要特点</strong>：<ul>
+<li><strong>群体搜索</strong>：同时对解空间中的多个点进行搜索，并行性好。</li>
+<li><strong>启发性随机搜索</strong>：通过概率规则（选择、交叉、变异）引导搜索，非确定性。</li>
+<li><strong>无需梯度信息</strong>：仅需目标函数（适应度函数）值，不依赖函数的连续、可微等性质。</li>
+<li><strong>隐含并行性</strong>：通过种群内个体的信息交换实现全局搜索。</li>
+</ul>
+</li>
+</ul>
+<p><strong>6.2 适应度函数在遗传算法中的作用是什么？试举例说明如何构造适应度函数。</strong></p>
+<ul>
+<li><strong>作用</strong>：<ol>
+<li><strong>评价个体优劣</strong>：适应度值高低直接反映个体（解）的质量。</li>
+<li><strong>指导选择操作</strong>：适应度越高，被选中遗传到下一代的机会越大，是算法进化的驱动力。</li>
+</ol>
+</li>
+<li><strong>构造举例</strong>：求解函数 <code>f(x) = x²</code>在 <code>[0, 31]</code>上的最大值。<ul>
+<li>编码：用 5 位二进制串表示<code>x</code>。</li>
+<li>直接法：个体解码后的值<code>x</code>代入目标函数，<code>fit(x) = f(x) = x²</code>即可作为适应度。</li>
+<li>若求最小值，可构造 <code>fit(x) = C_max - f(x)</code>或 <code>fit(x) = 1 / (f(x) + ε)</code>，确保适应度非负且与目标值成反比。</li>
+</ul>
+</li>
+</ul>
+<p><strong>6.3 选择的基本思想是什么？</strong></p>
+<ul>
+<li>模拟“<strong>适者生存</strong>”的自然法则，使种群中<strong>适应度高的个体有更大的概率被选中</strong>，将其优良基因遗传给下一代。其核心是<strong>基于概率的优胜劣汰</strong>，引导搜索方向朝着更优解的区域进行。</li>
+</ul>
+<p><strong>6.4 简述多种群遗传算法与基本遗传算法的异同。</strong></p>
+<ul>
+<li><strong>相同点</strong>：基本操作单元都是个体，都包含选择、交叉、变异等遗传操作。</li>
+<li><strong>不同点</strong>：<ul>
+<li><strong>种群结构</strong>：基本 GA 为单一同质种群；多种群 GA 则并行维护多个子种群，并可能定期在种群间迁移（交换）部分优秀个体。</li>
+<li><strong>目的</strong>：多种群 GA 旨在维持种群多样性，有效防止早熟收敛，增强全局探索能力，是<strong>并行 GA</strong>的一种典型实现。</li>
+</ul>
+</li>
+</ul>
+<p><strong>6.5 简述多倍体遗传算法与基本遗传算法的异同。</strong></p>
+<ul>
+<li><strong>相同点</strong>：遵循类似的进化流程。</li>
+<li><strong>不同点</strong>：<ul>
+<li><strong>基因编码</strong>：基本 GA 个体为<strong>单倍体</strong>染色体（一套基因）；多倍体 GA 个体为<strong>多倍体</strong>（如二倍体，具有两套基因）。</li>
+<li><strong>表达与遗传</strong>：多倍体存在<strong>显隐性关系</strong>，只有显性基因决定个体性状（适应度），但遗传时两套基因共同参与。这增强了算法的记忆能力和对环境变化的鲁棒性。</li>
+</ul>
+</li>
+</ul>
+<p><strong>6.6 群智能算法的基本思想是什么？</strong></p>
+<ul>
+<li>模拟生物群体（如鸟群、蚁群、鱼群）的<strong>集体智能行为</strong>。群体中简单的个体（智能体）遵循相对简单的规则，并且<strong>个体之间以及个体与环境之间进行局部交互和信息共享</strong>，通过这些分散的、自组织的局部互动，在群体层面涌现出复杂的、高效的全局智能行为，从而解决复杂的优化或协同问题。</li>
+</ul>
+<p><strong>6.7 群智能算法的主要特点是什么？</strong></p>
+<ul>
+<li><strong>分布式、自组织</strong>：无中心控制，依靠个体简单规则和局部交互。</li>
+<li><strong>正反馈</strong>：好的解/路径能吸引更多个体（如蚁群的信息素增强）。</li>
+<li><strong>负反馈</strong>：防止陷入局部最优（如信息素挥发）。</li>
+<li><strong>鲁棒性强</strong>：个体简单，部分失效不影响群体功能。</li>
+<li><strong>并行性强</strong>：个体可同时独立行动。</li>
+<li><strong>通用性好</strong>：对目标函数要求低，适合黑箱优化。</li>
+</ul>
+<p><strong>6.8 列举几种典型的群智能算法，分析它们的主要优点、缺点。</strong></p>
+<ol>
+<li><p><strong>粒子群优化算法</strong>：</p>
+<ul>
+<li><em>优点</em>：原理简单，参数少，收敛速度快，易于实现。</li>
+<li><em>缺点</em>：后期易陷入局部最优，对离散问题处理不便。</li>
+</ul>
+</li>
+<li><p><strong>蚁群优化算法</strong>：</p>
+<ul>
+<li><em>优点</em>：正反馈强，适合路径优化等组合问题，鲁棒性好。</li>
+<li><em>缺点</em>：初期信息素积累慢，收敛速度较慢，参数设置复杂。</li>
+</ul>
+</li>
+<li><p><strong>人工鱼群算法/狼群算法等</strong>：</p>
+<ul>
+<li><em>优点</em>：模拟更复杂的生物行为，全局搜索能力可能更强。</li>
+<li><em>缺点</em>：模型更复杂，计算开销大，理论分析较难。</li>
+</ul>
+</li>
+</ol>
+<p><strong>6.9 简述群智能算法与进化算法的异同。</strong></p>
+<ul>
+<li><strong>相同点</strong>：都是受自然启发的元启发式优化算法，属于群体智能范畴，用于复杂问题求解。</li>
+<li><strong>不同点</strong>：<ul>
+<li><strong>灵感来源</strong>：进化算法源于<strong>生物进化</strong>（遗传、变异、选择）；群智能算法源于<strong>生物群体的社会行为</strong>（协作、竞争、信息共享）。</li>
+<li><strong>核心操作</strong>：进化算法核心是<strong>基因操作</strong>（交叉、变异）；群智能算法核心是<strong>个体间信息交互与行为模仿</strong>（如跟随最优粒子、信息素跟踪）。</li>
+<li><strong>“代”的概念</strong>：进化算法迭代代次明显；群智能算法中个体持续更新，代次界限模糊。</li>
+</ul>
+</li>
+</ul>
+<p><strong>6.10 简述粒子群算法的流程。</strong></p>
+<ol>
+<li><strong>初始化</strong>：随机初始化粒子的位置和速度，设定参数（惯性权重、加速常数等）。</li>
+<li><strong>评估</strong>：计算每个粒子的适应度值。</li>
+<li><strong>更新个体与群体历史最优</strong>：对每个粒子，将其当前位置与自身历史最优位置比较并更新；与群体历史最优位置比较并更新。</li>
+<li><p><strong>更新速度与位置</strong>：根据公式更新每个粒子的速度和位置。</p>
+<ul>
+<li>速度更新公式：<code>v_i(t+1) = w * v_i(t) + c1*r1*(pbest_i - x_i(t)) + c2*r2*(gbest - x_i(t))</code></li>
+<li>位置更新公式：<code>x_i(t+1) = x_i(t) + v_i(t+1)</code></li>
+</ul>
+</li>
+<li><p><strong>终止判断</strong>：满足终止条件（如达到精度或最大迭代次数）则停止，输出全局最优解；否则返回步骤 2。</p>
+</li>
+</ol>
+<p><strong>6.11 简述粒子群算法位置更新方程中各部分的影响。</strong></p>
+<ul>
+<li><code>v_i(t)</code>(<strong>惯性部分</strong>)：代表粒子先前速度的继承，<code>w</code>为惯性权重，平衡全局与局部搜索能力。<code>w</code>大则探索能力强，<code>w</code>小则开发能力强。</li>
+<li><code>c1*r1*(pbest_i - x_i(t))</code>(<strong>认知部分</strong>)：代表粒子向自身历史最优位置学习的趋势。<code>c1</code>为认知加速常数，控制个体经验的影响力。</li>
+<li><code>c2*r2*(gbest - x_i(t))</code>(<strong>社会部分</strong>)：代表粒子向群体历史最优位置学习的趋势。<code>c2</code>为社会加速常数，控制社会信息的影响力。</li>
+<li><code>r1, r2</code>：随机数，增加搜索的随机性。</li>
+</ul>
+<p><strong>6.12 举例说明粒子群算法的搜索原理，并简要叙述粒子群算法有哪些特点。</strong></p>
+<ul>
+<li><strong>搜索原理举例</strong>：想象一群鸟在随机搜索一片区域的食物。每只鸟不知道食物在哪，但知道自己和同伴们曾找到的最近食物的位置。鸟通过不断调整自己的飞行方向和速度，既根据自己的经验向自己记忆中的最好位置飞，也向整个鸟群公认的最好位置飞，最终整个鸟群会聚集到食物最多的地方。</li>
+<li><strong>特点</strong>：<ul>
+<li><strong>原理简单，易实现</strong>。</li>
+<li><strong>参数少，收敛速度快</strong>。</li>
+<li><strong>需调整参数少，但惯性权重<code>w</code>等对性能影响大</strong>。</li>
+<li><strong>本质上是全局搜索，但后期易陷入局部最优</strong>。</li>
+</ul>
+</li>
+</ul>
+<p><strong>6.13 粒子群算法的寻优过程包含哪几个阶段？寻优的准则有哪些？</strong></p>
+<ul>
+<li><strong>阶段</strong>：<ol>
+<li><strong>探索阶段</strong>：初期，粒子在解空间广泛探索，寻找有希望的区域。</li>
+<li><strong>开发阶段</strong>：后期，粒子集中在最有希望的区域进行精细搜索。</li>
+</ol>
+</li>
+<li><strong>寻优准则</strong>：<ul>
+<li><strong>收敛准则</strong>：如全局最优位置<code>gbest</code>在连续若干代内不再变化，或变化小于阈值。</li>
+<li><strong>迭代次数</strong>：达到预设的最大迭代次数。</li>
+<li><strong>精度准则</strong>：找到的解的适应度值达到预设目标。</li>
+</ul>
+</li>
+</ul>
+<p><strong>6.14 粒子群算法中的参数如何选择？</strong></p>
+<ul>
+<li><strong>惯性权重<code>w</code></strong>：常采用线性递减策略，初期<code>w</code>较大（如 0.9）利于探索，后期<code>w</code>较小（如 0.4）利于开发。</li>
+<li><strong>加速常数<code>c1, c2</code></strong>：通常取<code>c1 = c2 = 2</code>左右。<code>c1</code>大可增强个体经验，<code>c2</code>大可增强社会学习。有研究建议<code>c1</code>从大到小，<code>c2</code>从小到大变化。</li>
+<li><strong>种群规模</strong>：通常 20-50，复杂问题可增大。</li>
+<li><strong>速度限制<code>V_max</code></strong>：通常设定为变量范围的 10%-20%，防止搜索步长过大。</li>
+</ul>
+<p><strong>6.15 举例说明蚁群算法的搜索原理，并简要叙述蚁群算法的特点。</strong></p>
+<ul>
+<li><strong>搜索原理举例</strong>：求解旅行商问题。蚂蚁随机选择路径，在路径上释放信息素。较短的路径因为蚂蚁往返更快，单位时间内信息素积累更多。后续蚂蚁倾向于选择信息素浓度更高的路径，从而进一步强化该路径。通过“<strong>信息素正反馈</strong>”和“<strong>挥发负反馈</strong>”（防止信息素无限累积），最终所有蚂蚁倾向于收敛到最短路径上。</li>
+<li><strong>特点</strong>：<ul>
+<li><strong>正反馈机制</strong>，能快速发现较好解。</li>
+<li><strong>分布式计算</strong>，易于并行。</li>
+<li><strong>强启发性</strong>，与问题结合紧密。</li>
+<li><strong>初期信息素匮乏，收敛速度慢</strong>。</li>
+<li><strong>参数设置对性能影响显著</strong>。</li>
+</ul>
+</li>
+</ul>
+<p><strong>6.16 蚁群算法的寻优过程包含哪几个阶段？寻优的准则有哪些？</strong></p>
+<ul>
+<li><strong>阶段</strong>：<ol>
+<li><strong>初始化阶段</strong>：设定参数，初始化信息素。</li>
+<li><strong>迭代构建阶段</strong>：每只蚂蚁根据路径上的信息素浓度和启发信息（如距离倒数），以一定概率构建完整路径。</li>
+<li><strong>信息素更新阶段</strong>：所有蚂蚁走完后，根据路径质量（长度）更新信息素（增加优质路径信息素，同时所有路径信息素挥发）。</li>
+</ol>
+</li>
+<li><strong>寻优准则</strong>：同 PSO，包括<strong>最大迭代次数</strong>、<strong>最优解连续不变代数</strong>、<strong>达到期望精度</strong>等。</li>
+</ul>
+<p><strong>6.17 蚁群算法中的参数如何选择？</strong></p>
+<ul>
+<li><strong>信息素重要性因子<code>α</code></strong>：值越大，蚂蚁越倾向于选择信息素浓的路径，加速收敛但易早熟。</li>
+<li><strong>启发信息重要性因子<code>β</code></strong>：值越大，蚂蚁越倾向于选择看起来近的路径，贪心性越强。</li>
+<li><strong>信息素挥发系数<code>ρ</code></strong>：<code>(0,1)</code>之间。值小则信息素留存久，全局搜索能力强但收敛慢；值大则信息素挥发快，利于抛弃差解但可能丢失历史信息。</li>
+<li><strong>信息素强度<code>Q</code></strong>：影响信息素增量的绝对值，与问题规模相关。</li>
+<li><strong>蚂蚁数量<code>m</code></strong>：一般与问题节点数相当。太多则收敛慢，太少则正反馈不足。</li>
+</ul>
+<div id="paginator"></div></div><div id="post-footer"><div id="pages" style="justify-content: flex-end"><div class="footer-link" style="width: 50%;right:1px;border-left:1px #fe2 solid"><a href="/Arknight-notes/posts/38065.html">2026-01-03-论文实训草稿 Prev →</a></div></div></div><div id="comments"><div id="gitalk"></div></div></div><div class="bottom-btn"><div><a class="i-top" id="to-top" onClick="scrolls.scrolltop();" title="To Top" style="opacity: 0; display: none;">∧ </a><a class="i-index" id="to-index" href="#toc-div" title="To Catalog">≡</a><a class="i-color" id="color-mode" onClick="colorMode.change()" title="Change Theme"></a></div></div></article><aside><div id="about"><a href="/Arknight-notes/" id="logo"><img src="https://pic4.zhimg.com/80/v2-d9884f32711e19e80979eac58e943897_720w.webp" alt="Logo" style="margin:20;border-radius:0;"></a><h1 id="Dr"><a href="zhongye">柊野</a></h1><div id="description"><p></p></div></div><div id="aside-block"><div id="toc-div"><h1>Catalog</h1><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%AC%AC%E4%B8%80%E7%AB%A0"><span class="toc-number">1.</span> <span class="toc-text">第一章</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%AC%AC%E4%BA%8C%E7%AB%A0"><span class="toc-number">2.</span> <span class="toc-text">第二章</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E7%AD%94%E6%A1%88"><span class="toc-number">2.1.</span> <span class="toc-text">参考答案</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-1-%E4%BB%80%E4%B9%88%E6%98%AF%E7%9F%A5%E8%AF%86%EF%BC%9F%E5%AE%83%E6%9C%89%E5%93%AA%E4%BA%9B%E7%89%B9%E6%80%A7%EF%BC%9F%E6%9C%89%E5%93%AA%E5%87%A0%E7%A7%8D%E5%88%86%E7%B1%BB%E6%96%B9%E6%B3%95%EF%BC%9F"><span class="toc-number">2.1.0.1.</span> <span class="toc-text">2.1 什么是知识？它有哪些特性？有哪几种分类方法？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-2-%E4%BB%80%E4%B9%88%E6%98%AF%E7%9F%A5%E8%AF%86%E8%A1%A8%E7%A4%BA%EF%BC%9F%E5%A6%82%E4%BD%95%E9%80%89%E6%8B%A9%E7%9F%A5%E8%AF%86%E8%A1%A8%E7%A4%BA%E6%96%B9%E6%B3%95%EF%BC%9F"><span class="toc-number">2.1.0.2.</span> <span class="toc-text">2.2 什么是知识表示？如何选择知识表示方法？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-3-%E4%BB%80%E4%B9%88%E6%98%AF%E5%91%BD%E9%A2%98%EF%BC%9F%E8%AF%B7%E5%86%99%E5%87%BA%E4%B8%89%E4%B8%AA%E7%9C%9F%E5%80%BC%E4%B8%BA-T-%E5%8F%8A%E7%9C%9F%E5%80%BC%E4%B8%BA-F-%E7%9A%84%E5%91%BD%E9%A2%98%E3%80%82"><span class="toc-number">2.1.0.3.</span> <span class="toc-text">2.3 什么是命题？请写出三个真值为 T 及真值为 F 的命题。</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-4-%E4%BB%80%E4%B9%88%E6%98%AF%E8%B0%93%E8%AF%8D%EF%BC%9F%E4%BB%80%E4%B9%88%E6%98%AF%E8%B0%93%E8%AF%8D%E4%B8%AA%E4%BD%93%E5%8F%8A%E4%B8%AA%E4%BD%93%E5%9F%9F%EF%BC%9F%E5%87%BD%E6%95%B0%E4%B8%8E%E8%B0%93%E8%AF%8D%E7%9A%84%E5%8C%BA%E5%88%AB%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="toc-number">2.1.0.4.</span> <span class="toc-text">2.4 什么是谓词？什么是谓词个体及个体域？函数与谓词的区别是什么？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-5-%E8%B0%93%E8%AF%8D%E9%80%BB%E8%BE%91%E5%92%8C%E5%91%BD%E9%A2%98%E9%80%BB%E8%BE%91%E7%9A%84%E5%85%B3%E7%B3%BB%E5%A6%82%E4%BD%95%EF%BC%9F%E6%9C%89%E4%BD%95%E5%BC%82%E5%90%8C%EF%BC%9F"><span class="toc-number">2.1.0.5.</span> <span class="toc-text">2.5 谓词逻辑和命题逻辑的关系如何？有何异同？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-6-%E4%BB%80%E4%B9%88%E6%98%AF%E8%B0%93%E8%AF%8D%E7%9A%84%E9%A1%B9%EF%BC%9F%E4%BB%80%E4%B9%88%E6%98%AF%E8%B0%93%E8%AF%8D%E7%9A%84%E9%98%B6%EF%BC%9F%E8%AF%B7%E5%86%99%E5%87%BA%E8%B0%93%E8%AF%8D%E7%9A%84%E4%B8%80%E8%88%AC%E5%BD%A2%E5%BC%8F%E3%80%82"><span class="toc-number">2.1.0.6.</span> <span class="toc-text">2.6 什么是谓词的项？什么是谓词的阶？请写出谓词的一般形式。</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-7-%E4%BB%80%E4%B9%88%E6%98%AF%E8%B0%93%E8%AF%8D%E5%85%AC%E5%BC%8F%EF%BC%9F%E4%BB%80%E4%B9%88%E6%98%AF%E8%B0%93%E8%AF%8D%E5%85%AC%E5%BC%8F%E7%9A%84%E8%A7%A3%E9%87%8A%EF%BC%9F"><span class="toc-number">2.1.0.7.</span> <span class="toc-text">2.7 什么是谓词公式？什么是谓词公式的解释？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-8-%E4%B8%80%E9%98%B6%E8%B0%93%E8%AF%8D%E9%80%BB%E8%BE%91%E8%A1%A8%E7%A4%BA%E6%B3%95%E6%98%AF%E7%BB%93%E6%9E%84%E5%8C%96%E7%9F%A5%E8%AF%86%E8%BF%98%E6%98%AF%E9%9D%9E%E7%BB%93%E6%9E%84%E5%8C%96%E7%9F%A5%E8%AF%86%EF%BC%9F%E9%80%82%E5%90%88%E4%BA%8E%E8%A1%A8%E7%A4%BA%E5%93%AA%E7%A7%8D%E7%B1%BB%E5%9E%8B%E7%9A%84%E7%9F%A5%E8%AF%86%EF%BC%9F%E5%AE%83%E6%9C%89%E5%93%AA%E4%BA%9B%E7%89%B9%E7%82%B9%EF%BC%9F"><span class="toc-number">2.1.0.8.</span> <span class="toc-text">2.8 一阶谓词逻辑表示法是结构化知识还是非结构化知识？适合于表示哪种类型的知识？它有哪些特点？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-9-%E8%AF%B7%E5%86%99%E5%87%BA%E7%94%A8%E4%B8%80%E9%98%B6%E8%B0%93%E8%AF%8D%E9%80%BB%E8%BE%91%E8%A1%A8%E7%A4%BA%E6%B3%95%E8%A1%A8%E7%A4%BA%E7%9F%A5%E8%AF%86%E7%9A%84%E6%AD%A5%E9%AA%A4%E3%80%82"><span class="toc-number">2.1.0.9.</span> <span class="toc-text">2.9 请写出用一阶谓词逻辑表示法表示知识的步骤。</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-10-%E4%BA%A7%E7%94%9F%E5%BC%8F%E7%9A%84%E5%9F%BA%E6%9C%AC%E5%BD%A2%E5%BC%8F%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F%E5%AE%83%E4%B8%8E%E8%B0%93%E8%AF%8D%E9%80%BB%E8%BE%91%E4%B8%AD%E8%95%B4%E6%B6%B5%E5%BC%8F%E6%9C%89%E4%BB%80%E4%B9%88%E5%85%B1%E5%90%8C%E5%A4%84%E5%92%8C%E4%B8%8D%E5%90%8C%E5%A4%84%EF%BC%9F"><span class="toc-number">2.1.0.10.</span> <span class="toc-text">2.10 产生式的基本形式是什么？它与谓词逻辑中蕴涵式有什么共同处和不同处？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-11-%E4%BA%A7%E7%94%9F%E5%BC%8F%E7%B3%BB%E7%BB%9F%E7%94%B1%E5%93%AA%E5%87%A0%E9%83%A8%E5%88%86%E7%BB%84%E6%88%90%EF%BC%9F"><span class="toc-number">2.1.0.11.</span> <span class="toc-text">2.11 产生式系统由哪几部分组成？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-12-%E8%AF%95%E8%BF%B0%E4%BA%A7%E7%94%9F%E5%BC%8F%E7%B3%BB%E7%BB%9F%E6%B1%82%E8%A7%A3%E9%97%AE%E9%A2%98%E7%9A%84%E4%B8%80%E8%88%AC%E6%AD%A5%E9%AA%A4%E3%80%82"><span class="toc-number">2.1.0.12.</span> <span class="toc-text">2.12 试述产生式系统求解问题的一般步骤。</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-13-%E4%BA%A7%E7%94%9F%E5%BC%8F%E7%B3%BB%E7%BB%9F%E4%B8%AD%EF%BC%8C%E6%8E%A8%E7%90%86%E6%9C%BA%E7%9A%84%E6%8E%A8%E7%90%86%E6%96%B9%E5%BC%8F%E6%9C%89%E5%93%AA%E5%87%A0%E7%A7%8D%EF%BC%9F%E5%9C%A8%E4%BA%A7%E7%94%9F%E5%BC%8F%E6%8E%A8%E7%90%86%E8%BF%87%E7%A8%8B%E4%B8%AD%EF%BC%8C%E5%A6%82%E6%9E%9C%E5%8F%91%E7%94%9F%E7%AD%96%E7%95%A5%E5%86%B2%E7%AA%81%EF%BC%8C%E5%A6%82%E4%BD%95%E8%A7%A3%E5%86%B3%EF%BC%9F"><span class="toc-number">2.1.0.13.</span> <span class="toc-text">2.13 产生式系统中，推理机的推理方式有哪几种？在产生式推理过程中，如果发生策略冲突，如何解决？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-14-%E8%AF%95%E8%BF%B0%E4%BA%A7%E7%94%9F%E5%BC%8F%E8%A1%A8%E7%A4%BA%E6%B3%95%E7%9A%84%E7%89%B9%E7%82%B9%E3%80%82"><span class="toc-number">2.1.0.14.</span> <span class="toc-text">2.14 试述产生式表示法的特点。</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-15-%E6%A1%86%E6%9E%B6%E7%9A%84%E4%B8%80%E8%88%AC%E8%A1%A8%E7%A4%BA%E5%BD%A2%E5%BC%8F%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="toc-number">2.1.0.15.</span> <span class="toc-text">2.15 框架的一般表示形式是什么？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-16-%E6%A1%86%E6%9E%B6%E8%A1%A8%E7%A4%BA%E6%B3%95%E6%9C%89%E4%BD%95%E7%89%B9%E7%82%B9%EF%BC%9F%E8%AF%B7%E5%8F%99%E8%BF%B0%E7%94%A8%E6%A1%86%E6%9E%B6%E8%A1%A8%E7%A4%BA%E6%B3%95%E8%A1%A8%E7%A4%BA%E7%9F%A5%E8%AF%86%E7%9A%84%E6%AD%A5%E9%AA%A4%E3%80%82"><span class="toc-number">2.1.0.16.</span> <span class="toc-text">2.16 框架表示法有何特点？请叙述用框架表示法表示知识的步骤。</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-17-%E8%AF%95%E6%9E%84%E9%80%A0%E4%B8%80%E4%B8%AA%E6%8F%8F%E8%BF%B0%E8%AF%BB%E8%80%85%E7%9A%84%E5%8A%9E%E5%85%AC%E5%AE%A4%E6%88%96%E5%8D%A7%E5%AE%A4%E7%9A%84%E6%A1%86%E6%9E%B6%E7%B3%BB%E7%BB%9F%E3%80%82"><span class="toc-number">2.1.0.17.</span> <span class="toc-text">2.17 试构造一个描述读者的办公室或卧室的框架系统。</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-18-%E8%AF%95%E6%9E%84%E9%80%A0%E4%B8%80%E4%B8%AA%E6%8F%8F%E8%BF%B0%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%B8%BB%E6%9C%BA%E7%9A%84%E6%A1%86%E6%9E%B6%E7%B3%BB%E7%BB%9F%E3%80%82"><span class="toc-number">2.1.0.18.</span> <span class="toc-text">2.18 试构造一个描述计算机主机的框架系统。</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-19-%E8%AF%B7%E7%BB%99%E5%87%BA%E4%B8%80%E4%B8%AA%E7%9F%A5%E8%AF%86%E5%9B%BE%E8%B0%B1%E5%AE%9E%E4%BE%8B%E3%80%82"><span class="toc-number">2.1.0.19.</span> <span class="toc-text">2.19 请给出一个知识图谱实例。</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%AC%AC-3-%E7%AB%A0"><span class="toc-number">3.</span> <span class="toc-text">第 3 章</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%A7%A3%E7%AD%94"><span class="toc-number">3.0.0.1.</span> <span class="toc-text">解答</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%AC%AC%E5%9B%9B%E7%AB%A0"><span class="toc-number">4.</span> <span class="toc-text">第四章</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%AC%AC%E4%BA%94%E7%AB%A0"><span class="toc-number">5.</span> <span class="toc-text">第五章</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%AC%AC%E5%85%AD%E7%AB%A0"><span class="toc-number">6.</span> <span class="toc-text">第六章</span></a></li></ol></div></div><footer><nobr><span class="icp-title">GZHU</span><span class="icp-content">193001-0001</span></nobr><br><nobr><span class="icp-title">OUTPOST</span><span class="icp-content">169-2025-0331</span></nobr><br><nobr>Published with <a target="_blank" rel="noopener" href="http://hexo.io">Hexo</a></nobr><wbr><nobr> Theme <a target="_blank" rel="noopener" href="https://github.com/Yue-plus/hexo-theme-arknights">Arknights</a></nobr><wbr><nobr> by <a target="_blank" rel="noopener" href="https://github.com/Yue-plus">Yue_plus</a></nobr></footer></aside></main><canvas id="canvas-dust"></canvas></body></html>
