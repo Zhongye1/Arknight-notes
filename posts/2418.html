@@ -1,0 +1,734 @@
+<!DOCTYPE html><html lang="en" theme-mode="dark"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>2026-01-08-机器学习复习 | Notes|笔记站</title><link rel="icon" type="image/x-icon" href="/Arknight-notes/favicon.ico"><link rel="preload" as="font" crossorigin="anonymous" href="/Arknight-notes/font/Bender.ttf"><link rel="preload" as="font" crossorigin="anonymous" href="/Arknight-notes/font/BenderLight.ttf"><link rel="preload" as="font" crossorigin="anonymous" href="/Arknight-notes/font/JetBrainsMono-Regular.woff2"><link rel="stylesheet" href="/Arknight-notes/css/arknights.css"><style>@font-face {
+  font-family: Bender;
+  src: local('Bender'), url("/Arknight-notes/font/Bender.ttf"), url("/Arknight-notes/font/Bender.otf");
+}
+@font-face {
+  font-family: BenderLight;
+  src: local('BenderLight'), url("/Arknight-notes/font/BenderLight.ttf");
+}
+@font-face {
+  font-family: 'JetBrains Mono';
+  src: local('JetBrains Mono'), url('/Arknight-notes/font/JetBrainsMono-Regular.woff2') format('woff2');
+}
+</style><script>var config = {"root":"/Arknight-notes/","code_fold":90,"search":{"preload":false,"activeHolder":"键入以继续","blurHolder":"数据检索","noResult":"无 $0 相关数据"},"code":{"codeInfo":"$0 - $1 行","copy":"复制"}}</script><link type="text/css" rel="stylesheet" href="/Arknight-notes/lib/encrypt/hbe.style.css"><script src="/Arknight-notes/js/gitalk.js"></script><script src="//unpkg.com/mermaid@10.5.0/dist/mermaid.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.6.1/MathJax.js"></script><script>MathJax.Hub.Config({
+ menuSettings: {
+   zoom: "None"
+ },
+ showMathMenu: false,
+ jax: ["input/TeX","output/CommonHTML"],
+ extensions: ["tex2jax.js"],
+ TeX: {
+   extensions: ["AMSmath.js","AMSsymbols.js"],
+   equationNumbers: {
+     autoNumber: "AMS"
+   }
+ },
+ tex2jax: {
+   inlineMath: [["\\(", "\\)"]],
+   displayMath: [["\\[", "\\]"]]
+ }
+});</script><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lightgallery.css"><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lg-zoom.css"><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lg-thumbnail.css"><link type="text/css" rel="stylesheet" href="/Arknight-notes/lib/fontawesome/css/all.min.css"><script>if (window.localStorage.getItem('theme-mode') === 'light')
+ document.documentElement.setAttribute('theme-mode', 'light')
+if (window.localStorage.getItem('theme-mode') === 'dark')
+ document.documentElement.setAttribute('theme-mode', 'dark')</script><style>@font-face {
+ font-family: BenderLight;
+ src: local('Bender'), url("/Arknight-notes/font/BenderLight.woff2") format('woff2');
+}
+@font-face {
+ font-family: 'JetBrains Mono';
+ src: local('JetBrains Mono'), url('/Arknight-notes/font/JetBrainsMono-Regular.woff2') format('woff2');
+}</style><style>:root {
+ --dark-background: url('https://pica.zhimg.com/v2-1d14a5f80bbe62302dce99b273e3a948_r.jpg');
+ --light-background: url('https://pic2.zhimg.com/v2-6269d74b4dafe14781d03790e5a86b21_r.jpg');
+ --theme-encrypt-confirm: '确认'
+}</style><script defer src="/Arknight-notes/js/arknights.js"></script><script defer src="/Arknight-notes/js/search.js"></script><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><script async src="/Arknight-notes/js/gitalk.js"></script><script defer type="module">import mermaid from '//unpkg.com/mermaid@10.5.0/dist/mermaid.esm.mjs';
+window.mermaid = mermaid;
+code.paintMermaid();
+</script><script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.6.1/MathJax.js"></script><script>MathJax.Hub.Config({
+  menuSettings: {
+    zoom: "None"
+  },
+  showMathMenu: false,
+  jax: ["input/TeX","output/CommonHTML"],
+  extensions: ["tex2jax.js"],
+  TeX: {
+    extensions: ["AMSmath.js","AMSsymbols.js"],
+    equationNumbers: {
+      autoNumber: "AMS"
+    }
+  },
+  tex2jax: {
+    inlineMath: [["\\(", "\\)"]],
+    displayMath: [["\\[", "\\]"]]
+  }
+});
+</script><script async src="//unpkg.com/lightgallery@2.7.1/lightgallery.min.js"></script><script async src="//unpkg.com/lightgallery@2.7.1/plugins/zoom/lg-zoom.min.js"></script><script async src="//unpkg.com/lightgallery@2.7.1/plugins/thumbnail/lg-thumbnail.min.js"></script><script async src="/Arknight-notes/lib/encrypt/hbe.js"></script><script async src="/Arknight-notes/js/pjax.js"></script><script class="pjax-js">reset= () => {gitalk = new Gitalk({
+ clientID: 'Ov23ct13Fb0b67x23wnT',
+ clientSecret: 'f18ce69dd545e3c0f5e2456afde9c756fe8a254a',
+ repo: 'Arknight-notes',
+ owner: 'Zhongye1',
+ admin: ['Zhongye1'],
+ distractionFreeMode: false,
+ id: location.pathname
+});
+if (document.querySelector("#gitalk")) gitalk.render("gitalk");document.querySelector('.lg-container')?.remove()
+lightGallery(document.getElementById('post-bg'), {
+  plugins: [lgZoom,lgThumbnail],
+  selector: '.item-img'})}</script><script>window.addEventListener("load",() => {pjax = new Pjax({
+ cacheBust: false,
+ selectors: ['title','article','#aside-block','.pjax-js','data-pjax','.busuanzi'],
+ switches: {'article': Pjax.switches.sideBySide},
+ switchesOptions: {
+   'article': {
+     classNames: {
+       remove: "pjax-out",
+       add: "pjax-in"
+     }
+   }
+ }
+});
+document.addEventListener("pjax:complete", reset);document.addEventListener('pjax:success', _ => bszCaller.fetch(
+ "//busuanzi.ibruce.info/busuanzi?jsonpCallback=BusuanziCallback", a => {
+  bszTag.texts(a),
+  bszTag.shows()
+}));reset()})</script><script class="pjax-js">reset= () => {gitalk = new Gitalk({
+ clientID: 'Ov23ct13Fb0b67x23wnT',
+ clientSecret: 'f18ce69dd545e3c0f5e2456afde9c756fe8a254a',
+ repo: 'Arknight-notes',
+ owner: 'Zhongye1',
+ admin: ['Zhongye1'],
+ distractionFreeMode: false,
+ id: location.pathname
+});
+if (document.querySelector("#gitalk")) gitalk.render("gitalk");document.querySelector('.lg-container')?.remove()
+lightGallery(document.getElementById('post-bg'), {
+  plugins: [lgZoom,lgThumbnail],
+  selector: '.item-img'})}</script><script>window.addEventListener("load",() => {pjax = new Pjax({
+ cacheBust: false,
+ selectors: ['title','article','#aside-block','.pjax-js'],
+ switches: {'article': Pjax.switches.sideBySide},
+ switchesOptions: {
+   'article': {
+     classNames: {
+       remove: "pjax-out",
+       add: "pjax-in"
+     }
+   }
+ }
+});
+document.addEventListener("pjax:complete", reset);reset()})</script><meta name="generator" content="Hexo 7.3.0"><style>mjx-container[jax="SVG"] {
+  direction: ltr;
+}
+
+mjx-container[jax="SVG"] > svg {
+  overflow: visible;
+}
+
+mjx-container[jax="SVG"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="SVG"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="SVG"][justify="right"] {
+  text-align: right;
+}
+
+g[data-mml-node="merror"] > g {
+  fill: red;
+  stroke: red;
+}
+
+g[data-mml-node="merror"] > rect[data-background] {
+  fill: yellow;
+  stroke: none;
+}
+
+g[data-mml-node="mtable"] > line[data-line] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > rect[data-frame] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > .mjx-dashed {
+  stroke-dasharray: 140;
+}
+
+g[data-mml-node="mtable"] > .mjx-dotted {
+  stroke-linecap: round;
+  stroke-dasharray: 0,140;
+}
+
+g[data-mml-node="mtable"] > svg {
+  overflow: visible;
+}
+
+[jax="SVG"] mjx-tool {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+[jax="SVG"] mjx-tool > mjx-tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+mjx-tool > mjx-tip {
+  display: inline-block;
+  padding: .2em;
+  border: 1px solid #888;
+  font-size: 70%;
+  background-color: #F8F8F8;
+  color: black;
+  box-shadow: 2px 2px 5px #AAAAAA;
+}
+
+g[data-mml-node="maction"][data-toggle] {
+  cursor: pointer;
+}
+
+mjx-status {
+  display: block;
+  position: fixed;
+  left: 1em;
+  bottom: 1em;
+  min-width: 25%;
+  padding: .2em .4em;
+  border: 1px solid #888;
+  font-size: 90%;
+  background-color: #F8F8F8;
+  color: black;
+}
+
+foreignObject[data-mjx-xml] {
+  font-family: initial;
+  line-height: normal;
+  overflow: visible;
+}
+
+.MathJax path {
+  stroke-width: 3;
+}
+
+mjx-container[display="true"] {
+  overflow: auto hidden;
+}
+
+mjx-container[display="true"] + br {
+  display: none;
+}
+</style><link rel="alternate" href="/Arknight-notes/rss.xml" title="Notes|笔记站" type="application/atom+xml">
+</head><body><div class="loading" style="opacity: 0;"><div class="loadingBar left"></div><div class="loadingBar right"></div></div><main><header class="closed"><div class="navBtn"><i class="navBtnIcon"><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span></i></div><nav><div class="navItem" id="search-header"><span class="navItemTitle"><input autocomplete="off" autocorrect="off" autocapitalize="none" placeholder="数据检索" spellcheck="false" maxlength="50" type="text" id="search-input"></span></div><div class="navItem" id="search-holder"></div><div class="search-popup" tabindex="0"><div id="search-result"></div></div><ol class="navContent"><li class="navItem"><a class="navBlock" href="/Arknight-notes/"><span class="navItemTitle">Home</span></a></li><li class="navItem" matchdata="categories,tags"><a class="navBlock" href="/Arknight-notes/archives/"><span class="navItemTitle">Archives</span></a></li><li class="navItem"><a class="navBlock" href="/Arknight-notes/about/"><span class="navItemTitle">About</span></a></li></ol></nav></header><article><div id="post-bg"><div id="post-title"><h1>2026-01-08-机器学习复习</h1><div id="post-info"><span>文章发布时间: <div class="control"><time datetime="2026-01-08T16:00:36.000Z" id="date"> 2026-01-09</time></div></span><br><span>最后更新时间: <div class="control"><time datetime="2026-01-08T20:15:45.597Z" id="updated"> 2026-01-09</time></div></span><br><span id="busuanzi_container_page_pv">页面浏览: <span class="control" id="busuanzi_value_page_pv">加载中...</span></span></div></div><hr><div id="post-content"><p><strong>141、SVM 算法的性能取决于（ ）。</strong></p>
+<p>A. 核函数的选择</p>
+<p>B. 核函数的参数</p>
+<p>C. 软间隔参数</p>
+<p>D. 以上所有</p>
+<p><strong>正确答案：D</strong></p>
+<p><strong>142、SVM 中的代价参数 C 表示什么？（ ）</strong></p>
+<p>A. 在分类准确性和模型复杂度之间的权衡</p>
+<p>B. 交叉验证的次数</p>
+<p>C. 以上都不对</p>
+<p>D. 用到的核函数</p>
+<p><strong>正确答案：A</strong></p>
+<p><strong>143、下列有关支持向量机说法不正确的是（ ）。</strong></p>
+<p>A. 得到的是局部最优解</p>
+<p>B. 具有很好的推广能力</p>
+<p>C. 是凸二次优化问题</p>
+<p>D. 采用结构风险最小化原理</p>
+<p><strong>正确答案：A</strong></p>
+<p><strong>144、下列有关核函数不正确的是（ ）。</strong></p>
+<p>A. 可以采用 cross-validation 方法选择最佳核函数</p>
+<p>B. 满足 Mercer 条件的函数不一定能作为支持向量机的核函数</p>
+<p>C. 极大地提高了学习机器的非线性处理能力</p>
+<p>D. 函数与非线性映射并不是一一对应的关系</p>
+<p><strong>正确答案：B</strong></p>
+<p><strong>145、一对一法分类器，k 个类别需要多少个 SVM（ ）。</strong></p>
+<p>A. k(k-1)/2</p>
+<p>B. k(k-1)</p>
+<p>C. k</p>
+<p>D. k!</p>
+<p><strong>正确答案：A</strong></p>
+<p><strong>146、有关聚类分析说法错误的是（ ）。</strong></p>
+<p>A. 无须有标记的样本</p>
+<p>B. 可以用于提取一些基本特征</p>
+<p>C. 可以解释观察数据的一些内部结构和规律</p>
+<p>D. 聚类分析一个簇中的数据之间具有高差异性</p>
+<p><strong>正确答案：D</strong></p>
+<p><strong>147、两个 n 维向量 𝛼(𝑥11, 𝑥12, ⋯ , 𝑥1𝑛) 和 𝛽(𝑥21, 𝑥22, ⋯ , 𝑥2𝑛)之间的欧式距离（euclidean distance)为（ ）。</strong></p>
+<p>A. 𝑑12 = √(𝛼 − 𝛽)(𝛼 − 𝛽)^𝑇</p>
+<p>B. 𝑑12 = ∑ |𝑥1𝑘 − 𝑥2𝑘|</p>
+<p>C. 𝑑12 = max(|𝑥1𝑖 − 𝑥2𝑖|)</p>
+<p>D. cos(𝜃) = (𝛼 ∙ 𝛽)/(|𝛼||𝛽|)</p>
+<p><strong>正确答案：A</strong></p>
+<p><strong>148、闵可夫斯基距离表示为曼哈顿距离时 p 为（ ）。</strong></p>
+<p>A. 1</p>
+<p>B. 2</p>
+<p>C. 3</p>
+<p>D. 4</p>
+<p><strong>正确答案：A</strong></p>
+<p><strong>149、关于 K-means 说法不正确的是（ ）。</strong></p>
+<p>A. 算法可能终止于局部最优解</p>
+<p>B. 簇的数目 k 必须事先给定</p>
+<p>C. 对噪声和离群点数据敏感</p>
+<p>D. 适合发现非凸形状的簇</p>
+<p><strong>正确答案：D</strong></p>
+<p><strong>150、k 中心点算法每次迭代的计算复杂度是多少？（ ）</strong></p>
+<p>A. 𝑂(1)</p>
+<p>B. 𝑂(𝑘)</p>
+<p>C. 𝑂(𝑛𝑘)</p>
+<p>D. 𝑂(𝑘(𝑛 − 𝑘)^2)</p>
+<p><strong>正确答案：D</strong></p>
+<h2 id="概率与贝叶斯相关题目"><a href="#概率与贝叶斯相关题目" class="headerlink" title="概率与贝叶斯相关题目"></a>概率与贝叶斯相关题目</h2><p><strong>151、假设某事件发生的概率为 p，则此事件发生的几率为（ ）。</strong></p>
+<p>A. p</p>
+<p>B. 1-p</p>
+<p>C. p/(1-p)</p>
+<p>D. (1-p)/p</p>
+<p><strong>正确答案：C</strong></p>
+<p><strong>152、贝叶斯网络起源于贝叶斯统计学，是以（ ）为基础的有向图模型，它为处理不确定知识提供了有效的方法。</strong></p>
+<p>A. 线性代数</p>
+<p>B. 逻辑学</p>
+<p>C. 概率论</p>
+<p>D. 信息论</p>
+<p><strong>正确答案：C</strong></p>
+<p><strong>164. 在机器学习中，交叉验证的目的是：</strong></p>
+<p>A. 减少训练时间</p>
+<p>B. 增加模型复杂度</p>
+<p>C. 减少过拟合</p>
+<p>D. 增加模型的泛化能力</p>
+<p><strong>答案：C</strong></p>
+<p><strong>165. 以下关于 K 近邻算法的说法，错误的是：</strong></p>
+<p>A. K 值的选择对算法性能影响很大</p>
+<p>B. 算法的计算复杂度主要取决于特征维度</p>
+<p>C. 该算法不需要进行显式的训练过程</p>
+<p>D. 算法的预测结果可能会受到样本分布的影响</p>
+<p><strong>答案：B</strong></p>
+<p><strong>解析：</strong> K 近邻算法的计算复杂度主要取决于样本数量，而不是特征维度。K 值的选择会影响算法的性能，K 值过小容易过拟合，K 值过大容易欠拟合；该算法不需要进行显式的训练，直接利用训练数据进行预测；样本分布也会影响预测结果。</p>
+<p><strong>166. 决策树中，信息增益是通过以下哪种方式计算的？</strong></p>
+<p>A. 父节点的信息熵减去子节点的信息熵</p>
+<p>B. 子节点的信息熵减去父节点的信息熵</p>
+<p>C. 父节点的信息熵减去各子节点信息熵的加权和</p>
+<p>D. 各子节点信息熵的加权和减去父节点的信息熵</p>
+<p><strong>答案：C</strong></p>
+<p><strong>解析：</strong> 信息增益的计算公式为父节点的信息熵减去各子节点信息熵的加权和，用于衡量划分前后信息的减少程度，信息增益越大，划分越有效。</p>
+<p><strong>167. 支持向量机（SVM）的目标是：</strong></p>
+<p>A. 最大化分类间隔</p>
+<p>B. 最小化分类间隔</p>
+<p>C. 最大化训练误差</p>
+<p>D. 最小化特征维度</p>
+<p><strong>答案：A</strong></p>
+<p><strong>解析：</strong> 支持向量机的目标是在特征空间中找到一个最优的超平面，使得不同类别的样本之间的分类间隔最大，这样可以提高模型的泛化能力。</p>
+<p><strong>168. 以下哪种聚类算法是基于密度的聚类算法？</strong></p>
+<p>A. K 均值聚类</p>
+<p>B. 层次聚类</p>
+<p>C. DBSCAN</p>
+<p>D. 高斯混合模型聚类</p>
+<p><strong>答案：C</strong></p>
+<p><strong>解析：</strong> DBSCAN 是基于密度的聚类算法，它通过寻找数据点的密度相连区域来进行聚类。K 均值聚类是基于距离的聚类算法，通过迭代更新聚类中心；层次聚类是通过构建层次结构进行聚类；高斯混合模型聚类是基于概率模型的聚类方法。</p>
+<p><strong>229、SVM 的原理的简单描述，可概括为：</strong></p>
+<p>A. 最小均方误差分类</p>
+<p>B. 最小距离分类</p>
+<p>C. 最大间隔分类</p>
+<p>D. 最近邻分类</p>
+<p><strong>答案：C</strong></p>
+<p><strong>230、SVM 的算法性能取决于：</strong></p>
+<p>A. 核函数的选择</p>
+<p>B. 核函数的参数</p>
+<p>C. 软间隔参数 C</p>
+<p>D. 以上所有</p>
+<p><strong>答案：D</strong></p>
+<p><strong>231、支持向量机的对偶问题是：</strong></p>
+<p>A. 线性优化问题</p>
+<p>B. 二次优化</p>
+<p>C. 凸二次优化</p>
+<p>D. 有约束的线性优化</p>
+<p><strong>答案：C</strong></p>
+<p><strong>232、以下对支持向量机中的支撑向量描述正确的是：</strong></p>
+<p>A. 最大特征向量</p>
+<p>B. 最优投影向量</p>
+<p>C. 最大间隔支撑面上的向量</p>
+<p>D. 最速下降方向</p>
+<p><strong>答案：C</strong></p>
+<p><strong>233、假定你使用阶数为 2 的线性核 SVM，将模型应用到实际数据集上后，其训练准确率和测试准确率均为 100%。现在增加模型复杂度（增加核函数的阶），会发生以下哪种情况：</strong></p>
+<p>A. 过拟合</p>
+<p>B. 欠拟合</p>
+<p>C. 什么都不会发生，因为模型准确率已经到达极限</p>
+<p>D. 以上都不对</p>
+<p><strong>答案：A</strong></p>
+<p><strong>234、避免直接的复杂非线性变换，采用线性手段实现非线性学习的方法是：</strong></p>
+<p>A. 核函数方法</p>
+<p>B. 集成学习</p>
+<p>C. 决策树</p>
+<p>D. Logistic 回归</p>
+<p><strong>答案：A</strong></p>
+<p><strong>235、关于决策树节点划分指标描述正确的是：</strong></p>
+<p>A. 类别非纯度越大越好</p>
+<p>B. 信息增益越大越好</p>
+<p>C. 信息增益率越小越好</p>
+<p>D. 基尼指数越大越好</p>
+<p><strong>答案：B</strong></p>
+<p><strong>236、以下描述中，属于决策树策略的是：</strong></p>
+<p>A. 最优投影方向</p>
+<p>B. 梯度下降方法</p>
+<p>C. 最大特征值</p>
+<p>D. 最大信息增益</p>
+<p><strong>答案：D</strong></p>
+<p><strong>237、集成学习中基分类器的选择如何，学习效率通常越好：</strong></p>
+<p>A. 分类器相似</p>
+<p>B. 都为线性分类器</p>
+<p>C. 都为非线性分类器</p>
+<p>D. 分类器多样，差异大</p>
+<p><strong>答案：D</strong></p>
+<p><strong>238、集成学习中，每个基分类器的正确率的最低要求：</strong></p>
+<p>A. 50% 以上</p>
+<p>B. 60% 以上</p>
+<p>C. 70% 以上</p>
+<p>D. 80% 以上</p>
+<p><strong>答案：A</strong></p>
+<p><strong>239、下面属于 Bagging 方法的特点是：</strong></p>
+<p>A. 构造训练集时采用 Bootstraping 的方式</p>
+<p>B. 每一轮训练时样本权重不同</p>
+<p>C. 分类器必须按顺序训练</p>
+<p>D. 预测结果时，分类器的比重不同</p>
+<p><strong>答案：A</strong></p>
+<p><strong>240、下面属于 Boosting 方法的特点是：</strong></p>
+<p>A. 构造训练集时采用 Bootstraping 的方式</p>
+<p>B. 每一轮训练时样本权重相同</p>
+<p>C. 分类器可以并行训练</p>
+<p>D. 预测结果时，分类器的比重不同</p>
+<p><strong>答案：D</strong></p>
+<p><strong>241、随机森林方法属于：</strong></p>
+<p>A. 梯度下降优化</p>
+<p>B. Bagging 方法</p>
+<p>C. Boosting 方法</p>
+<p>D. 线性分类</p>
+<p><strong>答案：B</strong></p>
+<p><strong>242、假定有一个数据集 S，但该数据集有很多误差，采用软间隔 SVM 训练，阈值为 C，如果 C 的值很小，以下那种说法正确：</strong></p>
+<p>A. 会发生误分类现象</p>
+<p>B. 数据将被正确分类</p>
+<p>C. 不确定</p>
+<p>D. 以上都不对</p>
+<p><strong>答案：A</strong></p>
+<p><strong>243、软间隔 SVM 的阈值趋于无穷，下面哪种说法正确：</strong></p>
+<p>A. 只要最佳分类超平面存在，它就能将所有数据全部正确分类</p>
+<p>B. 软间隔 SVM 分类器将正确分类数据</p>
+<p>C. 会发生误分类现象</p>
+<p>D. 以上都不对</p>
+<p><strong>答案：A</strong></p>
+<p><strong>244、一般，K-NN 最近邻方法在什么情况下效果好：</strong></p>
+<p>A. 样本较多但典型性不好</p>
+<p>B. 样本较少但典型性较好</p>
+<p>C. 样本呈团状分布</p>
+<p>D. 样本呈链状分布</p>
+<p><strong>答案：B</strong></p>
+<p><strong>注：</strong> 最近邻属于分类算法，样本多而且典型性不好容易造成分类错误（尤其是在分类边界上的样本点）。样本分布对聚类算法的影响较大。</p>
+<p><strong>245、混合高斯聚类中，运用了以下哪种过程：</strong></p>
+<p>A. EM 算法</p>
+<p>B. 集合运算</p>
+<p>C. 密度可达</p>
+<p>D. 样本与集合运算</p>
+<p><strong>答案：A</strong></p>
+<p><strong>246、主成分分析方法是一种什么方法：</strong></p>
+<p>A. 分类方法</p>
+<p>B. 回归方法</p>
+<p>C. 降维方法</p>
+<p>D. 参数估计方法</p>
+<p><strong>答案：C</strong></p>
+<p><strong>247、过拟合现象中：</strong></p>
+<p>A. 训练样本的测试误差最小，测试样本的正确识别率却很低</p>
+<p>B. 训练样本的测试误差最小，测试样本的正确识别率也很高</p>
+<p>C. 模型的泛化能力很高</p>
+<p>D. 通常为线性模型</p>
+<p><strong>答案：A</strong></p>
+<p><strong>248、已知均值和方差，下面哪种分布的熵最大：</strong></p>
+<p>A. 几何分布</p>
+<p>B. 指数分布</p>
+<p>C. 高斯分布</p>
+<p>D. 均匀分布</p>
+<p><strong>答案：C</strong></p>
+<p><strong>249、梯度下降算法的正确步骤是什么：</strong></p>
+<p>(1)计算预测值和真实值之间的误差</p>
+<p>(2)迭代更新，直到找到最佳权重</p>
+<p>(3)把输入传入网络，得到输出值</p>
+<p>(4)初始化随机权重和偏差</p>
+<p>(5)对每一个产生误差的神经元，改变相应的（权重）值以减小误差</p>
+<p>A. 1,2,3,4,5</p>
+<p>B. 4,3,1,5,2</p>
+<p>C. 3,2,1,5,4</p>
+<p>D. 5,4,3,2,1</p>
+<p><strong>答案：B</strong></p>
+<p><strong>250、以下哪种方法会增加模型的欠拟合风险：</strong></p>
+<p>A. 添加新特征</p>
+<p>B. 增加模型复杂度</p>
+<p>C. 减小正则化系数</p>
+<p>D. 数据增强</p>
+<p><strong>答案：D</strong></p>
+<p><strong>251、关于 k-means 算法，正确的描述是：</strong></p>
+<p>A. 能找到任意形状的聚类</p>
+<p>B. 初始值不同，最终结果可能不同</p>
+<p>C. 每次迭代的时间复杂度是 O(n^2)，其中 n 是样本数量</p>
+<p>D. 不能使用核函数</p>
+<p><strong>答案：B</strong></p>
+<p><strong>252、下列关于过拟合现象的描述中，哪个是正确的：</strong></p>
+<p>A. 训练误差小，测试误差大</p>
+<p>B. 训练误差小，测试误差小</p>
+<p>C. 模型的泛化能力高</p>
+<p>D. 其余选项都不对</p>
+<p><strong>答案：A</strong></p>
+<p><strong>253、下方法中属于无监督学习算法的是：</strong></p>
+<p>A. 线性回归</p>
+<p>B. 支持向量机</p>
+<p>C. 决策树</p>
+<p>D. K-Means 聚类</p>
+<p><strong>答案：D</strong></p>
+<p><strong>254、下面关于贝叶斯分类器描述错误的是：</strong></p>
+<p>A. 以贝叶斯定理为基础</p>
+<p>B. 是基于后验概率，推导出先验概率</p>
+<p>C. 可以解决有监督学习的问题</p>
+<p>D. 可以用极大似然估计法解贝叶斯分类器</p>
+<p><strong>答案：B</strong></p>
+<p><strong>255、下面关于 Adaboost 算法的描述中，错误的是：</strong></p>
+<p>A. 是弱分类器的线性组合</p>
+<p>B. 提升树是以分类树或者回归树为基本分类器的提升办法</p>
+<p>C. 该算法实际上是前向分步算法的一个实现，在这个方法里，模型是加法模型，损失函数是指数损失，算法是前向分步算法。</p>
+<p>D. 同时独立地学习多个弱分类器</p>
+<p><strong>答案：D</strong></p>
+<p><strong>256、二分类任务中，有三个分类器 h1, h2, h3，三个测试样本 x1, x2, x3。假设 1 表示分类结果正确，0 表示错误，h1 在 x1, x2, x3 的结果分别 (1,1,0)，h2, h3 分别为 (0,1,1), (1,0,1)，按投票法集成三个分类器，下列说法正确的是：</strong></p>
+<p>A. 集成提高了性能</p>
+<p>B. 集成没有效果</p>
+<p>C. 集成降低了性能</p>
+<p>D. 集成效果不能确定</p>
+<p><strong>答案：A</strong></p>
+<p><strong>257、下列哪个不属于常用的文本分类的特征选择算法：</strong></p>
+<p>A. 卡方检验值</p>
+<p>B. 互信息</p>
+<p>C. 信息增益</p>
+<p>D. 主成分分析</p>
+<p><strong>答案：D</strong></p>
+<p><strong>258、以下哪个模型不是分类模型：</strong></p>
+<p>A. 最近邻</p>
+<p>B. K 均值</p>
+<p>C. 朴素贝叶斯</p>
+<p>D. 逻辑回归</p>
+<p><strong>答案：B</strong></p>
+<p>262、机器学习进行的第一步是（）</p>
+<p>A. 数据收集</p>
+<p>B. 特征提取</p>
+<p>C. 交叉验证</p>
+<p>D. 模型训练</p>
+<p><strong>正确答案</strong>：A</p>
+<p><strong>解析</strong>：<br>机器学习流程的第一步是<strong>数据收集</strong>，因为所有后续步骤（如特征提取、模型训练）都依赖于数据。没有数据，机器学习无法进行。特征提取是数据预处理的一部分，属于后续步骤。</p>
+<p>264、如果一个样本空间线性可分，那么，我们能找到（）个平面来划分样本。</p>
+<p>A. 1</p>
+<p>B. 无数</p>
+<p>C. K</p>
+<p>D. 不确定</p>
+<p><strong>正确答案</strong>：B</p>
+<p><strong>解析</strong>：<br>线性可分时，存在无数个分离超平面。只要超平面不越过样本点，稍微平移或旋转仍能保持分类正确。</p>
+<p>265、向量 <code>x=[1,2,3,4,-9,0]</code>的 L1 范数是多少</p>
+<p>A. 1</p>
+<p>B. 19</p>
+<p>C. 6</p>
+<p>D. 20</p>
+<p><strong>正确答案</strong>：B</p>
+<p><strong>解析</strong>：<br>L1 范数是各元素绝对值之和：</p>
+<script type="math/tex; mode=display">\|x\|_1=|1|+|2|+|3|+|4|+|-9|+|0|=19</script><p>266、向量 X=[1,2,3,4,-9,0] 的 L2 范数为（ ）</p>
+<p>A. 1</p>
+<p>B. 19</p>
+<p>C. 6</p>
+<p>D. √111</p>
+<p><strong>正确答案</strong>：D</p>
+<p><strong>解析</strong>：<br>L2 范数是各元素平方和的平方根：</p>
+<script type="math/tex; mode=display">\|x\|_2=\sqrt{1^2+2^2+3^2+4^2+(-9)^2+0^2}=\sqrt{111}</script><p>267、一般，k-NN 最近邻方法在（ ）的情况下效果较好</p>
+<p>A. 样本较多但典型性不好</p>
+<p>B. 样本较少但典型性好</p>
+<p>C. 样本呈团状分布</p>
+<p>D. 样本呈链状分布</p>
+<p><strong>正确答案</strong>：B</p>
+<p><strong>解析</strong>：<br>KNN 依赖局部相似性，样本少但典型性好时，最近邻投票更可靠。团状分布是理想假设，但”少而典型”是更根本的前提。</p>
+<p>268、以下哪些方法不可以直接来对文本分类？</p>
+<p>A. K-Means</p>
+<p>B. 决策树</p>
+<p>C. 支持向量机</p>
+<p>D. kNN</p>
+<p><strong>正确答案</strong>：A</p>
+<p><strong>解析</strong>：<br>K-Means 是无监督聚类算法，不依赖标签，无法直接用于分类。其他选项均为有监督分类算法。</p>
+<p>269、以下说法错误的一项是</p>
+<p>A. 负梯度方向是使函数值下降最快的方向</p>
+<p>B. 当目标函数是凸函数时，梯度下降法的解是全局最优解</p>
+<p>C. 梯度下降法比牛顿法收敛速度快</p>
+<p>D. 拟牛顿法不需要计算 Hesse 矩阵</p>
+<p><strong>正确答案</strong>：C</p>
+<p><strong>解析</strong>：<br>牛顿法（二阶）在最优解附近收敛速度（二次）快于梯度下降法（线性）。C 选项表述错误。</p>
+<p>270、下列说法错误的是？</p>
+<p>A. 当目标函数是凸函数时，梯度下降算法的解一般就是全局最优解</p>
+<p>B. 进行 PCA 降维时，需要计算协方差矩阵</p>
+<p>C. 沿负梯度的方向一定是最优的方向</p>
+<p>D. 利用拉格朗日函数能解带约束的优化问题</p>
+<p><strong>正确答案</strong>：C</p>
+<p><strong>解析</strong>：<br>负梯度方向是局部下降最快方向，但非全局最优（可能产生锯齿现象）。其他选项正确。</p>
+<p>271、交叉验证方法执行时间排序（样本量 1000）</p>
+<p>A. 1 &gt; 2 &gt; 3 &gt; 4</p>
+<p>B. 2 &gt; 3 &gt; 4 &gt; 1</p>
+<p>C. 4 &gt; 1 &gt; 2 &gt; 3</p>
+<p>D. 2 &gt; 4 &gt; 3 &gt; 1</p>
+<p><strong>正确答案</strong>：D</p>
+<p><strong>解析</strong>：<br>时间开销：</p>
+<ul>
+<li>留一法（1000 次训练）最慢（2）</li>
+<li>重复两次 5 折（10 次训练）次慢（4）</li>
+<li>5 折（5 次训练）较快（3）</li>
+<li>Bootstrap（1 次训练）最快（1）<br>排序：2 &gt; 4 &gt; 3 &gt; 1</li>
+</ul>
+<p>273、下面哪句话是正确</p>
+<p>A. 机器学习模型的精准度越高，则模型的性能越好</p>
+<p>B. 增加模型的复杂度，总能减小测试样本误差</p>
+<p>C. 增加模型的复杂度，总能减小训练样本误差</p>
+<p>D. 以上说法都不对</p>
+<p><strong>正确答案</strong>：C</p>
+<p><strong>解析</strong>：<br>增加复杂度会提升模型拟合能力，训练误差通常减小（可能过拟合）。A 错（需综合评估），B 错（测试误差可能增大）。</p>
+<p>274、集成学习中，下列说法正确的是？</p>
+<p>A. 基本模型之间相关性高</p>
+<p>B. 基本模型之间相关性低</p>
+<p>C. 集成方法中，使用加权平均代替投票方法</p>
+<p>D. 基本模型都来自于同一算法</p>
+<p><strong>正确答案</strong>：B</p>
+<p><strong>解析</strong>：<br>集成学习要求基模型”好而不同”，低相关性使错误相互纠正，提升泛化能力。</p>
+<p>275、SVM 训练后只保留支持向量是否影响分类能力？</p>
+<p>A. 正确</p>
+<p>B. 错误</p>
+<p><strong>正确答案</strong>：A</p>
+<p><strong>解析</strong>：<br>支持向量决定了分离超平面，非支持向量不影响模型，这是 SVM 的稀疏性。</p>
+<p>276、Soft-SVM 中如何保证线性可分？</p>
+<p>A. C = 0</p>
+<p>B. C = 1</p>
+<p>C. C 正无穷大</p>
+<p>D. C 负无穷大</p>
+<p><strong>正确答案</strong>：C</p>
+<p><strong>解析</strong>：<br>C 趋于无穷大时，对分类错误的惩罚无限大，迫使所有样本分类正确（退化为硬间隔）。</p>
+<p>278、点击率预测（99%负样本）中，正确率 99%说明？</p>
+<p>A. 模型正确率很高，不需要优化模型了</p>
+<p>B. 模型正确率并不高，应该建立更好的模型</p>
+<p>C. 无法对模型做出好坏评价</p>
+<p>D. 以上说法都不对</p>
+<p><strong>正确答案</strong>：B</p>
+<p><strong>解析</strong>：<br>极端不平衡时，将所有样本预测为负类即可达到 99%准确率，模型未学到区分能力，需优化。</p>
+<p>279、关于 k 折交叉验证，下列说法正确的是？</p>
+<p>A. k 值并不是越大越好，k 值过大，会降低运算速度</p>
+<p>B. 选择更大的 k 值，会让偏差更小，因为 k 值越大，训练集越接近整个训练样本</p>
+<p>C. 选择合适的 k 值，能减小验证方差</p>
+<p>D. 以上说法都正确</p>
+<p><strong>正确答案</strong>：D</p>
+<p><strong>解析</strong>：<br>A、B、C 均正确：k 过大计算开销大；k 大时训练集接近全集，偏差小；合适 k 可平衡偏差-方差。</p>
+<p>289、EM 算法的核心思想是？</p>
+<p>A. 通过不断地求取目标函数的下界的最优值，从而实现最优化的目标</p>
+<p>B. 列出优化目标函数，通过方法计算出最优值</p>
+<p>C. 列出优化目标函数，通过数值优化方法计算出最优值</p>
+<p>D. 列出优化目标函数，通过坐标下降的优化方法计算出最优值</p>
+<p><strong>正确答案</strong>：A</p>
+<p><strong>解析</strong>：<br>EM 算法通过 E 步构造下界、M 步最大化下界，迭代逼近最优解。</p>
+<p>291、SVM 中的代价参数 C 表示什么？</p>
+<p>A. 在分类准确性和模型复杂度之间的权衡</p>
+<p>B. 交叉验证的次数</p>
+<p>C. 以上都不对</p>
+<p>D. 用到的核函数</p>
+<p><strong>正确答案</strong>：A</p>
+<p><strong>解析</strong>：<br>C 控制误分类惩罚与模型复杂度（间隔大小）的权衡：C 越大，越倾向正确分类（可能过拟合）。</p>
+<p>293、下列有关核函数不正确的是</p>
+<p>A. 可以采用 cross-validation 方法选择最佳核函数</p>
+<p>B. 满足 Mercer 条件的函数不一定能作为支持向量机的核函数</p>
+<p>C. 极大地提高了学习机器的非线性处理能力</p>
+<p>D. 函数与非线性映射并不是一一对应的关系</p>
+<p><strong>正确答案</strong>：B</p>
+<p><strong>解析</strong>：<br>核函数必须满足 Mercer 条件才能用于 SVM。B 选项错误，反过来说才成立。</p>
+<p>298、关于 K-means 说法不正确的是</p>
+<p>A. 算法可能终止于局部最优解</p>
+<p>B. 簇的数目 k 必须事先给定</p>
+<p>C. 对噪声和离群点数据敏感</p>
+<p>D. 适合发现非凸形状的簇</p>
+<p><strong>正确答案</strong>：D</p>
+<p><strong>解析</strong>：<br>K-means 假设簇呈凸形（球形），对非凸形状（如流形、环状）效果差。</p>
+<p>300、同质集成中的个体学习器亦称</p>
+<p>A. 组件学习器</p>
+<p>B. 基学习器</p>
+<p>C. 异质学习器</p>
+<p>D. 同质学习器</p>
+<p><strong>正确答案</strong>：B</p>
+<p><strong>解析</strong>：<br>同质集成中，相同类型的个体学习器称为基学习器。</p>
+<p>302、关于 logistic 回归和 SVM 不正确的是</p>
+<p>A. Logistic 回归目标函数是最小化后验概率</p>
+<p>B. Logistic 回归可以用于预测事件发生概率的大小</p>
+<p>C. SVM 可以有效避免模型过拟合</p>
+<p>D. SVM 目标是结构风险最小化</p>
+<p><strong>正确答案</strong>：A</p>
+<p><strong>解析</strong>：<br>Logistic 回归通过最大似然估计参数，目标是得到后验概率的估计值，而非最小化后验概率。</p>
+<p>303、下面关于 SVM 算法叙述不正确的是</p>
+<p>A. SVM 是一种基于经验风险最小化准则的算法</p>
+<p>B. SVM 求得的解为全局唯一最优解</p>
+<p>C. SVM 在解决小样本、非线性及高维模式识别问题中具有优势</p>
+<p>D. SVM 最终分类结果只与少数支持向量有关</p>
+<p><strong>正确答案</strong>：A</p>
+<p><strong>解析</strong>：<br>SVM 目标是结构风险最小化（间隔最大化+误差惩罚），而非单纯经验风险最小化。</p>
+<p>305、下列中为生成模型的是</p>
+<p>A. 决策树</p>
+<p>B. 支持向量机 SVM</p>
+<p>C. K 近邻</p>
+<p>D. 贝叶斯分类器</p>
+<p><strong>正确答案</strong>：D</p>
+<p><strong>解析</strong>：<br>生成模型对联合概率 P(X,Y)建模（如朴素贝叶斯），判别模型直接对 P(Y|X)或决策边界建模（其他选项）。</p>
+<p>308、距离度量不需要满足的特性是</p>
+<p>A. 非负性</p>
+<p>B. 同一性</p>
+<p>C. 对称性</p>
+<p>D. 递增性</p>
+<p><strong>正确答案</strong>：D</p>
+<p><strong>解析</strong>：<br>距离度量需满足非负性、同一性、对称性、三角不等式，无需”递增性”。</p>
+<p>315、朴素贝叶斯利用了</p>
+<p>A. 先验概率</p>
+<p>B. 后验概率</p>
+<p>C. 以上都是</p>
+<p>D. 以上都不是</p>
+<p><strong>正确答案</strong>：C</p>
+<p><strong>解析</strong>：<br>朴素贝叶斯基于贝叶斯定理，利用先验概率 P(Y)和似然 P(X|Y)计算后验概率 P(Y|X)。</p>
+<p>317、模型评估的常用方法有哪些</p>
+<p>A. 留出法</p>
+<p>B. 交叉验证法</p>
+<p>C. 自助法</p>
+<p>D. 以上都是</p>
+<p><strong>正确答案</strong>：D</p>
+<p><strong>解析</strong>：<br>留出法、交叉验证、自助法均为常用模型评估方法。</p>
+<p>321、关于 EM 算法正确的是</p>
+<p>A. EM 算法包括两步：E 算法和 M 算法</p>
+<p>B. EM 算法一定能收敛到全局最大值点</p>
+<p>C. 英文全称是 Expectation-Minimization</p>
+<p>D. 以上都不正确</p>
+<p><strong>正确答案</strong>：A</p>
+<p><strong>解析</strong>：<br>EM 算法包括 E 步（期望）和 M 步（最大化）。B 错（可能收敛到局部最优），C 错（全称 Expectation-Maximization）。</p>
+<ol>
+<li>在构建决策树时，以下哪些可以作为分裂节点的选择标准？（ ） A. 信息增益 B. 基尼指数 C. 均方误差 D. 准确率 答案：A</li>
+<li><ol>
+<li>以下关于交叉验证的说法正确的是（ ） A. 可以有效评估模型的泛化能力 B. 常见的有 K - 折交叉验证 C. 能避免数据划分的随机性影响 D. 只适用于小数据集 答案：AB</li>
+</ol>
+</li>
+</ol>
+<p>155、以下哪些算法是无监督学习算法? A.空间聚类 149 B.主成分分析 C.支持向量机 D.Q-LEARNING 正确答案：A、B</p>
+<p>156、以下哪些算法是监督学习算法? A.人工神经网络 B.高斯混合模型概率密度估计 C.ACTOR-CRITIC 算法 D.支持向量机 正确答案：A、D</p>
+<p>157、当我们利用二分类支持向量机来解决多分类问题是，我们有哪两种策略？ （） A.一类对另一类 B.一类对 K-1 类 C.一类对 K 类 D.2 类对 K-2 类 正确答案：A、B<br>159、核函数满足的两个条件（）。 A.交换性 B.正交性 C.鲁棒性 D.半正定性 正确答案：A、D</p>
+<p>135、直观上看，我们希望“物以类聚”，即聚类的结果“簇内相似度”⾼，且 “簇间”相似度低。（√） 136、关于 EM 算法的收敛性，EM 算法理论上不能够保证收敛。（×） 137、关于 EM 算法的用途，EM 算法只适用不完全数据的情形。（×）<br>138、Jessen 不等式等号成立的条件是：变量为常数。 正确答案：√ 139、Jessen 不等式 E(f(x)) &gt;= f(E(x)), 左边部分大于等于右边部分的条件 是函数 f 是凸函数，如果 f 是凹函数，左边部分应该是小于等于右边部分。 正确答案：√ 140、EM 算法因为是理论可以保证收敛的，所以肯定能够取得最优解。（×</p>
+<p>143、EM 算法通常不需要设置步长，而且收敛速度一般很快。 正确答案：√ 144、吉布斯采样是一种通用的采样方法，对于任何概率分布都可以采样出对应 的样本。（×）</p>
+<p>136、关于 EM 算法的收敛性，EM 算法理论上不能够保证收敛。（×）<br>137、关于 EM 算法的用途，EM 算法只适用不完全数据的情形。（×）<br>138、Jessen 不等式等号成立的条件是：变量为常数。 正确答案：√ </p>
+<p>139、Jessen 不等式 E(f(x)) &gt;= f(E(x)), 左边部分大于等于右边部分的条件 是函数 f 是凸函数，如果 f 是凹函数，左边部分应该是小于等于右边部分。 正确答案：√ </p>
+<p>140、EM 算法因为是理论可以保证收敛的，所以肯定能够取得最优解。（×） </p>
+<p>141、EM 算法首先猜测每个数据来自哪个高斯分布，然后求取每个高斯的参 数，之后再去重新猜测每个数据来自哪个高斯分布，类推进一步迭代，直到收 敛，从而得到最后的参数估计值。 正确答案：√ </p>
+<p>142、EM 算法，具有通用的求解形式，因此对任何问题，其求解过程都是一 样，都能很容易求得结果。（×）</p>
+<div id="paginator"></div></div><div id="post-footer"><div id="pages"><div class="footer-link" style="width: 50%;text-align:right;border-right:1px #fe2 solid"><a href="/Arknight-notes/posts/33305.html">← 下一篇 2026-01-08-机器学习复习其二</a></div><div class="footer-link" style="width: 50%;right:1px;border-left:1px #fe2 solid"><a href="/Arknight-notes/posts/11390.html">2026-01-07-机器学习相关算法 上一篇 →</a></div></div></div><div id="comments"><div id="gitalk"></div></div></div><div class="bottom-btn"><div><a class="i-top" id="to-top" onClick="scrolls.scrolltop();" title="回到顶部" style="opacity: 0; display: none;">∧ </a><a class="i-index" id="to-index" href="#toc-div" title="文章目录">≡</a><a class="i-color" id="color-mode" onClick="colorMode.change()" title="切换主题"></a></div></div></article><aside><div id="about"><a href="/Arknight-notes/" id="logo"><img src="https://pic4.zhimg.com/80/v2-d9884f32711e19e80979eac58e943897_720w.webp" alt="Logo" style="margin:20;border-radius:0;"></a><h1 id="Dr"><a href="zhongye">柊野</a></h1><div id="description"><p></p></div></div><div id="aside-block"><div id="toc-div"><h1>目录</h1><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A6%82%E7%8E%87%E4%B8%8E%E8%B4%9D%E5%8F%B6%E6%96%AF%E7%9B%B8%E5%85%B3%E9%A2%98%E7%9B%AE"><span class="toc-number">1.</span> <span class="toc-text">概率与贝叶斯相关题目</span></a></li></ol></div></div><footer><nobr><span class="icp-title">GZHU</span><span class="icp-content">193001-0001</span></nobr><br><nobr><span class="icp-title">OUTPOST</span><span class="icp-content">169-2025-0331</span></nobr><br><nobr>构建自 <a target="_blank" rel="noopener" href="http://hexo.io">Hexo</a></nobr><wbr><nobr> 使用主题 <a target="_blank" rel="noopener" href="https://github.com/Yue-plus/hexo-theme-arknights">Arknights</a></nobr><wbr><nobr> 主题作者 <a target="_blank" rel="noopener" href="https://github.com/Yue-plus">Yue_plus</a></nobr></footer></aside></main><canvas id="canvas-dust"></canvas></body></html>
