@@ -1,0 +1,678 @@
+<!DOCTYPE html><html lang="en" theme-mode="dark"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>2026-01-16-关于低复杂度最长链共识算法设计 | Zhongye's Blogs</title><link rel="icon" type="image/x-icon" href="/Arknight-notes/favicon.ico"><link rel="preload" as="font" crossorigin="anonymous" href="/Arknight-notes/font/Bender.ttf"><link rel="preload" as="font" crossorigin="anonymous" href="/Arknight-notes/font/BenderLight.ttf"><link rel="preload" as="font" crossorigin="anonymous" href="/Arknight-notes/font/JetBrainsMono-Regular.woff2"><link rel="stylesheet" href="/Arknight-notes/css/arknights.css"><style>@font-face {
+  font-family: Bender;
+  src: local('Bender'), url("/Arknight-notes/font/Bender.ttf"), url("/Arknight-notes/font/Bender.otf");
+}
+@font-face {
+  font-family: BenderLight;
+  src: local('BenderLight'), url("/Arknight-notes/font/BenderLight.ttf");
+}
+@font-face {
+  font-family: 'JetBrains Mono';
+  src: local('JetBrains Mono'), url('/Arknight-notes/font/JetBrainsMono-Regular.woff2') format('woff2');
+}
+</style><script>var config = {"root":"/Arknight-notes/","code_fold":90,"search":{"preload":false,"activeHolder":"Enter here","blurHolder":"Search","noResult":"Data \"$0\" not found"},"code":{"codeInfo":"$0 - $1 lines","copy":"copy"}}</script><link type="text/css" rel="stylesheet" href="/Arknight-notes/lib/encrypt/hbe.style.css"><script src="/Arknight-notes/js/gitalk.js"></script><script src="//unpkg.com/mermaid@10.5.0/dist/mermaid.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.6.1/MathJax.js"></script><script>MathJax.Hub.Config({
+ menuSettings: {
+   zoom: "None"
+ },
+ showMathMenu: false,
+ jax: ["input/TeX","output/CommonHTML"],
+ extensions: ["tex2jax.js"],
+ TeX: {
+   extensions: ["AMSmath.js","AMSsymbols.js"],
+   equationNumbers: {
+     autoNumber: "AMS"
+   }
+ },
+ tex2jax: {
+   inlineMath: [["\\(", "\\)"]],
+   displayMath: [["\\[", "\\]"]]
+ }
+});</script><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lightgallery.css"><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lg-zoom.css"><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lg-thumbnail.css"><link type="text/css" rel="stylesheet" href="/Arknight-notes/lib/fontawesome/css/all.min.css"><script>if (window.localStorage.getItem('theme-mode') === 'light')
+ document.documentElement.setAttribute('theme-mode', 'light')
+if (window.localStorage.getItem('theme-mode') === 'dark')
+ document.documentElement.setAttribute('theme-mode', 'dark')</script><style>@font-face {
+ font-family: BenderLight;
+ src: local('Bender'), url("/Arknight-notes/font/BenderLight.woff2") format('woff2');
+}
+@font-face {
+ font-family: 'JetBrains Mono';
+ src: local('JetBrains Mono'), url('/Arknight-notes/font/JetBrainsMono-Regular.woff2') format('woff2');
+}</style><style>:root {
+ --dark-background: url('https://pica.zhimg.com/v2-1d14a5f80bbe62302dce99b273e3a948_r.jpg');
+ --light-background: url('https://pic2.zhimg.com/v2-6269d74b4dafe14781d03790e5a86b21_r.jpg');
+ --theme-encrypt-confirm: 'confirm'
+}</style><script defer src="/Arknight-notes/js/arknights.js"></script><script defer src="/Arknight-notes/js/search.js"></script><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><script async src="/Arknight-notes/js/gitalk.js"></script><script defer type="module">import mermaid from '//unpkg.com/mermaid@10.5.0/dist/mermaid.esm.mjs';
+window.mermaid = mermaid;
+code.paintMermaid();
+</script><script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.6.1/MathJax.js"></script><script>MathJax.Hub.Config({
+  menuSettings: {
+    zoom: "None"
+  },
+  showMathMenu: false,
+  jax: ["input/TeX","output/CommonHTML"],
+  extensions: ["tex2jax.js"],
+  TeX: {
+    extensions: ["AMSmath.js","AMSsymbols.js"],
+    equationNumbers: {
+      autoNumber: "AMS"
+    }
+  },
+  tex2jax: {
+    inlineMath: [["\\(", "\\)"]],
+    displayMath: [["\\[", "\\]"]]
+  }
+});
+</script><script async src="//unpkg.com/lightgallery@2.7.1/lightgallery.min.js"></script><script async src="//unpkg.com/lightgallery@2.7.1/plugins/zoom/lg-zoom.min.js"></script><script async src="//unpkg.com/lightgallery@2.7.1/plugins/thumbnail/lg-thumbnail.min.js"></script><script async src="/Arknight-notes/lib/encrypt/hbe.js"></script><script async src="/Arknight-notes/js/pjax.js"></script><script class="pjax-js">reset= () => {gitalk = new Gitalk({
+ clientID: 'Ov23ct13Fb0b67x23wnT',
+ clientSecret: 'f18ce69dd545e3c0f5e2456afde9c756fe8a254a',
+ repo: 'Arknight-notes',
+ owner: 'Zhongye1',
+ admin: ['Zhongye1'],
+ distractionFreeMode: false,
+ id: location.pathname
+});
+if (document.querySelector("#gitalk")) gitalk.render("gitalk");document.querySelector('.lg-container')?.remove()
+lightGallery(document.getElementById('post-bg'), {
+  plugins: [lgZoom,lgThumbnail],
+  selector: '.item-img'})}</script><script>window.addEventListener("load",() => {pjax = new Pjax({
+ cacheBust: false,
+ selectors: ['title','article','#aside-block','.pjax-js','data-pjax','.busuanzi'],
+ switches: {'article': Pjax.switches.sideBySide},
+ switchesOptions: {
+   'article': {
+     classNames: {
+       remove: "pjax-out",
+       add: "pjax-in"
+     }
+   }
+ }
+});
+document.addEventListener("pjax:complete", reset);document.addEventListener('pjax:success', _ => bszCaller.fetch(
+ "//busuanzi.ibruce.info/busuanzi?jsonpCallback=BusuanziCallback", a => {
+  bszTag.texts(a),
+  bszTag.shows()
+}));reset()})</script><script class="pjax-js">reset= () => {gitalk = new Gitalk({
+ clientID: 'Ov23ct13Fb0b67x23wnT',
+ clientSecret: 'f18ce69dd545e3c0f5e2456afde9c756fe8a254a',
+ repo: 'Arknight-notes',
+ owner: 'Zhongye1',
+ admin: ['Zhongye1'],
+ distractionFreeMode: false,
+ id: location.pathname
+});
+if (document.querySelector("#gitalk")) gitalk.render("gitalk");document.querySelector('.lg-container')?.remove()
+lightGallery(document.getElementById('post-bg'), {
+  plugins: [lgZoom,lgThumbnail],
+  selector: '.item-img'})}</script><script>window.addEventListener("load",() => {pjax = new Pjax({
+ cacheBust: false,
+ selectors: ['title','article','#aside-block','.pjax-js'],
+ switches: {'article': Pjax.switches.sideBySide},
+ switchesOptions: {
+   'article': {
+     classNames: {
+       remove: "pjax-out",
+       add: "pjax-in"
+     }
+   }
+ }
+});
+document.addEventListener("pjax:complete", reset);reset()})</script><meta name="generator" content="Hexo 7.3.0"><style>mjx-container[jax="SVG"] {
+  direction: ltr;
+}
+
+mjx-container[jax="SVG"] > svg {
+  overflow: visible;
+}
+
+mjx-container[jax="SVG"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="SVG"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="SVG"][justify="right"] {
+  text-align: right;
+}
+
+g[data-mml-node="merror"] > g {
+  fill: red;
+  stroke: red;
+}
+
+g[data-mml-node="merror"] > rect[data-background] {
+  fill: yellow;
+  stroke: none;
+}
+
+g[data-mml-node="mtable"] > line[data-line] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > rect[data-frame] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > .mjx-dashed {
+  stroke-dasharray: 140;
+}
+
+g[data-mml-node="mtable"] > .mjx-dotted {
+  stroke-linecap: round;
+  stroke-dasharray: 0,140;
+}
+
+g[data-mml-node="mtable"] > svg {
+  overflow: visible;
+}
+
+[jax="SVG"] mjx-tool {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+[jax="SVG"] mjx-tool > mjx-tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+mjx-tool > mjx-tip {
+  display: inline-block;
+  padding: .2em;
+  border: 1px solid #888;
+  font-size: 70%;
+  background-color: #F8F8F8;
+  color: black;
+  box-shadow: 2px 2px 5px #AAAAAA;
+}
+
+g[data-mml-node="maction"][data-toggle] {
+  cursor: pointer;
+}
+
+mjx-status {
+  display: block;
+  position: fixed;
+  left: 1em;
+  bottom: 1em;
+  min-width: 25%;
+  padding: .2em .4em;
+  border: 1px solid #888;
+  font-size: 90%;
+  background-color: #F8F8F8;
+  color: black;
+}
+
+foreignObject[data-mjx-xml] {
+  font-family: initial;
+  line-height: normal;
+  overflow: visible;
+}
+
+.MathJax path {
+  stroke-width: 3;
+}
+
+mjx-container[display="true"] {
+  overflow: auto hidden;
+}
+
+mjx-container[display="true"] + br {
+  display: none;
+}
+</style><link rel="alternate" href="/Arknight-notes/rss.xml" title="Zhongye's Blogs" type="application/atom+xml">
+</head><body><div class="loading" style="opacity: 0;"><div class="loadingBar left"></div><div class="loadingBar right"></div></div><main><header class="closed"><div class="navBtn"><i class="navBtnIcon"><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span></i></div><nav><div class="navItem" id="search-header"><span class="navItemTitle"><input autocomplete="off" autocorrect="off" autocapitalize="none" placeholder="Search" spellcheck="false" maxlength="50" type="text" id="search-input"></span></div><div class="navItem" id="search-holder"></div><div class="search-popup" tabindex="0"><div id="search-result"></div></div><ol class="navContent"><li class="navItem"><a class="navBlock" href="/Arknight-notes/"><span class="navItemTitle">Home</span></a></li><li class="navItem" matchdata="categories,tags"><a class="navBlock" href="/Arknight-notes/archives/"><span class="navItemTitle">Archives</span></a></li><li class="navItem"><a class="navBlock" href="/Arknight-notes/about/"><span class="navItemTitle">About</span></a></li></ol></nav></header><article><div id="post-bg"><div id="post-title"><h1>2026-01-16-关于低复杂度最长链共识算法设计</h1><div id="post-info"><span>First Post: <div class="control"><time datetime="2026-01-16T02:33:23.000Z" id="date"> 2026-01-16</time></div></span><br><span>Last Update: <div class="control"><time datetime="2026-01-16T07:18:21.879Z" id="updated"> 2026-01-16</time></div></span><br><span id="busuanzi_container_page_pv">Page View: <span class="control" id="busuanzi_value_page_pv">loading...</span></span></div></div><hr><div id="post-content"><h1 id="1-基于同步网络假设"><a href="#1-基于同步网络假设" class="headerlink" title="1.基于同步网络假设"></a>1.基于同步网络假设</h1><p>算法假设网络是同步的，即消息传递延迟有上界，节点时钟同步。首先，建立了基于网络动力学的最长链收敛模型，通过节点动力学方程描述区块传播和链收敛过程。其次，设计了基于本地决策的最长链选择策略，节点仅需与部分邻居通信即可确定最长链，将通信复杂度从 O(N^2)降低到 O(N\log N)。最后，设计了基于链权重的快速收敛机制，通过赋予不同区块权重加速最长链收敛。</p>
+<p>同步网络假设是指网络消息传递延迟有上界，节点时钟同步。在同步网络假设下，可以设计更高效的共识算法。</p>
+<h3 id="3-1-同步网络模型"><a href="#3-1-同步网络模型" class="headerlink" title="3.1 同步网络模型"></a>3.1 同步网络模型</h3><p><strong>网络模型</strong>：</p>
+<p>考虑一个区块链共识网络，用无向图 G = (V, E)表示，其中 V = {1, 2, \ldots, N}表示共识节点集合，E \subseteq V \times V 表示节点间的连接集合。</p>
+<p><strong>同步网络假设</strong>：</p>
+<ol>
+<li><strong>消息传递延迟有上界</strong>：存在常数\Delta &gt; 0，使得任意消息从节点 i 传递到节点 j 的延迟不超过\Delta。</li>
+<li><strong>节点时钟同步</strong>：所有节点的本地时钟同步，误差不超过\delta。</li>
+<li><strong>网络拓扑稳定</strong>：在共识过程中，网络拓扑结构保持相对稳定。</li>
+</ol>
+<p><strong>网络拓扑</strong>：</p>
+<p>网络的拓扑结构用邻接矩阵$A = [a<em>{ij}]</em>{N \times N}<mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.452ex;" xmlns="http://www.w3.org/2000/svg" width="11.312ex" height="2.149ex" role="img" focusable="false" viewBox="0 -750 5000 950"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><text data-variant="normal" transform="scale(1,-1)" font-size="884px" font-family="serif">表</text></g><g data-mml-node="mi" transform="translate(1000,0)"><text data-variant="normal" transform="scale(1,-1)" font-size="884px" font-family="serif">示</text></g><g data-mml-node="mi" transform="translate(2000,0)"><text data-variant="italic" transform="scale(1,-1)" font-size="884px" font-family="serif" font-style="italic">，</text></g><g data-mml-node="mi" transform="translate(3000,0)"><text data-variant="normal" transform="scale(1,-1)" font-size="884px" font-family="serif">其</text></g><g data-mml-node="mi" transform="translate(4000,0)"><text data-variant="normal" transform="scale(1,-1)" font-size="884px" font-family="serif">中</text></g></g></g></svg></mjx-container>a<em>{ij} \in {0, 1}<mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.462ex;" xmlns="http://www.w3.org/2000/svg" width="74.111ex" height="2.158ex" role="img" focusable="false" viewBox="0 -750 32757 954"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><text data-variant="normal" transform="scale(1,-1)" font-size="884px" font-family="serif">表</text></g><g data-mml-node="mi" transform="translate(1000,0)"><text data-variant="normal" transform="scale(1,-1)" font-size="884px" font-family="serif">示</text></g><g data-mml-node="mi" transform="translate(2000,0)"><text data-variant="normal" transform="scale(1,-1)" font-size="884px" font-family="serif">节</text></g><g data-mml-node="mi" transform="translate(3000,0)"><text data-variant="normal" transform="scale(1,-1)" font-size="884px" font-family="serif">点</text></g><g data-mml-node="mi" transform="translate(4000,0)"><path data-c="1D456" d="M184 600Q184 624 203 642T247 661Q265 661 277 649T290 619Q290 596 270 577T226 557Q211 557 198 567T184 600ZM21 287Q21 295 30 318T54 369T98 420T158 442Q197 442 223 419T250 357Q250 340 236 301T196 196T154 83Q149 61 149 51Q149 26 166 26Q175 26 185 29T208 43T235 78T260 137Q263 149 265 151T282 153Q302 153 302 143Q302 135 293 112T268 61T223 11T161 -11Q129 -11 102 10T74 74Q74 91 79 106T122 220Q160 321 166 341T173 380Q173 404 156 404H154Q124 404 99 371T61 287Q60 286 59 284T58 281T56 279T53 278T49 278T41 278H27Q21 284 21 287Z"></path></g><g data-mml-node="mi" transform="translate(4345,0)"><text data-variant="normal" transform="scale(1,-1)" font-size="884px" font-family="serif">和</text></g><g data-mml-node="mi" transform="translate(5345,0)"><text data-variant="normal" transform="scale(1,-1)" font-size="884px" font-family="serif">节</text></g><g data-mml-node="mi" transform="translate(6345,0)"><text data-variant="normal" transform="scale(1,-1)" font-size="884px" font-family="serif">点</text></g><g data-mml-node="mi" transform="translate(7345,0)"><path data-c="1D457" d="M297 596Q297 627 318 644T361 661Q378 661 389 651T403 623Q403 595 384 576T340 557Q322 557 310 567T297 596ZM288 376Q288 405 262 405Q240 405 220 393T185 362T161 325T144 293L137 279Q135 278 121 278H107Q101 284 101 286T105 299Q126 348 164 391T252 441Q253 441 260 441T272 442Q296 441 316 432Q341 418 354 401T367 348V332L318 133Q267 -67 264 -75Q246 -125 194 -164T75 -204Q25 -204 7 -183T-12 -137Q-12 -110 7 -91T53 -71Q70 -71 82 -81T95 -112Q95 -148 63 -167Q69 -168 77 -168Q111 -168 139 -140T182 -74L193 -32Q204 11 219 72T251 197T278 308T289 365Q289 372 288 376Z"></path></g><g data-mml-node="mi" transform="translate(7757,0)"><text data-variant="normal" transform="scale(1,-1)" font-size="884px" font-family="serif">是</text></g><g data-mml-node="mi" transform="translate(8757,0)"><text data-variant="normal" transform="scale(1,-1)" font-size="884px" font-family="serif">否</text></g><g data-mml-node="mi" transform="translate(9757,0)"><text data-variant="normal" transform="scale(1,-1)" font-size="884px" font-family="serif">相</text></g><g data-mml-node="mi" transform="translate(10757,0)"><text data-variant="normal" transform="scale(1,-1)" font-size="884px" font-family="serif">连</text></g><g data-mml-node="TeXAtom" data-mjx-texclass="ORD" transform="translate(11757,0)"><g data-mml-node="mo"><text data-variant="normal" transform="scale(1,-1)" font-size="884px" font-family="serif">。</text></g></g><g data-mml-node="mi" transform="translate(12757,0)"><text data-variant="normal" transform="scale(1,-1)" font-size="884px" font-family="serif">假</text></g><g data-mml-node="mi" transform="translate(13757,0)"><text data-variant="normal" transform="scale(1,-1)" font-size="884px" font-family="serif">设</text></g><g data-mml-node="mi" transform="translate(14757,0)"><text data-variant="normal" transform="scale(1,-1)" font-size="884px" font-family="serif">网</text></g><g data-mml-node="mi" transform="translate(15757,0)"><text data-variant="normal" transform="scale(1,-1)" font-size="884px" font-family="serif">络</text></g><g data-mml-node="mi" transform="translate(16757,0)"><text data-variant="normal" transform="scale(1,-1)" font-size="884px" font-family="serif">是</text></g><g data-mml-node="mi" transform="translate(17757,0)"><text data-variant="normal" transform="scale(1,-1)" font-size="884px" font-family="serif">连</text></g><g data-mml-node="mi" transform="translate(18757,0)"><text data-variant="normal" transform="scale(1,-1)" font-size="884px" font-family="serif">通</text></g><g data-mml-node="mi" transform="translate(19757,0)"><text data-variant="normal" transform="scale(1,-1)" font-size="884px" font-family="serif">的</text></g><g data-mml-node="mi" transform="translate(20757,0)"><text data-variant="italic" transform="scale(1,-1)" font-size="884px" font-family="serif" font-style="italic">，</text></g><g data-mml-node="mi" transform="translate(21757,0)"><text data-variant="normal" transform="scale(1,-1)" font-size="884px" font-family="serif">且</text></g><g data-mml-node="mi" transform="translate(22757,0)"><text data-variant="normal" transform="scale(1,-1)" font-size="884px" font-family="serif">每</text></g><g data-mml-node="mi" transform="translate(23757,0)"><text data-variant="normal" transform="scale(1,-1)" font-size="884px" font-family="serif">个</text></g><g data-mml-node="mi" transform="translate(24757,0)"><text data-variant="normal" transform="scale(1,-1)" font-size="884px" font-family="serif">节</text></g><g data-mml-node="mi" transform="translate(25757,0)"><text data-variant="normal" transform="scale(1,-1)" font-size="884px" font-family="serif">点</text></g><g data-mml-node="mi" transform="translate(26757,0)"><text data-variant="normal" transform="scale(1,-1)" font-size="884px" font-family="serif">的</text></g><g data-mml-node="mi" transform="translate(27757,0)"><text data-variant="normal" transform="scale(1,-1)" font-size="884px" font-family="serif">度</text></g><g data-mml-node="mi" transform="translate(28757,0)"><text data-variant="normal" transform="scale(1,-1)" font-size="884px" font-family="serif">数</text></g><g data-mml-node="mi" transform="translate(29757,0)"><text data-variant="normal" transform="scale(1,-1)" font-size="884px" font-family="serif">至</text></g><g data-mml-node="mi" transform="translate(30757,0)"><text data-variant="normal" transform="scale(1,-1)" font-size="884px" font-family="serif">少</text></g><g data-mml-node="mi" transform="translate(31757,0)"><text data-variant="normal" transform="scale(1,-1)" font-size="884px" font-family="serif">为</text></g></g></g></svg></mjx-container>d</em>{\min}$​​</p>
+<hr>
+<h3 id="传统比特币用的方式（常被称为“广播”）"><a href="#传统比特币用的方式（常被称为“广播”）" class="headerlink" title="传统比特币用的方式（常被称为“广播”）"></a>传统比特币用的方式（常被称为“广播”）</h3><ul>
+<li>新区块产生后，<strong>尽量快速、尽量广地</strong>通知全网所有节点</li>
+<li>实际实现通常是<strong>gossip 协议</strong>（也叫八卦协议、流言传播协议）的变种</li>
+<li>每个节点收到新区块后，会<strong>转发给它的大部分（甚至全部）邻居</strong>，邻居再继续转发</li>
+<li>特点：传播很快，但<strong>通信量非常大</strong>（接近每个节点都向很多节点发消息），总通信量接近 O(N²) 量级（N 是节点数）</li>
+</ul>
+<h3 id="论文（LCLCS）"><a href="#论文（LCLCS）" class="headerlink" title="论文（LCLCS）"></a>论文（LCLCS）</h3><p>论文采用的传播策略：</p>
+<ol>
+<li><strong>节点平时只跟自己的少数固定邻居（稀疏连接，平均度数 ≈ log N）交流</strong></li>
+<li><strong>不是“有新东西就发”，而是主动周期性地“问邻居”</strong>：你现在链有多长？权重多少？</li>
+<li><strong>只有当发现邻居的链明显更好时，才去要整条链</strong>（惰性同步）</li>
+<li><strong>判断逻辑是本地最优的</strong>： “如果我比所有邻居都长 → 我暂时觉得自己可能是全局最长的，不主动发” “如果邻居比我长 → 我立刻认输，去抄邻居的”</li>
+<li><strong>真正的好链会像滚雪球一样通过这种“问-比-抄”的级联方式慢慢传开</strong></li>
+</ol>
+<hr>
+<p>原先的算法：</p>
+<p><strong>经典最长链共识</strong>（Classic Longest Chain Consensus）是指以比特币为代表的、由中本聪在 2008 年比特币白皮书中首次提出的 Nakamoto 共识机制的核心链选择规则。其基本思想可以用一句话概括：</p>
+<blockquote>
+<p>在所有合法链中，节点始终选择并在其上继续工作的链，是<strong>从创世区块开始累计工作量（proof-of-work）证明最多的那一条链</strong>。在比特币的原始设计中，这通常近似等价于<strong>区块数量最多的链</strong>（即最长链）。</p>
+</blockquote>
+<ol>
+<li><strong>链的有效性</strong> 一条链从创世区块开始，每一个区块都必须：<ul>
+<li>满足工作量证明难度要求</li>
+<li>区块头中的前一区块哈希正确指向上一区块</li>
+<li>区块内所有交易合法</li>
+<li>时间戳合理（比特币有较宽松的时间戳规则）</li>
+</ul>
+</li>
+<li><strong>链的排序标准</strong>（Fork choice rule） 节点在面对多条合法链时，选择的标准是： <strong>累计工作量（Cumulative Proof-of-Work）最大的那条链</strong> 累计工作量 = 该链上所有区块难度之和 （在比特币早期及大多数时期，由于难度调整机制，累计难度与链长度高度相关，因此常被简称为“最长链”）</li>
+<li><strong>节点的行为规则</strong><ul>
+<li>收到新区块 → 如果该区块接在当前最重链上，则接受并继续在其上挖矿</li>
+<li>收到新区块 → 如果该区块接在一条比当前链更重的链上，则切换到那条更重的链（发生链重组/reorg）</li>
+<li>如果两条链累计难度相同 → 暂时保留两条链，等待下一个区块决定（先延长哪条哪条获胜）</li>
+<li>节点永远只在自己当前认为的最重链上尝试挖矿</li>
+</ul>
+</li>
+<li><strong>安全参数：确认数（confirmation）</strong> 通常认为，一笔交易在最重链上被后续区块确认了 k 个区块后（k=6 是比特币社区最常用的经验值），其被逆转的概率已经极低，可以认为交易“基本确定”。</li>
+</ol>
+<h3 id="经典最长链共识流程"><a href="#经典最长链共识流程" class="headerlink" title="经典最长链共识流程"></a>经典最长链共识流程</h3><figure class="highlight nestedtext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs nestedtext"><span class="hljs-attribute">时间轴</span><br><span class="hljs-attribute">t0</span><span class="hljs-punctuation">:</span> <span class="hljs-string">创世区块产生</span><br>     <span class="hljs-attribute">↓</span><br><span class="hljs-attribute">t1</span><span class="hljs-punctuation">:</span> <span class="hljs-string">矿工A挖出区块1 → 全网广播 → 大多数节点接受</span><br>     <span class="hljs-attribute">↓</span><br><span class="hljs-attribute">t2</span><span class="hljs-punctuation">:</span> <span class="hljs-string">矿工B、C几乎同时挖出两个不同区块2a和2b（分叉产生）</span><br>     <span class="hljs-attribute">┌───────────────┐         ┌───────────────┐</span><br><span class="hljs-attribute">     │ 链A</span><span class="hljs-punctuation">:</span> <span class="hljs-string">...-1-2a │         │ 链B: ...-1-2b │</span><br>     <span class="hljs-attribute">└───────────────┘         └───────────────┘</span><br><span class="hljs-attribute">             ↓                         ↓</span><br><span class="hljs-attribute">t3</span><span class="hljs-punctuation">:</span> <span class="hljs-string">矿工D在链A上挖出区块3a</span><br>     <span class="hljs-attribute">┌─────────────────────┐</span><br><span class="hljs-attribute">     │ 链A</span><span class="hljs-punctuation">:</span> <span class="hljs-string">...-1-2a-3a    │    ← 当前最长/最重</span><br>     <span class="hljs-attribute">└─────────────────────┘</span><br><span class="hljs-attribute">             ↓</span><br><span class="hljs-attribute">t4</span><span class="hljs-punctuation">:</span> <span class="hljs-string">大部分矿工看到链A更长   →  都切换到链A上继续挖矿</span><br>     <span class="hljs-attribute">链B逐渐被抛弃（孤块）</span><br><span class="hljs-attribute">             ↓</span><br><span class="hljs-attribute">t5~∞</span><span class="hljs-punctuation">:</span> <span class="hljs-string">绝大多数算力持续在同一条主链上工作 → 分叉自然收敛</span><br></code></pre></td></tr></table></figure>
+<hr>
+<p><strong>低复杂度最长链共识算法（LCLCS）</strong> 的完整流程如下所述。该算法在<strong>同步网络假设</strong>下运行，旨在以远低于传统 PoW 的通信开销实现最长链的收敛。</p>
+<h3 id="前提假设（必须同时满足）"><a href="#前提假设（必须同时满足）" class="headerlink" title="前提假设（必须同时满足）"></a>前提假设（必须同时满足）</h3><ul>
+<li>网络是<strong>同步的</strong>：任意两条节点间消息传递延迟存在明确上界 Δ</li>
+<li>节点本地时钟基本同步（误差远小于 Δ）</li>
+<li>网络拓扑相对稳定，且为连通图（通常假设稀疏拓扑，平均度数 O(log N)～ O(log log N)）</li>
+<li>诚实节点占绝大多数（典型地&gt;50%～ 67%，具体安全阈值依赖分析）</li>
+<li>存在一条客观上累计工作量/长度最长的诚实链</li>
+</ul>
+<h3 id="算法主要流程（每个节点的视角）"><a href="#算法主要流程（每个节点的视角）" class="headerlink" title="算法主要流程（每个节点的视角）"></a>算法主要流程（每个节点的视角）</h3><p>每个节点持续独立执行以下循环（通常以固定时间片或事件驱动方式实现）：</p>
+<ol>
+<li><strong>本地新区块产生或接收阶段</strong><ul>
+<li>如果本节点是出块者：完成 PoW 后生成新区块，<strong>仅添加到本地链</strong>（此时<strong>不立即广播</strong>）</li>
+<li>接收到邻居通过请求发来的新区块或整条链时，进行合法性验证：<ul>
+<li>区块格式、签名、工作量证明、时间戳、前向哈希等全部验证通过</li>
+<li>如果合法，则尝试把新区块接到本地链的合适位置</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>周期性邻居状态查询</strong>（核心通信步骤） 每个节点以固定频率（通常每几秒～几十秒一次，远低于出块间隔）向其所有<strong>直接邻居</strong>（通常 10 ～几十个）发送轻量查询消息： 查询内容通常只包含：</p>
+<ul>
+<li>当前链高度（length）</li>
+<li>当前链总权重（weight，可为累计难度、累计分数、时间加权等）</li>
+<li><p>可选：链尖区块哈希（用于快速比对）</p>
+<p>→ 这步通信量很小，每个查询+响应通常只有几百字节</p>
+</li>
+</ul>
+</li>
+<li><p><strong>本地最长链判断</strong>（完全本地计算，无需额外通信） 节点将<strong>自己当前的链</strong>与所有<strong>刚刚收到的邻居状态</strong>进行比较，按照以下<strong>严格优先级</strong>决定：</p>
+</li>
+</ol>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs markdown">比较规则（词典序）：<br><span class="hljs-bullet">1.</span> 链高度（length）更大者优先<br><span class="hljs-bullet">2.</span> 高度相同时，链权重（weight）更大者优先<br><span class="hljs-bullet">3.</span> 高度与权重均相同时，保留当前链（或按哈希/时间戳等次要规则打破平局）<br></code></pre></td></tr></table></figure>
+<p>判断结果分为三种情况：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>情况</th>
+<th>判断结果</th>
+<th>后续动作</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>本地链 ≥ 所有邻居</td>
+<td>保持当前链，继续在本地链上工作</td>
+</tr>
+<tr>
+<td>B</td>
+<td>存在至少一个邻居链明显更优</td>
+<td>选择其中最优的一条（最高 height+weight）</td>
+</tr>
+<tr>
+<td>C</td>
+<td>平局（高度、权重都相同）</td>
+<td>保守策略：暂时保留本地链</td>
+</tr>
+</tbody>
+</table>
+</div>
+<ol>
+<li><p><strong>惰性链同步</strong>（仅在需要时发生，通信量最大的部分）</p>
+<ul>
+<li>仅当判断为<strong>情况 B</strong>时，才向那个“胜出”的邻居发起<strong>完整链同步请求</strong></li>
+<li>接收到完整链（或缺失的后缀）后：<ul>
+<li>验证整条链的合法性</li>
+<li>如果验证通过，则<strong>切换</strong>本地链为这条更优的链（发生本地重组）</li>
+<li>如果验证失败，则标记该邻居为不可信（可选择降低其信任度或断开连接）</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>继续挖矿/验证循环</strong></p>
+<ul>
+<li>不管是否切换，都在<strong>当前本地认为最优的链</strong>上继续进行：<ul>
+<li>验证交易</li>
+<li>打包新区块（如果是出块轮次）</li>
+<li>尝试 PoW 计算</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<h3 id="整体系统层面的收敛过程（宏观视角）"><a href="#整体系统层面的收敛过程（宏观视角）" class="headerlink" title="整体系统层面的收敛过程（宏观视角）"></a>整体系统层面的收敛过程（宏观视角）</h3><ol>
+<li>某个诚实矿工挖出真正的最长/最重新区块</li>
+<li>该区块首先被其直接邻居通过查询发现（因为邻居高度落后）</li>
+<li>这些邻居在下一次查询判断时会切换到这条新链</li>
+<li>新链信息以<strong>级联方式</strong>通过“问—比—抄”的机制向外传播</li>
+<li>由于网络是同步的 + 拓扑连通 + 诚实节点占多数，最长链信息最终会在<strong>O(网络直径) × 查询周期 + Δ</strong> 的时间内覆盖几乎所有诚实节点</li>
+<li>一旦绝大多数诚实节点切换到同一条链，新产生的区块绝大多数都会接在这条链上 → 形成正反馈 → 其他竞争链快速失去竞争力 → 最终收敛</li>
+</ol>
+<hr>
+<h3 id="1-经典比特币式最长链（Nakamoto-共识）"><a href="#1-经典比特币式最长链（Nakamoto-共识）" class="headerlink" title="1. 经典比特币式最长链（Nakamoto 共识）"></a>1. 经典比特币式最长链（Nakamoto 共识）</h3><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>判断项目</th>
+<th>判断标准</th>
+<th>在哪里进行判断</th>
+<th>何时进行判断</th>
+<th>备注说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>主要标准</td>
+<td>累计工作量（Cumulative Difficulty）最大</td>
+<td>每个节点本地</td>
+<td>1. 收到新区块时 2. 本地产生新区块时</td>
+<td>累计难度 = 链上所有区块难度之和</td>
+</tr>
+<tr>
+<td>次要/平局处理</td>
+<td>链长度（区块数量）</td>
+<td>每个节点本地</td>
+<td>同上</td>
+<td>早期比特币难度调整较慢时，长度几乎等价于难度</td>
+</tr>
+<tr>
+<td>冲突解决</td>
+<td>先收到谁的延长区块，谁暂时领先</td>
+<td>每个节点本地</td>
+<td>收到竞争高度区块时</td>
+<td>没有全局时钟，依赖网络传播顺序</td>
+</tr>
+<tr>
+<td>最终选择时机</td>
+<td>本地独立决定，持续切换到当前已知最重链</td>
+<td>节点本地的链选择模块</td>
+<td>持续进行（每次状态更新都重新评估）</td>
+<td>节点永远只在本地认为的最重链上挖矿</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>特点</strong>：判断完全<strong>本地化</strong>，不需要任何全局协调，全靠算力竞赛和信息传播自然收敛。</p>
+<h3 id="2-论文中-LCLCS（低复杂度最长链共识）典型实现"><a href="#2-论文中-LCLCS（低复杂度最长链共识）典型实现" class="headerlink" title="2. 论文中 LCLCS（低复杂度最长链共识）典型实现"></a>2. 论文中 LCLCS（低复杂度最长链共识）典型实现</h3><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>判断项目</th>
+<th>判断标准</th>
+<th>在哪里进行判断</th>
+<th>何时进行判断</th>
+<th>备注说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>主要标准</td>
+<td>链高度（length）</td>
+<td>每个节点本地</td>
+<td>周期性邻居查询返回后立即进行</td>
+<td>优先级最高</td>
+</tr>
+<tr>
+<td>次要标准</td>
+<td>链权重（weight）</td>
+<td>每个节点本地</td>
+<td>同上</td>
+<td>高度相同时比较，可包括累计难度、时间衰减权重等</td>
+</tr>
+<tr>
+<td>判断对象</td>
+<td>本地链 vs 所有当前已知邻居链状态</td>
+<td>每个节点本地</td>
+<td>每次收到邻居查询响应时</td>
+<td>只与直接邻居比较，不需要全局视图</td>
+</tr>
+<tr>
+<td>判断结果处理</td>
+<td>1. 本地更优 → 保持 2. 邻居更优 → 发起同步请求</td>
+<td>节点本地的决策模块</td>
+<td>判断完成后立即</td>
+<td>只有落后时才发起完整链同步（惰性机制）</td>
+</tr>
+<tr>
+<td>最终收敛依赖</td>
+<td>信息通过邻居关系级联传播</td>
+<td>全网分布式</td>
+<td>多次查询周期后（O(网络直径)轮次）</td>
+<td>依赖同步网络假设和连通拓扑</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>核心区别</strong>：判断仍然是<strong>完全本地</strong>进行的，但比较对象从“全网已知所有链”缩小为“当前直接邻居汇报的状态”，大大减少了信息收集成本。</p>
+<h3 id="3-对比总结表（主要实现方式的判断位置与时机）"><a href="#3-对比总结表（主要实现方式的判断位置与时机）" class="headerlink" title="3. 对比总结表（主要实现方式的判断位置与时机）"></a>3. 对比总结表（主要实现方式的判断位置与时机）</h3><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>共识类型</th>
+<th>判断是否完全本地</th>
+<th>比较对象范围</th>
+<th>触发时机</th>
+<th>是否需要全局信息</th>
+<th>通信复杂度影响</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>经典 Nakamoto（比特币）</td>
+<td>是</td>
+<td>所有已接收到的竞争链</td>
+<td>收到新区块/产生新区块时</td>
+<td>间接需要（靠 gossip）</td>
+<td>高</td>
+</tr>
+<tr>
+<td>LCLCS 类低复杂度同步版本</td>
+<td>是</td>
+<td>仅直接邻居当前状态</td>
+<td>周期性邻居查询响应到达时</td>
+<td>不需要全局视图</td>
+<td>低</td>
+</tr>
+</tbody>
+</table>
+</div>
+<hr>
+<p>主要工作就是</p>
+<h3 id="1-将网络动力学理论应用于最长链共识算法的设计中，为共识过程提供了数学建模"><a href="#1-将网络动力学理论应用于最长链共识算法的设计中，为共识过程提供了数学建模" class="headerlink" title="1.将网络动力学理论应用于最长链共识算法的设计中，为共识过程提供了数学建模"></a>1.将<strong>网络动力学理论</strong>应用于最长链共识算法的设计中，为共识过程提供了数学建模</h3><p><strong>同步网络假设</strong>：</p>
+<ol>
+<li><strong>消息传递延迟有上界</strong>：存在常数\Delta &gt; 0，使得任意消息从节点 i 传递到节点 j 的延迟不超过\Delta。</li>
+<li><strong>节点时钟同步</strong>：所有节点的本地时钟同步，误差不超过\delta。</li>
+<li><strong>网络拓扑稳定</strong>：在共识过程中，网络拓扑结构保持相对稳定。</li>
+</ol>
+<p>将网络动力学领域的连续时间建模方法应用于最长链共识过程，建立了描述共识演化的数学模型：</p>
+<ul>
+<li>构建了节点链长度 L_i(t) 的连续时间动力学方程</li>
+<li><p>构建了节点链权重 W_i(t) 的连续时间动力学方程</p>
+</li>
+<li><p>把离散的、事件驱动的区块传播与链选择过程，抽象为连续的网络耦合动力学系统</p>
+</li>
+<li>为“最长链信息如何通过局部交互向全网传播并趋同”提供了理论描述框架</li>
+<li>为后续收敛性分析、参数影响分析奠定了数学基础</li>
+</ul>
+<h3 id="2-在同步网络模型下，改进了最长链共识算法的比较对象和触发时机"><a href="#2-在同步网络模型下，改进了最长链共识算法的比较对象和触发时机" class="headerlink" title="2.在同步网络模型下，改进了最长链共识算法的比较对象和触发时机"></a>2.在同步网络模型下，改进了最长链共识算法的比较对象和触发时机</h3><p>在明确同步网络假设（消息延迟有上界、时钟基本同步）的前提下，对传统最长链共识的两个关键决策维度进行了根本性调整：</p>
+<p><strong>① 缩小比较对象范围</strong><br>在同步网络假设下，节点不需要与所有节点通信即可确定最长链。通过设计基于本地决策的最长链选择策略，节点仅需与部分邻居通信即可判断最长链。</p>
+<p>传统方式：节点需将本地链与已知所有竞争链比较，依赖全网广播收集信息<br>改进方式：节点仅与当前直接邻居的最新状态（链高度 + 链权重）进行比较，比较范围从全网缩小到稀疏图中的邻居子集</p>
+<p><strong>② 触发时机从事件驱动改为周期驱动</strong><br>传统方式：每收到一个新区块或本地产生新区块时立即触发比较<br>改进方式：节点以固定时间间隔主动向邻居发送轻量查询，收到响应后才进行比较与决策</p>
+<h3 id="3-提出了基于链权重的快速收敛机制"><a href="#3-提出了基于链权重的快速收敛机制" class="headerlink" title="3. 提出了基于链权重的快速收敛机制"></a>3. 提出了基于链权重的快速收敛机制</h3><p>设计了多维度链权重计算方法，以加速分叉解决与共识收敛： </p>
+<p>区块权重 w(b) = w_work(b) + w_time(b) + w_priority(b)<br>其中：</p>
+<ul>
+<li>w_work(b)：传统工作量权重（如PoW难度）</li>
+<li>w_time(b)：时间衰减权重，采用指数衰减形式：α · exp(−λ(t − t_b))，使较早区块获得更高权重</li>
+<li>w_priority(b)：可选优先级权重（可根据交易重要性等设定）</li>
+</ul>
+<p>建立了加权最长链选择规则，优先选择链长度最大的链，长度相同时，选择总权重最大的链<br>通过权重耦合项增强动力学模型中权重信息的传播效率</p>
+<h3 id="4-实验验证"><a href="#4-实验验证" class="headerlink" title="4. 实验验证"></a>4. 实验验证</h3><ul>
+<li><strong>实验验证</strong>：<ul>
+<li>环境：100节点私有链 + 以太坊Sepolia测试网真实数据</li>
+<li>对比对象：传统PoW、GHOST协议</li>
+<li>主要结果：<ul>
+<li>通信开销降低约92%（100节点规模）</li>
+<li>最长链收敛时间缩短40%以上</li>
+<li>权重机制显著减少分叉次数，提升链稳定性</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id="1-将网络动力学理论扩展应用于异步网络环境下的最长链共识，并建立概率性数学建模框架"><a href="#1-将网络动力学理论扩展应用于异步网络环境下的最长链共识，并建立概率性数学建模框架" class="headerlink" title="1. 将网络动力学理论扩展应用于异步网络环境下的最长链共识，并建立概率性数学建模框架"></a>1. 将网络动力学理论扩展应用于异步网络环境下的最长链共识，并建立概率性数学建模框架</h3><ul>
+<li>将网络动力学连续时间建模方法首次系统应用于<strong>异步网络</strong>条件下的最长链共识过程。</li>
+<li>建立了适应异步特性的节点状态演化方程，主要包括：<ul>
+<li>链长度动力学方程：引入<strong>概率传递项 p_{ij}(t)</strong> 与随机延迟 τ<em>{ij}(t) dLᵢ(t)/dt = αᵢ(t) + β ∑ p</em>{ij}(t) ⋅ max(0, 延迟接收的邻居长度差) + ξᵢ(t)</li>
+<li>链权重动力学方程：类似结构，同样纳入概率与延迟因素。</li>
+</ul>
+</li>
+<li>通过概率传播机制 p_{ij}(t) = exp(−λ⋅τ) ⋅ (1−p_loss) 来表征异步网络中消息有效性随延迟和丢失概率的衰减。</li>
+<li>为异步环境下“最长链信息以概率方式逐步趋同”的过程提供了统一的数学描述框架。</li>
+</ul>
+<h3 id="2-设计了基于概率传播的低复杂度最长链选择策略"><a href="#2-设计了基于概率传播的低复杂度最长链选择策略" class="headerlink" title="2. 设计了基于概率传播的低复杂度最长链选择策略"></a>2. 设计了基于概率传播的低复杂度最长链选择策略</h3><ul>
+<li>在完全异步网络假设下，重新设计了最长链判断与选择机制，使其适应延迟无界、时钟不同步、消息乱序等极端条件。</li>
+<li>核心优化仍然集中在两个维度，但与同步版本有本质区别：<ol>
+<li><strong>比较对象</strong>：仍限定为<strong>直接邻居</strong>的最近状态（高度+权重），保持 O(log N) 通信规模。</li>
+<li><strong>信息收集与决策方式</strong>：从确定性周期查询改为<strong>时间窗口内概率性收集 + 软概率选择</strong>。</li>
+</ol>
+</li>
+<li>引入了<strong>概率性链评估与选择</strong>：<ul>
+<li>使用 softmax 形式计算每条候选链成为全局最长链的相对概率</li>
+<li>节点可以<strong>确定性地选概率最高者</strong>，也可以<strong>按概率随机抽样选择</strong>（增加探索性）</li>
+</ul>
+</li>
+<li>通信复杂度理论上仍保持在 O(N log N)（在消息成功率较高时）。</li>
+</ul>
+<h3 id="3-提出了基于时间窗口的异步收敛机制（核心工程创新）"><a href="#3-提出了基于时间窗口的异步收敛机制（核心工程创新）" class="headerlink" title="3. 提出了基于时间窗口的异步收敛机制（核心工程创新）"></a>3. 提出了基于时间窗口的异步收敛机制（核心工程创新）</h3><ul>
+<li>针对异步网络的根本难题（延迟无界、乱序、丢失），设计了<strong>自适应时间窗口机制</strong>作为异步环境下信息收集与排序的基础设施：<ul>
+<li>时间窗口大小 Δt(t) 动态根据当前网络延迟估计（均值 + 标准差）自适应调整</li>
+<li>节点在滑动时间窗口内收集所有到达的消息（而非固定周期）</li>
+<li>利用消息携带的<strong>发送时间戳</strong>对乱序消息进行逻辑重排序</li>
+</ul>
+</li>
+<li>实现了对异步网络中消息延迟、乱序、部分丢失的有效工程化处理</li>
+<li>实验表明，自适应时间窗口相比固定窗口或无窗口机制，在收敛时间和消息顺序错误率上均有显著改善。</li>
+</ul>
+<h3 id="4-完成了理论分析与真实网络环境下的实验验证"><a href="#4-完成了理论分析与真实网络环境下的实验验证" class="headerlink" title="4. 完成了理论分析与真实网络环境下的实验验证"></a>4. 完成了理论分析与真实网络环境下的实验验证</h3><ul>
+<li><strong>理论方面</strong>：<ul>
+<li>给出了异步环境下概率性收敛定理（以概率 1−δ 收敛）</li>
+<li>提供了概率单调性、概率传播性、有限性（概率意义下）的证明思路</li>
+<li>给出了收敛时间概率上界：T ≤ D⋅τ̄ / p_success（其中 τ̄ 为平均延迟，p_success 为消息成功率）</li>
+</ul>
+</li>
+<li><strong>实验方面</strong>：<ul>
+<li>在100节点私有链 + 以太坊 Sepolia 测试网数据上进行验证</li>
+<li>与传统 PoW 和 GHOST 对比：<ul>
+<li>通信开销降低约 90.5%（100节点规模）</li>
+<li>最长链收敛时间缩短 35%以上</li>
+<li>在不同延迟（1~5秒）、消息丢失率（5%~20%）下仍保持较高收敛成功率（92%~98%）</li>
+</ul>
+</li>
+<li>验证了时间窗口机制对异步网络适配性的关键作用</li>
+</ul>
+</li>
+</ul>
+<hr>
+<ul>
+<li>首次将网络动力学理论系统应用于最长链共识，建立了基于延迟耦合的连续时间链长度与权重演化模型；</li>
+<li>在同步网络假设下，重新设计了最长链选择策略的比较对象（从全局 → 局部邻居）与触发时机（从事件驱动 → 周期主动询问）；</li>
+<li>提出了基于链权重的快速收敛机制，通过时间衰减权重显著加速分叉解决；</li>
+<li>给出了同步网络下局部决策策略的收敛性定理与时间上界 T ≤ D·Δ；</li>
+<li>将通信复杂度从传统 O(N²) 降低至 O(N log N)，并保持了最长链规则的基本安全性；</li>
+<li>通过私有链与真实以太坊测试网数据，实验验证了算法在通信效率、收敛速度与链稳定性上的显著优势。</li>
+</ul>
+<p>数学建模 + 算法设计（最长链选择策略 + 收敛机制） + 实验验证</p>
+<ul>
+<li>论文四（同步版）先在较强假设下实现了更优的确定性性能（40%+加速、更严格收敛保证）</li>
+<li>论文五（异步版）则在放宽到真实网络最常见异步假设后，通过引入概率传播 + 时间窗口机制，完成了对更困难场景的适应性扩展（35%+加速、概率收敛）</li>
+</ul>
+<div id="paginator"></div></div><div id="post-footer"><div id="pages" style="justify-content: flex-end"><div class="footer-link" style="width: 50%;right:1px;border-left:1px #fe2 solid"><a href="/Arknight-notes/posts/2418.html">2026-01-08-机器学习复习 Prev →</a></div></div></div><div id="comments"><div id="gitalk"></div></div></div><div class="bottom-btn"><div><a class="i-top" id="to-top" onClick="scrolls.scrolltop();" title="To Top" style="opacity: 0; display: none;">∧ </a><a class="i-index" id="to-index" href="#toc-div" title="To Catalog">≡</a><a class="i-color" id="color-mode" onClick="colorMode.change()" title="Change Theme"></a></div></div></article><aside><div id="about"><a href="/Arknight-notes/" id="logo"><img src="https://pic4.zhimg.com/80/v2-d9884f32711e19e80979eac58e943897_720w.webp" alt="Logo" style="margin:20;border-radius:0;"></a><h1 id="Dr"><a href="zhongye">Zhongye</a></h1><div id="description"><p></p></div></div><div id="aside-block"><div id="toc-div"><h1>Catalog</h1><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-%E5%9F%BA%E4%BA%8E%E5%90%8C%E6%AD%A5%E7%BD%91%E7%BB%9C%E5%81%87%E8%AE%BE"><span class="toc-number">1.</span> <span class="toc-text">1.基于同步网络假设</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-%E5%90%8C%E6%AD%A5%E7%BD%91%E7%BB%9C%E6%A8%A1%E5%9E%8B"><span class="toc-number">1.0.1.</span> <span class="toc-text">3.1 同步网络模型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BC%A0%E7%BB%9F%E6%AF%94%E7%89%B9%E5%B8%81%E7%94%A8%E7%9A%84%E6%96%B9%E5%BC%8F%EF%BC%88%E5%B8%B8%E8%A2%AB%E7%A7%B0%E4%B8%BA%E2%80%9C%E5%B9%BF%E6%92%AD%E2%80%9D%EF%BC%89"><span class="toc-number">1.0.2.</span> <span class="toc-text">传统比特币用的方式（常被称为“广播”）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%BA%E6%96%87%EF%BC%88LCLCS%EF%BC%89"><span class="toc-number">1.0.3.</span> <span class="toc-text">论文（LCLCS）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%8F%E5%85%B8%E6%9C%80%E9%95%BF%E9%93%BE%E5%85%B1%E8%AF%86%E6%B5%81%E7%A8%8B"><span class="toc-number">1.0.4.</span> <span class="toc-text">经典最长链共识流程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%89%8D%E6%8F%90%E5%81%87%E8%AE%BE%EF%BC%88%E5%BF%85%E9%A1%BB%E5%90%8C%E6%97%B6%E6%BB%A1%E8%B6%B3%EF%BC%89"><span class="toc-number">1.0.5.</span> <span class="toc-text">前提假设（必须同时满足）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AE%97%E6%B3%95%E4%B8%BB%E8%A6%81%E6%B5%81%E7%A8%8B%EF%BC%88%E6%AF%8F%E4%B8%AA%E8%8A%82%E7%82%B9%E7%9A%84%E8%A7%86%E8%A7%92%EF%BC%89"><span class="toc-number">1.0.6.</span> <span class="toc-text">算法主要流程（每个节点的视角）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B4%E4%BD%93%E7%B3%BB%E7%BB%9F%E5%B1%82%E9%9D%A2%E7%9A%84%E6%94%B6%E6%95%9B%E8%BF%87%E7%A8%8B%EF%BC%88%E5%AE%8F%E8%A7%82%E8%A7%86%E8%A7%92%EF%BC%89"><span class="toc-number">1.0.7.</span> <span class="toc-text">整体系统层面的收敛过程（宏观视角）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E7%BB%8F%E5%85%B8%E6%AF%94%E7%89%B9%E5%B8%81%E5%BC%8F%E6%9C%80%E9%95%BF%E9%93%BE%EF%BC%88Nakamoto-%E5%85%B1%E8%AF%86%EF%BC%89"><span class="toc-number">1.0.8.</span> <span class="toc-text">1. 经典比特币式最长链（Nakamoto 共识）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E8%AE%BA%E6%96%87%E4%B8%AD-LCLCS%EF%BC%88%E4%BD%8E%E5%A4%8D%E6%9D%82%E5%BA%A6%E6%9C%80%E9%95%BF%E9%93%BE%E5%85%B1%E8%AF%86%EF%BC%89%E5%85%B8%E5%9E%8B%E5%AE%9E%E7%8E%B0"><span class="toc-number">1.0.9.</span> <span class="toc-text">2. 论文中 LCLCS（低复杂度最长链共识）典型实现</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E5%AF%B9%E6%AF%94%E6%80%BB%E7%BB%93%E8%A1%A8%EF%BC%88%E4%B8%BB%E8%A6%81%E5%AE%9E%E7%8E%B0%E6%96%B9%E5%BC%8F%E7%9A%84%E5%88%A4%E6%96%AD%E4%BD%8D%E7%BD%AE%E4%B8%8E%E6%97%B6%E6%9C%BA%EF%BC%89"><span class="toc-number">1.0.10.</span> <span class="toc-text">3. 对比总结表（主要实现方式的判断位置与时机）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E5%B0%86%E7%BD%91%E7%BB%9C%E5%8A%A8%E5%8A%9B%E5%AD%A6%E7%90%86%E8%AE%BA%E5%BA%94%E7%94%A8%E4%BA%8E%E6%9C%80%E9%95%BF%E9%93%BE%E5%85%B1%E8%AF%86%E7%AE%97%E6%B3%95%E7%9A%84%E8%AE%BE%E8%AE%A1%E4%B8%AD%EF%BC%8C%E4%B8%BA%E5%85%B1%E8%AF%86%E8%BF%87%E7%A8%8B%E6%8F%90%E4%BE%9B%E4%BA%86%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1"><span class="toc-number">1.0.11.</span> <span class="toc-text">1.将网络动力学理论应用于最长链共识算法的设计中，为共识过程提供了数学建模</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E5%9C%A8%E5%90%8C%E6%AD%A5%E7%BD%91%E7%BB%9C%E6%A8%A1%E5%9E%8B%E4%B8%8B%EF%BC%8C%E6%94%B9%E8%BF%9B%E4%BA%86%E6%9C%80%E9%95%BF%E9%93%BE%E5%85%B1%E8%AF%86%E7%AE%97%E6%B3%95%E7%9A%84%E6%AF%94%E8%BE%83%E5%AF%B9%E8%B1%A1%E5%92%8C%E8%A7%A6%E5%8F%91%E6%97%B6%E6%9C%BA"><span class="toc-number">1.0.12.</span> <span class="toc-text">2.在同步网络模型下，改进了最长链共识算法的比较对象和触发时机</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E6%8F%90%E5%87%BA%E4%BA%86%E5%9F%BA%E4%BA%8E%E9%93%BE%E6%9D%83%E9%87%8D%E7%9A%84%E5%BF%AB%E9%80%9F%E6%94%B6%E6%95%9B%E6%9C%BA%E5%88%B6"><span class="toc-number">1.0.13.</span> <span class="toc-text">3. 提出了基于链权重的快速收敛机制</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E5%AE%9E%E9%AA%8C%E9%AA%8C%E8%AF%81"><span class="toc-number">1.0.14.</span> <span class="toc-text">4. 实验验证</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E5%B0%86%E7%BD%91%E7%BB%9C%E5%8A%A8%E5%8A%9B%E5%AD%A6%E7%90%86%E8%AE%BA%E6%89%A9%E5%B1%95%E5%BA%94%E7%94%A8%E4%BA%8E%E5%BC%82%E6%AD%A5%E7%BD%91%E7%BB%9C%E7%8E%AF%E5%A2%83%E4%B8%8B%E7%9A%84%E6%9C%80%E9%95%BF%E9%93%BE%E5%85%B1%E8%AF%86%EF%BC%8C%E5%B9%B6%E5%BB%BA%E7%AB%8B%E6%A6%82%E7%8E%87%E6%80%A7%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1%E6%A1%86%E6%9E%B6"><span class="toc-number">1.0.15.</span> <span class="toc-text">1. 将网络动力学理论扩展应用于异步网络环境下的最长链共识，并建立概率性数学建模框架</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E8%AE%BE%E8%AE%A1%E4%BA%86%E5%9F%BA%E4%BA%8E%E6%A6%82%E7%8E%87%E4%BC%A0%E6%92%AD%E7%9A%84%E4%BD%8E%E5%A4%8D%E6%9D%82%E5%BA%A6%E6%9C%80%E9%95%BF%E9%93%BE%E9%80%89%E6%8B%A9%E7%AD%96%E7%95%A5"><span class="toc-number">1.0.16.</span> <span class="toc-text">2. 设计了基于概率传播的低复杂度最长链选择策略</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E6%8F%90%E5%87%BA%E4%BA%86%E5%9F%BA%E4%BA%8E%E6%97%B6%E9%97%B4%E7%AA%97%E5%8F%A3%E7%9A%84%E5%BC%82%E6%AD%A5%E6%94%B6%E6%95%9B%E6%9C%BA%E5%88%B6%EF%BC%88%E6%A0%B8%E5%BF%83%E5%B7%A5%E7%A8%8B%E5%88%9B%E6%96%B0%EF%BC%89"><span class="toc-number">1.0.17.</span> <span class="toc-text">3. 提出了基于时间窗口的异步收敛机制（核心工程创新）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E5%AE%8C%E6%88%90%E4%BA%86%E7%90%86%E8%AE%BA%E5%88%86%E6%9E%90%E4%B8%8E%E7%9C%9F%E5%AE%9E%E7%BD%91%E7%BB%9C%E7%8E%AF%E5%A2%83%E4%B8%8B%E7%9A%84%E5%AE%9E%E9%AA%8C%E9%AA%8C%E8%AF%81"><span class="toc-number">1.0.18.</span> <span class="toc-text">4. 完成了理论分析与真实网络环境下的实验验证</span></a></li></ol></li></ol></li></ol></div></div><footer><nobr><span class="icp-title">GZHU</span><span class="icp-content">193001-0001</span></nobr><br><nobr><span class="icp-title">OUTPOST</span><span class="icp-content">169-2025-0331</span></nobr><br><nobr>Published with <a target="_blank" rel="noopener" href="http://hexo.io">Hexo</a></nobr><wbr><nobr> Theme <a target="_blank" rel="noopener" href="https://github.com/Yue-plus/hexo-theme-arknights">Arknights</a></nobr><wbr><nobr> by <a target="_blank" rel="noopener" href="https://github.com/Yue-plus">Yue_plus</a></nobr></footer></aside><!-- ── 访客信息获取脚本（建议放在页面底部 layout/_partial/after-footer.pug 或单独引入） ──--><script>(function() {
+  const MAX_RETRY = 1;
+  let retryCount = 0;
+
+  async function fetchVisitorInfo() {
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => {
+      controller.abort(new Error('Request timeout after 1000ms'));
+    }, 1000);
+
+    try {
+      const response = await fetch('https://ipapi.co/json/', {
+        signal: controller.signal
+      });
+
+      clearTimeout(timeoutId);
+
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+
+      const data = await response.json();
+
+      document.getElementById('visitor-ip').textContent = data.ip || '无法获取';
+      
+      const parts = [];
+      if (data.city) parts.push(data.city);
+      if (data.region) parts.push(data.region);
+      if (data.country_name) parts.push(data.country_name);
+      
+      document.getElementById('visitor-location').textContent = 
+        parts.length > 0 ? parts.join(' - ') : '未知地区';
+
+    } catch (err) {
+      clearTimeout(timeoutId);
+
+      // 如果是超时错误，且还有重试次数，则重试一次
+      if (err.name === 'AbortError' && retryCount < MAX_RETRY) {
+        retryCount++;
+        // 可选：显示「正在重试...」提示
+        document.getElementById('visitor-ip').textContent = '超时，正在重试...';
+        document.getElementById('visitor-location').textContent = '——';
+        
+        // 立即重试（也可加个很短的延迟，如 300ms）
+        setTimeout(fetchVisitorInfo, 300);
+        return;
+      }
+
+      // 最终失败
+      document.getElementById('visitor-ip').textContent = '████';
+      document.getElementById('visitor-location').textContent = '████';
+    }
+  }
+
+  // 页面加载完成后获取访客信息
+  fetchVisitorInfo();
+
+  // 添加对PJAX事件的监听，以便在页面切换后重新获取访客信息
+  document.addEventListener('pjax:complete', function() {
+    // 延迟执行，确保DOM已经更新完成
+    setTimeout(fetchVisitorInfo, 100);
+  });
+})();</script></main><canvas id="canvas-dust"></canvas></body></html>
