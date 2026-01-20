@@ -1,0 +1,524 @@
+<!DOCTYPE html><html lang="en" theme-mode="dark"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>2026-01-19-前端相关概念.Vol-1：闭包 | Zhongye's Blogs</title><link rel="icon" type="image/x-icon" href="/Arknight-notes/favicon.ico"><link rel="preload" as="font" crossorigin="anonymous" href="/Arknight-notes/font/Bender.ttf"><link rel="preload" as="font" crossorigin="anonymous" href="/Arknight-notes/font/BenderLight.ttf"><link rel="preload" as="font" crossorigin="anonymous" href="/Arknight-notes/font/JetBrainsMono-Regular.woff2"><link rel="stylesheet" href="/Arknight-notes/css/arknights.css"><style>@font-face {
+  font-family: Bender;
+  src: local('Bender'), url("/Arknight-notes/font/Bender.ttf"), url("/Arknight-notes/font/Bender.otf");
+}
+@font-face {
+  font-family: BenderLight;
+  src: local('BenderLight'), url("/Arknight-notes/font/BenderLight.ttf");
+}
+@font-face {
+  font-family: 'JetBrains Mono';
+  src: local('JetBrains Mono'), url('/Arknight-notes/font/JetBrainsMono-Regular.woff2') format('woff2');
+}
+</style><script>var config = {"root":"/Arknight-notes/","code_fold":90,"search":{"preload":false,"activeHolder":"Enter here","blurHolder":"Search","noResult":"Data \"$0\" not found"},"code":{"codeInfo":"$0 - $1 lines","copy":"copy"}}</script><link type="text/css" rel="stylesheet" href="/Arknight-notes/lib/encrypt/hbe.style.css"><script src="/Arknight-notes/js/gitalk.js"></script><script src="//unpkg.com/mermaid@10.5.0/dist/mermaid.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.6.1/MathJax.js"></script><script>MathJax.Hub.Config({
+ menuSettings: {
+   zoom: "None"
+ },
+ showMathMenu: false,
+ jax: ["input/TeX","output/CommonHTML"],
+ extensions: ["tex2jax.js"],
+ TeX: {
+   extensions: ["AMSmath.js","AMSsymbols.js"],
+   equationNumbers: {
+     autoNumber: "AMS"
+   }
+ },
+ tex2jax: {
+   inlineMath: [["\\(", "\\)"]],
+   displayMath: [["\\[", "\\]"]]
+ }
+});</script><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lightgallery.css"><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lg-zoom.css"><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lg-thumbnail.css"><link type="text/css" rel="stylesheet" href="/Arknight-notes/lib/fontawesome/css/all.min.css"><script>if (window.localStorage.getItem('theme-mode') === 'light')
+ document.documentElement.setAttribute('theme-mode', 'light')
+if (window.localStorage.getItem('theme-mode') === 'dark')
+ document.documentElement.setAttribute('theme-mode', 'dark')</script><style>@font-face {
+ font-family: BenderLight;
+ src: local('Bender'), url("/Arknight-notes/font/BenderLight.woff2") format('woff2');
+}
+@font-face {
+ font-family: 'JetBrains Mono';
+ src: local('JetBrains Mono'), url('/Arknight-notes/font/JetBrainsMono-Regular.woff2') format('woff2');
+}</style><style>:root {
+ --dark-background: url('https://picx.zhimg.com/v2-6c94831ec3400e77452e9bd9dde85cb5_r.jpg');
+ --light-background: url('https://pica.zhimg.com/v2-0323b00e97b41d914a545c7ccea6ab0a_r.jpg');
+ --theme-encrypt-confirm: 'confirm'
+}</style><script defer src="/Arknight-notes/js/arknights.js"></script><script defer src="/Arknight-notes/js/search.js"></script><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><script async src="/Arknight-notes/js/gitalk.js"></script><script defer type="module">import mermaid from '//unpkg.com/mermaid@10.5.0/dist/mermaid.esm.mjs';
+window.mermaid = mermaid;
+code.paintMermaid();
+</script><script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.6.1/MathJax.js"></script><script>MathJax.Hub.Config({
+  menuSettings: {
+    zoom: "None"
+  },
+  showMathMenu: false,
+  jax: ["input/TeX","output/CommonHTML"],
+  extensions: ["tex2jax.js"],
+  TeX: {
+    extensions: ["AMSmath.js","AMSsymbols.js"],
+    equationNumbers: {
+      autoNumber: "AMS"
+    }
+  },
+  tex2jax: {
+    inlineMath: [["\\(", "\\)"]],
+    displayMath: [["\\[", "\\]"]]
+  }
+});
+</script><script async src="//unpkg.com/lightgallery@2.7.1/lightgallery.min.js"></script><script async src="//unpkg.com/lightgallery@2.7.1/plugins/zoom/lg-zoom.min.js"></script><script async src="//unpkg.com/lightgallery@2.7.1/plugins/thumbnail/lg-thumbnail.min.js"></script><script async src="/Arknight-notes/lib/encrypt/hbe.js"></script><script async src="/Arknight-notes/js/pjax.js"></script><script class="pjax-js">reset= () => {gitalk = new Gitalk({
+ clientID: 'Ov23ct13Fb0b67x23wnT',
+ clientSecret: 'f18ce69dd545e3c0f5e2456afde9c756fe8a254a',
+ repo: 'Arknight-notes',
+ owner: 'Zhongye1',
+ admin: ['Zhongye1'],
+ distractionFreeMode: false,
+ id: location.pathname
+});
+if (document.querySelector("#gitalk")) gitalk.render("gitalk");document.querySelector('.lg-container')?.remove()
+lightGallery(document.getElementById('post-bg'), {
+  plugins: [lgZoom,lgThumbnail],
+  selector: '.item-img'})}</script><script>window.addEventListener("load",() => {pjax = new Pjax({
+ cacheBust: false,
+ selectors: ['title','article','#aside-block','.pjax-js','data-pjax','.busuanzi'],
+ switches: {'article': Pjax.switches.sideBySide},
+ switchesOptions: {
+   'article': {
+     classNames: {
+       remove: "pjax-out",
+       add: "pjax-in"
+     }
+   }
+ }
+});
+document.addEventListener("pjax:complete", reset);document.addEventListener('pjax:success', _ => bszCaller.fetch(
+ "//busuanzi.ibruce.info/busuanzi?jsonpCallback=BusuanziCallback", a => {
+  bszTag.texts(a),
+  bszTag.shows()
+}));reset()})</script><script class="pjax-js">reset= () => {gitalk = new Gitalk({
+ clientID: 'Ov23ct13Fb0b67x23wnT',
+ clientSecret: 'f18ce69dd545e3c0f5e2456afde9c756fe8a254a',
+ repo: 'Arknight-notes',
+ owner: 'Zhongye1',
+ admin: ['Zhongye1'],
+ distractionFreeMode: false,
+ id: location.pathname
+});
+if (document.querySelector("#gitalk")) gitalk.render("gitalk");document.querySelector('.lg-container')?.remove()
+lightGallery(document.getElementById('post-bg'), {
+  plugins: [lgZoom,lgThumbnail],
+  selector: '.item-img'})}</script><script>window.addEventListener("load",() => {pjax = new Pjax({
+ cacheBust: false,
+ selectors: ['title','article','#aside-block','.pjax-js'],
+ switches: {'article': Pjax.switches.sideBySide},
+ switchesOptions: {
+   'article': {
+     classNames: {
+       remove: "pjax-out",
+       add: "pjax-in"
+     }
+   }
+ }
+});
+document.addEventListener("pjax:complete", reset);reset()})</script><meta name="generator" content="Hexo 7.3.0"><style>mjx-container[jax="SVG"] {
+  direction: ltr;
+}
+
+mjx-container[jax="SVG"] > svg {
+  overflow: visible;
+}
+
+mjx-container[jax="SVG"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="SVG"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="SVG"][justify="right"] {
+  text-align: right;
+}
+
+g[data-mml-node="merror"] > g {
+  fill: red;
+  stroke: red;
+}
+
+g[data-mml-node="merror"] > rect[data-background] {
+  fill: yellow;
+  stroke: none;
+}
+
+g[data-mml-node="mtable"] > line[data-line] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > rect[data-frame] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > .mjx-dashed {
+  stroke-dasharray: 140;
+}
+
+g[data-mml-node="mtable"] > .mjx-dotted {
+  stroke-linecap: round;
+  stroke-dasharray: 0,140;
+}
+
+g[data-mml-node="mtable"] > svg {
+  overflow: visible;
+}
+
+[jax="SVG"] mjx-tool {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+[jax="SVG"] mjx-tool > mjx-tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+mjx-tool > mjx-tip {
+  display: inline-block;
+  padding: .2em;
+  border: 1px solid #888;
+  font-size: 70%;
+  background-color: #F8F8F8;
+  color: black;
+  box-shadow: 2px 2px 5px #AAAAAA;
+}
+
+g[data-mml-node="maction"][data-toggle] {
+  cursor: pointer;
+}
+
+mjx-status {
+  display: block;
+  position: fixed;
+  left: 1em;
+  bottom: 1em;
+  min-width: 25%;
+  padding: .2em .4em;
+  border: 1px solid #888;
+  font-size: 90%;
+  background-color: #F8F8F8;
+  color: black;
+}
+
+foreignObject[data-mjx-xml] {
+  font-family: initial;
+  line-height: normal;
+  overflow: visible;
+}
+
+.MathJax path {
+  stroke-width: 3;
+}
+
+mjx-container[display="true"] {
+  overflow: auto hidden;
+}
+
+mjx-container[display="true"] + br {
+  display: none;
+}
+</style><link rel="alternate" href="/Arknight-notes/rss.xml" title="Zhongye's Blogs" type="application/atom+xml">
+</head><body><div class="loading" style="opacity: 0;"><div class="loadingBar left"></div><div class="loadingBar right"></div></div><main><header class="closed"><div class="navBtn"><i class="navBtnIcon"><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span></i></div><nav><div class="navItem" id="search-header"><span class="navItemTitle"><input autocomplete="off" autocorrect="off" autocapitalize="none" placeholder="Search" spellcheck="false" maxlength="50" type="text" id="search-input"></span></div><div class="navItem" id="search-holder"></div><div class="search-popup" tabindex="0"><div id="search-result"></div></div><ol class="navContent"><li class="navItem"><a class="navBlock" href="/Arknight-notes/"><span class="navItemTitle">Home</span></a></li><li class="navItem" matchdata="categories,tags"><a class="navBlock" href="/Arknight-notes/archives/"><span class="navItemTitle">Archives</span></a></li><li class="navItem"><a class="navBlock" href="/Arknight-notes/about/"><span class="navItemTitle">About</span></a></li></ol></nav></header><article><div id="post-bg"><div id="post-title"><h1>2026-01-19-前端相关概念.Vol-1：闭包</h1><div id="post-info"><span>First Post: <div class="control"><time datetime="2026-01-19T17:03:26.000Z" id="date"> 2026-01-20</time></div></span><br><span>Last Update: <div class="control"><time datetime="2026-01-20T07:11:06.027Z" id="updated"> 2026-01-20</time></div></span><br><span id="busuanzi_container_page_pv">Page View: <span class="control" id="busuanzi_value_page_pv">loading...</span></span></div></div><hr><div id="post-content"><h2 id="闭包"><a href="#闭包" class="headerlink" title="闭包"></a>闭包</h2><p>函数＋创建时的词法环境</p>
+<blockquote>
+<p>当一个函数能够“记住并访问”它被创建时所处的词法作用域中的变量，即使这个函数在它原本的作用域之外被执行，这个函数就形成了闭包。</p>
+</blockquote>
+<p><strong>“闭包就是函数和其词法环境的组合”</strong><br><strong>“闭包就是能够读取其他函数内部变量的函数”</strong></p>
+<p>闭包是语言运行时的一种行为现象</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs ts"><span class="hljs-comment">// 计数器</span><br><span class="hljs-keyword">function</span> <span class="hljs-title function_">createCounter</span>(<span class="hljs-params"></span>) {<br>  <span class="hljs-keyword">let</span> count = <span class="hljs-number">0</span>;           <span class="hljs-comment">// 处于外部函数作用域的变量</span><br>  <span class="hljs-keyword">return</span> <span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) {      <span class="hljs-comment">// 内部函数形成了闭包</span><br>    <span class="hljs-keyword">return</span> count++;<br>  };<br>}<br><br><span class="hljs-keyword">const</span> counter = <span class="hljs-title function_">createCounter</span>();<br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-title function_">counter</span>()); <span class="hljs-comment">// 0</span><br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-title function_">counter</span>()); <span class="hljs-comment">// 1</span><br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-title function_">counter</span>()); <span class="hljs-comment">// 2</span><br></code></pre></td></tr></table></figure>
+<p>作用：封装，保存状态，延迟执行<br>判断：能否访问已销毁外部作用域的变量（基于函数定义位置）</p>
+<h4 id="闭包应用场景"><a href="#闭包应用场景" class="headerlink" title="闭包应用场景"></a>闭包应用场景</h4><ul>
+<li><strong>在定时器、事件监听、Ajax 请求、Web Workers 或者任何异步中</strong>，只要使用了回调函数，实际上就是在使用闭包：</li>
+</ul>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs ts"><span class="hljs-comment">// 定时器</span><br><span class="hljs-built_in">setTimeout</span>(<span class="hljs-keyword">function</span> <span class="hljs-title function_">handler</span>(<span class="hljs-params"></span>){<br>  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">'1'</span>);<br>}，<span class="hljs-number">1000</span>);<br><span class="hljs-comment">// 事件监听</span><br><span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(app).<span class="hljs-title function_">addEventListener</span>(<span class="hljs-string">'click'</span>, <span class="hljs-function">() =&gt;</span> {<br>  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">'Event Listener'</span>);<br>});<br></code></pre></td></tr></table></figure>
+<ul>
+<li><strong>作为函数参数传递的形式：</strong></li>
+</ul>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs ts"><span class="hljs-keyword">var</span> a = <span class="hljs-number">1</span>;<br><span class="hljs-keyword">function</span> <span class="hljs-title function_">foo</span>(<span class="hljs-params"></span>){<br>  <span class="hljs-keyword">var</span> a = <span class="hljs-number">2</span>;<br>  <span class="hljs-keyword">function</span> <span class="hljs-title function_">baz</span>(<span class="hljs-params"></span>){<br>    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(a);<br>  }<br>  <span class="hljs-title function_">bar</span>(baz);<br>}<br><span class="hljs-keyword">function</span> <span class="hljs-title function_">bar</span>(<span class="hljs-params">fn</span>){<br>  <span class="hljs-comment">// 这是闭包</span><br>  <span class="hljs-title function_">fn</span>();<br>}<br><span class="hljs-title function_">foo</span>();  <span class="hljs-comment">// 输出2，而不是1</span><br></code></pre></td></tr></table></figure>
+<ul>
+<li><strong>IIFE（立即执行函数）</strong>，创建了闭包，保存了全局作用域（window）和当前函数的作用域，因此可以输出全局的变量：</li>
+</ul>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs ts"><span class="hljs-keyword">var</span> a = <span class="hljs-number">2</span>;<br>(<span class="hljs-keyword">function</span> <span class="hljs-title function_">IIFE</span>(<span class="hljs-params"></span>){<br>  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(a);  <span class="hljs-comment">// 输出2</span><br>})();<br></code></pre></td></tr></table></figure>
+<p>IIFE 是一种自执行匿名函数，这个匿名函数拥有独立的作用域。这不仅可以避免了外界访问此 IIFE 中的变量，而且又不会污染全局作用域。</p>
+<ul>
+<li><strong>结果缓存（备忘模式）</strong></li>
+</ul>
+<p>备忘模式就是应用闭包的特点的一个典型应用。比如下面函数：</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs ts"><span class="hljs-keyword">function</span> <span class="hljs-title function_">add</span>(<span class="hljs-params">a</span>) {<br>    <span class="hljs-keyword">return</span> a + <span class="hljs-number">1</span>;<br>}<br></code></pre></td></tr></table></figure>
+<p>当多次执行 add() 时，每次得到的结果都是重新计算得到的，如果是开销很大的计算操作的话就比较消耗性能了，这里可以对已经计算过的输入做一个缓存。所以这里可以利用闭包的特点来实现一个简单的缓存，在函数内部用一个对象存储输入的参数，如果下次再输入相同的参数，那就比较一下对象的属性，如果有缓存，就直接把值从这个对象里面取出来。实现代码如下：</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs ts"><span class="hljs-keyword">function</span> <span class="hljs-title function_">memorize</span>(<span class="hljs-params">fn</span>) {<br>    <span class="hljs-keyword">var</span> cache = {}<br>    <span class="hljs-keyword">return</span> <span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) {<br>        <span class="hljs-keyword">var</span> args = <span class="hljs-title class_">Array</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span>.<span class="hljs-property">slice</span>.<span class="hljs-title function_">call</span>(<span class="hljs-variable language_">arguments</span>)<br>        <span class="hljs-keyword">var</span> key = <span class="hljs-title class_">JSON</span>.<span class="hljs-title function_">stringify</span>(args)<br>        <span class="hljs-keyword">return</span> cache[key] || (cache[key] = fn.<span class="hljs-title function_">apply</span>(fn, args))<br>    }<br>}<br><br><span class="hljs-keyword">function</span> <span class="hljs-title function_">add</span>(<span class="hljs-params">a</span>) {<br>    <span class="hljs-keyword">return</span> a + <span class="hljs-number">1</span><br>}<br><br><span class="hljs-keyword">var</span> adder = <span class="hljs-title function_">memorize</span>(add)<br><br><span class="hljs-title function_">adder</span>(<span class="hljs-number">1</span>)            <span class="hljs-comment">// 输出: 2    当前: cache: { '[1]': 2 }</span><br><span class="hljs-title function_">adder</span>(<span class="hljs-number">1</span>)            <span class="hljs-comment">// 输出: 2    当前: cache: { '[1]': 2 }</span><br><span class="hljs-title function_">adder</span>(<span class="hljs-number">2</span>)            <span class="hljs-comment">// 输出: 3    当前: cache: { '[1]': 2, '[2]': 3 }</span><br></code></pre></td></tr></table></figure>
+<p>使用 ES6 的方式实现：</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs ts"><span class="hljs-keyword">function</span> <span class="hljs-title function_">memorize</span>(<span class="hljs-params">fn</span>) {<br>    <span class="hljs-keyword">const</span> cache = {}<br>    <span class="hljs-keyword">return</span> <span class="hljs-keyword">function</span>(<span class="hljs-params">...args</span>) {<br>        <span class="hljs-keyword">const</span> key = <span class="hljs-title class_">JSON</span>.<span class="hljs-title function_">stringify</span>(args)<br>        <span class="hljs-keyword">return</span> cache[key] || (cache[key] = fn.<span class="hljs-title function_">apply</span>(fn, args))<br>    }<br>}<br><br><span class="hljs-keyword">function</span> <span class="hljs-title function_">add</span>(<span class="hljs-params">a</span>) {<br>    <span class="hljs-keyword">return</span> a + <span class="hljs-number">1</span><br>}<br><br><span class="hljs-keyword">const</span> adder = <span class="hljs-title function_">memorize</span>(add)<br><br><span class="hljs-title function_">adder</span>(<span class="hljs-number">1</span>)            <span class="hljs-comment">// 输出: 2    当前: cache: { '[1]': 2 }</span><br><span class="hljs-title function_">adder</span>(<span class="hljs-number">1</span>)            <span class="hljs-comment">// 输出: 2    当前: cache: { '[1]': 2 }</span><br><span class="hljs-title function_">adder</span>(<span class="hljs-number">2</span>)            <span class="hljs-comment">// 输出: 3    当前: cache: { '[1]': 2, '[2]': 3 }</span><br></code></pre></td></tr></table></figure>
+<p>备忘函数中用 JSON.stringify 把传给 adder 函数的参数序列化成字符串，把它当做 cache 的索引，将 add 函数运行的结果当做索引的值传递给 cache，这样 adder 运行的时候如果传递的参数之前传递过，那么就返回缓存好的计算结果，不用再计算了，如果传递的参数没计算过，则计算并缓存 fn.apply(fn, args)，再返回计算的结果。</p>
+<h4 id="循环输出问题"><a href="#循环输出问题" class="headerlink" title="循环输出问题"></a>循环输出问题</h4><p>最后来看一个常见的和闭包相关的循环输出问题，代码如下：</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs ts"><span class="hljs-keyword">for</span>(<span class="hljs-keyword">var</span> i = <span class="hljs-number">1</span>; i &lt;= <span class="hljs-number">5</span>; i ++){<br>  <span class="hljs-built_in">setTimeout</span>(<span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) {<br>    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(i)<br>  }, <span class="hljs-number">0</span>)<br>}<br></code></pre></td></tr></table></figure>
+<p>这段代码输出的结果是 5 个 6，那为什么都是 6 呢？如何才能输出 1、2、3、4、5 呢？</p>
+<p>可以结合以下两点来思考第一个问题：</p>
+<ul>
+<li>setTimeout 为宏任务，由于 JS 中单线程 eventLoop 机制，在主线程同步任务执行完后才去执行宏任务，因此循环结束后 setTimeout 中的回调才依次执行。</li>
+<li>因为 setTimeout 函数也是一种闭包，往上找它的父级作用域链就是 window，变量 i 为 window 上的全局变量，开始执行 setTimeout 之前变量 i 已经就是 6 了，因此最后输出的连续就都是 6。</li>
+</ul>
+<p>那如何按顺序依次输出 1、2、3、4、5 呢？</p>
+<p><strong>1）利用 IIFE</strong></p>
+<p>可以利用 IIFE（立即执行函数），当每次 for 循环时，把此时的变量 i 传递到定时器中，然后执行，改造之后的代码如下。</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs ts"><span class="hljs-keyword">for</span>(<span class="hljs-keyword">var</span> i = <span class="hljs-number">1</span>;i &lt;= <span class="hljs-number">5</span>;i++){<br>  (<span class="hljs-keyword">function</span>(<span class="hljs-params">j</span>){<br>    <span class="hljs-built_in">setTimeout</span>(<span class="hljs-keyword">function</span> <span class="hljs-title function_">timer</span>(<span class="hljs-params"></span>){<br>      <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(j)<br>    }, <span class="hljs-number">0</span>)<br>  })(i)<br>}<br></code></pre></td></tr></table></figure>
+<p>可以看到，通过这样改造使用 IIFE（立即执行函数），可以实现序号的依次输出。利用立即执行函数的入参来缓存每一个循环中的 i 值。</p>
+<p><strong>2）使用 ES6 中的 let</strong></p>
+<p>ES6 中新增的 let 定义变量的方式，使得 ES6 之后 JS 发生革命性的变化，让 JS 有了块级作用域，代码的作用域以块级为单位进行执行。</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs ts"><span class="hljs-keyword">for</span>(<span class="hljs-keyword">let</span> i = <span class="hljs-number">1</span>; i &lt;= <span class="hljs-number">5</span>; i++){<br>  <span class="hljs-built_in">setTimeout</span>(<span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) {<br>    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(i);<br>  },<span class="hljs-number">0</span>)<br>}<br></code></pre></td></tr></table></figure>
+<p>可以看到，通过 let 定义变量的方式，重新定义 i 变量，则可以用最少的改动成本，解决该问题。</p>
+<p><strong>3）定时器第三个参数</strong></p>
+<p>setTimeout 作为经常使用的定时器，它是存在第三个参数的。我们经常使用前两个，一个是回调函数，另外一个是定时时间，setTimeout 从第三个入参位置开始往后，是可以传入无数个参数的。这些参数会作为回调函数的附加参数存在。那么结合第三个参数，调整完之后的代码如下：</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs ts"><span class="hljs-keyword">for</span>(<span class="hljs-keyword">var</span> i=<span class="hljs-number">1</span>;i&lt;=<span class="hljs-number">5</span>;i++){<br>  <span class="hljs-built_in">setTimeout</span>(<span class="hljs-keyword">function</span>(<span class="hljs-params">j</span>) {<br>    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(j)<br>  }, <span class="hljs-number">0</span>, i)<br>}<br></code></pre></td></tr></table></figure>
+<p>可以看到，第三个参数的传递，可以改变 setTimeout 的执行逻辑，从而实现想要的结果</p>
+<hr>
+<h2 id="高阶函数（Higher-Order-Function）"><a href="#高阶函数（Higher-Order-Function）" class="headerlink" title="高阶函数（Higher-Order Function）"></a>高阶函数（Higher-Order Function）</h2><p>JavaScript的函数其实都指向某个变量。既然变量可以指向函数，函数的参数能接收变量，那么一个函数就可以接收另一个函数作为参数，这种函数就称之为高阶函数。</p>
+<p>一个最简单的高阶函数：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">function</span> <span class="hljs-title function_">add</span>(<span class="hljs-params">x, y, f</span>) {<br>    <span class="hljs-keyword">return</span> <span class="hljs-title function_">f</span>(x) + <span class="hljs-title function_">f</span>(y);<br>}<br></code></pre></td></tr></table></figure>
+<hr>
+<h2 id="柯里化（Currying）"><a href="#柯里化（Currying）" class="headerlink" title="柯里化（Currying）"></a>柯里化（Currying）</h2><blockquote>
+<p>柯里化是将一个接受 <strong>多个参数</strong> 的函数，转换为 <strong>一系列只接受单个参数</strong> 的函数的变换过程。</p>
+</blockquote>
+<p>f(a, b, c) === f(a)(b)(c)</p>
+<p>把“一次传入多个参数” → 拆成“多次每次只传一个参数”的调用链。</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><code class="hljs ts"><span class="hljs-comment">// 普通函数（非柯里化）</span><br><span class="hljs-keyword">function</span> <span class="hljs-title function_">add</span>(<span class="hljs-params">a, b, c</span>) {<br>  <span class="hljs-keyword">return</span> a + b + c;<br>}<br><br><span class="hljs-title function_">add</span>(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>);         <span class="hljs-comment">// 6</span><br><br><br><span class="hljs-comment">// 柯里化版本</span><br><span class="hljs-keyword">function</span> <span class="hljs-title function_">addCurried</span>(<span class="hljs-params">a</span>) {<br>  <span class="hljs-keyword">return</span> <span class="hljs-keyword">function</span>(<span class="hljs-params">b</span>) {<br>    <span class="hljs-keyword">return</span> <span class="hljs-keyword">function</span>(<span class="hljs-params">c</span>) {<br>      <span class="hljs-keyword">return</span> a + b + c;<br>    };<br>  };<br>}<br><br><span class="hljs-title function_">addCurried</span>(<span class="hljs-number">1</span>)(<span class="hljs-number">2</span>)(<span class="hljs-number">3</span>);  <span class="hljs-comment">// 6</span><br><br><br><span class="hljs-comment">// 更常见的简写形式（箭头函数）</span><br><span class="hljs-keyword">const</span> <span class="hljs-title function_">addC</span> = a =&gt; <span class="hljs-function"><span class="hljs-params">b</span> =&gt;</span> <span class="hljs-function"><span class="hljs-params">c</span> =&gt;</span> a + b + c;<br><br><span class="hljs-title function_">addC</span>(<span class="hljs-number">1</span>)(<span class="hljs-number">2</span>)(<span class="hljs-number">3</span>);        <span class="hljs-comment">// 6</span><br></code></pre></td></tr></table></figure>
+<hr>
+<h2 id="防抖（Debounce）"><a href="#防抖（Debounce）" class="headerlink" title="防抖（Debounce）"></a>防抖（Debounce）</h2><p><strong>定义</strong>：当事件被触发后，延迟 n 秒再执行回调函数。如果在这 n 秒内事件再次被触发，则重新开始计时。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><code class="hljs JavaScript"><span class="hljs-comment">// 方式1：简单版（非立即执行）</span><br><span class="hljs-keyword">function</span> <span class="hljs-title function_">debounce</span>(<span class="hljs-params">fn, wait</span>) {<br>  <span class="hljs-keyword">let</span> timer = <span class="hljs-literal">null</span>;<br>  <br>  <span class="hljs-keyword">return</span> <span class="hljs-keyword">function</span> (<span class="hljs-params">...args</span>) {<br>    <span class="hljs-comment">// 每次触发都清除之前的定时器</span><br>    <span class="hljs-keyword">if</span> (timer) <span class="hljs-built_in">clearTimeout</span>(timer);<br>    <br>    <span class="hljs-comment">// 重新设置定时器</span><br>    timer = <span class="hljs-built_in">setTimeout</span>(<span class="hljs-function">() =&gt;</span> {<br>      fn.<span class="hljs-title function_">apply</span>(<span class="hljs-variable language_">this</span>, args);<br>    }, wait);<br>  };<br>}<br><br><span class="hljs-comment">// 方式2：立即执行版 + 尾部执行（更常用）</span><br><span class="hljs-keyword">function</span> <span class="hljs-title function_">debounce</span>(<span class="hljs-params">fn, wait, immediate = <span class="hljs-literal">false</span></span>) {<br>  <span class="hljs-keyword">let</span> timer = <span class="hljs-literal">null</span>;<br>  <br>  <span class="hljs-keyword">return</span> <span class="hljs-keyword">function</span> (<span class="hljs-params">...args</span>) {<br>    <span class="hljs-keyword">const</span> context = <span class="hljs-variable language_">this</span>;<br>    <br>    <span class="hljs-keyword">if</span> (timer) <span class="hljs-built_in">clearTimeout</span>(timer);<br>    <br>    <span class="hljs-keyword">if</span> (immediate) {<br>      <span class="hljs-keyword">const</span> callNow = !timer;<br>      timer = <span class="hljs-built_in">setTimeout</span>(<span class="hljs-function">() =&gt;</span> {<br>        timer = <span class="hljs-literal">null</span>;<br>      }, wait);<br>      <br>      <span class="hljs-keyword">if</span> (callNow) fn.<span class="hljs-title function_">apply</span>(context, args);<br>    } <span class="hljs-keyword">else</span> {<br>      timer = <span class="hljs-built_in">setTimeout</span>(<span class="hljs-function">() =&gt;</span> {<br>        fn.<span class="hljs-title function_">apply</span>(context, args);<br>      }, wait);<br>    }<br>  };<br>}<br></code></pre></td></tr></table></figure>
+<p>**应用：</p>
+<ul>
+<li>搜索框输入自动搜索（用户输入完再发请求）</li>
+<li>表单验证（输入停止后才校验）</li>
+<li>按钮短时间内多次点击（防止重复提交）</li>
+<li>window.resize 事件</li>
+</ul>
+<h2 id="节流（Throttle）"><a href="#节流（Throttle）" class="headerlink" title="节流（Throttle）"></a>节流（Throttle）</h2><p><strong>定义</strong>：规定时间内只执行一次函数，无论这段时间内触发多少次。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br></pre></td><td class="code"><pre><code class="hljs JavaScript"><span class="hljs-comment">// 方式1：时间戳版（第一次触发会立即执行）</span><br><span class="hljs-keyword">function</span> <span class="hljs-title function_">throttle</span>(<span class="hljs-params">fn, wait</span>) {<br>  <span class="hljs-keyword">let</span> prev = <span class="hljs-number">0</span>;<br>  <br>  <span class="hljs-keyword">return</span> <span class="hljs-keyword">function</span> (<span class="hljs-params">...args</span>) {<br>    <span class="hljs-keyword">const</span> now = <span class="hljs-title class_">Date</span>.<span class="hljs-title function_">now</span>();<br>    <br>    <span class="hljs-keyword">if</span> (now - prev &gt;= wait) {<br>      fn.<span class="hljs-title function_">apply</span>(<span class="hljs-variable language_">this</span>, args);<br>      prev = now;<br>    }<br>  };<br>}<br><br><span class="hljs-comment">// 方式2：定时器版（最后一次一定会执行）</span><br><span class="hljs-keyword">function</span> <span class="hljs-title function_">throttle</span>(<span class="hljs-params">fn, wait</span>) {<br>  <span class="hljs-keyword">let</span> timer = <span class="hljs-literal">null</span>;<br>  <span class="hljs-keyword">let</span> lastArgs = <span class="hljs-literal">null</span>;<br>  <br>  <span class="hljs-keyword">return</span> <span class="hljs-keyword">function</span> (<span class="hljs-params">...args</span>) {<br>    lastArgs = args;<br>    <br>    <span class="hljs-keyword">if</span> (!timer) {<br>      fn.<span class="hljs-title function_">apply</span>(<span class="hljs-variable language_">this</span>, lastArgs);<br>      lastArgs = <span class="hljs-literal">null</span>;<br>      <br>      timer = <span class="hljs-built_in">setTimeout</span>(<span class="hljs-function">() =&gt;</span> {<br>        <span class="hljs-keyword">if</span> (lastArgs) {<br>          fn.<span class="hljs-title function_">apply</span>(<span class="hljs-variable language_">this</span>, lastArgs);<br>        }<br>        timer = <span class="hljs-literal">null</span>;<br>        lastArgs = <span class="hljs-literal">null</span>;<br>      }, wait);<br>    }<br>  };<br>}<br><br><span class="hljs-comment">// 方式3：最推荐的综合版（头尾都能执行）</span><br><span class="hljs-keyword">function</span> <span class="hljs-title function_">throttle</span>(<span class="hljs-params">fn, wait</span>) {<br>  <span class="hljs-keyword">let</span> timer = <span class="hljs-literal">null</span>;<br>  <span class="hljs-keyword">let</span> previous = <span class="hljs-number">0</span>;<br>  <br>  <span class="hljs-keyword">return</span> <span class="hljs-keyword">function</span> (<span class="hljs-params">...args</span>) {<br>    <span class="hljs-keyword">const</span> now = <span class="hljs-title class_">Date</span>.<span class="hljs-title function_">now</span>();<br>    <span class="hljs-keyword">const</span> remaining = wait - (now - previous);<br>    <br>    <span class="hljs-keyword">if</span> (remaining &lt;= <span class="hljs-number">0</span>) {<br>      <span class="hljs-keyword">if</span> (timer) {<br>        <span class="hljs-built_in">clearTimeout</span>(timer);<br>        timer = <span class="hljs-literal">null</span>;<br>      }<br>      fn.<span class="hljs-title function_">apply</span>(<span class="hljs-variable language_">this</span>, args);<br>      previous = now;<br>    } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (!timer) {<br>      timer = <span class="hljs-built_in">setTimeout</span>(<span class="hljs-function">() =&gt;</span> {<br>        fn.<span class="hljs-title function_">apply</span>(<span class="hljs-variable language_">this</span>, args);<br>        previous = <span class="hljs-title class_">Date</span>.<span class="hljs-title function_">now</span>();<br>        timer = <span class="hljs-literal">null</span>;<br>      }, remaining);<br>    }<br>  };<br>}<br></code></pre></td></tr></table></figure>
+<p><strong>应用场景</strong>：</p>
+<ul>
+<li>页面滚动到底部加载更多（无限滚动）</li>
+<li>拖拽元素时实时计算位置</li>
+<li>鼠标移动时画板实时绘制</li>
+<li>游戏中技能释放冷却（最典型的思想来源）</li>
+</ul>
+<hr>
+<h2 id="call、apply-和-bind"><a href="#call、apply-和-bind" class="headerlink" title="call、apply 和 bind"></a>call、apply 和 bind</h2><p><strong>call、apply 和 bind</strong> 是 JavaScript 中 Function 对象提供的三个非常重要且经常被面试考察的方法，它们的主要作用都是<strong>改变函数执行时的 this 指向</strong>，但在用法、参数传递方式和执行时机上存在显著差异。</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>特性</th>
+<th>call</th>
+<th>apply</th>
+<th>bind</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>主要功能</td>
+<td>立即执行函数，并改变 this 指向</td>
+<td>立即执行函数，并改变 this 指向</td>
+<td><strong>不立即执行</strong>，返回一个新函数，永久绑定 this</td>
+</tr>
+<tr>
+<td>参数传递方式</td>
+<td>逐个参数列出</td>
+<td>参数以数组形式传递</td>
+<td>逐个参数列出（与 call 相同）</td>
+</tr>
+<tr>
+<td>返回值</td>
+<td>函数执行后的返回值</td>
+<td>函数执行后的返回值</td>
+<td>新的绑定了 this 的函数</td>
+</tr>
+<tr>
+<td>是否立即执行</td>
+<td>是</td>
+<td>是</td>
+<td>否</td>
+</tr>
+<tr>
+<td>参数是否可以后续补充</td>
+<td>否（一次性传完）</td>
+<td>否（一次性传完）</td>
+<td>是（可以分两次传参）</td>
+</tr>
+<tr>
+<td>典型使用场景</td>
+<td>需要明确控制 this 并立即执行时</td>
+<td>处理类数组对象/动态参数时</td>
+<td>事件处理、固定 this 的回调函数</td>
+</tr>
+<tr>
+<td>语法示例</td>
+<td>fn.call(obj, 1, 2, 3)</td>
+<td>fn.apply(obj, [1, 2, 3])</td>
+<td>const newFn = fn.bind(obj, 1, 2)</td>
+</tr>
+</tbody>
+</table>
+</div>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs JavaScript"><span class="hljs-comment">// 准备一个测试函数和对象</span><br><span class="hljs-keyword">function</span> <span class="hljs-title function_">greet</span>(<span class="hljs-params">greeting, punctuation</span>) {<br>  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">`<span class="hljs-subst">${greeting}</span>, 我是<span class="hljs-subst">${<span class="hljs-variable language_">this</span>.name}</span><span class="hljs-subst">${punctuation}</span>`</span>);<br>}<br><br><span class="hljs-keyword">const</span> person = {<br>  <span class="hljs-attr">name</span>: <span class="hljs-string">"张三"</span><br>};<br><br><span class="hljs-keyword">const</span> anotherPerson = {<br>  <span class="hljs-attr">name</span>: <span class="hljs-string">"李四"</span><br>};<br></code></pre></td></tr></table></figure>
+<h4 id="1-call"><a href="#1-call" class="headerlink" title="1. call()"></a>1. call()</h4><p>立即执行，参数逐个传入</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs JavaScript">greet.<span class="hljs-title function_">call</span>(person, <span class="hljs-string">"您好"</span>, <span class="hljs-string">"！"</span>);     <br><span class="hljs-comment">// 输出：您好，我是张三！</span><br><br>greet.<span class="hljs-title function_">call</span>(anotherPerson, <span class="hljs-string">"早上好"</span>, <span class="hljs-string">"～"</span>);<br><span class="hljs-comment">// 输出：早上好，我是李四～</span><br></code></pre></td></tr></table></figure>
+<h4 id="2-apply"><a href="#2-apply" class="headerlink" title="2. apply()"></a>2. apply()</h4><p>立即执行，参数以<strong>数组</strong>形式传入（非常适合处理 arguments 或类数组对象）</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs JavaScript">greet.<span class="hljs-title function_">apply</span>(person, [<span class="hljs-string">"下午好"</span>, <span class="hljs-string">"。"</span>]);   <br><span class="hljs-comment">// 输出：下午好，我是张三。</span><br><br><span class="hljs-comment">// 经典用法：求数组最大/最小值（以前常考，现在 Math.max(...arr) 更常用）</span><br><span class="hljs-keyword">const</span> numbers = [<span class="hljs-number">5</span>, <span class="hljs-number">2</span>, <span class="hljs-number">9</span>, <span class="hljs-number">1</span>, <span class="hljs-number">7</span>];<br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-title class_">Math</span>.<span class="hljs-property">max</span>.<span class="hljs-title function_">apply</span>(<span class="hljs-literal">null</span>, numbers)); <span class="hljs-comment">// 9</span><br><span class="hljs-comment">// 现代写法：Math.max(...numbers)</span><br></code></pre></td></tr></table></figure>
+<h4 id="3-bind"><a href="#3-bind" class="headerlink" title="3. bind()"></a>3. bind()</h4><p><strong>最重要</strong>的特点：<strong>不立即执行</strong>，而是返回一个<strong>永久绑定了 this 的新函数</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><code class="hljs JavaScript"><span class="hljs-comment">// 绑定 this，并预设部分参数（函数柯里化常用）</span><br><span class="hljs-keyword">const</span> greetZhangSan = greet.<span class="hljs-title function_">bind</span>(person, <span class="hljs-string">"你好"</span>);  <br><br><span class="hljs-title function_">greetZhangSan</span>(<span class="hljs-string">"!"</span>);      <br><span class="hljs-comment">// 输出：你好，我是张三!</span><br><br><span class="hljs-title function_">greetZhangSan</span>(<span class="hljs-string">"呀～"</span>);   <br><span class="hljs-comment">// 输出：你好，我是张三呀～</span><br><br><span class="hljs-comment">// 事件处理中最常见的用法</span><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">Button</span> {<br>  <span class="hljs-title function_">constructor</span>(<span class="hljs-params">text</span>) {<br>    <span class="hljs-variable language_">this</span>.<span class="hljs-property">text</span> = text;<br>    <span class="hljs-variable language_">this</span>.<span class="hljs-property">element</span> = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">createElement</span>(<span class="hljs-string">"button"</span>);<br>    <span class="hljs-variable language_">this</span>.<span class="hljs-property">element</span>.<span class="hljs-property">textContent</span> = text;<br>    <br>    <span class="hljs-comment">// 错误写法：this.handleClick 中的 this 会指向 DOM 元素</span><br>    <span class="hljs-comment">// this.element.addEventListener("click", this.handleClick);</span><br>    <br>    <span class="hljs-comment">// 正确写法：</span><br>    <span class="hljs-variable language_">this</span>.<span class="hljs-property">element</span>.<span class="hljs-title function_">addEventListener</span>(<span class="hljs-string">"click"</span>, <span class="hljs-variable language_">this</span>.<span class="hljs-property">handleClick</span>.<span class="hljs-title function_">bind</span>(<span class="hljs-variable language_">this</span>));<br>  }<br>  <br>  <span class="hljs-title function_">handleClick</span>(<span class="hljs-params"></span>) {<br>    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">`按钮 <span class="hljs-subst">${<span class="hljs-variable language_">this</span>.text}</span> 被点击了`</span>);<br>  }<br>}<br></code></pre></td></tr></table></figure>
+<p>场景：</p>
+<ul>
+<li>需要<strong>立刻执行</strong> → 选 <strong>call</strong> 或 <strong>apply</strong></li>
+<li>处理<strong>数组/类数组</strong>参数 → 优先考虑 <strong>apply</strong></li>
+<li>需要<strong>保存一个固定 this 的函数</strong>（最常见：事件回调、setTimeout、React class 组件等）→ 选 <strong>bind</strong></li>
+<li>想<strong>同时固定 this 又预设部分参数</strong>（函数柯里化）→ 也用 <strong>bind</strong></li>
+</ul>
+<hr>
+<h2 id="IIFE"><a href="#IIFE" class="headerlink" title="IIFE"></a>IIFE</h2><p>IIFE是 Immediately Invoked Function Expression 的缩写</p>
+<p>JavaScript 中一种非常常见且重要的设计模式，主要用于创建独立的作用域并立即执行代码，同时避免污染全局命名空间</p>
+<p>ES6前常用</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs JavaScript">(<span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) {<br>    <span class="hljs-comment">// 这里的所有变量都是局部变量</span><br>    <span class="hljs-keyword">var</span> privateVar = <span class="hljs-string">'这是一个私有变量'</span>;<br>    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">'立即执行！'</span>);<br>})();  <span class="hljs-comment">// 最后的 () 负责立即调用</span><br></code></pre></td></tr></table></figure>
+<hr>
+<h2 id="事件循环"><a href="#事件循环" class="headerlink" title="事件循环"></a>事件循环</h2><p>事件循环是 JavaScript 单线程运行时用来处理异步任务的调度器，它通过“同步代码 → 微任务 → 一个宏任务 → 微任务 → 下一个宏任务……”的循环，不断地把异步回调安排到合适的时机执行，从而实现了看似并发的效果</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>组成部分</th>
+<th>英文名称</th>
+<th>主要职责</th>
+<th>执行时机</th>
+<th>示例任务来源</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>调用栈</td>
+<td>Call Stack</td>
+<td>存放当前正在执行的同步代码，按 LIFO（后进先出）执行</td>
+<td>立即执行</td>
+<td>函数调用、代码块</td>
+</tr>
+<tr>
+<td>微任务队列</td>
+<td>Microtask Queue</td>
+<td>存放优先级最高的异步回调</td>
+<td>当前宏任务结束后立即清空</td>
+<td>Promise.then/catch/finally、queueMicrotask、MutationObserver</td>
+</tr>
+<tr>
+<td>宏任务队列</td>
+<td>Task Queue / Macrotask Queue</td>
+<td>存放普通的异步回调</td>
+<td>微任务队列清空后取一个执行</td>
+<td>setTimeout、setInterval、setImmediate、I/O、UI rendering、requestAnimationFrame</td>
+</tr>
+<tr>
+<td>Web APIs</td>
+<td>（浏览器提供）</td>
+<td>处理真正的异步操作（定时器、网络请求、DOM事件等），完成后将回调放入队列</td>
+<td>由浏览器/运行时独立线程管理</td>
+<td>XMLHttpRequest、fetch、DOM事件监听</td>
+</tr>
+<tr>
+<td>事件循环（Event Loop）</td>
+<td>Event Loop</td>
+<td>不停询问：调用栈是否为空？→ 是的话先清空微任务 → 再取一个宏任务执行</td>
+<td>持续运行</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="事件循环一次完整循环的执行顺序"><a href="#事件循环一次完整循环的执行顺序" class="headerlink" title="事件循环一次完整循环的执行顺序"></a>事件循环一次完整循环的执行顺序</h3><ol>
+<li>执行当前调用栈中的所有<strong>同步代码</strong>（直到调用栈清空）</li>
+<li><strong>清空微任务队列</strong>（执行所有微任务，直到微任务队列为空）<br> 只要有微任务，就会一直执行完所有微任务</li>
+<li>从<strong>宏任务队列</strong>中取<strong>一个</strong>任务执行（注意：只取一个！）</li>
+<li>执行完这个宏任务后 → 回到第 2 步，再次清空微任务队列</li>
+<li>重复 3～4 步，直到所有任务处理完毕</li>
+</ol>
+<h3 id="代码示例与执行顺序演示"><a href="#代码示例与执行顺序演示" class="headerlink" title="代码示例与执行顺序演示"></a>代码示例与执行顺序演示</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs JavaScript"><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">'1'</span>);<br><br><span class="hljs-built_in">setTimeout</span>(<span class="hljs-function">() =&gt;</span> {<br>  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">'2'</span>);<br>  <span class="hljs-title class_">Promise</span>.<span class="hljs-title function_">resolve</span>().<span class="hljs-title function_">then</span>(<span class="hljs-function">() =&gt;</span> <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">'3'</span>));<br>  <span class="hljs-built_in">setTimeout</span>(<span class="hljs-function">() =&gt;</span> <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">'4'</span>));<br>}, <span class="hljs-number">0</span>);<br><br><span class="hljs-title class_">Promise</span>.<span class="hljs-title function_">resolve</span>().<span class="hljs-title function_">then</span>(<span class="hljs-function">() =&gt;</span> {<br>  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">'5'</span>);<br>  <span class="hljs-title class_">Promise</span>.<span class="hljs-title function_">resolve</span>().<span class="hljs-title function_">then</span>(<span class="hljs-function">() =&gt;</span> <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">'6'</span>));<br>});<br><br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">'7'</span>);<br></code></pre></td></tr></table></figure>
+<p><strong>执行结果顺序</strong>：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs">1<br>7<br>5<br>6<br>2<br>3<br>4<br></code></pre></td></tr></table></figure>
+<ol>
+<li>同步代码 → 打印 1、7</li>
+<li>微任务队列有 then(5) → 执行 → 打印 5，并产生新的微任务 then(6)</li>
+<li>继续清空微任务 → 执行 then(6) → 打印 6</li>
+<li>微任务队列清空，执行第一个宏任务（setTimeout 0ms）→ 打印 2</li>
+<li>宏任务执行中产生微任务 then(3) → 宏任务结束后立即清微任务 → 打印 3</li>
+<li>微任务清空，继续下一个宏任务（setTimeout 里面的）→ 打印 4</li>
+</ol>
+<hr>
+<div id="paginator"></div></div><div id="post-footer"><div id="pages"><div class="footer-link" style="width: 50%;text-align:right;border-right:1px #fe2 solid"><a href="/Arknight-notes/posts/61071.html">← Next 2026-01-20-开发杂记其二</a></div><div class="footer-link" style="width: 50%;right:1px;border-left:1px #fe2 solid"><a href="/Arknight-notes/posts/57550.html">2026-01-19-力扣百题速练（Javascript、TypeScript）Vol-5 Prev →</a></div></div></div><div id="comments"><div id="gitalk"></div></div></div><div class="bottom-btn"><div><a class="i-top" id="to-top" onClick="scrolls.scrolltop();" title="To Top" style="opacity: 0; display: none;">∧ </a><a class="i-index" id="to-index" href="#toc-div" title="To Catalog">≡</a><a class="i-color" id="color-mode" onClick="colorMode.change()" title="Change Theme"></a></div></div></article><aside><div id="about"><a href="/Arknight-notes/" id="logo"><img src="https://pic4.zhimg.com/80/v2-d9884f32711e19e80979eac58e943897_720w.webp" alt="Logo" style="margin:20;border-radius:0;"></a><h1 id="Dr"><a href="zhongye">Zhongye</a></h1><div id="description"><p></p></div></div><div id="aside-block"><div id="toc-div"><h1>Catalog</h1><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%97%AD%E5%8C%85"><span class="toc-number">1.</span> <span class="toc-text">闭包</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%97%AD%E5%8C%85%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF"><span class="toc-number">1.0.1.</span> <span class="toc-text">闭包应用场景</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%BE%AA%E7%8E%AF%E8%BE%93%E5%87%BA%E9%97%AE%E9%A2%98"><span class="toc-number">1.0.2.</span> <span class="toc-text">循环输出问题</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%AB%98%E9%98%B6%E5%87%BD%E6%95%B0%EF%BC%88Higher-Order-Function%EF%BC%89"><span class="toc-number">2.</span> <span class="toc-text">高阶函数（Higher-Order Function）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9F%AF%E9%87%8C%E5%8C%96%EF%BC%88Currying%EF%BC%89"><span class="toc-number">3.</span> <span class="toc-text">柯里化（Currying）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%98%B2%E6%8A%96%EF%BC%88Debounce%EF%BC%89"><span class="toc-number">4.</span> <span class="toc-text">防抖（Debounce）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%8A%82%E6%B5%81%EF%BC%88Throttle%EF%BC%89"><span class="toc-number">5.</span> <span class="toc-text">节流（Throttle）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#call%E3%80%81apply-%E5%92%8C-bind"><span class="toc-number">6.</span> <span class="toc-text">call、apply 和 bind</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-call"><span class="toc-number">6.0.1.</span> <span class="toc-text">1. call()</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-apply"><span class="toc-number">6.0.2.</span> <span class="toc-text">2. apply()</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-bind"><span class="toc-number">6.0.3.</span> <span class="toc-text">3. bind()</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#IIFE"><span class="toc-number">7.</span> <span class="toc-text">IIFE</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF"><span class="toc-number">8.</span> <span class="toc-text">事件循环</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF%E4%B8%80%E6%AC%A1%E5%AE%8C%E6%95%B4%E5%BE%AA%E7%8E%AF%E7%9A%84%E6%89%A7%E8%A1%8C%E9%A1%BA%E5%BA%8F"><span class="toc-number">8.1.</span> <span class="toc-text">事件循环一次完整循环的执行顺序</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E7%A4%BA%E4%BE%8B%E4%B8%8E%E6%89%A7%E8%A1%8C%E9%A1%BA%E5%BA%8F%E6%BC%94%E7%A4%BA"><span class="toc-number">8.2.</span> <span class="toc-text">代码示例与执行顺序演示</span></a></li></ol></li></ol></div></div><footer><nobr><span class="icp-title">GZHU</span><span class="icp-content">193001-0001</span></nobr><br><nobr><span class="icp-title">OUTPOST</span><span class="icp-content">169-2025-0331</span></nobr><br><nobr>Published with <a target="_blank" rel="noopener" href="http://hexo.io">Hexo</a></nobr><wbr><nobr> Theme <a target="_blank" rel="noopener" href="https://github.com/Yue-plus/hexo-theme-arknights">Arknights</a></nobr><wbr><nobr> by <a target="_blank" rel="noopener" href="https://github.com/Yue-plus">Yue_plus</a></nobr></footer></aside><!-- ── 访客信息获取脚本（建议放在页面底部 layout/_partial/after-footer.pug 或单独引入） ──--><script>(function() {
+  const MAX_RETRY = 1;
+  let retryCount = 0;
+
+  async function fetchVisitorInfo() {
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => {
+      controller.abort(new Error('Request timeout after 1000ms'));
+    }, 1000);
+
+    try {
+      const response = await fetch('https://ipapi.co/json/', {
+        signal: controller.signal
+      });
+
+      clearTimeout(timeoutId);
+
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+
+      const data = await response.json();
+
+      document.getElementById('visitor-ip').textContent = data.ip || '无法获取';
+      
+      const parts = [];
+      if (data.city) parts.push(data.city);
+      if (data.region) parts.push(data.region);
+      if (data.country_name) parts.push(data.country_name);
+      
+      document.getElementById('visitor-location').textContent = 
+        parts.length > 0 ? parts.join(' - ') : '未知地区';
+
+    } catch (err) {
+      clearTimeout(timeoutId);
+
+      // 如果是超时错误，且还有重试次数，则重试一次
+      if (err.name === 'AbortError' && retryCount < MAX_RETRY) {
+        retryCount++;
+        // 可选：显示「正在重试...」提示
+        document.getElementById('visitor-ip').textContent = '超时，正在重试...';
+        document.getElementById('visitor-location').textContent = '——';
+        
+        // 立即重试（也可加个很短的延迟，如 300ms）
+        setTimeout(fetchVisitorInfo, 300);
+        return;
+      }
+
+      // 最终失败
+      document.getElementById('visitor-ip').textContent = '████';
+      document.getElementById('visitor-location').textContent = '████';
+    }
+  }
+
+  // 页面加载完成后获取访客信息
+  fetchVisitorInfo();
+
+  // 添加对PJAX事件的监听，以便在页面切换后重新获取访客信息
+  document.addEventListener('pjax:complete', function() {
+    // 延迟执行，确保DOM已经更新完成
+    setTimeout(fetchVisitorInfo, 100);
+  });
+})();</script></main><canvas id="canvas-dust"></canvas></body></html>
