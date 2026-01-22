@@ -1,0 +1,491 @@
+<!DOCTYPE html><html lang="en" theme-mode="dark"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>2026-01-22-GitHub Action 自动同步博客到 GitHub 主页 | Zhongye's Blogs</title><link rel="icon" type="image/x-icon" href="/Arknight-notes/favicon.ico"><link rel="preload" as="font" crossorigin="anonymous" href="/Arknight-notes/font/Bender.ttf"><link rel="preload" as="font" crossorigin="anonymous" href="/Arknight-notes/font/BenderLight.ttf"><link rel="preload" as="font" crossorigin="anonymous" href="/Arknight-notes/font/JetBrainsMono-Regular.woff2"><link rel="stylesheet" href="/Arknight-notes/css/arknights.css"><style>@font-face {
+  font-family: Bender;
+  src: local('Bender'), url("/Arknight-notes/font/Bender.ttf"), url("/Arknight-notes/font/Bender.otf");
+}
+@font-face {
+  font-family: BenderLight;
+  src: local('BenderLight'), url("/Arknight-notes/font/BenderLight.ttf");
+}
+@font-face {
+  font-family: 'JetBrains Mono';
+  src: local('JetBrains Mono'), url('/Arknight-notes/font/JetBrainsMono-Regular.woff2') format('woff2');
+}
+</style><script>var config = {"root":"/Arknight-notes/","code_fold":90,"search":{"preload":false,"activeHolder":"键入以继续","blurHolder":"数据检索","noResult":"无 $0 相关数据"},"code":{"codeInfo":"$0 - $1 行","copy":"复制"}}</script><link type="text/css" rel="stylesheet" href="/Arknight-notes/lib/encrypt/hbe.style.css"><script src="/Arknight-notes/js/gitalk.js"></script><script src="//unpkg.com/mermaid@10.5.0/dist/mermaid.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.6.1/MathJax.js"></script><script>MathJax.Hub.Config({
+ menuSettings: {
+   zoom: "None"
+ },
+ showMathMenu: false,
+ jax: ["input/TeX","output/CommonHTML"],
+ extensions: ["tex2jax.js"],
+ TeX: {
+   extensions: ["AMSmath.js","AMSsymbols.js"],
+   equationNumbers: {
+     autoNumber: "AMS"
+   }
+ },
+ tex2jax: {
+   inlineMath: [["\\(", "\\)"]],
+   displayMath: [["\\[", "\\]"]]
+ }
+});</script><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lightgallery.css"><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lg-zoom.css"><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lg-thumbnail.css"><link type="text/css" rel="stylesheet" href="/Arknight-notes/lib/fontawesome/css/all.min.css"><script>if (window.localStorage.getItem('theme-mode') === 'light')
+ document.documentElement.setAttribute('theme-mode', 'light')
+if (window.localStorage.getItem('theme-mode') === 'dark')
+ document.documentElement.setAttribute('theme-mode', 'dark')</script><style>@font-face {
+ font-family: BenderLight;
+ src: local('Bender'), url("/Arknight-notes/font/BenderLight.woff2") format('woff2');
+}
+@font-face {
+ font-family: 'JetBrains Mono';
+ src: local('JetBrains Mono'), url('/Arknight-notes/font/JetBrainsMono-Regular.woff2') format('woff2');
+}</style><style>:root {
+ --dark-background: url('https://picx.zhimg.com/v2-6c94831ec3400e77452e9bd9dde85cb5_r.jpg');
+ --light-background: url('https://pica.zhimg.com/v2-0323b00e97b41d914a545c7ccea6ab0a_r.jpg');
+ --theme-encrypt-confirm: '确认'
+}</style><script defer src="/Arknight-notes/js/arknights.js"></script><script defer src="/Arknight-notes/js/search.js"></script><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><script async src="/Arknight-notes/js/gitalk.js"></script><script defer type="module">import mermaid from '//unpkg.com/mermaid@10.5.0/dist/mermaid.esm.mjs';
+window.mermaid = mermaid;
+code.paintMermaid();
+</script><script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.6.1/MathJax.js"></script><script>MathJax.Hub.Config({
+  menuSettings: {
+    zoom: "None"
+  },
+  showMathMenu: false,
+  jax: ["input/TeX","output/CommonHTML"],
+  extensions: ["tex2jax.js"],
+  TeX: {
+    extensions: ["AMSmath.js","AMSsymbols.js"],
+    equationNumbers: {
+      autoNumber: "AMS"
+    }
+  },
+  tex2jax: {
+    inlineMath: [["\\(", "\\)"]],
+    displayMath: [["\\[", "\\]"]]
+  }
+});
+</script><script async src="//unpkg.com/lightgallery@2.7.1/lightgallery.min.js"></script><script async src="//unpkg.com/lightgallery@2.7.1/plugins/zoom/lg-zoom.min.js"></script><script async src="//unpkg.com/lightgallery@2.7.1/plugins/thumbnail/lg-thumbnail.min.js"></script><script async src="/Arknight-notes/lib/encrypt/hbe.js"></script><script async src="/Arknight-notes/js/pjax.js"></script><script class="pjax-js">reset= () => {gitalk = new Gitalk({
+ clientID: 'Ov23ct13Fb0b67x23wnT',
+ clientSecret: 'f18ce69dd545e3c0f5e2456afde9c756fe8a254a',
+ repo: 'Arknight-notes',
+ owner: 'Zhongye1',
+ admin: ['Zhongye1'],
+ distractionFreeMode: false,
+ id: location.pathname
+});
+if (document.querySelector("#gitalk")) gitalk.render("gitalk");document.querySelector('.lg-container')?.remove()
+lightGallery(document.getElementById('post-bg'), {
+  plugins: [lgZoom,lgThumbnail],
+  selector: '.item-img'})}</script><script>window.addEventListener("load",() => {pjax = new Pjax({
+ cacheBust: false,
+ selectors: ['title','article','#aside-block','.pjax-js','data-pjax','.busuanzi'],
+ switches: {'article': Pjax.switches.sideBySide},
+ switchesOptions: {
+   'article': {
+     classNames: {
+       remove: "pjax-out",
+       add: "pjax-in"
+     }
+   }
+ }
+});
+document.addEventListener("pjax:complete", reset);document.addEventListener('pjax:success', _ => bszCaller.fetch(
+ "//busuanzi.ibruce.info/busuanzi?jsonpCallback=BusuanziCallback", a => {
+  bszTag.texts(a),
+  bszTag.shows()
+}));reset()})</script><script class="pjax-js">reset= () => {gitalk = new Gitalk({
+ clientID: 'Ov23ct13Fb0b67x23wnT',
+ clientSecret: 'f18ce69dd545e3c0f5e2456afde9c756fe8a254a',
+ repo: 'Arknight-notes',
+ owner: 'Zhongye1',
+ admin: ['Zhongye1'],
+ distractionFreeMode: false,
+ id: location.pathname
+});
+if (document.querySelector("#gitalk")) gitalk.render("gitalk");document.querySelector('.lg-container')?.remove()
+lightGallery(document.getElementById('post-bg'), {
+  plugins: [lgZoom,lgThumbnail],
+  selector: '.item-img'})}</script><script>window.addEventListener("load",() => {pjax = new Pjax({
+ cacheBust: false,
+ selectors: ['title','article','#aside-block','.pjax-js'],
+ switches: {'article': Pjax.switches.sideBySide},
+ switchesOptions: {
+   'article': {
+     classNames: {
+       remove: "pjax-out",
+       add: "pjax-in"
+     }
+   }
+ }
+});
+document.addEventListener("pjax:complete", reset);reset()})</script><meta name="generator" content="Hexo 7.3.0"><style>mjx-container[jax="SVG"] {
+  direction: ltr;
+}
+
+mjx-container[jax="SVG"] > svg {
+  overflow: visible;
+}
+
+mjx-container[jax="SVG"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="SVG"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="SVG"][justify="right"] {
+  text-align: right;
+}
+
+g[data-mml-node="merror"] > g {
+  fill: red;
+  stroke: red;
+}
+
+g[data-mml-node="merror"] > rect[data-background] {
+  fill: yellow;
+  stroke: none;
+}
+
+g[data-mml-node="mtable"] > line[data-line] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > rect[data-frame] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > .mjx-dashed {
+  stroke-dasharray: 140;
+}
+
+g[data-mml-node="mtable"] > .mjx-dotted {
+  stroke-linecap: round;
+  stroke-dasharray: 0,140;
+}
+
+g[data-mml-node="mtable"] > svg {
+  overflow: visible;
+}
+
+[jax="SVG"] mjx-tool {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+[jax="SVG"] mjx-tool > mjx-tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+mjx-tool > mjx-tip {
+  display: inline-block;
+  padding: .2em;
+  border: 1px solid #888;
+  font-size: 70%;
+  background-color: #F8F8F8;
+  color: black;
+  box-shadow: 2px 2px 5px #AAAAAA;
+}
+
+g[data-mml-node="maction"][data-toggle] {
+  cursor: pointer;
+}
+
+mjx-status {
+  display: block;
+  position: fixed;
+  left: 1em;
+  bottom: 1em;
+  min-width: 25%;
+  padding: .2em .4em;
+  border: 1px solid #888;
+  font-size: 90%;
+  background-color: #F8F8F8;
+  color: black;
+}
+
+foreignObject[data-mjx-xml] {
+  font-family: initial;
+  line-height: normal;
+  overflow: visible;
+}
+
+.MathJax path {
+  stroke-width: 3;
+}
+
+mjx-container[display="true"] {
+  overflow: auto hidden;
+}
+
+mjx-container[display="true"] + br {
+  display: none;
+}
+</style><link rel="alternate" href="/Arknight-notes/rss.xml" title="Zhongye's Blogs" type="application/atom+xml">
+</head><body><div class="loading" style="opacity: 0;"><div class="loadingBar left"></div><div class="loadingBar right"></div></div><main><header class="closed"><div class="navBtn"><i class="navBtnIcon"><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span></i></div><nav><div class="navItem" id="search-header"><span class="navItemTitle"><input autocomplete="off" autocorrect="off" autocapitalize="none" placeholder="数据检索" spellcheck="false" maxlength="50" type="text" id="search-input"></span></div><div class="navItem" id="search-holder"></div><div class="search-popup" tabindex="0"><div id="search-result"></div></div><ol class="navContent"><li class="navItem"><a class="navBlock" href="/Arknight-notes/"><span class="navItemTitle">Home</span></a></li><li class="navItem" matchdata="categories,tags"><a class="navBlock" href="/Arknight-notes/archives/"><span class="navItemTitle">Archives</span></a></li><li class="navItem"><a class="navBlock" href="/Arknight-notes/about/"><span class="navItemTitle">About</span></a></li></ol></nav></header><article><div id="post-bg"><div id="post-title"><h1>2026-01-22-GitHub Action 自动同步博客到 GitHub 主页</h1><div id="post-info"><span>文章发布时间: <div class="control"><time datetime="2026-01-22T08:31:47.000Z" id="date"> 2026-01-22</time></div></span><br><span>最后更新时间: <div class="control"><time datetime="2026-01-22T08:48:51.830Z" id="updated"> 2026-01-22</time></div></span><br><span id="busuanzi_container_page_pv">页面浏览: <span class="control" id="busuanzi_value_page_pv">加载中...</span></span></div></div><hr><div id="post-content"><p>只要博客支持 RSS 输出（通常为 rss.xml 或 atom.xml），通过使用 <strong>blog-post-workflow</strong> 这个 GitHub Action，即可实现每当博客更新时，GitHub 主页会自动抓取并生成文章列表，来展示开发者的活跃度与技术积累。</p>
+<h2 id="基础介绍和使用步骤"><a href="#基础介绍和使用步骤" class="headerlink" title="基础介绍和使用步骤"></a>基础介绍和使用步骤</h2><p>主要围绕这个项目来展开： <a target="_blank" rel="noopener" href="https://github.com/marketplace/actions/blog-post-workflow">https://github.com/marketplace/actions/blog-post-workflow</a></p>
+<p>进入自己的仓库，在 <strong>README.md</strong> 文件中添加以下片段，您可以自定义标题，但必须包含以下注释标记，工作流会将该标记替换为实际的博客文章列表：</p>
+<figure class="highlight md"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs md"><span class="hljs-section"># 博客文章</span><br><br>&lt;!-- BLOG-POST-LIST:START --&gt;<br>&lt;!-- BLOG-POST-LIST:END --&gt;<br></code></pre></td></tr></table></figure>
+<p>在仓库根目录下创建文件夹 .github，并在其中创建 workflows 子文件夹（如果不存在）</p>
+<p>在 workflows 文件夹内创建新文件 blog-post-workflow.yml：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs YAML"><span class="hljs-attr">name:</span> <span class="hljs-string">Latest</span> <span class="hljs-string">blog</span> <span class="hljs-string">post</span> <span class="hljs-string">workflow</span><br><br><span class="hljs-attr">on:</span><br>  <span class="hljs-attr">schedule:</span>          <span class="hljs-comment"># 定时自动运行</span><br>    <span class="hljs-bullet">-</span> <span class="hljs-attr">cron:</span> <span class="hljs-string">'0 0 * * *'</span>    <span class="hljs-comment"># 每天 UTC 00:00 执行一次</span><br>  <span class="hljs-attr">workflow_dispatch:</span> <span class="hljs-comment"># 支持手动触发（在 GitHub Actions 页面直接运行）</span><br><br><span class="hljs-attr">permissions:</span><br>  <span class="hljs-attr">contents:</span> <span class="hljs-string">write</span>    <span class="hljs-comment"># 允许向 README 写入生成的内容</span><br><br><span class="hljs-attr">jobs:</span><br>  <span class="hljs-attr">update-readme-with-blog:</span><br>    <span class="hljs-attr">name:</span> <span class="hljs-string">Update</span> <span class="hljs-string">this</span> <span class="hljs-string">repo's</span> <span class="hljs-string">README</span> <span class="hljs-string">with</span> <span class="hljs-string">latest</span> <span class="hljs-string">blog</span> <span class="hljs-string">posts</span><br>    <span class="hljs-attr">runs-on:</span> <span class="hljs-string">ubuntu-latest</span><br>    <span class="hljs-attr">steps:</span><br>      <span class="hljs-bullet">-</span> <span class="hljs-attr">name:</span> <span class="hljs-string">Checkout</span><br>        <span class="hljs-attr">uses:</span> <span class="hljs-string">actions/checkout@v4</span><br><br>      <span class="hljs-bullet">-</span> <span class="hljs-attr">name:</span> <span class="hljs-string">Pull</span> <span class="hljs-string">in</span> <span class="hljs-string">dev.to</span> <span class="hljs-string">posts</span><br>        <span class="hljs-attr">uses:</span> <span class="hljs-string">gautamkrishnar/blog-post-workflow@v1</span><br>        <span class="hljs-attr">with:</span><br>          <span class="hljs-attr">feed_list:</span> <span class="hljs-string">"https://dev.to/feed/gautamkrishnar,https://www.gautamkrishnar.com/feed/"</span><br></code></pre></td></tr></table></figure>
+<p>将上面的 feed_list 中的示例 URL 替换为您自己的 RSS 订阅源地址。可参考 <a target="_blank" rel="noopener" href="https://github.com/gautamkrishnar/blog-post-workflow#popular-sources">常用来源列表</a>。提交更改。</p>
+<blockquote>
+<p><strong>关于执行频率的说明</strong>： 默认设置为每天 UTC 00:00 执行一次，适合绝大多数用户。您可根据自己的发文频率调整计划任务：</p>
+<ul>
+<li><strong>每日</strong>：cron: ‘0 0 * * *‘ （大多数人推荐）</li>
+<li><strong>每周</strong>：cron: ‘0 0 * * 0’ （每周日 UTC 00:00）</li>
+<li><strong>每月</strong>：cron: ‘0 0 1 * *‘ （每月1日 UTC 00:00）</li>
+</ul>
+<p>过于频繁的调度（例如每小时）通常没有必要，除非您发布非常频繁。任何时候您都可以通过 workflow_dispatch 手动触发执行。</p>
+</blockquote>
+<p>进入仓库「Settings → Actions → General」，将「Workflow permissions」设置为「Read and write permissions」，然后保存。</p>
+<h3 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h3><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>默认值</th>
+<th>说明</th>
+<th>是否必填</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>feed_list</td>
+<td>“”</td>
+<td>RSS 订阅源地址列表，用逗号分隔，例如：<a target="_blank" rel="noopener" href="https://example1.com/feed,https://example2.com/rss.xml">https://example1.com/feed,https://example2.com/rss.xml</a></td>
+<td>是</td>
+</tr>
+<tr>
+<td>max_post_count</td>
+<td>5</td>
+<td>显示的最大文章数量（所有订阅源合并计算）</td>
+<td>否</td>
+</tr>
+<tr>
+<td>readme_path</td>
+<td>./README.md</td>
+<td>要更新的 README 文件路径（支持多个路径，用逗号分隔）</td>
+<td>否</td>
+</tr>
+<tr>
+<td>gh_token</td>
+<td>自动使用 GitHub token</td>
+<td>用于提交更改的 token（需具备 repo 权限）</td>
+<td>否</td>
+</tr>
+<tr>
+<td>comment_tag_name</td>
+<td>BLOG-POST-LIST</td>
+<td>自定义起始/结束注释标记名称（用于在同一仓库显示多组列表）</td>
+<td>否</td>
+</tr>
+<tr>
+<td>disable_sort</td>
+<td>false</td>
+<td>是否禁用按发布日期排序</td>
+<td>否</td>
+</tr>
+<tr>
+<td>sort_order</td>
+<td>desc</td>
+<td>排序方向（asc = 升序最旧在前，desc = 降序最新在前），仅当 disable_sort=false 时有效</td>
+<td>否</td>
+</tr>
+<tr>
+<td>reverse_order</td>
+<td>false</td>
+<td>当 disable_sort=true 时是否反转列表顺序</td>
+<td>否</td>
+</tr>
+<tr>
+<td>feed_names</td>
+<td>“”</td>
+<td>与 feed_list 对应的订阅源名称列表，用于模板中显示源名称，例如：博客,Dev.to</td>
+<td>否</td>
+</tr>
+<tr>
+<td>template</td>
+<td>default</td>
+<td>自定义文章列表的输出格式，支持多种变量（详见下文）</td>
+<td>否</td>
+</tr>
+<tr>
+<td>categories_template</td>
+<td>default</td>
+<td>自定义分类（categories）的显示格式</td>
+<td>否</td>
+</tr>
+<tr>
+<td>date_format</td>
+<td>UTC:ddd mmm dd yyyy h:MM TT</td>
+<td>使用 $date 变量时的日期格式（基于 dateformat 库）</td>
+<td>否</td>
+</tr>
+<tr>
+<td>user_agent</td>
+<td>rss-parser</td>
+<td>抓取 RSS 时使用的 User-Agent</td>
+<td>否</td>
+</tr>
+<tr>
+<td>accept_header</td>
+<td>application/rss+xml</td>
+<td>HTTP 请求的 Accept 头</td>
+<td>否</td>
+</tr>
+<tr>
+<td>filter_comments</td>
+<td>stackoverflow/Comment by <mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.566ex;" xmlns="http://www.w3.org/2000/svg" width="36.646ex" height="2.262ex" role="img" focusable="false" viewBox="0 -750 16197.7 1000"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><path data-c="1D44E" d="M33 157Q33 258 109 349T280 441Q331 441 370 392Q386 422 416 422Q429 422 439 414T449 394Q449 381 412 234T374 68Q374 43 381 35T402 26Q411 27 422 35Q443 55 463 131Q469 151 473 152Q475 153 483 153H487Q506 153 506 144Q506 138 501 117T481 63T449 13Q436 0 417 -8Q409 -10 393 -10Q359 -10 336 5T306 36L300 51Q299 52 296 50Q294 48 292 46Q233 -10 172 -10Q117 -10 75 30T33 157ZM351 328Q351 334 346 350T323 385T277 405Q242 405 210 374T160 293Q131 214 119 129Q119 126 119 118T118 106Q118 61 136 44T179 26Q217 26 254 59T298 110Q300 114 325 217T351 328Z"></path></g><g data-mml-node="mi" transform="translate(529,0)"><path data-c="1D462" d="M21 287Q21 295 30 318T55 370T99 420T158 442Q204 442 227 417T250 358Q250 340 216 246T182 105Q182 62 196 45T238 27T291 44T328 78L339 95Q341 99 377 247Q407 367 413 387T427 416Q444 431 463 431Q480 431 488 421T496 402L420 84Q419 79 419 68Q419 43 426 35T447 26Q469 29 482 57T512 145Q514 153 532 153Q551 153 551 144Q550 139 549 130T540 98T523 55T498 17T462 -8Q454 -10 438 -10Q372 -10 347 46Q345 45 336 36T318 21T296 6T267 -6T233 -11Q189 -11 155 7Q103 38 103 113Q103 170 138 262T173 379Q173 380 173 381Q173 390 173 393T169 400T158 404H154Q131 404 112 385T82 344T65 302T57 280Q55 278 41 278H27Q21 284 21 287Z"></path></g><g data-mml-node="mi" transform="translate(1101,0)"><path data-c="1D461" d="M26 385Q19 392 19 395Q19 399 22 411T27 425Q29 430 36 430T87 431H140L159 511Q162 522 166 540T173 566T179 586T187 603T197 615T211 624T229 626Q247 625 254 615T261 596Q261 589 252 549T232 470L222 433Q222 431 272 431H323Q330 424 330 420Q330 398 317 385H210L174 240Q135 80 135 68Q135 26 162 26Q197 26 230 60T283 144Q285 150 288 151T303 153H307Q322 153 322 145Q322 142 319 133Q314 117 301 95T267 48T216 6T155 -11Q125 -11 98 4T59 56Q57 64 57 83V101L92 241Q127 382 128 383Q128 385 77 385H26Z"></path></g><g data-mml-node="mi" transform="translate(1462,0)"><path data-c="210E" d="M137 683Q138 683 209 688T282 694Q294 694 294 685Q294 674 258 534Q220 386 220 383Q220 381 227 388Q288 442 357 442Q411 442 444 415T478 336Q478 285 440 178T402 50Q403 36 407 31T422 26Q450 26 474 56T513 138Q516 149 519 151T535 153Q555 153 555 145Q555 144 551 130Q535 71 500 33Q466 -10 419 -10H414Q367 -10 346 17T325 74Q325 90 361 192T398 345Q398 404 354 404H349Q266 404 205 306L198 293L164 158Q132 28 127 16Q114 -11 83 -11Q69 -11 59 -2T48 16Q48 30 121 320L195 616Q195 629 188 632T149 637H128Q122 643 122 645T124 664Q129 683 137 683Z"></path></g><g data-mml-node="mi" transform="translate(2038,0)"><path data-c="1D45C" d="M201 -11Q126 -11 80 38T34 156Q34 221 64 279T146 380Q222 441 301 441Q333 441 341 440Q354 437 367 433T402 417T438 387T464 338T476 268Q476 161 390 75T201 -11ZM121 120Q121 70 147 48T206 26Q250 26 289 58T351 142Q360 163 374 216T388 308Q388 352 370 375Q346 405 306 405Q243 405 195 347Q158 303 140 230T121 120Z"></path></g><g data-mml-node="mi" transform="translate(2523,0)"><path data-c="1D45F" d="M21 287Q22 290 23 295T28 317T38 348T53 381T73 411T99 433T132 442Q161 442 183 430T214 408T225 388Q227 382 228 382T236 389Q284 441 347 441H350Q398 441 422 400Q430 381 430 363Q430 333 417 315T391 292T366 288Q346 288 334 299T322 328Q322 376 378 392Q356 405 342 405Q286 405 239 331Q229 315 224 298T190 165Q156 25 151 16Q138 -11 108 -11Q95 -11 87 -5T76 7T74 17Q74 30 114 189T154 366Q154 405 128 405Q107 405 92 377T68 316T57 280Q55 278 41 278H27Q21 284 21 287Z"></path></g><g data-mml-node="TeXAtom" data-mjx-texclass="ORD" transform="translate(2974,0)"><g data-mml-node="mo"><path data-c="2F" d="M423 750Q432 750 438 744T444 730Q444 725 271 248T92 -240Q85 -250 75 -250Q68 -250 62 -245T56 -231Q56 -221 230 257T407 740Q411 750 423 750Z"></path></g></g><g data-mml-node="mo" transform="translate(3474,0)"><path data-c="2C" d="M78 35T78 60T94 103T137 121Q165 121 187 96T210 8Q210 -27 201 -60T180 -117T154 -158T130 -185T117 -194Q113 -194 104 -185T95 -172Q95 -168 106 -156T131 -126T157 -76T173 -3V9L172 8Q170 7 167 6T161 3T152 1T140 0Q113 0 96 17Z"></path></g><g data-mml-node="mi" transform="translate(3918.7,0)"><path data-c="1D460" d="M131 289Q131 321 147 354T203 415T300 442Q362 442 390 415T419 355Q419 323 402 308T364 292Q351 292 340 300T328 326Q328 342 337 354T354 372T367 378Q368 378 368 379Q368 382 361 388T336 399T297 405Q249 405 227 379T204 326Q204 301 223 291T278 274T330 259Q396 230 396 163Q396 135 385 107T352 51T289 7T195 -10Q118 -10 86 19T53 87Q53 126 74 143T118 160Q133 160 146 151T160 120Q160 94 142 76T111 58Q109 57 108 57T107 55Q108 52 115 47T146 34T201 27Q237 27 263 38T301 66T318 97T323 122Q323 150 302 164T254 181T195 196T148 231Q131 256 131 289Z"></path></g><g data-mml-node="mi" transform="translate(4387.7,0)"><path data-c="1D461" d="M26 385Q19 392 19 395Q19 399 22 411T27 425Q29 430 36 430T87 431H140L159 511Q162 522 166 540T173 566T179 586T187 603T197 615T211 624T229 626Q247 625 254 615T261 596Q261 589 252 549T232 470L222 433Q222 431 272 431H323Q330 424 330 420Q330 398 317 385H210L174 240Q135 80 135 68Q135 26 162 26Q197 26 230 60T283 144Q285 150 288 151T303 153H307Q322 153 322 145Q322 142 319 133Q314 117 301 95T267 48T216 6T155 -11Q125 -11 98 4T59 56Q57 64 57 83V101L92 241Q127 382 128 383Q128 385 77 385H26Z"></path></g><g data-mml-node="mi" transform="translate(4748.7,0)"><path data-c="1D44E" d="M33 157Q33 258 109 349T280 441Q331 441 370 392Q386 422 416 422Q429 422 439 414T449 394Q449 381 412 234T374 68Q374 43 381 35T402 26Q411 27 422 35Q443 55 463 131Q469 151 473 152Q475 153 483 153H487Q506 153 506 144Q506 138 501 117T481 63T449 13Q436 0 417 -8Q409 -10 393 -10Q359 -10 336 5T306 36L300 51Q299 52 296 50Q294 48 292 46Q233 -10 172 -10Q117 -10 75 30T33 157ZM351 328Q351 334 346 350T323 385T277 405Q242 405 210 374T160 293Q131 214 119 129Q119 126 119 118T118 106Q118 61 136 44T179 26Q217 26 254 59T298 110Q300 114 325 217T351 328Z"></path></g><g data-mml-node="mi" transform="translate(5277.7,0)"><path data-c="1D450" d="M34 159Q34 268 120 355T306 442Q362 442 394 418T427 355Q427 326 408 306T360 285Q341 285 330 295T319 325T330 359T352 380T366 386H367Q367 388 361 392T340 400T306 404Q276 404 249 390Q228 381 206 359Q162 315 142 235T121 119Q121 73 147 50Q169 26 205 26H209Q321 26 394 111Q403 121 406 121Q410 121 419 112T429 98T420 83T391 55T346 25T282 0T202 -11Q127 -11 81 37T34 159Z"></path></g><g data-mml-node="mi" transform="translate(5710.7,0)"><path data-c="1D458" d="M121 647Q121 657 125 670T137 683Q138 683 209 688T282 694Q294 694 294 686Q294 679 244 477Q194 279 194 272Q213 282 223 291Q247 309 292 354T362 415Q402 442 438 442Q468 442 485 423T503 369Q503 344 496 327T477 302T456 291T438 288Q418 288 406 299T394 328Q394 353 410 369T442 390L458 393Q446 405 434 405H430Q398 402 367 380T294 316T228 255Q230 254 243 252T267 246T293 238T320 224T342 206T359 180T365 147Q365 130 360 106T354 66Q354 26 381 26Q429 26 459 145Q461 153 479 153H483Q499 153 499 144Q499 139 496 130Q455 -11 378 -11Q333 -11 305 15T277 90Q277 108 280 121T283 145Q283 167 269 183T234 206T200 217T182 220H180Q168 178 159 139T145 81T136 44T129 20T122 7T111 -2Q98 -11 83 -11Q66 -11 57 -1T48 16Q48 26 85 176T158 471L195 616Q196 629 188 632T149 637H144Q134 637 131 637T124 640T121 647Z"></path></g><g data-mml-node="mi" transform="translate(6231.7,0)"><path data-c="1D452" d="M39 168Q39 225 58 272T107 350T174 402T244 433T307 442H310Q355 442 388 420T421 355Q421 265 310 237Q261 224 176 223Q139 223 138 221Q138 219 132 186T125 128Q125 81 146 54T209 26T302 45T394 111Q403 121 406 121Q410 121 419 112T429 98T420 82T390 55T344 24T281 -1T205 -11Q126 -11 83 42T39 168ZM373 353Q367 405 305 405Q272 405 244 391T199 357T170 316T154 280T149 261Q149 260 169 260Q282 260 327 284T373 353Z"></path></g><g data-mml-node="mi" transform="translate(6697.7,0)"><path data-c="1D465" d="M52 289Q59 331 106 386T222 442Q257 442 286 424T329 379Q371 442 430 442Q467 442 494 420T522 361Q522 332 508 314T481 292T458 288Q439 288 427 299T415 328Q415 374 465 391Q454 404 425 404Q412 404 406 402Q368 386 350 336Q290 115 290 78Q290 50 306 38T341 26Q378 26 414 59T463 140Q466 150 469 151T485 153H489Q504 153 504 145Q504 144 502 134Q486 77 440 33T333 -11Q263 -11 227 52Q186 -10 133 -10H127Q78 -10 57 16T35 71Q35 103 54 123T99 143Q142 143 142 101Q142 81 130 66T107 46T94 41L91 40Q91 39 97 36T113 29T132 26Q168 26 194 71Q203 87 217 139T245 247T261 313Q266 340 266 352Q266 380 251 392T217 404Q177 404 142 372T93 290Q91 281 88 280T72 278H58Q52 284 52 289Z"></path></g><g data-mml-node="mi" transform="translate(7269.7,0)"><path data-c="1D450" d="M34 159Q34 268 120 355T306 442Q362 442 394 418T427 355Q427 326 408 306T360 285Q341 285 330 295T319 325T330 359T352 380T366 386H367Q367 388 361 392T340 400T306 404Q276 404 249 390Q228 381 206 359Q162 315 142 235T121 119Q121 73 147 50Q169 26 205 26H209Q321 26 394 111Q403 121 406 121Q410 121 419 112T429 98T420 83T391 55T346 25T282 0T202 -11Q127 -11 81 37T34 159Z"></path></g><g data-mml-node="mi" transform="translate(7702.7,0)"><path data-c="210E" d="M137 683Q138 683 209 688T282 694Q294 694 294 685Q294 674 258 534Q220 386 220 383Q220 381 227 388Q288 442 357 442Q411 442 444 415T478 336Q478 285 440 178T402 50Q403 36 407 31T422 26Q450 26 474 56T513 138Q516 149 519 151T535 153Q555 153 555 145Q555 144 551 130Q535 71 500 33Q466 -10 419 -10H414Q367 -10 346 17T325 74Q325 90 361 192T398 345Q398 404 354 404H349Q266 404 205 306L198 293L164 158Q132 28 127 16Q114 -11 83 -11Q69 -11 59 -2T48 16Q48 30 121 320L195 616Q195 629 188 632T149 637H128Q122 643 122 645T124 664Q129 683 137 683Z"></path></g><g data-mml-node="mi" transform="translate(8278.7,0)"><path data-c="1D44E" d="M33 157Q33 258 109 349T280 441Q331 441 370 392Q386 422 416 422Q429 422 439 414T449 394Q449 381 412 234T374 68Q374 43 381 35T402 26Q411 27 422 35Q443 55 463 131Q469 151 473 152Q475 153 483 153H487Q506 153 506 144Q506 138 501 117T481 63T449 13Q436 0 417 -8Q409 -10 393 -10Q359 -10 336 5T306 36L300 51Q299 52 296 50Q294 48 292 46Q233 -10 172 -10Q117 -10 75 30T33 157ZM351 328Q351 334 346 350T323 385T277 405Q242 405 210 374T160 293Q131 214 119 129Q119 126 119 118T118 106Q118 61 136 44T179 26Q217 26 254 59T298 110Q300 114 325 217T351 328Z"></path></g><g data-mml-node="mi" transform="translate(8807.7,0)"><path data-c="1D45B" d="M21 287Q22 293 24 303T36 341T56 388T89 425T135 442Q171 442 195 424T225 390T231 369Q231 367 232 367L243 378Q304 442 382 442Q436 442 469 415T503 336T465 179T427 52Q427 26 444 26Q450 26 453 27Q482 32 505 65T540 145Q542 153 560 153Q580 153 580 145Q580 144 576 130Q568 101 554 73T508 17T439 -10Q392 -10 371 17T350 73Q350 92 386 193T423 345Q423 404 379 404H374Q288 404 229 303L222 291L189 157Q156 26 151 16Q138 -11 108 -11Q95 -11 87 -5T76 7T74 17Q74 30 112 180T152 343Q153 348 153 366Q153 405 129 405Q91 405 66 305Q60 285 60 284Q58 278 41 278H27Q21 284 21 287Z"></path></g><g data-mml-node="mi" transform="translate(9407.7,0)"><path data-c="1D454" d="M311 43Q296 30 267 15T206 0Q143 0 105 45T66 160Q66 265 143 353T314 442Q361 442 401 394L404 398Q406 401 409 404T418 412T431 419T447 422Q461 422 470 413T480 394Q480 379 423 152T363 -80Q345 -134 286 -169T151 -205Q10 -205 10 -137Q10 -111 28 -91T74 -71Q89 -71 102 -80T116 -111Q116 -121 114 -130T107 -144T99 -154T92 -162L90 -164H91Q101 -167 151 -167Q189 -167 211 -155Q234 -144 254 -122T282 -75Q288 -56 298 -13Q311 35 311 43ZM384 328L380 339Q377 350 375 354T369 368T359 382T346 393T328 402T306 405Q262 405 221 352Q191 313 171 233T151 117Q151 38 213 38Q269 38 323 108L331 118L384 328Z"></path></g><g data-mml-node="mi" transform="translate(9884.7,0)"><path data-c="1D452" d="M39 168Q39 225 58 272T107 350T174 402T244 433T307 442H310Q355 442 388 420T421 355Q421 265 310 237Q261 224 176 223Q139 223 138 221Q138 219 132 186T125 128Q125 81 146 54T209 26T302 45T394 111Q403 121 406 121Q410 121 419 112T429 98T420 82T390 55T344 24T281 -1T205 -11Q126 -11 83 42T39 168ZM373 353Q367 405 305 405Q272 405 244 391T199 357T170 316T154 280T149 261Q149 260 169 260Q282 260 327 284T373 353Z"></path></g><g data-mml-node="TeXAtom" data-mjx-texclass="ORD" transform="translate(10350.7,0)"><g data-mml-node="mo"><path data-c="2F" d="M423 750Q432 750 438 744T444 730Q444 725 271 248T92 -240Q85 -250 75 -250Q68 -250 62 -245T56 -231Q56 -221 230 257T407 740Q411 750 423 750Z"></path></g></g><g data-mml-node="mi" transform="translate(10850.7,0)"><path data-c="1D436" d="M50 252Q50 367 117 473T286 641T490 704Q580 704 633 653Q642 643 648 636T656 626L657 623Q660 623 684 649Q691 655 699 663T715 679T725 690L740 705H746Q760 705 760 698Q760 694 728 561Q692 422 692 421Q690 416 687 415T669 413H653Q647 419 647 422Q647 423 648 429T650 449T651 481Q651 552 619 605T510 659Q484 659 454 652T382 628T299 572T226 479Q194 422 175 346T156 222Q156 108 232 58Q280 24 350 24Q441 24 512 92T606 240Q610 253 612 255T628 257Q648 257 648 248Q648 243 647 239Q618 132 523 55T319 -22Q206 -22 128 53T50 252Z"></path></g><g data-mml-node="mi" transform="translate(11610.7,0)"><path data-c="1D45C" d="M201 -11Q126 -11 80 38T34 156Q34 221 64 279T146 380Q222 441 301 441Q333 441 341 440Q354 437 367 433T402 417T438 387T464 338T476 268Q476 161 390 75T201 -11ZM121 120Q121 70 147 48T206 26Q250 26 289 58T351 142Q360 163 374 216T388 308Q388 352 370 375Q346 405 306 405Q243 405 195 347Q158 303 140 230T121 120Z"></path></g><g data-mml-node="mi" transform="translate(12095.7,0)"><path data-c="1D45A" d="M21 287Q22 293 24 303T36 341T56 388T88 425T132 442T175 435T205 417T221 395T229 376L231 369Q231 367 232 367L243 378Q303 442 384 442Q401 442 415 440T441 433T460 423T475 411T485 398T493 385T497 373T500 364T502 357L510 367Q573 442 659 442Q713 442 746 415T780 336Q780 285 742 178T704 50Q705 36 709 31T724 26Q752 26 776 56T815 138Q818 149 821 151T837 153Q857 153 857 145Q857 144 853 130Q845 101 831 73T785 17T716 -10Q669 -10 648 17T627 73Q627 92 663 193T700 345Q700 404 656 404H651Q565 404 506 303L499 291L466 157Q433 26 428 16Q415 -11 385 -11Q372 -11 364 -4T353 8T350 18Q350 29 384 161L420 307Q423 322 423 345Q423 404 379 404H374Q288 404 229 303L222 291L189 157Q156 26 151 16Q138 -11 108 -11Q95 -11 87 -5T76 7T74 17Q74 30 112 181Q151 335 151 342Q154 357 154 369Q154 405 129 405Q107 405 92 377T69 316T57 280Q55 278 41 278H27Q21 284 21 287Z"></path></g><g data-mml-node="mi" transform="translate(12973.7,0)"><path data-c="1D45A" d="M21 287Q22 293 24 303T36 341T56 388T88 425T132 442T175 435T205 417T221 395T229 376L231 369Q231 367 232 367L243 378Q303 442 384 442Q401 442 415 440T441 433T460 423T475 411T485 398T493 385T497 373T500 364T502 357L510 367Q573 442 659 442Q713 442 746 415T780 336Q780 285 742 178T704 50Q705 36 709 31T724 26Q752 26 776 56T815 138Q818 149 821 151T837 153Q857 153 857 145Q857 144 853 130Q845 101 831 73T785 17T716 -10Q669 -10 648 17T627 73Q627 92 663 193T700 345Q700 404 656 404H651Q565 404 506 303L499 291L466 157Q433 26 428 16Q415 -11 385 -11Q372 -11 364 -4T353 8T350 18Q350 29 384 161L420 307Q423 322 423 345Q423 404 379 404H374Q288 404 229 303L222 291L189 157Q156 26 151 16Q138 -11 108 -11Q95 -11 87 -5T76 7T74 17Q74 30 112 181Q151 335 151 342Q154 357 154 369Q154 405 129 405Q107 405 92 377T69 316T57 280Q55 278 41 278H27Q21 284 21 287Z"></path></g><g data-mml-node="mi" transform="translate(13851.7,0)"><path data-c="1D452" d="M39 168Q39 225 58 272T107 350T174 402T244 433T307 442H310Q355 442 388 420T421 355Q421 265 310 237Q261 224 176 223Q139 223 138 221Q138 219 132 186T125 128Q125 81 146 54T209 26T302 45T394 111Q403 121 406 121Q410 121 419 112T429 98T420 82T390 55T344 24T281 -1T205 -11Q126 -11 83 42T39 168ZM373 353Q367 405 305 405Q272 405 244 391T199 357T170 316T154 280T149 261Q149 260 169 260Q282 260 327 284T373 353Z"></path></g><g data-mml-node="mi" transform="translate(14317.7,0)"><path data-c="1D45B" d="M21 287Q22 293 24 303T36 341T56 388T89 425T135 442Q171 442 195 424T225 390T231 369Q231 367 232 367L243 378Q304 442 382 442Q436 442 469 415T503 336T465 179T427 52Q427 26 444 26Q450 26 453 27Q482 32 505 65T540 145Q542 153 560 153Q580 153 580 145Q580 144 576 130Q568 101 554 73T508 17T439 -10Q392 -10 371 17T350 73Q350 92 386 193T423 345Q423 404 379 404H374Q288 404 229 303L222 291L189 157Q156 26 151 16Q138 -11 108 -11Q95 -11 87 -5T76 7T74 17Q74 30 112 180T152 343Q153 348 153 366Q153 405 129 405Q91 405 66 305Q60 285 60 284Q58 278 41 278H27Q21 284 21 287Z"></path></g><g data-mml-node="mi" transform="translate(14917.7,0)"><path data-c="1D461" d="M26 385Q19 392 19 395Q19 399 22 411T27 425Q29 430 36 430T87 431H140L159 511Q162 522 166 540T173 566T179 586T187 603T197 615T211 624T229 626Q247 625 254 615T261 596Q261 589 252 549T232 470L222 433Q222 431 272 431H323Q330 424 330 420Q330 398 317 385H210L174 240Q135 80 135 68Q135 26 162 26Q197 26 230 60T283 144Q285 150 288 151T303 153H307Q322 153 322 145Q322 142 319 133Q314 117 301 95T267 48T216 6T155 -11Q125 -11 98 4T59 56Q57 64 57 83V101L92 241Q127 382 128 383Q128 385 77 385H26Z"></path></g><g data-mml-node="mi" transform="translate(15278.7,0)"><path data-c="1D44F" d="M73 647Q73 657 77 670T89 683Q90 683 161 688T234 694Q246 694 246 685T212 542Q204 508 195 472T180 418L176 399Q176 396 182 402Q231 442 283 442Q345 442 383 396T422 280Q422 169 343 79T173 -11Q123 -11 82 27T40 150V159Q40 180 48 217T97 414Q147 611 147 623T109 637Q104 637 101 637H96Q86 637 83 637T76 640T73 647ZM336 325V331Q336 405 275 405Q258 405 240 397T207 376T181 352T163 330L157 322L136 236Q114 150 114 114Q114 66 138 42Q154 26 178 26Q211 26 245 58Q270 81 285 114T318 219Q336 291 336 325Z"></path></g><g data-mml-node="mi" transform="translate(15707.7,0)"><path data-c="1D466" d="M21 287Q21 301 36 335T84 406T158 442Q199 442 224 419T250 355Q248 336 247 334Q247 331 231 288T198 191T182 105Q182 62 196 45T238 27Q261 27 281 38T312 61T339 94Q339 95 344 114T358 173T377 247Q415 397 419 404Q432 431 462 431Q475 431 483 424T494 412T496 403Q496 390 447 193T391 -23Q363 -106 294 -155T156 -205Q111 -205 77 -183T43 -117Q43 -95 50 -80T69 -58T89 -48T106 -45Q150 -45 150 -87Q150 -107 138 -122T115 -142T102 -147L99 -148Q101 -153 118 -160T152 -167H160Q177 -167 186 -165Q219 -156 247 -127T290 -65T313 -9T321 21L315 17Q309 13 296 6T270 -6Q250 -11 231 -11Q185 -11 150 11T104 82Q103 89 103 113Q103 170 138 262T173 379Q173 380 173 381Q173 390 173 393T169 400T158 404H154Q131 404 112 385T82 344T65 302T57 280Q55 278 41 278H27Q21 284 21 287Z"></path></g></g></g></svg></mjx-container>author/</td>
+<td>启用特定平台的评论过滤（目前支持 Stack Overflow / Stack Exchange）</td>
+<td>否</td>
+</tr>
+<tr>
+<td>custom_tags</td>
+<td>“”</td>
+<td>提取 RSS 中的自定义标签并映射为模板变量</td>
+<td>否</td>
+</tr>
+<tr>
+<td>title_max_length</td>
+<td>“”</td>
+<td>标题最大长度，超长部分显示省略号 …</td>
+<td>否</td>
+</tr>
+<tr>
+<td>description_max_length</td>
+<td>“”</td>
+<td>描述最大长度，超长部分显示省略号 …</td>
+<td>否</td>
+</tr>
+<tr>
+<td>commit_message</td>
+<td>Updated with the latest blog posts</td>
+<td>自定义提交信息</td>
+<td>否</td>
+</tr>
+<tr>
+<td>committer_username</td>
+<td>blog-post-bot</td>
+<td>提交者的用户名</td>
+<td>否</td>
+</tr>
+<tr>
+<td>committer_email</td>
+<td>blog-post-bot@example.com</td>
+<td>提交者的邮箱</td>
+<td>否</td>
+</tr>
+<tr>
+<td>enable_keepalive</td>
+<td>true</td>
+<td>是否自动进行 dummy commit 以防止仓库因长时间无活动而被 GitHub 停止 cron 触发</td>
+<td>否</td>
+</tr>
+<tr>
+<td>remove_duplicates</td>
+<td>false</td>
+<td>是否根据标题去除多源重复文章</td>
+<td>否</td>
+</tr>
+<tr>
+<td>filter_dates</td>
+<td>“”</td>
+<td>按时间范围过滤文章（例如 daysAgo/30/ 只显示最近30天、currentMonth 只显示本月）</td>
+<td>否</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>template 常用变量</strong>（在 template 参数中使用）：</p>
+<ul>
+<li>$title — 文章标题</li>
+<li>$url — 文章链接</li>
+<li>$description — 文章摘要/描述</li>
+<li>$date — 发布日期（格式由 date_format 控制）</li>
+<li>$feedName — 订阅源名称（需配合 feed_names 使用）</li>
+<li>$categories — 文章分类（逗号分隔）</li>
+<li>$counter — 序号</li>
+<li>$newline — 换行</li>
+<li>$randomEmoji(💯,🔥,🚀) — 随机表情</li>
+<li>$emojiKey(💯,🔥,🚀) — 按顺序循环的表情</li>
+</ul>
+<p>示例模板：<code>[$counter] [$title]($url) $date $newline</code></p>
+<p>如需更高级的自定义参考官方仓库的 <strong>Advanced usage</strong></p>
+<h2 id="个人配置分享"><a href="#个人配置分享" class="headerlink" title="个人配置分享"></a>个人配置分享</h2><p>分享一下个人配置，效果展示如下：</p>
+<p class='item-img' data-src='https://pica.zhimg.com/v2-fde19335f5b55d247174872959328bf4_r.jpg'><img src="https://pica.zhimg.com/v2-fde19335f5b55d247174872959328bf4_r.jpg" alt="alt text"></p>
+<p>工作流配置</p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><code class="hljs yml"><span class="hljs-attr">name:</span> <span class="hljs-string">Latest</span> <span class="hljs-string">blog</span> <span class="hljs-string">posts</span><br><br><span class="hljs-attr">on:</span><br>    <span class="hljs-attr">workflow_dispatch:</span><br>    <span class="hljs-attr">schedule:</span><br>        <span class="hljs-bullet">-</span> <span class="hljs-attr">cron:</span> <span class="hljs-string">"0 0 * * *"</span><br><br><span class="hljs-attr">permissions:</span><br>    <span class="hljs-attr">contents:</span> <span class="hljs-string">write</span><br><br><span class="hljs-attr">jobs:</span><br>    <span class="hljs-attr">update-readme-with-blog:</span><br>        <span class="hljs-attr">name:</span> <span class="hljs-string">Update</span> <span class="hljs-string">README</span> <span class="hljs-string">with</span> <span class="hljs-string">latest</span> <span class="hljs-string">blog</span> <span class="hljs-string">articles</span><br>        <span class="hljs-attr">runs-on:</span> <span class="hljs-string">ubuntu-latest</span><br>        <span class="hljs-attr">steps:</span><br>            <span class="hljs-bullet">-</span> <span class="hljs-attr">name:</span> <span class="hljs-string">Checkout</span> <span class="hljs-string">repository</span><br>              <span class="hljs-attr">uses:</span> <span class="hljs-string">actions/checkout@v4</span><br><br>            <span class="hljs-bullet">-</span> <span class="hljs-attr">name:</span> <span class="hljs-string">Pull</span> <span class="hljs-string">latest</span> <span class="hljs-string">articles</span><br>              <span class="hljs-attr">uses:</span> <span class="hljs-string">gautamkrishnar/blog-post-workflow@v1</span><br>              <span class="hljs-attr">with:</span><br>                  <span class="hljs-attr">feed_list:</span> <span class="hljs-string">"https://zhongye1.github.io/Arknight-notes/rss.xml"</span><br>                  <span class="hljs-attr">max_post_count:</span> <span class="hljs-number">5</span><br>                  <span class="hljs-comment"># 日期格式（yyyy为年，MM为月，dd为日）</span><br>                  <span class="hljs-attr">date_format:</span> <span class="hljs-string">"yyyy-mm-dd"</span><br>                  <span class="hljs-comment"># 显式指定变量，并加上 $newline 确保换行</span><br>                  <span class="hljs-comment"># 使用单引号包裹整个模板，防止 HTML 标签与 YAML 冲突</span><br>                  <span class="hljs-attr">template:</span> <span class="hljs-string">'&lt;tr&gt;&lt;td&gt;$title&lt;/td&gt;&lt;td align="center"&gt;$date&lt;/td&gt;&lt;td align="center"&gt;&lt;a href="$url"&gt;点击阅读&lt;/a&gt;&lt;/td&gt;&lt;/tr&gt;$newline'</span><br>                  <span class="hljs-attr">commit_message:</span> <span class="hljs-string">"chore: update latest blog articles"</span><br></code></pre></td></tr></table></figure>
+<p>主页README.md配置</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs markdown"><span class="hljs-section">### 关注博客：https://zhongye1.github.io/Arknight-notes/</span><br><br>最新文章：<br><br><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">table</span>&gt;</span></span><br>  <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">thead</span>&gt;</span></span><br><span class="hljs-code">    &lt;tr&gt;</span><br><span class="hljs-code">      &lt;th align="left"&gt;文章标题&lt;/th&gt;</span><br><span class="hljs-code">      &lt;th align="center" width="120px"&gt;发布日期&lt;/th&gt;</span><br><span class="hljs-code">      &lt;th align="center" width="100px"&gt;跳转链接&lt;/th&gt;</span><br><span class="hljs-code">    &lt;/tr&gt;</span><br><span class="hljs-code">  &lt;/thead&gt;</span><br><span class="hljs-code">  &lt;tbody&gt;</span><br><span class="hljs-code">&lt;!-- BLOG-POST-LIST:START --&gt;</span><br><span class="hljs-code">&lt;!-- BLOG-POST-LIST:END --&gt;</span><br><span class="hljs-code">  &lt;/tbody&gt;</span><br><span class="hljs-code">&lt;/table&gt;</span><br></code></pre></td></tr></table></figure>
+<div id="paginator"></div></div><div id="post-footer"><div id="pages" style="justify-content: flex-end"><div class="footer-link" style="width: 50%;right:1px;border-left:1px #fe2 solid"><a href="/Arknight-notes/posts/22446.html">2026-01-19-杂记 2026-01-19 上一篇 →</a></div></div></div><div id="comments"><div id="gitalk"></div></div></div><div class="bottom-btn"><div><a class="i-top" id="to-top" onClick="scrolls.scrolltop();" title="回到顶部" style="opacity: 0; display: none;">∧ </a><a class="i-index" id="to-index" href="#toc-div" title="文章目录">≡</a><a class="i-color" id="color-mode" onClick="colorMode.change()" title="切换主题"></a></div></div></article><aside><div id="about"><a href="/Arknight-notes/" id="logo"><img src="https://pic4.zhimg.com/80/v2-d9884f32711e19e80979eac58e943897_720w.webp" alt="Logo" style="margin:20;border-radius:0;"></a><h1 id="Dr"><a href="zhongye">Zhongye</a></h1><div id="description"><p></p></div></div><div id="aside-block"><div id="toc-div"><h1>目录</h1><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E7%A1%80%E4%BB%8B%E7%BB%8D%E5%92%8C%E4%BD%BF%E7%94%A8%E6%AD%A5%E9%AA%A4"><span class="toc-number">1.</span> <span class="toc-text">基础介绍和使用步骤</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE"><span class="toc-number">1.1.</span> <span class="toc-text">配置</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%AA%E4%BA%BA%E9%85%8D%E7%BD%AE%E5%88%86%E4%BA%AB"><span class="toc-number">2.</span> <span class="toc-text">个人配置分享</span></a></li></ol></div></div><footer><nobr><span class="icp-title">GZHU</span><span class="icp-content">193001-0001</span></nobr><br><nobr><span class="icp-title">OUTPOST</span><span class="icp-content">169-2025-0331</span></nobr><br><nobr>构建自 <a target="_blank" rel="noopener" href="http://hexo.io">Hexo</a></nobr><wbr><nobr> 使用主题 <a target="_blank" rel="noopener" href="https://github.com/Yue-plus/hexo-theme-arknights">Arknights</a></nobr><wbr><nobr> 主题作者 <a target="_blank" rel="noopener" href="https://github.com/Yue-plus">Yue_plus</a></nobr></footer></aside><!-- ── 访客信息获取脚本（建议放在页面底部 layout/_partial/after-footer.pug 或单独引入） ──--><script>(function() {
+  const MAX_RETRY = 1;
+  let retryCount = 0;
+
+  async function fetchVisitorInfo() {
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => {
+      controller.abort(new Error('Request timeout after 1000ms'));
+    }, 1000);
+
+    try {
+      const response = await fetch('https://ipapi.co/json/', {
+        signal: controller.signal
+      });
+
+      clearTimeout(timeoutId);
+
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+
+      const data = await response.json();
+
+      document.getElementById('visitor-ip').textContent = data.ip || '无法获取';
+      
+      const parts = [];
+      if (data.city) parts.push(data.city);
+      if (data.region) parts.push(data.region);
+      if (data.country_name) parts.push(data.country_name);
+      
+      document.getElementById('visitor-location').textContent = 
+        parts.length > 0 ? parts.join(' - ') : '未知地区';
+
+    } catch (err) {
+      clearTimeout(timeoutId);
+
+      // 如果是超时错误，且还有重试次数，则重试一次
+      if (err.name === 'AbortError' && retryCount < MAX_RETRY) {
+        retryCount++;
+        // 可选：显示「正在重试...」提示
+        document.getElementById('visitor-ip').textContent = '超时，正在重试...';
+        document.getElementById('visitor-location').textContent = '——';
+        
+        // 立即重试（也可加个很短的延迟，如 300ms）
+        setTimeout(fetchVisitorInfo, 300);
+        return;
+      }
+
+      // 最终失败
+      document.getElementById('visitor-ip').textContent = '████';
+      document.getElementById('visitor-location').textContent = '████';
+    }
+  }
+
+  // 页面加载完成后获取访客信息
+  fetchVisitorInfo();
+
+  // 添加对PJAX事件的监听，以便在页面切换后重新获取访客信息
+  document.addEventListener('pjax:complete', function() {
+    // 延迟执行，确保DOM已经更新完成
+    setTimeout(fetchVisitorInfo, 100);
+  });
+})();</script></main><canvas id="canvas-dust"></canvas></body></html>
