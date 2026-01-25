@@ -10,7 +10,7 @@
   font-family: 'JetBrains Mono';
   src: local('JetBrains Mono'), url('/Arknight-notes/font/JetBrainsMono-Regular.woff2') format('woff2');
 }
-</style><script>var config = {"root":"/Arknight-notes/","code_fold":90,"search":{"preload":false,"activeHolder":"键入以继续","blurHolder":"数据检索","noResult":"无 $0 相关数据"},"code":{"codeInfo":"$0 - $1 行","copy":"复制"}}</script><link type="text/css" rel="stylesheet" href="/Arknight-notes/lib/encrypt/hbe.style.css"><script src="/Arknight-notes/js/gitalk.js"></script><script src="//unpkg.com/mermaid@10.5.0/dist/mermaid.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.6.1/MathJax.js"></script><script>MathJax.Hub.Config({
+</style><script>var config = {"root":"/Arknight-notes/","code_fold":500,"search":{"preload":false,"activeHolder":"键入以继续","blurHolder":"数据检索","noResult":"无 $0 相关数据"},"code":{"codeInfo":"$0 - $1 行","copy":"复制"}}</script><link type="text/css" rel="stylesheet" href="/Arknight-notes/lib/encrypt/hbe.style.css"><script src="/Arknight-notes/js/gitalk.js"></script><script src="//unpkg.com/mermaid@10.5.0/dist/mermaid.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.6.1/MathJax.js"></script><script>MathJax.Hub.Config({
  menuSettings: {
    zoom: "None"
  },
@@ -116,7 +116,8 @@ lightGallery(document.getElementById('post-bg'), {
    }
  }
 });
-document.addEventListener("pjax:complete", reset);reset()})</script><meta name="generator" content="Hexo 7.3.0"><style>mjx-container[jax="SVG"] {
+document.addEventListener("pjax:complete", reset);reset()})</script><meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/Arknight-notes/rss.xml" title="Zhongye's Blogs" type="application/atom+xml">
+<style>mjx-container[jax="SVG"] {
   direction: ltr;
 }
 
@@ -228,8 +229,100 @@ mjx-container[display="true"] {
 mjx-container[display="true"] + br {
   display: none;
 }
-</style><link rel="alternate" href="/Arknight-notes/rss.xml" title="Zhongye's Blogs" type="application/atom+xml">
-</head><body><div class="loading" style="opacity: 0;"><div class="loadingBar left"></div><div class="loadingBar right"></div></div><main><header class="closed"><div class="navBtn"><i class="navBtnIcon"><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span></i></div><nav><div class="navItem" id="search-header"><span class="navItemTitle"><input autocomplete="off" autocorrect="off" autocapitalize="none" placeholder="数据检索" spellcheck="false" maxlength="50" type="text" id="search-input"></span></div><div class="navItem" id="search-holder"></div><div class="search-popup" tabindex="0"><div id="search-result"></div></div><ol class="navContent"><li class="navItem"><a class="navBlock" href="/Arknight-notes/"><span class="navItemTitle">Home</span></a></li><li class="navItem" matchdata="categories,tags"><a class="navBlock" href="/Arknight-notes/archives/"><span class="navItemTitle">Archives</span></a></li><li class="navItem"><a class="navBlock" href="/Arknight-notes/about/"><span class="navItemTitle">About</span></a></li></ol></nav></header><article><div id="post-bg"><div id="post-title"><h1>2026-01-16-记录关于论文细化的方法论</h1><div id="post-info"><span>文章发布时间: <div class="control"><time datetime="2026-01-16T07:43:54.000Z" id="date"> 2026-01-16</time></div></span><br><span>最后更新时间: <div class="control"><time datetime="2026-01-17T06:24:40.483Z" id="updated"> 2026-01-17</time></div></span><br><span id="busuanzi_container_page_pv">页面浏览: <span class="control" id="busuanzi_value_page_pv">加载中...</span></span></div></div><hr><div id="post-content"><h2 id="0x00-如何细化一篇论文"><a href="#0x00-如何细化一篇论文" class="headerlink" title="0x00 如何细化一篇论文"></a>0x00 如何细化一篇论文</h2><p>细化一篇论文（Refining a Paper）是一个将”粗糙的想法/初稿”打磨成”严谨、可信、高质量学术成果”的过程。基于你提供的两篇关于区块链共识算法的论文范例，细化工作通常遵循从逻辑架构到细节内容，再到语言修饰的路径，分为五个维度。</p>
+</style></head><body><div class="loading" style="opacity: 0;"><div class="loadingBar left"></div><div class="loadingBar right"></div></div><main><header class="closed"><div class="navBtn"><i class="navBtnIcon"><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span></i></div><nav><div class="navItem" id="search-header"><span class="navItemTitle"><input autocomplete="off" autocorrect="off" autocapitalize="none" placeholder="数据检索" spellcheck="false" maxlength="50" type="text" id="search-input"></span></div><div class="navItem" id="search-holder"></div><div class="search-popup" tabindex="0"><div id="search-result"></div></div><ol class="navContent"><li class="navItem"><a class="navBlock" href="/Arknight-notes/"><span class="navItemTitle">Home</span></a></li><li class="navItem" matchdata="categories,tags"><a class="navBlock" href="/Arknight-notes/archives/"><span class="navItemTitle">Archives</span></a></li><li class="navItem"><a class="navBlock" href="/Arknight-notes/about/"><span class="navItemTitle">About</span></a></li></ol></nav></header><article><div id="post-bg"><div id="post-title"><h1>2026-01-16-记录关于论文细化的方法论</h1><div id="post-info"><span>文章发布时间: <div class="control"><time datetime="2026-01-16T07:43:54.000Z" id="date"> 2026-01-16</time></div></span><br><span>最后更新时间: <div class="control"><time datetime="2026-01-22T09:18:32.679Z" id="updated"> 2026-01-22</time></div></span><br><span id="busuanzi_container_page_pv">页面浏览: <span class="control" id="busuanzi_value_page_pv">加载中...</span></span></div></div><hr><div id="post-content"><h2 id="0x00-如何细化一篇论文"><a href="#0x00-如何细化一篇论文" class="headerlink" title="0x00 如何细化一篇论文"></a>0x00 如何细化一篇论文</h2><p>细化一篇论文（Refining a Paper）是一个将”粗糙的想法/初稿”打磨成”严谨、可信、高质量学术成果”的过程。基于你提供的两篇关于区块链共识算法的论文范例，细化工作通常遵循从逻辑架构到细节内容，再到语言修饰的路径。</p>
+<ol>
+<li>研究方案/实验设计的细化（从粗到精）</li>
+<li>论文框架与内容的细化（从提纲到完整稿）</li>
+<li>投稿前/审稿意见后的深度打磨（精修阶段）</li>
+</ol>
+<h3 id="一、研究工作本身的细化"><a href="#一、研究工作本身的细化" class="headerlink" title="一、研究工作本身的细化"></a>一、研究工作本身的细化</h3><p>这是决定论文质量的上游工作，论文写得再好，研究不扎实也无意义。</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>细化方向</th>
+<th>具体需要做的工作</th>
+<th>常见目标 / 判断标准</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>问题定义的细化</td>
+<td>把大问题拆成可操作、可验证的具体子问题（从“提升XX性能”→“在XX场景下将指标A提升X%，同时指标B下降不超过Y%”）</td>
+<td>是否可量化、可考核、可被别人复现</td>
+</tr>
+<tr>
+<td>研究边界的细化</td>
+<td>明确哪些情况考虑、哪些不考虑（e.g. 只考虑单模态 / 只考虑离线 / 只考虑中低分辨率等）</td>
+<td>边界清晰，避免审稿人问“你为什么没做XX情况”</td>
+</tr>
+<tr>
+<td>方法/模型结构的细化</td>
+<td>从最初的idea → 完整可运行的pipeline，每一层每一模块的设计理由、参数选择依据</td>
+<td>每个关键设计都有充分的ablation或理论分析支持</td>
+</tr>
+<tr>
+<td>数据/实验设置的细化</td>
+<td>数据划分方式、数据增强策略、评估指标的完整定义、超参搜索范围、随机种子控制等</td>
+<td>别人能否几乎无歧义地复现你的实验</td>
+</tr>
+<tr>
+<td>对比实验的细化</td>
+<td>基线选择是否全面、是否包含SOTA、是否公平对比（统一训练设置、统一数据预处理等）</td>
+<td>覆盖主流方法，避免被审稿人指出遗漏重要对比</td>
+</tr>
+<tr>
+<td>消融实验的细化</td>
+<td>把所有你认为重要的设计点都单独拆出来做ablation（而非只做两三个）</td>
+<td>能清楚回答“这个模块/trick到底贡献了多少”</td>
+</tr>
+<tr>
+<td>理论分析的细化（若适用）</td>
+<td>从直观解释 → 数学推导 → 定理/命题 → 边界条件分析</td>
+<td>理论部分能否独立成节，而非几句话带过</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>把所有可能被审稿人问“为什么”“凭什么”“有没有考虑过”的点，<strong>提前自己问死自己</strong></p>
+<h3 id="二、论文写作层面的细化"><a href="#二、论文写作层面的细化" class="headerlink" title="二、论文写作层面的细化"></a>二、论文写作层面的细化</h3><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>写作阶段</th>
+<th>需要细化的重点内容</th>
+<th>具体操作建议</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>提纲阶段</td>
+<td>章节结构、每节核心论点、每节大概篇幅比例</td>
+<td>用1–2页纸写详细提纲（到三级标题+每段一句话主旨），找导师/师兄师姐评一次</td>
+</tr>
+<tr>
+<td>初稿阶段</td>
+<td>把想表达的意思说清楚（逻辑通、内容全）</td>
+<td>先求“有”，不求“好”；写完立刻放两天再改</td>
+</tr>
+<tr>
+<td>精修阶段（最关键）</td>
+<td>1. 每句话的科学性、严谨性、必要性 2. 逻辑链条的紧密性 3. 图表的信息密度与可读性 4. 语言的专业性与流畅性</td>
+<td>- 逐句问：这句话删掉会不会影响结论成立？ - 每个段落能否用一句话概括主旨？ - 每个图能否让人30秒内抓住核心信息？ - 是否存在“明显优于”“显著提升”这种无数据支持的表述？</td>
+</tr>
+<tr>
+<td>图表细化</td>
+<td>配色、字体大小、图例位置、刻度密度、误差棒、子图对齐、多图对比一致性</td>
+<td>一篇好论文的图表通常要改5–15版；建议统一用Origin/Matplotlib+固定模板</td>
+</tr>
+<tr>
+<td>语言与表达</td>
+<td>去除中式英语、去除冗余词、统一术语、提升可读性</td>
+<td>推荐工具：Grammarly + DeepL + ChatGPT/DeepSeek过一遍学术化改写</td>
+</tr>
+</tbody>
+</table>
+</div>
 <h3 id="逻辑与故事线的细化-The-Narrative"><a href="#逻辑与故事线的细化-The-Narrative" class="headerlink" title="逻辑与故事线的细化 (The Narrative)"></a>逻辑与故事线的细化 (The Narrative)</h3><p>论文不仅仅是数据的堆砌，更是一个说服读者的过程。首先需要明确”差距”（Research Gap）。粗糙版本可能是：现在的算法太慢了，我提出了一个新的。而细化版本应该是：现有算法在XX场景下（如大规模网络）表现良好，但在YY场景下（如弱网环境）通信复杂度高达O(N²)，导致扩展性瓶颈。目前的改进方案（如 GHOST）虽然解决了分叉问题，但未根本降低通信量。</p>
 <p>接下来要强化”贡献点”（Contributions）。确保摘要和引言中的贡献点与正文严格对应。细化技巧是不要只说”提出了算法”，要说”提出了基于XXX理论的算法，解决了YYY问题，将性能提升了ZZ%”。</p>
 <p>此外，要统一术语，全篇检查关键词（如”同步网络”、”邻居节点”、”收敛时间”）的定义是否前后一致。</p>
@@ -246,7 +339,7 @@ mjx-container[display="true"] + br {
 <h3 id="语言与格式的细化-Language-amp-Formatting"><a href="#语言与格式的细化-Language-amp-Formatting" class="headerlink" title="语言与格式的细化 (Language & Formatting)"></a>语言与格式的细化 (Language &amp; Formatting)</h3><p>结构化表达方面，多用”首先、其次、最后”（First, Second, Finally）。段落核心句（Topic Sentence）置于段首。</p>
 <p>公式排版方面，使用LaTeX规范排版，确保符号清晰。</p>
 <p>引用规范方面，确保参考文献覆盖了经典文献和近3年的最新文献，体现研究的时效性。</p>
-<div id="paginator"></div></div><div id="post-footer"><div id="pages"><div class="footer-link" style="width: 50%;text-align:right;border-right:1px #fe2 solid"><a href="/Arknight-notes/posts/19198.html">← 下一篇 2026-01-17-力扣百题速练（Javascript、TypeScript）Vol-4</a></div><div class="footer-link" style="width: 50%;right:1px;border-left:1px #fe2 solid"><a href="/Arknight-notes/posts/566.html">2026-01-16-关于低复杂度最长链共识算法设计 上一篇 →</a></div></div></div><div id="comments"><div id="gitalk"></div></div></div><div class="bottom-btn"><div><a class="i-top" id="to-top" onClick="scrolls.scrolltop();" title="回到顶部" style="opacity: 0; display: none;">∧ </a><a class="i-index" id="to-index" href="#toc-div" title="文章目录">≡</a><a class="i-color" id="color-mode" onClick="colorMode.change()" title="切换主题"></a></div></div></article><aside><div id="about"><a href="/Arknight-notes/" id="logo"><img src="https://pic4.zhimg.com/80/v2-d9884f32711e19e80979eac58e943897_720w.webp" alt="Logo" style="margin:20;border-radius:0;"></a><h1 id="Dr"><a href="zhongye">Zhongye</a></h1><div id="description"><p></p></div></div><div id="aside-block"><div id="toc-div"><h1>目录</h1><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#0x00-%E5%A6%82%E4%BD%95%E7%BB%86%E5%8C%96%E4%B8%80%E7%AF%87%E8%AE%BA%E6%96%87"><span class="toc-number">1.</span> <span class="toc-text">0x00 如何细化一篇论文</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%80%BB%E8%BE%91%E4%B8%8E%E6%95%85%E4%BA%8B%E7%BA%BF%E7%9A%84%E7%BB%86%E5%8C%96-The-Narrative"><span class="toc-number">1.1.</span> <span class="toc-text">逻辑与故事线的细化 (The Narrative)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%90%86%E8%AE%BA%E6%A8%A1%E5%9E%8B%E7%9A%84%E7%BB%86%E5%8C%96-Theoretical-Model"><span class="toc-number">1.2.</span> <span class="toc-text">理论模型的细化 (Theoretical Model)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AE%97%E6%B3%95%E8%AE%BE%E8%AE%A1%E7%9A%84%E7%BB%86%E5%8C%96-Algorithm-Design"><span class="toc-number">1.3.</span> <span class="toc-text">算法设计的细化 (Algorithm Design)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E9%AA%8C%E8%AF%81%E7%9A%84%E7%BB%86%E5%8C%96-Experiments"><span class="toc-number">1.4.</span> <span class="toc-text">实验验证的细化 (Experiments)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AF%AD%E8%A8%80%E4%B8%8E%E6%A0%BC%E5%BC%8F%E7%9A%84%E7%BB%86%E5%8C%96-Language-amp-Formatting"><span class="toc-number">1.5.</span> <span class="toc-text">语言与格式的细化 (Language &amp; Formatting)</span></a></li></ol></li></ol></div></div><footer><nobr><span class="icp-title">GZHU</span><span class="icp-content">193001-0001</span></nobr><br><nobr><span class="icp-title">OUTPOST</span><span class="icp-content">169-2025-0331</span></nobr><br><nobr>构建自 <a target="_blank" rel="noopener" href="http://hexo.io">Hexo</a></nobr><wbr><nobr> 使用主题 <a target="_blank" rel="noopener" href="https://github.com/Yue-plus/hexo-theme-arknights">Arknights</a></nobr><wbr><nobr> 主题作者 <a target="_blank" rel="noopener" href="https://github.com/Yue-plus">Yue_plus</a></nobr></footer></aside><!-- ── 访客信息获取脚本（建议放在页面底部 layout/_partial/after-footer.pug 或单独引入） ──--><script>(function() {
+<div id="paginator"></div></div><div id="post-footer"><div id="pages"><div class="footer-link" style="width: 50%;text-align:right;border-right:1px #fe2 solid"><a href="/Arknight-notes/posts/19198.html">← 下一篇 2026-01-17-力扣百题速练（Javascript、TypeScript）Vol-4</a></div><div class="footer-link" style="width: 50%;right:1px;border-left:1px #fe2 solid"><a href="/Arknight-notes/posts/566.html">2026-01-16-关于低复杂度最长链共识算法设计 上一篇 →</a></div></div></div><div id="comments"><div id="gitalk"></div></div></div><div class="bottom-btn"><div><a class="i-top" id="to-top" onClick="scrolls.scrolltop();" title="回到顶部" style="opacity: 0; display: none;">∧ </a><a class="i-index" id="to-index" href="#toc-div" title="文章目录">≡</a><a class="i-color" id="color-mode" onClick="colorMode.change()" title="切换主题"></a></div></div></article><aside><div id="about"><a href="/Arknight-notes/" id="logo"><img src="https://pic4.zhimg.com/80/v2-d9884f32711e19e80979eac58e943897_720w.webp" alt="Logo" style="margin:20;border-radius:0;"></a><h1 id="Dr"><a href="zhongye">Zhongye</a></h1><div id="description"><p></p></div></div><div id="aside-block"><div id="toc-div"><h1>目录</h1><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#0x00-%E5%A6%82%E4%BD%95%E7%BB%86%E5%8C%96%E4%B8%80%E7%AF%87%E8%AE%BA%E6%96%87"><span class="toc-number">1.</span> <span class="toc-text">0x00 如何细化一篇论文</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E7%A0%94%E7%A9%B6%E5%B7%A5%E4%BD%9C%E6%9C%AC%E8%BA%AB%E7%9A%84%E7%BB%86%E5%8C%96"><span class="toc-number">1.1.</span> <span class="toc-text">一、研究工作本身的细化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E8%AE%BA%E6%96%87%E5%86%99%E4%BD%9C%E5%B1%82%E9%9D%A2%E7%9A%84%E7%BB%86%E5%8C%96"><span class="toc-number">1.2.</span> <span class="toc-text">二、论文写作层面的细化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%80%BB%E8%BE%91%E4%B8%8E%E6%95%85%E4%BA%8B%E7%BA%BF%E7%9A%84%E7%BB%86%E5%8C%96-The-Narrative"><span class="toc-number">1.3.</span> <span class="toc-text">逻辑与故事线的细化 (The Narrative)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%90%86%E8%AE%BA%E6%A8%A1%E5%9E%8B%E7%9A%84%E7%BB%86%E5%8C%96-Theoretical-Model"><span class="toc-number">1.4.</span> <span class="toc-text">理论模型的细化 (Theoretical Model)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AE%97%E6%B3%95%E8%AE%BE%E8%AE%A1%E7%9A%84%E7%BB%86%E5%8C%96-Algorithm-Design"><span class="toc-number">1.5.</span> <span class="toc-text">算法设计的细化 (Algorithm Design)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E9%AA%8C%E8%AF%81%E7%9A%84%E7%BB%86%E5%8C%96-Experiments"><span class="toc-number">1.6.</span> <span class="toc-text">实验验证的细化 (Experiments)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AF%AD%E8%A8%80%E4%B8%8E%E6%A0%BC%E5%BC%8F%E7%9A%84%E7%BB%86%E5%8C%96-Language-amp-Formatting"><span class="toc-number">1.7.</span> <span class="toc-text">语言与格式的细化 (Language &amp; Formatting)</span></a></li></ol></li></ol></div></div><footer><nobr><span class="icp-title">GZHU</span><span class="icp-content">193001-0001</span></nobr><br><nobr><span class="icp-title">OUTPOST</span><span class="icp-content">169-2025-0331</span></nobr><br><nobr>构建自 <a target="_blank" rel="noopener" href="http://hexo.io">Hexo</a></nobr><wbr><nobr> 使用主题 <a target="_blank" rel="noopener" href="https://github.com/Yue-plus/hexo-theme-arknights">Arknights</a></nobr><wbr><nobr> 主题作者 <a target="_blank" rel="noopener" href="https://github.com/Yue-plus">Yue_plus</a></nobr></footer></aside><!-- ── 访客信息获取脚本（建议放在页面底部 layout/_partial/after-footer.pug 或单独引入） ──--><script>(function() {
   const MAX_RETRY = 1;
   let retryCount = 0;
 
